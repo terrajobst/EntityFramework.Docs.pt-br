@@ -1,0 +1,19 @@
+---
+title: "Provedores de Banco de Dados – EF Core"
+author: rowanmiller
+ms.author: divega
+ms.date: 10/27/2016
+ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
+ms.technology: entity-framework-core
+uid: core/providers/index
+ms.openlocfilehash: 19c275b7e89c62e79c8bded977e39b2cfb2b439a
+ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 10/27/2017
+---
+# <a name="database-providers"></a><span data-ttu-id="9ac68-102">Provedores de Banco de Dados</span><span class="sxs-lookup"><span data-stu-id="9ac68-102">Database Providers</span></span>
+
+<span data-ttu-id="9ac68-103">O Entity Framework Core usa um modelo de provedor para permitir que o EF seja usado para acessar vários bancos de dados diferentes.</span><span class="sxs-lookup"><span data-stu-id="9ac68-103">Entity Framework Core uses a provider model to allow EF to be used to access many different databases.</span></span> <span data-ttu-id="9ac68-104">Alguns conceitos são comuns à maioria dos bancos de dados e estão incluídos nos componentes principais do EF Core.</span><span class="sxs-lookup"><span data-stu-id="9ac68-104">Some concepts are common to most databases, and are included in the primary EF Core components.</span></span> <span data-ttu-id="9ac68-105">Esses conceitos incluem expressar consultas no LINQ e em transações e lidar com alterações aos objetos depois que eles forem carregados do banco de dados.</span><span class="sxs-lookup"><span data-stu-id="9ac68-105">Such concepts include expressing queries in LINQ, transactions, and tacking changes to objects once they are loaded from the database.</span></span> <span data-ttu-id="9ac68-106">Alguns conceitos são específicos para um determinado provedor.</span><span class="sxs-lookup"><span data-stu-id="9ac68-106">Some concepts are specific to a particular provider.</span></span> <span data-ttu-id="9ac68-107">Por exemplo, o provedor SQL Server permite configurar as tabelas com otimização de memória (um recurso específico do SQL Server).</span><span class="sxs-lookup"><span data-stu-id="9ac68-107">For example, the SQL Server provider allows you to configure memory-optimized tables (a feature specific to SQL Server).</span></span> <span data-ttu-id="9ac68-108">Outros conceitos são específicos de uma classe de provedores.</span><span class="sxs-lookup"><span data-stu-id="9ac68-108">Other concepts are specific to a class of providers.</span></span> <span data-ttu-id="9ac68-109">Por exemplo, provedores do EF Core para bancos de dados relacionais são desenvolvidos com base na biblioteca `Microsoft.EntityFrameworkCore.Relational` comum, que fornece APIs para configurar mapeamentos de tabela e coluna, restrições de chave estrangeira etc.</span><span class="sxs-lookup"><span data-stu-id="9ac68-109">For example, EF Core providers for relational databases build on the common `Microsoft.EntityFrameworkCore.Relational` library, which provides APIs for configuring table and column mappings, foreign key constraints, etc.</span></span>
+
+<span data-ttu-id="9ac68-110">Os provedores do EF Core são criados por uma variedade de origens.</span><span class="sxs-lookup"><span data-stu-id="9ac68-110">EF Core providers are built by a variety of sources.</span></span> <span data-ttu-id="9ac68-111">Nem todos os provedores são mantidos como parte do projeto do Entity Framework Core.</span><span class="sxs-lookup"><span data-stu-id="9ac68-111">Not all providers are maintained as part of the Entity Framework Core project.</span></span> <span data-ttu-id="9ac68-112">Ao considerar um provedor de terceiros, avalie a qualidade, o licenciamento, o suporte etc. para garantir que ele cumpra os requisitos.</span><span class="sxs-lookup"><span data-stu-id="9ac68-112">When considering a third party provider, be sure to evaluate quality, licensing, support, etc. to ensure they meet your requirements.</span></span>
