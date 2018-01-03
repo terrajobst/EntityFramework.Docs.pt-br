@@ -4,11 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 10/30/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: 3e75947e65b8e7707292fec8d74b170aff191395
-ms.sourcegitcommit: c72d85805db0aa95f980514a18381fdc5e17c786
+uid: core/managing-schemas/migrations/index
+ms.openlocfilehash: 24fbe344eba9b99929d905ac2b9e49c68a1a4323
+ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/01/2017
+ms.lasthandoff: 12/22/2017
 ---
 <a name="migrations"></a>Migrações
 ==========
@@ -139,7 +140,7 @@ dotnet ef database update LastGoodMigration
 Às vezes é útil adicionar uma migração sem fazer nenhuma alteração ao modelo. Nesse caso, adicionar uma nova migração cria uma vazia. Você pode personalizar essa migração para executar operações que não estejam diretamente relacionadas ao modelo EF Core.
 Alguns elementos que talvez você queira gerenciar assim são:
 
-* Pesquisa de Texto Completo
+* Pesquisa de texto completo
 * Funções
 * Procedimentos armazenados
 * Gatilhos
