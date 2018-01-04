@@ -6,18 +6,18 @@ ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 ms.technology: entity-framework-core
 uid: core/querying/raw-sql
-ms.openlocfilehash: ddf3a841800684688d50dcf9323f4d83c851222f
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 79894c7b9fd9e40cdf14460abf5d872ee2f4b9f0
+ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 12/22/2017
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL bruto
 
 Entity Framework Core permite que a lista suspensa brutas consultas SQL ao trabalhar com um banco de dados relacional. Isso pode ser útil se a consulta que você deseja executar não pode ser expressada usando LINQ, ou se usando uma consulta LINQ está resultando em ineficiente SQL sendo enviado para o banco de dados.
 
 > [!TIP]  
-> Você pode exibir este artigo [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="limitations"></a>Limitações
 
@@ -29,6 +29,13 @@ Há algumas limitações a serem consideradas ao usar consultas SQL brutas:
 * Os nomes de coluna no conjunto de resultados devem corresponder aos nomes de coluna mapeados para propriedades. Observe que isso é diferente de EF6 onde o mapeamento de coluna/propriedade foi ignorado para consultas SQL brutas e tinham nomes que correspondam aos nomes de propriedade de coluna do conjunto de resultados.
 
 * A consulta SQL não pode conter dados relacionados. No entanto, em muitos casos você pode compor sobre a consulta usando o `Include` operador para retornar dados relacionados (consulte [incluindo dados relacionados](#including-related-data)).
+
+* `SELECT`instruções passadas para este método devem normalmente ser combináveis: núcleo de EF se precisa avaliar os operadores de consulta adicionais no servidor (por exemplo, converter operadores LINQ aplicadas após `FromSql`), SQL fornecido será tratado como uma subconsulta. Isso significa que o SQL passado não deve conter todos os caracteres ou opções que não são válidas em uma subconsulta, tais como:
+  * um ponto e vírgula à direita
+  * No SQL Server, um nível de consulta à direita dica, por exemplo`OPTION (HASH JOIN)`
+  * No SQL Server, um `ORDER BY` cláusula não é acompanhada de `TOP 100 PERCENT` no `SELECT` cláusula
+
+* Instruções SQL que `SELECT` são reconhecidos automaticamente como não combinável. Como consequência, os resultados completos de procedimentos armazenados sempre são retornados ao cliente e os operadores LINQ aplicadas após `FromSql` são avaliadas na memória. 
 
 ## <a name="basic-raw-sql-queries"></a>Consultas SQL brutas básicas
 

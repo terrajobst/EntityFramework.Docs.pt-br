@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 ms.technology: entity-framework-core
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: b9d9662ce277e4f7b3d6f997a5117a0592f59fa3
-ms.sourcegitcommit: c72d85805db0aa95f980514a18381fdc5e17c786
+ms.openlocfilehash: 0ea02876b9594d54c971a7b70fcf7ce591e56ba0
+ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/01/2017
+ms.lasthandoff: 12/22/2017
 ---
 # <a name="disconnected-entities"></a>Entidades desconectadas
 
@@ -19,7 +19,7 @@ Uma instância de DbContext automaticamente controlará entidades retornadas do 
 No entanto, às vezes, entidades são consultadas usando uma instância de contexto e, em seguida, salva usando uma instância diferente. Isso geralmente ocorre em cenários "desconectados" como um aplicativo da web onde as entidades são consultadas, enviadas ao cliente, modificadas, enviadas de volta para o servidor em uma solicitação e salvos. Nesse caso, o contexto da segunda instância necessidades saber se as entidades são novo (deve ser inserido) ou existente (deve ser atualizado).
 
 > [!TIP]  
-> Você pode exibir este artigo [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Disconnected/) no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Disconnected/) deste artigo no GitHub.
 
 ## <a name="identifying-new-entities"></a>Identificar novas entidades
 
@@ -46,7 +46,7 @@ No entanto, o EF também tem uma forma interna de fazer isso para qualquer tipo 
 
 ### <a name="with-other-keys"></a>Com outras chaves
 
-Outro mecanismo é necessário para novas entidades de identidade quando os valores de chave não são gerados automaticamente. Há duas abordagens gerais para isso:
+Outro mecanismo é necessária para identificar novas entidades quando valores de chave não são gerados automaticamente. Há duas abordagens gerais para isso:
  * Consulta para a entidade
  * Passar um sinalizador do cliente
 
