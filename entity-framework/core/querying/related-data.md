@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 ms.technology: entity-framework-core
 uid: core/querying/related-data
-ms.openlocfilehash: cd26bd2e6f85083f73d97b1356d0ba38f53e0b8f
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: ec69bb128890a1e0b72fe77014f37747585bb5a5
+ms.sourcegitcommit: 3b21a7fdeddc7b3c70d9b7777b72bef61f59216c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 01/22/2018
 ---
 # <a name="loading-related-data"></a>Carregamento de dados relacionados
 
@@ -20,7 +20,7 @@ Entity Framework Core permite que você use as propriedades de navegação em se
 * **Carregamento preguiçoso** significa que os dados relacionados são carregados transparente do banco de dados quando a propriedade de navegação é acessada. Carregamento preguiçoso ainda não é possível com o EF Core.
 
 > [!TIP]  
-> Você pode exibir este artigo [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="eager-loading"></a>Carregamento adiantado
 
@@ -41,6 +41,9 @@ Você pode incluir dados relacionados de várias relações em uma única consul
 Você pode fazer uma busca detalhada por meio de relações para incluir vários níveis de dados relacionados usando o `ThenInclude` método. O exemplo a seguir carrega todos os blogs, suas postagens relacionadas e autor de cada postagem.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleThenInclude)]
+
+> [!NOTE]  
+> As versões atuais do Visual Studio oferecem opções de conclusão de código incorreto e pode causar expressões corretas para ser sinalizadas com erros de sintaxe ao usar o `ThenInclude` método após uma propriedade de navegação da coleção. Este é um sintoma de um bug de IntelliSense controlado no https://github.com/dotnet/roslyn/issues/8237. É seguro ignorar esses erros de sintaxe artificiais desde que o código está correto e pode ser compilado com êxito. 
 
 É possível encadear chamadas múltiplas para `ThenInclude` para continuar incluindo mais níveis de dados relacionados.
 

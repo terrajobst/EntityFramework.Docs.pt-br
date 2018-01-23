@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
-ms.openlocfilehash: a9481fe851cc264ab3eaecad052c2e683ae57a44
-ms.sourcegitcommit: 5367516f063cb42804ec92c31cdf76322554f2b5
-ms.translationtype: HT
+ms.openlocfilehash: e1cb194d7c7472af59eb44fe2a084fa16c40c186
+ms.sourcegitcommit: 3b21a7fdeddc7b3c70d9b7777b72bef61f59216c
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/08/2017
+ms.lasthandoff: 01/22/2018
 ---
 # <a name="cascade-delete"></a>Excluir em cascata
 
@@ -35,7 +35,7 @@ Existem em quatro excluir comportamentos, conforme listado nas tabelas a seguir.
 
 | Nome de comportamento | Efeito em dependente/filho na memória | Efeito em dependente/filho no banco de dados
 |-|-|-
-| **Em cascata** | Entidades são excluídas | Entidades são excluídas
+| **Cascade** | Entidades são excluídas | Entidades são excluídas
 | **ClientSetNull** (padrão) | Propriedades de chave estrangeira são definidas como null | Nenhum
 | **SetNull** | Propriedades de chave estrangeira são definidas como null | Propriedades de chave estrangeira são definidas como null
 | **Restringir** | Nenhum | Nenhum
@@ -67,7 +67,7 @@ Em um alto nível:
 
 ## <a name="entity-deletion-examples"></a>Exemplos de exclusão de entidade
 
-O código a seguir faz parte de um [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/CascadeDelete/) que pode ser baixado um tempo de execução. O exemplo mostra o que acontece para cada comportamento de exclusão de relações necessários e opcionais quando uma entidade pai é excluída.
+O código a seguir faz parte de um [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/CascadeDelete/) que pode ser baixado e executado. O exemplo mostra o que acontece para cada comportamento de exclusão de relações necessários e opcionais quando uma entidade pai é excluída.
 
 [!code-csharp[Main](../../../samples/core/Saving/Saving/CascadeDelete/Sample.cs#DeleteBehaviorVariations)]
 
