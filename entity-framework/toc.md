@@ -39,7 +39,7 @@
 #### [Comprimento Máximo](core/modeling/max-length.md)
 #### [Tokens de Simultaneidade](core/modeling/concurrency.md)
 #### [Propriedades de Sombra](core/modeling/shadow-properties.md)
-#### [Relações](core/modeling/relationships.md)
+#### [Relacionamentos](core/modeling/relationships.md)
 #### [Índices](core/modeling/indexes.md)
 #### [Chaves Alternativas](core/modeling/alternate-keys.md)
 #### [Herança](core/modeling/inheritance.md)
@@ -55,7 +55,7 @@
 ##### [Sequências](core/modeling/relational/sequences.md)
 ##### [Valores padrão](core/modeling/relational/default-values.md)
 ##### [Índices](core/modeling/relational/indexes.md)
-##### [Foreign Key Constraints](core/modeling/relational/fk-constraints.md)
+##### [Restrições de Chave Estrangeira](core/modeling/relational/fk-constraints.md)
 ##### [Chaves Alternativas (Restrições Exclusivas)](core/modeling/relational/unique-constraints.md)
 ##### [Herança (Banco de Dados Relacional)](core/modeling/relational/inheritance.md)
 
@@ -83,7 +83,7 @@
 
 ### [Provedores de Banco de Dados](core/providers/index.md)
 #### [Microsoft SQL Server](core/providers/sql-server/index.md)
-##### [Memory-Optimized Tables](core/providers/sql-server/memory-optimized-tables.md)
+##### [Tabelas com otimização de memória](core/providers/sql-server/memory-optimized-tables.md)
 #### [SQLite](core/providers/sqlite/index.md)
 ##### [Limitações do SQLite](core/providers/sqlite/limitations.md)
 #### [PostgreSQL (Npgsql)](core/providers/npgsql/index.md)
@@ -129,9 +129,10 @@
 #### [Microsoft.EntityFrameworkCore.AutoHistory](core/extensions/autohistory.md)
 #### [Microsoft.EntityFrameworkCore.DynamicLinq](core/extensions/dynamiclinq.md)
 #### [Microsoft.EntityFrameworkCore.UnitOfWork](core/extensions/unitofwork.md)
+#### [NeinLinq.EntityFrameworkCore](core/extensions/neinlinq.md)
 
 ### Diversos
-#### [Cadeias de conexão](core/miscellaneous/connection-strings.md)
+#### [Cadeia de Conexão](core/miscellaneous/connection-strings.md)
 #### [Registro em log](core/miscellaneous/logging.md)
 #### [Resiliência da conexão](core/miscellaneous/connection-resiliency.md)
 #### [Teste](core/miscellaneous/testing/index.md)
