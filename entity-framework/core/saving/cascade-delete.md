@@ -8,7 +8,7 @@ ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
 ms.openlocfilehash: a9481fe851cc264ab3eaecad052c2e683ae57a44
 ms.sourcegitcommit: 5367516f063cb42804ec92c31cdf76322554f2b5
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 11/08/2017
 ---
@@ -16,7 +16,7 @@ ms.lasthandoff: 11/08/2017
 
 Exclusão em cascata é geralmente usado na terminologia de banco de dados para descrever uma característica que permite a exclusão de uma linha para disparar automaticamente a exclusão de linhas relacionadas. Um conceito relacionado também coberto por comportamentos de exclusão de EF principal é a exclusão automática de uma entidade filho quando ela é a relação a um pai tem foi desfeita – este i conhecido como "excluir órfãos".
 
-EF Core implementa vários comportamentos de exclusão diferente e permite a configuração dos comportamentos de exclusão de relações individuais. EF principal também implementa convenções que configuram automaticamente os comportamentos de exclusão padrão útil para cada relação com base em [requiredness da relação] (... /Modeling/Relationships.MD#Required-and-Optional-Relationships).
+EF Core implementa vários comportamentos de exclusão diferente e permite a configuração dos comportamentos de exclusão de relações individuais. EF principal também implementa convenções que configuram automaticamente os comportamentos de exclusão padrão útil para cada relação com base em [requiredness da relação] (../modeling/relationships.md#required-and-optional-relationships).
 
 ## <a name="delete-behaviors"></a>Excluir comportamentos
 Excluir comportamentos são definidos no *DeleteBehavior* enumerador de tipo e pode ser passado para o *OnDelete* API fluente para controlar se a exclusão de uma entidade principal/pai ou o corte do relação com entidades dependentes/filho deve ter um efeito colateral nas entidades dependentes/filho.
