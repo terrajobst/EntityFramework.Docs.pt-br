@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 ms.technology: entity-framework-core
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: de26e3b28851d4dc4e50f0490093dd05ad489b31
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 6980acd53b0a74055af7a1e04b476f4625c327c9
+ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 02/12/2018
 ---
 # <a name="configuring-a-dbcontext"></a>Configurando um DbContext
 
@@ -18,15 +18,15 @@ Este artigo mostra padrões básicos para configurar um `DbContext` por meio de 
 
 ## <a name="design-time-dbcontext-configuration"></a>Configuração do tempo de design DbContext
 
-Tempo de design EF principais ferramentas como [migrações](xref:core/managing-schemas/migrations/index) precisa ser capaz de detectar e criar uma instância de trabalho de um `DbContext` tipo para obter detalhes sobre os tipos de entidade e como eles serão mapeados para um esquema de banco de dados do aplicativo. Esse processo pode ser automático enquanto a ferramenta pode criar facilmente o `DbContext` de forma que ele será configurado da mesma forma como seria configurado no tempo.
+Tempo de design EF principais ferramentas como [migrações](xref:core/managing-schemas/migrations/index) precisa ser capaz de detectar e criar uma instância de trabalho de um `DbContext` tipo para obter detalhes sobre os tipos de entidade e como eles serão mapeados para um esquema de banco de dados do aplicativo. Esse processo pode ser automático enquanto a ferramenta pode criar facilmente o `DbContext` de forma que ele será configurado da mesma forma como seria configurado em tempo de execução.
 
 Enquanto qualquer padrão que fornece as informações de configuração necessárias para o `DbContext` pode trabalhar em tempo de execução, ferramentas que exigem o uso de um `DbContext` em tempo de design só pode trabalhar com um número limitado de padrões. Eles são abordados mais detalhadamente o [criação do contexto de tempo de Design](xref:core/miscellaneous/cli/dbcontext-creation) seção.
 
 ## <a name="configuring-dbcontextoptions"></a>Configurando DbContextOptions
 
-`DbContext`deve ter uma instância de `DbContextOptions` para executar qualquer trabalho. O `DbContextOptions` instância contém informações de configuração, como:
+`DbContext` deve ter uma instância de `DbContextOptions` para executar qualquer trabalho. O `DbContextOptions` instância contém informações de configuração, como:
 
-- O provedor de banco de dados a ser usado, normalmente selecionada invocando um método como `UseSqlServer` ou`UseSqlite`
+- O provedor de banco de dados a ser usado, normalmente selecionada invocando um método como `UseSqlServer` ou `UseSqlite`
 - Qualquer cadeia de caracteres de conexão necessárias ou o identificador da instância de banco de dados, normalmente passado como um argumento para o método de seleção de provedor mencionado acima
 - Quaisquer seletores de comportamento opcional de nível de provedor, normalmente também encadeados dentro da chamada para o método de seleção de provedor
 - Quaisquer seletores de comportamento EF Core gerais, normalmente encadeados depois ou antes que o método de seletor de provedor
@@ -108,7 +108,7 @@ using (var context = new BloggingContext())
 
 EF Core dá suporte ao uso `DbContext` com um contêiner de injeção de dependência. O tipo DbContext pode ser adicionado ao contêiner de serviço usando o `AddDbContext<TContext>` método.
 
-`AddDbContext<TContext>`fará com que os dois o tipo DbContext, `TContext`e o correspondente `DbContextOptions<TContext>` disponíveis para a injeção do contêiner de serviços.
+`AddDbContext<TContext>` fará com que os dois o tipo DbContext, `TContext`e o correspondente `DbContextOptions<TContext>` disponíveis para a injeção do contêiner de serviços.
 
 Consulte [leitura mais](#more-reading) abaixo para obter informações adicionais sobre injeção de dependência.
 

@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 ms.technology: entity-framework-core
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 0ea02876b9594d54c971a7b70fcf7ce591e56ba0
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 0b145217d40027c4b8e4746e9c5651652a28c9eb
+ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 02/12/2018
 ---
 # <a name="disconnected-entities"></a>Entidades desconectadas
 
@@ -20,6 +20,9 @@ No entanto, às vezes, entidades são consultadas usando uma instância de conte
 
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Disconnected/) deste artigo no GitHub.
+
+> [!TIP]
+> EF Core só pode controlar uma instância de qualquer entidade com um determinado valor de chave primária. A melhor maneira de evitar que esse seja um problema é usar um contexto de curta duração para cada unidade de trabalho, de modo que o contexto começa vazio, tem entidades anexadas a ele, salva essas entidades e, em seguida, o contexto é descartado e descartado.
 
 ## <a name="identifying-new-entities"></a>Identificar novas entidades
 
@@ -85,6 +88,10 @@ As etapas aqui são:
 > SetValues somente marcará como modificou as propriedades que têm valores diferentes para aqueles na entidade controlada. Isso significa que, quando a atualização é enviada, somente as colunas que realmente foram alterados sejam atualizadas. (E se nada foi alterado, em seguida, nenhuma atualização será enviada em todos os).
 
 ## <a name="working-with-graphs"></a>Trabalhando com gráficos
+
+### <a name="identity-resolution"></a>Resolução de identidade
+
+Conforme observado acima, EF Core só pode controlar uma instância de qualquer entidade com um determinado valor de chave primária. Ao trabalhar com elementos gráficos que o gráfico deve ser criado o ideal é que essa constante é mantida e o contexto deve ser usado para apenas uma unidade de trabalho. Se o gráfico contiver duplicatas, será necessário processar o gráfico antes de enviá-lo ao EF consolidar várias instâncias em um. Isso pode não ser triviais onde instâncias têm valores conflitantes e relações, consolidando duplicatas devem ser feitas assim que possível, em seu pipeline de aplicativo para evitar a resolução de conflitos.
 
 ### <a name="all-newall-existing-entities"></a>Todas as entidades existentes do novo/all
 
