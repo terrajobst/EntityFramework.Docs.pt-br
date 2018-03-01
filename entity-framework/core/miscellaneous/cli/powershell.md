@@ -4,16 +4,16 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: b4ecb27edf94e7b9ad6c7fe65a891dcbf1593309
-ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
+ms.openlocfilehash: aacf8c8564a3966db6202c9ff1c1c02a19a10814
+ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 02/28/2018
 ---
 <a name="ef-core-package-manager-console-tools"></a>Ferramentas do EF Core Package Manager Console
 =====================================
 As ferramentas de EF Core pacote Manager Console (PMC) são executadas dentro do Visual Studio usando o NuGet [Package Manager Console][2].
-Essas ferramentas trabalhar com projetos do .NET Framework e o .NET Core.
+Essas ferramentas funcionam com projetos do .NET Framework e o do .NET Core.
 
 > [!TIP]
 > Não usando o Visual Studio? O [EF principais ferramentas de linha de comando] [ 1] ficam entre plataformas e são executados dentro de um prompt de comando.
@@ -42,14 +42,14 @@ Get-Help about_EntityFrameworkCore
 ---------------
 Sempre que você chamar um comando, há dois projetos envolvidas:
 
-O projeto de destino é onde todos os arquivos são adicionados (ou, em alguns casos removidos). O projeto de destino padrão é a **projeto padrão** selecionado no Console do Gerenciador de pacotes, mas também podem ser especificadas usando-parâmetro de projeto.
+O projeto de destino é aquele ao qual todos os arquivos são adicionados (ou, em alguns casos, removidos). O projeto de destino padrão é a **projeto padrão** selecionado no Console do Gerenciador de pacotes, mas também podem ser especificadas usando-parâmetro de projeto.
 
-O projeto de inicialização é emulado pelas ferramentas durante a execução de código do projeto. O padrão é um **definir como projeto de inicialização** no Gerenciador de soluções. Ele também pode ser especificado usando o parâmetro - StartupProject.
+O projeto de inicialização é aquele emulado pelas ferramentas durante a execução do código do seu projeto. O padrão é um **definir como projeto de inicialização** no Gerenciador de soluções. Ele também pode ser especificado usando o parâmetro - StartupProject.
 
 Parâmetros comuns:
 
 |                           |                             |
-| ------------------------- | --------------------------- |
+|:--------------------------|:----------------------------|
 | -Contexto \<cadeia de caracteres >        | O DbContext para usar.       |
 | -Projeto \<cadeia de caracteres >        | O projeto a usar.         |
 | -StartupProject \<cadeia de caracteres > | O projeto de inicialização para usar. |
@@ -72,10 +72,10 @@ Adiciona uma nova migração.
 
 Parâmetros:
 
-|                                    |                                                                                 |
-| ---------------------------------- | ------------------------------------------------------------------------------- |
-| ***-Nome*** \<cadeia de caracteres >              | O nome da migração.                                                      |
-| <nobr>-OutputDir \<cadeia de caracteres ></nobr>  | O diretório (e sub-namespace) a ser usado. Caminhos são relativas ao diretório do projeto. O padrão é "Migrações". |
+|                                   |                                                                                                                  |
+|:----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
+| ***-Name*** \<String>             | O nome da migração.                                                                                       |
+| <nobr>-OutputDir \<cadeia de caracteres ></nobr> | O diretório (e sub-namespace) a ser usado. Caminhos são relativas ao diretório do projeto. O padrão é "Migrações". |
 
 > [!NOTE]
 > Parâmetros em **negrito** são necessários e aqueles na *itálico* são posicional.
@@ -86,9 +86,9 @@ Descarta o banco de dados.
 
 Parâmetros:
 
-|          |                                                          |
-| -------- | -------------------------------------------------------- |
-| -WhatIf  | Mostrar qual banco de dados deve ser descartado, mas não solte-o. |
+|         |                                                          |
+|:--------|:---------------------------------------------------------|
+| -WhatIf | Mostrar qual banco de dados deve ser descartado, mas não solte-o. |
 
 ### <a name="get-dbcontext"></a>Get-DbContext
 
@@ -101,26 +101,26 @@ Remove a última migração.
 Parâmetros:
 
 |        |                                                                       |
-| ------ | --------------------------------------------------------------------- |
+|:-------|:----------------------------------------------------------------------|
 | -Force | Não verificar se a migração tiver sido aplicada ao banco de dados. |
 
-### <a name="scaffold-dbcontext"></a>Scaffold DbContext
+### <a name="scaffold-dbcontext"></a>Scaffold-DbContext
 
 Scaffolds um tipos DbContext e entidade para um banco de dados.
 
 Parâmetros:
 
-|                                          |                                                                           |
-| ---------------------------------------- | ------------------------------------------------------------------------- |
-| <nobr>***-Conexão*** \<cadeia de caracteres ></nobr> | A cadeia de caracteres de conexão para o banco de dados.                                    |
-| ***-Provedor*** \<cadeia de caracteres >                | O provedor a ser usado. (Por ex.: Microsoft.EntityFrameworkCore.SqlServer)       |
-| -OutputDir \<cadeia de caracteres >                     | O diretório de colocar arquivos em. Caminhos são relativas ao diretório do projeto. |
-| -Contexto \<cadeia de caracteres >                       | O nome do DbContext para gerar.                                    |
-| -Esquemas \<String [] >                     | Os esquemas de tabelas para gerar tipos de entidade para.                       |
-| -Tabelas \<String [] >                      | As tabelas para gerar tipos de entidade para.                                  |
+|                                          |                                                                                                  |
+|:-----------------------------------------|:-------------------------------------------------------------------------------------------------|
+| <nobr>***-Conexão*** \<cadeia de caracteres ></nobr> | A cadeia de caracteres de conexão para o banco de dados.                                                           |
+| ***-Provedor*** \<cadeia de caracteres >                | O provedor a ser usado. (Por exemplo Microsoft.EntityFrameworkCore.SqlServer)                              |
+| -OutputDir \<cadeia de caracteres >                     | O diretório de colocar arquivos em. Caminhos são relativas ao diretório do projeto.                      |
+| -Contexto \<cadeia de caracteres >                       | O nome do DbContext para gerar.                                                           |
+| -Esquemas \<String [] >                     | Os esquemas de tabelas para gerar tipos de entidade para.                                              |
+| -Tabelas \<String [] >                      | As tabelas para gerar tipos de entidade para.                                                         |
 | -DataAnnotations                         | Use atributos para configurar o modelo (onde for possível). Se omitido, somente a API fluente é usada. |
-| -UseDatabaseNames                        | Use nomes de tabela e coluna diretamente do banco de dados.                    |
-| -Force                                   | Substitua arquivos existentes.                                                 |
+| -UseDatabaseNames                        | Use nomes de tabela e coluna diretamente do banco de dados.                                           |
+| -Force                                   | Substitua arquivos existentes.                                                                        |
 
 ### <a name="script-migration"></a>Migração do script
 
@@ -129,10 +129,10 @@ Gera um script SQL de migrações.
 Parâmetros:
 
 |                   |                                                                    |
-| ----------------- | ------------------------------------------------------------------ |
-| *-From* \<cadeia de caracteres > | A migração inicial. O padrão é 0 (o banco de dados inicial).      |
-| *-* \<Cadeia de caracteres >   | A migração final. O padrão é para a última migração.              |
-| -Idempotente       | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
+|:------------------|:-------------------------------------------------------------------|
+| *-From* \<String> | A migração inicial. O padrão é 0 (o banco de dados inicial).      |
+| *-To* \<String>   | A migração final. O padrão é para a última migração.              |
+| -Idempotent       | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
 | -Saída \<cadeia de caracteres > | O arquivo para gravar o resultado.                                   |
 
 > [!TIP]
@@ -140,8 +140,8 @@ Parâmetros:
 
 ### <a name="update-database"></a>Atualizar banco de dados
 
-|                                     |                                                                                |
-| ----------------------------------- | ------------------------------------------------------------------------------ |
+|                                     |                                                                                                |
+|:------------------------------------|:-----------------------------------------------------------------------------------------------|
 | <nobr>*-Migração* \<cadeia de caracteres ></nobr> | A migração de destino. Se for '0', todas as migrações serão revertidas. O padrão é para a última migração. |
 
 > [!TIP]

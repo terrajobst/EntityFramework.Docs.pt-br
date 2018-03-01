@@ -6,11 +6,11 @@ ms.date: 8/13/2017
 ms.assetid: 8BD43C8C-63D9-4F3A-B954-7BC518A1B7DB
 ms.technology: entity-framework-core
 uid: core/miscellaneous/1x-2x-upgrade
-ms.openlocfilehash: 380f27c9f00943a2909ec7b876e151572a67dc37
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 30f4de794d42b1385145286e77c2e7c67987fea6
+ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Atualizando aplicativos de versões anteriores ao EF Core 2.0
 
@@ -82,11 +82,11 @@ Para obter o 2.0 versão o `IDbContextFactory<TContext>` ainda existe, mas está
 
 Devido às alterações de ASP.NET Core 2.0 descritas acima, descobrimos que `DbContextFactoryOptions` não era mais necessário no novo `IDesignTimeDbContextFactory<TContext>` interface. Aqui estão as alternativas, que você deve usar em vez disso.
 
-DbContextFactoryOptions | Alternativa
---- | ---
-ApplicationBasePath | AppContext.BaseDirectory
-ContentRootPath | Directory.GetCurrentDirectory()
-EnvironmentName | Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+| DbContextFactoryOptions | Alternativa                                                  |
+|:------------------------|:-------------------------------------------------------------|
+| ApplicationBasePath     | AppContext.BaseDirectory                                     |
+| ContentRootPath         | Directory.GetCurrentDirectory()                              |
+| EnvironmentName         | Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") |
 
 ### <a name="design-time-working-directory-changed"></a>Diretório de trabalho de tempo de design alterado
 
@@ -159,7 +159,7 @@ Propriedades marcadas como [ValueGenerated.OnAddOrUpdate](https://github.com/asp
 
 ### <a name="new-clientsetnull-delete-behavior"></a>Novo comportamento de exclusão ClientSetNull
 
-Em versões anteriores, [DeleteBehavior.Restrict](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/DeleteBehavior.cs) teve um comportamento para entidades controladas pelo contexto que mais fechado correspondentes `SetNull` semântica. No EF Core 2.0, um novo `ClientSetNull` comportamento foi introduzido como padrão para relações opcionais. Esse comportamento tem `SetNull` semântica para entidades controladas e `Restrict` comportamento para bancos de dados criados usando EF Core. Em nossa experiência, esses são os comportamentos mais esperado/úteis para entidades controladas e o banco de dados. `DeleteBehavior.Restrict`Agora é cumprido para entidades controladas quando definidas para relações opcionais.
+Em versões anteriores, [DeleteBehavior.Restrict](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/DeleteBehavior.cs) teve um comportamento para entidades controladas pelo contexto que mais fechado correspondentes `SetNull` semântica. No EF Core 2.0, um novo `ClientSetNull` comportamento foi introduzido como padrão para relações opcionais. Esse comportamento tem `SetNull` semântica para entidades controladas e `Restrict` comportamento para bancos de dados criados usando EF Core. Em nossa experiência, esses são os comportamentos mais esperado/úteis para entidades controladas e o banco de dados. `DeleteBehavior.Restrict` Agora é cumprido para entidades controladas quando definidas para relações opcionais.
 
 ### <a name="provider-design-time-packages-removed"></a>Pacotes de tempo de design de provedor removidos
 

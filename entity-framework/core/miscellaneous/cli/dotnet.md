@@ -4,11 +4,11 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: 26b5fb326d20575ed2f3c6955c699e0c3757bf57
-ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
+ms.openlocfilehash: 8a52cb8259bb381729a33a8161aec4b73f69f45d
+ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 02/28/2018
 ---
 <a name="ef-core-net-command-line-tools"></a>Ferramentas de linha de comando do EF Core .NET
 ===============================
@@ -61,25 +61,25 @@ dotnet ef
 ---------------
 Sempre que você chamar um comando, há dois projetos envolvidas:
 
-O projeto de destino é onde todos os arquivos são adicionados (ou, em alguns casos removidos). O projeto de destino por padrão para o projeto no diretório atual, mas pode ser alterado usando o <nobr> **– projeto** </nobr> opção.
+O projeto de destino é aquele ao qual todos os arquivos são adicionados (ou, em alguns casos, removidos). O projeto de destino por padrão para o projeto no diretório atual, mas pode ser alterado usando o <nobr> **– projeto** </nobr> opção.
 
-O projeto de inicialização é emulado pelas ferramentas durante a execução de código do projeto. Ele também usa como padrão o projeto no diretório atual, mas pode ser alterado usando o **– projeto de inicialização** opção.
+O projeto de inicialização é aquele emulado pelas ferramentas durante a execução do código do seu projeto. Ele também usa como padrão o projeto no diretório atual, mas pode ser alterado usando o **– projeto de inicialização** opção.
 
 Opções comuns:
 
 |    |                                  |                             |
-| -- | -------------------------------- | --------------------------- |
-|    | – o json                           | Mostra saída JSON.           |
+|:---|:---------------------------------|:----------------------------|
+|    | --json                           | Mostra saída JSON.           |
 | -c | – contexto \<DBCONTEXT >           | O DbContext para usar.       |
-| -P | – projeto \<projeto >             | O projeto a usar.         |
+| -p | – projeto \<projeto >             | O projeto a usar.         |
 | -s | – projeto de inicialização \<projeto >     | O projeto de inicialização para usar. |
 |    | – framework \<FRAMEWORK >         | A estrutura de destino.       |
-|    | – configuração \<Configuração > | A configuração para uso.   |
+|    | – configuração \<Configuração > | A configuração a ser usada.   |
 |    | o tempo de execução – \<identificador >          | O tempo de execução para usar.         |
 | -h | – Ajuda                           | Mostra informações de Ajuda.      |
 | -v | -verbose                        | Mostra saída detalhada.        |
-|    | – sem cor                       | Não colorir saída.      |
-|    | -saída de prefixo                  | Prefixo com o nível de saída.   |
+|    | --no-color                       | Não colorir saída.      |
+|    | --prefix-output                  | Prefixo com o nível de saída.   |
 
 
 > [!TIP]
@@ -95,9 +95,9 @@ Descarta o banco de dados.
 Opções:
 
 |    |           |                                                          |
-| -- | --------- | -------------------------------------------------------- |
+|:---|:----------|:---------------------------------------------------------|
 | -f | -force   | Não confirme.                                           |
-|    | -Execute | Mostrar qual banco de dados deve ser descartado, mas não solte-o. |
+|    | --dry-run | Mostrar qual banco de dados deve ser descartado, mas não solte-o. |
 
 ### <a name="dotnet-ef-database-update"></a>atualização de banco de dados de ef dotnet
 
@@ -106,7 +106,7 @@ Atualiza o banco de dados para uma migração especificada.
 Argumentos:
 
 |              |                                                                                              |
-| ------------ | ---------------------------------------------------------------------------------------------|
+|:-------------|:---------------------------------------------------------------------------------------------|
 | \<MIGRAÇÃO > | A migração de destino. Se for 0, todas as migrações serão revertidas. O padrão é para a última migração. |
 
 ### <a name="dotnet-ef-dbcontext-info"></a>informações do dotnet ef dbcontext
@@ -124,21 +124,21 @@ Scaffolds um tipos DbContext e entidade para um banco de dados.
 Argumentos:
 
 |               |                                                                     |
-| ------------- | ------------------------------------------------------------------- |
+|:--------------|:--------------------------------------------------------------------|
 | \<CONEXÃO > | A cadeia de caracteres de conexão para o banco de dados.                              |
-| \<PROVEDOR >   | O provedor a ser usado. (Por ex.: Microsoft.EntityFrameworkCore.SqlServer) |
+| \<PROVEDOR >   | O provedor a ser usado. (Por exemplo Microsoft.EntityFrameworkCore.SqlServer) |
 
 Opções:
 
-|                 |                                         |                                                          |
-| --------------- | --------------------------------------- | -------------------------------------------------------- |
-| <nobr>-d</nobr> |       – as anotações de dados                | Use atributos para configurar o modelo (onde for possível). Se omitido, somente a API fluente é usada. |
-|       -c        |       – contexto \<nome >                 | O nome do DbContext.                               |
-|       -f        |       -force                           | Substitua arquivos existentes.                                |
-|       -o        |       -dir saída \<caminho >              | O diretório de colocar arquivos em. Caminhos são relativas ao diretório do projeto. |
-|                 | <nobr>– esquema \<SCHEMA_NAME >...</nobr> | Os esquemas de tabelas para gerar tipos de entidade para.      |
-|       -t        |       -tabela \<TABLE_NAME >...          | As tabelas para gerar tipos de entidade para.                 |
-|                 |       – use nomes de banco de dados              | Use nomes de tabela e coluna diretamente do banco de dados.   |
+|                 |                                         |                                                                                                  |
+|:----------------|:----------------------------------------|:-------------------------------------------------------------------------------------------------|
+| <nobr>-d</nobr> | --data-annotations                      | Use atributos para configurar o modelo (onde for possível). Se omitido, somente a API fluente é usada. |
+| -c              | – contexto \<nome >                       | O nome do DbContext.                                                                       |
+| -f              | -force                                 | Substitua arquivos existentes.                                                                        |
+| -o              | -dir saída \<caminho >                    | O diretório de colocar arquivos em. Caminhos são relativas ao diretório do projeto.                      |
+|                 | <nobr>--schema \<SCHEMA_NAME>...</nobr> | Os esquemas de tabelas para gerar tipos de entidade para.                                              |
+| -t              | -tabela \<TABLE_NAME >...                | As tabelas para gerar tipos de entidade para.                                                         |
+|                 | --use-database-names                    | Use nomes de tabela e coluna diretamente do banco de dados.                                           |
 
 ### <a name="dotnet-ef-migrations-add"></a>Adicionar migrações de ef dotnet
 
@@ -147,14 +147,14 @@ Adiciona uma nova migração.
 Argumentos:
 
 |         |                            |
-| ------- | -------------------------- |
+|:--------|:---------------------------|
 | \<NOME > | O nome da migração. |
 
 Opções:
 
-|                 |                                   |                                                                |
-| --------------- |---------------------------------- | -------------------------------------------------------------- |
-| <nobr>-o</nobr> | <nobr>-dir saída \<caminho ></nobr> | O diretório (e sub-namespace) a ser usado. Caminhos são relativas ao diretório do projeto. O padrão é "Migrações". |
+|                 |                                   |                                                                                                                  |
+|:----------------|:----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
+| <nobr>-o</nobr> | <nobr>--output-dir \<PATH></nobr> | O diretório (e sub-namespace) a ser usado. Caminhos são relativas ao diretório do projeto. O padrão é "Migrações". |
 
 ### <a name="dotnet-ef-migrations-list"></a>lista de migrações ef dotnet
 
@@ -167,7 +167,7 @@ Remove a última migração.
 Opções:
 
 |    |         |                                                                       |
-| -- | ------- | --------------------------------------------------------------------- |
+|:---|:--------|:----------------------------------------------------------------------|
 | -f | -force | Não verificar se a migração tiver sido aplicada ao banco de dados. |
 
 ### <a name="dotnet-ef-migrations-script"></a>script de migrações ef dotnet
@@ -177,16 +177,16 @@ Gera um script SQL de migrações.
 Argumentos:
 
 |         |                                                               |
-| ------- | ------------------------------------------------------------- |
-| \<DE > | A migração inicial. O padrão é 0 (o banco de dados inicial). |
-| \<PARA >   | A migração final. O padrão é para a última migração.         |
+|:--------|:--------------------------------------------------------------|
+| \<FROM> | A migração inicial. O padrão é 0 (o banco de dados inicial). |
+| \<TO>   | A migração final. O padrão é para a última migração.         |
 
 Opções:
 
 |    |                  |                                                                    |
-| -- | ---------------- | ------------------------------------------------------------------ |
+|:---|:-----------------|:-------------------------------------------------------------------|
 | -o | -saída \<arquivo > | O arquivo para gravar o resultado.                                   |
-| -i | – idempotente     | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
+| -i | --idempotent     | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
 
 
   [1]: powershell.md

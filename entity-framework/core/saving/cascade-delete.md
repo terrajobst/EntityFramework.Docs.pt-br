@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
-ms.openlocfilehash: e1cb194d7c7472af59eb44fe2a084fa16c40c186
-ms.sourcegitcommit: 3b21a7fdeddc7b3c70d9b7777b72bef61f59216c
+ms.openlocfilehash: 1ab9d114e27aac0bec972df631a426c8ce87a518
+ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="cascade-delete"></a>Excluir em cascata
 
@@ -33,21 +33,21 @@ Para a segunda ação acima, definir um valor de chave estrangeiro como null nã
 
 Existem em quatro excluir comportamentos, conforme listado nas tabelas a seguir. Para relações opcionais (chave estrangeira anulável)- _é_ possível salvar um nulo valor de chave estrangeiro, que resulta nos seguintes efeitos:
 
-| Nome de comportamento | Efeito em dependente/filho na memória | Efeito em dependente/filho no banco de dados
-|-|-|-
-| **Cascade** | Entidades são excluídas | Entidades são excluídas
-| **ClientSetNull** (padrão) | Propriedades de chave estrangeira são definidas como null | Nenhum
-| **SetNull** | Propriedades de chave estrangeira são definidas como null | Propriedades de chave estrangeira são definidas como null
-| **Restringir** | Nenhum | Nenhum
+| Nome de comportamento               | Efeito em dependente/filho na memória    | Efeito em dependente/filho no banco de dados  |
+|:----------------------------|:---------------------------------------|:---------------------------------------|
+| **Cascade**                 | Entidades são excluídas                   | Entidades são excluídas                   |
+| **ClientSetNull** (padrão) | Propriedades de chave estrangeira são definidas como null | Nenhum                                   |
+| **SetNull**                 | Propriedades de chave estrangeira são definidas como null | Propriedades de chave estrangeira são definidas como null |
+| **Restringir**                | Nenhum                                   | Nenhum                                   |
 
 Para relações necessárias (chave estrangeira não anuláveis) é _não_ possível salvar um nulo valor de chave estrangeiro, que resulta nos seguintes efeitos:
 
-| Nome de comportamento | Efeito em dependente/filho na memória | Efeito em dependente/filho no banco de dados
-|-|-|-
-| **CASCADE** (padrão) | Entidades são excluídas | Entidades são excluídas
-| **ClientSetNull** | SaveChanges lança | Nenhum
-| **SetNull** | SaveChanges lança | SaveChanges lança
-| **Restringir** | Nenhum | Nenhum
+| Nome de comportamento         | Efeito em dependente/filho na memória | Efeito em dependente/filho no banco de dados |
+|:----------------------|:------------------------------------|:--------------------------------------|
+| **CASCADE** (padrão) | Entidades são excluídas                | Entidades são excluídas                  |
+| **ClientSetNull**     | SaveChanges lança                  | Nenhum                                  |
+| **SetNull**           | SaveChanges lança                  | SaveChanges lança                    |
+| **Restringir**          | Nenhum                                | Nenhum                                  |
 
 Nas tabelas acima, *nenhum* pode resultar em uma violação de restrição. Por exemplo, se uma entidade principal/filho é excluída, mas nenhuma ação será tomada para alterar a chave estrangeira da dependente/filho, em seguida, o banco de dados provavelmente lançará em SaveChanges devido a uma violação de restrição foreign.
 
