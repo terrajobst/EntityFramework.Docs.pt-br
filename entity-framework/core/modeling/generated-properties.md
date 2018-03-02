@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: eb082011-11a1-41b4-a108-15daafa03e80
 ms.technology: entity-framework-core
 uid: core/modeling/generated-properties
-ms.openlocfilehash: 2d79bf1339ebe522c39fe8971d908c30e1f4dca0
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 892494461bcf49ee10d05c972da0ba19ca003c35
+ms.sourcegitcommit: 4b7d3d3e258b0d9cb778bb45a9f4a33c0792e38e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="generated-values"></a>Valores gerados
 
@@ -50,7 +50,7 @@ Como `value generated on add`, se você especificar um valor para a propriedade 
 
 ## <a name="conventions"></a>Convenções
 
-Por convenção, as chaves primárias de um inteiro ou um tipo de dados GUID será instalado para ter valores gerados em Adicionar. Todas as outras propriedades será instalado com nenhuma geração de valor.
+Por convenção, chaves primárias de não composição do tipo short, int, longas ou Guid será instalado para ter valores gerados em Adicionar. Todas as outras propriedades será instalado com nenhuma geração de valor.
 
 ## <a name="data-annotations"></a>Anotações de dados
 
@@ -85,7 +85,7 @@ Você pode usar a API fluente para alterar o padrão de geração de valor para 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/ValueGeneratedOnAdd.cs#Sample)]
 
 > [!WARNING]  
-> `ValueGeneratedOnAdd()`apenas permite que o EF que valores são gerados para entidades adicionadas, eles não garantem que o EF irá configurar o mecanismo real para gerar os valores.  Consulte [Adicionar valor gerado no](#value-generated-on-add) seção para obter mais detalhes.
+> `ValueGeneratedOnAdd()` apenas permite que o EF que valores são gerados para entidades adicionadas, eles não garantem que o EF irá configurar o mecanismo real para gerar os valores.  Consulte [Adicionar valor gerado no](#value-generated-on-add) seção para obter mais detalhes.
 
 ### <a name="value-generated-on-add-or-update-fluent-api"></a>Valor gerado em Adicionar ou atualização (API fluente)
 
