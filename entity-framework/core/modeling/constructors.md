@@ -6,11 +6,11 @@ ms.date: 02/23/2018
 ms.assetid: 420AFFE7-B709-4A68-9149-F06F8746FB33
 ms.technology: entity-framework-core
 uid: core/modeling/constructors
-ms.openlocfilehash: 2632488569c538a11c7a31a9a866d2fadb29eeb5
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 38ab0c1c3cd8c490875abf30b8478c99bc58630f
+ms.sourcegitcommit: 60b831318c4f5ec99061e8af6a7c9e7c03b3469c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 03/02/2018
 ---
 # <a name="entity-types-with-constructors"></a>Tipos de entidade com construtores
 
@@ -96,7 +96,7 @@ Algumas coisas a observar:
 ### <a name="read-only-properties"></a>Propriedades somente leitura
 
 Depois que as propriedades estão sendo definidas via construtor pode fazer sentido fazer algumas delas somente leitura. EF Core dá suporte a isso, mas há algumas coisas para verificar:
-* Propriedades sem getters não mapeadas pela convenção. (Isso tende mapear propriedades que não devem ser mapeadas, como as propriedades calculadas).
+* Propriedades sem setters não mapeadas pela convenção. (Isso tende mapear propriedades que não devem ser mapeadas, como as propriedades calculadas).
 * Usar valores de chave gerados automaticamente requer uma propriedade de chave é leitura / gravação, pois o valor da chave precisa ser definida pelo gerador de chave ao inserir novas entidades.
 
 Uma maneira fácil de evitar essas coisas é usar setters privadas. Por exemplo:
