@@ -6,11 +6,11 @@ ms.date: 2/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 ms.technology: entity-framework-core
 uid: core/modeling/query-types
-ms.openlocfilehash: d03c4b1d5635530e63b93e051cb69583718deb4e
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 19a371c65da33e8209cc1ab3423a67c34ddae61e
+ms.sourcegitcommit: fc68321c211aca38f7b9dc3a75677c6ca1b2524b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="query-types"></a>Tipos de consulta
 > [!NOTE]
@@ -55,6 +55,10 @@ Primeiro, definimos um modelo simples de Blog e Post:
 Em seguida, definimos uma exibição de banco de dados simples que permitirá que o número de postagens associado com cada blog de consulta:
 
 [!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#View)]
+
+Em seguida, definimos uma classe para armazenar o resultado da exibição do banco de dados:
+
+[!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#QueryType)]
 
 Em seguida, podemos configurar o tipo de consulta em _OnModelCreating_ usando o ```modelBuilder.Query<T>``` API.
 Usamos APIs de configuração fluente padrão para configurar o mapeamento para o tipo de consulta:
