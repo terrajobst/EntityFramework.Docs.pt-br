@@ -6,11 +6,11 @@ ms.date: 2/23/2018
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 ms.technology: entity-framework-core
 uid: core/providers/index
-ms.openlocfilehash: 520afe85af5a2eacbfc2764fdc0a8addb78c07ab
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 6311f6a336198b45d307fa8c4318abd2e64e9df0
+ms.sourcegitcommit: fc68321c211aca38f7b9dc3a75677c6ca1b2524b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="database-providers"></a>Provedores de Banco de Dados
 
@@ -71,7 +71,8 @@ install-package provider_package_name
 Depois de instalado, você configurará o provedor no `DbContext`, no método `OnConfiguring` ou no método `AddDbContext` se você estiver usando um contêiner de injeção de dependência. Por exemplo, a seguinte linha configura o provedor do SQL Server com a cadeia de conexão passada:
 
 ``` csharp
-  optionsBuilder.UseSqlServer("Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;");
+optionsBuilder.UseSqlServer(
+    "Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;");
 ```  
 
 Os provedores de banco de dados podem estender o EF Core para habilitar a funcionalidade exclusiva para bancos de dados específicos. Alguns conceitos são comuns à maioria dos bancos de dados e estão incluídos nos componentes principais do EF Core. Esses conceitos incluem expressar consultas no LINQ, em transações, e rastrear alterações aos objetos depois que eles forem carregados do banco de dados. Alguns conceitos são específicos para um determinado provedor. Por exemplo, o provedor SQL Server permite [configurar as tabelas com otimização de memória](xref:core/providers/sql-server/memory-optimized-tables) (um recurso específico do SQL Server). Outros conceitos são específicos de uma classe de provedores. Por exemplo, provedores do EF Core para bancos de dados relacionais são desenvolvidos com base na biblioteca `Microsoft.EntityFrameworkCore.Relational` comum, que fornece APIs para configurar mapeamentos de tabela e coluna, restrições de chave estrangeira etc. Os provedores geralmente são distribuídos como pacotes NuGet.
