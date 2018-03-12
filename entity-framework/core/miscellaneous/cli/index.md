@@ -4,11 +4,11 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: 076e9251850ba10df323cd25922aa8b95b3a5491
-ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
+ms.openlocfilehash: db25ed55e3724ee71743e563f39a6e4b16c17589
+ms.sourcegitcommit: fc68321c211aca38f7b9dc3a75677c6ca1b2524b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 03/08/2018
 ---
 <a name="entity-framework-core-tools"></a>Ferramentas do Entity Framework Core
 ===========================
@@ -24,15 +24,9 @@ Ambas as ferramentas expõem a mesma funcionalidade. Se você estiver desenvolve
 ----------
 As ferramentas são compatíveis com projetos voltados para o .NET Framework ou o .NET Core.
 
-Se o seu projeto tiver como destino outra estrutura (por exemplo, Universal do Windows ou Xamarin), é recomendável criar um projeto .NET Standard separado e fazer o direcionamento cruzado das estruturas compatíveis.
+Se você quiser usar uma biblioteca de classes, considere usar uma biblioteca de classes .NET Framework ou .NET Core, se possível. Assim, ocorrerão menos problemas com as ferramentas do .NET. Se, em vez disso, você quiser utilizar uma biblioteca de classes do .NET Standard, será necessário usar um projeto de inicialização que direcione para o .NET Framework ou .NET Core. Desse modo, as ferramentas terão uma plataforma de destino concreta, na qual poderão carregar a biblioteca de classes. Esse projeto de inicialização pode ser fictício, sem nenhum código real – ele só é necessário para fornecer um destino para as ferramentas.
 
-Para fazer o direcionamento cruzado do .NET Core, por exemplo, clique com o botão direito do mouse no projeto e selecione **Editar \*.csproj**. Atualize a propriedade `TargetFramework` da seguinte maneira. (Observe que o nome da propriedade passa a estar no plural.)
-
-``` xml
-<TargetFrameworks>netcoreapp2.0;netstandard2.0</TargetFrameworks>
-```
-
-Se você estiver usando uma biblioteca de classes .NET Standard, não precisará fazer o direcionamento cruzado caso seu projeto de inicialização tenha como destino o .NET Framework ou o .NET Core.
+Se o projeto direcionar para outra estrutura (por exemplo, Plataforma Universal do Windows ou Xamarin), será necessário criar uma biblioteca de classes .NET Standard separada. Nesse caso, siga as diretrizes acima para criar um projeto de inicialização que possa ser usado pelas ferramentas.
 
 <a name="startup-and-target-projects"></a>Inicialização e projetos de destino
 ---------------------------
