@@ -24,12 +24,12 @@ Entity Framework Core permite que você use as propriedades de navegação em se
 
 ## <a name="eager-loading"></a>Carregamento adiantado
 
-Você pode usar o `Include` método para especificar dados relacionados a serem incluídos nos resultados da consulta. No exemplo a seguir, os blogs que são retornados nos resultados terão seus `Posts` propriedade preenchida com as postagens relacionadas.
+Você pode usar o método `Include` para especificar dados relacionados a serem incluídos nos resultados da consulta. No exemplo a seguir, os blogs que são retornados nos resultados terão suas propriedades `Posts` preenchidos com as postagens relacionadas.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleInclude)]
 
 > [!TIP]  
-> Entity Framework Core será corrigir automaticamente o propriedades de navegação para outras entidades que foram previamente carregadas para a instância de contexto. Dessa forma, mesmo se você não incluir explicitamente os dados para uma propriedade de navegação, a propriedade ainda pode ser populada se algumas ou todas as entidades relacionadas foram carregadas anteriormente.
+> Entity Framework Core irá corrigir automaticamente as propriedades de navegação para outras entidades que foram previamente carregadas para a instância de contexto. Dessa forma, mesmo se você não incluir explicitamente os dados para uma propriedade de navegação, a propriedade ainda pode ser populada se algumas ou todas as entidades relacionadas foram carregadas anteriormente.
 
 
 Você pode incluir dados relacionados de várias relações em uma única consulta.
@@ -38,12 +38,12 @@ Você pode incluir dados relacionados de várias relações em uma única consul
 
 ### <a name="including-multiple-levels"></a>Incluindo vários níveis
 
-Você pode fazer uma busca detalhada por meio de relações para incluir vários níveis de dados relacionados usando o `ThenInclude` método. O exemplo a seguir carrega todos os blogs, suas postagens relacionadas e autor de cada postagem.
+Você pode fazer uma busca detalhada por meio de relações para incluir vários níveis de dados relacionados usando o método `ThenInclude`. O exemplo a seguir carrega todos os blogs, suas postagens relacionadas e autor de cada postagem.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleThenInclude)]
 
 > [!NOTE]  
-> As versões atuais do Visual Studio oferecem opções de conclusão de código incorreto e pode causar expressões corretas para ser sinalizadas com erros de sintaxe ao usar o `ThenInclude` método após uma propriedade de navegação da coleção. Este é um sintoma de um bug de IntelliSense controlado no https://github.com/dotnet/roslyn/issues/8237. É seguro ignorar esses erros de sintaxe artificiais desde que o código está correto e pode ser compilado com êxito. 
+> As versões atuais do Visual Studio oferecem opções de conclusão de código incorreto e pode causar expressões corretas para ser sinalizadas com erros de sintaxe ao usar o método `ThenInclude` após uma propriedade de navegação da coleção. Este é um sintoma de um bug de IntelliSense controlado no https://github.com/dotnet/roslyn/issues/8237. É seguro ignorar esses erros de sintaxe artificiais desde que o código está correto e pode ser compilado com êxito. 
 
 É possível encadear chamadas múltiplas para `ThenInclude` para continuar incluindo mais níveis de dados relacionados.
 
@@ -53,7 +53,7 @@ Você pode combinar tudo isso para incluir dados relacionados de vários níveis
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IncludeTree)]
 
-Você talvez queira incluir várias entidades relacionadas para uma das entidades que está sendo incluída. Por exemplo, ao consultar `Blog`s, que você incluir `Posts` e deseja incluir o `Author` e `Tags` do `Posts`. Para fazer isso, você precisa especificar cada incluem a partir da raiz do caminho. Por exemplo, `Blog -> Posts -> Author` e `Blog -> Posts -> Tags`. Isso não significa que você obterá junções redundantes, na maioria dos casos que EF serão consolidados associações durante a geração de SQL.
+Você talvez queira incluir várias entidades relacionadas para uma das entidades que está sendo incluída. Por exemplo, ao consultar `Blogs`, você quer incluir `Posts` e deseja incluir o `Author` e `Tags` dos `Posts`. Para fazer isso, você precisa especificar cada incluem a partir da raiz do caminho. Por exemplo, `Blog -> Posts -> Author` e `Blog -> Posts -> Tags`. Isso não significa que você obterá junções redundantes, na maioria dos casos que EF serão consolidados associações durante a geração de SQL.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#MultipleLeafIncludes)]
 
@@ -112,15 +112,15 @@ context.People.Include(person => (person as Student).School).ToList()
 context.People.Include("Student").ToList()
 ```
 
-### <a name="ignored-includes"></a>Ignorado inclui
+### <a name="ignored-includes"></a>Ignorado o operador Include
 
-Se você alterar a consulta para que ele não retorna instâncias do tipo de entidade que a consulta foi iniciada com o, os operadores de inclusão são ignorados.
+Se você alterar a consulta para que ela não retorne instâncias do tipo de entidade que a consulta foi iniciada com os operadores de inclusão são ignorados.
 
-No exemplo a seguir, os operadores de inclusão se baseiam o `Blog`, mas, em seguida, o `Select` operador é usado para alterar a consulta para retornar um tipo anônimo. Nesse caso, os operadores de inclusão não têm efeito.
+No exemplo a seguir, os operadores de inclusão se baseiam no `Blog`, mas em seguida o operador `Select` é usado para alterar a consulta para retornar um tipo anônimo. Nesse caso, os operadores de inclusão não têm efeito.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IgnoredInclude)]
 
-Por padrão, o núcleo de EF registrará um aviso quando inclui operadores são ignorados. Consulte [log](../miscellaneous/logging.md) para obter mais informações sobre como exibir a saída de log. Você pode alterar o comportamento quando um operador include é ignorado para gerar ou não faça nada. Isso é feito ao configurar as opções para o contexto - normalmente em `DbContext.OnConfiguring`, ou em `Startup.cs` se você estiver usando o ASP.NET Core.
+Por padrão, o núcleo de EF registrará um aviso quando operadores de inclusão são ignorados. Consulte [log](../miscellaneous/logging.md) para obter mais informações sobre como exibir a saída de log. Você pode alterar o comportamento quando um operador include é ignorado para gerar ou não faça nada. Isso é feito ao configurar as opções para o contexto - normalmente em `DbContext.OnConfiguring`, ou em `Startup.cs` se você estiver usando o ASP.NET Core.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/ThrowOnIgnoredInclude/BloggingContext.cs#OnConfiguring)]
 
@@ -152,7 +152,7 @@ Você também pode filtrar quais entidades relacionadas são carregadas na memó
 > [!NOTE]  
 > Esse recurso foi introduzido no EF Core 2.1.
 
-A maneira mais simples para usar o carregamento lento está instalando o [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) pacote e habilitá-la com uma chamada para `UseLazyLoadingProxies`. Por exemplo:
+A maneira mais simples para usar o carregamento lento é instalando o pacote [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) e o habilitar com uma chamada para `UseLazyLoadingProxies`. Por exemplo:
 ```Csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
@@ -165,7 +165,7 @@ Ou, ao usar AddDbContext:
         b => b.UseLazyLoadingProxies()
               .UseSqlServer(myConnectionString));
 ```
-EF principal, em seguida, habilitará o carregamento lento para qualquer propriedade de navegação que pode ser substituído – que é, ele deverá ser `virtual` e em uma classe que pode ser herdada. Por exemplo, nas entidades a seguir, o `Post.Blog` e `Blog.Posts` propriedades de navegação serão carregados lento.
+EF principal, em seguida, habilitará o carregamento lento para qualquer propriedade de navegação que pode ser substituída – que é, ele deverá ser `virtual` e em uma classe que pode ser herdada. Por exemplo, nas entidades a seguir, as propriedades `Post.Blog` e `Blog.Posts` de navegação terão carregamento lento.
 ```Csharp
 public class Blog
 {
@@ -239,7 +239,7 @@ public class Post
     }
 }
 ```
-Isso não requer tipos de entidade a ser herdadas de ou propriedades de navegação ser virtual e permite que instâncias da entidade criadas com `new` -carregados uma vez conectado a um contexto. No entanto, ele requer uma referência para o `ILazyLoader` serviço, que associa os tipos de entidade para o assembly principal EF. Para evitar esse núcleo EF permite que o `ILazyLoader.Load` método a ser inserida como um representante. Por exemplo:
+Isso não requer tipos de entidade a serem herdadas de propriedades de navegação virtuais e permite que instâncias da entidade criadas com `new` -carregados uma vez conectado a um contexto. No entanto, ele requer uma referência para o serviço `ILazyLoader`, que associa os tipos de entidade para o assembly principal EF. Para evitar esse núcleo, o EF permite que o método `ILazyLoader.Load` a ser inserida como um representante. Por exemplo:
 ```Csharp
 public class Blog
 {
@@ -292,7 +292,7 @@ public class Post
     }
 }
 ```
-O código acima usa um `Load` método de extensão para fazer usando o delegado um pouco limpeza:
+O código acima usa um método `Load` de extensão para fazer usando o delegado um pouco limpeza:
 ```Csharp
 public static class PocoLoadingExtensions
 {
@@ -314,13 +314,13 @@ public static class PocoLoadingExtensions
 
 ## <a name="related-data-and-serialization"></a>Serialização e dados relacionados
 
-Como propriedades de navegação de automaticamente a correção do EF principal será você pode acabar com ciclos em seu gráfico de objeto. Por exemplo, o carregamento de um blog e está relacionado postagens resultará em um objeto de blog que referencia uma coleção de postagens. Cada essas postagens terá uma referência de volta para o blog.
+Como o EF Core irá automaticamente corrigir as propriedades de navegação, você pode acabar com ciclos em seu gráfico de objetos. Por exemplo, o carregamento de um blog está relacionado às suas postagens, resultará em um objeto de blog referenciando uma coleção de postagens. Cada uma dessas postagens terá uma referência de volta para o blog.
 
-Algumas estruturas de serialização não permitir que esses ciclos. Por exemplo, Json.NET lançará a exceção a seguir se for encontrado um ciclo.
+Algumas estruturas de serialização não permitem esses ciclos. Por exemplo, Json.NET lançará a exceção a seguir se for encontrado um ciclo.
 
 > Newtonsoft.Json.JsonSerializationException: Self referenciando loop detectado para a propriedade 'Blog' com tipo 'MyApplication.Models.Blog'.
 
-Se você estiver usando o ASP.NET Core, você pode configurar Json.NET para ignorar ciclos que encontrar no gráfico de objeto. Isso é feito o `ConfigureServices(...)` método `Startup.cs`.
+Se você estiver usando o ASP.NET Core, você pode configurar Json.NET para ignorar ciclos que encontrar no gráfico de objeto. Isso é feito no método `ConfigureServices(...)` em `Startup.cs`.
 
 ``` csharp
 public void ConfigureServices(IServiceCollection services)
