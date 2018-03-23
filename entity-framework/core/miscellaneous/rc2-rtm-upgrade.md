@@ -1,16 +1,16 @@
 ---
-title: "Atualização do EF Core 1.0 RC2 para RTM - Core EF"
+title: Atualização do EF Core 1.0 RC2 para RTM - Core EF
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: c3c1940b-136d-45d8-aa4f-cb5040f8980a
 ms.technology: entity-framework-core
 uid: core/miscellaneous/rc2-rtm-upgrade
-ms.openlocfilehash: 7a1d85949a5f9e1ad7efdbf585a608d815e8ce63
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 4bb4c5736708413f6581cad250b089b7bc22a559
+ms.sourcegitcommit: 90139dbd6f485473afda0788a5a314c9aa601ea0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 03/23/2018
 ---
 # <a name="upgrading-from-ef-core-10-rc2-to-rtm"></a>Atualização do EF Core 1.0 RC2 para RTM
 
@@ -50,7 +50,7 @@ Essa alteração afeta projetos que usam o ASP.NET Identity e foram criados a pa
 
    * NormalizedUserName
 
-   * Nome de usuário
+   * UserName
 
 Falha ao fazer esta alteração resultará na seguinte exceção quando a migração inicial é aplicada a um banco de dados.
 
@@ -69,6 +69,9 @@ Se foram direcionando o .NET Core com RC2, você precisava adicionar `imports` p
   }
 }
 ```
+
+> [!NOTE]  
+> A partir da versão 1.0 RTM, o [.NET Core SDK](https://www.microsoft.com/net/download/core) não dá suporte a `project.json` ou desenvolvimento de aplicativos .NET Core usando o Visual Studio 2015. Recomendamos que você [migre do project.json para csproj](https://docs.microsoft.com/dotnet/articles/core/migration/). Se você estiver usando o Visual Studio, recomendamos que você atualize para [2017 do Visual Studio](https://www.visualstudio.com/downloads/).
 
 ## <a name="uwp-add-binding-redirects"></a>UWP: Adicione redirecionamentos de associação
 
