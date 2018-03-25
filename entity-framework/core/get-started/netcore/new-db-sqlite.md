@@ -1,26 +1,23 @@
 ---
-title: "Introdução ao .NET Core – Novo banco de dados – EF Core"
+title: Introdução ao .NET Core – Novo banco de dados – EF Core
 author: rick-anderson
 ms.author: riande
 ms.author2: tdykstra
-description: "Introdução ao .NET Core usando o Entity Framework Core"
+description: Introdução ao .NET Core usando o Entity Framework Core
 keywords: .NET Core, Entity Framework Core, VS Code, Visual Studio Code, Mac, Linux
 ms.date: 04/05/2017
 ms.assetid: 099d179e-dd7b-4755-8f3c-fcde914bf50b
 ms.technology: entity-framework-core
 uid: core/get-started/netcore/new-db-sqlite
-ms.openlocfilehash: 3becf75e7a513a3aa18c3c2daf628b65327365b0
-ms.sourcegitcommit: 0858f157b806f4a881b94ddbeecf1ece1d53e1e0
+ms.openlocfilehash: 2511dfa3f3262bb12c2058dc1c402b7dcc4c670d
+ms.sourcegitcommit: 90139dbd6f485473afda0788a5a314c9aa601ea0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 03/23/2018
 ---
 # <a name="getting-started-with-ef-core-on-net-core-console-app-with-a-new-database"></a>Introdução ao EF Core no aplicativo de console do .NET Core com um novo banco de dados
 
 Neste passo a passo, você criará um aplicativo de console do .NET Core que executa acesso a dados básicos em um banco de dados SQLite usando o Entity Framework Core. Você usará as migrações para criar o banco de dados de seu modelo. Veja [ASP.NET Core – Novo banco de dados](xref:core/get-started/aspnetcore/new-db) para ter uma versão do Visual Studio usando o ASP.NET Core MVC.
-
-> [!NOTE]  
-> O [SDK do .NET Core](https://www.microsoft.com/net/download/core) não dá mais suporte a `project.json` ou ao Visual Studio 2015. Recomendamos que você [migre do project.json para csproj](https://docs.microsoft.com/dotnet/articles/core/migration/). Se você estiver usando o Visual Studio, recomendamos que você migre para o [Visual Studio 2017](https://www.visualstudio.com/downloads/).
 
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/NetCore/ConsoleApp.SQLite) deste artigo no GitHub.
