@@ -134,7 +134,7 @@ Você pode carregar explicitamente uma propriedade de navegação por meio da AP
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#Eager)]
 
-Você pode carregar também explicitamente uma propriedade de navegação executando uma consulta separada que retorna as entidades relacionadas. Se o controle de alterações está habilitada, ao carregar uma entidade, Core EF automaticamente definir as propriedades de navegação da entidade para se referir a qualquer entidade que já carregada recentemente carregado e definir as propriedades de navegação das entidades já carregado para referir-se a entidade carregado recentemente.
+Você pode carregar também explicitamente uma propriedade de navegação executando uma consulta separada que retorna as entidades relacionadas. Se o controle de alterações estiver habilitado, ao carregar uma entidade, o EF Core vai automaticamente definir as propriedades de navegação da entidade carregada recentemente para se referir a qualquer entidade já carregada e definir as propriedades de navegação das entidades já carregadas para se referir às entidades carregadas recentemente.
 
 ### <a name="querying-related-entities"></a>Consultando entidades relacionadas
 
