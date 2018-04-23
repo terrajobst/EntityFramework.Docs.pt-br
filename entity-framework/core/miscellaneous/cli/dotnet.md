@@ -4,11 +4,11 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: 8a52cb8259bb381729a33a8161aec4b73f69f45d
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 396d31c9d0c0f47d299f49e82e557ed29b8420e7
+ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 04/16/2018
 ---
 <a name="ef-core-net-command-line-tools"></a>Ferramentas de linha de comando do EF Core .NET
 ===============================
@@ -65,6 +65,9 @@ O projeto de destino é aquele ao qual todos os arquivos são adicionados (ou, e
 
 O projeto de inicialização é aquele emulado pelas ferramentas durante a execução do código do seu projeto. Ele também usa como padrão o projeto no diretório atual, mas pode ser alterado usando o **– projeto de inicialização** opção.
 
+> [!NOTE]
+> Por exemplo, atualizar o banco de dados do seu aplicativo web que tenha o EF Core instalado em um projeto diferente teria esta aparência: `dotnet ef database update --project {project-path}` (do diretório de aplicativo da web)
+
 Opções comuns:
 
 |    |                                  |                             |
@@ -78,7 +81,7 @@ Opções comuns:
 |    | o tempo de execução – \<identificador >          | O tempo de execução para usar.         |
 | -h | – Ajuda                           | Mostra informações de Ajuda.      |
 | -v | -verbose                        | Mostra saída detalhada.        |
-|    | --no-color                       | Não colorir saída.      |
+|    | – sem cor                       | Não colorir saída.      |
 |    | --prefix-output                  | Prefixo com o nível de saída.   |
 
 
@@ -97,7 +100,7 @@ Opções:
 |    |           |                                                          |
 |:---|:----------|:---------------------------------------------------------|
 | -f | -force   | Não confirme.                                           |
-|    | --dry-run | Mostrar qual banco de dados deve ser descartado, mas não solte-o. |
+|    | -Execute | Mostrar qual banco de dados deve ser descartado, mas não solte-o. |
 
 ### <a name="dotnet-ef-database-update"></a>atualização de banco de dados de ef dotnet
 
@@ -107,7 +110,7 @@ Argumentos:
 
 |              |                                                                                              |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| \<MIGRAÇÃO > | A migração de destino. Se for 0, todas as migrações serão revertidas. O padrão é para a última migração. |
+| \<MIGRAÇÃO &GT; | A migração de destino. Se for 0, todas as migrações serão revertidas. O padrão é para a última migração. |
 
 ### <a name="dotnet-ef-dbcontext-info"></a>informações do dotnet ef dbcontext
 
@@ -125,8 +128,8 @@ Argumentos:
 
 |               |                                                                     |
 |:--------------|:--------------------------------------------------------------------|
-| \<CONEXÃO > | A cadeia de caracteres de conexão para o banco de dados.                              |
-| \<PROVEDOR >   | O provedor a ser usado. (Por exemplo Microsoft.EntityFrameworkCore.SqlServer) |
+| \<CONEXÃO &GT; | A cadeia de caracteres de conexão para o banco de dados.                              |
+| \<PROVEDOR &GT;   | O provedor a ser usado. (por exemplo, Microsoft.EntityFrameworkCore.SqlServer) |
 
 Opções:
 
@@ -134,11 +137,12 @@ Opções:
 |:----------------|:----------------------------------------|:-------------------------------------------------------------------------------------------------|
 | <nobr>-d</nobr> | --data-annotations                      | Use atributos para configurar o modelo (onde for possível). Se omitido, somente a API fluente é usada. |
 | -c              | – contexto \<nome >                       | O nome do DbContext.                                                                       |
+|                 | -dir contexto \<caminho >                   | O diretório para colocar o arquivo DbContext no. Caminhos são relativas ao diretório do projeto.             |
 | -f              | -force                                 | Substitua arquivos existentes.                                                                        |
 | -o              | -dir saída \<caminho >                    | O diretório de colocar arquivos em. Caminhos são relativas ao diretório do projeto.                      |
 |                 | <nobr>--schema \<SCHEMA_NAME>...</nobr> | Os esquemas de tabelas para gerar tipos de entidade para.                                              |
 | -t              | -tabela \<TABLE_NAME >...                | As tabelas para gerar tipos de entidade para.                                                         |
-|                 | --use-database-names                    | Use nomes de tabela e coluna diretamente do banco de dados.                                           |
+|                 | – use nomes de banco de dados                    | Use nomes de tabela e coluna diretamente do banco de dados.                                           |
 
 ### <a name="dotnet-ef-migrations-add"></a>Adicionar migrações de ef dotnet
 
@@ -148,13 +152,13 @@ Argumentos:
 
 |         |                            |
 |:--------|:---------------------------|
-| \<NOME > | O nome da migração. |
+| \<NOME &GT; | O nome da migração. |
 
 Opções:
 
 |                 |                                   |                                                                                                                  |
 |:----------------|:----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| <nobr>-o</nobr> | <nobr>--output-dir \<PATH></nobr> | O diretório (e sub-namespace) a ser usado. Caminhos são relativas ao diretório do projeto. O padrão é "Migrações". |
+| <nobr>-o</nobr> | <nobr>-dir saída \<caminho ></nobr> | O diretório (e sub-namespace) a ser usado. Caminhos são relativas ao diretório do projeto. O padrão é "Migrações". |
 
 ### <a name="dotnet-ef-migrations-list"></a>lista de migrações ef dotnet
 
@@ -168,7 +172,7 @@ Opções:
 
 |    |         |                                                                       |
 |:---|:--------|:----------------------------------------------------------------------|
-| -f | -force | Não verificar se a migração tiver sido aplicada ao banco de dados. |
+| -f | -force | Reverta a migração se ela foi aplicada ao banco de dados. |
 
 ### <a name="dotnet-ef-migrations-script"></a>script de migrações ef dotnet
 
@@ -178,15 +182,15 @@ Argumentos:
 
 |         |                                                               |
 |:--------|:--------------------------------------------------------------|
-| \<FROM> | A migração inicial. O padrão é 0 (o banco de dados inicial). |
-| \<TO>   | A migração final. O padrão é para a última migração.         |
+| \<DE &GT; | A migração inicial. O padrão é 0 (o banco de dados inicial). |
+| \<PARA &GT;   | A migração final. O padrão é para a última migração.         |
 
 Opções:
 
 |    |                  |                                                                    |
 |:---|:-----------------|:-------------------------------------------------------------------|
 | -o | -saída \<arquivo > | O arquivo para gravar o resultado.                                   |
-| -i | --idempotent     | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
+| -i | – idempotente     | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
 
 
   [1]: powershell.md

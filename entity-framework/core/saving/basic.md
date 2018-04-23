@@ -1,29 +1,32 @@
 ---
-title: "Salvar básico - Core EF"
+title: Salvar básico - Core EF
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 850d842e-3fad-4ef2-be17-053768e97b9e
 ms.technology: entity-framework-core
 uid: core/saving/basic
-ms.openlocfilehash: e99d755b8f7c42b15a73cfdb6a2f8999a405a739
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: deead323301dc4a0ee0748b4536ddff4596b99e6
+ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="basic-save"></a>Salvar básico
 
 Saiba como adicionar, modificar e remover dados usando as classes de entidade e de contexto.
 
 > [!TIP]  
-> Você pode exibir este artigo [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Basics/) no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Basics/) deste artigo no GitHub.
 
 ## <a name="adding-data"></a>Adicionando dados
 
 Use o *DbSet.Add* método para adicionar novas instâncias de suas classes de entidade. Os dados serão inseridos no banco de dados quando você chama *SaveChanges*.
 
 [!code-csharp[Main](../../../samples/core/Saving/Saving/Basics/Sample.cs#Add)]
+
+> [!TIP]  
+> Os métodos de atualização, anexar e adicionar todos eles funcionam no gráfico completo das entidades passados a eles, conforme descrito no [dados relacionados](related-data.md) seção. Como alternativa, a propriedade EntityEntry.State pode ser usada para definir o estado de apenas uma única entidade. Por exemplo, `context.Entry(blog).State = EntityState.Modified`.
 
 ## <a name="updating-data"></a>Atualizando dados
 

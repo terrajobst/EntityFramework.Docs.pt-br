@@ -4,11 +4,11 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: aacf8c8564a3966db6202c9ff1c1c02a19a10814
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: a53455a78db4bc504c45abafdacf9a15381f608e
+ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 04/16/2018
 ---
 <a name="ef-core-package-manager-console-tools"></a>Ferramentas do EF Core Package Manager Console
 =====================================
@@ -74,7 +74,7 @@ Parâmetros:
 
 |                                   |                                                                                                                  |
 |:----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| ***-Name*** \<String>             | O nome da migração.                                                                                       |
+| ***-Nome*** \<cadeia de caracteres >             | O nome da migração.                                                                                       |
 | <nobr>-OutputDir \<cadeia de caracteres ></nobr> | O diretório (e sub-namespace) a ser usado. Caminhos são relativas ao diretório do projeto. O padrão é "Migrações". |
 
 > [!NOTE]
@@ -100,9 +100,9 @@ Remove a última migração.
 
 Parâmetros:
 
-|        |                                                                       |
-|:-------|:----------------------------------------------------------------------|
-| -Force | Não verificar se a migração tiver sido aplicada ao banco de dados. |
+|        |                                                              |
+|:-------|:-------------------------------------------------------------|
+| -Force | Reverta a migração se ela foi aplicada ao banco de dados. |
 
 ### <a name="scaffold-dbcontext"></a>Scaffold-DbContext
 
@@ -113,8 +113,9 @@ Parâmetros:
 |                                          |                                                                                                  |
 |:-----------------------------------------|:-------------------------------------------------------------------------------------------------|
 | <nobr>***-Conexão*** \<cadeia de caracteres ></nobr> | A cadeia de caracteres de conexão para o banco de dados.                                                           |
-| ***-Provedor*** \<cadeia de caracteres >                | O provedor a ser usado. (Por exemplo Microsoft.EntityFrameworkCore.SqlServer)                              |
+| ***-Provedor*** \<cadeia de caracteres >                | O provedor a ser usado. (por exemplo, Microsoft.EntityFrameworkCore.SqlServer)                              |
 | -OutputDir \<cadeia de caracteres >                     | O diretório de colocar arquivos em. Caminhos são relativas ao diretório do projeto.                      |
+| -ContextDir \<cadeia de caracteres >                    | O diretório para colocar o arquivo DbContext no. Caminhos são relativas ao diretório do projeto.             |
 | -Contexto \<cadeia de caracteres >                       | O nome do DbContext para gerar.                                                           |
 | -Esquemas \<String [] >                     | Os esquemas de tabelas para gerar tipos de entidade para.                                              |
 | -Tabelas \<String [] >                      | As tabelas para gerar tipos de entidade para.                                                         |
@@ -130,9 +131,9 @@ Parâmetros:
 
 |                   |                                                                    |
 |:------------------|:-------------------------------------------------------------------|
-| *-From* \<String> | A migração inicial. O padrão é 0 (o banco de dados inicial).      |
-| *-To* \<String>   | A migração final. O padrão é para a última migração.              |
-| -Idempotent       | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
+| *-From* \<cadeia de caracteres > | A migração inicial. O padrão é 0 (o banco de dados inicial).      |
+| *-* \<Cadeia de caracteres >   | A migração final. O padrão é para a última migração.              |
+| -Idempotente       | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
 | -Saída \<cadeia de caracteres > | O arquivo para gravar o resultado.                                   |
 
 > [!TIP]
