@@ -6,11 +6,11 @@ ms.date: 02/23/2018
 ms.assetid: 420AFFE7-B709-4A68-9149-F06F8746FB33
 ms.technology: entity-framework-core
 uid: core/modeling/constructors
-ms.openlocfilehash: 38ab0c1c3cd8c490875abf30b8478c99bc58630f
-ms.sourcegitcommit: 60b831318c4f5ec99061e8af6a7c9e7c03b3469c
+ms.openlocfilehash: 3f861d54c5bff637ae28f38b08da7aff7d0ea5c0
+ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="entity-types-with-constructors"></a>Tipos de entidade com construtores
 
@@ -254,7 +254,7 @@ public class Post
 }
 ```
 Algumas coisas a observar sobre isso:
-* O construtor é particular, como é apenas nunca chamam por núcleo EF e há outro construtor público para uso geral.
+* O construtor é privado, uma vez que ele só é chamado por núcleo EF e há outro construtor público para uso geral.
 * O código usando o serviço injetado (ou seja, o contexto) é defesa contra ele sendo `null` para lidar com casos onde EF Core não é criar a instância.
 * Porque o serviço é armazenado em uma propriedade de leitura/gravação, será redefinido quando a entidade é anexada a uma nova instância de contexto.
 
