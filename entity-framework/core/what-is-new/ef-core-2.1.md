@@ -1,22 +1,22 @@
 ---
-title: "Novidades no EF Core 2.1 – EF Core"
+title: Novidades no EF Core 2.1 – EF Core
 author: divega
 ms.author: divega
 ms.date: 2/20/2018
 ms.assetid: 585F90A3-4D5A-4DD1-92D8-5243B14E0FEC
 ms.technology: entity-framework-core
 uid: core/what-is-new/ef-core-2.1
-ms.openlocfilehash: bb1e691e0f22bd36467d58c02bde22c63067207e
-ms.sourcegitcommit: fcaeaf085171dfb5c080ec42df1d1df8dfe204fb
+ms.openlocfilehash: db1648095aa4d612af53f4e10a30be36edc40da5
+ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/15/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="new-features-in-ef-core-21"></a>Novos recursos no EF Core 2.1
 > [!NOTE]  
 > Essa versão ainda está em versão prévia.
 
-Além de várias pequenas melhorias e mais de uma centena de correções de bugs do produto, o EF Core 2.1 inclui vários novos recursos:
+Além de várias correções de bugs e pequenas melhorias funcionais e de desempenho, o EF Core 2.1 inclui alguns recursos novos e interessantes:
 
 ## <a name="lazy-loading"></a>Carregamento lento
 Agora o EF Core contém os blocos de construção necessários para que qualquer pessoa crie classes de entidade que podem carregar suas propriedades de navegação sob demanda. Também criamos um novo pacote, o Microsoft.EntityFrameworkCore.Proxies, que faz uso desses blocos de construção para gerar classes de proxy de carregamento lento com base em classes de entidade minimamente modificadas (por exemplo, classes com propriedades de navegação virtual).
@@ -71,7 +71,7 @@ Com a nova versão, será possível fornecer os dados iniciais para popular um b
 Por exemplo, você pode usar isso para configurar dados de semente para uma Postagem no `OnModelCreating`:
 
 ``` csharp
-modelBuilder.Entity<Post>().SeedData(new Post{ Id = 1, Text = "Hello World!" });
+modelBuilder.Entity<Post>().HasData(new Post{ Id = 1, Text = "Hello World!" });
 ```
 
 Leia a [seção sobre propagação de dados](xref:core/modeling/data-seeding) para obter mais informações sobre este tópico.  
@@ -143,9 +143,29 @@ public class Order
 }
 ```
 
+## <a name="new-dotnet-ef-global-tool"></a>Nova ferramenta dotnet-ef global
+
+Os comandos _dotnet ef_ foram convertidos em uma ferramenta global CLI do .NET, portanto, não será mais necessário usar DotNetCliToolReference no projeto para usar migrações ou para fazer o scaffold de um DbContext de um banco de dados existente.
+
+## <a name="microsoftentityframeworkcoreabstractions-package"></a>Pacote Microsoft.EntityFrameworkCore.Abstractions
+O novo pacote contém atributos e interfaces para você usar em projetos e destacar recursos EF Core sem tomar uma dependência no EF Core como um todo. Por exemplo, o atributo [Owned] introduzido na versão prévia 1 foi movido para cá.
+
+## <a name="state-change-events"></a>Eventos de alteração de estado
+
+Novos eventos `Tracked` e `StateChanged` no `ChangeTracker` podem ser usados para escrever lógica que reage a entidades inserindo o DbContext ou alterando o estado dele.
+
+## <a name="raw-sql-parameter-analyzer"></a>Analisador de parâmetros de SQL bruto
+
+Um novo analisador de código foi incluído no EF Core que detecta usos potencialmente não seguros de nossas APIs de SQL bruto, como `FromSql` ou `ExecuteSqlCommand`. Por exemplo, para a consulta a seguir, você verá um aviso porque o _minAge_ não está parametrizado:
+
+``` csharp
+var sql = $"SELECT * FROM People WHERE Age > {minAge}";
+var query = context.People.FromSql(sql);
+```
+
 ## <a name="database-provider-compatibility"></a>Compatibilidade do provedor de banco de dados
 
-O EF Core 2.1 foi projetado para ser compatível com provedores de banco de dados criados para o EF Core 2.0. Embora alguns dos recursos descritos acima (por exemplo, conversões de valor) exijam um provedor atualizado, outros (por exemplo, carregamento lento) funcionarão com provedores existentes.
+O EF Core 2.1 foi desenvolvido para ser compatível com provedores de banco de dados criados para o EF Core 2.0 ou, no máximo, necessitar de alterações mínimas. Embora alguns dos recursos descritos acima (por exemplo, conversões de valor) exijam um provedor atualizado, outros (por exemplo, carregamento lento) funcionarão com provedores existentes.
 
 > [!TIP]
 > Se você encontrar qualquer incompatibilidade inesperada ou qualquer problema nos novos recursos, ou se você tiver comentários sobre eles, informe usando [nosso rastreador de problemas](https://github.com/aspnet/EntityFrameworkCore/issues/new).
