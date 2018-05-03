@@ -6,62 +6,62 @@ ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 ms.technology: entity-framework-core
 uid: core/querying/related-data
-ms.openlocfilehash: 0d7705e0e5368435536e98d319c853ea8c732643
-ms.sourcegitcommit: 8f3be0a2a394253efb653388ec66bda964e5ee1b
+ms.openlocfilehash: 5f1fb9376300739ab0e306d9d60e7ec71aa2d2e7
+ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 04/26/2018
 ---
-# <a name="loading-related-data"></a><span data-ttu-id="99297-102">Carregamento de dados relacionados</span><span class="sxs-lookup"><span data-stu-id="99297-102">Loading Related Data</span></span>
+# <a name="loading-related-data"></a><span data-ttu-id="19288-102">Carregamento de dados relacionados</span><span class="sxs-lookup"><span data-stu-id="19288-102">Loading Related Data</span></span>
 
-<span data-ttu-id="99297-103">Entity Framework Core permite que você use as propriedades de navegação em seu modelo para carregar as entidades relacionadas.</span><span class="sxs-lookup"><span data-stu-id="99297-103">Entity Framework Core allows you to use the navigation properties in your model to load related entities.</span></span> <span data-ttu-id="99297-104">Há três padrões de S/RM comuns usados para carregar dados relacionados.</span><span class="sxs-lookup"><span data-stu-id="99297-104">There are three common O/RM patterns used to load related data.</span></span>
-* <span data-ttu-id="99297-105">**Carregamento adiantado** significa que os dados relacionados são carregados do banco de dados como parte da consulta inicial.</span><span class="sxs-lookup"><span data-stu-id="99297-105">**Eager loading** means that the related data is loaded from the database as part of the initial query.</span></span>
-* <span data-ttu-id="99297-106">**Carregamento explícito** significa que os dados relacionados são explicitamente carregados do banco de dados em um momento posterior.</span><span class="sxs-lookup"><span data-stu-id="99297-106">**Explicit loading** means that the related data is explicitly loaded from the database at a later time.</span></span>
-* <span data-ttu-id="99297-107">**Carregamento preguiçoso** significa que os dados relacionados são transparentemente carregados do banco de dados quando a propriedade de navegação é acessada.</span><span class="sxs-lookup"><span data-stu-id="99297-107">**Lazy loading** means that the related data is transparently loaded from the database when the navigation property is accessed.</span></span>
+<span data-ttu-id="19288-103">Entity Framework Core permite que você use as propriedades de navegação em seu modelo para carregar as entidades relacionadas.</span><span class="sxs-lookup"><span data-stu-id="19288-103">Entity Framework Core allows you to use the navigation properties in your model to load related entities.</span></span> <span data-ttu-id="19288-104">Há três padrões de S/RM comuns usados para carregar dados relacionados.</span><span class="sxs-lookup"><span data-stu-id="19288-104">There are three common O/RM patterns used to load related data.</span></span>
+* <span data-ttu-id="19288-105">**Carregamento adiantado** significa que os dados relacionados são carregados do banco de dados como parte da consulta inicial.</span><span class="sxs-lookup"><span data-stu-id="19288-105">**Eager loading** means that the related data is loaded from the database as part of the initial query.</span></span>
+* <span data-ttu-id="19288-106">**Carregamento explícito** significa que os dados relacionados são explicitamente carregados do banco de dados em um momento posterior.</span><span class="sxs-lookup"><span data-stu-id="19288-106">**Explicit loading** means that the related data is explicitly loaded from the database at a later time.</span></span>
+* <span data-ttu-id="19288-107">**Carregamento preguiçoso** significa que os dados relacionados são transparentemente carregados do banco de dados quando a propriedade de navegação é acessada.</span><span class="sxs-lookup"><span data-stu-id="19288-107">**Lazy loading** means that the related data is transparently loaded from the database when the navigation property is accessed.</span></span>
 
 > [!TIP]  
-> <span data-ttu-id="99297-108">Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.</span><span class="sxs-lookup"><span data-stu-id="99297-108">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) on GitHub.</span></span>
+> <span data-ttu-id="19288-108">Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.</span><span class="sxs-lookup"><span data-stu-id="19288-108">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) on GitHub.</span></span>
 
-## <a name="eager-loading"></a><span data-ttu-id="99297-109">Carregamento adiantado</span><span class="sxs-lookup"><span data-stu-id="99297-109">Eager loading</span></span>
+## <a name="eager-loading"></a><span data-ttu-id="19288-109">Carregamento adiantado</span><span class="sxs-lookup"><span data-stu-id="19288-109">Eager loading</span></span>
 
-<span data-ttu-id="99297-110">Você pode usar o método `Include` para especificar dados relacionados a serem incluídos nos resultados da consulta.</span><span class="sxs-lookup"><span data-stu-id="99297-110">You can use the `Include` method to specify related data to be included in query results.</span></span> <span data-ttu-id="99297-111">No exemplo a seguir, os blogs que são retornados nos resultados terão suas propriedades `Posts` preenchidas com as postagens relacionadas.</span><span class="sxs-lookup"><span data-stu-id="99297-111">In the following example, the blogs that are returned in the results will have their `Posts` property populated with the related posts.</span></span>
+<span data-ttu-id="19288-110">Você pode usar o método `Include` para especificar dados relacionados a serem incluídos nos resultados da consulta.</span><span class="sxs-lookup"><span data-stu-id="19288-110">You can use the `Include` method to specify related data to be included in query results.</span></span> <span data-ttu-id="19288-111">No exemplo a seguir, os blogs que são retornados nos resultados terão suas propriedades `Posts` preenchidas com as postagens relacionadas.</span><span class="sxs-lookup"><span data-stu-id="19288-111">In the following example, the blogs that are returned in the results will have their `Posts` property populated with the related posts.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleInclude)]
 
 > [!TIP]  
-> <span data-ttu-id="99297-112">O Entity Framework Core corrigirá automaticamente as propriedades de navegação para outras entidades que foram previamente carregadas para a instância de contexto.</span><span class="sxs-lookup"><span data-stu-id="99297-112">Entity Framework Core will automatically fix-up navigation properties to any other entities that were previously loaded into the context instance.</span></span> <span data-ttu-id="99297-113">Dessa forma, mesmo se você não incluir explicitamente os dados para uma propriedade de navegação, a propriedade ainda poderá ser populada se algumas ou todas as entidades relacionadas foram carregadas anteriormente.</span><span class="sxs-lookup"><span data-stu-id="99297-113">So even if you don't explicitly include the data for a navigation property, the property may still be populated if some or all of the related entities were previously loaded.</span></span>
+> <span data-ttu-id="19288-112">O Entity Framework Core corrigirá automaticamente as propriedades de navegação para outras entidades que foram previamente carregadas para a instância de contexto.</span><span class="sxs-lookup"><span data-stu-id="19288-112">Entity Framework Core will automatically fix-up navigation properties to any other entities that were previously loaded into the context instance.</span></span> <span data-ttu-id="19288-113">Dessa forma, mesmo se você não incluir explicitamente os dados para uma propriedade de navegação, a propriedade ainda poderá ser populada se algumas ou todas as entidades relacionadas foram carregadas anteriormente.</span><span class="sxs-lookup"><span data-stu-id="19288-113">So even if you don't explicitly include the data for a navigation property, the property may still be populated if some or all of the related entities were previously loaded.</span></span>
 
 
-<span data-ttu-id="99297-114">Você pode incluir dados relacionados de várias relações em uma única consulta.</span><span class="sxs-lookup"><span data-stu-id="99297-114">You can include related data from multiple relationships in a single query.</span></span>
+<span data-ttu-id="19288-114">Você pode incluir dados relacionados de várias relações em uma única consulta.</span><span class="sxs-lookup"><span data-stu-id="19288-114">You can include related data from multiple relationships in a single query.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#MultipleIncludes)]
 
-### <a name="including-multiple-levels"></a><span data-ttu-id="99297-115">Incluindo vários níveis</span><span class="sxs-lookup"><span data-stu-id="99297-115">Including multiple levels</span></span>
+### <a name="including-multiple-levels"></a><span data-ttu-id="19288-115">Incluindo vários níveis</span><span class="sxs-lookup"><span data-stu-id="19288-115">Including multiple levels</span></span>
 
-<span data-ttu-id="99297-116">Você pode fazer uma busca detalhada por meio de relações para incluir vários níveis de dados relacionados usando o método `ThenInclude`.</span><span class="sxs-lookup"><span data-stu-id="99297-116">You can drill down thru relationships to include multiple levels of related data using the `ThenInclude` method.</span></span> <span data-ttu-id="99297-117">O exemplo a seguir carrega todos os blogs, suas postagens relacionadas e o autor de cada postagem.</span><span class="sxs-lookup"><span data-stu-id="99297-117">The following example loads all blogs, their related posts, and the author of each post.</span></span>
+<span data-ttu-id="19288-116">Você pode fazer uma busca detalhada por meio de relações para incluir vários níveis de dados relacionados usando o método `ThenInclude`.</span><span class="sxs-lookup"><span data-stu-id="19288-116">You can drill down thru relationships to include multiple levels of related data using the `ThenInclude` method.</span></span> <span data-ttu-id="19288-117">O exemplo a seguir carrega todos os blogs, suas postagens relacionadas e o autor de cada postagem.</span><span class="sxs-lookup"><span data-stu-id="19288-117">The following example loads all blogs, their related posts, and the author of each post.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleThenInclude)]
 
 > [!NOTE]  
-> <span data-ttu-id="99297-118">As versões atuais do Visual Studio oferecem opções de conclusão de código incorreto, que podem causar expressões corretas a serem sinalizadas com erros de sintaxe ao usar o método `ThenInclude` após uma propriedade de navegação da coleção.</span><span class="sxs-lookup"><span data-stu-id="99297-118">Current versions of Visual Studio offer incorrect code completion options and can cause correct expressions to be flagged with syntax errors when using the `ThenInclude` method after a collection navigation property.</span></span> <span data-ttu-id="99297-119">Este é um sintoma de um bug de IntelliSense controlado no https://github.com/dotnet/roslyn/issues/8237.</span><span class="sxs-lookup"><span data-stu-id="99297-119">This is a symptom of an IntelliSense bug tracked at https://github.com/dotnet/roslyn/issues/8237.</span></span> <span data-ttu-id="99297-120">É seguro ignorar esses erros de sintaxe artificiais desde que o código esteja correto e possa ser compilado com êxito.</span><span class="sxs-lookup"><span data-stu-id="99297-120">It is safe to ignore these spurious syntax errors as long as the code is correct and can be compiled successfully.</span></span> 
+> <span data-ttu-id="19288-118">As versões atuais do Visual Studio oferecem opções de conclusão de código incorreto, que podem causar expressões corretas a serem sinalizadas com erros de sintaxe ao usar o método `ThenInclude` após uma propriedade de navegação da coleção.</span><span class="sxs-lookup"><span data-stu-id="19288-118">Current versions of Visual Studio offer incorrect code completion options and can cause correct expressions to be flagged with syntax errors when using the `ThenInclude` method after a collection navigation property.</span></span> <span data-ttu-id="19288-119">Este é um sintoma de um bug de IntelliSense controlado no https://github.com/dotnet/roslyn/issues/8237.</span><span class="sxs-lookup"><span data-stu-id="19288-119">This is a symptom of an IntelliSense bug tracked at https://github.com/dotnet/roslyn/issues/8237.</span></span> <span data-ttu-id="19288-120">É seguro ignorar esses erros de sintaxe artificiais desde que o código esteja correto e possa ser compilado com êxito.</span><span class="sxs-lookup"><span data-stu-id="19288-120">It is safe to ignore these spurious syntax errors as long as the code is correct and can be compiled successfully.</span></span> 
 
-<span data-ttu-id="99297-121">É possível encadear chamadas múltiplas para `ThenInclude` para continuar incluindo mais níveis de dados relacionados.</span><span class="sxs-lookup"><span data-stu-id="99297-121">You can chain multiple calls to `ThenInclude` to continue including further levels of related data.</span></span>
+<span data-ttu-id="19288-121">É possível encadear chamadas múltiplas para `ThenInclude` para continuar incluindo mais níveis de dados relacionados.</span><span class="sxs-lookup"><span data-stu-id="19288-121">You can chain multiple calls to `ThenInclude` to continue including further levels of related data.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#MultipleThenIncludes)]
 
-<span data-ttu-id="99297-122">Você pode combinar tudo isso para incluir dados relacionados de vários níveis e várias raízes na mesma consulta.</span><span class="sxs-lookup"><span data-stu-id="99297-122">You can combine all of this to include related data from multiple levels and multiple roots in the same query.</span></span>
+<span data-ttu-id="19288-122">Você pode combinar tudo isso para incluir dados relacionados de vários níveis e várias raízes na mesma consulta.</span><span class="sxs-lookup"><span data-stu-id="19288-122">You can combine all of this to include related data from multiple levels and multiple roots in the same query.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IncludeTree)]
 
-<span data-ttu-id="99297-123">Você talvez queira incluir várias entidades relacionadas para uma das entidades que está sendo incluída.</span><span class="sxs-lookup"><span data-stu-id="99297-123">You may want to include multiple related entities for one of the entities that is being included.</span></span> <span data-ttu-id="99297-124">Por exemplo, ao consultar `Blog`, você inclui `Posts` e deseja incluir o `Author` e `Tags` dos `Posts`.</span><span class="sxs-lookup"><span data-stu-id="99297-124">For example, when querying `Blog`s, you include `Posts` and then want to include both the `Author` and `Tags` of the `Posts`.</span></span> <span data-ttu-id="99297-125">Para fazer isso, você precisa especificar cada `Include` a partir da raiz do caminho.</span><span class="sxs-lookup"><span data-stu-id="99297-125">To do this, you need to specify each include path starting at the root.</span></span> <span data-ttu-id="99297-126">Por exemplo, `Blog -> Posts -> Author` e `Blog -> Posts -> Tags`.</span><span class="sxs-lookup"><span data-stu-id="99297-126">For example, `Blog -> Posts -> Author` and `Blog -> Posts -> Tags`.</span></span> <span data-ttu-id="99297-127">Isso não significa que você obterá junções redundantes, na maioria dos casos o EF irá consolidar as associações durante a geração de SQL.</span><span class="sxs-lookup"><span data-stu-id="99297-127">This does not mean you will get redundant joins, in most cases EF will consolidate the joins when generating SQL.</span></span>
+<span data-ttu-id="19288-123">Você talvez queira incluir várias entidades relacionadas para uma das entidades que está sendo incluída.</span><span class="sxs-lookup"><span data-stu-id="19288-123">You may want to include multiple related entities for one of the entities that is being included.</span></span> <span data-ttu-id="19288-124">Por exemplo, ao consultar `Blog`, você inclui `Posts` e deseja incluir o `Author` e `Tags` dos `Posts`.</span><span class="sxs-lookup"><span data-stu-id="19288-124">For example, when querying `Blog`s, you include `Posts` and then want to include both the `Author` and `Tags` of the `Posts`.</span></span> <span data-ttu-id="19288-125">Para fazer isso, você precisa especificar cada `Include` a partir da raiz do caminho.</span><span class="sxs-lookup"><span data-stu-id="19288-125">To do this, you need to specify each include path starting at the root.</span></span> <span data-ttu-id="19288-126">Por exemplo, `Blog -> Posts -> Author` e `Blog -> Posts -> Tags`.</span><span class="sxs-lookup"><span data-stu-id="19288-126">For example, `Blog -> Posts -> Author` and `Blog -> Posts -> Tags`.</span></span> <span data-ttu-id="19288-127">Isso não significa que você obterá junções redundantes, na maioria dos casos o EF irá consolidar as associações durante a geração de SQL.</span><span class="sxs-lookup"><span data-stu-id="19288-127">This does not mean you will get redundant joins, in most cases EF will consolidate the joins when generating SQL.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#MultipleLeafIncludes)]
 
-### <a name="include-on-derived-types"></a><span data-ttu-id="99297-128">Incluir em tipos derivados</span><span class="sxs-lookup"><span data-stu-id="99297-128">Include on derived types</span></span>
+### <a name="include-on-derived-types"></a><span data-ttu-id="19288-128">Incluir em tipos derivados</span><span class="sxs-lookup"><span data-stu-id="19288-128">Include on derived types</span></span>
 
-<span data-ttu-id="99297-129">Você pode incluir dados relacionados de navegações definidos apenas em um tipo derivado usando `Include` e `ThenInclude`.</span><span class="sxs-lookup"><span data-stu-id="99297-129">You can include related data from navigations defined only on a derived type using `Include` and `ThenInclude`.</span></span> 
+<span data-ttu-id="19288-129">Você pode incluir dados relacionados de navegações definidos apenas em um tipo derivado usando `Include` e `ThenInclude`.</span><span class="sxs-lookup"><span data-stu-id="19288-129">You can include related data from navigations defined only on a derived type using `Include` and `ThenInclude`.</span></span> 
 
-<span data-ttu-id="99297-130">Recebe o seguinte modelo:</span><span class="sxs-lookup"><span data-stu-id="99297-130">Given the following model:</span></span>
+<span data-ttu-id="19288-130">Recebe o seguinte modelo:</span><span class="sxs-lookup"><span data-stu-id="19288-130">Given the following model:</span></span>
 
 ```Csharp
     public class SchoolContext : DbContext
@@ -95,78 +95,78 @@ ms.lasthandoff: 03/05/2018
     }
 ```
 
-<span data-ttu-id="99297-131">O conteúdo de navegação de `School` de todas as pessoas que são alunos pode ser carregado ansiosamente usando um número de padrões:</span><span class="sxs-lookup"><span data-stu-id="99297-131">Contents of `School` navigation of all People who are Students can be eagerly loaded using a number of patterns:</span></span>
+<span data-ttu-id="19288-131">O conteúdo de navegação de `School` de todas as pessoas que são alunos pode ser carregado ansiosamente usando um número de padrões:</span><span class="sxs-lookup"><span data-stu-id="19288-131">Contents of `School` navigation of all People who are Students can be eagerly loaded using a number of patterns:</span></span>
 
-- <span data-ttu-id="99297-132">usando cast</span><span class="sxs-lookup"><span data-stu-id="99297-132">using cast</span></span>
-```Csharp
-context.People.Include(person => ((Student)person).School).ToList()
-```
+- <span data-ttu-id="19288-132">usando cast</span><span class="sxs-lookup"><span data-stu-id="19288-132">using cast</span></span>
+  ```Csharp
+  context.People.Include(person => ((Student)person).School).ToList()
+  ```
 
-- <span data-ttu-id="99297-133">usando o operador `as`</span><span class="sxs-lookup"><span data-stu-id="99297-133">using `as` operator</span></span>
-```Csharp
-context.People.Include(person => (person as Student).School).ToList()
-```
+- <span data-ttu-id="19288-133">usando o operador `as`</span><span class="sxs-lookup"><span data-stu-id="19288-133">using `as` operator</span></span>
+  ```Csharp
+  context.People.Include(person => (person as Student).School).ToList()
+  ```
 
-- <span data-ttu-id="99297-134">usando a sobrecarga de `Include` que usa o parâmetro de tipo `string`</span><span class="sxs-lookup"><span data-stu-id="99297-134">using overload of `Include` that takes parameter of type `string`</span></span>
-```Csharp
-context.People.Include("Student").ToList()
-```
+- <span data-ttu-id="19288-134">usando a sobrecarga de `Include` que usa o parâmetro de tipo `string`</span><span class="sxs-lookup"><span data-stu-id="19288-134">using overload of `Include` that takes parameter of type `string`</span></span>
+  ```Csharp
+  context.People.Include("Student").ToList()
+  ```
 
-### <a name="ignored-includes"></a><span data-ttu-id="99297-135">Operadores include ignorados</span><span class="sxs-lookup"><span data-stu-id="99297-135">Ignored includes</span></span>
+### <a name="ignored-includes"></a><span data-ttu-id="19288-135">Operadores include ignorados</span><span class="sxs-lookup"><span data-stu-id="19288-135">Ignored includes</span></span>
 
-<span data-ttu-id="99297-136">Se você alterar a consulta para que ela não retorne instâncias do tipo de entidade com o qual ela começa, então os operadores include serão ignorados.
-</span><span class="sxs-lookup"><span data-stu-id="99297-136">If you change the query so that it no longer returns instances of the entity type that the query began with, then the include operators are ignored.</span></span>
+<span data-ttu-id="19288-136">Se você alterar a consulta para que ela não retorne instâncias do tipo de entidade com o qual ela começa, então os operadores include serão ignorados.
+</span><span class="sxs-lookup"><span data-stu-id="19288-136">If you change the query so that it no longer returns instances of the entity type that the query began with, then the include operators are ignored.</span></span>
 
-<span data-ttu-id="99297-137">No exemplo a seguir, os operadores de inclusão se baseiam no `Blog`, mas em seguida o operador `Select` é usado para alterar a consulta para retornar um tipo anônimo.</span><span class="sxs-lookup"><span data-stu-id="99297-137">In the following example, the include operators are based on the `Blog`, but then the `Select` operator is used to change the query to return an anonymous type.</span></span> <span data-ttu-id="99297-138">Nesse caso, os operadores de inclusão não têm efeito.</span><span class="sxs-lookup"><span data-stu-id="99297-138">In this case, the include operators have no effect.</span></span>
+<span data-ttu-id="19288-137">No exemplo a seguir, os operadores de inclusão se baseiam no `Blog`, mas em seguida o operador `Select` é usado para alterar a consulta para retornar um tipo anônimo.</span><span class="sxs-lookup"><span data-stu-id="19288-137">In the following example, the include operators are based on the `Blog`, but then the `Select` operator is used to change the query to return an anonymous type.</span></span> <span data-ttu-id="19288-138">Nesse caso, os operadores de inclusão não têm efeito.</span><span class="sxs-lookup"><span data-stu-id="19288-138">In this case, the include operators have no effect.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IgnoredInclude)]
 
-<span data-ttu-id="99297-139">Por padrão, o EF Core registrará um aviso quando operadores de inclusão são ignorados.</span><span class="sxs-lookup"><span data-stu-id="99297-139">By default, EF Core will log a warning when include operators are ignored.</span></span> <span data-ttu-id="99297-140">Consulte [log](../miscellaneous/logging.md) para obter mais informações sobre como exibir a saída de log.</span><span class="sxs-lookup"><span data-stu-id="99297-140">See [Logging](../miscellaneous/logging.md) for more information on viewing logging output.</span></span> <span data-ttu-id="99297-141">Você pode alterar o comportamento quando um operador include é ignorado para gerar ou não fazer nada.</span><span class="sxs-lookup"><span data-stu-id="99297-141">You can change the behavior when an include operator is ignored to either throw or do nothing.</span></span> <span data-ttu-id="99297-142">Isso é feito ao configurar as opções para o seu contexto - normalmente em `DbContext.OnConfiguring`, ou em `Startup.cs` se você estiver usando o ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="99297-142">This is done when setting up the options for your context - typically in `DbContext.OnConfiguring`, or in `Startup.cs` if you are using ASP.NET Core.</span></span>
+<span data-ttu-id="19288-139">Por padrão, o EF Core registrará um aviso quando operadores de inclusão são ignorados.</span><span class="sxs-lookup"><span data-stu-id="19288-139">By default, EF Core will log a warning when include operators are ignored.</span></span> <span data-ttu-id="19288-140">Consulte [log](../miscellaneous/logging.md) para obter mais informações sobre como exibir a saída de log.</span><span class="sxs-lookup"><span data-stu-id="19288-140">See [Logging](../miscellaneous/logging.md) for more information on viewing logging output.</span></span> <span data-ttu-id="19288-141">Você pode alterar o comportamento quando um operador include é ignorado para gerar ou não fazer nada.</span><span class="sxs-lookup"><span data-stu-id="19288-141">You can change the behavior when an include operator is ignored to either throw or do nothing.</span></span> <span data-ttu-id="19288-142">Isso é feito ao configurar as opções para o seu contexto - normalmente em `DbContext.OnConfiguring`, ou em `Startup.cs` se você estiver usando o ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="19288-142">This is done when setting up the options for your context - typically in `DbContext.OnConfiguring`, or in `Startup.cs` if you are using ASP.NET Core.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/ThrowOnIgnoredInclude/BloggingContext.cs#OnConfiguring)]
 
-## <a name="explicit-loading"></a><span data-ttu-id="99297-143">Carregamento explícito</span><span class="sxs-lookup"><span data-stu-id="99297-143">Explicit loading</span></span>
+## <a name="explicit-loading"></a><span data-ttu-id="19288-143">Carregamento explícito</span><span class="sxs-lookup"><span data-stu-id="19288-143">Explicit loading</span></span>
 
 > [!NOTE]  
-> <span data-ttu-id="99297-144">Esse recurso foi introduzido no EF Core 1.1.</span><span class="sxs-lookup"><span data-stu-id="99297-144">This feature was introduced in EF Core 1.1.</span></span>
+> <span data-ttu-id="19288-144">Esse recurso foi introduzido no EF Core 1.1.</span><span class="sxs-lookup"><span data-stu-id="19288-144">This feature was introduced in EF Core 1.1.</span></span>
 
-<span data-ttu-id="99297-145">Você pode carregar explicitamente uma propriedade de navegação por meio da API `DbContext.Entry(...)`.</span><span class="sxs-lookup"><span data-stu-id="99297-145">You can explicitly load a navigation property via the `DbContext.Entry(...)` API.</span></span>
+<span data-ttu-id="19288-145">Você pode carregar explicitamente uma propriedade de navegação por meio da API `DbContext.Entry(...)`.</span><span class="sxs-lookup"><span data-stu-id="19288-145">You can explicitly load a navigation property via the `DbContext.Entry(...)` API.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#Eager)]
 
-<span data-ttu-id="99297-146">Você pode carregar também explicitamente uma propriedade de navegação executando uma consulta separada que retorna as entidades relacionadas.</span><span class="sxs-lookup"><span data-stu-id="99297-146">You can also explicitly load a navigation property by executing a seperate query that returns the related entities.</span></span> <span data-ttu-id="99297-147">Se o controle de alterações estiver habilitado, ao carregar uma entidade, o EF Core vai automaticamente definir as propriedades de navegação da entidade carregada recentemente para se referir a qualquer entidade já carregada e definir as propriedades de navegação das entidades já carregadas para se referir às entidades carregadas recentemente.</span><span class="sxs-lookup"><span data-stu-id="99297-147">If change tracking is enabled, then when loading an entity, EF Core will automatically set the navigation properties of the newly-loaded entitiy to refer to any entities already loaded, and set the navigation properties of the already-loaded entities to refer to the newly-loaded entity.</span></span>
+<span data-ttu-id="19288-146">Você pode carregar também explicitamente uma propriedade de navegação executando uma consulta separada que retorna as entidades relacionadas.</span><span class="sxs-lookup"><span data-stu-id="19288-146">You can also explicitly load a navigation property by executing a seperate query that returns the related entities.</span></span> <span data-ttu-id="19288-147">Se o controle de alterações estiver habilitado, ao carregar uma entidade, o EF Core vai automaticamente definir as propriedades de navegação da entidade carregada recentemente para se referir a qualquer entidade já carregada e definir as propriedades de navegação das entidades já carregadas para se referir às entidades carregadas recentemente.</span><span class="sxs-lookup"><span data-stu-id="19288-147">If change tracking is enabled, then when loading an entity, EF Core will automatically set the navigation properties of the newly-loaded entitiy to refer to any entities already loaded, and set the navigation properties of the already-loaded entities to refer to the newly-loaded entity.</span></span>
 
-### <a name="querying-related-entities"></a><span data-ttu-id="99297-148">Consultando entidades relacionadas</span><span class="sxs-lookup"><span data-stu-id="99297-148">Querying related entities</span></span>
+### <a name="querying-related-entities"></a><span data-ttu-id="19288-148">Consultando entidades relacionadas</span><span class="sxs-lookup"><span data-stu-id="19288-148">Querying related entities</span></span>
 
-<span data-ttu-id="99297-149">Você também pode obter uma consulta LINQ que representa o conteúdo de uma propriedade de navegação.</span><span class="sxs-lookup"><span data-stu-id="99297-149">You can also get a LINQ query that represents the contents of a navigation property.</span></span>
+<span data-ttu-id="19288-149">Você também pode obter uma consulta LINQ que representa o conteúdo de uma propriedade de navegação.</span><span class="sxs-lookup"><span data-stu-id="19288-149">You can also get a LINQ query that represents the contents of a navigation property.</span></span>
 
-<span data-ttu-id="99297-150">Isso permite que você faça coisas como a execução de um operador de agregação sobre as entidades relacionadas sem carregá-los na memória.</span><span class="sxs-lookup"><span data-stu-id="99297-150">This allows you to do things such as running an aggregate operator over the related entities without loading them into memory.</span></span>
+<span data-ttu-id="19288-150">Isso permite que você faça coisas como a execução de um operador de agregação sobre as entidades relacionadas sem carregá-los na memória.</span><span class="sxs-lookup"><span data-stu-id="19288-150">This allows you to do things such as running an aggregate operator over the related entities without loading them into memory.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#NavQueryAggregate)]
 
-<span data-ttu-id="99297-151">Você também pode filtrar quais entidades relacionadas são carregadas na memória.</span><span class="sxs-lookup"><span data-stu-id="99297-151">You can also filter which related entities are loaded into memory.</span></span>
+<span data-ttu-id="19288-151">Você também pode filtrar quais entidades relacionadas são carregadas na memória.</span><span class="sxs-lookup"><span data-stu-id="19288-151">You can also filter which related entities are loaded into memory.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#NavQueryFiltered)]
 
-## <a name="lazy-loading"></a><span data-ttu-id="99297-152">Carregamento preguiçoso</span><span class="sxs-lookup"><span data-stu-id="99297-152">Lazy loading</span></span>
+## <a name="lazy-loading"></a><span data-ttu-id="19288-152">Carregamento lento</span><span class="sxs-lookup"><span data-stu-id="19288-152">Lazy loading</span></span>
 
 > [!NOTE]  
-> <span data-ttu-id="99297-153">Esse recurso foi introduzido no EF Core 2.1.</span><span class="sxs-lookup"><span data-stu-id="99297-153">This feature was introduced in EF Core 2.1.</span></span>
+> <span data-ttu-id="19288-153">Esse recurso foi introduzido no EF Core 2.1.</span><span class="sxs-lookup"><span data-stu-id="19288-153">This feature was introduced in EF Core 2.1.</span></span>
 
-<span data-ttu-id="99297-154">A maneira mais simples de usar o carregamento lento é instalando o pacote [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) e o habilitando com uma chamada para `UseLazyLoadingProxies`.</span><span class="sxs-lookup"><span data-stu-id="99297-154">The simplest way to use lazy-loading is by installing the [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) package and enabling it with a call to `UseLazyLoadingProxies`.</span></span> <span data-ttu-id="99297-155">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="99297-155">For example:</span></span>
+<span data-ttu-id="19288-154">A maneira mais simples de usar o carregamento lento é instalando o pacote [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) e o habilitando com uma chamada para `UseLazyLoadingProxies`.</span><span class="sxs-lookup"><span data-stu-id="19288-154">The simplest way to use lazy-loading is by installing the [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) package and enabling it with a call to `UseLazyLoadingProxies`.</span></span> <span data-ttu-id="19288-155">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="19288-155">For example:</span></span>
 ```Csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
         .UseLazyLoadingProxies()
         .UseSqlServer(myConnectionString);
 ```
-<span data-ttu-id="99297-156">Ou, ao usar AddDbContext:</span><span class="sxs-lookup"><span data-stu-id="99297-156">Or when using AddDbContext:</span></span>
+<span data-ttu-id="19288-156">Ou, ao usar AddDbContext:</span><span class="sxs-lookup"><span data-stu-id="19288-156">Or when using AddDbContext:</span></span>
 ```Csharp
     .AddDbContext<BloggingContext>(
         b => b.UseLazyLoadingProxies()
               .UseSqlServer(myConnectionString));
 ```
-<span data-ttu-id="99297-157">Em seguida, EF Core habilitará o carregamento lento para qualquer propriedade de navegação que pode ser substituída – isto é, ela deve ser `virtual` e estar em uma classe da qual pode ser herdada.</span><span class="sxs-lookup"><span data-stu-id="99297-157">EF Core will then enable lazy-loading for any navigation property that can be overridden--that is, it must be `virtual` and on a class that can be inherited from.</span></span> <span data-ttu-id="99297-158">Por exemplo, nas entidades a seguir, as propriedades de navegação `Post.Blog` e `Blog.Posts` terão carregamento lento.</span><span class="sxs-lookup"><span data-stu-id="99297-158">For example, in the following entities, the `Post.Blog` and `Blog.Posts` navigation properties will be lazy-loaded.</span></span>
+<span data-ttu-id="19288-157">Em seguida, EF Core habilitará o carregamento lento para qualquer propriedade de navegação que pode ser substituída – isto é, ela deve ser `virtual` e estar em uma classe da qual pode ser herdada.</span><span class="sxs-lookup"><span data-stu-id="19288-157">EF Core will then enable lazy-loading for any navigation property that can be overridden--that is, it must be `virtual` and on a class that can be inherited from.</span></span> <span data-ttu-id="19288-158">Por exemplo, nas entidades a seguir, as propriedades de navegação `Post.Blog` e `Blog.Posts` terão carregamento lento.</span><span class="sxs-lookup"><span data-stu-id="19288-158">For example, in the following entities, the `Post.Blog` and `Blog.Posts` navigation properties will be lazy-loaded.</span></span>
 ```Csharp
 public class Blog
 {
@@ -185,9 +185,9 @@ public class Post
     public virtual Blog Blog { get; set; }
 }
 ```
-### <a name="lazy-loading-without-proxies"></a><span data-ttu-id="99297-159">Carregamento lento sem proxies</span><span class="sxs-lookup"><span data-stu-id="99297-159">Lazy-loading without proxies</span></span>
+### <a name="lazy-loading-without-proxies"></a><span data-ttu-id="19288-159">Carregamento lento sem proxies</span><span class="sxs-lookup"><span data-stu-id="19288-159">Lazy-loading without proxies</span></span>
 
-<span data-ttu-id="99297-160">Proxies de carregamento lento trabalham inserindo o serviço `ILazyLoader` em uma entidade, conforme descrito em [construtores de tipo de entidade](../modeling/constructors.md).</span><span class="sxs-lookup"><span data-stu-id="99297-160">Lazy-loading proxies work by injecting the `ILazyLoader` service into an entity, as described in [Entity Type Constructors](../modeling/constructors.md).</span></span> <span data-ttu-id="99297-161">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="99297-161">For example:</span></span>
+<span data-ttu-id="19288-160">Proxies de carregamento lento trabalham inserindo o serviço `ILazyLoader` em uma entidade, conforme descrito em [construtores de tipo de entidade](../modeling/constructors.md).</span><span class="sxs-lookup"><span data-stu-id="19288-160">Lazy-loading proxies work by injecting the `ILazyLoader` service into an entity, as described in [Entity Type Constructors](../modeling/constructors.md).</span></span> <span data-ttu-id="19288-161">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="19288-161">For example:</span></span>
 ```Csharp
 public class Blog
 {
@@ -240,8 +240,8 @@ public class Post
     }
 }
 ```
-<span data-ttu-id="99297-162">sso não requer que os tipos de entidade sejam herdados de ou que as propriedades de navegação sejam virtuais e permite que que instâncias da entidade criadas com `new` carreguem lentamente quando conectadas a um contexto.</span><span class="sxs-lookup"><span data-stu-id="99297-162">This doesn't require entity types to be inherited from or navigation properties to be virtual and allows entity instances created with `new` to lazy-load once attached to a context.</span></span> <span data-ttu-id="99297-163">No entanto, ele requer uma referência para o serviço `ILazyLoader`, que associa os tipos de entidade para o assembly principal EF.</span><span class="sxs-lookup"><span data-stu-id="99297-163">However, it requires a reference to the `ILazyLoader` service, which couples entity types to the EF Core assembly.</span></span> <span data-ttu-id="99297-164">Para evitar isso, o núcleo EF permite que o método `ILazyLoader.Load` seja inserido como um representante.
-</span><span class="sxs-lookup"><span data-stu-id="99297-164">To avoid this EF Core allows the `ILazyLoader.Load` method to be injected as a delegate.</span></span> <span data-ttu-id="99297-165">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="99297-165">For example:</span></span>
+<span data-ttu-id="19288-162">sso não requer que os tipos de entidade sejam herdados de ou que as propriedades de navegação sejam virtuais e permite que que instâncias da entidade criadas com `new` carreguem lentamente quando conectadas a um contexto.</span><span class="sxs-lookup"><span data-stu-id="19288-162">This doesn't require entity types to be inherited from or navigation properties to be virtual and allows entity instances created with `new` to lazy-load once attached to a context.</span></span> <span data-ttu-id="19288-163">No entanto, ele requer uma referência para o serviço `ILazyLoader`, que associa os tipos de entidade para o assembly principal EF.</span><span class="sxs-lookup"><span data-stu-id="19288-163">However, it requires a reference to the `ILazyLoader` service, which couples entity types to the EF Core assembly.</span></span> <span data-ttu-id="19288-164">Para evitar isso, o núcleo EF permite que o método `ILazyLoader.Load` seja inserido como um representante.
+</span><span class="sxs-lookup"><span data-stu-id="19288-164">To avoid this EF Core allows the `ILazyLoader.Load` method to be injected as a delegate.</span></span> <span data-ttu-id="19288-165">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="19288-165">For example:</span></span>
 ```Csharp
 public class Blog
 {
@@ -294,7 +294,7 @@ public class Post
     }
 }
 ```
-<span data-ttu-id="99297-166">O código acima usa um método de extensão `Load` para fazer o uso do delegate um pouco mais limpo:</span><span class="sxs-lookup"><span data-stu-id="99297-166">The code above uses a `Load` extension method to make using the delegate a bit cleaner:</span></span>
+<span data-ttu-id="19288-166">O código acima usa um método de extensão `Load` para fazer o uso do delegate um pouco mais limpo:</span><span class="sxs-lookup"><span data-stu-id="19288-166">The code above uses a `Load` extension method to make using the delegate a bit cleaner:</span></span>
 ```Csharp
 public static class PocoLoadingExtensions
 {
@@ -312,17 +312,17 @@ public static class PocoLoadingExtensions
 }
 ```
 > [!NOTE]  
-> <span data-ttu-id="99297-167">O parâmetro de construtor para o representante de carregamento lento deve ser chamado "lazyLoader".</span><span class="sxs-lookup"><span data-stu-id="99297-167">The constructor parameter for the lazy-loading delegate must be called "lazyLoader".</span></span> <span data-ttu-id="99297-168">Configuração para usar um nome diferente, que isso é planejado para uma versão futura.</span><span class="sxs-lookup"><span data-stu-id="99297-168">Configuration to use a different name this is planned for a future release.</span></span>
+> <span data-ttu-id="19288-167">O parâmetro de construtor para o representante de carregamento lento deve ser chamado "lazyLoader".</span><span class="sxs-lookup"><span data-stu-id="19288-167">The constructor parameter for the lazy-loading delegate must be called "lazyLoader".</span></span> <span data-ttu-id="19288-168">Configuração para usar um nome diferente, que isso é planejado para uma versão futura.</span><span class="sxs-lookup"><span data-stu-id="19288-168">Configuration to use a different name this is planned for a future release.</span></span>
 
-## <a name="related-data-and-serialization"></a><span data-ttu-id="99297-169">Serialização e dados relacionados</span><span class="sxs-lookup"><span data-stu-id="99297-169">Related data and serialization</span></span>
+## <a name="related-data-and-serialization"></a><span data-ttu-id="19288-169">Serialização e dados relacionados</span><span class="sxs-lookup"><span data-stu-id="19288-169">Related data and serialization</span></span>
 
-<span data-ttu-id="99297-170">Como o EF Core irá automaticamente corrigir as propriedades de navegação, você pode acabar com ciclos em seu gráfico de objetos.</span><span class="sxs-lookup"><span data-stu-id="99297-170">Because EF Core will automatically fix-up navigation properties, you can end up with cycles in your object graph.</span></span> <span data-ttu-id="99297-171">Por exemplo, o carregamento de um blog suas postagens relacionadas resultará em um objeto de blog referenciando uma coleção de postagens.</span><span class="sxs-lookup"><span data-stu-id="99297-171">For example, Loading a blog and it's related posts will result in a blog object that references a collection of posts.</span></span> <span data-ttu-id="99297-172">Cada uma dessas postagens terá uma referência de volta para o blog.</span><span class="sxs-lookup"><span data-stu-id="99297-172">Each of those posts will have a reference back to the blog.</span></span>
+<span data-ttu-id="19288-170">Como o EF Core irá automaticamente corrigir as propriedades de navegação, você pode acabar com ciclos em seu gráfico de objetos.</span><span class="sxs-lookup"><span data-stu-id="19288-170">Because EF Core will automatically fix-up navigation properties, you can end up with cycles in your object graph.</span></span> <span data-ttu-id="19288-171">Por exemplo, o carregamento de um blog suas postagens relacionadas resultará em um objeto de blog referenciando uma coleção de postagens.</span><span class="sxs-lookup"><span data-stu-id="19288-171">For example, Loading a blog and it's related posts will result in a blog object that references a collection of posts.</span></span> <span data-ttu-id="19288-172">Cada uma dessas postagens terá uma referência de volta para o blog.</span><span class="sxs-lookup"><span data-stu-id="19288-172">Each of those posts will have a reference back to the blog.</span></span>
 
-<span data-ttu-id="99297-173">Algumas estruturas de serialização não permitem esses ciclos.</span><span class="sxs-lookup"><span data-stu-id="99297-173">Some serialization frameworks do not allow such cycles.</span></span> <span data-ttu-id="99297-174">Por exemplo, Json.NET lançará a exceção a seguir se for encontrado um ciclo.</span><span class="sxs-lookup"><span data-stu-id="99297-174">For example, Json.NET will throw the following exception if a cycle is encountered.</span></span>
+<span data-ttu-id="19288-173">Algumas estruturas de serialização não permitem esses ciclos.</span><span class="sxs-lookup"><span data-stu-id="19288-173">Some serialization frameworks do not allow such cycles.</span></span> <span data-ttu-id="19288-174">Por exemplo, Json.NET lançará a exceção a seguir se for encontrado um ciclo.</span><span class="sxs-lookup"><span data-stu-id="19288-174">For example, Json.NET will throw the following exception if a cycle is encountered.</span></span>
 
-> <span data-ttu-id="99297-175">Newtonsoft.Json.JsonSerializationException: Self referenciando loop detectado para a propriedade 'Blog' com tipo 'MyApplication.Models.Blog'.</span><span class="sxs-lookup"><span data-stu-id="99297-175">Newtonsoft.Json.JsonSerializationException: Self referencing loop detected for property 'Blog' with type 'MyApplication.Models.Blog'.</span></span>
+> <span data-ttu-id="19288-175">Newtonsoft.Json.JsonSerializationException: Self referenciando loop detectado para a propriedade 'Blog' com tipo 'MyApplication.Models.Blog'.</span><span class="sxs-lookup"><span data-stu-id="19288-175">Newtonsoft.Json.JsonSerializationException: Self referencing loop detected for property 'Blog' with type 'MyApplication.Models.Blog'.</span></span>
 
-<span data-ttu-id="99297-176">Se você estiver usando o ASP.NET Core, poderá configurar Json.NET para ignorar ciclos que ele encontrar no gráfico de objeto.</span><span class="sxs-lookup"><span data-stu-id="99297-176">If you are using ASP.NET Core, you can configure Json.NET to ignore cycles that it finds in the object graph.</span></span> <span data-ttu-id="99297-177">Isso é feito no método `ConfigureServices(...)` em `Startup.cs`.</span><span class="sxs-lookup"><span data-stu-id="99297-177">This is done in the `ConfigureServices(...)` method in `Startup.cs`.</span></span>
+<span data-ttu-id="19288-176">Se você estiver usando o ASP.NET Core, poderá configurar Json.NET para ignorar ciclos que ele encontrar no gráfico de objeto.</span><span class="sxs-lookup"><span data-stu-id="19288-176">If you are using ASP.NET Core, you can configure Json.NET to ignore cycles that it finds in the object graph.</span></span> <span data-ttu-id="19288-177">Isso é feito no método `ConfigureServices(...)` em `Startup.cs`.</span><span class="sxs-lookup"><span data-stu-id="19288-177">This is done in the `ConfigureServices(...)` method in `Startup.cs`.</span></span>
 
 ``` csharp
 public void ConfigureServices(IServiceCollection services)
