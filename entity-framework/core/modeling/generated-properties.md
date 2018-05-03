@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: eb082011-11a1-41b4-a108-15daafa03e80
 ms.technology: entity-framework-core
 uid: core/modeling/generated-properties
-ms.openlocfilehash: 892494461bcf49ee10d05c972da0ba19ca003c35
-ms.sourcegitcommit: 4b7d3d3e258b0d9cb778bb45a9f4a33c0792e38e
+ms.openlocfilehash: 88ccc2da3c2b6cbba8920d7113c82e769b459897
+ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 04/26/2018
 ---
 # <a name="generated-values"></a>Valores gerados
 
@@ -28,7 +28,7 @@ Valor gerado em Adicionar significa que um valor é gerado para novas entidades.
 
 Dependendo do provedor de banco de dados que está sendo usado, os valores podem ser gerados do lado do cliente por EF ou no banco de dados. Se o valor é gerado pelo banco de dados, EF pode atribuir um valor temporário quando você adiciona a entidade ao contexto. Esse valor temporário, em seguida, será substituído pelo valor do banco de dados gerado durante `SaveChanges()`.
 
-Se você adicionar uma entidade ao contexto que tem um valor atribuído à propriedade, o EF tentará inserir esse valor em vez de gerar um novo. Uma propriedade é considerada para receber um valor se ele não está atribuído o valor padrão CLR (`null` para `string`, `0` para `int`, `Guid.Empty` para `Guid`, etc.). Para obter mais informações, consulte [valores explícitos de propriedades gerado](..\saving\explicit-values-generated-properties.md).
+Se você adicionar uma entidade ao contexto que tem um valor atribuído à propriedade, o EF tentará inserir esse valor em vez de gerar um novo. Uma propriedade é considerada para receber um valor se ele não está atribuído o valor padrão CLR (`null` para `string`, `0` para `int`, `Guid.Empty` para `Guid`, etc.). Para obter mais informações, consulte [valores explícitos de propriedades gerado](../saving/explicit-values-generated-properties.md).
 
 > [!WARNING]  
 > Como o valor é gerado para entidades adicionadas dependem do provedor de banco de dados que está sendo usado. Provedores de banco de dados podem configurar automaticamente a geração de valor para alguns tipos de propriedade, mas outras pessoas podem exigir a instalação manualmente como o valor é gerado.
@@ -39,13 +39,13 @@ Se você adicionar uma entidade ao contexto que tem um valor atribuído à propr
 
 Valor gerado ao adicionar ou atualizar significa que um novo valor é gerado sempre que o registro é salvo (insert ou update).
 
-Como `value generated on add`, se você especificar um valor para a propriedade em uma instância recém adicionada de uma entidade, que o valor será inserido em vez de um valor que está sendo gerado. Também é possível definir um valor explícito ao atualizar. Para obter mais informações, consulte [valores explícitos de propriedades gerado](..\saving\explicit-values-generated-properties.md).
+Como `value generated on add`, se você especificar um valor para a propriedade em uma instância recém adicionada de uma entidade, que o valor será inserido em vez de um valor que está sendo gerado. Também é possível definir um valor explícito ao atualizar. Para obter mais informações, consulte [valores explícitos de propriedades gerado](../saving/explicit-values-generated-properties.md).
 
-> [!WARNING]  
+> [!WARNING]
 > Como o valor é gerado para entidades adicionadas e atualizadas dependem do provedor de banco de dados que está sendo usado. Provedores de banco de dados automaticamente podem configurar a geração de valor para alguns tipos de propriedade, enquanto outros exigem instalação manualmente como o valor é gerado.
->
+> 
 > Por exemplo, ao usar o SQL Server, `byte[]` propriedades que são definidas como gerado em Adicionar ou atualizar e marcado como tokens de simultaneidade, será instalado com o `rowversion` de tipo de dados - para que os valores serão criados no banco de dados. No entanto, se você especificar que um `DateTime` propriedade é gerada em Adicionar ou atualizar, em seguida, você deve configurar uma maneira para que os valores a serem gerados. Uma maneira de fazer isso, é configurar um valor padrão de `GETDATE()` (consulte [valores padrão](relational/default-values.md)) para gerar valores para novas linhas. Você pode usar um gatilho de banco de dados para gerar valores de durante as atualizações (como o gatilho de exemplo a seguir).
->
+> 
 > [!code-sql[Main](../../../samples/core/Modeling/FluentAPI/Samples/ValueGeneratedOnAddOrUpdate.sql)]
 
 ## <a name="conventions"></a>Convenções

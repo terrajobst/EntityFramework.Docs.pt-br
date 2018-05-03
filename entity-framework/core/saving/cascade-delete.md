@@ -6,17 +6,17 @@ ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 1ab9d114e27aac0bec972df631a426c8ce87a518
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 0fc8929c56d4c657b7fb1e3c8e4b1a71659220c9
+ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 04/26/2018
 ---
 # <a name="cascade-delete"></a>Excluir em cascata
 
-Exclusão em cascata é geralmente usado na terminologia de banco de dados para descrever uma característica que permite a exclusão de uma linha para disparar automaticamente a exclusão de linhas relacionadas. Um conceito relacionado também coberto por comportamentos de exclusão de EF principal é a exclusão automática de uma entidade filho quando ela é a relação a um pai tem foi desfeita – este i conhecido como "excluir órfãos".
+Exclusão em cascata é geralmente usado na terminologia de banco de dados para descrever uma característica que permite a exclusão de uma linha para disparar automaticamente a exclusão de linhas relacionadas. Um conceito relacionado também coberto por comportamentos de exclusão de EF principal é a exclusão automática de uma entidade filho quando sua relação com um pai tem sido desfeita – isso é conhecido como "excluir órfãos".
 
-EF Core implementa vários comportamentos de exclusão diferente e permite a configuração dos comportamentos de exclusão de relações individuais. EF principal também implementa convenções que configuram automaticamente os comportamentos de exclusão padrão útil para cada relação com base em [requiredness da relação] (../modeling/relationships.md#required-and-optional-relationships).
+EF Core implementa vários comportamentos de exclusão diferente e permite a configuração dos comportamentos de exclusão de relações individuais. EF principal também implementa convenções que configuram automaticamente os comportamentos de exclusão padrão útil para cada relação com base no [requiredness do relacionamento](../modeling/relationships.md#required-and-optional-relationships).
 
 ## <a name="delete-behaviors"></a>Excluir comportamentos
 Excluir comportamentos são definidos no *DeleteBehavior* enumerador de tipo e pode ser passado para o *OnDelete* API fluente para controlar se a exclusão de uma entidade principal/pai ou o corte do relação com entidades dependentes/filho deve ter um efeito colateral nas entidades dependentes/filho.
@@ -35,7 +35,7 @@ Existem em quatro excluir comportamentos, conforme listado nas tabelas a seguir.
 
 | Nome de comportamento               | Efeito em dependente/filho na memória    | Efeito em dependente/filho no banco de dados  |
 |:----------------------------|:---------------------------------------|:---------------------------------------|
-| **Cascade**                 | Entidades são excluídas                   | Entidades são excluídas                   |
+| **Em cascata**                 | Entidades são excluídas                   | Entidades são excluídas                   |
 | **ClientSetNull** (padrão) | Propriedades de chave estrangeira são definidas como null | Nenhum                                   |
 | **SetNull**                 | Propriedades de chave estrangeira são definidas como null | Propriedades de chave estrangeira são definidas como null |
 | **Restringir**                | Nenhum                                   | Nenhum                                   |
