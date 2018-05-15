@@ -6,13 +6,13 @@ ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 ms.technology: entity-framework-core
 uid: core/querying/raw-sql
-ms.openlocfilehash: 79894c7b9fd9e40cdf14460abf5d872ee2f4b9f0
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 29b7e20e875bf791a88a92636c1df4bc4e31656b
+ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 05/14/2018
 ---
-# <a name="raw-sql-queries"></a>Consultas SQL bruto
+# <a name="raw-sql-queries"></a>Consultas SQL brutas
 
 Entity Framework Core permite que a lista suspensa brutas consultas SQL ao trabalhar com um banco de dados relacional. Isso pode ser útil se a consulta que você deseja executar não pode ser expressada usando LINQ, ou se usando uma consulta LINQ está resultando em ineficiente SQL sendo enviado para o banco de dados.
 
@@ -24,15 +24,15 @@ Entity Framework Core permite que a lista suspensa brutas consultas SQL ao traba
 Há algumas limitações a serem consideradas ao usar consultas SQL brutas:
 * Consultas SQL só podem ser usadas para retornar os tipos de entidade que fazem parte do seu modelo. Há um aprimoramento na nossa lista de pendências para [habilitar retornando tipos de ad hoc de consultas SQL brutas](https://github.com/aspnet/EntityFramework/issues/1862).
 
-* A consulta SQL deve retornar dados de todas as propriedades do tipo de entidade.
+* A consulta SQL deve retornar dados de todas as propriedades do tipo de entidade ou consulta.
 
 * Os nomes de coluna no conjunto de resultados devem corresponder aos nomes de coluna mapeados para propriedades. Observe que isso é diferente de EF6 onde o mapeamento de coluna/propriedade foi ignorado para consultas SQL brutas e tinham nomes que correspondam aos nomes de propriedade de coluna do conjunto de resultados.
 
 * A consulta SQL não pode conter dados relacionados. No entanto, em muitos casos você pode compor sobre a consulta usando o `Include` operador para retornar dados relacionados (consulte [incluindo dados relacionados](#including-related-data)).
 
-* `SELECT`instruções passadas para este método devem normalmente ser combináveis: núcleo de EF se precisa avaliar os operadores de consulta adicionais no servidor (por exemplo, converter operadores LINQ aplicadas após `FromSql`), SQL fornecido será tratado como uma subconsulta. Isso significa que o SQL passado não deve conter todos os caracteres ou opções que não são válidas em uma subconsulta, tais como:
+* `SELECT` instruções passadas para este método devem normalmente ser combináveis: núcleo de EF se precisa avaliar os operadores de consulta adicionais no servidor (por exemplo, converter operadores LINQ aplicadas após `FromSql`), SQL fornecido será tratado como uma subconsulta. Isso significa que o SQL passado não deve conter todos os caracteres ou opções que não são válidas em uma subconsulta, tais como:
   * um ponto e vírgula à direita
-  * No SQL Server, um nível de consulta à direita dica, por exemplo`OPTION (HASH JOIN)`
+  * No SQL Server, um nível de consulta à direita dica, por exemplo `OPTION (HASH JOIN)`
   * No SQL Server, um `ORDER BY` cláusula não é acompanhada de `TOP 100 PERCENT` no `SELECT` cláusula
 
 * Instruções SQL que `SELECT` são reconhecidos automaticamente como não combinável. Como consequência, os resultados completos de procedimentos armazenados sempre são retornados ao cliente e os operadores LINQ aplicadas após `FromSql` são avaliadas na memória. 

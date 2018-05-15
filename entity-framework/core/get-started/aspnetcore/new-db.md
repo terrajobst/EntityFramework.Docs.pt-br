@@ -1,5 +1,5 @@
 ---
-title: "Introdução ao ASP.NET Core – Novo banco de dados – EF Core"
+title: Introdução ao ASP.NET Core – Novo banco de dados – EF Core
 author: rick-anderson
 ms.author: riande
 ms.author2: tdykstra
@@ -8,11 +8,11 @@ ms.topic: get-started-article
 ms.assetid: e153627f-f132-4c11-b13c-6c9a607addce
 ms.technology: entity-framework-core
 uid: core/get-started/aspnetcore/new-db
-ms.openlocfilehash: f6ed19d3c5d2ae8d1f5756558e50c1f0dddd2f07
-ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
+ms.openlocfilehash: 80477ca57b8b3df6de8ba3595c9056c6b8412040
+ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2018
+ms.lasthandoff: 04/26/2018
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>Introdução ao EF Core no ASP.NET Core com um novo banco de dados
 
@@ -65,7 +65,7 @@ Defina um contexto e classes de entidade que compõem o modelo:
 * Insira **Model.cs** como o nome e clique em **OK**.
 * Substitua o conteúdo do arquivo pelo seguinte código:
 
- [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Models/Model.cs)]
+  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Models/Model.cs)]
 
 Observação: em um aplicativo real, você normalmente colocaria cada classe de seu modelo em um arquivo separado. Para simplificar, estamos colocando todas as classes em um arquivo para este tutorial.
 
@@ -78,13 +78,13 @@ Para que os controladores MVC usem o `BloggingContext`, vamos registrá-lo como 
 * Abra **Startup.cs**
 * Adicione as seguintes instruções `using`:
 
- [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs#AddedUsings)]
+  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs#AddedUsings)]
 
 Adicione o método `AddDbContext` para registrá-lo como um serviço:
 
 * Adicione o seguinte código ao método `ConfigureServices`:
 
- [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs?name=ConfigureServices&highlight=7-8)]
+  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs?name=ConfigureServices&highlight=7-8)]
 
 Observação: um aplicativo real normalmente colocaria a cadeia de conexão em um arquivo de configuração. Para simplificar, definimos isso no código. Para saber mais, confira [Cadeias de conexão](../../miscellaneous/connection-strings.md).
 
