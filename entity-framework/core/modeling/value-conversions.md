@@ -6,11 +6,11 @@ ms.date: 02/19/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 ms.technology: entity-framework-core
 uid: core/modeling/value-conversions
-ms.openlocfilehash: 329d2757059462468ca30772d37789343c03ba7b
-ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
+ms.openlocfilehash: 3e97c05a87ad9b4817c03f446031ea6c74704f5b
+ms.sourcegitcommit: 605e42232854ce44bae09624a6eebc35b8e2473b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 05/16/2018
 ---
 # <a name="value-conversions"></a>Conversões de valor
 
@@ -78,7 +78,7 @@ Isso pode ser útil quando várias propriedades usam a mesma conversão.
 
 ## <a name="built-in-converters"></a>Conversores internos
 
-EF Core é fornecido com um conjunto de predefinidas `ValueConverter` classes, encontradas no `Microsoft.EntityFrameworkCore.Storage.Converters` namespace. Elas são:
+EF Core é fornecido com um conjunto de predefinidas `ValueConverter` classes, encontradas no `Microsoft.EntityFrameworkCore.Storage.ValueConversion` namespace. Estes são:
 * `BoolToZeroOneConverter` -Bool em zero e um
 * `BoolToStringConverter` -Bool em cadeias de caracteres como "Y" e "N"
 * `BoolToTwoValuesConverter` -Bool em quaisquer dois valores
