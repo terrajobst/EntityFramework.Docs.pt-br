@@ -1,5 +1,5 @@
 ---
-title: Consultas SQL bruto - Core EF
+title: Consultas SQL brutas – EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -8,38 +8,39 @@ ms.technology: entity-framework-core
 uid: core/querying/raw-sql
 ms.openlocfilehash: 29b7e20e875bf791a88a92636c1df4bc4e31656b
 ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 05/14/2018
+ms.locfileid: "34163207"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
-Entity Framework Core permite que a lista suspensa brutas consultas SQL ao trabalhar com um banco de dados relacional. Isso pode ser útil se a consulta que você deseja executar não pode ser expressada usando LINQ, ou se usando uma consulta LINQ está resultando em ineficiente SQL sendo enviado para o banco de dados.
+O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional. Isso pode ser útil se a consulta que você deseja realizar não puder ser expressa usando o LINQ ou se o uso de uma consulta do LINQ estiver resultando no envio de um SQL ineficiente para o banco de dados.
 
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="limitations"></a>Limitações
 
-Há algumas limitações a serem consideradas ao usar consultas SQL brutas:
-* Consultas SQL só podem ser usadas para retornar os tipos de entidade que fazem parte do seu modelo. Há um aprimoramento na nossa lista de pendências para [habilitar retornando tipos de ad hoc de consultas SQL brutas](https://github.com/aspnet/EntityFramework/issues/1862).
+Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
+* As consultas SQL só podem ser usadas para retornar tipos de entidade que fazem parte do seu modelo. Há um aprimoramento na sua lista de pendências para [habilitar o retorno de tipos de ad hoc de consultas SQL brutas](https://github.com/aspnet/EntityFramework/issues/1862).
 
-* A consulta SQL deve retornar dados de todas as propriedades do tipo de entidade ou consulta.
+* A consulta SQL deve retornar dados para todas as propriedades da entidade ou tipo de consulta.
 
-* Os nomes de coluna no conjunto de resultados devem corresponder aos nomes de coluna mapeados para propriedades. Observe que isso é diferente de EF6 onde o mapeamento de coluna/propriedade foi ignorado para consultas SQL brutas e tinham nomes que correspondam aos nomes de propriedade de coluna do conjunto de resultados.
+* Os nomes das colunas no conjunto de resultados devem corresponder aos nomes das colunas para as quais as propriedades são mapeadas. Observe que isso é diferente do EF6, onde o mapeamento de coluna/propriedade foi ignorado para consultas SQL brutas e os nomes das colunas do conjunto de resultados tinham que corresponder aos nomes das propriedades.
 
-* A consulta SQL não pode conter dados relacionados. No entanto, em muitos casos você pode compor sobre a consulta usando o `Include` operador para retornar dados relacionados (consulte [incluindo dados relacionados](#including-related-data)).
+* A consulta SQL não pode conter dados relacionados. No entanto, em muitos casos é possível combinar com base na consulta usando o operador `Include` para retornar dados relacionados (confira [Como incluir dados relacionados](#including-related-data)).
 
-* `SELECT` instruções passadas para este método devem normalmente ser combináveis: núcleo de EF se precisa avaliar os operadores de consulta adicionais no servidor (por exemplo, converter operadores LINQ aplicadas após `FromSql`), SQL fornecido será tratado como uma subconsulta. Isso significa que o SQL passado não deve conter todos os caracteres ou opções que não são válidas em uma subconsulta, tais como:
-  * um ponto e vírgula à direita
-  * No SQL Server, um nível de consulta à direita dica, por exemplo `OPTION (HASH JOIN)`
-  * No SQL Server, um `ORDER BY` cláusula não é acompanhada de `TOP 100 PERCENT` no `SELECT` cláusula
+* As instruções `SELECT` aprovadas para este método devem normalmente ser combináveis: se o EF Core precisar avaliar operadores de consulta adicionais no servidor (por exemplo, para traduzir operadores LINQ aplicados após `FromSql`), o SQL fornecido será tratado como uma subconsulta. Isso significa que o SQL aprovado não deve conter nenhum caractere ou opção não válida em uma subconsulta, como:
+  * um ponto-e-vírgula à direita
+  * No SQL Server, uma dica a nível de consulta à direita, por exemplo, `OPTION (HASH JOIN)`
+  * No SQL Server, um cláusula `ORDER BY` não é acompanhada de `TOP 100 PERCENT` na cláusula `SELECT`
 
-* Instruções SQL que `SELECT` são reconhecidos automaticamente como não combinável. Como consequência, os resultados completos de procedimentos armazenados sempre são retornados ao cliente e os operadores LINQ aplicadas após `FromSql` são avaliadas na memória. 
+* As instruções SQL, diferentes de `SELECT`, são reconhecidas automaticamente como não combináveis. Como consequência, os resultados completos de procedimentos armazenados são sempre retornados ao cliente e os operadores LINQ aplicados após `FromSql` são avaliados na memória. 
 
 ## <a name="basic-raw-sql-queries"></a>Consultas SQL brutas básicas
 
-Você pode usar o *FromSql* método de extensão para iniciar uma consulta LINQ com base em uma consulta SQL bruta.
+Você pode usar o método de extensão *FromSql* para iniciar uma consulta LINQ com base em uma consulta SQL bruta.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -48,7 +49,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-Consultas SQL brutas podem ser usadas para executar um procedimento armazenado.
+As consultas SQL brutas podem ser usadas para executar um procedimento armazenado.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -59,9 +60,9 @@ var blogs = context.Blogs
 
 ## <a name="passing-parameters"></a>Passando parâmetros
 
-Assim como acontece com qualquer API que aceita SQL, é importante parametrizar qualquer entrada do usuário para proteger contra um ataque de injeção de SQL. Você pode incluir espaços reservados de parâmetros na cadeia de caracteres de consulta SQL e, em seguida, fornece valores de parâmetros como argumentos adicionais. Quaisquer valores de parâmetro que você fornecer serão automaticamente convertidos para um `DbParameter`.
+Assim como acontece com qualquer API que aceita SQL, é importante parametrizar qualquer entrada do usuário para proteger contra um ataque de injeção de SQL. Você pode incluir espaços reservados de parâmetros na cadeia de caracteres de consulta SQL e fornecer os valores de parâmetros como argumentos adicionais. Qualquer valor de parâmetro fornecido será automaticamente convertido em um `DbParameter`.
 
-O exemplo a seguir passa um único parâmetro para um procedimento armazenado. Enquanto isso pode parecer como `String.Format` sintaxe, o valor fornecido é encapsulado em um parâmetro e o nome de parâmetro gerado inserida onde o `{0}` espaço reservado foi especificado.
+O exemplo a seguir aprova um único parâmetro para um procedimento armazenado. Embora isso possa parecer a sintaxe `String.Format`, o valor fornecido é encapsulado em um parâmetro e o nome de parâmetro gerado é inserido onde o espaço reservado `{0}` foi especificado.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -83,7 +84,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-Você também pode criar um DbParameter e fornecê-lo como um valor de parâmetro. Isso permite que você use parâmetros nomeados na cadeia de caracteres de consulta SQL
+Você também pode construir um DbParameter e fornecê-lo como valor de parâmetro. Isso permite usar parâmetros nomeados na cadeia de caracteres de consulta SQL
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -94,11 +95,11 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-## <a name="composing-with-linq"></a>Compor com LINQ
+## <a name="composing-with-linq"></a>Como compor com o LINQ
 
-Se a consulta SQL pode ser composta no banco de dados, você pode compor sobre a consulta SQL bruta inicial usando operadores LINQ. Consultas SQL que podem ser compostas em ser com o `SELECT` palavra-chave.
+Se a consulta SQL puder ser composta no banco de dados, é possível compor com base na consulta SQL bruta inicial usando os operadores LINQ. As consultas SQL que podem ser compostas com a palavra-chave `SELECT`.
 
-O exemplo a seguir usa uma consulta SQL bruta que seleciona a partir de uma função com valor de tabela (TVF) e, em seguida, compõe usando LINQ para executar a filtragem e classificação.
+O exemplo a seguir usa uma consulta SQL bruta que é selecionada de uma Função com Valor de Tabela (TVF) e compõe com base nela usando o LINQ para filtrar e classificar.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -111,9 +112,9 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-### <a name="including-related-data"></a>Incluindo dados relacionados
+### <a name="including-related-data"></a>Como incluir dados relacionados
 
-Compondo operadores LINQ pode ser usado para incluir dados relacionados na consulta.
+A composição com operadores LINQ pode ser usada para incluir dados relacionados na consulta.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -126,4 +127,4 @@ var blogs = context.Blogs
 ```
 
 > [!WARNING]  
-> **Sempre use a parametrização para consultas SQL brutas:** APIs que aceitam um SQL bruto da cadeia de caracteres como `FromSql` e `ExecuteSqlCommand` permitir valores facilmente ser passados como parâmetros. Além de validar a entrada do usuário, sempre use parametrização para os valores usados em um consulta SQL bruto/comando. Se você estiver usando a concatenação de cadeia de caracteres para criar dinamicamente a qualquer parte da cadeia de caracteres de consulta, você será responsável por validar qualquer entrada para proteger contra ataques de injeção de SQL.
+> **Sempre use a parametrização para consultas SQL brutas:** as APIs que aceitam uma cadeia de caracteres SQL, como `FromSql` e `ExecuteSqlCommand`, permitem que os valores sejam facilmente aprovados como parâmetros. Além de validar a entrada do usuário, sempre use a parametrização para os valores usados em um comando/consulta SQL bruta. Se você estiver usando a concatenação de cadeias de caracteres para criar de forma dinâmica qualquer parte da cadeia de caracteres de consulta, você é responsável por validar qualquer entrada para proteger-se de ataques de injeção de SQL.

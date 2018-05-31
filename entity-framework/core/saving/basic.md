@@ -1,5 +1,5 @@
 ---
-title: Salvar básico - Core EF
+title: Salvamento básico – EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -8,47 +8,48 @@ ms.technology: entity-framework-core
 uid: core/saving/basic
 ms.openlocfilehash: deead323301dc4a0ee0748b4536ddff4596b99e6
 ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31006657"
 ---
-# <a name="basic-save"></a>Salvar básico
+# <a name="basic-save"></a>Salvamento básico
 
-Saiba como adicionar, modificar e remover dados usando as classes de entidade e de contexto.
+Saiba como adicionar, modificar e remover dados usando as classes de entidade e contexto.
 
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Basics/) deste artigo no GitHub.
 
 ## <a name="adding-data"></a>Adicionando dados
 
-Use o *DbSet.Add* método para adicionar novas instâncias de suas classes de entidade. Os dados serão inseridos no banco de dados quando você chama *SaveChanges*.
+Use o método *DbSet.Add* para adicionar novas instâncias de suas classes de entidade. Os dados serão inseridos no banco de dados quando você chamar *SaveChanges*.
 
 [!code-csharp[Main](../../../samples/core/Saving/Saving/Basics/Sample.cs#Add)]
 
 > [!TIP]  
-> Os métodos de atualização, anexar e adicionar todos eles funcionam no gráfico completo das entidades passados a eles, conforme descrito no [dados relacionados](related-data.md) seção. Como alternativa, a propriedade EntityEntry.State pode ser usada para definir o estado de apenas uma única entidade. Por exemplo, `context.Entry(blog).State = EntityState.Modified`.
+> Os métodos Adicionar, Anexar e Atualizar funcionam no gráfico completo de entidades aprovadas para eles, conforme descrito na seção [Dados Relacionados](related-data.md). Como alternativa, a propriedade EntityEntry.State pode ser usada para definir o estado de uma única entidade. Por exemplo, `context.Entry(blog).State = EntityState.Modified`.
 
 ## <a name="updating-data"></a>Atualizando dados
 
-EF detectará automaticamente as alterações feitas a uma entidade existente que é controlada pelo contexto. Isso inclui entidades que você carregar/consulta do banco de dados e entidades que foram adicionadas anteriormente e salvos no banco de dados.
+O EF detectará automaticamente as alterações feitas em uma entidade existente que é controlada pelo contexto. Isso inclui as entidades que você carrega/consulta do banco de dados e as entidades que foram anteriormente adicionadas e salvas no banco de dados.
 
-Basta modificar os valores atribuídos às propriedades e, em seguida, chamar *SaveChanges*.
+Basta modificar os valores atribuídos às propriedades e chamar *SaveChanges*.
 
 [!code-csharp[Main](../../../samples/core/Saving/Saving/Basics/Sample.cs#Update)]
 
 ## <a name="deleting-data"></a>Excluindo dados
 
-Use o *DbSet.Remove* método para excluir instâncias que classes de entidade.
+Use o método *DbSet.Remove* para excluir instâncias das suas classes de entidade.
 
-Se a entidade já existe no banco de dados, ele será excluído durante *SaveChanges*. Se a entidade ainda não foram salvas no banco de dados (ou seja, ele é controlado como adicionado) e em seguida, ele será removido do contexto e deixará de ser inserido quando *SaveChanges* é chamado.
+Se a entidade já existir no banco de dados, ela será excluída durante *SaveChanges*. Se a entidade ainda não tiver sido salva no banco de dados (ou seja, ela for rastreada como adicionada), ela será removida do contexto e não será mais inserida quando *SaveChanges* for chamado.
 
 [!code-csharp[Main](../../../samples/core/Saving/Saving/Basics/Sample.cs#Remove)]
 
 ## <a name="multiple-operations-in-a-single-savechanges"></a>Várias operações em um único SaveChanges
 
-Você pode combinar várias operações de atualização/Adicionar/remover em uma única chamada para *SaveChanges*.
+Você pode combinar várias operações Adicionar/Carregar/Remover em uma única chamada para *SaveChanges*.
 
 > [!NOTE]  
-> Para a maioria dos provedores de banco de dados, *SaveChanges* é transacional. Isso significa que todas as operações serão bem-sucedidas ou falham e as operações serão nunca esquerda parcialmente aplicadas.
+> Para a maioria dos provedores de banco de dados, *SaveChanges* é transacional. Isso significa que todas as operações serão bem-sucedidas ou falharão e as operações nunca ficarão parcialmente aplicadas.
 
 [!code-csharp[Main](../../../samples/core/Saving/Saving/Basics/Sample.cs#MultipleOperations)]

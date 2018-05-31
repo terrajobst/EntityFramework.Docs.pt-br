@@ -1,5 +1,5 @@
 ---
-title: "Cliente vs. Avaliação do servidor - Core EF"
+title: Cliente versus Avaliação do Servidor – EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -8,20 +8,21 @@ ms.technology: entity-framework-core
 uid: core/querying/client-eval
 ms.openlocfilehash: e1852b780041e9e92fb4d25129175346e3a601a3
 ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26052646"
 ---
-# <a name="client-vs-server-evaluation"></a>Cliente vs. Avaliação do servidor
+# <a name="client-vs-server-evaluation"></a>Cliente versus Avaliação do Servidor
 
-Entity Framework Core dá suporte a partes da consulta que está sendo avaliada no cliente e partes do que está sendo enviada por push para o banco de dados. Cabe o provedor de banco de dados para determinar quais partes da consulta serão avaliadas no banco de dados.
+O Entity Framework Core permite que partes da consulta sejam avaliadas no cliente e que partes dela sejam enviadas por push para o banco de dados. Cabe ao provedor do banco de dados determinar quais partes da consulta serão avaliadas no banco de dados.
 
 > [!TIP]  
-> Você pode exibir este artigo [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="client-evaluation"></a>Avaliação do cliente
 
-No exemplo a seguir, um método auxiliar é usado para padronizar URLs para blogs que são retornados de um banco de dados do SQL Server. Como o provedor do SQL Server não tem nenhuma informação sobre como esse método é implementado, não é possível para traduzi-lo em SQL. Todos os outros aspectos da consulta são avaliados no banco de dados, mas passando retornado `URL` por esse método é executado no cliente.
+No exemplo a seguir, um método auxiliar é usado para padronizar URLs para blogs que são retornados de um banco de dados do SQL Server. Como o provedor do SQL Server não tem nenhuma informação sobre como esse método é implementado, não é possível traduzi-lo para SQL. Todos os outros aspectos da consulta são avaliados no banco de dados, mas a transmissão do `URL` retornado por esse método é executada no cliente.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/ClientEval/Sample.cs?highlight=6)] -->
 ``` csharp
@@ -50,9 +51,9 @@ public static string StandardizeUrl(string url)
 }
 ```
 
-## <a name="disabling-client-evaluation"></a>Desabilitando a avaliação do cliente
+## <a name="disabling-client-evaluation"></a>Desabilitar a avaliação do cliente
 
-Durante a avaliação do cliente pode ser muito útil, em alguns casos, isso poderá resultar em um baixo desempenho. Considere a consulta a seguir, onde o método auxiliar agora é usado em um filtro. Como isso não pode ser executado no banco de dados, todos os dados são extraídos na memória e, em seguida, o filtro é aplicado no cliente. Dependendo da quantidade de dados, e a quantidade de dados é filtrado, isso pode resultar em baixo desempenho.
+Embora a avaliação do cliente possa ser muito útil em alguns casos, ela pode resultar em um desempenho ruim. Considere a consulta a seguir, em que o método auxiliar agora é usado em um filtro. Como isso não pode ser executado no banco de dados, todos os dados são extraídos para a memória e o filtro é aplicado no cliente. Dependendo da quantidade de dados e de quantos desses dados são filtrados, isso pode resultar em uma perda de desempenho.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/ClientEval/Sample.cs)] -->
 ``` csharp
@@ -61,7 +62,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-Por padrão, o EF Core registrará um aviso quando a avaliação do cliente é executada. Consulte [log](../miscellaneous/logging.md) para obter mais informações sobre como exibir a saída de log. Você pode alterar o comportamento quando a avaliação do cliente ocorre para gerar ou não faça nada. Isso é feito ao configurar as opções para o contexto - normalmente em `DbContext.OnConfiguring`, ou em `Startup.cs` se você estiver usando o ASP.NET Core.
+Por padrão, o EF Core registrará um alerta quando a avaliação do cliente for realizada. Confira [Registro em log](../miscellaneous/logging.md) para saber mais sobre como visualizar as saídas do registro em log. Quando a avaliação do cliente ocorrer, você pode alterar o comportamento para gerar ou não agir. Isso ocorre ao configurar as opções para seu contexto, geralmente em `DbContext.OnConfiguring`, ou em `Startup.cs` se você estiver usando o ASP.NET Core.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/ClientEval/ThrowOnClientEval/BloggingContext.cs?highlight=5)] -->
 ``` csharp

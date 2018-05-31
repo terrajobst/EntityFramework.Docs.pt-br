@@ -1,5 +1,5 @@
 ---
-title: "Controle vs. Consultas de acompanhamento de não - Core EF"
+title: Consultas com acompanhamento versus Consultas sem acompanhamento – EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -8,22 +8,23 @@ ms.technology: entity-framework-core
 uid: core/querying/tracking
 ms.openlocfilehash: 9a22c893f3b1e9991560e25e0252287a2844b39e
 ms.sourcegitcommit: 3b6159db8a6c0653f13c7b528367b4e69ac3d51e
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 11/28/2017
+ms.locfileid: "26053956"
 ---
-# <a name="tracking-vs-no-tracking-queries"></a>Controle vs. Consultas de acompanhamento não
+# <a name="tracking-vs-no-tracking-queries"></a>Consultas com acompanhamento versus Consultas sem acompanhamento
 
-Controles de comportamento de controle se ou não o Entity Framework Core manterá as informações sobre uma instância de entidade em seu controlador de alterações. Se uma entidade é rastreada, qualquer alteração detectada na entidade serão mantidas no banco de dados durante a `SaveChanges()`. Entity Framework Core será correção também o propriedades de navegação entre entidades que são obtidas de um rastreamento de consulta e entidades que foram previamente carregadas para a instância de DbContext.
+O comportamento de acompanhamento controla se o Entity Framework Core manterá as informações sobre uma instância de entidade em seu controlador de alterações. Se uma entidade é acompanhada, qualquer alteração detectada na entidade será mantida no banco de dados durante a `SaveChanges()`. Entity Framework Core também corrigirá as propriedades de navegação entre as entidades que são obtidas de um acompanhamento de consulta e entidades que foram previamente carregadas para a instância de DbContext.
 
 > [!TIP]  
-> Você pode exibir este artigo [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
-## <a name="tracking-queries"></a>Consultas de acompanhamento
+## <a name="tracking-queries"></a>Consultas com acompanhamento
 
-Por padrão, as consultas que retornam tipos de entidade são controle. Isso significa que você pode fazer alterações às instâncias de entidade e tem essas alterações persistirão por `SaveChanges()`.
+Por padrão, as consultas que retornam tipos de entidade são de acompanhamento. Isso significa que você pode fazer alterações às instâncias da entidade e fazer essas alterações serem persistidas por `SaveChanges()`.
 
-No exemplo a seguir, a alteração para a classificação de blogs será detectada e persistentes no banco de dados durante a `SaveChanges()`.
+No exemplo a seguir, a alteração para a classificação de blogs será detectada e persistida no banco de dados durante a `SaveChanges()`.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs)] -->
 ``` csharp
@@ -35,11 +36,11 @@ using (var context = new BloggingContext())
 }
 ```
 
-## <a name="no-tracking-queries"></a>Consultas de acompanhamento não
+## <a name="no-tracking-queries"></a>Consultas sem acompanhamento
 
-Nenhuma consulta de rastreamento é úteis quando os resultados são usados em um cenário de somente leitura. Eles são mais rápidos executar porque não há nenhuma necessidade de informações do controle de alterações de configuração.
+As consulta sem acompanhamento são úteis quando os resultados são usados em um cenário de somente leitura. Eles são mais rápidos de executar porque não há necessidade de configurar informações de controle de alterações.
 
-Você pode trocar uma consulta individual para controle de não ser:
+Você pode trocar uma consulta individual para ser sem acompanhamento:
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs?highlight=4)] -->
 ``` csharp
@@ -51,7 +52,7 @@ using (var context = new BloggingContext())
 }
 ```
 
-Você também pode alterar o comportamento no nível de instância do contexto de controle padrão:
+Você também pode alterar o comportamento de acompanhamento padrão no nível de instância do contexto:
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs?highlight=3)] -->
 ``` csharp
@@ -64,11 +65,11 @@ using (var context = new BloggingContext())
 ```
 
 > [!NOTE]  
-> Nenhuma consulta de controle ainda executar a resolução de identidade dentro da consulta de executar. Se o conjunto de resultados contém a mesma entidade várias vezes, a mesma instância da classe da entidade será retornada para cada ocorrência do conjunto de resultados. No entanto, referências fracas são usadas para controlar as entidades que já foram retornadas. Se um resultado anterior com a mesma identidade sai do escopo e coleta de lixo é executado, você pode receber uma nova instância da entidade. Para obter mais informações, consulte [como funciona a consulta](overview.md).
+> As consultas sem acompanhamento ainda executam a resolução de identidade dentro da consulta de execução. Se o conjunto de resultados contém a mesma entidade várias vezes, a mesma instância da classe da entidade será retornada para cada ocorrência do conjunto de resultados. No entanto, as referências fracas são usadas para controlar as entidades que já foram retornadas. Se um resultado anterior com a mesma identidade sai do escopo e a coleta de lixo é executada, você poderá receber uma nova instância da entidade. Para saber mais, veja [Como funciona a consulta](overview.md).
 
-## <a name="tracking-and-projections"></a>Projeções e controle
+## <a name="tracking-and-projections"></a>Acompanhamento e projeções
 
-Mesmo se o tipo de resultado da consulta não é um tipo de entidade, se o resultado contém tipos de entidade ainda serão rastreados por padrão. Na consulta a seguir, que retorna um tipo anônimo, as instâncias do `Blog` no resultado do conjunto será rastreado.
+Mesmo se o tipo de resultado da consulta não for um tipo de entidade, se o resultado contiver tipos de entidade, ele ainda será rastreado por padrão. Na consulta a seguir, que retorna um tipo anônimo, as instâncias do `Blog` no conjunto de resultados será rastreado.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs?highlight=7)] -->
 ``` csharp
@@ -84,7 +85,7 @@ using (var context = new BloggingContext())
 }
 ```
 
-Se o conjunto de resultados não contém nenhum tipo de entidade, é executado sem rastreamento. Na consulta a seguir, que retorna um tipo anônimo com alguns dos valores da entidade (mas não há instâncias do tipo de entidade real), não há nenhum controle executada.
+Se o conjunto de resultados não contiver tipos de entidade, nenhum acompanhamento será executado. Na consulta a seguir, que retorna um tipo anônimo com alguns dos valores da entidade (mas não há instâncias do tipo de entidade real), não há nenhum acompanhamento executado.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs)] -->
 ``` csharp
