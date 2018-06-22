@@ -1,5 +1,5 @@
 ---
-title: "Resiliência de Conexão - Core EF"
+title: Resiliência de Conexão - Core EF
 author: rowanmiller
 ms.author: divega
 ms.date: 11/15/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 860ec5d047342fbc4063a0de881c9861cc1f8813
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 11/05/2017
+ms.locfileid: "26053526"
 ---
 # <a name="connection-resiliency"></a><span data-ttu-id="0ca0b-102">Resiliência da conexão</span><span class="sxs-lookup"><span data-stu-id="0ca0b-102">Connection Resiliency</span></span>
 

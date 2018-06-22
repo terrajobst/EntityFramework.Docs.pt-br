@@ -1,5 +1,5 @@
 ---
-title: "Migrações com vários provedores - Core EF"
+title: Migrações com vários provedores - Core EF
 author: bricelam
 ms.author: bricelam
 ms.date: 11/8/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: 2ef0a4a90b01edd22b9206f8729b8de459ef8cab
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 03/20/2018
+ms.locfileid: "30002799"
 ---
 <a name="migrations-with-multiple-providers"></a><span data-ttu-id="b36ad-102">Migrações com vários provedores</span><span class="sxs-lookup"><span data-stu-id="b36ad-102">Migrations with Multiple Providers</span></span>
 ==================================

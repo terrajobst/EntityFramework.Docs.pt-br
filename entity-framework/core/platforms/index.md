@@ -1,5 +1,5 @@
 ---
-title: "Implementações .NET compatíveis – EF Core"
+title: Implementações .NET compatíveis – EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 08/30/2017
@@ -10,6 +10,7 @@ ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29678670"
 ---
 # <a name="net-implementations-supported-by-ef-core"></a><span data-ttu-id="3d176-102">Implementações .NET compatíveis com Core EF</span><span class="sxs-lookup"><span data-stu-id="3d176-102">.NET implementations supported by EF Core</span></span>
 

@@ -1,5 +1,5 @@
 ---
-title: "Propriedades obrigatórios/opcionais - Core de EF"
+title: Propriedades obrigatórios/opcionais - Core de EF
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26052846"
 ---
 # <a name="required-and-optional-properties"></a><span data-ttu-id="c1a59-102">Propriedades obrigatórias e opcionais</span><span class="sxs-lookup"><span data-stu-id="c1a59-102">Required and Optional Properties</span></span>
 

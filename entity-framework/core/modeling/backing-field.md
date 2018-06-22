@@ -11,6 +11,7 @@ ms.sourcegitcommit: 860ec5d047342fbc4063a0de881c9861cc1f8813
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 11/05/2017
+ms.locfileid: "26053456"
 ---
 # <a name="backing-fields"></a><span data-ttu-id="35a87-102">Campos de backup</span><span class="sxs-lookup"><span data-stu-id="35a87-102">Backing Fields</span></span>
 

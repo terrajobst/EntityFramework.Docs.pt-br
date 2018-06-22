@@ -1,5 +1,5 @@
 ---
-title: "Chaves alternativas (restrições exclusivas) - Core EF"
+title: Chaves alternativas (restrições exclusivas) - Core EF
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26052786"
 ---
 # <a name="alternate-keys-unique-constraints"></a><span data-ttu-id="d0287-102">Chaves alternativas (restrições exclusivas)</span><span class="sxs-lookup"><span data-stu-id="d0287-102">Alternate Keys (Unique Constraints)</span></span>
 

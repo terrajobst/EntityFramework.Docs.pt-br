@@ -1,5 +1,5 @@
 ---
-title: "Herança - Core EF"
+title: Herança - Core EF
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26052776"
 ---
 # <a name="inheritance"></a><span data-ttu-id="af0ac-102">Herança</span><span class="sxs-lookup"><span data-stu-id="af0ac-102">Inheritance</span></span>
 

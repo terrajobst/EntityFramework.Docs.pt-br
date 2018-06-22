@@ -1,5 +1,5 @@
 ---
-title: "Introdução a UWP – EF Core"
+title: Introdução a UWP – EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: c72d85805db0aa95f980514a18381fdc5e17c786
 ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 12/01/2017
+ms.locfileid: "26049428"
 ---
 # <a name="getting-started-with-ef-core-on-universal-windows-platform-uwp"></a><span data-ttu-id="a5dbf-102">Introdução ao EF Core na UWP (Plataforma Universal do Windows)</span><span class="sxs-lookup"><span data-stu-id="a5dbf-102">Getting Started with EF Core on Universal Windows Platform (UWP)</span></span>
 

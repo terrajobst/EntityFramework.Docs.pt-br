@@ -1,5 +1,5 @@
 ---
-title: "Cadeias de caracteres de Conexão - Core EF"
+title: Cadeias de caracteres de Conexão - Core EF
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26052526"
 ---
 # <a name="connection-strings"></a><span data-ttu-id="fe19d-102">Cadeias de caracteres de conexão</span><span class="sxs-lookup"><span data-stu-id="fe19d-102">Connection Strings</span></span>
 

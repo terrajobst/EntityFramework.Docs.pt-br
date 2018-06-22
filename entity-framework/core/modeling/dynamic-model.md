@@ -1,5 +1,5 @@
 ---
-title: "Alternando entre vários modelos com o mesmo tipo DbContext - Core de EF"
+title: Alternando entre vários modelos com o mesmo tipo DbContext - Core de EF
 author: AndriySvyryd
 ms.author: divega
 ms.date: 12/10/2017
@@ -11,6 +11,7 @@ ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29678716"
 ---
 # <a name="alternating-between-multiple-models-with-the-same-dbcontext-type"></a><span data-ttu-id="1972a-102">Alternando entre vários modelos com o mesmo tipo DbContext</span><span class="sxs-lookup"><span data-stu-id="1972a-102">Alternating between multiple models with the same DbContext type</span></span>
 

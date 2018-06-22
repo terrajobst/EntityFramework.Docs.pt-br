@@ -1,5 +1,5 @@
 ---
-title: "Provedor de Banco de Dados do Microsoft SQL Server – EF Core"
+title: Provedor de Banco de Dados do Microsoft SQL Server – EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29678644"
 ---
 # <a name="microsoft-sql-server-ef-core-database-provider"></a><span data-ttu-id="90b9a-102">Provedor de Banco de Dados EF Core do Microsoft SQL Server</span><span class="sxs-lookup"><span data-stu-id="90b9a-102">Microsoft SQL Server EF Core Database Provider</span></span>
 

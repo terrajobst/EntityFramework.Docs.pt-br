@@ -10,6 +10,7 @@ ms.sourcegitcommit: 7113e8675f26cbb546200824512078bf360225df
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 03/28/2018
+ms.locfileid: "30202478"
 ---
 <a name="design-time-dbcontext-creation"></a><span data-ttu-id="e8883-102">Criação de tempo de design DbContext</span><span class="sxs-lookup"><span data-stu-id="e8883-102">Design-time DbContext Creation</span></span>
 ==============================

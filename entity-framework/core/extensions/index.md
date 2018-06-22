@@ -1,5 +1,5 @@
 ---
-title: "Ferramentas e Extensões – EF Core"
+title: Ferramentas e Extensões – EF Core
 author: ErikEJ
 ms.author: divega
 ms.date: 7/3/2018
@@ -11,6 +11,7 @@ ms.sourcegitcommit: fc68321c211aca38f7b9dc3a75677c6ca1b2524b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 03/08/2018
+ms.locfileid: "29769433"
 ---
 # <a name="ef-core-tools--extensions"></a><span data-ttu-id="abedf-102">Ferramentas e Extensões do EF Core</span><span class="sxs-lookup"><span data-stu-id="abedf-102">EF Core Tools & Extensions</span></span>
 

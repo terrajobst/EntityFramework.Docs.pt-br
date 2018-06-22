@@ -1,5 +1,5 @@
 ---
-title: "Tabela de histórico de migrações personalizado - Core EF"
+title: Tabela de histórico de migrações personalizado - Core EF
 author: bricelam
 ms.author: bricelam
 ms.date: 11/7/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: b467368cc350e6059fdc0949e042a41cb11e61d9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26053806"
 ---
 <a name="custom-migrations-history-table"></a><span data-ttu-id="810e3-102">Tabela de histórico de migrações personalizado</span><span class="sxs-lookup"><span data-stu-id="810e3-102">Custom Migrations History Table</span></span>
 ===============================

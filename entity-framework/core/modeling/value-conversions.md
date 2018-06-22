@@ -11,6 +11,7 @@ ms.sourcegitcommit: 605e42232854ce44bae09624a6eebc35b8e2473b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 05/16/2018
+ms.locfileid: "34191110"
 ---
 # <a name="value-conversions"></a><span data-ttu-id="c9045-102">Conversões de valor</span><span class="sxs-lookup"><span data-stu-id="c9045-102">Value Conversions</span></span>
 
