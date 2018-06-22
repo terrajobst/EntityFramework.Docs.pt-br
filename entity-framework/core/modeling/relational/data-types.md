@@ -11,6 +11,7 @@ ms.sourcegitcommit: 860ec5d047342fbc4063a0de881c9861cc1f8813
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 11/05/2017
+ms.locfileid: "26053496"
 ---
 # <a name="data-types"></a>Tipos de dados
 

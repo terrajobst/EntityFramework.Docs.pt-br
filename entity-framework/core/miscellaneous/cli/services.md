@@ -1,5 +1,5 @@
 ---
-title: "Serviços de tempo de design - Core EF"
+title: Serviços de tempo de design - Core EF
 author: bricelam
 ms.author: bricelam
 ms.date: 10/26/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26053686"
 ---
 <a name="design-time-services"></a>Serviços de tempo de design
 ====================

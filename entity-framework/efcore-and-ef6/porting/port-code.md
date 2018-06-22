@@ -1,5 +1,5 @@
 ---
-title: "Portando de EF6 EF núcleo - portando um modelo baseado em código"
+title: Portando de EF6 EF núcleo - portando um modelo baseado em código
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -10,6 +10,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26052946"
 ---
 # <a name="porting-an-ef6-code-based-model-to-ef-core"></a>Portando um EF6 baseada em código modelo EF Core
 

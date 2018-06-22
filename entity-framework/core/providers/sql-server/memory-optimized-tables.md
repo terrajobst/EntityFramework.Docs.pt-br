@@ -1,5 +1,5 @@
 ---
-title: "Microsoft SQL Server Database provedor - tabelas com otimização de memória - EF Core"
+title: Microsoft SQL Server Database provedor - tabelas com otimização de memória - EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26052636"
 ---
 # <a name="memory-optimized-tables-support-in-sql-server-ef-core-database-provider"></a>Tabelas com otimização de memória oferecem suporte no provedor de banco de dados do SQL Server EF Core
 

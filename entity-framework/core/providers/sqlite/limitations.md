@@ -1,5 +1,5 @@
 ---
-title: "Banco de dados SQLite provedor - limitações - EF Core"
+title: Banco de dados SQLite provedor - limitações - EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 04/09/2017
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 60b831318c4f5ec99061e8af6a7c9e7c03b3469c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 03/02/2018
+ms.locfileid: "29719479"
 ---
 # <a name="sqlite-ef-core-database-provider-limitations"></a>Limitações de provedor de banco de dados do SQLite EF Core
 

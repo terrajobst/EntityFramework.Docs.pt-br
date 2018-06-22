@@ -10,6 +10,7 @@ ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 04/26/2018
+ms.locfileid: "31812684"
 ---
 # <a name="porting-an-ef6-edmx-based-model-to-ef-core"></a>Portabilidade de um modelo de baseado em EDMX EF6 EF Core
 

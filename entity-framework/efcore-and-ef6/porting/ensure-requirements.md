@@ -1,5 +1,5 @@
 ---
-title: "Portando de EF6 EF núcleo - validar requisitos"
+title: Portando de EF6 EF núcleo - validar requisitos
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -10,6 +10,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26052856"
 ---
 # <a name="before-porting-from-ef6-to-ef-core-validate-your-applications-requirements"></a>Antes de portabilidade de EF6 EF núcleo: validar requisitos do aplicativo
 

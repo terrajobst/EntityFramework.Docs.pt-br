@@ -1,5 +1,5 @@
 ---
-title: "Introdução – EF Core"
+title: Introdução – EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 02/12/2018
+ms.locfileid: "29152397"
 ---
 # <a name="getting-started-with-entity-framework-core"></a>Introdução ao Entity Framework Core
 

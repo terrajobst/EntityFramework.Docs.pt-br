@@ -1,5 +1,5 @@
 ---
-title: "Gerenciar Esquemas de Banco de Dados – EF Core"
+title: Gerenciar Esquemas de Banco de Dados – EF Core
 author: bricelam
 ms.author: divega
 ms.date: 10/30/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: b467368cc350e6059fdc0949e042a41cb11e61d9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26049378"
 ---
 # <a name="managing-database-schemas"></a>Gerenciar Esquemas de Banco de Dados
 O EF Core oferece duas maneiras principais de manter seu esquema de banco de dados e modelo do EF Core em sincronia. Para escolher entre as duas, decida se seu modelo do EF Core ou o esquema de banco de dados é a fonte da verdade.
