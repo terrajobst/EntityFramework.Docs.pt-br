@@ -1,4 +1,4 @@
----
+﻿---
 title: Introdução ao ASP.NET Core – Banco de dados existente – EF Core
 author: rowanmiller
 ms.author: divega
@@ -173,7 +173,7 @@ Agora podemos usar o método `AddDbContext(...)` para registrá-lo como um servi
 [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Startup.cs?name=ConfigureServices&highlight=7-8)]
 
 > [!TIP]  
-> Em um aplicativo real, normalmente você colocaria a cadeia de conexão em um arquivo de configuração. Para simplificar, definimos isso no código. Para saber mais, confira [Cadeias de conexão](../../miscellaneous/connection-strings.md).
+> Em um aplicativo real, normalmente você colocaria a cadeia de conexão em um arquivo de configuração. Para simplificar, definimos isso no código. Para saber mais, confira [Strings de conexão](../../miscellaneous/connection-strings.md).
 
 ## <a name="create-a-controller"></a>Criar um controlador
 
