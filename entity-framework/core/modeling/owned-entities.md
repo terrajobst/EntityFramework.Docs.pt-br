@@ -1,29 +1,30 @@
 ---
-title: Propriedade tipos de entidade - Core EF
+title: Propriedade tipos de entidade – EF Core
 author: julielerman
 ms.author: divega
 ms.date: 2/26/2018
 ms.assetid: 2B0BADCE-E23E-4B28-B8EE-537883E16DF3
 ms.technology: entity-framework-core
 uid: core/modeling/owned-entities
-ms.openlocfilehash: f2f05499a3e3494f420d916df2db19667a6f1e29
-ms.sourcegitcommit: 26f33758c47399ae933f22fec8e1d19fa7d2c0b7
+ms.openlocfilehash: 768429b857b09c1974f4ade31b5bbb6b1c7e15c3
+ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/19/2018
+ms.lasthandoff: 07/08/2018
+ms.locfileid: "37911870"
 ---
-# <a name="owned-entity-types"></a>Tipos de entidade de propriedade
+# <a name="owned-entity-types"></a>Tipos de entidade própria
 
 >[!NOTE]
-> Este recurso é novo no EF Core 2.0.
+> Esse recurso é novo no EF Core 2.0.
 
-EF Core permite tipos de entidade de modelo só podem aparecer em Propriedades de navegação de outros tipos de entidade. Esses são chamados de _tipos de entidade de propriedade_. A entidade que contém um tipo de entidade de propriedade é seu _proprietário_.
+O EF Core permite que você a tipos de entidade de modelo que só podem aparecer nas propriedades de navegação de outros tipos de entidade. Eles são chamados _tipos de entidade de propriedade_. É a entidade que contém um tipo de entidade própria seus _proprietário_.
 
 ## <a name="explicit-configuration"></a>Configuração explícita
 
-Propriedade da entidade tipos nunca são incluídos por núcleo EF em modelo por convenção. Você pode usar o `OwnsOne` método `OnModelCreating` ou anotar o tipo com `OwnedAttribute` (novo no EF Core 2.1) para configurar o tipo como um tipo de propriedade.
+Propriedade da entidade tipos nunca são incluídos pelo EF Core em modelo por convenção. Você pode usar o `OwnsOne` método no `OnModelCreating` ou anotar o tipo com `OwnedAttribute` (novo no EF Core 2.1) para configurar o tipo como um tipo de propriedade.
 
-Neste exemplo, StreetAddress é um tipo com nenhuma propriedade de identidade. Ele é usado como uma propriedade do tipo Ordem para especificar o endereço para entrega para uma ordem específica. Em `OnModelCreating`, usamos o `OwnsOne` método para especificar que a propriedade ShippingAddress é uma entidade de propriedade do tipo de ordem.
+Neste exemplo, StreetAddress é um tipo com nenhuma propriedade de identidade. Ele é usado como uma propriedade do tipo Ordem para especificar o endereço para entrega para uma ordem específica. Na `OnModelCreating`, usamos o `OwnsOne` método para especificar que a propriedade ShippingAddress é uma entidade de propriedade do tipo de ordem.
 
 ``` csharp
 public class StreetAddress
@@ -42,7 +43,7 @@ public class Order
 modelBuilder.Entity<Order>().OwnsOne(p => p.ShippingAddress);
 ```
 
-Se a propriedade ShippingAddress é particular no tipo de ordem, você pode usar a versão de cadeia de caracteres do `OwnsOne` método:
+Se a propriedade ShippingAddress é particular no tipo de ordem, você pode usar a versão de cadeia de caracteres da `OwnsOne` método:
 
 ``` csharp
 modelBuilder.Entity<Order>().OwnsOne(typeof(StreetAddress), "ShippingAddress");
@@ -67,20 +68,20 @@ public class Order
 
 ## <a name="implicit-keys"></a>Chaves implícitas
 
-No EF Core 2.0 e 2.1, somente propriedades de navegação de referência podem apontar para os tipos de propriedade. Não há suporte para coleções de tipos de propriedade. Esses referência de propriedade tipos sempre têm uma relação um para um com o proprietário, portanto, não precisam seus próprios valores de chave. No exemplo anterior, o tipo de StreetAddress não precisa definir uma propriedade de chave.  
+No EF Core 2.0 e 2.1, somente as propriedades de navegação de referência podem apontar para tipos próprios. Não há suporte para coleções de tipos próprios. Essas referência de propriedade tipos sempre têm uma relação um para um com o proprietário, portanto eles não precisam seus próprios valores de chave. No exemplo anterior, o tipo de StreetAddress não precisa definir uma propriedade de chave.  
 
-Para entender como o EF Core controla esses objetos, é útil pensar que uma chave primária é criada como um [sombra propriedade](xref:core/modeling/shadow-properties) para o tipo de propriedade. O valor da chave de uma instância do tipo de propriedade será o mesmo que o valor da chave de instância do proprietário.      
+Para entender como o EF Core controla esses objetos, é útil pensar que uma chave primária é criada como um [propriedade de sombra](xref:core/modeling/shadow-properties) para o tipo próprio. O valor da chave de uma instância do tipo próprio será igual ao valor da chave da instância do proprietário.      
 
-## <a name="mapping-owned-types-with-table-splitting"></a>Mapeamento de tipos com a divisão da tabela de propriedade
+## <a name="mapping-owned-types-with-table-splitting"></a>Tipos com a divisão de tabela de mapeamento de propriedade
 
-Ao usar bancos de dados relacionais, por convenção, tipos de propriedade são mapeados para a mesma tabela como o proprietário. Isso requer dividir a tabela em duas: algumas colunas serão usadas para armazenar os dados do proprietário e algumas colunas serão usadas para armazenar dados de entidade de propriedade. Este é um recurso comum conhecido como divisão de tabela.
+Ao usar bancos de dados relacionais, por convenção, tipos de propriedade são mapeados para a mesma tabela como o proprietário. Isso exige a dividir a tabela em dois: algumas colunas serão usadas para armazenar os dados do proprietário, e algumas colunas serão usadas para armazenar dados de entidade de propriedade. Esse é um recurso comum conhecido como a divisão de tabela.
 
 > [!TIP]
-> Propriedade tipos armazenados com a divisão de tabela podem ser usado de forma muito similar a tipos complexos como são usados em EF6.
+> Propriedade armazenados com a divisão de tabela de tipos podem ser usados de maneira muito semelhante a como os tipos complexos são usados no EF6.
 
-Por convenção, EF Core nomear as colunas de banco de dados para as propriedades do tipo de propriedade de entidade seguindo o padrão _EntityProperty_OwnedEntityProperty_. Portanto, as propriedades de StreetAddress aparecerão na tabela Orders com os nomes ShippingAddress_Street e ShippingAddress_City.
+Por convenção, o EF Core nomeie as colunas de banco de dados para as propriedades do tipo de entidade própria seguindo o padrão _EntityProperty_OwnedEntityProperty_. Portanto, as propriedades de StreetAddress aparecerão na tabela de pedidos com os nomes ShippingAddress_Street e ShippingAddress_City.
 
-Você pode acrescentar o `HasColumnName` método renomear essas colunas. No caso onde StreetAddress é uma propriedade pública, os mapeamentos seria
+Você pode acrescentar o `HasColumnName` método para renomear as colunas. No caso em que StreetAddress é uma propriedade pública, os mapeamentos seriam
 
 ``` csharp
 modelBuilder.Entity<Order>().OwnsOne(
@@ -92,13 +93,13 @@ modelBuilder.Entity<Order>().OwnsOne(
         });
 ```
 
-## <a name="sharing-the-same-net-type-among-multiple-owned-types"></a>Compartilhando o mesmo tipo de .NET entre os vários tipos de propriedade
+## <a name="sharing-the-same-net-type-among-multiple-owned-types"></a>Compartilhando o mesmo tipo de .NET entre vários tipos de propriedade
 
-Um tipo de entidade de propriedade pode ser do mesmo tipo de .NET como outro tipo de entidade de propriedade, por isso que o tipo de .NET pode não ser suficientes para identificar um tipo de propriedade.
+Um tipo de entidade própria pode ser do mesmo tipo de .NET como outro tipo de entidade de propriedade, portanto, que o tipo do .NET pode não ser suficiente para identificar um tipo de propriedade.
 
-Nesses casos, a propriedade apontando do proprietário para a entidade de propriedade torna-se a _definindo navegação_ do tipo de propriedade de entidade. Da perspectiva do EF Core, a navegação de definição faz parte da identidade do tipo junto com o tipo .NET.   
+Nesses casos, a propriedade apontando do proprietário para a entidade de propriedade se torna a _definir a navegação_ do tipo de entidade de propriedade. Da perspectiva do EF Core, a navegação de definição é parte da identidade do tipo juntamente com o tipo .NET.   
 
-Por exemplo, na classe a seguir, ShippingAddress e BillingAddress são do mesmo tipo .NET, StreetAddress:
+Por exemplo, a seguinte classe, ShippingAddress e BillingAddress são do mesmo tipo de .NET, StreetAddress:
 
 ``` csharp
 public class Order
@@ -109,11 +110,11 @@ public class Order
 }
 ```
 
-Para entender como o EF Core distinguirá controladas instâncias desses objetos, pode ser útil considerar que a definição de navegação se torna parte da chave de instância junto com o valor da chave do proprietário e o tipo de .NET do tipo de propriedade.
+Para compreender como o EF Core distinguirá controladas instâncias desses objetos, pode ser útil pensar que a navegação de definição tornou-se parte da chave da instância junto com o valor da chave do proprietário e o tipo de .NET do tipo próprio.
 
-## <a name="nested-owned-types"></a>Tipos aninhados de propriedade
+## <a name="nested-owned-types"></a>Tipos próprios aninhados
 
-Neste exemplo OrderDetails possui BillingAddress e ShippingAddress, que são os dois tipos de StreetAddress. Em seguida, OrderDetails pertence o tipo de ordem.
+Neste exemplo OrderDetails possui BillingAddress e ShippingAddress, que são os dois tipos de StreetAddress. Em seguida, OrderDetails pertence ao tipo Order.
 
 ``` csharp
 public class Order
@@ -129,6 +130,12 @@ public class OrderDetails
     public StreetAddress ShippingAddress { get; set; }
 }
 
+public enum OrderStatus
+{
+    Pending,
+    Shipped
+}
+
 public class StreetAddress
 {
     public string Street { get; set; }
@@ -136,7 +143,7 @@ public class StreetAddress
 }
 ```
 
-É possível para a cadeia de `OwnsOne` método em um mapeamento fluente para configurar este modelo:
+É possível encadear o `OwnsOne` método em um mapeamento fluente para configurar este modelo:
 
 ``` csharp
 modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
@@ -146,9 +153,9 @@ modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
     });
 ```
 
-É possível obter a mesma coisa usando `OwnedAttribute` OrderDetails e StreetAdress.
+É possível obter a mesma coisa usando `OwnedAttribute` em OrderDetails e StreetAdress.
 
-Além dos tipos de propriedade aninhados, um tipo de propriedade pode fazer referência a uma entidade normal. No exemplo a seguir, o país for uma entidade normal (ou seja, não é proprietário):
+Além dos tipos próprios aninhados, um tipo próprio pode fazer referência a uma entidade regular. No exemplo a seguir, o país é uma entidade normal (ou seja, não é proprietário):
 
 ``` csharp
 public class StreetAddress
@@ -159,11 +166,11 @@ public class StreetAddress
 }
 ```
 
-Este recurso define tipos de entidade de propriedade além de tipos complexos no EF6.
+Esse recurso define tipos de entidade própria além dos tipos complexos no EF6.
 
-## <a name="storing-owned-types-in-separate-tables"></a>Armazenando tipos de propriedade em tabelas separadas
+## <a name="storing-owned-types-in-separate-tables"></a>Armazenando tipos próprios em tabelas separadas
 
-Também ao contrário de tipos complexos de EF6, tipos de propriedade podem ser armazenados em uma tabela separada do proprietário. Para substituir a convenção de que um tipo de propriedade é mapeado para a mesma tabela como o proprietário, você pode simplesmente chamar `ToTable` e forneça um nome de tabela diferente. O exemplo a seguir mapeará OrderDetails e seus dois endereços em uma tabela diferente da ordem:
+Também diferentemente dos tipos complexos do EF6, tipos de propriedade podem ser armazenados em uma tabela separada do proprietário. Para substituir a convenção que mapeia um tipo de propriedade para a mesma tabela como o proprietário, você pode simplesmente chamar `ToTable` e forneça um nome de tabela diferente. O exemplo a seguir será mapeada OrderDetails e seus dois endereços em uma tabela diferente da ordem:
 
 ``` csharp
 modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
@@ -173,9 +180,9 @@ modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
     }).ToTable("OrderDetails");
 ```
 
-## <a name="querying-owned-types"></a>Consultando os tipos de propriedade
+## <a name="querying-owned-types"></a>Consultando tipos próprios
 
-Ao consultar o proprietário, os tipos próprios serão incluídos por padrão. Não é necessário usar o `Include` método, mesmo se os tipos de propriedade são armazenados em uma tabela separada. Com base no modelo descrito antes, a consulta a seguir extrairá ordem, OrderDetails e os dois StreeAddresses corporativos para todos os pedidos pendentes do banco de dados:
+Ao consultar o proprietário, os tipos próprios serão incluídos por padrão. Não é necessário usar o `Include` método, mesmo se os tipos próprios são armazenados em uma tabela separada. A consulta a seguir com base no modelo descrito antes, efetuará pull ordem, OrderDetails e os dois StreeAddresses propriedade para todos os pedidos pendentes do banco de dados:
 
 ``` csharp
 var orders = context.Orders.Where(o => o.Status == OrderStatus.Pending);
@@ -183,15 +190,17 @@ var orders = context.Orders.Where(o => o.Status == OrderStatus.Pending);
 
 ## <a name="limitations"></a>Limitações
 
-Aqui estão algumas limitações de tipos de entidade de propriedade. Algumas dessas limitações são fundamentais para o trabalho de tipos como proprietários, mas outras são as restrições de point-in-time que desejamos remover em futuras versões:
+Algumas dessas limitações são fundamentais para o trabalho de tipos de entidade como propriedade, mas outras são restrições que podemos pode ser capazes de ser removido em futuras versões:
 
+### <a name="shortcomings-in-previous-versions"></a>Limitações nas versões anteriores
+- No EF Core 2.0, de propriedade navegações para tipos de entidade não podem ser declarados em tipos de entidade derivada, a menos que as entidades de propriedade estejam explicitamente mapeadas em uma tabela diferente da hierarquia de proprietário. Essa limitação foi removida no EF Core 2.1
+ 
 ### <a name="current-shortcomings"></a>Limitações atuais
-- Não há suporte para a herança dos tipos de propriedade
-- Tipos de propriedade não podem ser apontados por uma propriedade de navegação de coleção
-- Desde que eles usam a tabela dividindo pelo padrão de propriedade tipos também têm as seguintes restrições, a menos que explicitamente mapeados em uma tabela diferente:
-   - Eles não podem pertencer a um tipo derivado
-   - A propriedade de navegação definição não pode ser definida como null (ou seja, propriedade de tipos na mesma tabela sempre são necessários)
+- Não há suporte para tipos de entidade de propriedade de hierarquias de herança que incluem
+- Tipos de entidade de propriedade não podem ser apontados por uma propriedade de navegação de coleção (somente a referência navegações têm suporte no momento)
+- Navegações para tipos de entidade não podem ser nulos, a menos que eles estejam explicitamente mapeados em uma tabela diferente do proprietário de propriedade 
+- Instâncias de tipos de entidade de propriedade não podem ser compartilhadas por vários proprietários (esse é um cenário bem conhecido para objetos de valor não pode ser implementado usando tipos de entidade de propriedade)
 
-### <a name="by-design-restrictions"></a>Por design, restrições
+### <a name="by-design-restrictions"></a>Restrições de design
 - Não é possível criar um `DbSet<T>`
-- Não é possível chamar `Entity<T>()` com um tipo de propriedade no `ModelBuilder`
+- Você não pode chamar `Entity<T>()` com um tipo de propriedade em `ModelBuilder`
