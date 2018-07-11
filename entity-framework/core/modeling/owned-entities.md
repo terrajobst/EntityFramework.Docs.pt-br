@@ -6,12 +6,12 @@ ms.date: 2/26/2018
 ms.assetid: 2B0BADCE-E23E-4B28-B8EE-537883E16DF3
 ms.technology: entity-framework-core
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 768429b857b09c1974f4ade31b5bbb6b1c7e15c3
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 476a1dcaadcd99eba0cd4f5f0ac40c32a97af5c9
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37911870"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949421"
 ---
 # <a name="owned-entity-types"></a>Tipos de entidade própria
 
@@ -155,7 +155,7 @@ modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
 
 É possível obter a mesma coisa usando `OwnedAttribute` em OrderDetails e StreetAdress.
 
-Além dos tipos próprios aninhados, um tipo próprio pode fazer referência a uma entidade regular. No exemplo a seguir, o país é uma entidade normal (ou seja, não é proprietário):
+Além dos tipos próprios aninhados, um tipo próprio pode fazer referência a uma entidade regular. No exemplo a seguir, o país é uma entidade normal não é proprietário:
 
 ``` csharp
 public class StreetAddress
@@ -182,7 +182,7 @@ modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
 
 ## <a name="querying-owned-types"></a>Consultando tipos próprios
 
-Ao consultar o proprietário, os tipos próprios serão incluídos por padrão. Não é necessário usar o `Include` método, mesmo se os tipos próprios são armazenados em uma tabela separada. A consulta a seguir com base no modelo descrito antes, efetuará pull ordem, OrderDetails e os dois StreeAddresses propriedade para todos os pedidos pendentes do banco de dados:
+Ao consultar o proprietário, os tipos próprios serão incluídos por padrão. Não é necessário usar o `Include` método, mesmo se os tipos próprios são armazenados em uma tabela separada. A consulta a seguir com base no modelo descrito antes, efetuará pull ordem, OrderDetails e os dois StreetAddresses propriedade para todos os pedidos pendentes do banco de dados:
 
 ``` csharp
 var orders = context.Orders.Where(o => o.Status == OrderStatus.Pending);
@@ -194,11 +194,11 @@ Algumas dessas limitações são fundamentais para o trabalho de tipos de entida
 
 ### <a name="shortcomings-in-previous-versions"></a>Limitações nas versões anteriores
 - No EF Core 2.0, de propriedade navegações para tipos de entidade não podem ser declarados em tipos de entidade derivada, a menos que as entidades de propriedade estejam explicitamente mapeadas em uma tabela diferente da hierarquia de proprietário. Essa limitação foi removida no EF Core 2.1
- 
+
 ### <a name="current-shortcomings"></a>Limitações atuais
 - Não há suporte para tipos de entidade de propriedade de hierarquias de herança que incluem
 - Tipos de entidade de propriedade não podem ser apontados por uma propriedade de navegação de coleção (somente a referência navegações têm suporte no momento)
-- Navegações para tipos de entidade não podem ser nulos, a menos que eles estejam explicitamente mapeados em uma tabela diferente do proprietário de propriedade 
+- Navegações para tipos de entidade não podem ser nulos, a menos que eles estejam explicitamente mapeados em uma tabela diferente do proprietário de propriedade
 - Instâncias de tipos de entidade de propriedade não podem ser compartilhadas por vários proprietários (esse é um cenário bem conhecido para objetos de valor não pode ser implementado usando tipos de entidade de propriedade)
 
 ### <a name="by-design-restrictions"></a>Restrições de design
