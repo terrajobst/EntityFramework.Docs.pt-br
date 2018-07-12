@@ -6,12 +6,12 @@ ms.date: 10/27/2016
 ms.assetid: 7c65ec3e-46c8-48f8-8232-9e31f96c277b
 ms.technology: entity-framework-core
 uid: core/querying/index
-ms.openlocfilehash: a2dd830b25c64b007a881c105a87b5c631b00266
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 447f48b780bc48b7a79153d17dcc1b8ef0cc508c
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26048878"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949269"
 ---
 # <a name="querying-data"></a>Consultar Dados
 

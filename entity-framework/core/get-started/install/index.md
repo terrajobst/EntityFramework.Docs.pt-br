@@ -6,12 +6,12 @@ ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 ms.technology: entity-framework-core
 uid: core/get-started/install/index
-ms.openlocfilehash: 31b96ebd0ae282b88be98988eff6263084dc5dd5
-ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
+ms.openlocfilehash: 7bb2ee11940a4fd5736c7a23c16533ef53018f7b
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2017
-ms.locfileid: "26049238"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949186"
 ---
 # <a name="installing-ef-core"></a>Instalar o EF Core
 
@@ -42,7 +42,7 @@ A maneira recomendada de adicionar bibliotecas de tempo de execução do EF Core
 Além das bibliotecas de tempo de execução, você pode instalar as ferramentas que facilitam executar várias tarefas relacionadas ao EF Core em seu projeto no tempo de design, como criar e aplicar migrações e criar um modelo com base em um banco de dados existente.
 
 > [!TIP]  
-> Se você precisar atualizar um aplicativo que esteja usando um provedor de banco de dados de terceiros, sempre verifique se há uma atualização do provedor compatível com a versão do EF Core que você deseja usar. Por ex.: provedores de banco de dados para versões anteriores não são compatíveis com a versão 2.0 do tempo de execução do EF Core.  
+> Se você precisar atualizar um aplicativo que esteja usando um provedor de banco de dados de terceiros, sempre verifique se há uma atualização do provedor compatível com a versão do EF Core que você deseja usar. Por exemplo, provedores de banco de dados para versões anteriores não são compatíveis com a versão 2.0 do tempo de execução do EF Core.  
 
 > [!TIP]  
 > Aplicativos que têm como destino o ASP.NET Core 2.0 podem usar o EF Core 2.0 sem dependências adicionais além de provedores de banco de dados de terceiros. Aplicativos que têm como destino versões anteriores do ASP.NET Core precisam fazer upgrade para o ASP.NET Core 2.0 para usar o EF Core 2.0.
@@ -53,7 +53,7 @@ Além das bibliotecas de tempo de execução, você pode instalar as ferramentas
 Para desenvolver aplicativos que têm como destino o [.NET Core](https://www.microsoft.com/net/download/core), você pode optar por usar [`dotnet` comandos da CLI](https://docs.microsoft.com/dotnet/core/tools/) combinados ao seu editor de texto favorito ou um IDE (Ambiente de Desenvolvimento Integrado), como o Visual Studio, o Visual Studio para Mac ou o Visual Studio Code.
 
 > [!IMPORTANT]  
-> Aplicativos voltados para .NET Core exigem versões específicas do Visual Studio, por exemplo, .NET Core 1.x requer Visual Studio 2017, enquanto o desenvolvimento em .NET Core 2.0 requer o Visual Studio 2017 versão 15.3.
+> Aplicativos que têm como destino o .NET Core requerem versões específicas do Visual Studio. Por exemplo, o desenvolvimento do .NET Core 1.x requer o Visual Studio 2017, já o desenvolvimento do .NET Core 2.0 requer a versão 15.3 do Visual Studio 2017.
 
 Para instalar ou fazer o upgrade para o provedor do SQL Server em um aplicativo .NET Core de multiplaforma, alterne para o diretório do aplicativo e execute o seguinte em uma linha de comando:
 
@@ -61,7 +61,7 @@ Para instalar ou fazer o upgrade para o provedor do SQL Server em um aplicativo 
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-Você pode indicar a instalação de uma versão específica no comando `dotnet add package` usando o modificador `-v`. Por ex.: para instalar pacotes do EF Core 2.0, acrescente `-v 2.0.0` ao comando.
+Você pode indicar a instalação de uma versão específica no comando `dotnet add package` usando o modificador `-v`. Por exemplo, para instalar pacotes do EF Core 2.0, acrescente `-v 2.0.0` ao comando.
 
 O EF Core inclui um conjunto de [comandos adicionais à `dotnet` CLI](../../miscellaneous/cli/dotnet.md), começando com `dotnet ef`. Para usar os comandos da CLI `dotnet ef`, o arquivo `.csproj` do seu aplicativo deve conter a seguinte entrada:
 
@@ -106,7 +106,7 @@ Há duas maneiras de instalar um provedor de banco de dados do EF Core em seu ap
   ```
 * Você pode usar o comando `Update-Package` em vez de atualizar um pacote que já esteja instalado para uma versão mais recente
 
-* Para especificar uma versão específica, você pode usar o modificador `-Version`, por exemplo, para instalar pacotes EF Core 2.0, acrescente `-Version 2.0.0` aos comandos
+* Para especificar uma determinada versão, use o modificador `-Version`. Por exemplo, para instalar pacotes do EF Core 2.0, acrescente `-Version 2.0.0` aos comandos
 
 #### <a name="tools"></a>Ferramentas
 
