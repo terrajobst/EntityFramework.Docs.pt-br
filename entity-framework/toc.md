@@ -29,7 +29,7 @@
 #### [ASP.NET Core](core/get-started/aspnetcore/index.md)
 ##### [ASP.NET Core – Novo Banco de Dados](core/get-started/aspnetcore/new-db.md)
 ##### [ASP.NET Core – Banco de Dados Existente](core/get-started/aspnetcore/existing-db.md)
-##### [Tutorial do EF Core no site do ASP.NET Core](https://docs.asp.net/en/latest/data/ef-mvc/intro.html)
+##### [EF Core e Razor Pages](/aspnet/core/data/ef-rp/intro)
 #### [UWP (Plataforma Universal do Windows)](core/get-started/uwp/index.md)
 ##### [UWP – Novo Banco de Dados](core/get-started/uwp/getting-started.md)
 

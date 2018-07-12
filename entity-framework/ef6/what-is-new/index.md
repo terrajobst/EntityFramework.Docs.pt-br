@@ -1,0 +1,62 @@
+---
+title: Novidades – EF6
+author: divega
+ms.date: 2016-10-23
+ms.prod: entity-framework
+ms.author: divega
+ms.manager: avickers
+ms.technology: entity-framework-6
+ms.topic: article
+ms.assetid: 41d1f86b-ce66-4bf2-8963-48514406fb4c
+caps.latest.revision: 3
+ms.openlocfilehash: 0da2ce778a765037ecacd0726cbb7cda08b5683f
+ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 07/08/2018
+ms.locfileid: "37911700"
+---
+# <a name="whats-new-in-ef6"></a>Novidades no EF6
+
+É altamente recomendável que você use a versão mais recente lançada do Entity Framework para garantir os recursos mais recentes e maior estabilidade.
+No entanto, sabemos que talvez você precise usar uma versão anterior, ou talvez queira fazer experiências com novos aprimoramentos no pré-lançamento mais recente.
+Para instalar versões específicas do EF, consulte [Obter o Entity Framework](~/ef6/fundamentals/install.md).
+
+Esta página documenta os recursos que são incluídos em cada nova versão.
+
+## <a name="recent-releases"></a>Versões recentes
+
+### <a name="ef-tools-update-in-visual-studio-2017-157"></a>Atualização de ferramentas do EF no Visual Studio 2017 15.7
+
+Em maio de 2018, lançamos uma versão atualizada das ferramentas do EF6 no Visual Studio 2017 15.7.
+Ela inclui melhorias em algumas áreas de problemas comuns:
+
+- Uma revisão para a acessibilidade da interface do usuário
+- Solução alternativa para regressão de desempenho do SQL Server na engenharia reversa [#4](https://github.com/aspnet/entityframework6/issues/4)
+- Atualizar o modelo de suporte de banco de dados para modelos maiores no SQL Server [#185](https://github.com/aspnet/EntityFramework6/issues/185)
+
+Essa nova versão das ferramentas do EF instala o tempo de execução do EF 6.2 ao criar um modelo em um novo projeto. Com versões mais antigas do Visual Studio, é possível usar o tempo de execução do EF 6.2 (bem como qualquer versão anterior do EF) instalando a versão correspondente do pacote NuGet.
+
+### <a name="ef-62-runtime"></a>Tempo de execução do EF 6.2
+
+O tempo de execução do EF 6.2 foi lançado para o NuGet em outubro de 2017.
+Graças, em grande parte, aos esforços de nossa comunidade de colaboradores de software livre, o EF 6.2 inclui várias [correções de bugs](https://github.com/aspnet/entityframework6/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A6.2.0%20is%3Aclosed%20label%3Aclosed-fixed%20-label%3Aarea-tools%20label%3Atype-bug) e [aprimoramentos de produtos](https://github.com/aspnet/entityframework6/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A6.2.0%20is%3Aclosed%20label%3Aclosed-fixed%20-label%3Aarea-tools%20label%3Atype-enhancement%20).
+
+Aqui está uma lista resumida das alterações mais importantes que afetam o tempo de execução do EF 6.2:
+
+- Redução do tempo de inicialização carregando modelos do Code First concluídos de um cache persistente [#275](https://github.com/aspnet/EntityFramework6/issues/275)
+- API fluente para definir índices [#274](https://github.com/aspnet/EntityFramework6/issues/274)
+- DbFunctions.Like() para habilitar a gravação de consultas LINQ que são traduzidas como LIKE no SQL [#241](https://github.com/aspnet/EntityFramework6/issues/241)
+- Agora Migrate.exe é compatível com a opção -script [#240](https://github.com/aspnet/EntityFramework6/issues/240)
+- Agora o EF6 pode trabalhar com valores de chave gerados por uma sequência no SQL Server [#165](https://github.com/aspnet/EntityFramework6/issues/165)
+- Atualização da lista de erros transitórios para a estratégia de execução do SQL Azure [n#83](https://github.com/aspnet/EntityFramework6/issues/83)
+- Bug: a repetição de consultas ou comandos SQL falha com "O SqlParameter já está contido em outro SqlParameterCollection" [#81](https://github.com/aspnet/EntityFramework6/issues/81)
+- Bug: a avaliação de DbQuery.ToString() frequentemente atinge o tempo limite no depurador [#73](https://github.com/aspnet/EntityFramework6/issues/73)
+
+## <a name="future-releases"></a>Versões futuras
+
+Para obter informações sobre a versão futura do EF6, examine nosso [roteiro](roadmap.md).
+
+## <a name="past-releases"></a>Versões anteriores
+
+A página [Versões Anteriores](past-releases.md) contém um arquivo morto de todas as versões anteriores do EF e os principais recursos que foram introduzidos em cada versão. 
