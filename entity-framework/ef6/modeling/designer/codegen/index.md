@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 56e00fa2-f9f0-48b3-8006-f8266ca7e74b
 caps.latest.revision: 3
-ms.openlocfilehash: e06dc1c35f8d74772e5c7d69b29553288fd652d0
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 8a656ca73a7e1a628f4053ff7ad47f5c1b17d878
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37911720"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949173"
 ---
 # <a name="designer-code-generation-templates"></a>Modelos de geração de código do Designer
 Quando você cria um modelo usando o Entity Framework Designer, suas classes e os contextos derivados são automaticamente gerados. Além da geração de código padrão, também fornecemos vários modelos que podem ser usados para personalizar o código gerado. Esses modelos são fornecidos como Modelos de Texto T4, permitindo que você os personalize, se necessário.
@@ -151,7 +151,7 @@ Você precisará selecionar a guia **Online** ao adicionar o modelo para baixá-
 
 ### <a name="what-are-the-web-sites-templates"></a>O que são os modelos de “sites”
 
-Os modelos de "sites" (ou seja, sites do **Gerador DbContext do EF 5.x para C\#**) se destinam ao uso em projetos de site criados via **Arquivo –&gt; Novo –&gt; Site...**. Esses são diferentes dos aplicativos Web, criados via **Arquivo –&gt; Novo –&gt; Projeto...**, que usam os modelos padrão. Fornecemos modelos separados porque o sistema de modelo de item no Visual Studio os exige.
+Os modelos de "sites" (por exemplo, sites do **Gerador DbContext do EF 5.x para C\#**) se destinam ao uso em projetos de site criados via **Arquivo –&gt; Novo –&gt; Site...**. Esses são diferentes dos aplicativos Web, criados via **Arquivo –&gt; Novo –&gt; Projeto...**, que usam os modelos padrão. Fornecemos modelos separados porque o sistema de modelo de item no Visual Studio os exige.
 
 ## <a name="using-a-template"></a>Usando um modelo
 

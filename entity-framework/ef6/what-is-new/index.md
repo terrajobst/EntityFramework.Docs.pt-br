@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 41d1f86b-ce66-4bf2-8963-48514406fb4c
 caps.latest.revision: 3
-ms.openlocfilehash: 0da2ce778a765037ecacd0726cbb7cda08b5683f
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: dba6403fa341e1abfe8da488a19cf8520e3ea574
+ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37911700"
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37914170"
 ---
 # <a name="whats-new-in-ef6"></a>Novidades no EF6
 
@@ -28,14 +28,14 @@ Esta página documenta os recursos que são incluídos em cada nova versão.
 
 ### <a name="ef-tools-update-in-visual-studio-2017-157"></a>Atualização de ferramentas do EF no Visual Studio 2017 15.7
 
-Em maio de 2018, lançamos uma versão atualizada das ferramentas do EF6 no Visual Studio 2017 15.7.
-Ela inclui melhorias em algumas áreas de problemas comuns:
+Em maio de 2018, lançamos uma versão atualizada das ferramentas do EF como parte do Visual Studio 2017 15.7.
+Ela inclui melhorias para alguns pontos de problemas comuns:
 
-- Uma revisão para a acessibilidade da interface do usuário
-- Solução alternativa para regressão de desempenho do SQL Server na engenharia reversa [#4](https://github.com/aspnet/entityframework6/issues/4)
-- Atualizar o modelo de suporte de banco de dados para modelos maiores no SQL Server [#185](https://github.com/aspnet/EntityFramework6/issues/185)
+- Correções para vários bugs de acessibilidade da interface do usuário
+- Solução alternativa para a regressão de desempenho do SQL Server ao gerar modelos de bancos de dados existentes [#4](https://github.com/aspnet/entityframework6/issues/4)
+- Suporte para atualizar modelos maiores no SQL Server [#185](https://github.com/aspnet/EntityFramework6/issues/185)
 
-Essa nova versão das ferramentas do EF instala o tempo de execução do EF 6.2 ao criar um modelo em um novo projeto. Com versões mais antigas do Visual Studio, é possível usar o tempo de execução do EF 6.2 (bem como qualquer versão anterior do EF) instalando a versão correspondente do pacote NuGet.
+Outra melhoria nessa nova versão das ferramentas do EF é que ela instala o tempo de execução do EF 6.2 ao criar um modelo em um novo projeto. Com versões mais antigas do Visual Studio, é possível usar o tempo de execução do EF 6.2 (bem como qualquer versão anterior do EF) instalando a versão correspondente do pacote NuGet.
 
 ### <a name="ef-62-runtime"></a>Tempo de execução do EF 6.2
 
@@ -59,4 +59,4 @@ Para obter informações sobre a versão futura do EF6, examine nosso [roteiro](
 
 ## <a name="past-releases"></a>Versões anteriores
 
-A página [Versões Anteriores](past-releases.md) contém um arquivo morto de todas as versões anteriores do EF e os principais recursos que foram introduzidos em cada versão. 
+A página [Versões Anteriores](past-releases.md) contém um arquivo morto de todas as versões anteriores do EF e os principais recursos que foram introduzidos em cada versão.
