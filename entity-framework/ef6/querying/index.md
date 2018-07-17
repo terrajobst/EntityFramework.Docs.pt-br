@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 65bb3db2-2226-44af-8864-caa575cf1b46
 caps.latest.revision: 3
-ms.openlocfilehash: f0319e97d8ca8cfc9c90dac51d2ecbe7a29c1929
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 92467e1a93f576eca627cf7b7d2351054a882c2c
+ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37911730"
+ms.lasthandoff: 07/16/2018
+ms.locfileid: "39067541"
 ---
 # <a name="querying-and-finding-entities"></a>Consultando e Localizando entidades
 Este tópico aborda as várias maneiras que você pode consultar dados usando o Entity Framework, incluindo o LINQ e o método Find. As técnicas mostradas neste tópico se aplicam igualmente a modelos criados com o Code First e com o EF Designer.  
@@ -41,7 +41,7 @@ using (var context = new BloggingContext())
 Observe que o DbSet e o IDbSet sempre criam consultas no banco de dados e sempre envolverão uma viagem de ida e volta para o banco de dados, mesmo se as entidades retornadas já existirem no contexto. Uma consulta é executada no banco de dados quando:  
 
 - Ela é enumerada por uma instrução **foreach** (C#) ou **For Each** (Visual Basic).  
-- Ela é enumerada por uma operação de coleção, como [ToArray](https://msdn.microsoft.com/library/bb298736), [ToDictionary](https://msdn.microsoft.com/library/system.linq.enumerable.todictionary) ou ToList[Inserir descrição do link aqui](https://msdn.microsoft.com/library/bb342261).  
+- Ela é enumerada por uma operação de coleção, como [ToArray](https://msdn.microsoft.com/library/bb298736), [ToDictionary](https://msdn.microsoft.com/library/system.linq.enumerable.todictionary) ou [ToList](https://msdn.microsoft.com/library/bb342261).  
 - Operadores LINQ, como [First](https://msdn.microsoft.com/library/bb291976) ou [Any](https://msdn.microsoft.com/library/bb337697) são especificados na parte mais externa da consulta.  
 - Os seguintes métodos são chamados: o método de extensão [Load](https://msdn.microsoft.com/library/system.data.entity.dbextensions.load) em um DbSet, [DbEntityEntry.Reload](https://msdn.microsoft.com/library/system.data.entity.infrastructure.dbentityentry.reload.aspx) e Database.ExecuteSqlCommand.  
 
