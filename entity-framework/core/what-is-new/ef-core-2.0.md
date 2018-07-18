@@ -6,12 +6,12 @@ ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 ms.technology: entity-framework-core
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: 02d0b6fe2956e819e08e08c9a0658008abd36c34
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 538458cf49ee86b9a5cba2f606adc04e583605e2
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/28/2018
-ms.locfileid: "29680017"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949121"
 ---
 # <a name="new-features-in-ef-core-20"></a>Novos recursos no EF Core 2.0
 
@@ -93,7 +93,7 @@ public class BloggingContext : DbContext
     }
 }
 ```
-Definimos um filtro no nível de modelo que implementa a multilocação e a exclusão reversível para instâncias do Tipo de Entidade ```Post```. Observe o uso de uma propriedade em nível de instância DbContext: ```TenantId```. Filtros no nível de modelo usarão o valor da instância do contexto correto. Ou seja, aquele que está executando a consulta.
+Definimos um filtro no nível de modelo que implementa a multilocação e a exclusão reversível para instâncias do Tipo de Entidade ```Post```. Observe o uso de uma propriedade em nível de instância DbContext: ```TenantId```. Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância de contexto que está executando a consulta).
 
 Os filtros podem ser desabilitados para consultas LINQ individuais usando o operador IgnoreQueryFilters().
 
@@ -134,7 +134,7 @@ Alguns pontos a observar:
 
 - Por convenção, que o nome do método é usado como o nome da função (neste caso, uma função definida pelo usuário) ao gerar o SQL, mas você pode substituir o nome e o esquema durante o registro do método
 - No momento, apenas funções escalares são compatíveis
-- Você deve criar a função mapeada no banco de dados, por exemplo, migrações do EF Core não a criarão
+- É necessário criar a função mapeada no banco de dados. As migrações do EF Core não se encarregarão de criá-la
 
 ### <a name="self-contained-type-configuration-for-code-first"></a>Configuração de tipo autossuficiente primeiro para código
 
@@ -177,7 +177,7 @@ Isso é conceitualmente semelhante a como o pool de conexão opera em provedores
 O novo método apresenta algumas limitações sobre o que pode ser feito no método ```OnConfiguring()``` do DbContext.
 
 > [!WARNING]  
-> Evite usando Pool do DbContext se você mantiver seu próprio estado (por exemplo, campos privados) em sua classe DbContext derivada que não deva ser compartilhado entre solicitações. O EF Core somente redefinirá o estado que reconhecer antes de adicionar uma instância de DbContext ao pool.
+> Evite usar o pooling do DbContext se você mantém seu próprio estado (por exemplo, campos privados) em sua classe DbContext derivada que não deve ser compartilhada entre solicitações. O EF Core somente redefinirá o estado que reconhecer antes de adicionar uma instância de DbContext ao pool.
 
 ### <a name="explicitly-compiled-queries"></a>Consultas explicitamente compiladas
 
@@ -259,7 +259,7 @@ Adicionamos a propriedade EF.Functions, que pode ser usada pelo EF Core ou prove
 ``` csharp
 var aCustomers =
     from c in context.Customers
-    where EF.Functions.Like(c.Name, "a%");
+    where EF.Functions.Like(c.Name, "a%")
     select c;
 ```
 

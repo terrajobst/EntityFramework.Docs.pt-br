@@ -1,15 +1,16 @@
 ---
-title: "Comparação detalhada de recursos do EF Core e EF6"
+title: Comparação detalhada de recursos do EF Core e EF6
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: f22f29ef-efc0-475d-b0b2-12a054f80f95
 uid: efcore-and-ef6/features
-ms.openlocfilehash: 3f05fbe53439826a4e1e1b188a7c03951dc109ec
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 84b40f03cdab27fd6fc68c5bb65c6e3d238f226a
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37967130"
 ---
 # <a name="ef-core-and-ef6-feature-by-feature-comparison"></a>Comparação detalhada de recursos do EF Core e EF6
 
@@ -60,10 +61,10 @@ A coluna EF Core contém o número da versão do produto no qual o recurso apare
 | Carregamento de dados relacionados: Lazy                            | Sim      | 2.1                                   |
 | Carregamento de dados relacionados: Explicit                        | Sim      | 1.1                                   |
 | Consultas SQL brutas: tipos de entidade                         | Sim      | 1.0                                   |
-| Consultas SQL brutas: tipos que não são de entidade (por exemplo, tipos de consulta)  | Sim      | 2.1                                   |
+| Consultas SQL brutas: tipos que não são de entidade (tipos de consulta)       | Sim      | 2.1                                   |
 | Consultas SQL brutas: Composição com LINQ                  |          | 1.0                                   |
 | Consultas explicitamente compiladas                           | Ruim     | 2.0                                   |
-| Linguagem de consulta baseada em texto (por exemplo, Entity SQL)           | 1.0      |                                       |
+| Linguagem de consulta baseada em texto (Entity SQL)                | Sim      |                                       |
 |                                                       |          |                                       |
 | **Salvando dados**                                       | **EF6**  | **EF Core**                           |
 | Controle de alterações: Instantâneo                             | Sim      | 1.0                                   |
@@ -83,7 +84,7 @@ A coluna EF Core contém o número da versão do produto no qual o recurso apare
 | Dados de propagação                                             | Sim      | 2.1                                   |
 | Resiliência da conexão                                 | Sim      | 1.1                                   |
 | Ganchos de ciclo de vida (eventos, interceptação)                | Sim      |                                       |
-| Registro em log simples (por exemplo, Database.Log)                    | Sim      |                                       |
+| Registro em log simples (Database.Log)                         | Sim      |                                       |
 | Pool de DbContext                                     |          | 2.0                                   |
 |                                                       |          |                                       |
 | **Provedores de Banco de Dados**                                | **EF6**  | **EF Core**                           |

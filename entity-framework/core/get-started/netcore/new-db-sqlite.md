@@ -5,38 +5,35 @@ ms.author: riande
 ms.author2: tdykstra
 description: Introdução ao .NET Core usando o Entity Framework Core
 keywords: .NET Core, Entity Framework Core, VS Code, Visual Studio Code, Mac, Linux
-ms.date: 04/05/2017
+ms.date: 06/05/2018
 ms.assetid: 099d179e-dd7b-4755-8f3c-fcde914bf50b
 ms.technology: entity-framework-core
 uid: core/get-started/netcore/new-db-sqlite
-ms.openlocfilehash: fcace3c0f259b1a456d9ca1086e6a1549c070d57
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: e4eafed037325237345efbc3d7d42b32270a54e3
+ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812528"
+ms.lasthandoff: 07/08/2018
+ms.locfileid: "37911496"
 ---
 # <a name="getting-started-with-ef-core-on-net-core-console-app-with-a-new-database"></a>Introdução ao EF Core no aplicativo de console do .NET Core com um novo banco de dados
 
-Neste passo a passo, você criará um aplicativo de console do .NET Core que executa acesso a dados básicos em um banco de dados SQLite usando o Entity Framework Core. Você usará as migrações para criar o banco de dados de seu modelo. Veja [ASP.NET Core – Novo banco de dados](xref:core/get-started/aspnetcore/new-db) para ter uma versão do Visual Studio usando o ASP.NET Core MVC.
+Neste passo a passo, você criará um aplicativo de console do .NET Core que executa acesso a dados em um banco de dados SQLite usando o Entity Framework Core. Você usará migrações para criar o banco de dados com base no modelo. Veja [ASP.NET Core – Novo banco de dados](xref:core/get-started/aspnetcore/new-db) para ter uma versão do Visual Studio usando o ASP.NET Core MVC.
 
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/NetCore/ConsoleApp.SQLite) deste artigo no GitHub.
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-Você precisará atender aos pré-requisitos a seguir para concluir este passo a passo:
-* Um sistema operacional que dá suporte ao .NET Core.
-* [O SDK do .NET Core](https://www.microsoft.com/net/core) 2.0 (embora as instruções possam ser usadas para criar um aplicativo com uma versão anterior, com poucas modificações).
+[O SDK do .NET Core](https://www.microsoft.com/net/core) 2.1
 
 ## <a name="create-a-new-project"></a>Criar um novo projeto
 
-* Crie uma nova pasta `ConsoleApp.SQLite` para seu projeto e use o comando `dotnet` para preenchê-la com um aplicativo .NET Core.
+* Crie um novo projeto de console:
 
 ``` Console
-mkdir ConsoleApp.SQLite
+dotnet new console -o ConsoleApp.SQLite
 cd ConsoleApp.SQLite/
-dotnet new console
 ```
 
 ## <a name="install-entity-framework-core"></a>Instalar o Entity Framework Core
@@ -50,21 +47,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
 
-* Edite manualmente `ConsoleApp.SQLite.csproj` para adicionar um DotNetCliToolReference ao Microsoft.EntityFrameworkCore.Tools.DotNet:
-
-  ``` xml
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
-  </ItemGroup>
-  ```
-
-`ConsoleApp.SQLite.csproj` deve conter os seguintes:
-
-[!code[Main](../../../../samples/core/GetStarted/NetCore/ConsoleApp.SQLite/ConsoleApp.SQLite.csproj)]
-
- Observação: os números de versão usados acima estavam corretos no momento da publicação.
-
-*  Execute `dotnet restore` para instalar os novos pacotes.
+* Execute `dotnet restore` para instalar os novos pacotes.
 
 ## <a name="create-the-model"></a>Criar o modelo
 
@@ -74,7 +57,7 @@ Defina um contexto e classes de entidade que compõem seu modelo.
 
 [!code-csharp[Main](../../../../samples/core/GetStarted/NetCore/ConsoleApp.SQLite/Model.cs)]
 
-Dica: em um aplicativo real, você colocaria cada classe em um arquivo separado, e colocaria a cadeia de conexão em um arquivo de configuração. Para simplificar o tutorial, estamos colocando tudo em um arquivo.
+Dica: em um aplicativo real, você coloca cada classe em um arquivo separado e coloca a cadeia de conexão em um arquivo de configuração. Para simplificar o tutorial, tudo está contido em um arquivo.
 
 ## <a name="create-the-database"></a>Criar o banco de dados
 
@@ -83,8 +66,7 @@ Assim que você tiver um modelo, use as [migrações](https://docs.microsoft.com
 * Execute `dotnet ef migrations add InitialCreate` para realizar scaffolding de uma migração e criar o conjunto inicial de tabelas para o modelo.
 * Execute `dotnet ef database update` para aplicar a nova migração ao banco de dados. Este comando cria o banco de dados antes de aplicar as migrações.
 
-> [!NOTE]  
-> Ao usar caminhos relativos com o SQLite, o caminho será relativo ao assembly principal do aplicativo. Neste exemplo, o binário principal é `bin/Debug/netcoreapp2.0/ConsoleApp.SQLite.dll`, portanto, o banco de dados SQLite estará em `bin/Debug/netcoreapp2.0/blogging.db`.
+O banco de dados SQLite *blogging.db** está no diretório do projeto.
 
 ## <a name="use-your-model"></a>Usar o modelo
 

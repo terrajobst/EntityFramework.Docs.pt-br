@@ -6,12 +6,12 @@ ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 ms.technology: entity-framework-core
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: e23f5d7b1ff95bead310fa8e618a88c161a4e10c
-ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
+ms.openlocfilehash: f319aabb53019e0f153c911dde5814328423081b
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34754438"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949160"
 ---
 # <a name="entity-framework-core-roadmap"></a>Roteiro do Entity Framework Core
 
@@ -54,4 +54,4 @@ Frequentemente, recebemos perguntas sobre como escolhemos os recursos específic
 
 6. **Quais são as habilidades das pessoas disponíveis para trabalhar em um recurso e como melhor aproveitá-los?** Cada membro da equipe do EF e até mesmo os colaboradores da comunidade têm diferentes níveis de experiência em áreas distintas. Por isso, é necessário planejar adequadamente. Mesmo se quiséssemos que todos se empenhassem em trabalhar em um recurso específico, como as traduções do GroupBy ou muitos para muitos, isso não seria prático.
 
-Como mencionado anteriormente, esse processo evolui a cada versão. No futuro, gostaríamos de dar mais oportunidades a membros da comunidade de desenvolvedores de contribuir com os planos de versão, por exemplo, facilitando a revisão dos rascunhos propostos dos recursos e do próprio plano de versão.
+Como mencionado anteriormente, esse processo evolui a cada versão. No futuro, gostaríamos de dar mais oportunidades a membros da comunidade de desenvolvedores de contribuir com os planos de versão, facilitando a revisão dos rascunhos propostos dos recursos e do próprio plano de versão.
