@@ -6,12 +6,12 @@ ms.date: 2/20/2018
 ms.assetid: 585F90A3-4D5A-4DD1-92D8-5243B14E0FEC
 ms.technology: entity-framework-core
 uid: core/what-is-new/ef-core-2.1
-ms.openlocfilehash: 44cbbc965755a694772dc4336ca2c1efc51fd6cd
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: 660e2a9787b0a6d2544da785827caa20d51626c1
+ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37949225"
+ms.lasthandoff: 07/16/2018
+ms.locfileid: "39067554"
 ---
 # <a name="new-features-in-ef-core-21"></a>Novos recursos no EF Core 2.1
 
@@ -105,7 +105,7 @@ Leia a [seção sobre System.Transactions](xref:core/saving/transactions#using-s
 Com base nos comentários dos clientes, atualizamos as migrações para que gerem inicialmente colunas para tabelas na mesma ordem em que as propriedades são declaradas nas classes. Observe que o EF Core não pode alterar a ordem quando novos membros são adicionados após a criação inicial da tabela.
 
 ## <a name="optimization-of-correlated-subqueries"></a>Otimização de subconsultas correlacionadas
-Aprimoramos nossa conversão de consulta para evitar a execução de consultas SQL "N + 1" em muitos cenários comuns, nos quais o uso de uma propriedade de navegação na projeção leva à associação de dados da consulta raiz com os dados de uma subconsulta correlacionada. A otimização requer o armazenamento em buffer dos resultados da subconsulta e é necessário que você modifique a consulta para aceitar o novo comportamento.
+Aprimoramos nossa conversão de consulta para evitar a execução de consultas SQL "N + 1" em muitos cenários comuns, nos quais o uso de uma propriedade de navegação na projeção leva à associação de dados da consulta raiz com os dados de uma subconsulta correlacionada. A otimização requer o buffer dos resultados da subconsulta, e é necessário que você modifique a consulta para aceitar o novo comportamento.
 
 Por exemplo, a consulta a seguir normalmente é convertida em uma consulta para os Clientes, além de N (em que "N" é o número retornado de clientes) consultas separadas para os Pedidos:
 
