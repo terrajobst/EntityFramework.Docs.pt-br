@@ -1,5 +1,5 @@
 ---
-title: Visão geral rápida do Entity Framework 6
+title: Visão Geral – EF6
 author: divega
 ms.date: 2016-10-23
 ms.prod: entity-framework
@@ -10,14 +10,14 @@ ms.topic: article
 ms.assetid: 8ae74d63-6bad-4686-b325-bbf9d68f3743
 caps.latest.revision: 5
 uid: ef6/index
-ms.openlocfilehash: 7bb51ea82640ef29bb376c2320ea29a81eeb175e
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: c74626593c4109badd75f2a0a4f051c840f7bc7f
+ms.sourcegitcommit: 902257be9c63c427dc793750a2b827d6feb8e38c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914335"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39614367"
 ---
-# <a name="entity-framework-6-quick-overview"></a>Visão geral rápida do Entity Framework 6
+# <a name="entity-framework-6"></a>Entity Framework 6
 O EF6 (Entity Framework 6) é um O/RM (mapeador relacional de objetos) testado para .NET com muitos anos de desenvolvimento e estabilização de recursos.
 
 Como um O/RM, o EF6 reduz a incompatibilidade de impedância entre os mundos relacionais e orientado a objeto, permitindo que desenvolvedores escrevam aplicativos que interagem com os dados armazenados em bancos de dados relacionais usando objetos .NET fortemente tipados que representam o domínio do aplicativo e eliminando a necessidade de uma grande parte do acesso aos dados “canalizando” o código que normalmente eles precisariam escrever.
