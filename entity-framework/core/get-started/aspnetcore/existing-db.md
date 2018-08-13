@@ -2,109 +2,109 @@
 title: Introdução ao ASP.NET Core – Banco de dados existente – EF Core
 author: rowanmiller
 ms.author: divega
-ms.date: 10/27/2016
+ms.date: 08/02/2018
 ms.assetid: 2bc68bea-ff77-4860-bf0b-cf00db6712a0
 ms.technology: entity-framework-core
 uid: core/get-started/aspnetcore/existing-db
-ms.openlocfilehash: e28149346ccd7531449ea696505588317471e6dd
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: c231a456abd4c110aba0326821799d6e9d567b3c
+ms.sourcegitcommit: 902257be9c63c427dc793750a2b827d6feb8e38c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37949147"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39614315"
 ---
-# <a name="getting-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a><span data-ttu-id="731fb-102">Introdução ao EF Core no ASP.NET Core com um banco de dados existente</span><span class="sxs-lookup"><span data-stu-id="731fb-102">Getting Started with EF Core on ASP.NET Core with an Existing Database</span></span>
+# <a name="getting-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a><span data-ttu-id="84df6-102">Introdução ao EF Core no ASP.NET Core com um banco de dados existente</span><span class="sxs-lookup"><span data-stu-id="84df6-102">Getting Started with EF Core on ASP.NET Core with an Existing Database</span></span>
 
-<span data-ttu-id="731fb-103">Neste passo a passo, você compilará um aplicativo MVC do ASP.NET Core que executa acesso básico aos dados usando o Entity Framework.</span><span class="sxs-lookup"><span data-stu-id="731fb-103">In this walkthrough, you will build an ASP.NET Core MVC application that performs basic data access using Entity Framework.</span></span> <span data-ttu-id="731fb-104">Você usará engenharia reversa para criar um modelo do Entity Framework com base em um banco de dados existente.</span><span class="sxs-lookup"><span data-stu-id="731fb-104">You will use reverse engineering to create an Entity Framework model based on an existing database.</span></span>
+<span data-ttu-id="84df6-103">Neste tutorial, você compila um aplicativo MVC do ASP.NET Core que realiza acesso básico a dados usando o Entity Framework Core.</span><span class="sxs-lookup"><span data-stu-id="84df6-103">In this tutorial, you build an ASP.NET Core MVC application that performs basic data access using Entity Framework Core.</span></span> <span data-ttu-id="84df6-104">Realize a engenharia reversa de um banco de dados existente para criar um modelo do Entity Framework.</span><span class="sxs-lookup"><span data-stu-id="84df6-104">You reverse engineer an existing database to create an Entity Framework model.</span></span>
 
-> [!TIP]  
-> <span data-ttu-id="731fb-105">Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb) deste artigo no GitHub.</span><span class="sxs-lookup"><span data-stu-id="731fb-105">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb) on GitHub.</span></span>
+<span data-ttu-id="84df6-105">[Exiba o exemplo deste artigo no GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb).</span><span class="sxs-lookup"><span data-stu-id="84df6-105">[View this article's sample on GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="731fb-106">Pré-requisitos</span><span class="sxs-lookup"><span data-stu-id="731fb-106">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="84df6-106">Pré-requisitos</span><span class="sxs-lookup"><span data-stu-id="84df6-106">Prerequisites</span></span>
 
-<span data-ttu-id="731fb-107">Você precisará atender aos pré-requisitos a seguir para concluir este passo a passo:</span><span class="sxs-lookup"><span data-stu-id="731fb-107">The following prerequisites are needed to complete this walkthrough:</span></span>
+<span data-ttu-id="84df6-107">Instale o software a seguir:</span><span class="sxs-lookup"><span data-stu-id="84df6-107">Install the following software:</span></span>
 
-* <span data-ttu-id="731fb-108">[Visual Studio 2017 15.3](https://www.visualstudio.com/downloads/) com estas cargas de trabalho:</span><span class="sxs-lookup"><span data-stu-id="731fb-108">[Visual Studio 2017 15.3](https://www.visualstudio.com/downloads/) with these workloads:</span></span>
-  * <span data-ttu-id="731fb-109">**Desenvolvimento na Web e no ASP.NET** (em **Web e Nuvem**)</span><span class="sxs-lookup"><span data-stu-id="731fb-109">**ASP.NET and web development** (under **Web & Cloud**)</span></span>
-  * <span data-ttu-id="731fb-110">**Desenvolvimento de plataforma cruzada do .NET Core** (em **Outros conjuntos de ferramentas**)</span><span class="sxs-lookup"><span data-stu-id="731fb-110">**.NET Core cross-platform development** (under **Other Toolsets**)</span></span>
-* <span data-ttu-id="731fb-111">[SDK do .NET Core 2.0](https://www.microsoft.com/net/download/core).</span><span class="sxs-lookup"><span data-stu-id="731fb-111">[.NET Core 2.0 SDK](https://www.microsoft.com/net/download/core).</span></span>
-* [<span data-ttu-id="731fb-112">Banco de dados de blog</span><span class="sxs-lookup"><span data-stu-id="731fb-112">Blogging database</span></span>](#blogging-database)
+* <span data-ttu-id="84df6-108">[Visual Studio 2017 15.7](https://www.visualstudio.com/downloads/) com estas cargas de trabalho:</span><span class="sxs-lookup"><span data-stu-id="84df6-108">[Visual Studio 2017 15.7](https://www.visualstudio.com/downloads/) with these workloads:</span></span>
+  * <span data-ttu-id="84df6-109">**Desenvolvimento na Web e no ASP.NET** (em **Web e Nuvem**)</span><span class="sxs-lookup"><span data-stu-id="84df6-109">**ASP.NET and web development** (under **Web & Cloud**)</span></span>
+  * <span data-ttu-id="84df6-110">**Desenvolvimento de plataforma cruzada do .NET Core** (em **Outros conjuntos de ferramentas**)</span><span class="sxs-lookup"><span data-stu-id="84df6-110">**.NET Core cross-platform development** (under **Other Toolsets**)</span></span>
+* <span data-ttu-id="84df6-111">[SDK do .NET Core 2.1](https://www.microsoft.com/net/download/core).</span><span class="sxs-lookup"><span data-stu-id="84df6-111">[.NET Core 2.1 SDK](https://www.microsoft.com/net/download/core).</span></span>
 
-### <a name="blogging-database"></a><span data-ttu-id="731fb-113">Banco de dados de blog</span><span class="sxs-lookup"><span data-stu-id="731fb-113">Blogging database</span></span>
+## <a name="create-blogging-database"></a><span data-ttu-id="84df6-112">Criar banco de dados de blog</span><span class="sxs-lookup"><span data-stu-id="84df6-112">Create Blogging database</span></span>
 
-<span data-ttu-id="731fb-114">Este tutorial usa um banco de dados de **blog** em sua instância do LocalDb como o banco de dados existente.</span><span class="sxs-lookup"><span data-stu-id="731fb-114">This tutorial uses a **Blogging** database on your LocalDb instance as the existing database.</span></span>
+<span data-ttu-id="84df6-113">Este tutorial usa um banco de dados de **blog** em sua instância do LocalDb como o banco de dados existente.</span><span class="sxs-lookup"><span data-stu-id="84df6-113">This tutorial uses a **Blogging** database on your LocalDb instance as the existing database.</span></span> <span data-ttu-id="84df6-114">Se você já tiver criado o banco de dados de **blog** como parte de outro tutorial, ignore estas etapas.</span><span class="sxs-lookup"><span data-stu-id="84df6-114">If you have already created the **Blogging** database as part of another tutorial, skip these steps.</span></span>
 
-> [!TIP]  
-> <span data-ttu-id="731fb-115">Se você já tiver criado o banco de dados de **blog** como parte de outro tutorial, ignore estas etapas.</span><span class="sxs-lookup"><span data-stu-id="731fb-115">If you have already created the **Blogging** database as part of another tutorial, you can skip these steps.</span></span>
-
-* <span data-ttu-id="731fb-116">Abrir o Visual Studio</span><span class="sxs-lookup"><span data-stu-id="731fb-116">Open Visual Studio</span></span>
-* <span data-ttu-id="731fb-117">**Ferramentas > Conectar ao Banco de Dados...**</span><span class="sxs-lookup"><span data-stu-id="731fb-117">**Tools -> Connect to Database...**</span></span>
-* <span data-ttu-id="731fb-118">Selecione **Microsoft SQL Server** e clique em **Continuar**</span><span class="sxs-lookup"><span data-stu-id="731fb-118">Select **Microsoft SQL Server** and click **Continue**</span></span>
-* <span data-ttu-id="731fb-119">Insira **(localdb)\mssqllocaldb** como o **Nome do Servidor**</span><span class="sxs-lookup"><span data-stu-id="731fb-119">Enter **(localdb)\mssqllocaldb** as the **Server Name**</span></span>
-* <span data-ttu-id="731fb-120">Insira **mestre** como o **Nome do Banco de Dados** e clique em **OK**</span><span class="sxs-lookup"><span data-stu-id="731fb-120">Enter **master** as the **Database Name** and click **OK**</span></span>
-* <span data-ttu-id="731fb-121">O banco de dados mestre agora é exibido em **Conexões de Dados** no **Gerenciador de Servidores**</span><span class="sxs-lookup"><span data-stu-id="731fb-121">The master database is now displayed under **Data Connections** in **Server Explorer**</span></span>
-* <span data-ttu-id="731fb-122">Clique com botão direito do mouse no banco de dados em **Gerenciador de Servidores** e selecione **Nova Consulta**</span><span class="sxs-lookup"><span data-stu-id="731fb-122">Right-click on the database in **Server Explorer** and select **New Query**</span></span>
-* <span data-ttu-id="731fb-123">Copie o script, listado abaixo, no editor de consultas</span><span class="sxs-lookup"><span data-stu-id="731fb-123">Copy the script, listed below, into the query editor</span></span>
-* <span data-ttu-id="731fb-124">Clique com o botão direito do mouse no editor de consultas e selecione **Executar**</span><span class="sxs-lookup"><span data-stu-id="731fb-124">Right-click on the query editor and select **Execute**</span></span>
+* <span data-ttu-id="84df6-115">Abrir o Visual Studio</span><span class="sxs-lookup"><span data-stu-id="84df6-115">Open Visual Studio</span></span>
+* <span data-ttu-id="84df6-116">**Ferramentas > Conectar ao Banco de Dados...**</span><span class="sxs-lookup"><span data-stu-id="84df6-116">**Tools -> Connect to Database...**</span></span>
+* <span data-ttu-id="84df6-117">Selecione **Microsoft SQL Server** e clique em **Continuar**</span><span class="sxs-lookup"><span data-stu-id="84df6-117">Select **Microsoft SQL Server** and click **Continue**</span></span>
+* <span data-ttu-id="84df6-118">Insira **(localdb)\mssqllocaldb** como o **Nome do Servidor**</span><span class="sxs-lookup"><span data-stu-id="84df6-118">Enter **(localdb)\mssqllocaldb** as the **Server Name**</span></span>
+* <span data-ttu-id="84df6-119">Insira **mestre** como o **Nome do Banco de Dados** e clique em **OK**</span><span class="sxs-lookup"><span data-stu-id="84df6-119">Enter **master** as the **Database Name** and click **OK**</span></span>
+* <span data-ttu-id="84df6-120">O banco de dados mestre agora é exibido em **Conexões de Dados** no **Gerenciador de Servidores**</span><span class="sxs-lookup"><span data-stu-id="84df6-120">The master database is now displayed under **Data Connections** in **Server Explorer**</span></span>
+* <span data-ttu-id="84df6-121">Clique com botão direito do mouse no banco de dados em **Gerenciador de Servidores** e selecione **Nova Consulta**</span><span class="sxs-lookup"><span data-stu-id="84df6-121">Right-click on the database in **Server Explorer** and select **New Query**</span></span>
+* <span data-ttu-id="84df6-122">Copie o script listado abaixo para o editor de consultas</span><span class="sxs-lookup"><span data-stu-id="84df6-122">Copy the script listed below into the query editor</span></span>
+* <span data-ttu-id="84df6-123">Clique com o botão direito do mouse no editor de consultas e selecione **Executar**</span><span class="sxs-lookup"><span data-stu-id="84df6-123">Right-click on the query editor and select **Execute**</span></span>
 
 [!code-sql[Main](../_shared/create-blogging-database-script.sql)]
 
-## <a name="create-a-new-project"></a><span data-ttu-id="731fb-125">Criar um novo projeto</span><span class="sxs-lookup"><span data-stu-id="731fb-125">Create a new project</span></span>
+## <a name="create-a-new-project"></a><span data-ttu-id="84df6-124">Criar um novo projeto</span><span class="sxs-lookup"><span data-stu-id="84df6-124">Create a new project</span></span>
 
-* <span data-ttu-id="731fb-126">Abra o Visual Studio 2017</span><span class="sxs-lookup"><span data-stu-id="731fb-126">Open Visual Studio 2017</span></span>
-* <span data-ttu-id="731fb-127">**Arquivo > Novo > Projeto...**</span><span class="sxs-lookup"><span data-stu-id="731fb-127">**File -> New -> Project...**</span></span>
-* <span data-ttu-id="731fb-128">No menu à esquerda, selecione **Instalado > Modelos > Visual C# > Web**</span><span class="sxs-lookup"><span data-stu-id="731fb-128">From the left menu select **Installed -> Templates -> Visual C# -> Web**</span></span>
-* <span data-ttu-id="731fb-129">Selecione o modelo de projeto **Aplicativo Web ASP.NET Core (.NET Core)**</span><span class="sxs-lookup"><span data-stu-id="731fb-129">Select the **ASP.NET Core Web Application (.NET Core)** project template</span></span>
-* <span data-ttu-id="731fb-130">Insira **EFGetStarted.AspNetCore.ExistingDb** como o nome e clique em **OK**</span><span class="sxs-lookup"><span data-stu-id="731fb-130">Enter **EFGetStarted.AspNetCore.ExistingDb** as the name and click **OK**</span></span>
-* <span data-ttu-id="731fb-131">Aguarde a caixa de diálogo **Novo Aplicativo Web ASP.NET Core** aparecer</span><span class="sxs-lookup"><span data-stu-id="731fb-131">Wait for the **New ASP.NET Core Web Application** dialog to appear</span></span>
-* <span data-ttu-id="731fb-132">Em **ASP.NET Core Templates 2.0** selecione o **Aplicativo Web (Model-View-Controller)**</span><span class="sxs-lookup"><span data-stu-id="731fb-132">Under **ASP.NET Core Templates 2.0** select the **Web Application (Model-View-Controller)**</span></span>
-* <span data-ttu-id="731fb-133">Certifique-se de que **Autenticação** esteja definida como **Sem Autenticação**</span><span class="sxs-lookup"><span data-stu-id="731fb-133">Ensure that **Authentication** is set to **No Authentication**</span></span>
-* <span data-ttu-id="731fb-134">Clique em **OK**</span><span class="sxs-lookup"><span data-stu-id="731fb-134">Click **OK**</span></span>
+* <span data-ttu-id="84df6-125">Abra o Visual Studio 2017</span><span class="sxs-lookup"><span data-stu-id="84df6-125">Open Visual Studio 2017</span></span>
+* <span data-ttu-id="84df6-126">**Arquivo > Novo > Projeto...**</span><span class="sxs-lookup"><span data-stu-id="84df6-126">**File > New > Project...**</span></span>
+* <span data-ttu-id="84df6-127">No menu à esquerda, selecione **Instalado > Visual C# > Web**</span><span class="sxs-lookup"><span data-stu-id="84df6-127">From the left menu select **Installed > Visual C# > Web**</span></span>
+* <span data-ttu-id="84df6-128">Selecione o modelo de projeto **Aplicativo Web ASP.NET Core**</span><span class="sxs-lookup"><span data-stu-id="84df6-128">Select the **ASP.NET Core Web Application** project template</span></span>
+* <span data-ttu-id="84df6-129">Insira **EFGetStarted.AspNetCore.ExistingDb** como o nome e clique em **OK**</span><span class="sxs-lookup"><span data-stu-id="84df6-129">Enter **EFGetStarted.AspNetCore.ExistingDb** as the name and click **OK**</span></span>
+* <span data-ttu-id="84df6-130">Aguarde a caixa de diálogo **Novo Aplicativo Web ASP.NET Core** aparecer</span><span class="sxs-lookup"><span data-stu-id="84df6-130">Wait for the **New ASP.NET Core Web Application** dialog to appear</span></span>
+* <span data-ttu-id="84df6-131">Verifique se a lista suspensa da estrutura de destino está definida como **.NET Core** e a lista suspensa da versão definida como **ASP.NET Core 2.1**</span><span class="sxs-lookup"><span data-stu-id="84df6-131">Make sure that the target framework dropdown is set to **.NET Core**, and the version dropdown is set to **ASP.NET Core 2.1**</span></span>
+* <span data-ttu-id="84df6-132">Selecione o modelo **Aplicativo Web (Model-View-Controller)**</span><span class="sxs-lookup"><span data-stu-id="84df6-132">Select the **Web Application (Model-View-Controller)** template</span></span>
+* <span data-ttu-id="84df6-133">Certifique-se de que **Autenticação** esteja definida como **Sem Autenticação**</span><span class="sxs-lookup"><span data-stu-id="84df6-133">Ensure that **Authentication** is set to **No Authentication**</span></span>
+* <span data-ttu-id="84df6-134">Clique em **OK**</span><span class="sxs-lookup"><span data-stu-id="84df6-134">Click **OK**</span></span>
 
-## <a name="install-entity-framework"></a><span data-ttu-id="731fb-135">Instalar o Entity Framework</span><span class="sxs-lookup"><span data-stu-id="731fb-135">Install Entity Framework</span></span>
+## <a name="install-entity-framework-core"></a><span data-ttu-id="84df6-135">Instalar o Entity Framework Core</span><span class="sxs-lookup"><span data-stu-id="84df6-135">Install Entity Framework Core</span></span>
 
-<span data-ttu-id="731fb-136">Para usar o EF Core, instale o pacote do provedor do banco de dados para o qual você deseja direcionar.</span><span class="sxs-lookup"><span data-stu-id="731fb-136">To use EF Core, install the package for the database provider(s) you want to target.</span></span> <span data-ttu-id="731fb-137">Este passo a passo usa o SQL Server.</span><span class="sxs-lookup"><span data-stu-id="731fb-137">This walkthrough uses SQL Server.</span></span> <span data-ttu-id="731fb-138">Para obter uma lista de provedores disponíveis, veja [Provedores de Banco de Dados](../../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="731fb-138">For a list of available providers see [Database Providers](../../providers/index.md).</span></span>
+<span data-ttu-id="84df6-136">Para instalar o EF Core, instale o pacote dos provedores do banco de dados do EF Core para o qual você deseja direcionar.</span><span class="sxs-lookup"><span data-stu-id="84df6-136">To install EF Core, you install the package for the EF Core database provider(s) you want to target.</span></span> <span data-ttu-id="84df6-137">Para obter uma lista de provedores disponíveis, veja [Provedores de Banco de Dados](../../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="84df6-137">For a list of available providers see [Database Providers](../../providers/index.md).</span></span> 
 
-* <span data-ttu-id="731fb-139">**Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**</span><span class="sxs-lookup"><span data-stu-id="731fb-139">**Tools > NuGet Package Manager > Package Manager Console**</span></span>
+<span data-ttu-id="84df6-138">Para este tutorial, não é necessário instalar um pacote de provedor, porque o tutorial usa o SQL Server.</span><span class="sxs-lookup"><span data-stu-id="84df6-138">For this tutorial, you don't have to install a provider package because the tutorial uses SQL Server.</span></span> <span data-ttu-id="84df6-139">O pacote de provedor do SQL Server está incluído no [metapacote Microsoft.AspnetCore.App](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/metapackage-app?view=aspnetcore-2.1).</span><span class="sxs-lookup"><span data-stu-id="84df6-139">The SQL Server provider package is included in the [Microsoft.AspnetCore.App metapackage](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/metapackage-app?view=aspnetcore-2.1).</span></span>
 
-* <span data-ttu-id="731fb-140">Execute `Install-Package Microsoft.EntityFrameworkCore.SqlServer`</span><span class="sxs-lookup"><span data-stu-id="731fb-140">Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer`</span></span>
+## <a name="reverse-engineer-your-model"></a><span data-ttu-id="84df6-140">Fazer engenharia reversa em seu modelo</span><span class="sxs-lookup"><span data-stu-id="84df6-140">Reverse engineer your model</span></span>
 
-<span data-ttu-id="731fb-141">Usaremos Entity Framework Tools para criar um modelo do banco de dados.</span><span class="sxs-lookup"><span data-stu-id="731fb-141">We will be using some Entity Framework Tools to create a model from the database.</span></span> <span data-ttu-id="731fb-142">Portanto, também instalaremos o pacote de ferramentas:</span><span class="sxs-lookup"><span data-stu-id="731fb-142">So we will install the tools package as well:</span></span>
+<span data-ttu-id="84df6-141">Agora é hora de criar o modelo EF com base em seu banco de dados existente.</span><span class="sxs-lookup"><span data-stu-id="84df6-141">Now it's time to create the EF model based on your existing database.</span></span>
 
-* <span data-ttu-id="731fb-143">Execute `Install-Package Microsoft.EntityFrameworkCore.Tools`</span><span class="sxs-lookup"><span data-stu-id="731fb-143">Run `Install-Package Microsoft.EntityFrameworkCore.Tools`</span></span>
-
-<span data-ttu-id="731fb-144">Usaremos algumas ferramentas de scaffolding do ASP.NET Core para criar controladores e exibições posteriormente.</span><span class="sxs-lookup"><span data-stu-id="731fb-144">We will be using some ASP.NET Core Scaffolding tools to create controllers and views later on.</span></span> <span data-ttu-id="731fb-145">Portanto, também instalaremos o pacote de design:</span><span class="sxs-lookup"><span data-stu-id="731fb-145">So we will install this design package as well:</span></span>
-
-* <span data-ttu-id="731fb-146">Execute `Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design`</span><span class="sxs-lookup"><span data-stu-id="731fb-146">Run `Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design`</span></span>
-
-## <a name="reverse-engineer-your-model"></a><span data-ttu-id="731fb-147">Fazer engenharia reversa em seu modelo</span><span class="sxs-lookup"><span data-stu-id="731fb-147">Reverse engineer your model</span></span>
-
-<span data-ttu-id="731fb-148">Agora é hora de criar o modelo EF com base em seu banco de dados existente.</span><span class="sxs-lookup"><span data-stu-id="731fb-148">Now it's time to create the EF model based on your existing database.</span></span>
-
-* <span data-ttu-id="731fb-149">**Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**</span><span class="sxs-lookup"><span data-stu-id="731fb-149">**Tools –> NuGet Package Manager –> Package Manager Console**</span></span>
-* <span data-ttu-id="731fb-150">Execute o seguinte comando para criar um modelo do banco de dados existente:</span><span class="sxs-lookup"><span data-stu-id="731fb-150">Run the following command to create a model from the existing database:</span></span>
+* <span data-ttu-id="84df6-142">**Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**</span><span class="sxs-lookup"><span data-stu-id="84df6-142">**Tools –> NuGet Package Manager –> Package Manager Console**</span></span>
+* <span data-ttu-id="84df6-143">Execute o seguinte comando para criar um modelo do banco de dados existente:</span><span class="sxs-lookup"><span data-stu-id="84df6-143">Run the following command to create a model from the existing database:</span></span>
 
 ``` powershell
 Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 ```
 
-<span data-ttu-id="731fb-151">Se você receber um erro indicando `The term 'Scaffold-DbContext' is not recognized as the name of a cmdlet`, feche e reabra o Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="731fb-151">If you receive an error stating `The term 'Scaffold-DbContext' is not recognized as the name of a cmdlet`, then close and reopen Visual Studio.</span></span>
+<span data-ttu-id="84df6-144">Se você receber um erro indicando `The term 'Scaffold-DbContext' is not recognized as the name of a cmdlet`, feche e reabra o Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="84df6-144">If you receive an error stating `The term 'Scaffold-DbContext' is not recognized as the name of a cmdlet`, then close and reopen Visual Studio.</span></span>
 
 > [!TIP]  
-> <span data-ttu-id="731fb-152">Especifique para quais tabelas você deseja gerar entidades adicionando o argumento `-Tables` para o comando acima.</span><span class="sxs-lookup"><span data-stu-id="731fb-152">You can specify which tables you want to generate entities for by adding the `-Tables` argument to the command above.</span></span> <span data-ttu-id="731fb-153">Por exemplo, `-Tables Blog,Post`.</span><span class="sxs-lookup"><span data-stu-id="731fb-153">For example, `-Tables Blog,Post`.</span></span>
+> <span data-ttu-id="84df6-145">Especifique para quais tabelas você deseja gerar entidades adicionando o argumento `-Tables` para o comando acima.</span><span class="sxs-lookup"><span data-stu-id="84df6-145">You can specify which tables you want to generate entities for by adding the `-Tables` argument to the command above.</span></span> <span data-ttu-id="84df6-146">Por exemplo, `-Tables Blog,Post`.</span><span class="sxs-lookup"><span data-stu-id="84df6-146">For example, `-Tables Blog,Post`.</span></span>
 
-<span data-ttu-id="731fb-154">O processo de engenharia reversa criou classes de entidade (`Blog.cs` & `Post.cs`) e um contexto derivado (`BloggingContext.cs`) com base no esquema do banco de dados existente.</span><span class="sxs-lookup"><span data-stu-id="731fb-154">The reverse engineer process created entity classes (`Blog.cs` & `Post.cs`) and a derived context (`BloggingContext.cs`) based on the schema of the existing database.</span></span>
+<span data-ttu-id="84df6-147">O processo de engenharia reversa criou classes de entidade (`Blog.cs` & `Post.cs`) e um contexto derivado (`BloggingContext.cs`) com base no esquema do banco de dados existente.</span><span class="sxs-lookup"><span data-stu-id="84df6-147">The reverse engineer process created entity classes (`Blog.cs` & `Post.cs`) and a derived context (`BloggingContext.cs`) based on the schema of the existing database.</span></span>
 
- <span data-ttu-id="731fb-155">As classes de entidade são objetos C# simples que representam os dados que você vai consultar e salvar.</span><span class="sxs-lookup"><span data-stu-id="731fb-155">The entity classes are simple C# objects that represent the data you will be querying and saving.</span></span>
+ <span data-ttu-id="84df6-148">As classes de entidade são objetos C# simples que representam os dados que você vai consultar e salvar.</span><span class="sxs-lookup"><span data-stu-id="84df6-148">The entity classes are simple C# objects that represent the data you will be querying and saving.</span></span> <span data-ttu-id="84df6-149">Veja as classes de entidade `Blog` e `Post`:</span><span class="sxs-lookup"><span data-stu-id="84df6-149">Here are the `Blog` and `Post` entity classes:</span></span>
 
  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Models/Blog.cs)]
 
- <span data-ttu-id="731fb-156">O contexto representa uma sessão com o banco de dados e permite que você veja e salve as instâncias das classes de entidade.</span><span class="sxs-lookup"><span data-stu-id="731fb-156">The context represents a session with the database and allows you to query and save instances of the entity classes.</span></span>
+[!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Models/Post.cs)]
 
-<!-- Static code listing, rather than a linked file, because the walkthrough modifies the context file heavily -->
+> [!TIP]  
+> <span data-ttu-id="84df6-150">Para habilitar o carregamento lento, crie propriedades de navegação `virtual` (Blog.Post e Post.Blog).</span><span class="sxs-lookup"><span data-stu-id="84df6-150">To enable lazy loading, you can make navigation properties `virtual` (Blog.Post and Post.Blog).</span></span>
+
+ <span data-ttu-id="84df6-151">O contexto representa uma sessão com o banco de dados e permite que você veja e salve as instâncias das classes de entidade.</span><span class="sxs-lookup"><span data-stu-id="84df6-151">The context represents a session with the database and allows you to query and save instances of the entity classes.</span></span>
+
+<!-- Static code listing, rather than a linked file, because the tutorial modifies the context file heavily -->
  ``` csharp
 public partial class BloggingContext : DbContext
 {
+    public BloggingContext()
+    {
+    }
+
+    public BloggingContext(DbContextOptions<BloggingContext> options)
+        : base(options)
+    {
+    }
+
     public virtual DbSet<Blog> Blog { get; set; }
     public virtual DbSet<Post> Post { get; set; }
 
@@ -134,71 +134,44 @@ public partial class BloggingContext : DbContext
 }
 ```
 
-## <a name="register-your-context-with-dependency-injection"></a><span data-ttu-id="731fb-157">Registre seu contexto com injeção de dependência</span><span class="sxs-lookup"><span data-stu-id="731fb-157">Register your context with dependency injection</span></span>
+## <a name="register-your-context-with-dependency-injection"></a><span data-ttu-id="84df6-152">Registre seu contexto com injeção de dependência</span><span class="sxs-lookup"><span data-stu-id="84df6-152">Register your context with dependency injection</span></span>
 
-<span data-ttu-id="731fb-158">O conceito de injeção de dependência é central ao ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="731fb-158">The concept of dependency injection is central to ASP.NET Core.</span></span> <span data-ttu-id="731fb-159">Serviços (como `BloggingContext`) são registrados com injeção de dependência durante a inicialização do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="731fb-159">Services (such as `BloggingContext`) are registered with dependency injection during application startup.</span></span> <span data-ttu-id="731fb-160">Agora, os componentes que exigem esses serviços (como os controladores de MVC) os recebem por meio de propriedades ou parâmetros do construtor.</span><span class="sxs-lookup"><span data-stu-id="731fb-160">Components that require these services (such as your MVC controllers) are then provided these services via constructor parameters or properties.</span></span> <span data-ttu-id="731fb-161">Para saber mais sobre injeção de dependência, veja o artigo [Injeção de dependência](http://docs.asp.net/en/latest/fundamentals/dependency-injection.html) no site do ASP.NET.</span><span class="sxs-lookup"><span data-stu-id="731fb-161">For more information on dependency injection see the [Dependency Injection](http://docs.asp.net/en/latest/fundamentals/dependency-injection.html) article on the ASP.NET site.</span></span>
+<span data-ttu-id="84df6-153">O conceito de injeção de dependência é central ao ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="84df6-153">The concept of dependency injection is central to ASP.NET Core.</span></span> <span data-ttu-id="84df6-154">Serviços (como `BloggingContext`) são registrados com injeção de dependência durante a inicialização do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="84df6-154">Services (such as `BloggingContext`) are registered with dependency injection during application startup.</span></span> <span data-ttu-id="84df6-155">Agora, os componentes que exigem esses serviços (como os controladores de MVC) os recebem por meio de propriedades ou parâmetros do construtor.</span><span class="sxs-lookup"><span data-stu-id="84df6-155">Components that require these services (such as your MVC controllers) are then provided these services via constructor parameters or properties.</span></span> <span data-ttu-id="84df6-156">Para saber mais sobre injeção de dependência, veja o artigo [Injeção de dependência](http://docs.asp.net/en/latest/fundamentals/dependency-injection.html) no site do ASP.NET.</span><span class="sxs-lookup"><span data-stu-id="84df6-156">For more information on dependency injection see the [Dependency Injection](http://docs.asp.net/en/latest/fundamentals/dependency-injection.html) article on the ASP.NET site.</span></span>
 
-### <a name="remove-inline-context-configuration"></a><span data-ttu-id="731fb-162">Remover configuração de contexto embutida</span><span class="sxs-lookup"><span data-stu-id="731fb-162">Remove inline context configuration</span></span>
+### <a name="register-and-configure-your-context-in-startupcs"></a><span data-ttu-id="84df6-157">Registrar e configurar o contexto em Startup.cs</span><span class="sxs-lookup"><span data-stu-id="84df6-157">Register and configure your context in Startup.cs</span></span>
 
-<span data-ttu-id="731fb-163">No ASP.NET Core, a configuração geralmente é executada em **Startup.cs**.</span><span class="sxs-lookup"><span data-stu-id="731fb-163">In ASP.NET Core, configuration is generally performed in **Startup.cs**.</span></span> <span data-ttu-id="731fb-164">Para atender a esse padrão, mudaremos a configuração do provedor de banco de dados para **Startup.cs**.</span><span class="sxs-lookup"><span data-stu-id="731fb-164">To conform to this pattern, we will move configuration of the database provider to **Startup.cs**.</span></span>
+<span data-ttu-id="84df6-158">Para disponibilizar `BloggingContext` para os controladores do MVC, registre-o como um serviço.</span><span class="sxs-lookup"><span data-stu-id="84df6-158">To make `BloggingContext` available to MVC controllers, register it as a service.</span></span>
 
-* <span data-ttu-id="731fb-165">Abrir `Models\BloggingContext.cs`</span><span class="sxs-lookup"><span data-stu-id="731fb-165">Open `Models\BloggingContext.cs`</span></span>
-* <span data-ttu-id="731fb-166">Exclua o método `OnConfiguring(...)`</span><span class="sxs-lookup"><span data-stu-id="731fb-166">Delete the `OnConfiguring(...)` method</span></span>
-
-``` csharp
-protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-{
-    #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-    optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
-}
-```
-
-* <span data-ttu-id="731fb-167">Adicione o seguinte construtor, que permitirá que a configuração seja passada para o contexto pela injeção de dependência</span><span class="sxs-lookup"><span data-stu-id="731fb-167">Add the following constructor, which will allow configuration to be passed into the context by dependency injection</span></span>
-
-[!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Models/BloggingContext.cs#Constructor)]
-
-### <a name="register-and-configure-your-context-in-startupcs"></a><span data-ttu-id="731fb-168">Registrar e configurar o contexto em Startup.cs</span><span class="sxs-lookup"><span data-stu-id="731fb-168">Register and configure your context in Startup.cs</span></span>
-
-<span data-ttu-id="731fb-169">Para que os controladores MVC usem o `BloggingContext`, vamos registrá-lo como um serviço.</span><span class="sxs-lookup"><span data-stu-id="731fb-169">In order for our MVC controllers to make use of `BloggingContext` we are going to register it as a service.</span></span>
-
-* <span data-ttu-id="731fb-170">Abra **Startup.cs**</span><span class="sxs-lookup"><span data-stu-id="731fb-170">Open **Startup.cs**</span></span>
-* <span data-ttu-id="731fb-171">Adicione as declarações `using` a seguir ao início do método</span><span class="sxs-lookup"><span data-stu-id="731fb-171">Add the following `using` statements at the start of the file</span></span>
+* <span data-ttu-id="84df6-159">Abra **Startup.cs**</span><span class="sxs-lookup"><span data-stu-id="84df6-159">Open **Startup.cs**</span></span>
+* <span data-ttu-id="84df6-160">Adicione as declarações `using` a seguir ao início do método</span><span class="sxs-lookup"><span data-stu-id="84df6-160">Add the following `using` statements at the start of the file</span></span>
 
 [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Startup.cs#AddedUsings)]
 
-<span data-ttu-id="731fb-172">Agora podemos usar o método `AddDbContext(...)` para registrá-lo como um serviço.</span><span class="sxs-lookup"><span data-stu-id="731fb-172">Now we can use the `AddDbContext(...)` method to register it as a service.</span></span>
-* <span data-ttu-id="731fb-173">Localize o método `ConfigureServices(...)`</span><span class="sxs-lookup"><span data-stu-id="731fb-173">Locate the `ConfigureServices(...)` method</span></span>
-* <span data-ttu-id="731fb-174">Adicione o seguinte código para registrar o contexto como um serviço</span><span class="sxs-lookup"><span data-stu-id="731fb-174">Add the following code to register the context as a service</span></span>
+<span data-ttu-id="84df6-161">Agora é possível usar o método `AddDbContext(...)` para registrá-lo como um serviço.</span><span class="sxs-lookup"><span data-stu-id="84df6-161">Now you can use the `AddDbContext(...)` method to register it as a service.</span></span>
+* <span data-ttu-id="84df6-162">Localize o método `ConfigureServices(...)`</span><span class="sxs-lookup"><span data-stu-id="84df6-162">Locate the `ConfigureServices(...)` method</span></span>
+* <span data-ttu-id="84df6-163">Adicionar o seguinte código realçado para registrar o contexto como um serviço</span><span class="sxs-lookup"><span data-stu-id="84df6-163">Add the following highlighted code to register the context as a service</span></span>
 
-[!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Startup.cs?name=ConfigureServices&highlight=7-8)]
+[!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Startup.cs?name=ConfigureServices&highlight=14-15)]
 
 > [!TIP]  
-> <span data-ttu-id="731fb-175">Em um aplicativo real, normalmente você colocaria a cadeia de conexão em um arquivo de configuração.</span><span class="sxs-lookup"><span data-stu-id="731fb-175">In a real application you would typically put the connection string in a configuration file.</span></span> <span data-ttu-id="731fb-176">Para simplificar, definimos isso no código.</span><span class="sxs-lookup"><span data-stu-id="731fb-176">For the sake of simplicity, we are defining it in code.</span></span> <span data-ttu-id="731fb-177">Para saber mais, confira [Cadeias de conexão](../../miscellaneous/connection-strings.md).</span><span class="sxs-lookup"><span data-stu-id="731fb-177">For more information, see [Connection Strings](../../miscellaneous/connection-strings.md).</span></span>
+> <span data-ttu-id="84df6-164">Em um aplicativo real, normalmente você colocaria a cadeia de conexão em um arquivo de configuração ou variável de ambiente.</span><span class="sxs-lookup"><span data-stu-id="84df6-164">In a real application you would typically put the connection string in a configuration file or environment variable.</span></span> <span data-ttu-id="84df6-165">Para simplificar, este tutorial define isso no código.</span><span class="sxs-lookup"><span data-stu-id="84df6-165">For the sake of simplicity, this tutorial has you define it in code.</span></span> <span data-ttu-id="84df6-166">Para saber mais, confira [Cadeias de conexão](../../miscellaneous/connection-strings.md).</span><span class="sxs-lookup"><span data-stu-id="84df6-166">For more information, see [Connection Strings](../../miscellaneous/connection-strings.md).</span></span>
 
-## <a name="create-a-controller"></a><span data-ttu-id="731fb-178">Criar um controlador</span><span class="sxs-lookup"><span data-stu-id="731fb-178">Create a controller</span></span>
+## <a name="create-a-controller-and-views"></a><span data-ttu-id="84df6-167">Criar um controlador e exibições</span><span class="sxs-lookup"><span data-stu-id="84df6-167">Create a controller and views</span></span>
 
-<span data-ttu-id="731fb-179">Em seguida, habilitaremos o scaffolding em nosso projeto.</span><span class="sxs-lookup"><span data-stu-id="731fb-179">Next, we'll enable scaffolding in our project.</span></span>
+* <span data-ttu-id="84df6-168">Clique com o botão direito do mouse na pasta **Controladores** no **Gerenciador de Soluções** e selecione **Adicionar > Controlador...**</span><span class="sxs-lookup"><span data-stu-id="84df6-168">Right-click on the **Controllers** folder in **Solution Explorer** and select **Add -> Controller...**</span></span>
+* <span data-ttu-id="84df6-169">Selecione **Controlador MVC com exibições, usando o Entity Framework** e clique em **Ok**</span><span class="sxs-lookup"><span data-stu-id="84df6-169">Select **MVC Controller with views, using Entity Framework** and click **Ok**</span></span>
+* <span data-ttu-id="84df6-170">Defina **Classe de modelo** como **Blog** e **Classe de contexto de dados** como **BloggingContext**</span><span class="sxs-lookup"><span data-stu-id="84df6-170">Set **Model class** to **Blog** and **Data context class** to **BloggingContext**</span></span>
+* <span data-ttu-id="84df6-171">Clique em **Adicionar**</span><span class="sxs-lookup"><span data-stu-id="84df6-171">Click **Add**</span></span>
 
-* <span data-ttu-id="731fb-180">Clique com o botão direito do mouse na pasta **Controladores** no **Gerenciador de Soluções** e selecione **Adicionar > Controlador...**</span><span class="sxs-lookup"><span data-stu-id="731fb-180">Right-click on the **Controllers** folder in **Solution Explorer** and select **Add -> Controller...**</span></span>
-* <span data-ttu-id="731fb-181">Selecione **Dependências Completas** e clique em **Adicionar**</span><span class="sxs-lookup"><span data-stu-id="731fb-181">Select **Full Dependencies** and click **Add**</span></span>
-* <span data-ttu-id="731fb-182">Você pode ignorar as instruções no arquivo `ScaffoldingReadMe.txt` aberto</span><span class="sxs-lookup"><span data-stu-id="731fb-182">You can ignore the instructions in the `ScaffoldingReadMe.txt` file that opens</span></span>
+## <a name="run-the-application"></a><span data-ttu-id="84df6-172">Executar o aplicativo</span><span class="sxs-lookup"><span data-stu-id="84df6-172">Run the application</span></span>
 
-<span data-ttu-id="731fb-183">Agora que o scaffolding está habilitado, é possível realizar o scaffolding de um controlador para a entidade `Blog`.</span><span class="sxs-lookup"><span data-stu-id="731fb-183">Now that scaffolding is enabled, we can scaffold a controller for the `Blog` entity.</span></span>
+<span data-ttu-id="84df6-173">Agora, você pode executar o aplicativo para vê-lo em ação.</span><span class="sxs-lookup"><span data-stu-id="84df6-173">You can now run the application to see it in action.</span></span>
 
-* <span data-ttu-id="731fb-184">Clique com o botão direito do mouse na pasta **Controladores** no **Gerenciador de Soluções** e selecione **Adicionar > Controlador...**</span><span class="sxs-lookup"><span data-stu-id="731fb-184">Right-click on the **Controllers** folder in **Solution Explorer** and select **Add -> Controller...**</span></span>
-* <span data-ttu-id="731fb-185">Selecione **Controlador MVC com exibições, usando o Entity Framework** e clique em **Ok**</span><span class="sxs-lookup"><span data-stu-id="731fb-185">Select **MVC Controller with views, using Entity Framework** and click **Ok**</span></span>
-* <span data-ttu-id="731fb-186">Defina **Classe de modelo** como **Blog** e **Classe de contexto de dados** como **BloggingContext**</span><span class="sxs-lookup"><span data-stu-id="731fb-186">Set **Model class** to **Blog** and **Data context class** to **BloggingContext**</span></span>
-* <span data-ttu-id="731fb-187">Clique em **Adicionar**</span><span class="sxs-lookup"><span data-stu-id="731fb-187">Click **Add**</span></span>
-
-## <a name="run-the-application"></a><span data-ttu-id="731fb-188">Executar o aplicativo</span><span class="sxs-lookup"><span data-stu-id="731fb-188">Run the application</span></span>
-
-<span data-ttu-id="731fb-189">Agora, você pode executar o aplicativo para vê-lo em ação.</span><span class="sxs-lookup"><span data-stu-id="731fb-189">You can now run the application to see it in action.</span></span>
-
-* <span data-ttu-id="731fb-190">**Depurar > Iniciar Sem Depuração**</span><span class="sxs-lookup"><span data-stu-id="731fb-190">**Debug -> Start Without Debugging**</span></span>
-* <span data-ttu-id="731fb-191">O aplicativo será compilado e será aberto em um navegador da Web</span><span class="sxs-lookup"><span data-stu-id="731fb-191">The application will build and open in a web browser</span></span>
-* <span data-ttu-id="731fb-192">Navegue até `/Blogs`</span><span class="sxs-lookup"><span data-stu-id="731fb-192">Navigate to `/Blogs`</span></span>
-* <span data-ttu-id="731fb-193">Clique em **Criar Novo**</span><span class="sxs-lookup"><span data-stu-id="731fb-193">Click **Create New**</span></span>
-* <span data-ttu-id="731fb-194">Insira uma **Url** para o novo blog e clique em **Criar**</span><span class="sxs-lookup"><span data-stu-id="731fb-194">Enter a **Url** for the new blog and click **Create**</span></span>
+* <span data-ttu-id="84df6-174">**Depurar > Iniciar Sem Depuração**</span><span class="sxs-lookup"><span data-stu-id="84df6-174">**Debug -> Start Without Debugging**</span></span>
+* <span data-ttu-id="84df6-175">O aplicativo é compilado e aberto em um navegador da Web</span><span class="sxs-lookup"><span data-stu-id="84df6-175">The application builds and opens in a web browser</span></span>
+* <span data-ttu-id="84df6-176">Navegue até `/Blogs`</span><span class="sxs-lookup"><span data-stu-id="84df6-176">Navigate to `/Blogs`</span></span>
+* <span data-ttu-id="84df6-177">Clique em **Criar Novo**</span><span class="sxs-lookup"><span data-stu-id="84df6-177">Click **Create New**</span></span>
+* <span data-ttu-id="84df6-178">Insira uma **Url** para o novo blog e clique em **Criar**</span><span class="sxs-lookup"><span data-stu-id="84df6-178">Enter a **Url** for the new blog and click **Create**</span></span>
 
 ![imagem](_static/create.png)
 
