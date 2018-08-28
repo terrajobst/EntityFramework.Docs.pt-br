@@ -1,30 +1,28 @@
 ---
-title: Chaves alternativas - Core EF
+title: Chaves alternativas – EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 8a5931d4-b480-4298-af36-0e29d74a37c0
-ms.technology: entity-framework-core
 uid: core/modeling/alternate-keys
-ms.openlocfilehash: 09f86a8932b71ec8f30ee90a088091a00233c20f
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: b26d8bc1630af9e811d9c4e7da850a618bc8042e
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26052466"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996965"
 ---
 # <a name="alternate-keys"></a>Chaves alternativas
 
-Uma chave alternativa serve como um identificador exclusivo alternativo para cada instância de entidade além da chave primária. Chaves alternativas podem ser usadas como o destino de uma relação. Ao usar um banco de dados relacional mapeia para o conceito de um índice/restrição unique em colunas-chave alternativas e um ou mais restrições de chave estrangeira que referenciam as colunas.
+Uma chave alternativa serve como um identificador exclusivo alternativo para cada instância de entidade além da chave primária. Chaves alternativas podem ser usadas como o destino de uma relação. Ao usar um banco de dados relacional mapeia para o conceito de um índice/restrição unique nas colunas de chave alternativas e um ou mais restrições de chave estrangeira que referenciam as colunas.
 
 > [!TIP]  
-> Se você quiser impor exclusividade de uma coluna, em seguida, você deseja que um índice exclusivo em vez de uma chave alternativa, consulte [índices](indexes.md). No EF, chaves alternativas fornecem maior funcionalidade de índices exclusivos, porque eles podem ser usados como o destino de uma chave estrangeira.
+> Se você quiser impor exclusividade de uma coluna, em seguida, você deseja que um índice exclusivo em vez de uma chave alternativa, consulte [índices](indexes.md). No EF, chaves alternativas fornecem maior funcionalidade que os índices exclusivos, porque eles podem ser usados como o destino de uma chave estrangeira.
 
-Chaves alternativas normalmente são introduzidas para você quando necessário e você não precisa configurá-los manualmente. Consulte [convenções](#conventions) para obter mais detalhes.
+Chaves alternativas normalmente são introduzidas para você quando necessário e não é preciso configurá-las manualmente. Ver [convenções](#conventions) para obter mais detalhes.
 
 ## <a name="conventions"></a>Convenções
 
-Por convenção, uma chave alternativa é introduzida para você quando você identifica uma propriedade, o que não é a chave primária, como o destino de uma relação.
+Por convenção, uma chave alternativa é introduzida para você quando você identifica uma propriedade, que não é a chave primária, como o destino de uma relação.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/Conventions/Samples/AlternateKey.cs?highlight=12)] -->
 ``` csharp
@@ -68,7 +66,7 @@ Chaves alternativas não podem ser configuradas usando as anotações de dados.
 
 ## <a name="fluent-api"></a>API fluente
 
-Você pode usar a API fluente para configurar uma única propriedade para ser uma chave alternativa.
+Você pode usar a API Fluent para configurar uma única propriedade para ser uma chave alternativa.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/AlternateKeySingle.cs?highlight=7,8)] -->
 ``` csharp
@@ -92,7 +90,7 @@ class Car
 }
 ```
 
-Você também pode usar a API fluente para configurar várias propriedades para ser uma chave alternativa (conhecida como uma chave composta de alternativa).
+Você também pode usar a API Fluent para configurar várias propriedades para ser uma chave alternativa (conhecida como uma chave composta de alternativa).
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/AlternateKeyComposite.cs?highlight=7,8)] -->
 ``` csharp

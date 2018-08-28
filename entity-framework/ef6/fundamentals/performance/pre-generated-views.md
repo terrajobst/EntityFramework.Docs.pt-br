@@ -2,19 +2,13 @@
 title: Modos de exibição de mapeamento pré-gerado - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 917ba9c8-6ddf-4631-ab8c-c4fb378c2fcd
-caps.latest.revision: 3
-ms.openlocfilehash: 9e74176d02afc424118219eec8e016843333cbb8
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: 397569ef374cb44d4938f9e201b588a26c408f6e
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "39119900"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996466"
 ---
 # <a name="pre-generated-mapping-views"></a>Modos de exibição de mapeamento gerados previamente
 Antes que o Entity Framework pode executar uma consulta ou salvar as alterações à fonte de dados, ele deve gerar um conjunto de exibições de mapeamento para acessar o banco de dados. Esses modos de exibição de mapeamento são um conjunto de instrução de Entity SQL que representam o banco de dados de uma maneira abstrata e fazem parte dos metadados que é armazenado em cache por domínio de aplicativo. Se você criar várias instâncias do mesmo contexto no mesmo domínio do aplicativo, eles serão reutilizar modos de exibição de mapeamento dos metadados em cache em vez de regenerá-los. Como geração de exibição de mapeamento é uma parte significativa do custo geral da execução da consulta primeiro, o Entity Framework permite que você gerar previamente exibições de mapeamento e incluí-los no projeto compilado. Para obter mais informações, consulte [considerações de desempenho (Entity Framework)](~/ef6/fundamentals/performance/perf-whitepaper.md).

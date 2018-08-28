@@ -1,22 +1,20 @@
 ---
-title: Valores padrão - Core EF
+title: Valores padrão – EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: e541366a-130f-47dd-9997-1b110a11febe
-ms.technology: entity-framework-core
 uid: core/modeling/relational/default-values
-ms.openlocfilehash: 73b916b6d9f9c984c8ea010f2319eafa7d031a58
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 341f243ddddc345bb4236e5c34f814694b71e32a
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26052756"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996246"
 ---
 # <a name="default-values"></a>Valores padrão
 
 > [!NOTE]  
-> A configuração nesta seção é aplicável a bancos de dados relacionais em geral. Os métodos de extensão mostrados aqui estará disponíveis quando você instala um provedor de banco de dados relacional (devido a compartilhado *Microsoft.EntityFrameworkCore.Relational* pacote).
+> A configuração nesta seção é aplicável a bancos de dados relacionais em geral. Os métodos de extensão mostrados aqui ficarão disponíveis quando você instalar um provedor de banco de dados relacional (devido ao pacote *Microsoft.EntityFrameworkCore.Relational* compartilhado).
 
 O valor padrão de uma coluna é o valor que será inserido se uma nova linha é inserida, mas nenhum valor for especificado para a coluna.
 
@@ -30,7 +28,7 @@ Você não pode definir um valor padrão usando as anotações de dados.
 
 ## <a name="fluent-api"></a>API fluente
 
-Você pode usar a API fluente para especificar o valor padrão para uma propriedade.
+Você pode usar a API Fluent para especificar o valor padrão para uma propriedade.
 
 <!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/DefaultValue.cs?highlight=9)] -->
 ``` csharp

@@ -2,19 +2,13 @@
 title: Definição de consulta - EF Designer - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: e52a297e-85aa-42f6-a922-ba960f8a4b22
-caps.latest.revision: 3
-ms.openlocfilehash: 593fb9925a7a0b59a69b8c8dc4846640627756aa
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 60d5310589bb9bc3fdb971673422e80537357e55
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "39119823"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996301"
 ---
 # <a name="defining-query---ef-designer"></a>Consulta de definição - EF Designer
 Este passo a passo demonstra como adicionar uma definição de tipo de consulta e uma entidade correspondente a um modelo usando o EF Designer. Uma consulta de definição é comumente usada para fornecer funcionalidade semelhante àquela fornecida por uma exibição de banco de dados, mas a exibição é definida no modelo, não o banco de dados. Uma consulta de definição permite que você execute uma instrução SQL que é especificada na **DefiningQuery** elemento de um arquivo. edmx. Para obter mais informações, consulte **DefiningQuery** na [especificação de SSDL](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md).

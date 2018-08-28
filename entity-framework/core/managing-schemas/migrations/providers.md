@@ -1,27 +1,26 @@
 ---
-title: Migrações com vários provedores - Core EF
+title: Migrações com vários provedores – EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/8/2017
-ms.technology: entity-framework-core
-ms.openlocfilehash: d950e74ed4cef7d4274aabcf3eda7b0b735574c6
-ms.sourcegitcommit: 2ef0a4a90b01edd22b9206f8729b8de459ef8cab
+ms.openlocfilehash: 7ae695037992323337a780cda29d8c8ed8a13458
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2018
-ms.locfileid: "30002799"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997967"
 ---
 <a name="migrations-with-multiple-providers"></a>Migrações com vários provedores
 ==================================
-O [EF principais ferramentas] [ 1] scaffold somente as migrações para o provedor ativo. Às vezes, no entanto, convém usar mais de um provedor (por exemplo, Microsoft SQL Server e SQLite) com o DbContext. Há duas maneiras para lidar com isso com migrações. Você pode manter dois conjuntos de migrações – para cada provedor – ou mesclagem-los em um único conjunto que funciona em ambos.
+O [ferramentas do EF Core] [ 1] apenas criar o scaffolding de migrações para o provedor de Active Directory. Às vezes, no entanto, você talvez queira usar mais de um provedor (por exemplo, Microsoft SQL Server e SQLite) com seu DbContext. Há duas maneiras de lidar com isso com as migrações. Você pode manter dois conjuntos de migrações – uma para cada provedor – ou mesclagem-los em um único conjunto de que possa trabalhar em ambos.
 
 <a name="two-migration-sets"></a>Dois conjuntos de migração
 ------------------
-Na primeira abordagem, você deve gerar duas migrações para cada alteração de modelo.
+A primeira abordagem, você gera duas migrações de cada alteração de modelo.
 
-Uma forma de fazer isso é colocar cada conjunto de migração [em um assembly separado] [ 2] e alternar manualmente o provedor ativo (e o conjunto de migrações) entre duas migrações de adicionar.
+Uma forma de fazer isso é colocar cada conjunto de migração [em um assembly separado] [ 2] e mudar manualmente o provedor de Active Directory (e o conjunto de migrações) entre as duas migrações de adicionar.
 
-É outra abordagem que facilita o trabalho com as ferramentas criar um novo tipo que deriva de sua DbContext e substitui o provedor ativo. Esse tipo é usado no design de tempo ao adicionar ou aplicação de migrações.
+É outra abordagem que facilita o trabalho com as ferramentas criar um novo tipo que deriva de seu DbContext e substitui o provedor de Active Directory. Esse tipo é usado no design de tempo durante a adição ou a aplicação de migrações.
 
 ``` csharp
 class MySqliteDbContext : MyDbContext
@@ -32,7 +31,7 @@ class MySqliteDbContext : MyDbContext
 ```
 
 > [!NOTE]
-> Como cada conjunto de migração usa seus próprios tipos DbContext, essa abordagem não requer o uso de um conjunto separado de migrações.
+> Como cada conjunto de migração usa seus próprios tipos de DbContext, essa abordagem não exige o uso de um assembly de migrações separadas.
 
 Ao adicionar nova migração, especifica os tipos de contexto.
 
@@ -46,13 +45,13 @@ dotnet ef migrations add InitialCreate --context MySqliteDbContext --output-dir 
 ```
 
 > [!TIP]
-> Você não precisa especificar o diretório de saída para migrações subsequentes, como eles são criados como irmãos para o último.
+> Você não precisa especificar o diretório de saída para migrações subsequentes, pois eles são criados como irmãos para o último deles.
 
-<a name="one-migration-set"></a>Migração de um conjunto
+<a name="one-migration-set"></a>Conjunto de uma migração
 -----------------
-Se você não gosta ter dois conjuntos de migrações, você pode combiná-los manualmente em um único conjunto pode ser aplicado a ambos os provedores.
+Se você não gostar de ter dois conjuntos de migrações, você pode combiná-los manualmente em um único conjunto pode ser aplicado a ambos os provedores.
 
-As anotações podem coexistir como um provedor ignora quaisquer anotações que não entende. Por exemplo, uma coluna de chave primária que funciona com o Microsoft SQL Server e SQLite pode parecer com isso.
+As anotações podem coexistir, pois um provedor ignora todas as anotações que não entende. Por exemplo, uma coluna de chave primária que funciona com o Microsoft SQL Server e SQLite pode parecer com isso.
 
 ``` csharp
 Id = table.Column<int>(nullable: false)
@@ -61,7 +60,7 @@ Id = table.Column<int>(nullable: false)
     .Annotation("Sqlite:Autoincrement", true),
 ```
 
-Se operações somente podem ser aplicadas em um provedor (ou estiverem diferente entre os provedores), use o `ActiveProvider` propriedade dizer qual provedor está ativo.
+Se operações somente podem ser aplicadas em um provedor (ou eles são diferente entre provedores), use o `ActiveProvider` propriedade informar qual provedor está ativo.
 
 ``` csharp
 if (migrationBuilder.ActiveProvider == "Microsoft.EntityFrameworkCore.SqlServer")

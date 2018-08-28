@@ -2,19 +2,13 @@
 title: Primeiro banco de dados - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: cc6ffdb3-388d-4e79-a201-01ec2577c949
-caps.latest.revision: 3
-ms.openlocfilehash: 17bba5fe9883a1bee0f8b9624dfa35da889e6005
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: c60108c09fcbaaa1f86e77fa52cb13fe018975e1
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "39119734"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995904"
 ---
 # <a name="database-first"></a>Primeiro banco de dados
 Este passo a passo e vídeo passo a passo fornecem uma introdução ao desenvolvimento de banco de dados primeiro usando o Entity Framework. Banco de dados pela primeira vez permite que você faz engenharia reversa de um modelo de banco de dados existente. O modelo é armazenado em um arquivo EDMX (extensão. edmx) e pode ser exibido e editado no Entity Framework Designer. As classes que interagem com em seu aplicativo são geradas automaticamente do arquivo EDMX.

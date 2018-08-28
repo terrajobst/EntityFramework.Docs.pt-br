@@ -2,19 +2,13 @@
 title: Relações, as propriedades de navegação e chaves estrangeiras - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-caps.latest.revision: 3
-ms.openlocfilehash: 28dab25c7d19a117e594b1761f7bc745b684f7b3
-ms.sourcegitcommit: 5c2634c546720902fe01935f4fc031d73aa3ebde
+ms.openlocfilehash: c1d48f18a7dd25a6a48537f0de5379f861bf447a
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/01/2018
-ms.locfileid: "39393757"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997995"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>Relações, as propriedades de navegação e chaves estrangeiras
 Este tópico fornece uma visão geral de como o Entity Framework gerencia os relacionamentos entre entidades. Ele também fornece algumas diretrizes sobre como mapear e manipular as relações.

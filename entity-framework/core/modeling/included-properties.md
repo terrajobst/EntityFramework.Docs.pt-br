@@ -1,21 +1,19 @@
 ---
-title: Incluindo e excluindo propriedades - Core EF
+title: Incluir e excluir propriedades – EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: e9dff604-3469-4a05-8f9e-18ac281d82a9
-ms.technology: entity-framework-core
 uid: core/modeling/included-properties
-ms.openlocfilehash: a6eaea4319f6a4d30c223265bf75a88731a38443
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 07b70e4517b67490e04a9ec9fa22b9b5d5217681
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26052486"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42998249"
 ---
-# <a name="including--excluding-properties"></a>Incluindo e excluindo propriedades
+# <a name="including--excluding-properties"></a>Incluir e excluir propriedades
 
-Incluindo uma propriedade no modelo significa que o EF tem metadados sobre essa propriedade e tenta ler e gravar valores do/para o banco de dados.
+Incluindo uma propriedade no modelo significa que o EF tem metadados sobre essa propriedade e tentará ler e gravar valores de/para o banco de dados.
 
 ## <a name="conventions"></a>Convenções
 
@@ -23,7 +21,7 @@ Por convenção, as propriedades públicas com um getter e um setter serão incl
 
 ## <a name="data-annotations"></a>Anotações de dados
 
-Você pode usar as anotações de dados para excluir uma propriedade do modelo.
+Você pode usar anotações de dados para excluir uma propriedade do modelo.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/DataAnnotations/Samples/IgnoreProperty.cs?highlight=6)] -->
 ``` csharp
@@ -39,7 +37,7 @@ public class Blog
 
 ## <a name="fluent-api"></a>API fluente
 
-Você pode usar a API fluente para excluir uma propriedade do modelo.
+Você pode usar a API Fluent para excluir uma propriedade do modelo.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/IgnoreProperty.cs?highlight=7,8)] -->
 ``` csharp

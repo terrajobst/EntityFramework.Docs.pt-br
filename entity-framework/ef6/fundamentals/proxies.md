@@ -2,19 +2,13 @@
 title: Trabalhar com proxies - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 869ee4dc-06f1-471d-8e0e-0a1a2bc59c30
-caps.latest.revision: 3
-ms.openlocfilehash: 4632e246d28a3cd53dabe5ac76e44f4538739abc
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 7b82dd370e67d1622fc00ff5e5275721d0fc4fe1
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "39119722"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997197"
 ---
 # <a name="working-with-proxies"></a>Trabalhar com proxies
 Ao criar instâncias de tipos de entidade POCO, o Entity Framework geralmente cria instâncias de um tipo derivado gerado dinamicamente que atua como um proxy para a entidade. Esse proxy substitui alguns virtuais propriedades da entidade para inserir os ganchos para executar as ações automaticamente quando a propriedade é acessada. Por exemplo, esse mecanismo é usado para dar suporte a carregamento lento de relações. As técnicas mostradas neste tópico se aplicam igualmente a modelos criados com o Code First e com o EF Designer.  

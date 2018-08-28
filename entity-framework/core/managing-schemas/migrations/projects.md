@@ -1,19 +1,18 @@
 ---
-title: Migrações com vários projetos - Core EF
+title: Migrações com vários projetos – EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 10/30/2017
-ms.technology: entity-framework-core
-ms.openlocfilehash: 3684e86cce0005056380d89604d038c734054d14
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 76e88dd486b1c53dc69a24e35710511bf9cb673b
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/22/2017
-ms.locfileid: "27161221"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997981"
 ---
 <a name="using-a-separate-project"></a>Usando um projeto separado
 ========================
-Você pode desejar armazenar suas migrações em um conjunto diferente de uma contendo o `DbContext`. Você também pode usar essa estratégia para manter vários conjuntos de migrações, por exemplo, um para o desenvolvimento e outro para atualizações de versão para versão.
+Você pode desejar armazenar suas migrações em um assembly diferente que o outro contendo seu `DbContext`. Você também pode usar essa estratégia para manter vários conjuntos de migrações, por exemplo, um para desenvolvimento e outro para atualizações de versão para versão.
 
 Para fazer isso...
 
@@ -21,10 +20,11 @@ Para fazer isso...
 
 2. Adicione uma referência ao seu assembly de DbContext.
 
-3. Mova os arquivos de instantâneo de modelo e migrações para a biblioteca de classes.
-   * Se você não adicionou nenhum, adicione uma ao projeto DbContext e movê-lo.
+3. Mova as migrações e arquivos de instantâneo do modelo para a biblioteca de classes.
+   > [!TIP]
+   > Se você não tiver nenhuma migração existente, gerá-lo no projeto que contém o DbContext e em seguida, movê-lo. Isso é importante porque se o assembly de migrações não contiver uma migração existente, o comando Add-Migration será não é possível localizar o DbContext.
 
-4. Configure o assembly de migrações:
+4. Configure o conjunto de migrações:
 
    ``` csharp
    options.UseSqlServer(
@@ -37,7 +37,7 @@ Para fazer isso...
 
      ``` xml
      <PropertyGroup>
-       <OutputPath>..\MyStarupProject\bin\$(Configuration)\</OutputPath>
+       <OutputPath>..\MyStartupProject\bin\$(Configuration)\</OutputPath>
      </PropertyGroup>
      ```
 
