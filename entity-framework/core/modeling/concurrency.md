@@ -1,59 +1,57 @@
 ---
-title: Tokens de simultaneidade - Core EF
+title: Tokens de simultaneidade – EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 03/03/2018
 ms.assetid: bc8b1cb0-befe-4b67-8004-26e6c5f69385
-ms.technology: entity-framework-core
 uid: core/modeling/concurrency
-ms.openlocfilehash: f3cf28d5c54e63aa76058e9fe1d9f3de5b37d579
-ms.sourcegitcommit: 8f3be0a2a394253efb653388ec66bda964e5ee1b
+ms.openlocfilehash: 0051d416544a11385f99d36e45843c5b20725af7
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2018
-ms.locfileid: "29745468"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994220"
 ---
-# <a name="concurrency-tokens"></a><span data-ttu-id="8f988-102">Tokens de simultaneidade</span><span class="sxs-lookup"><span data-stu-id="8f988-102">Concurrency Tokens</span></span>
+# <a name="concurrency-tokens"></a><span data-ttu-id="52a11-102">Tokens de simultaneidade</span><span class="sxs-lookup"><span data-stu-id="52a11-102">Concurrency Tokens</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="8f988-103">Esta página documenta como configurar tokens de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="8f988-103">This page documents how to configure concurrency tokens.</span></span> <span data-ttu-id="8f988-104">Consulte [controlando conflitos de simultaneidade](../saving/concurrency.md) para obter uma explicação detalhada de como funciona o controle de simultaneidade no EF Core e exemplos de como lidar com conflitos de simultaneidade em seu aplicativo.</span><span class="sxs-lookup"><span data-stu-id="8f988-104">See [Handling Concurrency Conflicts](../saving/concurrency.md) for a detailed explanation of how concurrency control works on EF Core and examples of how to handle concurrency conflicts in your application.</span></span>
+> <span data-ttu-id="52a11-103">Esta página documenta como configurar os tokens de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="52a11-103">This page documents how to configure concurrency tokens.</span></span> <span data-ttu-id="52a11-104">Ver [tratamento de conflitos de simultaneidade](../saving/concurrency.md) para obter uma explicação detalhada de como funciona o controle de simultaneidade no EF Core e exemplos de como lidar com conflitos de simultaneidade em seu aplicativo.</span><span class="sxs-lookup"><span data-stu-id="52a11-104">See [Handling Concurrency Conflicts](../saving/concurrency.md) for a detailed explanation of how concurrency control works on EF Core and examples of how to handle concurrency conflicts in your application.</span></span>
 
-<span data-ttu-id="8f988-105">As propriedades configuradas como tokens de simultaneidade são usadas para implementar o controle de simultaneidade otimista.</span><span class="sxs-lookup"><span data-stu-id="8f988-105">Properties configured as concurrency tokens are used to implement optimistic concurrency control.</span></span>
+<span data-ttu-id="52a11-105">As propriedades configuradas como tokens de simultaneidade são usadas para implementar o controle de simultaneidade otimista.</span><span class="sxs-lookup"><span data-stu-id="52a11-105">Properties configured as concurrency tokens are used to implement optimistic concurrency control.</span></span>
 
-## <a name="conventions"></a><span data-ttu-id="8f988-106">Convenções</span><span class="sxs-lookup"><span data-stu-id="8f988-106">Conventions</span></span>
+## <a name="conventions"></a><span data-ttu-id="52a11-106">Convenções</span><span class="sxs-lookup"><span data-stu-id="52a11-106">Conventions</span></span>
 
-<span data-ttu-id="8f988-107">Por convenção, as propriedades nunca são configuradas como tokens de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="8f988-107">By convention, properties are never configured as concurrency tokens.</span></span>
+<span data-ttu-id="52a11-107">Por convenção, as propriedades nunca são configuradas como tokens de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="52a11-107">By convention, properties are never configured as concurrency tokens.</span></span>
 
-## <a name="data-annotations"></a><span data-ttu-id="8f988-108">Anotações de dados</span><span class="sxs-lookup"><span data-stu-id="8f988-108">Data Annotations</span></span>
+## <a name="data-annotations"></a><span data-ttu-id="52a11-108">Anotações de dados</span><span class="sxs-lookup"><span data-stu-id="52a11-108">Data Annotations</span></span>
 
-<span data-ttu-id="8f988-109">Você pode usar as anotações de dados para configurar uma propriedade como um token de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="8f988-109">You can use the Data Annotations to configure a property as a concurrency token.</span></span>
+<span data-ttu-id="52a11-109">Você pode usar as anotações de dados para configurar uma propriedade como um token de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="52a11-109">You can use the Data Annotations to configure a property as a concurrency token.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Concurrency.cs#ConfigureConcurrencyAnnotations)]
 
-## <a name="fluent-api"></a><span data-ttu-id="8f988-110">API fluente</span><span class="sxs-lookup"><span data-stu-id="8f988-110">Fluent API</span></span>
+## <a name="fluent-api"></a><span data-ttu-id="52a11-110">API fluente</span><span class="sxs-lookup"><span data-stu-id="52a11-110">Fluent API</span></span>
 
-<span data-ttu-id="8f988-111">Você pode usar a API fluente para configurar uma propriedade como um token de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="8f988-111">You can use the Fluent API to configure a property as a concurrency token.</span></span>
+<span data-ttu-id="52a11-111">Você pode usar a API Fluent para configurar uma propriedade como um token de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="52a11-111">You can use the Fluent API to configure a property as a concurrency token.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Concurrency.cs#ConfigureConcurrencyFluent)]
 
-## <a name="timestamprow-version"></a><span data-ttu-id="8f988-112">Versão de carimbo de hora/linha</span><span class="sxs-lookup"><span data-stu-id="8f988-112">Timestamp/row version</span></span>
+## <a name="timestamprow-version"></a><span data-ttu-id="52a11-112">Versão de linha/carimbo de hora</span><span class="sxs-lookup"><span data-stu-id="52a11-112">Timestamp/row version</span></span>
 
-<span data-ttu-id="8f988-113">Um carimbo de hora é uma propriedade em que um novo valor é gerado pelo banco de dados sempre que uma linha é inserida ou atualizada.</span><span class="sxs-lookup"><span data-stu-id="8f988-113">A timestamp is a property where a new value is generated by the database every time a row is inserted or updated.</span></span> <span data-ttu-id="8f988-114">A propriedade também é tratada como um token de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="8f988-114">The property is also treated as a concurrency token.</span></span> <span data-ttu-id="8f988-115">Isso garante que você receberá uma exceção se ninguém tiver modificado uma linha que você está tentando atualizar desde consultada para os dados.</span><span class="sxs-lookup"><span data-stu-id="8f988-115">This ensures you will get an exception if anyone else has modified a row that you are trying to update since you queried for the data.</span></span>
+<span data-ttu-id="52a11-113">Um carimbo de hora é uma propriedade em que um novo valor é gerado pelo banco de dados sempre que uma linha é inserida ou atualizada.</span><span class="sxs-lookup"><span data-stu-id="52a11-113">A timestamp is a property where a new value is generated by the database every time a row is inserted or updated.</span></span> <span data-ttu-id="52a11-114">A propriedade também é tratada como um token de simultaneidade.</span><span class="sxs-lookup"><span data-stu-id="52a11-114">The property is also treated as a concurrency token.</span></span> <span data-ttu-id="52a11-115">Isso garante que você receberá uma exceção se outra pessoa tiver modificado uma linha que você está tentando atualizar, pois consultada para os dados.</span><span class="sxs-lookup"><span data-stu-id="52a11-115">This ensures you will get an exception if anyone else has modified a row that you are trying to update since you queried for the data.</span></span>
 
-<span data-ttu-id="8f988-116">Como isso é obtido é até o provedor de banco de dados que está sendo usado.</span><span class="sxs-lookup"><span data-stu-id="8f988-116">How this is achieved is up to the database provider being used.</span></span> <span data-ttu-id="8f988-117">Para o SQL Server, carimbo de hora é geralmente usado em uma *byte []* propriedade, que será de instalação como um *ROWVERSION* coluna no banco de dados.</span><span class="sxs-lookup"><span data-stu-id="8f988-117">For SQL Server, timestamp is usually used on a *byte[]* property, which will be setup as a *ROWVERSION* column in the database.</span></span>
+<span data-ttu-id="52a11-116">Como isso é feito é responsabilidade do provedor de banco de dados que está sendo usado.</span><span class="sxs-lookup"><span data-stu-id="52a11-116">How this is achieved is up to the database provider being used.</span></span> <span data-ttu-id="52a11-117">Para o SQL Server, o carimbo de hora geralmente é usado em uma *byte []* propriedade, que será de instalação como um *ROWVERSION* coluna no banco de dados.</span><span class="sxs-lookup"><span data-stu-id="52a11-117">For SQL Server, timestamp is usually used on a *byte[]* property, which will be setup as a *ROWVERSION* column in the database.</span></span>
 
-### <a name="conventions"></a><span data-ttu-id="8f988-118">Convenções</span><span class="sxs-lookup"><span data-stu-id="8f988-118">Conventions</span></span>
+### <a name="conventions"></a><span data-ttu-id="52a11-118">Convenções</span><span class="sxs-lookup"><span data-stu-id="52a11-118">Conventions</span></span>
 
-<span data-ttu-id="8f988-119">Por convenção, as propriedades nunca são configuradas como os carimbos de hora.</span><span class="sxs-lookup"><span data-stu-id="8f988-119">By convention, properties are never configured as timestamps.</span></span>
+<span data-ttu-id="52a11-119">Por convenção, as propriedades nunca são configuradas como carimbos de hora.</span><span class="sxs-lookup"><span data-stu-id="52a11-119">By convention, properties are never configured as timestamps.</span></span>
 
-### <a name="data-annotations"></a><span data-ttu-id="8f988-120">Anotações de dados</span><span class="sxs-lookup"><span data-stu-id="8f988-120">Data Annotations</span></span>
+### <a name="data-annotations"></a><span data-ttu-id="52a11-120">Anotações de dados</span><span class="sxs-lookup"><span data-stu-id="52a11-120">Data Annotations</span></span>
 
-<span data-ttu-id="8f988-121">Você pode usar as anotações de dados para configurar uma propriedade como um carimbo de hora.</span><span class="sxs-lookup"><span data-stu-id="8f988-121">You can use Data Annotations to configure a property as a timestamp.</span></span>
+<span data-ttu-id="52a11-121">Você pode usar anotações de dados para configurar uma propriedade como um carimbo de hora.</span><span class="sxs-lookup"><span data-stu-id="52a11-121">You can use Data Annotations to configure a property as a timestamp.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Timestamp.cs#ConfigureTimestampAnnotations)]
 
-### <a name="fluent-api"></a><span data-ttu-id="8f988-122">API fluente</span><span class="sxs-lookup"><span data-stu-id="8f988-122">Fluent API</span></span>
+### <a name="fluent-api"></a><span data-ttu-id="52a11-122">API fluente</span><span class="sxs-lookup"><span data-stu-id="52a11-122">Fluent API</span></span>
 
-<span data-ttu-id="8f988-123">Você pode usar a API fluente para configurar uma propriedade como um carimbo de hora.</span><span class="sxs-lookup"><span data-stu-id="8f988-123">You can use the Fluent API to configure a property as a timestamp.</span></span>
+<span data-ttu-id="52a11-123">Você pode usar a API Fluent para configurar uma propriedade como um carimbo de hora.</span><span class="sxs-lookup"><span data-stu-id="52a11-123">You can use the Fluent API to configure a property as a timestamp.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Timestamp.cs#ConfigureTimestampFluent)]

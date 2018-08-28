@@ -2,29 +2,23 @@
 title: Código primeiro inserir, atualizar e excluir procedimentos armazenados – EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 9a7ae7f9-4072-4843-877d-506dd7eef576
-caps.latest.revision: 3
-ms.openlocfilehash: 1f100ed888abd98df83c80d0de2086cfb1ba7b4f
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: a0448fb44dabb2e03b2358aa7b4f69d92cffa15a
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "39119939"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994567"
 ---
-# <a name="code-first-insert-update-and-delete-stored-procedures"></a><span data-ttu-id="09bf2-102">Código primeiro inserir, atualizar e excluir procedimentos armazenados</span><span class="sxs-lookup"><span data-stu-id="09bf2-102">Code First Insert, Update, and Delete Stored Procedures</span></span>
+# <a name="code-first-insert-update-and-delete-stored-procedures"></a><span data-ttu-id="d8479-102">Código primeiro inserir, atualizar e excluir procedimentos armazenados</span><span class="sxs-lookup"><span data-stu-id="d8479-102">Code First Insert, Update, and Delete Stored Procedures</span></span>
 > [!NOTE]
-> <span data-ttu-id="09bf2-103">**EF6 em diante apenas**: os recursos, as APIs etc. discutidos nessa página foram introduzidos no Entity Framework 6.</span><span class="sxs-lookup"><span data-stu-id="09bf2-103">**EF6 Onwards Only** - The features, APIs, etc. discussed in this page were introduced in Entity Framework 6.</span></span> <span data-ttu-id="09bf2-104">Se você estiver usando uma versão anterior, algumas ou todas as informações não se aplicarão.</span><span class="sxs-lookup"><span data-stu-id="09bf2-104">If you are using an earlier version, some or all of the information does not apply.</span></span>  
+> <span data-ttu-id="d8479-103">**EF6 em diante apenas**: os recursos, as APIs etc. discutidos nessa página foram introduzidos no Entity Framework 6.</span><span class="sxs-lookup"><span data-stu-id="d8479-103">**EF6 Onwards Only** - The features, APIs, etc. discussed in this page were introduced in Entity Framework 6.</span></span> <span data-ttu-id="d8479-104">Se você estiver usando uma versão anterior, algumas ou todas as informações não se aplicarão.</span><span class="sxs-lookup"><span data-stu-id="d8479-104">If you are using an earlier version, some or all of the information does not apply.</span></span>  
 
-<span data-ttu-id="09bf2-105">Por padrão, Code First configurará todas as entidades para executar a inserção, atualizar e excluir os comandos que usam acesso direto à tabela.</span><span class="sxs-lookup"><span data-stu-id="09bf2-105">By default, Code First will configure all entities to perform insert, update and delete commands using direct table access.</span></span> <span data-ttu-id="09bf2-106">Começando no EF6, você pode configurar seu modelo Code First para usar procedimentos armazenados para algumas ou todas as entidades em seu modelo.</span><span class="sxs-lookup"><span data-stu-id="09bf2-106">Starting in EF6 you can configure your Code First model to use stored procedures for some or all entities in your model.</span></span>  
+<span data-ttu-id="d8479-105">Por padrão, Code First configurará todas as entidades para executar a inserção, atualizar e excluir os comandos que usam acesso direto à tabela.</span><span class="sxs-lookup"><span data-stu-id="d8479-105">By default, Code First will configure all entities to perform insert, update and delete commands using direct table access.</span></span> <span data-ttu-id="d8479-106">Começando no EF6, você pode configurar seu modelo Code First para usar procedimentos armazenados para algumas ou todas as entidades em seu modelo.</span><span class="sxs-lookup"><span data-stu-id="d8479-106">Starting in EF6 you can configure your Code First model to use stored procedures for some or all entities in your model.</span></span>  
 
-## <a name="basic-entity-mapping"></a><span data-ttu-id="09bf2-107">Mapeamento de entidade básica</span><span class="sxs-lookup"><span data-stu-id="09bf2-107">Basic Entity Mapping</span></span>  
+## <a name="basic-entity-mapping"></a><span data-ttu-id="d8479-107">Mapeamento de entidade básica</span><span class="sxs-lookup"><span data-stu-id="d8479-107">Basic Entity Mapping</span></span>  
 
-<span data-ttu-id="09bf2-108">Você pode aceitar o uso de procedimentos armazenados para inserir, atualizar e excluir usando a API do Fluent.</span><span class="sxs-lookup"><span data-stu-id="09bf2-108">You can opt into using stored procedures for insert, update and delete using the Fluent API.</span></span>  
+<span data-ttu-id="d8479-108">Você pode aceitar o uso de procedimentos armazenados para inserir, atualizar e excluir usando a API do Fluent.</span><span class="sxs-lookup"><span data-stu-id="d8479-108">You can opt into using stored procedures for insert, update and delete using the Fluent API.</span></span>  
 
 ``` csharp
 modelBuilder
@@ -32,17 +26,17 @@ modelBuilder
   .MapToStoredProcedures();
 ```  
 
-<span data-ttu-id="09bf2-109">Isso fará com que Code First usar algumas convenções para criar a forma esperada dos procedimentos armazenados no banco de dados.</span><span class="sxs-lookup"><span data-stu-id="09bf2-109">Doing this will cause Code First to use some conventions to build the expected shape of the stored procedures in the database.</span></span>  
+<span data-ttu-id="d8479-109">Isso fará com que Code First usar algumas convenções para criar a forma esperada dos procedimentos armazenados no banco de dados.</span><span class="sxs-lookup"><span data-stu-id="d8479-109">Doing this will cause Code First to use some conventions to build the expected shape of the stored procedures in the database.</span></span>  
 
-- <span data-ttu-id="09bf2-110">Chamada de procedimentos armazenados de três  **\<type_name\>inserir**,  **\<type_name\>atualizar** e  **\<type_ nome da\>excluir** (por exemplo, Blog_Insert, Blog_Update e Blog_Delete).</span><span class="sxs-lookup"><span data-stu-id="09bf2-110">Three stored procedures named **\<type_name\>_Insert**, **\<type_name\>_Update** and **\<type_name\>_Delete** (for example, Blog_Insert, Blog_Update and Blog_Delete).</span></span>  
-- <span data-ttu-id="09bf2-111">Nomes de parâmetro correspondem aos nomes de propriedade.</span><span class="sxs-lookup"><span data-stu-id="09bf2-111">Parameter names correspond to the property names.</span></span>  
+- <span data-ttu-id="d8479-110">Chamada de procedimentos armazenados de três  **\<type_name\>inserir**,  **\<type_name\>atualizar** e  **\<type_ nome da\>excluir** (por exemplo, Blog_Insert, Blog_Update e Blog_Delete).</span><span class="sxs-lookup"><span data-stu-id="d8479-110">Three stored procedures named **\<type_name\>_Insert**, **\<type_name\>_Update** and **\<type_name\>_Delete** (for example, Blog_Insert, Blog_Update and Blog_Delete).</span></span>  
+- <span data-ttu-id="d8479-111">Nomes de parâmetro correspondem aos nomes de propriedade.</span><span class="sxs-lookup"><span data-stu-id="d8479-111">Parameter names correspond to the property names.</span></span>  
   > [!NOTE]
-  > <span data-ttu-id="09bf2-112">Se você usar HasColumnName() ou o atributo de coluna para renomear a coluna para uma determinada propriedade, em seguida, esse nome é usado para parâmetros em vez do nome de propriedade.</span><span class="sxs-lookup"><span data-stu-id="09bf2-112">If you use HasColumnName() or the Column attribute to rename the column for a given property then this name is used for parameters instead of the property name.</span></span>  
-- <span data-ttu-id="09bf2-113">**O procedimento armazenado insert** terá um parâmetro para cada propriedade, exceto para aqueles marcados como geradas pelo repositório (identidade ou computadas).</span><span class="sxs-lookup"><span data-stu-id="09bf2-113">**The insert stored procedure** will have a parameter for every property, except for those marked as store generated (identity or computed).</span></span> <span data-ttu-id="09bf2-114">O procedimento armazenado deve retornar um conjunto de resultados com uma coluna para cada propriedade geradas pelo repositório.</span><span class="sxs-lookup"><span data-stu-id="09bf2-114">The stored procedure should return a result set with a column for each store generated property.</span></span>  
-- <span data-ttu-id="09bf2-115">**Procedimento armazenado de atualização** terá um parâmetro para cada propriedade, exceto para aqueles marcados com um padrão de repositório gerado de 'Computed'.</span><span class="sxs-lookup"><span data-stu-id="09bf2-115">**The update stored procedure** will have a parameter for every property, except for those marked with a store generated pattern of 'Computed'.</span></span> <span data-ttu-id="09bf2-116">Alguns tokens de simultaneidade exigem um parâmetro para o valor original, consulte o *Tokens de simultaneidade* seção abaixo para obter detalhes.</span><span class="sxs-lookup"><span data-stu-id="09bf2-116">Some concurrency tokens require a parameter for the original value, see the *Concurrency Tokens* section below for details.</span></span> <span data-ttu-id="09bf2-117">O procedimento armazenado deve retornar um conjunto de resultados com uma coluna para cada propriedade computada.</span><span class="sxs-lookup"><span data-stu-id="09bf2-117">The stored procedure should return a result set with a column for each computed property.</span></span>  
-- <span data-ttu-id="09bf2-118">**Procedimento armazenado de exclusão** deve ter um parâmetro para o valor da chave de entidade (ou vários parâmetros, se a entidade tem uma chave composta).</span><span class="sxs-lookup"><span data-stu-id="09bf2-118">**The delete stored procedure** should have a parameter for the key value of the entity (or multiple parameters if the entity has a composite key).</span></span> <span data-ttu-id="09bf2-119">Além disso, o procedimento de exclusão também deve ter parâmetros para nenhuma chave estrangeira da associação independente na tabela de destino (relações que não têm propriedades de chave estrangeira correspondentes declaradas na entidade).</span><span class="sxs-lookup"><span data-stu-id="09bf2-119">Additionally, the delete procedure should also have parameters for any independent association foreign keys on the target table (relationships that do not have corresponding foreign key properties declared in the entity).</span></span> <span data-ttu-id="09bf2-120">Alguns tokens de simultaneidade exigem um parâmetro para o valor original, consulte o *Tokens de simultaneidade* seção abaixo para obter detalhes.</span><span class="sxs-lookup"><span data-stu-id="09bf2-120">Some concurrency tokens require a parameter for the original value, see the *Concurrency Tokens* section below for details.</span></span>  
+  > <span data-ttu-id="d8479-112">Se você usar HasColumnName() ou o atributo de coluna para renomear a coluna para uma determinada propriedade, em seguida, esse nome é usado para parâmetros em vez do nome de propriedade.</span><span class="sxs-lookup"><span data-stu-id="d8479-112">If you use HasColumnName() or the Column attribute to rename the column for a given property then this name is used for parameters instead of the property name.</span></span>  
+- <span data-ttu-id="d8479-113">**O procedimento armazenado insert** terá um parâmetro para cada propriedade, exceto para aqueles marcados como geradas pelo repositório (identidade ou computadas).</span><span class="sxs-lookup"><span data-stu-id="d8479-113">**The insert stored procedure** will have a parameter for every property, except for those marked as store generated (identity or computed).</span></span> <span data-ttu-id="d8479-114">O procedimento armazenado deve retornar um conjunto de resultados com uma coluna para cada propriedade geradas pelo repositório.</span><span class="sxs-lookup"><span data-stu-id="d8479-114">The stored procedure should return a result set with a column for each store generated property.</span></span>  
+- <span data-ttu-id="d8479-115">**Procedimento armazenado de atualização** terá um parâmetro para cada propriedade, exceto para aqueles marcados com um padrão de repositório gerado de 'Computed'.</span><span class="sxs-lookup"><span data-stu-id="d8479-115">**The update stored procedure** will have a parameter for every property, except for those marked with a store generated pattern of 'Computed'.</span></span> <span data-ttu-id="d8479-116">Alguns tokens de simultaneidade exigem um parâmetro para o valor original, consulte o *Tokens de simultaneidade* seção abaixo para obter detalhes.</span><span class="sxs-lookup"><span data-stu-id="d8479-116">Some concurrency tokens require a parameter for the original value, see the *Concurrency Tokens* section below for details.</span></span> <span data-ttu-id="d8479-117">O procedimento armazenado deve retornar um conjunto de resultados com uma coluna para cada propriedade computada.</span><span class="sxs-lookup"><span data-stu-id="d8479-117">The stored procedure should return a result set with a column for each computed property.</span></span>  
+- <span data-ttu-id="d8479-118">**Procedimento armazenado de exclusão** deve ter um parâmetro para o valor da chave de entidade (ou vários parâmetros, se a entidade tem uma chave composta).</span><span class="sxs-lookup"><span data-stu-id="d8479-118">**The delete stored procedure** should have a parameter for the key value of the entity (or multiple parameters if the entity has a composite key).</span></span> <span data-ttu-id="d8479-119">Além disso, o procedimento de exclusão também deve ter parâmetros para nenhuma chave estrangeira da associação independente na tabela de destino (relações que não têm propriedades de chave estrangeira correspondentes declaradas na entidade).</span><span class="sxs-lookup"><span data-stu-id="d8479-119">Additionally, the delete procedure should also have parameters for any independent association foreign keys on the target table (relationships that do not have corresponding foreign key properties declared in the entity).</span></span> <span data-ttu-id="d8479-120">Alguns tokens de simultaneidade exigem um parâmetro para o valor original, consulte o *Tokens de simultaneidade* seção abaixo para obter detalhes.</span><span class="sxs-lookup"><span data-stu-id="d8479-120">Some concurrency tokens require a parameter for the original value, see the *Concurrency Tokens* section below for details.</span></span>  
 
-<span data-ttu-id="09bf2-121">Usando a classe a seguir como exemplo:</span><span class="sxs-lookup"><span data-stu-id="09bf2-121">Using the following class as an example:</span></span>  
+<span data-ttu-id="d8479-121">Usando a classe a seguir como exemplo:</span><span class="sxs-lookup"><span data-stu-id="d8479-121">Using the following class as an example:</span></span>  
 
 ``` csharp
 public class Blog  
@@ -53,7 +47,7 @@ public class Blog
 }
 ```  
 
-<span data-ttu-id="09bf2-122">Os procedimentos armazenado de padrão seria:</span><span class="sxs-lookup"><span data-stu-id="09bf2-122">The default stored procedures would be:</span></span>  
+<span data-ttu-id="d8479-122">Os procedimentos armazenado de padrão seria:</span><span class="sxs-lookup"><span data-stu-id="d8479-122">The default stored procedures would be:</span></span>  
 
 ``` SQL
 CREATE PROCEDURE [dbo].[Blog_Insert]  
@@ -81,11 +75,11 @@ AS
   WHERE BlogId = @BlogId
 ```  
 
-### <a name="overriding-the-defaults"></a><span data-ttu-id="09bf2-123">Substituindo padrões</span><span class="sxs-lookup"><span data-stu-id="09bf2-123">Overriding the Defaults</span></span>  
+### <a name="overriding-the-defaults"></a><span data-ttu-id="d8479-123">Substituindo padrões</span><span class="sxs-lookup"><span data-stu-id="d8479-123">Overriding the Defaults</span></span>  
 
-<span data-ttu-id="09bf2-124">Você pode substituir todo ou parte do que foi configurado por padrão.</span><span class="sxs-lookup"><span data-stu-id="09bf2-124">You can override part or all of what was configured by default.</span></span>  
+<span data-ttu-id="d8479-124">Você pode substituir todo ou parte do que foi configurado por padrão.</span><span class="sxs-lookup"><span data-stu-id="d8479-124">You can override part or all of what was configured by default.</span></span>  
 
-<span data-ttu-id="09bf2-125">Você pode alterar o nome de um ou mais procedimentos armazenados.</span><span class="sxs-lookup"><span data-stu-id="09bf2-125">You can change the name of one or more stored procedures.</span></span> <span data-ttu-id="09bf2-126">Este exemplo renomeia o procedimento armazenado de atualização apenas.</span><span class="sxs-lookup"><span data-stu-id="09bf2-126">This example renames the update stored procedure only.</span></span>  
+<span data-ttu-id="d8479-125">Você pode alterar o nome de um ou mais procedimentos armazenados.</span><span class="sxs-lookup"><span data-stu-id="d8479-125">You can change the name of one or more stored procedures.</span></span> <span data-ttu-id="d8479-126">Este exemplo renomeia o procedimento armazenado de atualização apenas.</span><span class="sxs-lookup"><span data-stu-id="d8479-126">This example renames the update stored procedure only.</span></span>  
 
 ``` csharp
 modelBuilder  
@@ -94,7 +88,7 @@ modelBuilder
     s.Update(u => u.HasName("modify_blog")));
 ```  
 
-<span data-ttu-id="09bf2-127">Este exemplo renomeia todos os três procedimentos armazenados.</span><span class="sxs-lookup"><span data-stu-id="09bf2-127">This example renames all three stored procedures.</span></span>  
+<span data-ttu-id="d8479-127">Este exemplo renomeia todos os três procedimentos armazenados.</span><span class="sxs-lookup"><span data-stu-id="d8479-127">This example renames all three stored procedures.</span></span>  
 
 ``` csharp
 modelBuilder  
@@ -105,7 +99,7 @@ modelBuilder
      .Insert(i => i.HasName("insert_blog")));
 ```  
 
-<span data-ttu-id="09bf2-128">Nestes exemplos as chamadas são encadeadas juntos, mas você também pode usar a sintaxe de bloco de lambda.</span><span class="sxs-lookup"><span data-stu-id="09bf2-128">In these examples the calls are chained together, but you can also use lambda block syntax.</span></span>  
+<span data-ttu-id="d8479-128">Nestes exemplos as chamadas são encadeadas juntos, mas você também pode usar a sintaxe de bloco de lambda.</span><span class="sxs-lookup"><span data-stu-id="d8479-128">In these examples the calls are chained together, but you can also use lambda block syntax.</span></span>  
 
 ``` csharp
 modelBuilder  
@@ -118,7 +112,7 @@ modelBuilder
     });
 ```  
 
-<span data-ttu-id="09bf2-129">Este exemplo renomeia o parâmetro para a propriedade BlogId no procedimento armazenado de atualização.</span><span class="sxs-lookup"><span data-stu-id="09bf2-129">This example renames the parameter for the BlogId property on the update stored procedure.</span></span>  
+<span data-ttu-id="d8479-129">Este exemplo renomeia o parâmetro para a propriedade BlogId no procedimento armazenado de atualização.</span><span class="sxs-lookup"><span data-stu-id="d8479-129">This example renames the parameter for the BlogId property on the update stored procedure.</span></span>  
 
 ``` csharp
 modelBuilder  
@@ -127,7 +121,7 @@ modelBuilder
     s.Update(u => u.Parameter(b => b.BlogId, "blog_id")));
 ```  
 
-<span data-ttu-id="09bf2-130">Essas chamadas são todos encadeável e combinável.</span><span class="sxs-lookup"><span data-stu-id="09bf2-130">These calls are all chainable and composable.</span></span> <span data-ttu-id="09bf2-131">Aqui está um exemplo que renomeia todos os três procedimentos armazenados e seus parâmetros.</span><span class="sxs-lookup"><span data-stu-id="09bf2-131">Here is an example that renames all three stored procedures and their parameters.</span></span>  
+<span data-ttu-id="d8479-130">Essas chamadas são todos encadeável e combinável.</span><span class="sxs-lookup"><span data-stu-id="d8479-130">These calls are all chainable and composable.</span></span> <span data-ttu-id="d8479-131">Aqui está um exemplo que renomeia todos os três procedimentos armazenados e seus parâmetros.</span><span class="sxs-lookup"><span data-stu-id="d8479-131">Here is an example that renames all three stored procedures and their parameters.</span></span>  
 
 ``` csharp
 modelBuilder  
@@ -144,7 +138,7 @@ modelBuilder
                    .Parameter(b => b.Url, "blog_url")));
 ```  
 
-<span data-ttu-id="09bf2-132">Você também pode alterar o nome das colunas no conjunto de resultados que contém os valores de banco de dados gerado.</span><span class="sxs-lookup"><span data-stu-id="09bf2-132">You can also change the name of the columns in the result set that contains database generated values.</span></span>  
+<span data-ttu-id="d8479-132">Você também pode alterar o nome das colunas no conjunto de resultados que contém os valores de banco de dados gerado.</span><span class="sxs-lookup"><span data-stu-id="d8479-132">You can also change the name of the columns in the result set that contains database generated values.</span></span>  
 
 ``` csharp
 modelBuilder
@@ -166,11 +160,11 @@ BEGIN
 END
 ```  
 
-## <a name="relationships-without-a-foreign-key-in-the-class-independent-associations"></a><span data-ttu-id="09bf2-133">Relações sem uma chave estrangeira na classe (associações independentes)</span><span class="sxs-lookup"><span data-stu-id="09bf2-133">Relationships Without a Foreign Key in the Class (Independent Associations)</span></span>  
+## <a name="relationships-without-a-foreign-key-in-the-class-independent-associations"></a><span data-ttu-id="d8479-133">Relações sem uma chave estrangeira na classe (associações independentes)</span><span class="sxs-lookup"><span data-stu-id="d8479-133">Relationships Without a Foreign Key in the Class (Independent Associations)</span></span>  
 
-<span data-ttu-id="09bf2-134">Quando uma propriedade de chave estrangeira é incluída na definição de classe, o parâmetro correspondente pode ser renomeado da mesma forma como qualquer outra propriedade.</span><span class="sxs-lookup"><span data-stu-id="09bf2-134">When a foreign key property is included in the class definition, the corresponding parameter can be renamed in the same way as any other property.</span></span> <span data-ttu-id="09bf2-135">Quando uma relação existente sem uma propriedade de chave estrangeira na classe, o nome do parâmetro padrão é  **\<navigation_property_name\>_\<primary_key_name\>**.</span><span class="sxs-lookup"><span data-stu-id="09bf2-135">When a relationship exists without a foreign key property in the class, the default parameter name is **\<navigation_property_name\>_\<primary_key_name\>**.</span></span>  
+<span data-ttu-id="d8479-134">Quando uma propriedade de chave estrangeira é incluída na definição de classe, o parâmetro correspondente pode ser renomeado da mesma forma como qualquer outra propriedade.</span><span class="sxs-lookup"><span data-stu-id="d8479-134">When a foreign key property is included in the class definition, the corresponding parameter can be renamed in the same way as any other property.</span></span> <span data-ttu-id="d8479-135">Quando uma relação existente sem uma propriedade de chave estrangeira na classe, o nome do parâmetro padrão é  **\<navigation_property_name\>_\<primary_key_name\>**.</span><span class="sxs-lookup"><span data-stu-id="d8479-135">When a relationship exists without a foreign key property in the class, the default parameter name is **\<navigation_property_name\>_\<primary_key_name\>**.</span></span>  
 
-<span data-ttu-id="09bf2-136">Por exemplo, as seguintes definições de classe resultaria em um parâmetro de Blog_BlogId sendo esperado nos procedimentos armazenados para inserir e atualizar as postagens.</span><span class="sxs-lookup"><span data-stu-id="09bf2-136">For example, the following class definitions would result in a Blog_BlogId parameter being expected in the stored procedures to insert and update Posts.</span></span>  
+<span data-ttu-id="d8479-136">Por exemplo, as seguintes definições de classe resultaria em um parâmetro de Blog_BlogId sendo esperado nos procedimentos armazenados para inserir e atualizar as postagens.</span><span class="sxs-lookup"><span data-stu-id="d8479-136">For example, the following class definitions would result in a Blog_BlogId parameter being expected in the stored procedures to insert and update Posts.</span></span>  
 
 ``` csharp
 public class Blog  
@@ -192,9 +186,9 @@ public class Post
 }
 ```  
 
-### <a name="overriding-the-defaults"></a><span data-ttu-id="09bf2-137">Substituindo padrões</span><span class="sxs-lookup"><span data-stu-id="09bf2-137">Overriding the Defaults</span></span>  
+### <a name="overriding-the-defaults"></a><span data-ttu-id="d8479-137">Substituindo padrões</span><span class="sxs-lookup"><span data-stu-id="d8479-137">Overriding the Defaults</span></span>  
 
-<span data-ttu-id="09bf2-138">Você pode alterar os parâmetros para chaves estrangeiras que não estão incluídos na classe, fornecendo o caminho para a propriedade de chave primária para o método de parâmetro.</span><span class="sxs-lookup"><span data-stu-id="09bf2-138">You can change parameters for foreign keys that are not included in the class by supplying the path to the primary key property to the Parameter method.</span></span>  
+<span data-ttu-id="d8479-138">Você pode alterar os parâmetros para chaves estrangeiras que não estão incluídos na classe, fornecendo o caminho para a propriedade de chave primária para o método de parâmetro.</span><span class="sxs-lookup"><span data-stu-id="d8479-138">You can change parameters for foreign keys that are not included in the class by supplying the path to the primary key property to the Parameter method.</span></span>  
 
 ``` csharp
 modelBuilder
@@ -203,7 +197,7 @@ modelBuilder
     s.Insert(i => i.Parameter(p => p.Blog.BlogId, "blog_id")));
 ```  
 
-<span data-ttu-id="09bf2-139">Se você não tiver uma propriedade de navegação na entidade dependente (isto é</span><span class="sxs-lookup"><span data-stu-id="09bf2-139">If you don’t have a navigation property on the dependent entity (i.e</span></span> <span data-ttu-id="09bf2-140">nenhuma propriedade Post.Blog) e em seguida, você pode usar o método de associação para identificar a outra extremidade da relação e, em seguida, configure os parâmetros que correspondem a cada uma da propriedade de chave (s).</span><span class="sxs-lookup"><span data-stu-id="09bf2-140">no Post.Blog property) then you can use the Association method to identify the other end of the relationship and then configure the parameters that correspond to each of the key property(s).</span></span>  
+<span data-ttu-id="d8479-139">Se você não tiver uma propriedade de navegação na entidade dependente (isto é</span><span class="sxs-lookup"><span data-stu-id="d8479-139">If you don’t have a navigation property on the dependent entity (i.e</span></span> <span data-ttu-id="d8479-140">nenhuma propriedade Post.Blog) e em seguida, você pode usar o método de associação para identificar a outra extremidade da relação e, em seguida, configure os parâmetros que correspondem a cada uma da propriedade de chave (s).</span><span class="sxs-lookup"><span data-stu-id="d8479-140">no Post.Blog property) then you can use the Association method to identify the other end of the relationship and then configure the parameters that correspond to each of the key property(s).</span></span>  
 
 ``` csharp
 modelBuilder
@@ -214,17 +208,17 @@ modelBuilder
       c => c.Parameter(b => b.BlogId, "blog_id"))));
 ```  
 
-## <a name="concurrency-tokens"></a><span data-ttu-id="09bf2-141">Tokens de simultaneidade</span><span class="sxs-lookup"><span data-stu-id="09bf2-141">Concurrency Tokens</span></span>  
+## <a name="concurrency-tokens"></a><span data-ttu-id="d8479-141">Tokens de simultaneidade</span><span class="sxs-lookup"><span data-stu-id="d8479-141">Concurrency Tokens</span></span>  
 
-<span data-ttu-id="09bf2-142">Update e delete armazenados procedimentos talvez precise lidar com simultaneidade:</span><span class="sxs-lookup"><span data-stu-id="09bf2-142">Update and delete stored procedures may also need to deal with concurrency:</span></span>  
+<span data-ttu-id="d8479-142">Update e delete armazenados procedimentos talvez precise lidar com simultaneidade:</span><span class="sxs-lookup"><span data-stu-id="d8479-142">Update and delete stored procedures may also need to deal with concurrency:</span></span>  
 
-- <span data-ttu-id="09bf2-143">Se a entidade contém tokens de simultaneidade, o procedimento armazenado pode, opcionalmente, ter um parâmetro de saída que retorna o número de linhas atualizado/excluído (linhas afetadas).</span><span class="sxs-lookup"><span data-stu-id="09bf2-143">If the entity contains concurrency tokens, the stored procedure can optionally have an output parameter that returns the number of rows updated/deleted (rows affected).</span></span> <span data-ttu-id="09bf2-144">Esse parâmetro deve ser configurado usando o método RowsAffectedParameter.</span><span class="sxs-lookup"><span data-stu-id="09bf2-144">Such a parameter must be configured using the RowsAffectedParameter method.</span></span>  
-<span data-ttu-id="09bf2-145">Por padrão o EF usa o valor retornado de ExecuteNonQuery para determinar quantas linhas foram afetadas.</span><span class="sxs-lookup"><span data-stu-id="09bf2-145">By default EF uses the return value from ExecuteNonQuery to determine how many rows were affected.</span></span> <span data-ttu-id="09bf2-146">Especificando um parâmetro de saída de linhas afetadas é útil se você executar qualquer lógica em seu sproc que resultaria no valor de retorno de ExecuteNonQuery sendo incorreto (da perspectiva do EF) no final da execução.</span><span class="sxs-lookup"><span data-stu-id="09bf2-146">Specifying a rows affected output parameter is useful if you perform any logic in your sproc that would result in the return value of ExecuteNonQuery being incorrect (from EF's perspective) at the end of execution.</span></span>  
-- <span data-ttu-id="09bf2-147">Para cada simultaneidade de token de lá será um parâmetro denominado  **\<property_name\>_Original** (por exemplo, Timestamp_Original).</span><span class="sxs-lookup"><span data-stu-id="09bf2-147">For each concurrency token there will be a parameter named **\<property_name\>_Original** (for example, Timestamp_Original ).</span></span> <span data-ttu-id="09bf2-148">Isso será passado o valor original dessa propriedade – o valor quando consultado do banco de dados.</span><span class="sxs-lookup"><span data-stu-id="09bf2-148">This will be passed the original value of this property – the value when queried from the database.</span></span>  
-    - <span data-ttu-id="09bf2-149">Tokens de simultaneidade são calculados pelo banco de dados – como os carimbos de hora – terá apenas um parâmetro de valor original.</span><span class="sxs-lookup"><span data-stu-id="09bf2-149">Concurrency tokens that are computed by the database – such as timestamps – will only have an original value parameter.</span></span>  
-    - <span data-ttu-id="09bf2-150">Propriedades não são computadas que são definidas como tokens de simultaneidade também terá um parâmetro para o novo valor no procedimento de atualização.</span><span class="sxs-lookup"><span data-stu-id="09bf2-150">Non-computed properties that are set as concurrency tokens will also have a parameter for the new value in the update procedure.</span></span> <span data-ttu-id="09bf2-151">Isso usa as convenções de nomenclatura já discutidas para novos valores.</span><span class="sxs-lookup"><span data-stu-id="09bf2-151">This uses the naming conventions already discussed for new values.</span></span> <span data-ttu-id="09bf2-152">Um exemplo de como esse token usariam URL do como um token de simultaneidade, o novo valor é necessário porque isso pode ser atualizado para um novo valor pelo seu código (ao contrário de um token de carimbo de hora que só é atualizado pelo banco de dados).</span><span class="sxs-lookup"><span data-stu-id="09bf2-152">An example of such a token would be using a Blog's URL as a concurrency token, the new value is required because this can be updated to a new value by your code (unlike a Timestamp token which is only updated by the database).</span></span>  
+- <span data-ttu-id="d8479-143">Se a entidade contém tokens de simultaneidade, o procedimento armazenado pode, opcionalmente, ter um parâmetro de saída que retorna o número de linhas atualizado/excluído (linhas afetadas).</span><span class="sxs-lookup"><span data-stu-id="d8479-143">If the entity contains concurrency tokens, the stored procedure can optionally have an output parameter that returns the number of rows updated/deleted (rows affected).</span></span> <span data-ttu-id="d8479-144">Esse parâmetro deve ser configurado usando o método RowsAffectedParameter.</span><span class="sxs-lookup"><span data-stu-id="d8479-144">Such a parameter must be configured using the RowsAffectedParameter method.</span></span>  
+<span data-ttu-id="d8479-145">Por padrão o EF usa o valor retornado de ExecuteNonQuery para determinar quantas linhas foram afetadas.</span><span class="sxs-lookup"><span data-stu-id="d8479-145">By default EF uses the return value from ExecuteNonQuery to determine how many rows were affected.</span></span> <span data-ttu-id="d8479-146">Especificando um parâmetro de saída de linhas afetadas é útil se você executar qualquer lógica em seu sproc que resultaria no valor de retorno de ExecuteNonQuery sendo incorreto (da perspectiva do EF) no final da execução.</span><span class="sxs-lookup"><span data-stu-id="d8479-146">Specifying a rows affected output parameter is useful if you perform any logic in your sproc that would result in the return value of ExecuteNonQuery being incorrect (from EF's perspective) at the end of execution.</span></span>  
+- <span data-ttu-id="d8479-147">Para cada simultaneidade de token de lá será um parâmetro denominado  **\<property_name\>_Original** (por exemplo, Timestamp_Original).</span><span class="sxs-lookup"><span data-stu-id="d8479-147">For each concurrency token there will be a parameter named **\<property_name\>_Original** (for example, Timestamp_Original ).</span></span> <span data-ttu-id="d8479-148">Isso será passado o valor original dessa propriedade – o valor quando consultado do banco de dados.</span><span class="sxs-lookup"><span data-stu-id="d8479-148">This will be passed the original value of this property – the value when queried from the database.</span></span>  
+    - <span data-ttu-id="d8479-149">Tokens de simultaneidade são calculados pelo banco de dados – como os carimbos de hora – terá apenas um parâmetro de valor original.</span><span class="sxs-lookup"><span data-stu-id="d8479-149">Concurrency tokens that are computed by the database – such as timestamps – will only have an original value parameter.</span></span>  
+    - <span data-ttu-id="d8479-150">Propriedades não são computadas que são definidas como tokens de simultaneidade também terá um parâmetro para o novo valor no procedimento de atualização.</span><span class="sxs-lookup"><span data-stu-id="d8479-150">Non-computed properties that are set as concurrency tokens will also have a parameter for the new value in the update procedure.</span></span> <span data-ttu-id="d8479-151">Isso usa as convenções de nomenclatura já discutidas para novos valores.</span><span class="sxs-lookup"><span data-stu-id="d8479-151">This uses the naming conventions already discussed for new values.</span></span> <span data-ttu-id="d8479-152">Um exemplo de como esse token usariam URL do como um token de simultaneidade, o novo valor é necessário porque isso pode ser atualizado para um novo valor pelo seu código (ao contrário de um token de carimbo de hora que só é atualizado pelo banco de dados).</span><span class="sxs-lookup"><span data-stu-id="d8479-152">An example of such a token would be using a Blog's URL as a concurrency token, the new value is required because this can be updated to a new value by your code (unlike a Timestamp token which is only updated by the database).</span></span>  
 
-<span data-ttu-id="09bf2-153">Este é um exemplo de classe e atualize o procedimento armazenado com um token de simultaneidade de carimbo de hora.</span><span class="sxs-lookup"><span data-stu-id="09bf2-153">This is an example class and update stored procedure with a timestamp concurrency token.</span></span>  
+<span data-ttu-id="d8479-153">Este é um exemplo de classe e atualize o procedimento armazenado com um token de simultaneidade de carimbo de hora.</span><span class="sxs-lookup"><span data-stu-id="d8479-153">This is an example class and update stored procedure with a timestamp concurrency token.</span></span>  
 
 ``` csharp
 public class Blog  
@@ -249,7 +243,7 @@ AS
   WHERE BlogId = @BlogId AND [Timestamp] = @Timestamp_Original
 ```  
 
-<span data-ttu-id="09bf2-154">Aqui está um exemplo de classe e atualize o procedimento armazenado com o token de simultaneidade não computadas.</span><span class="sxs-lookup"><span data-stu-id="09bf2-154">Here is an example class and update stored procedure with non-computed concurrency token.</span></span>  
+<span data-ttu-id="d8479-154">Aqui está um exemplo de classe e atualize o procedimento armazenado com o token de simultaneidade não computadas.</span><span class="sxs-lookup"><span data-stu-id="d8479-154">Here is an example class and update stored procedure with non-computed concurrency token.</span></span>  
 
 ``` csharp
 public class Blog  
@@ -273,9 +267,9 @@ AS
   WHERE BlogId = @BlogId AND [Url] = @Url_Original
 ```  
 
-### <a name="overriding-the-defaults"></a><span data-ttu-id="09bf2-155">Substituindo padrões</span><span class="sxs-lookup"><span data-stu-id="09bf2-155">Overriding the Defaults</span></span>  
+### <a name="overriding-the-defaults"></a><span data-ttu-id="d8479-155">Substituindo padrões</span><span class="sxs-lookup"><span data-stu-id="d8479-155">Overriding the Defaults</span></span>  
 
-<span data-ttu-id="09bf2-156">Opcionalmente, você pode introduzir um parâmetro de linhas afetadas.</span><span class="sxs-lookup"><span data-stu-id="09bf2-156">You can optionally introduce a rows affected parameter.</span></span>  
+<span data-ttu-id="d8479-156">Opcionalmente, você pode introduzir um parâmetro de linhas afetadas.</span><span class="sxs-lookup"><span data-stu-id="d8479-156">You can optionally introduce a rows affected parameter.</span></span>  
 
 ``` csharp
 modelBuilder  
@@ -284,7 +278,7 @@ modelBuilder
     s.Update(u => u.RowsAffectedParameter("rows_affected")));
 ```  
 
-<span data-ttu-id="09bf2-157">Para tokens de simultaneidade de banco de dados calculado – em que apenas o valor original é passado – você pode usar apenas o parâmetro padrão renomeando um mecanismo para renomear o parâmetro do valor original.</span><span class="sxs-lookup"><span data-stu-id="09bf2-157">For database computed concurrency tokens – where only the original value is passed – you can just use the standard parameter renaming mechanism to rename the parameter for the original value.</span></span>  
+<span data-ttu-id="d8479-157">Para tokens de simultaneidade de banco de dados calculado – em que apenas o valor original é passado – você pode usar apenas o parâmetro padrão renomeando um mecanismo para renomear o parâmetro do valor original.</span><span class="sxs-lookup"><span data-stu-id="d8479-157">For database computed concurrency tokens – where only the original value is passed – you can just use the standard parameter renaming mechanism to rename the parameter for the original value.</span></span>  
 
 ``` csharp
 modelBuilder  
@@ -293,7 +287,7 @@ modelBuilder
     s.Update(u => u.Parameter(b => b.Timestamp, "blog_timestamp")));
 ```  
 
-<span data-ttu-id="09bf2-158">Para tokens de simultaneidade não computadas – em que tanto o valor original e novo é passado – você pode usar uma sobrecarga de parâmetro que permite que você forneça um nome para cada parâmetro.</span><span class="sxs-lookup"><span data-stu-id="09bf2-158">For non-computed concurrency tokens – where both the original and new value are passed – you can use an overload of Parameter that allows you to supply a name for each parameter.</span></span>  
+<span data-ttu-id="d8479-158">Para tokens de simultaneidade não computadas – em que tanto o valor original e novo é passado – você pode usar uma sobrecarga de parâmetro que permite que você forneça um nome para cada parâmetro.</span><span class="sxs-lookup"><span data-stu-id="d8479-158">For non-computed concurrency tokens – where both the original and new value are passed – you can use an overload of Parameter that allows you to supply a name for each parameter.</span></span>  
 
 ``` csharp
 modelBuilder
@@ -301,9 +295,9 @@ modelBuilder
  .MapToStoredProcedures(s => s.Update(u => u.Parameter(b => b.Url, "blog_url", "blog_original_url")));
 ```  
 
-## <a name="many-to-many-relationships"></a><span data-ttu-id="09bf2-159">Relações Muitos para Muitos</span><span class="sxs-lookup"><span data-stu-id="09bf2-159">Many to Many Relationships</span></span>  
+## <a name="many-to-many-relationships"></a><span data-ttu-id="d8479-159">Relações Muitos para Muitos</span><span class="sxs-lookup"><span data-stu-id="d8479-159">Many to Many Relationships</span></span>  
 
-<span data-ttu-id="09bf2-160">Usaremos as classes a seguir como exemplo nesta seção.</span><span class="sxs-lookup"><span data-stu-id="09bf2-160">We’ll use the following classes as an example in this section.</span></span>  
+<span data-ttu-id="d8479-160">Usaremos as classes a seguir como exemplo nesta seção.</span><span class="sxs-lookup"><span data-stu-id="d8479-160">We’ll use the following classes as an example in this section.</span></span>  
 
 ``` csharp
 public class Post  
@@ -324,7 +318,7 @@ public class Tag
 }
 ```  
 
-<span data-ttu-id="09bf2-161">Muitas para muitas relações podem ser mapeadas para procedimentos armazenados com a sintaxe a seguir.</span><span class="sxs-lookup"><span data-stu-id="09bf2-161">Many to many relationships can be mapped to stored procedures with the following syntax.</span></span>  
+<span data-ttu-id="d8479-161">Muitas para muitas relações podem ser mapeadas para procedimentos armazenados com a sintaxe a seguir.</span><span class="sxs-lookup"><span data-stu-id="d8479-161">Many to many relationships can be mapped to stored procedures with the following syntax.</span></span>  
 
 ``` csharp
 modelBuilder  
@@ -334,12 +328,12 @@ modelBuilder
   .MapToStoredProcedures();
 ```  
 
-<span data-ttu-id="09bf2-162">Se nenhuma outra configuração é fornecida na forma de procedimento armazenado a seguir é usada por padrão.</span><span class="sxs-lookup"><span data-stu-id="09bf2-162">If no other configuration is supplied then the following stored procedure shape is used by default.</span></span>  
+<span data-ttu-id="d8479-162">Se nenhuma outra configuração é fornecida na forma de procedimento armazenado a seguir é usada por padrão.</span><span class="sxs-lookup"><span data-stu-id="d8479-162">If no other configuration is supplied then the following stored procedure shape is used by default.</span></span>  
 
-- <span data-ttu-id="09bf2-163">Dois chamados de procedimentos armazenados  **\<type_one\>\<type_two\>inserir** e  **\<type_one\>\<type_two \>Excluir** (por exemplo, PostTag_Insert e PostTag_Delete).</span><span class="sxs-lookup"><span data-stu-id="09bf2-163">Two stored procedures named **\<type_one\>\<type_two\>_Insert** and **\<type_one\>\<type_two\>_Delete** (for example, PostTag_Insert and PostTag_Delete).</span></span>  
-- <span data-ttu-id="09bf2-164">Os parâmetros serão os valores de chave para cada tipo.</span><span class="sxs-lookup"><span data-stu-id="09bf2-164">The parameters will be the key value(s) for each type.</span></span> <span data-ttu-id="09bf2-165">O nome de cada parâmetro que está sendo **\<type_name\>_\<property_name\>** (por exemplo, Post_PostId e Tag_TagId).</span><span class="sxs-lookup"><span data-stu-id="09bf2-165">The name of each parameter being **\<type_name\>_\<property_name\>** (for example, Post_PostId and Tag_TagId).</span></span>
+- <span data-ttu-id="d8479-163">Dois chamados de procedimentos armazenados  **\<type_one\>\<type_two\>inserir** e  **\<type_one\>\<type_two \>Excluir** (por exemplo, PostTag_Insert e PostTag_Delete).</span><span class="sxs-lookup"><span data-stu-id="d8479-163">Two stored procedures named **\<type_one\>\<type_two\>_Insert** and **\<type_one\>\<type_two\>_Delete** (for example, PostTag_Insert and PostTag_Delete).</span></span>  
+- <span data-ttu-id="d8479-164">Os parâmetros serão os valores de chave para cada tipo.</span><span class="sxs-lookup"><span data-stu-id="d8479-164">The parameters will be the key value(s) for each type.</span></span> <span data-ttu-id="d8479-165">O nome de cada parâmetro que está sendo **\<type_name\>_\<property_name\>** (por exemplo, Post_PostId e Tag_TagId).</span><span class="sxs-lookup"><span data-stu-id="d8479-165">The name of each parameter being **\<type_name\>_\<property_name\>** (for example, Post_PostId and Tag_TagId).</span></span>
 
-<span data-ttu-id="09bf2-166">Estes são exemplos de inserção e atualização de procedimentos armazenados.</span><span class="sxs-lookup"><span data-stu-id="09bf2-166">Here are example insert and update stored procedures.</span></span>  
+<span data-ttu-id="d8479-166">Estes são exemplos de inserção e atualização de procedimentos armazenados.</span><span class="sxs-lookup"><span data-stu-id="d8479-166">Here are example insert and update stored procedures.</span></span>  
 
 ``` SQL
 CREATE PROCEDURE [dbo].[PostTag_Insert]  
@@ -356,9 +350,9 @@ AS
   WHERE Post_PostId = @Post_PostId AND Tag_TagId = @Tag_TagId
 ```  
 
-### <a name="overriding-the-defaults"></a><span data-ttu-id="09bf2-167">Substituindo padrões</span><span class="sxs-lookup"><span data-stu-id="09bf2-167">Overriding the Defaults</span></span>  
+### <a name="overriding-the-defaults"></a><span data-ttu-id="d8479-167">Substituindo padrões</span><span class="sxs-lookup"><span data-stu-id="d8479-167">Overriding the Defaults</span></span>  
 
-<span data-ttu-id="09bf2-168">Os nomes de procedimento e o parâmetro podem ser configurados de forma semelhante aos procedimentos armazenado de entidade.</span><span class="sxs-lookup"><span data-stu-id="09bf2-168">The procedure and parameter names can be configured in a similar way to entity stored procedures.</span></span>  
+<span data-ttu-id="d8479-168">Os nomes de procedimento e o parâmetro podem ser configurados de forma semelhante aos procedimentos armazenado de entidade.</span><span class="sxs-lookup"><span data-stu-id="d8479-168">The procedure and parameter names can be configured in a similar way to entity stored procedures.</span></span>  
 
 ``` csharp
 modelBuilder  
