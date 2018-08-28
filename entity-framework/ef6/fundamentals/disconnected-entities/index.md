@@ -2,19 +2,13 @@
 title: Trabalhando com entidades desconectadas – EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 12138003-a373-4817-b1b7-724130202f5f
-caps.latest.revision: 3
-ms.openlocfilehash: 5419215a77b57ab3c92fb88a512510070ea23bd6
-ms.sourcegitcommit: 45494121254ad4fdcec613d1dd22d850068d6f39
+ms.openlocfilehash: b496a9cba48946974844725c5df5e7df7351cf23
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37913435"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42998220"
 ---
 # <a name="working-with-disconnected-entities"></a>Trabalhando com entidades desconectadas
 Em um aplicativo baseado no Entity Framework, uma classe de contexto é responsável por detectar alterações aplicadas a entidades controladas. Chamar o método SaveChanges mantém as alterações controladas pelo contexto para o banco de dados. Ao trabalhar com aplicativos de N camadas, os objetos de entidade normalmente são modificados enquanto estão desconectados do contexto, e você deve decidir como rastrear as alterações e relatar essas alterações de volta para o contexto. Este tópico discute as diferentes opções que estão disponíveis ao usar o Entity Framework com entidades desconectadas.   
