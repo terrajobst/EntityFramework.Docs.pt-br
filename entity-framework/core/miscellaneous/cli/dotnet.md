@@ -1,34 +1,33 @@
 ---
-title: .NET core CLI - Core EF
+title: .NET core CLI – EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
-ms.technology: entity-framework-core
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 721235b07e695efd8df43294e1f4e90c28ae83d7
-ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
+ms.openlocfilehash: 81427b010f63bdd591ffb9117c1556722313c3fa
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34754490"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995291"
 ---
 <a name="ef-core-net-command-line-tools"></a>Ferramentas de linha de comando do EF Core .NET
 ===============================
-As ferramentas de linha de comando Entity Framework Core .NET são uma extensão de várias plataformas **dotnet** comando, que é parte do [.NET Core SDK][2].
+As ferramentas de linha de comando do Entity Framework Core .NET são uma extensão para a plataforma cruzada **dotnet** comando, que é parte do [SDK do .NET Core][2].
 
 > [!TIP]
-> Se você estiver usando o Visual Studio, é recomendável [as ferramentas de PMC] [ 1] em vez disso, uma vez que eles fornecem uma experiência mais integrada.
+> Se você estiver usando o Visual Studio, recomendamos [as ferramentas de PMC] [ 1] em vez disso, já que eles fornecem uma experiência mais integrada.
 
 <a name="installing-the-tools"></a>Instalando as ferramentas
 --------------------
 > [!NOTE]
-> O núcleo do .NET SDK versão 2.1.300 e mais recente inclui **dotnet ef** comandos que são compatíveis com o EF Core 2.0 e versões posteriores. Portanto, se você estiver usando versões recentes do SDK de núcleo do .NET e o tempo de execução do núcleo do EF, nenhuma instalação é necessária e você pode ignorar o restante desta seção.
+> SDK do .NET Core 2.1.300 de versão e mais recente inclui **dotnet ef** comandos que são compatíveis com o EF Core 2.0 e versões posteriores. Portanto, se você estiver usando versões recentes do SDK do .NET Core e o tempo de execução do EF Core, nenhuma instalação é necessária e você pode ignorar o restante desta seção.
 >
-> Por outro lado, o **dotnet ef** ferramenta contida na versão do SDK do .NET Core 2.1.300 e mais recente não é compatível com a versão EF Core 1.0 e 1.1. Antes de você pode trabalhar com um projeto que usa essas versões anteriores do EF principal em um computador que tem o SDK do .NET Core 2.1.300 ou posterior esteja instalado, você também deve instalar a versão 2.1.200 ou mais antiga do SDK e configure o aplicativo para usar a versão antiga, modificando seu  [global.json](https://docs.microsoft.com/en-us/dotnet/core/tools/global-json) arquivo. Normalmente, esse arquivo está incluído no diretório da solução (um acima do projeto). Em seguida, você poderá continuar com a instrução 2161DS abaixo.
+> Por outro lado, o **dotnet ef** ferramenta contida na versão do SDK do .NET Core 2.1.300 e mais recente não é compatível com a versão do EF Core 1.0 e 1.1. Antes de você pode trabalhar com um projeto que usa essas versões anteriores do EF Core em um computador que tem o SDK do .NET Core 2.1.300 ou mais recente instalado, você também deve instalar a versão 2.1.200 ou mais antiga do SDK e configurar o aplicativo para usar essa versão, modificando sua  [global. JSON](https://docs.microsoft.com/en-us/dotnet/core/tools/global-json) arquivo. Normalmente, esse arquivo está incluído no diretório da solução (um acima do projeto). Em seguida, você pode prosseguir com a instrução 2161DS abaixo.
 
-Para versões anteriores do SDK do núcleo do .NET, você pode instalar as ferramentas de linha de comando do EF principais .NET usando estas etapas:
+Para versões anteriores do SDK do .NET Core, você pode instalar as ferramentas de linha de comando do EF Core .NET usando as seguintes etapas:
 
-1. Edite o arquivo de projeto e adicionar Microsoft.EntityFrameworkCore.Tools.DotNet como um item de DotNetCliToolReference (veja abaixo)
+1. Edite o arquivo de projeto e adicione entityframeworkcore como um item DotNetCliToolReference (veja abaixo)
 2. Execute os seguintes comandos:
 
        dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -55,9 +54,9 @@ O projeto resultante deve ter esta aparência:
 ```
 
 > [!NOTE]
-> Uma referência de pacote com `PrivateAssets="All"` significa que ela não está exposta a projetos que fazem referência a este projeto, o que é especialmente útil para os pacotes que normalmente são usados somente durante o desenvolvimento.
+> Uma referência de pacote com `PrivateAssets="All"` significa que ele não é exposto aos projetos que fazem referência a este projeto, o que é especialmente útil para os pacotes que normalmente são usados apenas durante o desenvolvimento.
 
-Se você fez tudo certo, você poderá executar com êxito o comando a seguir em um prompt de comando.
+Se você fez tudo certo, você deve ser capaz de executar com êxito o comando a seguir em um prompt de comando.
 
 ``` Console
 dotnet ef
@@ -65,39 +64,39 @@ dotnet ef
 
 <a name="using-the-tools"></a>Usando as ferramentas
 ---------------
-Sempre que você chamar um comando, há dois projetos envolvidas:
+Sempre que você invoca um comando, existem dois projetos envolvidos:
 
-O projeto de destino é aquele ao qual todos os arquivos são adicionados (ou, em alguns casos, removidos). O projeto de destino por padrão para o projeto no diretório atual, mas pode ser alterado usando o <nobr> **– projeto** </nobr> opção.
+O projeto de destino é aquele ao qual todos os arquivos são adicionados (ou, em alguns casos, removidos). O projeto de destino padrão é o projeto no diretório atual, mas pode ser alterado usando o <nobr> **– projeto** </nobr> opção.
 
-O projeto de inicialização é aquele emulado pelas ferramentas durante a execução do código do seu projeto. Ele também usa como padrão o projeto no diretório atual, mas pode ser alterado usando o **– projeto de inicialização** opção.
+O projeto de inicialização é aquele emulado pelas ferramentas durante a execução do código do seu projeto. Ele também assume como padrão o projeto no diretório atual, mas pode ser alterado usando o **– projeto de inicialização** opção.
 
 > [!NOTE]
-> Por exemplo, atualizar o banco de dados do seu aplicativo web que tenha o EF Core instalado em um projeto diferente teria esta aparência: `dotnet ef database update --project {project-path}` (do diretório de aplicativo da web)
+> Por exemplo, atualizar o banco de dados do seu aplicativo web que tenha instalado em um projeto diferente do EF Core teria esta aparência: `dotnet ef database update --project {project-path}` (a partir do seu diretório de aplicativo web)
 
 Opções comuns:
 
 |    |                                  |                             |
 |:---|:---------------------------------|:----------------------------|
-|    | --json                           | Mostra saída JSON.           |
-| -c | – contexto \<DBCONTEXT >           | O DbContext para usar.       |
-| -p | – projeto \<projeto >             | O projeto a usar.         |
+|    | --json                           | Mostra a saída JSON.           |
+| -c | – contexto \<DBCONTEXT >           | O DbContext usar.       |
+| -p | – projeto \<projeto >             | O projeto para usar.         |
 | -s | – projeto de inicialização \<projeto >     | O projeto de inicialização para usar. |
 |    | – framework \<FRAMEWORK >         | A estrutura de destino.       |
-|    | – configuração \<Configuração > | A configuração a ser usada.   |
+|    | – configuração \<CONFIGURATION > | A configuração a ser usada.   |
 |    | o tempo de execução – \<identificador >          | O tempo de execução para usar.         |
-| -h | – Ajuda                           | Mostra informações de Ajuda.      |
-| -v | -verbose                        | Mostra saída detalhada.        |
+| -h | – Ajuda                           | Mostre informações de Ajuda.      |
+| -v | – detalhado                        | Mostra saída detalhada.        |
 |    | – sem cor                       | Não colorir saída.      |
 |    | --prefix-output                  | Prefixo com o nível de saída.   |
 
 
 > [!TIP]
-> Para especificar o ambiente do ASP.NET Core, defina o **ASPNETCORE_ENVIRONMENT** variável de ambiente antes de executar.
+> Para especificar o ambiente do ASP.NET Core, defina as **ASPNETCORE_ENVIRONMENT** variável de ambiente antes da execução.
 
 <a name="commands"></a>Comandos
 --------
 
-### <a name="dotnet-ef-database-drop"></a>remoção de banco de dados de ef dotnet
+### <a name="dotnet-ef-database-drop"></a>lista de banco de dados do dotnet ef
 
 Descarta o banco de dados.
 
@@ -105,10 +104,10 @@ Opções:
 
 |    |           |                                                          |
 |:---|:----------|:---------------------------------------------------------|
-| -f | -force   | Não confirme.                                           |
-|    | -Execute | Mostrar qual banco de dados deve ser descartado, mas não solte-o. |
+| -f | -force   | Confirme se não.                                           |
+|    | -dry-run | Mostrar qual banco de dados deve ser descartado, mas não o remova. |
 
-### <a name="dotnet-ef-database-update"></a>atualização de banco de dados de ef dotnet
+### <a name="dotnet-ef-database-update"></a>atualização de banco de dados do dotnet ef
 
 Atualiza o banco de dados para uma migração especificada.
 
@@ -122,35 +121,35 @@ Argumentos:
 
 Obtém informações sobre um tipo DbContext.
 
-### <a name="dotnet-ef-dbcontext-list"></a>lista de dbcontext ef dotnet
+### <a name="dotnet-ef-dbcontext-list"></a>lista do dotnet ef dbcontext
 
 Lista os tipos disponíveis de DbContext.
 
-### <a name="dotnet-ef-dbcontext-scaffold"></a>scaffold de dbcontext ef dotnet
+### <a name="dotnet-ef-dbcontext-scaffold"></a>scaffold do dotnet ef dbcontext
 
-Scaffolds um tipos DbContext e entidade para um banco de dados.
+Usa o Scaffold de um DbContext e tipos de entidade para um banco de dados.
 
 Argumentos:
 
 |               |                                                                             |
 |:--------------|:----------------------------------------------------------------------------|
-| \<CONEXÃO &GT; | A cadeia de caracteres de conexão para o banco de dados.                                      |
-| \<PROVEDOR &GT;   | O provedor a ser usado. (por exemplo, Microsoft.EntityFrameworkCore.SqlServer) |
+| \<CONEXÃO &GT; | A cadeia de conexão para o banco de dados.                                      |
+| \<PROVEDOR &GT;   | O provedor a ser usado. (por exemplo, entityframeworkcore) |
 
 Opções:
 
 |                 |                                         |                                                                                                  |
 |:----------------|:----------------------------------------|:-------------------------------------------------------------------------------------------------|
-| <nobr>-d</nobr> | --data-annotations                      | Use atributos para configurar o modelo (onde for possível). Se omitido, somente a API fluente é usada. |
+| <nobr>-d</nobr> | --data-annotations                      | Use atributos para configurar o modelo (quando possível). Se omitido, somente a API fluente é usada. |
 | -c              | – contexto \<nome >                       | O nome do DbContext.                                                                       |
-|                 | -dir contexto \<caminho >                   | O diretório para colocar o arquivo DbContext no. Caminhos são relativas ao diretório do projeto.             |
+|                 | – contexto-dir \<caminho >                   | O diretório para colocar o arquivo de DbContext. Caminhos são relativos ao diretório do projeto.             |
 | -f              | -force                                 | Substitua arquivos existentes.                                                                        |
-| -o              | -dir saída \<caminho >                    | O diretório de colocar arquivos em. Caminhos são relativas ao diretório do projeto.                      |
+| -o              | -dir saída \<caminho >                    | O diretório para colocar os arquivos. Caminhos são relativos ao diretório do projeto.                      |
 |                 | <nobr>--schema \<SCHEMA_NAME>...</nobr> | Os esquemas de tabelas para gerar tipos de entidade para.                                              |
-| -t              | -tabela \<TABLE_NAME >...                | As tabelas para gerar tipos de entidade para.                                                         |
+| -t              | – tabela \<TABLE_NAME >...                | As tabelas para gerar tipos de entidade para.                                                         |
 |                 | – use nomes de banco de dados                    | Use nomes de tabela e coluna diretamente do banco de dados.                                           |
 
-### <a name="dotnet-ef-migrations-add"></a>Adicionar migrações de ef dotnet
+### <a name="dotnet-ef-migrations-add"></a>Adicionar migrações do ef dotnet
 
 Adiciona uma nova migração.
 
@@ -164,13 +163,13 @@ Opções:
 
 |                 |                                   |                                                                                                                  |
 |:----------------|:----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| <nobr>-o</nobr> | <nobr>-dir saída \<caminho ></nobr> | O diretório (e sub-namespace) a ser usado. Caminhos são relativas ao diretório do projeto. O padrão é "Migrações". |
+| <nobr>-o</nobr> | <nobr>-dir saída \<caminho ></nobr> | O diretório (e sub-namespace) para usar. Caminhos são relativos ao diretório do projeto. O padrão é "Migrações". |
 
-### <a name="dotnet-ef-migrations-list"></a>lista de migrações ef dotnet
+### <a name="dotnet-ef-migrations-list"></a>lista de migrações dotnet ef
 
 Lista as migrações disponíveis.
 
-### <a name="dotnet-ef-migrations-remove"></a>Remova as migrações de ef dotnet
+### <a name="dotnet-ef-migrations-remove"></a>Remover de migrações do ef dotnet
 
 Remove a última migração.
 
@@ -178,9 +177,9 @@ Opções:
 
 |    |         |                                                                       |
 |:---|:--------|:----------------------------------------------------------------------|
-| -f | -force | Reverta a migração se ela foi aplicada ao banco de dados. |
+| -f | -force | Reverta a migração, se ele tiver sido aplicado ao banco de dados. |
 
-### <a name="dotnet-ef-migrations-script"></a>script de migrações ef dotnet
+### <a name="dotnet-ef-migrations-script"></a>script de migrações dotnet ef
 
 Gera um script SQL de migrações.
 
@@ -195,8 +194,8 @@ Opções:
 
 |    |                  |                                                                    |
 |:---|:-----------------|:-------------------------------------------------------------------|
-| -o | -saída \<arquivo > | O arquivo para gravar o resultado.                                   |
-| -i | – idempotente     | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
+| -o | – saída \<arquivo > | O arquivo para gravar o resultado.                                   |
+| -i | – idempotentes     | Gere um script que pode ser usado em um banco de dados em qualquer migração. |
 
 
   [1]: powershell.md

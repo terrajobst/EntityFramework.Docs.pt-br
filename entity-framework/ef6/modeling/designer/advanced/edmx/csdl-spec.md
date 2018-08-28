@@ -2,19 +2,13 @@
 title: Especificação de CSDL - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: c54255f4-253f-49eb-bec8-ad7927ac2fa3
-caps.latest.revision: 3
-ms.openlocfilehash: 0ece73a19fe7ea244905bccb728ab2a104c5179f
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 88669cf80f9a792fda7d191d9f6be2b1734691df
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "39119852"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994723"
 ---
 # <a name="csdl-specification"></a>Especificação de CSDL
 Linguagem de definição de esquema conceitual (CSDL) é uma linguagem baseada em XML que descreve as entidades, relações e funções que compõem um modelo conceitual de um aplicativo controlado por dados. Esse modelo conceitual pode ser usado pelo Entity Framework ou do WCF Data Services. Os metadados que é descrito com a CSDL é usado pelo Entity Framework para mapear entidades e relações que são definidas em um modelo conceitual para uma fonte de dados. Para obter mais informações, consulte [especificação de SSDL](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md) e [especificação de MSL](~/ef6/modeling/designer/advanced/edmx/msl-spec.md).

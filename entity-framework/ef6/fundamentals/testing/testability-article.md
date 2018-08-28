@@ -2,19 +2,13 @@
 title: Capacidade de teste e o Entity Framework 4.0
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 9430e2ab-261c-4e8e-8545-2ebc52d7a247
-caps.latest.revision: 3
-ms.openlocfilehash: 61773f8a23ff54ddb78aeeb5656c669b12f91478
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 17a9f09022531a81042979464de05fbbd2570759
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "39119845"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995223"
 ---
 # <a name="testability-and-entity-framework-40"></a>Capacidade de teste e o Entity Framework 4.0
 Scott Allen
@@ -979,8 +973,8 @@ Neste artigo, demonstrei várias abordagens para criar o código que podem ser t
 -   Martin Fowler, " [Mocks não são Stubs](http://martinfowler.com/articles/mocksArentStubs.html)"
 -   Martin Fowler, " [duplo de teste](http://martinfowler.com/bliki/TestDouble.html)"
 -   Jeremy Miller, " [estado versus testes de interação](http://codebetter.com/blogs/jeremy.miller/articles/129544.aspx)"
--   Moq, \<http://code.google.com/p/moq/>
+-   [Moq](http://code.google.com/p/moq/)
 
 ### <a name="biography"></a>Biografia
 
-Scott Allen é um membro da equipe técnica na Pluralsight e fundador da OdeToCode.com. Em 15 anos de desenvolvimento de software comercial, Scott trabalhou em soluções para tudo, desde dispositivos incorporados de 8 bits para aplicativos web ASP.NET com altamente escalonáveis. Você pode alcançar Scott em seu blog em OdeToCode ou no Twitter em \< http://twitter.com/OdeToCode>.
+Scott Allen é um membro da equipe técnica na Pluralsight e fundador da OdeToCode.com. Em 15 anos de desenvolvimento de software comercial, Scott trabalhou em soluções para tudo, desde dispositivos incorporados de 8 bits para aplicativos web ASP.NET com altamente escalonáveis. Você pode alcançar Scott em seu blog em OdeToCode ou no Twitter em [ http://twitter.com/OdeToCode ](http://twitter.com/OdeToCode).

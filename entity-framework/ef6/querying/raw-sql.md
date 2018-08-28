@@ -2,19 +2,13 @@
 title: Consultas SQL brutas - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 9e1ee76e-2499-408c-81e8-9b6c5d1945a0
-caps.latest.revision: 3
-ms.openlocfilehash: 1d968604cfa500784c4699b0923512572a06d773
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 99893ca1c634ce6f2e4cf9dcb70b1a1e43532c60
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "39119827"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995728"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 Entity Framework permite que a consulta usando LINQ com as classes de entidade. No entanto, pode haver ocasiões em que você deseja executar consultas usando SQL bruto diretamente no banco de dados. Isso inclui chamar procedimentos armazenados, que podem ser útil para modelos Code First que atualmente não há suporte para o mapeamento para procedimentos armazenados. As técnicas mostradas neste tópico se aplicam igualmente a modelos criados com o Code First e com o EF Designer.  

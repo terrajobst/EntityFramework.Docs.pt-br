@@ -1,21 +1,19 @@
 ---
-title: Índices - Core EF
+title: Índices – EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 85b92003-b692-417d-ac1d-76d40dce664b
-ms.technology: entity-framework-core
 uid: core/modeling/indexes
-ms.openlocfilehash: f57b545d53613cec6887734bf434958ee8fff4d8
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 87fe893243377e3ab83d419ae9bedf813ca50c3f
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054880"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995474"
 ---
 # <a name="indexes"></a>Índices
 
-Os índices são um conceito comuns em vários repositórios de dados. Embora sua implementação no repositório de dados pode variar, eles são usados para fazer pesquisas com base em uma coluna (ou conjunto de colunas) mais eficiente.
+Os índices são um conceito comum entre vários armazenamentos de dados. Embora sua implementação no armazenamento de dados pode variar, eles são usados para fazer pesquisas com base em uma coluna (ou conjunto de colunas) mais eficiente.
 
 ## <a name="conventions"></a>Convenções
 
@@ -23,11 +21,11 @@ Por convenção, um índice é criado em cada propriedade (ou conjunto de propri
 
 ## <a name="data-annotations"></a>Anotações de dados
 
-Índices não podem ser criados usando as anotações de dados.
+Não é possível criar índices usando anotações de dados.
 
 ## <a name="fluent-api"></a>API fluente
 
-Você pode usar a API fluente para especificar um índice em uma única propriedade. Por padrão, os índices são não exclusivo.
+Você pode usar a API Fluent para especificar um índice em uma única propriedade. Por padrão, os índices são não exclusivo.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Index.cs?highlight=7,8)] -->
 ``` csharp
@@ -82,4 +80,4 @@ public class Person
 ```
 
 > [!TIP]  
-> Há apenas um índice por um conjunto distinto de propriedades. Se você usar a API fluente para configurar um índice em um conjunto de propriedades que já tem um índice definido, por convenção ou configuração anterior, em seguida, você estará alterando a definição de índice. Isso é útil se você quiser configurar um índice que foi criado por convenção.
+> Há apenas um índice por um conjunto distinto de propriedades. Se você usar a API Fluent para configurar um índice em um conjunto de propriedades que já tem um índice definido, por convenção ou configuração anterior, em seguida, você estará alterando a definição de índice. Isso é útil se você deseja configurar um índice que foi criado por convenção.
