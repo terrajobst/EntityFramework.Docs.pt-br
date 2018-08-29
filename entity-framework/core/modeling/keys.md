@@ -1,21 +1,19 @@
 ---
-title: Chaves (primária) - Core de EF
+title: Chaves (primárias) – EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 912ffef7-86a0-4cdc-a776-55f907459d20
-ms.technology: entity-framework-core
 uid: core/modeling/keys
-ms.openlocfilehash: f3bf3c7f2a28e065b350fe000a5164406cd5ca08
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 9e6946100ebabc6ba57cb792b3672219098b1e21
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26052566"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994015"
 ---
-# <a name="keys-primary"></a>Chaves (primária)
+# <a name="keys-primary"></a>Chaves (primárias)
 
-Uma chave serve como o principal identificador exclusivo para cada instância de entidade. Ao usar um banco de dados relacional, isso mapeia para o conceito de um *chave primária*. Você também pode configurar um identificador exclusivo que não é a chave primária (consulte [chaves alternativas](alternate-keys.md) para obter mais informações).
+Uma chave serve como o principal identificador exclusivo para cada instância de entidade. Ao usar um banco de dados relacional mapeia para o conceito de um *chave primária*. Você também pode configurar um identificador exclusivo que não é a chave primária (consulte [chaves alternativas](alternate-keys.md) para obter mais informações).
 
 ## <a name="conventions"></a>Convenções
 
@@ -45,7 +43,7 @@ class Car
 
 ## <a name="data-annotations"></a>Anotações de dados
 
-Você pode usar as anotações de dados para configurar uma única propriedade para ser a chave de uma entidade.
+Você pode usar anotações de dados para configurar uma única propriedade para ser a chave de uma entidade.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/DataAnnotations/Samples/KeySingle.cs?highlight=3,4)] -->
 ``` csharp
@@ -61,7 +59,7 @@ class Car
 
 ## <a name="fluent-api"></a>API fluente
 
-Você pode usar a API fluente para configurar uma única propriedade para ser a chave de uma entidade.
+Você pode usar a API Fluent para configurar uma única propriedade para ser a chave de uma entidade.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/KeySingle.cs?highlight=7,8)] -->
 ``` csharp
@@ -85,7 +83,7 @@ class Car
 }
 ```
 
-Você também pode usar a API fluente para configurar várias propriedades para a chave de uma entidade (conhecida como uma chave composta). Chaves compostas só podem ser configuradas usando a API fluente - convenções nunca irá configurar uma chave composta e você não pode usar as anotações de dados para configurar um.
+Você também pode usar a API Fluent para configurar várias propriedades para ser a chave de uma entidade (conhecida como uma chave composta). Chaves compostas só podem ser configuradas usando a API Fluent - convenções nunca irá configurar uma chave composta, e você não pode usar anotações de dados para configurar um.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/KeyComposite.cs?highlight=7,8)] -->
 ``` csharp
