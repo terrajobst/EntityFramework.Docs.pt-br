@@ -3,12 +3,12 @@ title: Async de consulta e salve - o EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: 758f8bc3d14fc1f60f14ff14f4251aeed057c518
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 64051dea740b2183cb904d7fb4293d7048c218ca
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994456"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152431"
 ---
 # <a name="async-query-and-save"></a>Async consultar e salvar
 > [!NOTE]
@@ -137,7 +137,7 @@ Agora que temos um modelo do EF, vamos escrever um código que utiliza para exec
 
 Esse código chama o **PerformDatabaseOperations** método que salva uma nova **Blog** para o banco de dados e, em seguida, recupera todos os **Blogs** do banco de dados e imprime-los para o **Console**. Depois disso, o programa grava uma citação do dia para o **Console**.
 
-Como o código é síncrona, podemos pode observar o seguinte fluxo de execução ao executar o programa:
+Como o código é síncrono, podemos pode observar o seguinte fluxo de execução ao executar o programa:
 
 1.  **SaveChanges** começa a enviar por push a nova **Blog** ao banco de dados
 2.  **SaveChanges** é concluída

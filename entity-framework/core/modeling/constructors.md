@@ -4,12 +4,12 @@ author: ajcvickers
 ms.date: 02/23/2018
 ms.assetid: 420AFFE7-B709-4A68-9149-F06F8746FB33
 uid: core/modeling/constructors
-ms.openlocfilehash: 0536393d074d82583f47faae13cc22498193cb7e
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 1b36197465fb9a6571a306d36eb1e9d885a5399e
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994887"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152459"
 ---
 # <a name="entity-types-with-constructors"></a>Tipos de entidade com construtores
 
@@ -25,7 +25,7 @@ Começando com o EF Core 2.1, agora é possível definir um construtor com parâ
 
 Considere um modelo típico de postagem do Blog:
 
-```Csharp
+``` csharp
 public class Blog
 {
     public int Id { get; set; }
@@ -50,7 +50,7 @@ public class Post
 
 Quando o EF Core cria instâncias desses tipos, como para os resultados de uma consulta, ele primeiro chamar o construtor padrão sem parâmetros e, em seguida, defina cada propriedade para o valor do banco de dados. No entanto, se o EF Core encontra um construtor com parâmetros com nomes de parâmetro e tipos que correspondem da mapeados propriedades, ele chamará em vez disso, o construtor com parâmetros com valores para essas propriedades e não definirá explicitamente cada propriedade. Por exemplo:
 
-```Csharp
+``` csharp
 public class Blog
 {
     public Blog(int id, string name, string author)
@@ -99,7 +99,7 @@ Depois que as propriedades estão sendo definidas por meio do construtor pode fa
 * Usar valores de chave geradas automaticamente requer uma propriedade de chave é leitura / gravação, uma vez que o valor da chave precisa ser definido pelo gerador de chave ao inserir novas entidades.
 
 Uma maneira fácil de evitar essas coisas é usar setters privados. Por exemplo:
-```Csharp
+``` csharp
 public class Blog
 {
     public Blog(int id, string name, string author)
@@ -139,7 +139,7 @@ O EF Core vê uma propriedade com um setter privado como leitura / gravação, o
 
 É uma alternativa ao uso de setters privados tornar as propriedades realmente somente leitura e adicionar mapeamento mais explícito em OnModelCreating. Da mesma forma, algumas propriedades podem ser completamente removidas e substituídas pelo somente os campos. Por exemplo, considere estes tipos de entidade:
 
-```Csharp
+``` csharp
 public class Blog
 {
     private int _id;
@@ -174,7 +174,7 @@ public class Post
 }
 ```
 E essa configuração em OnModelCreating:
-```Csharp
+``` csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Blog>(
@@ -215,7 +215,7 @@ O EF Core também pode injetar "serviços" no construtor do tipo de entidade. Po
 
 Por exemplo, um DbContext injetado pode ser usado para acessar seletivamente o banco de dados para obter informações sobre entidades relacionadas sem carregar todos eles. No exemplo a seguir, isso é usado para obter o número de postagens em um blog sem carregar as postagens de:
 
-```Csharp
+``` csharp
 public class Blog
 {
     public Blog()

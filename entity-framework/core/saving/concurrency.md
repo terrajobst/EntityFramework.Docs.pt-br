@@ -5,12 +5,12 @@ ms.author: divega
 ms.date: 03/03/2018
 ms.technology: entity-framework-core
 uid: core/saving/concurrency
-ms.openlocfilehash: 288d9c6fced5ebbaa2c366248c68547502c3698e
-ms.sourcegitcommit: 8f3be0a2a394253efb653388ec66bda964e5ee1b
+ms.openlocfilehash: 2d8909585201a45eb020537847800f125b3b0120
+ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2018
-ms.locfileid: "29745467"
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "42447788"
 ---
 # <a name="handling-concurrency-conflicts"></a>Como tratar conflitos de simultaneidade
 
@@ -48,7 +48,7 @@ WHERE [PersonId] = @p0 AND [LastName] = @p2;
 
 ## <a name="resolving-concurrency-conflicts"></a>Como resolver conflitos de simultaneidade
 
-Continuando com o exemplo anterior, se um usuário tenta salvar algumas alterações em um `Person`, mas outro usuário já tiver alterado o `LastName`, uma exceção será gerada.
+Continuando com o exemplo anterior, se um usuário tentar salvar algumas alterações em um `Person`, mas outro usuário já tiver alterado o `LastName`, uma exceção será gerada.
 
 Neste ponto, o aplicativo pode simplesmente informar ao usuário que a atualização não teve êxito devido a alterações conflitantes e avançar. Mas, talvez seja desejável consultar o usuário para garantir que este registro represente a mesma pessoa e repetir a operação.
 

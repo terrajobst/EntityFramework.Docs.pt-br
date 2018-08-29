@@ -1,20 +1,20 @@
 ---
 title: Implementações .NET compatíveis – EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 08/30/2017
-ms.technology: entity-framework-core
 uid: core/platforms/index
-ms.openlocfilehash: 790628c407cc4374fee4ebde8201783955afdcc3
-ms.sourcegitcommit: fd50ac53b93a03825dcbb42ed2e7ca95ca858d5f
+ms.openlocfilehash: 347965818f0eab9a86411f66eaaf10cb3aa8d652
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/07/2018
-ms.locfileid: "37900324"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996432"
 ---
 # <a name="net-implementations-supported-by-ef-core"></a>Implementações .NET compatíveis com Core EF
 
 Queremos que o EF Core esteja disponível em qualquer lugar em que você possa escrever o código .NET e ainda estamos trabalhando para essa meta. Embora a compatibilidade do EF Core com o .NET Core e o .NET Framework esteja coberta pelo teste automatizado e é sabido que muitos aplicativos utilizam o EF Core com êxito, o Mono, o Xamarin e o UWP têm alguns problemas.
+
+## <a name="overview"></a>Visão geral
 
 A tabela a seguir fornece diretrizes para cada implementação do .NET:
 
@@ -31,6 +31,18 @@ A tabela a seguir fornece diretrizes para cada implementação do .NET:
 
 <sup>(3)</sup> Há problemas e limitações conhecidas com o Xamarin que podem impedir que alguns aplicativos desenvolvidos usando o EF Core 2.0 funcionem corretamente. Verifique a lista de [problemas ativos](https://github.com/aspnet/entityframeworkCore/issues?q=is%3Aopen+is%3Aissue+label%3Aarea-xamarin) para obter soluções alternativas.
 
-<sup>(4) </sup> Versões anteriores do EF Core e da UWP do .NET tiveram vários problemas de compatibilidade, especialmente com aplicativos compilados com a cadeia de ferramentas do .NET Native. A nova versão da UWP do .NET adiciona suporte para o .NET Standard 2.0 e contém o .NET Native 2.0, que corrige a maioria dos problemas de compatibilidade relatados anteriormente. O EF Core 2.0.1 foi testado mais rigorosamente com a UWP, mas o teste não foi automatizado.
+<sup>(4)</sup> Confira a seção [Plataforma Universal do Windows](#universal-windows-platform) deste artigo.
+
+## <a name="universal-windows-platform"></a>Plataforma Universal do Windows
+
+As versões anteriores do EF Core e da UWP do .NET tiveram vários problemas de compatibilidade, especialmente com aplicativos compilados com a cadeia de ferramentas do .NET Native. A nova versão da UWP do .NET adiciona suporte para o .NET Standard 2.0 e contém o .NET Native 2.0, que corrige a maioria dos problemas de compatibilidade relatados anteriormente. O EF Core 2.0.1 foi testado mais rigorosamente com a UWP, mas o teste não foi automatizado.
+
+Ao usar o EF Core na UWP:
+
+* Para otimizar o desempenho de consultas, evite tipos anônimos nas consultas LINQ. A implantação de um aplicativo da UWP na loja de aplicativos exige a compilação do aplicativo com o .NET Native. Consultas com tipos anônimos tem um desempenho pior no .NET Native.
+
+* Para otimizar o desempenho de `SaveChanges()`, use [ChangeTrackingStrategy.ChangingAndChangedNotifications](/dotnet/api/microsoft.entityframeworkcore.changetrackingstrategy) e implemente [INotifyPropertyChanged](https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged.aspx), [INotifyPropertyChanging](https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanging.aspx) e [INotifyCollectionChanged](https://msdn.microsoft.com/en-us/library/system.collections.specialized.inotifycollectionchanged.aspx) nos tipos de entidade.
+
+## <a name="report-issues"></a>Relatar problemas
 
 Para qualquer combinação que não funcione conforme o esperado, recomendamos criar novos problemas no [rastreador de problemas do EF Core](https://github.com/aspnet/entityframeworkcore/issues/new). Para problemas específicos de Xamarin use o rastreador de problemas para [Xamarin.Android](https://github.com/xamarin/xamarin-android/issues/new) ou [Xamarin.iOS](https://github.com/xamarin/xamarin-macios/issues/new).

@@ -6,12 +6,12 @@ ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 ms.technology: entity-framework-core
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 0b145217d40027c4b8e4746e9c5651652a28c9eb
-ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
+ms.openlocfilehash: a81b0a26fe98dcc1ddedc11aba2673338c8991e8
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2018
-ms.locfileid: "29152410"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "42447722"
 ---
 # <a name="disconnected-entities"></a>Entidades desconectadas
 

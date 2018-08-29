@@ -6,12 +6,12 @@ ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 ms.technology: entity-framework-core
 uid: core/querying/related-data
-ms.openlocfilehash: 5f1fb9376300739ab0e306d9d60e7ec71aa2d2e7
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: 05833055f4744940364da4fdea7ded9a90d67508
+ms.sourcegitcommit: a3aec015e0ad7ee31e0f75f00bbf2d286a3ac5c1
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812645"
+ms.lasthandoff: 07/18/2018
+ms.locfileid: "42447699"
 ---
 # <a name="loading-related-data"></a>Como carregar dados relacionados
 
@@ -64,52 +64,52 @@ Você pode incluir dados relacionados de navegações definidas apenas em um tip
 
 Com o seguinte modelo:
 
-```Csharp
-    public class SchoolContext : DbContext
+```csharp
+public class SchoolContext : DbContext
+{
+    public DbSet<Person> People { get; set; }
+    public DbSet<School> Schools { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public DbSet<Person> People { get; set; }
-        public DbSet<School> Schools { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<School>().HasMany(s => s.Students).WithOne(s => s.School);
-        }
+        modelBuilder.Entity<School>().HasMany(s => s.Students).WithOne(s => s.School);
     }
+}
 
-    public class Person
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+public class Person
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
 
-    public class Student : Person
-    {
-        public School School { get; set; }
-    }
+public class Student : Person
+{
+    public School School { get; set; }
+}
 
-    public class School
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
+public class School
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
 
-        public List<Student> Students { get; set; }
-    }
+    public List<Student> Students { get; set; }
+}
 ```
 
 Conteúdo da navegação em `School` de todas as pessoas que são alunos pode ser carregada de maneira adiantada usando um número de padrões:
 
 - usando conversão
-  ```Csharp
+  ```csharp
   context.People.Include(person => ((Student)person).School).ToList()
   ```
 
 - usando o operador `as`
-  ```Csharp
+  ```csharp
   context.People.Include(person => (person as Student).School).ToList()
   ```
 
 - usando a sobrecarga de `Include` que usa o parâmetro de tipo `string`
-  ```Csharp
+  ```csharp
   context.People.Include("Student").ToList()
   ```
 
@@ -154,20 +154,20 @@ Você também pode filtrar quais entidades relacionadas são carregadas na memó
 > Essa funcionalidade foi introduzida no EF Core 2.1.
 
 A maneira mais simples para usar o carregamento lento é instalando o pacote [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) e habilitá-lo com uma chamada para `UseLazyLoadingProxies`. Por exemplo:
-```Csharp
+```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
         .UseLazyLoadingProxies()
         .UseSqlServer(myConnectionString);
 ```
 Ou ao usar AddDbContext:
-```Csharp
-    .AddDbContext<BloggingContext>(
-        b => b.UseLazyLoadingProxies()
-              .UseSqlServer(myConnectionString));
+```csharp
+.AddDbContext<BloggingContext>(
+    b => b.UseLazyLoadingProxies()
+          .UseSqlServer(myConnectionString));
 ```
-O EF Core, em seguida, habilitará o carregamento lento para qualquer propriedade de navegação que pode ser substituída – ou seja, ele deverá ser `virtual` e em uma classe que pode ser herdada. Por exemplo, nas entidades a seguir, as propriedades de navegação `Post.Blog` e `Blog.Posts` serão de carregamento lento.
-```Csharp
+O EF Core, em seguida, habilitará o carregamento lento para qualquer propriedade de navegação que pode ser substituída – ou seja, deverá ser `virtual` e em uma classe que pode ser herdada. Por exemplo, nas entidades a seguir, as propriedades de navegação `Post.Blog` e `Blog.Posts` serão de carregamento lento.
+```csharp
 public class Blog
 {
     public int Id { get; set; }
@@ -188,7 +188,7 @@ public class Post
 ### <a name="lazy-loading-without-proxies"></a>Carregamento lento sem proxies
 
 Os proxies de carregamento lento funcionam inserindo o serviço `ILazyLoader` em uma entidade, conforme descrito em [Construtores de tipo de entidade](../modeling/constructors.md). Por exemplo:
-```Csharp
+```csharp
 public class Blog
 {
     private ICollection<Post> _posts;
@@ -209,7 +209,7 @@ public class Blog
 
     public ICollection<Post> Posts
     {
-        get => LazyLoader?.Load(this, ref _posts);
+        get => LazyLoader.Load(this, ref _posts);
         set => _posts = value;
     }
 }
@@ -235,13 +235,13 @@ public class Post
 
     public Blog Blog
     {
-        get => LazyLoader?.Load(this, ref _blog);
+        get => LazyLoader.Load(this, ref _blog);
         set => _blog = value;
     }
 }
 ```
-Isso não exige que os tipos de entidade sejam herdados de ou as propriedades de navegação sejam virtuais e permitam que as instâncias da entidade criadas com `new` sejam carregados de maneira lenta assim que forem conectadas a um contexto. No entanto, ele exige uma referência para o serviço `ILazyLoader`, que associa os tipos de entidade para o assembly do EF Core. Para evitar que esse EF Core permita que o método `ILazyLoader.Load` seja inserido como um representante. Por exemplo:
-```Csharp
+Isso não exige que os tipos de entidade sejam herdados de ou as propriedades de navegação sejam virtuais e permitam que as instâncias da entidade criadas com `new` sejam carregados de maneira lenta assim que forem conectadas a um contexto. No entanto, isso exige referência ao serviço `ILazyLoader`, que é definido no pacote [Microsoft.EntityFrameworkCore.Abstractions](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Abstractions/). Este pacote contém um conjunto mínimo de tipos, portanto, há pouco impacto em depender dele. No entanto, para evitar completamente a dependência de todos os pacotes do EF Core em tipos de entidade, é possível injetar o método `ILazyLoader.Load` como um delegado. Por exemplo:
+```csharp
 public class Blog
 {
     private ICollection<Post> _posts;
@@ -262,7 +262,7 @@ public class Blog
 
     public ICollection<Post> Posts
     {
-        get => LazyLoader?.Load(this, ref _posts);
+        get => LazyLoader.Load(this, ref _posts);
         set => _posts = value;
     }
 }
@@ -288,13 +288,13 @@ public class Post
 
     public Blog Blog
     {
-        get => LazyLoader?.Load(this, ref _blog);
+        get => LazyLoader.Load(this, ref _blog);
         set => _blog = value;
     }
 }
 ```
 O código acima usa um método de extensão `Load` para deixar o representante um pouco mais limpo:
-```Csharp
+```csharp
 public static class PocoLoadingExtensions
 {
     public static TRelated Load<TRelated>(
@@ -311,7 +311,7 @@ public static class PocoLoadingExtensions
 }
 ```
 > [!NOTE]  
-> O parâmetro de construtor para o representante de carregamento lento deve ser chamado de "lazyLoader". A configuração para usar um nome diferente, isso será planejado para uma versão futura.
+> O parâmetro de construtor para o representante de carregamento lento deve ser chamado de "lazyLoader". A configuração para usar um nome diferente é planejada para uma versão futura.
 
 ## <a name="related-data-and-serialization"></a>Serialização e dados relacionados
 
@@ -323,7 +323,7 @@ Algumas estruturas de serialização não permitem esses ciclos. Por exemplo, Js
 
 Se você estiver usando o ASP.NET Core, poderá configurar o Json.NET para ignorar os ciclos que encontrar no gráfico de objeto. Isso é feito no método `ConfigureServices(...)` no `Startup.cs`.
 
-``` csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     ...

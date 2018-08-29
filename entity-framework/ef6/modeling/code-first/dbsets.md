@@ -2,19 +2,13 @@
 title: Definindo DbSets - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 4528a509-ace7-4dfb-8065-1b833f5e03a0
-caps.latest.revision: 3
-ms.openlocfilehash: 8a495c6ce74d9a346a84b0e10fb28395f4dce07b
-ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
+ms.openlocfilehash: cc45ed1ceb20bc90090adb3e93c10651c69c9a6a
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/16/2018
-ms.locfileid: "39120194"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42993851"
 ---
 # <a name="defining-dbsets"></a>Definindo DbSets
 Ao desenvolver com o fluxo de trabalho do Code First você definir um DbContext derivado que representa a sessão com o banco de dados e expõe um DbSet para cada tipo em seu modelo. Este tópico aborda as várias maneiras que você pode definir as propriedades DbSet.  

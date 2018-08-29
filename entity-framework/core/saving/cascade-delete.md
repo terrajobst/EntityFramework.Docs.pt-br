@@ -6,12 +6,12 @@ ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 0fc8929c56d4c657b7fb1e3c8e4b1a71659220c9
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: 7e1c87ae3a955c22b267a108ea7c2bb504e9acc3
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812671"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "42447733"
 ---
 # <a name="cascade-delete"></a>Excluir em cascata
 
@@ -32,7 +32,10 @@ Há três ações que o EF pode executar quando uma entidade de segurança/pai �
 
 Para a segunda ação acima, definir um valor de chave estrangeira como nulo não será válido se a chave estrangeira não for anulável. (Uma chave estrangeira não anulável é equivalente a uma relação obrigatória). Nesses casos, o Core EF controla se a propriedade de chave estrangeira foi marcada como nula até SaveChanges ser chamado, o momento em que uma exceção será gerada porque as alterações não podem ser mantidas no banco de dados. Isso é semelhante a obter uma violação de restrição do banco de dados.
 
-Há quatro comportamentos de exclusão, conforme o listado nas tabelas a seguir. Para relações opcionais (chave estrangeira anulável), _é_ possível salvar um valor de chave estrangeiro nulo, que resulta nos seguintes efeitos:
+Há quatro comportamentos de exclusão, conforme o listado nas tabelas a seguir.
+
+### <a name="optional-relationships"></a>Relações opcionais
+Para relações opcionais (chave estrangeira anulável), _é_ possível salvar um valor de chave estrangeiro nulo, que resulta nos seguintes efeitos:
 
 | Nome do comportamento               | Efeito em dependente/filho na memória    | Efeito em dependente/filho no banco de dados  |
 |:----------------------------|:---------------------------------------|:---------------------------------------|
@@ -41,6 +44,7 @@ Há quatro comportamentos de exclusão, conforme o listado nas tabelas a seguir.
 | **SetNull**                 | Propriedades de chave estrangeira são definidas como nulas | Propriedades de chave estrangeira são definidas como nulas |
 | **Restrict**                | Nenhum                                   | Nenhum                                   |
 
+### <a name="required-relationships"></a>Relações necessárias
 Para relações obrigatórias (chave estrangeira não anulável), _não_ pode salvar um valor de chave estrangeiro nulo, que resulta nos seguintes efeitos:
 
 | Nome do comportamento         | Efeito em dependente/filho na memória | Efeito em dependente/filho no banco de dados |

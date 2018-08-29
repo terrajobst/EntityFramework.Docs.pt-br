@@ -6,16 +6,16 @@ ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 ms.technology: entity-framework-core
 uid: core/querying/raw-sql
-ms.openlocfilehash: 29b7e20e875bf791a88a92636c1df4bc4e31656b
-ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
+ms.openlocfilehash: a1d554795dcd8a3e5b44e89ac014f538598461cc
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/14/2018
-ms.locfileid: "34163207"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "42447661"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
-O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional. Isso pode ser útil se a consulta que você deseja realizar não puder ser expressa usando o LINQ ou se o uso de uma consulta do LINQ estiver resultando no envio de um SQL ineficiente para o banco de dados.
+O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional. Isso pode ser útil se a consulta que você deseja realizar não puder ser expressa usando o LINQ ou se o uso de uma consulta do LINQ estiver resultando no envio de um SQL ineficiente para o banco de dados. Consultas SQL brutas podem retornar tipos de entidade ou, a partir do EF Core 2.1, [tipos de consulta](xref:core/modeling/query-types) que fazem parte do seu modelo.
 
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
@@ -23,7 +23,6 @@ O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brut
 ## <a name="limitations"></a>Limitações
 
 Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
-* As consultas SQL só podem ser usadas para retornar tipos de entidade que fazem parte do seu modelo. Há um aprimoramento na sua lista de pendências para [habilitar o retorno de tipos de ad hoc de consultas SQL brutas](https://github.com/aspnet/EntityFramework/issues/1862).
 
 * A consulta SQL deve retornar dados para todas as propriedades da entidade ou tipo de consulta.
 
@@ -33,10 +32,10 @@ Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
 
 * As instruções `SELECT` aprovadas para este método devem normalmente ser combináveis: se o EF Core precisar avaliar operadores de consulta adicionais no servidor (por exemplo, para traduzir operadores LINQ aplicados após `FromSql`), o SQL fornecido será tratado como uma subconsulta. Isso significa que o SQL aprovado não deve conter nenhum caractere ou opção não válida em uma subconsulta, como:
   * um ponto-e-vírgula à direita
-  * No SQL Server, uma dica a nível de consulta à direita, por exemplo, `OPTION (HASH JOIN)`
+  * No SQL Server, uma dica a nível de consulta à direita (por exemplo, `OPTION (HASH JOIN)`)
   * No SQL Server, um cláusula `ORDER BY` não é acompanhada de `TOP 100 PERCENT` na cláusula `SELECT`
 
-* As instruções SQL, diferentes de `SELECT`, são reconhecidas automaticamente como não combináveis. Como consequência, os resultados completos de procedimentos armazenados são sempre retornados ao cliente e os operadores LINQ aplicados após `FromSql` são avaliados na memória. 
+* As instruções SQL, diferentes de `SELECT`, são reconhecidas automaticamente como não combináveis. Como consequência, os resultados completos de procedimentos armazenados são sempre retornados ao cliente e os operadores LINQ aplicados após `FromSql` são avaliados na memória.
 
 ## <a name="basic-raw-sql-queries"></a>Consultas SQL brutas básicas
 
