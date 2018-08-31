@@ -4,12 +4,12 @@ author: divega
 ms.date: 2016-10-23
 ms.assetid: 8ae74d63-6bad-4686-b325-bbf9d68f3743
 uid: ef6/index
-ms.openlocfilehash: 00e5f36788be599ea2e2b44480107f14e2f026c3
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 5218f3f8149b15cb5ad3a14779dfa9c23eb71a0e
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42998023"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152488"
 ---
 # <a name="entity-framework-6"></a>Entity Framework 6
 O EF6 (Entity Framework 6) é um O/RM (mapeador relacional de objetos) testado para .NET com muitos anos de desenvolvimento e estabilização de recursos.
@@ -29,7 +29,7 @@ O EF6 implementa vários recursos populares de O/RM:
   - Procedimentos armazenados
 - Um designer visual para criar modelos de entidade.
 - Uma experiência de "Code First" para criar modelos de entidade escrevendo código.
-- Os modelos podem ser gerados por meio de bancos de dados existentes e editados manualmente ou podem ser criados do zero e usados para gerar novos bancos de dados.
+- Os modelos podem ser gerados de bancos de dados existentes e editados manualmente ou podem ser criados do zero e usados para gerar novos bancos de dados.
 - Integração com os modelos de aplicativos do .NET Framework, incluindo ASP.NET e por meio de associação de dados, com o WPF e o WinForms.
 - Conectividade de banco de dados com base no ADO.NET e vários provedores disponíveis para se conectar ao SQL Server, Oracle, MySQL, SQLite, PostgreSQL, DB2 etc.
 

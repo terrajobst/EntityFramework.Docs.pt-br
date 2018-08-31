@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 7/3/2018
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: e9f9a6cbbceeb0379ddb5588b564b0d2a962795f
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e88bd01f79e05a9a3b0c0bbeecca89df178098a6
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995507"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152446"
 ---
 # <a name="ef-core-tools--extensions"></a>Ferramentas e Extensões do EF Core
 
@@ -37,6 +37,12 @@ O Desenvolvedor de Entidade é um potente designer de ORM para o ADO.NET Entity 
 Visual Studio 2017+ extensão. É possível fazer engenharia reversa do DbContext e de classes POCO por meio de um banco de dados existente ou projeto de banco de dados SQL Server, bem como visualizar e inspecionar seu DbContext de diversas maneiras.
 
 [Wiki do GitHub](https://github.com/ErikEJ/SqlCeToolbox/wiki/EF-Core-Power-Tools)
+
+### <a name="entity-framework-visual-editor"></a>Editor Visual do Entity Framework
+
+Uma extensão do Visual Studio 2017 que adiciona um designer de ORM para o design visual das classes do Entity Framework 6, Core 2.0 e Core 2.1. O código é gerado usando modelos T4, então ele pode ser totalmente personalizado para atender a quaisquer necessidades. Associações unidirecionais, bidirecionais e de herança são todas compatíveis, assim como são as enumerações e a capacidade de atribuir código de cor às suas classes e de adicionar blocos de texto para explicar partes potencialmente misteriosas do seu design.
+
+[Marketplace](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
 
 ## <a name="extensions"></a>Extensões
 
