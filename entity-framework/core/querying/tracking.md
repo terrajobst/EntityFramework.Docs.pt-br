@@ -1,17 +1,15 @@
 ---
 title: Consultas com acompanhamento versus Consultas sem acompanhamento – EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
-ms.technology: entity-framework-core
 uid: core/querying/tracking
-ms.openlocfilehash: 9a22c893f3b1e9991560e25e0252287a2844b39e
-ms.sourcegitcommit: 3b6159db8a6c0653f13c7b528367b4e69ac3d51e
+ms.openlocfilehash: 985adc795f379199a3bacc985843f32f3168cf64
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/28/2017
-ms.locfileid: "26053956"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42993349"
 ---
 # <a name="tracking-vs-no-tracking-queries"></a>Consultas com acompanhamento versus Consultas sem acompanhamento
 
@@ -36,7 +34,7 @@ using (var context = new BloggingContext())
 }
 ```
 
-## <a name="no-tracking-queries"></a>Consultas sem acompanhamento
+## <a name="no-tracking-queries"></a>Consultas sem controle
 
 As consulta sem acompanhamento são úteis quando os resultados são usados em um cenário de somente leitura. Eles são mais rápidos de executar porque não há necessidade de configurar informações de controle de alterações.
 
