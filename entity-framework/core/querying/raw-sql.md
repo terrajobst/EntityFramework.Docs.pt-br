@@ -1,45 +1,43 @@
 ---
 title: Consultas SQL brutas – EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
-ms.technology: entity-framework-core
 uid: core/querying/raw-sql
-ms.openlocfilehash: a1d554795dcd8a3e5b44e89ac014f538598461cc
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: 21cb688d6775039def3b0be12768da71b5d96531
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "42447661"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997135"
 ---
-# <a name="raw-sql-queries"></a><span data-ttu-id="d5be6-102">Consultas SQL brutas</span><span class="sxs-lookup"><span data-stu-id="d5be6-102">Raw SQL Queries</span></span>
+# <a name="raw-sql-queries"></a><span data-ttu-id="c2299-102">Consultas SQL brutas</span><span class="sxs-lookup"><span data-stu-id="c2299-102">Raw SQL Queries</span></span>
 
-<span data-ttu-id="d5be6-103">O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional.</span><span class="sxs-lookup"><span data-stu-id="d5be6-103">Entity Framework Core allows you to drop down to raw SQL queries when working with a relational database.</span></span> <span data-ttu-id="d5be6-104">Isso pode ser útil se a consulta que você deseja realizar não puder ser expressa usando o LINQ ou se o uso de uma consulta do LINQ estiver resultando no envio de um SQL ineficiente para o banco de dados.</span><span class="sxs-lookup"><span data-stu-id="d5be6-104">This can be useful if the query you want to perform can't be expressed using LINQ, or if using a LINQ query is resulting in inefficient SQL being sent to the database.</span></span> <span data-ttu-id="d5be6-105">Consultas SQL brutas podem retornar tipos de entidade ou, a partir do EF Core 2.1, [tipos de consulta](xref:core/modeling/query-types) que fazem parte do seu modelo.</span><span class="sxs-lookup"><span data-stu-id="d5be6-105">Raw SQL queries can return entity types or, starting with EF Core 2.1, [query types](xref:core/modeling/query-types) that are part of your model.</span></span>
+<span data-ttu-id="c2299-103">O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional.</span><span class="sxs-lookup"><span data-stu-id="c2299-103">Entity Framework Core allows you to drop down to raw SQL queries when working with a relational database.</span></span> <span data-ttu-id="c2299-104">Isso pode ser útil se a consulta que você deseja realizar não puder ser expressa usando o LINQ ou se o uso de uma consulta do LINQ estiver resultando no envio de um SQL ineficiente para o banco de dados.</span><span class="sxs-lookup"><span data-stu-id="c2299-104">This can be useful if the query you want to perform can't be expressed using LINQ, or if using a LINQ query is resulting in inefficient SQL being sent to the database.</span></span> <span data-ttu-id="c2299-105">Consultas SQL brutas podem retornar tipos de entidade ou, a partir do EF Core 2.1, [tipos de consulta](xref:core/modeling/query-types) que fazem parte do seu modelo.</span><span class="sxs-lookup"><span data-stu-id="c2299-105">Raw SQL queries can return entity types or, starting with EF Core 2.1, [query types](xref:core/modeling/query-types) that are part of your model.</span></span>
 
 > [!TIP]  
-> <span data-ttu-id="d5be6-106">Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.</span><span class="sxs-lookup"><span data-stu-id="d5be6-106">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) on GitHub.</span></span>
+> <span data-ttu-id="c2299-106">Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.</span><span class="sxs-lookup"><span data-stu-id="c2299-106">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) on GitHub.</span></span>
 
-## <a name="limitations"></a><span data-ttu-id="d5be6-107">Limitações</span><span class="sxs-lookup"><span data-stu-id="d5be6-107">Limitations</span></span>
+## <a name="limitations"></a><span data-ttu-id="c2299-107">Limitações</span><span class="sxs-lookup"><span data-stu-id="c2299-107">Limitations</span></span>
 
-<span data-ttu-id="d5be6-108">Algumas limitações deve ser consideradas ao usar consultas SQL brutas:</span><span class="sxs-lookup"><span data-stu-id="d5be6-108">There are a few limitations to be aware of when using raw SQL queries:</span></span>
+<span data-ttu-id="c2299-108">Algumas limitações deve ser consideradas ao usar consultas SQL brutas:</span><span class="sxs-lookup"><span data-stu-id="c2299-108">There are a few limitations to be aware of when using raw SQL queries:</span></span>
 
-* <span data-ttu-id="d5be6-109">A consulta SQL deve retornar dados para todas as propriedades da entidade ou tipo de consulta.</span><span class="sxs-lookup"><span data-stu-id="d5be6-109">The SQL query must return data for all properties of the entity or query type.</span></span>
+* <span data-ttu-id="c2299-109">A consulta SQL deve retornar dados para todas as propriedades da entidade ou tipo de consulta.</span><span class="sxs-lookup"><span data-stu-id="c2299-109">The SQL query must return data for all properties of the entity or query type.</span></span>
 
-* <span data-ttu-id="d5be6-110">Os nomes das colunas no conjunto de resultados devem corresponder aos nomes das colunas para as quais as propriedades são mapeadas.</span><span class="sxs-lookup"><span data-stu-id="d5be6-110">The column names in the result set must match the column names that properties are mapped to.</span></span> <span data-ttu-id="d5be6-111">Observe que isso é diferente do EF6, onde o mapeamento de coluna/propriedade foi ignorado para consultas SQL brutas e os nomes das colunas do conjunto de resultados tinham que corresponder aos nomes das propriedades.</span><span class="sxs-lookup"><span data-stu-id="d5be6-111">Note this is different from EF6 where property/column mapping was ignored for raw SQL queries and result set column names had to match the property names.</span></span>
+* <span data-ttu-id="c2299-110">Os nomes das colunas no conjunto de resultados devem corresponder aos nomes das colunas para as quais as propriedades são mapeadas.</span><span class="sxs-lookup"><span data-stu-id="c2299-110">The column names in the result set must match the column names that properties are mapped to.</span></span> <span data-ttu-id="c2299-111">Observe que isso é diferente do EF6, onde o mapeamento de coluna/propriedade foi ignorado para consultas SQL brutas e os nomes das colunas do conjunto de resultados tinham que corresponder aos nomes das propriedades.</span><span class="sxs-lookup"><span data-stu-id="c2299-111">Note this is different from EF6 where property/column mapping was ignored for raw SQL queries and result set column names had to match the property names.</span></span>
 
-* <span data-ttu-id="d5be6-112">A consulta SQL não pode conter dados relacionados.</span><span class="sxs-lookup"><span data-stu-id="d5be6-112">The SQL query cannot contain related data.</span></span> <span data-ttu-id="d5be6-113">No entanto, em muitos casos é possível combinar com base na consulta usando o operador `Include` para retornar dados relacionados (confira [Como incluir dados relacionados](#including-related-data)).</span><span class="sxs-lookup"><span data-stu-id="d5be6-113">However, in many cases you can compose on top of the query using the `Include` operator to return related data (see [Including related data](#including-related-data)).</span></span>
+* <span data-ttu-id="c2299-112">A consulta SQL não pode conter dados relacionados.</span><span class="sxs-lookup"><span data-stu-id="c2299-112">The SQL query cannot contain related data.</span></span> <span data-ttu-id="c2299-113">No entanto, em muitos casos é possível combinar com base na consulta usando o operador `Include` para retornar dados relacionados (confira [Como incluir dados relacionados](#including-related-data)).</span><span class="sxs-lookup"><span data-stu-id="c2299-113">However, in many cases you can compose on top of the query using the `Include` operator to return related data (see [Including related data](#including-related-data)).</span></span>
 
-* <span data-ttu-id="d5be6-114">As instruções `SELECT` aprovadas para este método devem normalmente ser combináveis: se o EF Core precisar avaliar operadores de consulta adicionais no servidor (por exemplo, para traduzir operadores LINQ aplicados após `FromSql`), o SQL fornecido será tratado como uma subconsulta.</span><span class="sxs-lookup"><span data-stu-id="d5be6-114">`SELECT` statements passed to this method should generally be composable: If EF Core needs to evaluate additional query operators on the server (for example, to translate LINQ operators applied after `FromSql`), the supplied SQL will be treated as a subquery.</span></span> <span data-ttu-id="d5be6-115">Isso significa que o SQL aprovado não deve conter nenhum caractere ou opção não válida em uma subconsulta, como:</span><span class="sxs-lookup"><span data-stu-id="d5be6-115">This means that the SQL passed should not contain any characters or options that are not valid on a subquery, such as:</span></span>
-  * <span data-ttu-id="d5be6-116">um ponto-e-vírgula à direita</span><span class="sxs-lookup"><span data-stu-id="d5be6-116">a trailing semicolon</span></span>
-  * <span data-ttu-id="d5be6-117">No SQL Server, uma dica a nível de consulta à direita (por exemplo, `OPTION (HASH JOIN)`)</span><span class="sxs-lookup"><span data-stu-id="d5be6-117">On SQL Server, a trailing query-level hint (for example, `OPTION (HASH JOIN)`)</span></span>
-  * <span data-ttu-id="d5be6-118">No SQL Server, um cláusula `ORDER BY` não é acompanhada de `TOP 100 PERCENT` na cláusula `SELECT`</span><span class="sxs-lookup"><span data-stu-id="d5be6-118">On SQL Server, an `ORDER BY` clause that is not accompanied of `TOP 100 PERCENT` in the `SELECT` clause</span></span>
+* <span data-ttu-id="c2299-114">As instruções `SELECT` aprovadas para este método devem normalmente ser combináveis: se o EF Core precisar avaliar operadores de consulta adicionais no servidor (por exemplo, para traduzir operadores LINQ aplicados após `FromSql`), o SQL fornecido será tratado como uma subconsulta.</span><span class="sxs-lookup"><span data-stu-id="c2299-114">`SELECT` statements passed to this method should generally be composable: If EF Core needs to evaluate additional query operators on the server (for example, to translate LINQ operators applied after `FromSql`), the supplied SQL will be treated as a subquery.</span></span> <span data-ttu-id="c2299-115">Isso significa que o SQL aprovado não deve conter nenhum caractere ou opção não válida em uma subconsulta, como:</span><span class="sxs-lookup"><span data-stu-id="c2299-115">This means that the SQL passed should not contain any characters or options that are not valid on a subquery, such as:</span></span>
+  * <span data-ttu-id="c2299-116">um ponto-e-vírgula à direita</span><span class="sxs-lookup"><span data-stu-id="c2299-116">a trailing semicolon</span></span>
+  * <span data-ttu-id="c2299-117">No SQL Server, uma dica a nível de consulta à direita (por exemplo, `OPTION (HASH JOIN)`)</span><span class="sxs-lookup"><span data-stu-id="c2299-117">On SQL Server, a trailing query-level hint (for example, `OPTION (HASH JOIN)`)</span></span>
+  * <span data-ttu-id="c2299-118">No SQL Server, um cláusula `ORDER BY` não é acompanhada de `TOP 100 PERCENT` na cláusula `SELECT`</span><span class="sxs-lookup"><span data-stu-id="c2299-118">On SQL Server, an `ORDER BY` clause that is not accompanied of `TOP 100 PERCENT` in the `SELECT` clause</span></span>
 
-* <span data-ttu-id="d5be6-119">As instruções SQL, diferentes de `SELECT`, são reconhecidas automaticamente como não combináveis.</span><span class="sxs-lookup"><span data-stu-id="d5be6-119">SQL statements other than `SELECT` are recognized automatically as non-composable.</span></span> <span data-ttu-id="d5be6-120">Como consequência, os resultados completos de procedimentos armazenados são sempre retornados ao cliente e os operadores LINQ aplicados após `FromSql` são avaliados na memória.</span><span class="sxs-lookup"><span data-stu-id="d5be6-120">As a consequence, the full results of stored procedures are always returned to the client and any LINQ operators applied after `FromSql` are evaluated in-memory.</span></span>
+* <span data-ttu-id="c2299-119">As instruções SQL, diferentes de `SELECT`, são reconhecidas automaticamente como não combináveis.</span><span class="sxs-lookup"><span data-stu-id="c2299-119">SQL statements other than `SELECT` are recognized automatically as non-composable.</span></span> <span data-ttu-id="c2299-120">Como consequência, os resultados completos de procedimentos armazenados são sempre retornados ao cliente e os operadores LINQ aplicados após `FromSql` são avaliados na memória.</span><span class="sxs-lookup"><span data-stu-id="c2299-120">As a consequence, the full results of stored procedures are always returned to the client and any LINQ operators applied after `FromSql` are evaluated in-memory.</span></span>
 
-## <a name="basic-raw-sql-queries"></a><span data-ttu-id="d5be6-121">Consultas SQL brutas básicas</span><span class="sxs-lookup"><span data-stu-id="d5be6-121">Basic raw SQL queries</span></span>
+## <a name="basic-raw-sql-queries"></a><span data-ttu-id="c2299-121">Consultas SQL brutas básicas</span><span class="sxs-lookup"><span data-stu-id="c2299-121">Basic raw SQL queries</span></span>
 
-<span data-ttu-id="d5be6-122">Você pode usar o método de extensão *FromSql* para iniciar uma consulta LINQ com base em uma consulta SQL bruta.</span><span class="sxs-lookup"><span data-stu-id="d5be6-122">You can use the *FromSql* extension method to begin a LINQ query based on a raw SQL query.</span></span>
+<span data-ttu-id="c2299-122">Você pode usar o método de extensão *FromSql* para iniciar uma consulta LINQ com base em uma consulta SQL bruta.</span><span class="sxs-lookup"><span data-stu-id="c2299-122">You can use the *FromSql* extension method to begin a LINQ query based on a raw SQL query.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -48,7 +46,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-<span data-ttu-id="d5be6-123">As consultas SQL brutas podem ser usadas para executar um procedimento armazenado.</span><span class="sxs-lookup"><span data-stu-id="d5be6-123">Raw SQL queries can be used to execute a stored procedure.</span></span>
+<span data-ttu-id="c2299-123">As consultas SQL brutas podem ser usadas para executar um procedimento armazenado.</span><span class="sxs-lookup"><span data-stu-id="c2299-123">Raw SQL queries can be used to execute a stored procedure.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -57,11 +55,11 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-## <a name="passing-parameters"></a><span data-ttu-id="d5be6-124">Passando parâmetros</span><span class="sxs-lookup"><span data-stu-id="d5be6-124">Passing parameters</span></span>
+## <a name="passing-parameters"></a><span data-ttu-id="c2299-124">Passando parâmetros</span><span class="sxs-lookup"><span data-stu-id="c2299-124">Passing parameters</span></span>
 
-<span data-ttu-id="d5be6-125">Assim como acontece com qualquer API que aceita SQL, é importante parametrizar qualquer entrada do usuário para proteger contra um ataque de injeção de SQL.</span><span class="sxs-lookup"><span data-stu-id="d5be6-125">As with any API that accepts SQL, it is important to parameterize any user input to protect against a SQL injection attack.</span></span> <span data-ttu-id="d5be6-126">Você pode incluir espaços reservados de parâmetros na cadeia de caracteres de consulta SQL e fornecer os valores de parâmetros como argumentos adicionais.</span><span class="sxs-lookup"><span data-stu-id="d5be6-126">You can include parameter placeholders in the SQL query string and then supply parameter values as additional arguments.</span></span> <span data-ttu-id="d5be6-127">Qualquer valor de parâmetro fornecido será automaticamente convertido em um `DbParameter`.</span><span class="sxs-lookup"><span data-stu-id="d5be6-127">Any parameter values you supply will automatically be converted to a `DbParameter`.</span></span>
+<span data-ttu-id="c2299-125">Assim como acontece com qualquer API que aceita SQL, é importante parametrizar qualquer entrada do usuário para proteger contra um ataque de injeção de SQL.</span><span class="sxs-lookup"><span data-stu-id="c2299-125">As with any API that accepts SQL, it is important to parameterize any user input to protect against a SQL injection attack.</span></span> <span data-ttu-id="c2299-126">Você pode incluir espaços reservados de parâmetros na cadeia de caracteres de consulta SQL e fornecer os valores de parâmetros como argumentos adicionais.</span><span class="sxs-lookup"><span data-stu-id="c2299-126">You can include parameter placeholders in the SQL query string and then supply parameter values as additional arguments.</span></span> <span data-ttu-id="c2299-127">Qualquer valor de parâmetro fornecido será automaticamente convertido em um `DbParameter`.</span><span class="sxs-lookup"><span data-stu-id="c2299-127">Any parameter values you supply will automatically be converted to a `DbParameter`.</span></span>
 
-<span data-ttu-id="d5be6-128">O exemplo a seguir aprova um único parâmetro para um procedimento armazenado.</span><span class="sxs-lookup"><span data-stu-id="d5be6-128">The following example passes a single parameter to a stored procedure.</span></span> <span data-ttu-id="d5be6-129">Embora isso possa parecer a sintaxe `String.Format`, o valor fornecido é encapsulado em um parâmetro e o nome de parâmetro gerado é inserido onde o espaço reservado `{0}` foi especificado.</span><span class="sxs-lookup"><span data-stu-id="d5be6-129">While this may look like `String.Format` syntax, the supplied value is wrapped in a parameter and the generated parameter name inserted where the `{0}` placeholder was specified.</span></span>
+<span data-ttu-id="c2299-128">O exemplo a seguir aprova um único parâmetro para um procedimento armazenado.</span><span class="sxs-lookup"><span data-stu-id="c2299-128">The following example passes a single parameter to a stored procedure.</span></span> <span data-ttu-id="c2299-129">Embora isso possa parecer a sintaxe `String.Format`, o valor fornecido é encapsulado em um parâmetro e o nome de parâmetro gerado é inserido onde o espaço reservado `{0}` foi especificado.</span><span class="sxs-lookup"><span data-stu-id="c2299-129">While this may look like `String.Format` syntax, the supplied value is wrapped in a parameter and the generated parameter name inserted where the `{0}` placeholder was specified.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -72,7 +70,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-<span data-ttu-id="d5be6-130">Essa é a mesma consulta, mas usando a sintaxe de interpolação de cadeia de caracteres, que tem suporte no EF Core 2.0 e posterior:</span><span class="sxs-lookup"><span data-stu-id="d5be6-130">This is the same query but using string interpolation syntax, which is supported in EF Core 2.0 and above:</span></span>
+<span data-ttu-id="c2299-130">Essa é a mesma consulta, mas usando a sintaxe de interpolação de cadeia de caracteres, que tem suporte no EF Core 2.0 e posterior:</span><span class="sxs-lookup"><span data-stu-id="c2299-130">This is the same query but using string interpolation syntax, which is supported in EF Core 2.0 and above:</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -83,7 +81,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-<span data-ttu-id="d5be6-131">Você também pode construir um DbParameter e fornecê-lo como valor de parâmetro.</span><span class="sxs-lookup"><span data-stu-id="d5be6-131">You can also construct a DbParameter and supply it as a parameter value.</span></span> <span data-ttu-id="d5be6-132">Isso permite usar parâmetros nomeados na cadeia de caracteres de consulta SQL</span><span class="sxs-lookup"><span data-stu-id="d5be6-132">This allows you to use named parameters in the SQL query string</span></span>
+<span data-ttu-id="c2299-131">Você também pode construir um DbParameter e fornecê-lo como valor de parâmetro.</span><span class="sxs-lookup"><span data-stu-id="c2299-131">You can also construct a DbParameter and supply it as a parameter value.</span></span> <span data-ttu-id="c2299-132">Isso permite usar parâmetros nomeados na cadeia de caracteres de consulta SQL</span><span class="sxs-lookup"><span data-stu-id="c2299-132">This allows you to use named parameters in the SQL query string</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -94,11 +92,11 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-## <a name="composing-with-linq"></a><span data-ttu-id="d5be6-133">Como compor com o LINQ</span><span class="sxs-lookup"><span data-stu-id="d5be6-133">Composing with LINQ</span></span>
+## <a name="composing-with-linq"></a><span data-ttu-id="c2299-133">Como compor com o LINQ</span><span class="sxs-lookup"><span data-stu-id="c2299-133">Composing with LINQ</span></span>
 
-<span data-ttu-id="d5be6-134">Se a consulta SQL puder ser composta no banco de dados, é possível compor com base na consulta SQL bruta inicial usando os operadores LINQ.</span><span class="sxs-lookup"><span data-stu-id="d5be6-134">If the SQL query can be composed on in the database, then you can compose on top of the initial raw SQL query using LINQ operators.</span></span> <span data-ttu-id="d5be6-135">As consultas SQL que podem ser compostas com a palavra-chave `SELECT`.</span><span class="sxs-lookup"><span data-stu-id="d5be6-135">SQL queries that can be composed on being with the `SELECT` keyword.</span></span>
+<span data-ttu-id="c2299-134">Se a consulta SQL puder ser composta no banco de dados, é possível compor com base na consulta SQL bruta inicial usando os operadores LINQ.</span><span class="sxs-lookup"><span data-stu-id="c2299-134">If the SQL query can be composed on in the database, then you can compose on top of the initial raw SQL query using LINQ operators.</span></span> <span data-ttu-id="c2299-135">As consultas SQL que podem ser compostas com a palavra-chave `SELECT`.</span><span class="sxs-lookup"><span data-stu-id="c2299-135">SQL queries that can be composed on being with the `SELECT` keyword.</span></span>
 
-<span data-ttu-id="d5be6-136">O exemplo a seguir usa uma consulta SQL bruta que é selecionada de uma Função com Valor de Tabela (TVF) e compõe com base nela usando o LINQ para filtrar e classificar.</span><span class="sxs-lookup"><span data-stu-id="d5be6-136">The following example uses a raw SQL query that selects from a Table-Valued Function (TVF) and then composes on it using LINQ to perform filtering and sorting.</span></span>
+<span data-ttu-id="c2299-136">O exemplo a seguir usa uma consulta SQL bruta que é selecionada de uma Função com Valor de Tabela (TVF) e compõe com base nela usando o LINQ para filtrar e classificar.</span><span class="sxs-lookup"><span data-stu-id="c2299-136">The following example uses a raw SQL query that selects from a Table-Valued Function (TVF) and then composes on it using LINQ to perform filtering and sorting.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -111,9 +109,9 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-### <a name="including-related-data"></a><span data-ttu-id="d5be6-137">Como incluir dados relacionados</span><span class="sxs-lookup"><span data-stu-id="d5be6-137">Including related data</span></span>
+### <a name="including-related-data"></a><span data-ttu-id="c2299-137">Como incluir dados relacionados</span><span class="sxs-lookup"><span data-stu-id="c2299-137">Including related data</span></span>
 
-<span data-ttu-id="d5be6-138">A composição com operadores LINQ pode ser usada para incluir dados relacionados na consulta.</span><span class="sxs-lookup"><span data-stu-id="d5be6-138">Composing with LINQ operators can be used to include related data in the query.</span></span>
+<span data-ttu-id="c2299-138">A composição com operadores LINQ pode ser usada para incluir dados relacionados na consulta.</span><span class="sxs-lookup"><span data-stu-id="c2299-138">Composing with LINQ operators can be used to include related data in the query.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -126,4 +124,4 @@ var blogs = context.Blogs
 ```
 
 > [!WARNING]  
-> <span data-ttu-id="d5be6-139">**Sempre use a parametrização para consultas SQL brutas:** as APIs que aceitam uma cadeia de caracteres SQL, como `FromSql` e `ExecuteSqlCommand`, permitem que os valores sejam facilmente aprovados como parâmetros.</span><span class="sxs-lookup"><span data-stu-id="d5be6-139">**Always use parameterization for raw SQL queries:** APIs that accept a raw SQL string such as `FromSql` and `ExecuteSqlCommand` allow values to be easily passed as parameters.</span></span> <span data-ttu-id="d5be6-140">Além de validar a entrada do usuário, sempre use a parametrização para os valores usados em um comando/consulta SQL bruta.</span><span class="sxs-lookup"><span data-stu-id="d5be6-140">In addition to validating user input, always use parameterization for any values used in a raw SQL query/command.</span></span> <span data-ttu-id="d5be6-141">Se você estiver usando a concatenação de cadeias de caracteres para criar de forma dinâmica qualquer parte da cadeia de caracteres de consulta, você é responsável por validar qualquer entrada para proteger-se de ataques de injeção de SQL.</span><span class="sxs-lookup"><span data-stu-id="d5be6-141">If you are using string concatenation to dynamically build any part of the query string then you are responsible for validating any input to protect against SQL injection attacks.</span></span>
+> <span data-ttu-id="c2299-139">**Sempre use a parametrização para consultas SQL brutas:** as APIs que aceitam uma cadeia de caracteres SQL, como `FromSql` e `ExecuteSqlCommand`, permitem que os valores sejam facilmente aprovados como parâmetros.</span><span class="sxs-lookup"><span data-stu-id="c2299-139">**Always use parameterization for raw SQL queries:** APIs that accept a raw SQL string such as `FromSql` and `ExecuteSqlCommand` allow values to be easily passed as parameters.</span></span> <span data-ttu-id="c2299-140">Além de validar a entrada do usuário, sempre use a parametrização para os valores usados em um comando/consulta SQL bruta.</span><span class="sxs-lookup"><span data-stu-id="c2299-140">In addition to validating user input, always use parameterization for any values used in a raw SQL query/command.</span></span> <span data-ttu-id="c2299-141">Se você estiver usando a concatenação de cadeias de caracteres para criar de forma dinâmica qualquer parte da cadeia de caracteres de consulta, você é responsável por validar qualquer entrada para proteger-se de ataques de injeção de SQL.</span><span class="sxs-lookup"><span data-stu-id="c2299-141">If you are using string concatenation to dynamically build any part of the query string then you are responsible for validating any input to protect against SQL injection attacks.</span></span>
