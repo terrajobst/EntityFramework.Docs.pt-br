@@ -2,19 +2,13 @@
 title: Introdução ao Entity Framework 6 – EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 66ce9113-81d2-480f-8c16-d00ec405b2f7
-caps.latest.revision: 3
-ms.openlocfilehash: 36857650bc546acd769e629a1e92948a63bfb786
-ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
+ms.openlocfilehash: 0087899d2fc65bc91ad36e35d5157e50b5c4bd2d
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/16/2018
-ms.locfileid: "39119632"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42998078"
 ---
 # <a name="get-started-with-entity-framework-6"></a>Introdução ao Entity Framework 6
 
@@ -27,7 +21,7 @@ Aqui você aprenderá a adicionar o Entity Framework aos seus aplicativos. Se de
 Você prefere especificar seu modelo do EF escrevendo código ou desenhando caixas e linhas?
 Você usará o EF para mapear seus objetos para um banco de dados existente ou gostaria que o EF criasse um banco de dados personalizado para seus objetos?
 Aqui você conhecerá duas abordagens diferentes para usar o EF6: o EF Designer e o Code First.
-Siga a discussão e assista ao vídeo sobre as diferenças.
+Siga a discussão e assista ao vídeo sobre a diferença.
 
 ## <a name="working-with-dbcontextef6fundamentalsworking-with-dbcontextmd"></a>[Como trabalhar com DbContext](~/ef6/fundamentals/working-with-dbcontext.md)
 O DbContext é o primeiro e mais importante tipo de EF que você precisa aprender como usar. Ele funciona como a barra inicial para consultas de banco de dados e controla alterações feitas nos objetos para que elas possam ser persistidas novamente no banco de dados.
