@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: ee73940e3c0030b76e73438b1852cc29ebeadb45
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 44b200223153fca44cb2cfa3e78b3bedc7b4a552
+ms.sourcegitcommit: a81aed575372637997b18a0f9466d8fefb33350a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42998360"
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "43821329"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -46,3 +46,8 @@ Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamo
   * As alterações no 2.1 para a RelationalTypeMapping permitidas para uma simplificação em classes derivadas. Não acreditamos que isso estava interrompendo aos provedores, mas provedores podem tirar proveito dessa alteração no seu tipo derivado classes de mapeamento.
 * https://github.com/aspnet/EntityFrameworkCore/pull/12069 -Consultas nomeadas ou marcadas
   * Adiciona a infraestrutura para marcação de consultas LINQ e ter essas marcas que aparecem como comentários no SQL. Isso pode exigir provedores reagir na geração de SQL.
+* https://github.com/aspnet/EntityFrameworkCore/pull/13115 -Suporte a dados espaciais via NTS
+  * Permite que os mapeamentos de tipo e membro tradutores a serem registrados fora do provedor
+    * Provedores devem chamar base. FindMapping() em sua implementação ITypeMappingSource para funcionar
+  * Siga esse padrão para adicionar suporte espacial ao seu provedor que é consistente com provedores.
+
