@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: 44b200223153fca44cb2cfa3e78b3bedc7b4a552
-ms.sourcegitcommit: a81aed575372637997b18a0f9466d8fefb33350a
+ms.openlocfilehash: 5da1043310e2858638c81a0654a9cab23e39c220
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/06/2018
-ms.locfileid: "43821329"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250810"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -19,9 +19,9 @@ Esta página contém links para efetuar pull de solicitações feitas no reposit
 
 Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamos a [ `providers-beware` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-beware) e [ `providers-fyi` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-fyi) rótulos em nossos problemas e solicitações de pull.
 
-### <a name="21-----22"></a>2.1---> 2.2
+## <a name="21-----22"></a>2.1---> 2.2
 
-#### <a name="test-only-changes"></a>Alterações de teste
+### <a name="test-only-changes"></a>Alterações de teste
 
 * https://github.com/aspnet/EntityFrameworkCore/pull/12057 -Permitir delimitadores personalizáveis do SQL nos testes
   * Testar as alterações que permitem que comparações de ponto flutuante não restrito em BuiltInDataTypesTestBase
@@ -40,7 +40,7 @@ Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamo
   * Essa alteração inclui certa refatoração do teste que podem exigir provedores reagir
 
 
-#### <a name="test-and-product-code-changes"></a>Alterações de código do produto e de teste
+### <a name="test-and-product-code-changes"></a>Alterações de código do produto e de teste
 
 * https://github.com/aspnet/EntityFrameworkCore/pull/12109 -Consolidar RelationalTypeMapping.Clone métodos
   * As alterações no 2.1 para a RelationalTypeMapping permitidas para uma simplificação em classes derivadas. Não acreditamos que isso estava interrompendo aos provedores, mas provedores podem tirar proveito dessa alteração no seu tipo derivado classes de mapeamento.
@@ -50,4 +50,5 @@ Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamo
   * Permite que os mapeamentos de tipo e membro tradutores a serem registrados fora do provedor
     * Provedores devem chamar base. FindMapping() em sua implementação ITypeMappingSource para funcionar
   * Siga esse padrão para adicionar suporte espacial ao seu provedor que é consistente com provedores.
-
+* https://github.com/aspnet/EntityFrameworkCore/pull/13199 -Adicionar depuração aprimorada para criação de provedor de serviços
+  * Permite que DbContextOptionsExtensions implementar uma nova interface que pode ajudar as pessoas a entender por que está sendo compilado novamente o provedor de serviço interno

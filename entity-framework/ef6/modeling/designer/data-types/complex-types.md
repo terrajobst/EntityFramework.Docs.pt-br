@@ -3,19 +3,19 @@ title: Tipos complexos - EF Designer - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 9a8228ef-acfd-4575-860d-769d2c0e18a1
-ms.openlocfilehash: d35504cbe60823249d54385962568802b3e41308
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 2a516bd14131fd035a4d005e0fdf140f7ff4d65f
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994847"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250823"
 ---
 # <a name="complex-types---ef-designer"></a>Tipos complexos - EF Designer
 Este tópico mostra como mapear tipos complexos com o Entity Framework Designer (Designer de EF) e como consultar entidades que contêm as propriedades de tipo complexo.
 
 A imagem a seguir mostra as janelas principais que são usadas ao trabalhar com o EF Designer.
 
-![EFDesigner](~/ef6/media/efdesigner.png)
+![EF Designer](~/ef6/media/efdesigner.png)
 
 > [!NOTE]
 > Quando você compila o modelo conceitual, os avisos sobre não mapeadas entidades e associações podem aparecer na lista de erros. Você pode ignorar esses avisos porque depois que você optar por gerar o banco de dados do modelo, os erros serão eliminados.
@@ -45,7 +45,7 @@ Um novo tipo complexo com as propriedades selecionadas é adicionado para o **Mo
 
 Uma propriedade complexa do tipo recém-criado substitui as propriedades selecionadas. Todos os mapeamentos de propriedade são preservados.
 
-![Refactor2](~/ef6/media/refactor2.png)
+![Refatorar 2](~/ef6/media/refactor2.png)
 
 ## <a name="create-a-new-complex-type"></a>Criar um novo tipo complexo
 
@@ -53,7 +53,7 @@ Você também pode criar um novo tipo complexo que contém as propriedades de um
 
 Clique com botão direito do **tipos complexos** pasta no navegador de modelo, aponte para **tipo complexo de AddNew...** . Como alternativa, você pode selecionar o **tipos complexos** pasta e pressione a **inserir** em seu teclado.
 
-![AddNewComplextype](~/ef6/media/addnewcomplextype.png)
+![Adicionar um tipo complexo de novo](~/ef6/media/addnewcomplextype.png)
 
 Um novo tipo complexo é adicionado à pasta com um nome padrão. Agora você pode adicionar propriedades ao tipo.
 
@@ -65,7 +65,7 @@ Você pode adicionar uma propriedade para um tipo complexo em qualquer um dos mo
 
 -   Um tipo complexo no modelo de navegador com o botão direito, aponte para **Add**, aponte para **propriedade escalar** ou **propriedade complexa**, em seguida, selecione o tipo de propriedade desejada. Como alternativa, você pode selecionar um tipo complexo e, em seguida, pressione a **inserir** em seu teclado.  
 
-    ![AddPropertiestoComplexType](~/ef6/media/addpropertiestocomplextype.png)
+    ![Adicionar propriedades ao tipo complexo](~/ef6/media/addpropertiestocomplextype.png)
 
     Uma nova propriedade é adicionada para o tipo complexo com um nome padrão.
 
@@ -108,7 +108,7 @@ Quando você renomear um tipo complexo, todas as referências para o tipo são a
     Uma lista suspensa de todas as propriedades escalares é exibida.
 7.  Selecione a propriedade apropriada.
 
-    ![MapComplexType](~/ef6/media/mapcomplextype.png)
+    ![Tipo complexo de mapa](~/ef6/media/mapcomplextype.png)
 
 8.  Repita as etapas 6 e 7 para cada coluna de tabela.
 
@@ -121,14 +121,14 @@ Importações de função são baseadas em procedimentos armazenados. Para mapea
 
 -   Clique duas vezes em uma função importada que você deseja mapear para um tipo complexo.
 
-    ![FunctionImports](~/ef6/media/functionimports.png)
+    ![Importações de função](~/ef6/media/functionimports.png)
 
 -   Preencha as configurações para a nova importação de função, da seguinte maneira:
     -   Especifique o procedimento armazenado para o qual você está criando uma importação de função do **nome do procedimento armazenado** campo. Este campo é uma lista suspensa que exibe todos os procedimentos armazenados no modelo de armazenamento.
     -   Especifique o nome da função de importação na **nome da função importar** campo.
     -   Selecione **complexos** como o retorno de tipo e, em seguida, especifique o tipo de retorno complexo específico, escolhendo o tipo apropriado na lista suspensa.
 
-        ![EditFunctionImport](~/ef6/media/editfunctionimport.png)
+        ![Editar função de importação](~/ef6/media/editfunctionimport.png)
 
 -   Clique em **OK**.
     A entrada de importação de função é criada no modelo conceitual.

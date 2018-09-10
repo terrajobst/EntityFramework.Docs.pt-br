@@ -4,12 +4,12 @@ author: anpete
 ms.date: 2/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 uid: core/modeling/query-types
-ms.openlocfilehash: bacb121ca00a9b0aa00bfe201de4f95113472d70
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 54d960e2e2236e2d4185dedc48f51035f5c10e93
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996693"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250719"
 ---
 # <a name="query-types"></a>Tipos de consulta
 > [!NOTE]
@@ -17,12 +17,14 @@ ms.locfileid: "42996693"
 
 Além dos tipos de entidade, um modelo do EF Core pode conter _tipos de consulta_, que pode ser usado para executar consultas de banco de dados em relação aos dados que não são mapeados para tipos de entidade.
 
-Tipos de consulta têm muitas semelhanças com tipos de entidade:
+## <a name="compare-query-types-to-entity-types"></a>Compare os tipos de consulta para tipos de entidade
 
-- Eles também podem ser adicionados ao modelo ou no `OnModelCreating`, ou por meio de uma propriedade "set" em um derivada _DbContext_.
-- Eles oferecem suporte a vários dos mesmos recursos de mapeamento, como herança de mapeamento, propriedades de navegação (consulte limitações abaixo) e, em repositórios relacionais, a capacidade de configurar as colunas por meio de métodos da API fluentes ou anotações de dados e objetos de banco de dados de destino.
+Tipos de consulta, como tipos de entidade em que eles são:
 
-No entanto forem diferentes da entidade tipos em que eles:
+- Pode ser adicionado ao modelo ou no `OnModelCreating` ou por meio de uma propriedade "set" em um derivada _DbContext_.
+- Suporte a muitos dos mesmos recursos de mapeamento, como as propriedades de navegação e de mapeamento de herança. Em repositórios relacionais, eles podem configurar as colunas por meio de métodos da API fluentes ou anotações de dados e objetos de banco de dados de destino.
+
+No entanto, eles são diferentes da entidade tipos em que eles:
 
 - Não exigem uma chave a ser definido.
 - Nunca são rastreados para alterações na _DbContext_ e, portanto, são nunca inseridos, atualizados ou excluídos no banco de dados.
@@ -36,6 +38,8 @@ No entanto forem diferentes da entidade tipos em que eles:
 - São mapeadas para objetos de banco de dados usando o `ToView` método, em vez de `ToTable`.
 - Pode ser mapeado para um _definição de consulta_ - uma definição de consulta é uma consulta secundária declarada no modelo que funciona de uma fonte de dados para um tipo de consulta.
 
+## <a name="usage-scenarios"></a>Cenários de uso
+
 Estes são alguns dos cenários de uso principal para tipos de consulta:
 
 - Servindo como o tipo de retorno para o ad-hoc `FromSql()` consultas.
@@ -43,8 +47,9 @@ Estes são alguns dos cenários de uso principal para tipos de consulta:
 - Mapeamento para tabelas que não têm uma chave primária definida.
 - Mapeamento para consultas definidas no modelo.
 
-> [!TIP]
-> Mapeando um tipo de consulta para um objeto de banco de dados é feito usando o `ToView` API fluente. Da perspectiva do EF Core, o objeto de banco de dados especificado neste método é um _exibição_, que significa que ela é tratada como uma fonte de consulta somente leitura e não pode ser o destino da atualização, inserir ou excluir operações. No entanto, isso não significa que o objeto de banco de dados é realmente necessário para ser uma exibição de banco de dados – como alternativa, ele pode ser uma tabela de banco de dados que será tratada como somente leitura. Por outro lado, para tipos de entidade, o EF Core supõe que um objeto de banco de dados especificado na `ToTable` método pode ser tratado como um _tabela_, o que significa que ele pode ser usado como uma fonte de consulta, mas também é direcionado pela atualização, excluir e inserir operações. Na verdade, você pode especificar o nome de uma exibição de banco de dados em `ToTable` e tudo deve funcionar bem, desde que o modo de exibição está configurado para ser atualizável no banco de dados.
+## <a name="mapping-to-database-objects"></a>Mapeando para objetos de banco de dados
+
+Mapeando um tipo de consulta para um objeto de banco de dados é feito usando o `ToView` API fluente. Da perspectiva do EF Core, o objeto de banco de dados especificado neste método é um _exibição_, que significa que ela é tratada como uma fonte de consulta somente leitura e não pode ser o destino da atualização, inserir ou excluir operações. No entanto, isso não significa que o objeto de banco de dados é realmente necessário para ser uma exibição de banco de dados – como alternativa, ele pode ser uma tabela de banco de dados que será tratada como somente leitura. Por outro lado, para tipos de entidade, o EF Core supõe que um objeto de banco de dados especificado na `ToTable` método pode ser tratado como um _tabela_, o que significa que ele pode ser usado como uma fonte de consulta, mas também é direcionado pela atualização, excluir e inserir operações. Na verdade, você pode especificar o nome de uma exibição de banco de dados em `ToTable` e tudo deve funcionar bem, desde que o modo de exibição está configurado para ser atualizável no banco de dados.
 
 ## <a name="example"></a>Exemplo
 

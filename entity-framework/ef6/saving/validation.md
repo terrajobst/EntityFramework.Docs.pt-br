@@ -3,12 +3,12 @@ title: Validação - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 77d6a095-c0d0-471e-80b9-8f9aea6108b2
-ms.openlocfilehash: eec834888e2e3efaadc8acf9d4f64307f394ea4a
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 65639b0f91f54ee2cd1336f6b6cd4caf45ede680
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994439"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251018"
 ---
 # <a name="data-validation"></a>Validação de dados
 > [!NOTE]
@@ -54,7 +54,7 @@ Primeiro, o código usa as anotações do assembly DataAnnotations como um meio 
 
 Sem código adicional ou alterações de marcação no aplicativo, um aplicativo MVC existente executará validação do lado do cliente, até mesmo dinamicamente a criação de uma mensagem usando os nomes de propriedade e a anotação.
 
-![figure01](~/ef6/media/figure01.png)
+![Figura 1](~/ef6/media/figure01.png)
 
 Método dessa exibição criar a fazer a postagem, Entity Framework é usado para salvar o novo blog no banco de dados, mas validação do lado do cliente do MVC é disparada antes que o código de alcance o aplicativo.
 
@@ -153,7 +153,7 @@ O construtor de ValidationResult aceita uma cadeia de caracteres que representa 
 
 Ao contrário de validação fornecida pela API do Fluent, esse resultado de validação será reconhecido pelo modo de exibição e o manipulador de exceção que usei anteriormente para adicionar o erro em ModelState é desnecessário. Como posso definir ambos os nomes de propriedade em ValidationResult, o HtmlHelpers o MVC exibe a mensagem de erro para essas duas propriedades.
 
-![figure02](~/ef6/media/figure02.png)
+![Figura 2](~/ef6/media/figure02.png)
 
 ## <a name="dbcontextvalidateentity"></a>DbContext.ValidateEntity
 

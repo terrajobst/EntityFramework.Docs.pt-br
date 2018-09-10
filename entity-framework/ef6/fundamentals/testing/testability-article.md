@@ -3,12 +3,12 @@ title: Capacidade de teste e o Entity Framework 4.0
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 9430e2ab-261c-4e8e-8545-2ebc52d7a247
-ms.openlocfilehash: 17a9f09022531a81042979464de05fbbd2570759
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 2a2384c7868ae3cf6af4f915c06ae9fdb622634c
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995223"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251317"
 ---
 # <a name="testability-and-entity-framework-40"></a>Capacidade de teste e o Entity Framework 4.0
 Scott Allen
@@ -194,13 +194,13 @@ Essas definições de classe mudarão ligeiramente conforme exploramos diferente
 
 Com os POCOs in-loco podemos criar um modelo de dados de entidade (EDM) no Visual Studio (veja a Figura 1). Não usaremos o EDM para gerar código para nossas entidades. Em vez disso, queremos usar as entidades que podemos carinhosamente criar manualmente. Só usaremos o EDM para gerar nosso esquema de banco de dados e forneça os metadados do que ef4 precisa mapear objetos no banco de dados.
 
-![eftest_01](~/ef6/media/eftest-01.jpg)
+![o EF test_01](~/ef6/media/eftest-01.jpg)
 
 **Figura 1**
 
 Observação: se você quiser desenvolver o modelo EDM pela primeira vez, é possível limpar, gerar código POCO do EDM. Você pode fazer isso com uma extensão do Visual Studio 2010 fornecida pela equipe de programabilidade de dados. Para baixar a extensão, inicie o Gerenciador de extensões no menu Ferramentas no Visual Studio e procurar a Galeria de modelos online "POCO" (consulte a Figura 2). Existem vários modelos POCO disponíveis para o EF. Para obter mais informações sobre como usar o modelo, consulte " [instruções passo a passo: POCO modelo para o Entity Framework](http://blogs.msdn.com/adonet/pages/walkthrough-poco-template-for-the-entity-framework.aspx)".
 
-![eftest_02](~/ef6/media/eftest-02.png)
+![o EF test_02](~/ef6/media/eftest-02.png)
 
 **Figura 2**
 
@@ -415,13 +415,13 @@ A "mãe de objeto" usamos a classe base é um padrão comum para a criação de 
 
 Podemos usar o EmployeeControllerTestBase como a classe base para um número de Acessórios de teste (veja a Figura 3). Cada acessório de teste irá testar uma ação de controlador específica. Por exemplo, um acessório de teste irá se concentrar no teste de ação de criação usada durante uma solicitação HTTP GET (para exibir o modo de exibição para a criação de um funcionário), e um acessório diferente se concentra na ação de criação usada em uma solicitação HTTP POST (para levar as informações enviadas pela usuário para criar um funcionário). Cada classe derivada só é responsável pela instalação necessária em seu contexto específico e fornecem as declarações necessárias para verificar os resultados de seu contexto de teste específico.
 
-![eftest_03](~/ef6/media/eftest-03.png)
+![o EF test_03](~/ef6/media/eftest-03.png)
 
 **Figura 3**
 
 O estilo de teste e a convenção de nomenclatura apresentado aqui não é necessário para o código testável – é apenas uma abordagem. Figura 4 mostra os testes em execução no Jet cérebros Resharper plug-in do executor de teste para Visual Studio 2010.
 
-![eftest_04](~/ef6/media/eftest-04.png)
+![o EF test_04](~/ef6/media/eftest-04.png)
 
 **Figura 4**
 

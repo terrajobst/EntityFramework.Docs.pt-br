@@ -3,12 +3,12 @@ title: Vários diagramas por modelo - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: b95db5c8-de8d-43bd-9ccc-5df6a5e25e1b
-ms.openlocfilehash: f27afbd3b44ff3eb8044ab960f10b2856a603ee3
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e23bf92ce3199b2162ca9a42bd0f797375179d77
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993772"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250953"
 ---
 # <a name="multiple-diagrams-per-model"></a>Vários diagramas por modelo
 > [!NOTE]
@@ -39,7 +39,7 @@ A janela de superfície de design visual é aberta automaticamente quando o Assi
 
 Captura de tela a seguir mostra um arquivo. edmx aberto no Designer de EF. A captura de tela mostra a superfície de design visual (à esquerda) e o **Model Browser** janela (à direita).
 
-![EFDesigner2](~/ef6/media/efdesigner2.png)
+![Designer EF 2](~/ef6/media/efdesigner2.png)
 
 Para desfazer uma operação realizada no EF Designer, clique em Ctrl-Z.
 

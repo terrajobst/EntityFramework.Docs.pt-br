@@ -3,12 +3,12 @@ title: Conexão resiliência e lógica de repetição - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 47d68ac1-927e-4842-ab8c-ed8c8698dff2
-ms.openlocfilehash: 47181292873009c7bce2047787503258ffa35d9d
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: d7e58abfa17c5537cdc9b0068e7c2a3c2e390038
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997479"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250511"
 ---
 # <a name="connection-resiliency-and-retry-logic"></a>Conexão resiliência e lógica de repetição
 > [!NOTE]
@@ -68,11 +68,9 @@ A SqlAzureExecutionStrategy tentará instantaneamente na primeira vez que uma fa
 
 As estratégias de execução tentará apenas um número limitado de exceções que são geralmente tansient, você ainda precisará lidar com outros erros, bem como capturar a exceção RetryLimitExceeded para o caso em que um erro não é transitório ou levar muito tempo resolver em si.  
 
-## <a name="limitations"></a>Limitações  
-
 Há alguns conhecidos de limitações ao usar uma estratégia de execução tentando novamente:  
 
-### <a name="streaming-queries-are-not-supported"></a>Não há suporte para consultas de streaming  
+## <a name="streaming-queries-are-not-supported"></a>Não há suporte para consultas de streaming  
 
 Por padrão, EF6 e versões posteriores armazenará em buffer os resultados da consulta em vez de streaming-los. Se você quiser ter resultados transmitidos você pode usar o método AsStreaming para alterar um LINQ para consulta de entidades para streaming.  
 
@@ -88,11 +86,9 @@ using (var db = new BloggingContext())
 
 Não há suporte para o fluxo quando uma estratégia de execução tentando novamente é registrada. Essa limitação existe porque a conexão foi possível descartar metade do caminho pelos resultados que estão sendo retornados. Quando isso ocorrer, o EF precisa executar novamente a consulta inteira, mas não tem nenhuma maneira confiável de saber quais resultados já foram retornados (dados podem ter sido alterado desde a consulta inicial foi enviada, os resultados podem vir de volta em uma ordem diferente, os resultados não podem ter um identificador exclusivo etc.).  
 
-### <a name="user-initiated-transactions-not-supported"></a>As transações que não tem suportadas iniciada pelo usuário  
+## <a name="user-initiated-transactions-are-not-supported"></a>Não há suporte para transações iniciadas pelo usuário  
 
 Quando você tiver configurado uma estratégia de execução que resulta em tentativas, há algumas limitações em torno do uso de transações.  
-
-#### <a name="whats-supported-efs-default-transaction-behavior"></a>O que é suportado: comportamento de transação de padrão do EF  
 
 Por padrão, o EF executará todas as atualizações de banco de dados dentro de uma transação. Você não precisa fazer nada para habilitar isso, o EF sempre faz isso automaticamente.  
 
@@ -106,8 +102,6 @@ using (var db = new BloggingContext())
     db.SaveChanges();
 }
 ```  
-
-#### <a name="whats-not-supported-user-initiated-transactions"></a>O que não tem suporte: transações iniciada pelo usuário  
 
 Quando não estiver usando uma estratégia de execução tentando novamente, você pode encapsular várias operações em uma única transação. Por exemplo, o seguinte código conclui duas chamadas SaveChanges em uma única transação. Se qualquer parte de uma ou outra operação falhar, em seguida, nenhuma alteração será aplicada.  
 
@@ -130,9 +124,7 @@ using (var db = new BloggingContext())
 
 Isso não é suportado ao usar uma estratégia de execução tentando novamente porque o EF não está ciente de todas as operações anteriores e como repeti-los. Por exemplo, se o SaveChanges segunda falha, em seguida, EF não tem as informações necessárias para repetir a primeira chamada SaveChanges.  
 
-#### <a name="possible-workarounds"></a>Possíveis soluções alternativas  
-
-##### <a name="suspend-execution-strategy"></a>Suspender estratégia de execução  
+### <a name="workaround-suspend-execution-strategy"></a>Solução alternativa: Suspenda a estratégia de execução  
 
 Uma solução alternativa é possível suspender a estratégia de execução tentando novamente para o trecho de código que precisa usar um usuário iniciou a transação. A maneira mais fácil de fazer isso é adicionar um sinalizador SuspendExecutionStrategy ao seu código com base em classe de configuração e altere o lambda de estratégia de execução para retornar a estratégia de execução padrão (não retying) quando o sinalizador é definido.  
 
@@ -193,7 +185,7 @@ using (var db = new BloggingContext())
 }
 ```  
 
-##### <a name="manually-call-execution-strategy"></a>Chamar manualmente a estratégia de execução  
+### <a name="workaround-manually-call-execution-strategy"></a>Solução alternativa: Chamar manualmente a estratégia de execução  
 
 Outra opção é usar a estratégia de execução manualmente e dê a ele o conjunto inteiro de lógica a ser executado, para que ele pode repetir tudo o que se uma das operações falhar. Ainda precisamos suspender a estratégia de execução - usando a técnica mostrada acima - para que nenhum contexto usado dentro do bloco de código com nova tentativa não tentará repetir a ação.  
 

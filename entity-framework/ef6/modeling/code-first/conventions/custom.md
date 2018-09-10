@@ -3,12 +3,12 @@ title: Convenções de personalizadas do Code First - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: dd2bdbd9-ae9e-470a-aeb8-d0ba160499b7
-ms.openlocfilehash: 79450790c6d3c8ce7fad209e3946e81d3fad4b75
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: a0e8080037cf86640275f498ed159c847ff5c057
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995822"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251057"
 ---
 # <a name="custom-code-first-conventions"></a>Convenções de primeiro código personalizado
 > [!NOTE]
@@ -115,7 +115,7 @@ Um recurso interessante do método IsKey é que ele é aditiva. Que significa qu
 
 Esse código irá configurar os tipos em nosso modelo para ter uma chave composta que consiste a coluna de chave int e a coluna de nome de cadeia de caracteres. Se podemos exibir o modelo no designer de ela teria esta aparência:
 
-![compositeKey](~/ef6/media/compositekey.png)
+![Chave composta](~/ef6/media/compositekey.png)
 
 Outro exemplo de convenções de propriedade é configurar todas as propriedades de data e hora no meu modelo para mapear para o tipo de datetime2 no SQL Server em vez de datetime. Você pode obter isso com o seguinte:
 
@@ -292,7 +292,7 @@ Por padrão, funcionário e gerente são mapeados para a mesma tabela (funcioná
 
 O código acima será mapeado para uma estrutura de tabela é semelhante ao seguinte:
 
-![tptExample](~/ef6/media/tptexample.jpg)
+![TPT exemplo](~/ef6/media/tptexample.jpg)
 
 Você pode evitar isso e manter o mapeamento TPH padrão, de duas maneiras:
 

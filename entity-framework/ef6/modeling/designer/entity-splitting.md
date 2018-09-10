@@ -3,19 +3,19 @@ title: Separação da entidade Designer - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: aa2dd48a-1f0e-49dd-863d-d6b4f5834832
-ms.openlocfilehash: 214561f0a0381bced3ceae0b6acfcd45f5dd65c5
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 06199be977276cd3656e2550df79bac24276ec51
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995613"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250588"
 ---
 # <a name="designer-entity-splitting"></a>Separação da entidade Designer
 Este passo a passo mostra como mapear um tipo de entidade para duas tabelas, modificando um modelo com o Entity Framework Designer (Designer de EF). Você pode mapear uma entidade para várias tabelas quando as tabelas compartilham uma chave comum. Os conceitos que se aplicam a um tipo de entidade de mapeamento com duas tabelas são facilmente estendidos para mapear um tipo de entidade para mais de duas tabelas.
 
 A imagem a seguir mostra as janelas principais que são usadas ao trabalhar com o EF Designer.
 
-![EFDesigner](~/ef6/media/efdesigner.png)
+![EF Designer](~/ef6/media/efdesigner.png)
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
@@ -93,7 +93,7 @@ Nesta etapa, atualizaremos o **pessoa** tipo de entidade para combinar dados do 
 -   Na superfície de design, selecione o **PersonInfo** entidade e pressione **excluir** no teclado.
 -   Clique em **nenhuma** quando perguntado se você deseja remover o **PersonInfo** tabela do modelo, estamos prestes a mapeá-lo para o **pessoa** entidade.
 
-    ![DeleteTables](~/ef6/media/deletetables.png)
+    ![Excluir tabelas](~/ef6/media/deletetables.png)
 
 As próximas etapas exigem o **Mapping Details** janela. Se você não vir essa janela, clique com botão direito a superfície de design e selecione **Mapping Details**.
 
@@ -103,7 +103,7 @@ As próximas etapas exigem o **Mapping Details** janela. Se você não vir essa 
 
 O **pessoa** tipo de entidade agora está mapeado para o **pessoa** e **PersonInfo** tabelas.
 
-![Mapping2](~/ef6/media/mapping2.png)
+![Mapeamento de 2](~/ef6/media/mapping2.png)
 
 ## <a name="use-the-model"></a>Usar o modelo
 
@@ -136,9 +136,9 @@ Instruções T-SQL a seguir foram executadas no banco de dados como resultado da
 
 -   Os dois seguintes **inserir** instruções foram executadas como resultado da execução de contexto. SaveChanges (). Eles levam os dados a partir o **pessoa** entidade e dividi-la entre a **pessoa** e **PersonInfo** tabelas.
 
-    ![Insert1](~/ef6/media/insert1.png)
+    ![Insira 1](~/ef6/media/insert1.png)
 
-    ![Insert2](~/ef6/media/insert2.png)
+    ![Insira 2](~/ef6/media/insert2.png)
 -   O seguinte **selecionar** foi executado como resultado de enumerar as pessoas no banco de dados. Ele combina os dados a partir de **pessoa** e **PersonInfo** tabela.
 
     ![Selecionar](~/ef6/media/select.png)

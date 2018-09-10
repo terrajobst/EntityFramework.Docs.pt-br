@@ -3,12 +3,12 @@ title: Relações - EF Designer - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 402fe960-754b-470f-976b-e5de3e9986b5
-ms.openlocfilehash: 72efe76956c930a787449e6cce453ab0317adc7c
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e1912a5e00e51b4f07b1ac83848fdbe0aa4755aa
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994642"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250706"
 ---
 # <a name="relationships---ef-designer"></a>Relações - EF Designer
 > [!NOTE]
@@ -16,7 +16,7 @@ ms.locfileid: "42994642"
 
 Associações de definem relações entre os tipos de entidade em um modelo. Este tópico mostra como mapear as associações com o Entity Framework Designer (Designer de EF). A imagem a seguir mostra as janelas principais que são usadas ao trabalhar com o EF Designer.
 
-![EFDesigner](~/ef6/media/efdesigner.png)
+![EF Designer](~/ef6/media/efdesigner.png)
 
 > [!NOTE]
 > Quando você compila o modelo conceitual, os avisos sobre não mapeadas entidades e associações podem aparecer na lista de erros. Você pode ignorar esses avisos porque depois que você optar por gerar o banco de dados do modelo, os erros serão eliminados.
@@ -44,7 +44,7 @@ Criando uma associação com as atualizações do Designer de EF com o conteúdo
 1.  Clique em uma área vazia da superfície de design, aponte para **adicionar novo**e selecione **associação...** .
 2.  Preencha as configurações para a associação na **Adicionar associação** caixa de diálogo.
 
-    ![AddAssociation](~/ef6/media/addassociation.png)
+    ![Adicionar associação](~/ef6/media/addassociation.png)
 
     > [!NOTE]
     > Você pode optar por não adicionar propriedades de navegação ou propriedades de chave estrangeira para as entidades nas extremidades da associação, limpando o * * propriedade de navegação * * e * * adicionar propriedades de chave estrangeira para a &lt;nome do tipo de entidade&gt; entidade * * caixas de seleção. Se você adicionar apenas uma propriedade de navegação, a associação será navegável em uma única direção. Se você não adicionar nenhuma propriedade de navegação, você deve optar por adicionar propriedades de chave estrangeira para acessar as entidades nas extremidades da associação.
@@ -76,7 +76,7 @@ Quando você usa o EF Designer para adicionar ou editar uma restrição referenc
 -   Dos **dependentes** lista suspensa, selecione a entidade dependente na restrição referencial.
 -   Para cada chave de entidade que tem uma chave dependente, selecione uma chave de dependente correspondente nas listas suspensos a **chave dependente** coluna.
 
-    ![RefConstraint](~/ef6/media/refconstraint.png)
+    ![Restrição ref](~/ef6/media/refconstraint.png)
 
 -   Clique em **OK**.
 
@@ -97,7 +97,7 @@ Você pode especificar como uma associação é mapeada para o banco de dados do
     O **Mapping Details** janela exibe ambas as extremidades de associação e as propriedades de chave para o tipo de entidade em cada **final**.
 -   Para cada propriedade de chave, clique o **coluna** campo e, em seguida, selecione a coluna à qual a propriedade será mapeado.
 
-    ![MappingDetails4](~/ef6/media/mappingdetails4.png)
+    ![Detalhes do mapeamento de 4](~/ef6/media/mappingdetails4.png)
 
 ### <a name="edit-an-association-mapping"></a>Editar um mapeamento de associação
 

@@ -3,12 +3,12 @@ title: Revertendo para o ObjectContext no Entity Framework Designer - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 36550569-a1de-47cb-ba6d-544794ffd500
-ms.openlocfilehash: b52bfc36c97e1a3c7cd2d3716feb1ae48c68a56e
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e90af3e973c71e2ce872e3edc24aafc1b2ccce0f
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997306"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250329"
 ---
 # <a name="reverting-to-objectcontext-in-entity-framework-designer"></a>Revertendo para o ObjectContext no Entity Framework Designer
 Com a versão anterior do Entity Framework um modelo criado com o EF Designer geraria um contexto que é derivada de ObjectContext e classes de entidade derivam de EntityObject.
@@ -23,11 +23,11 @@ No Visual Studio 2012 você obtém o código de DbContext gerado por padrão par
 
 Geração das classes derivadas de DbContext e POCO é manipulada por dois arquivos. TT no projeto, se você expandir o arquivo. edmx no Gerenciador de soluções, você verá esses arquivos. Exclua ambos os arquivos do seu projeto.
 
-![CodeGenFiles](~/ef6/media/codegenfiles.png)
+![Arquivos de geração de código](~/ef6/media/codegenfiles.png)
 
 Se você estiver usando o VB.NET você precisará selecionar o **Show All Files** botão para ver os arquivos aninhados.
 
-![Exibtodosarqs](~/ef6/media/showallfiles.png)
+![Mostrar todos os arquivos](~/ef6/media/showallfiles.png)
 
 ### <a name="2-re-enable-objectcontext-code-generation"></a>2. Habilite novamente a geração de código de ObjectContext
 
@@ -35,4 +35,4 @@ Abrir modelo no Designer de EF, clique com o botão direito em uma seção em br
 
 Em que a alteração da janela de propriedades de **estratégia de geração de código** de **None** para **padrão**.
 
-![CodeGenStrategy](~/ef6/media/codegenstrategy.png)
+![Estratégia de geração de código](~/ef6/media/codegenstrategy.png)

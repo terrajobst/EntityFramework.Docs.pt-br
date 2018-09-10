@@ -3,12 +3,12 @@ title: Atalhos de teclado do Designer do Entity Framework - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 3c76cdd5-17c5-4c54-a6a5-cf21b974636b
-ms.openlocfilehash: 70c9705956b58f4d00908dd9cca6ad0e0a078fc6
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e3a9d968c26841c143b1b7b0ba9a168ecd13f469
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997757"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251122"
 ---
 # <a name="entity-framework-designer-keyboard-shortcuts"></a>Atalhos de teclado do Designer do Entity Framework
 Esta página fornece uma lista de shorcuts de teclado que estão disponíveis em várias telas do Entity Framework Tools para Visual Studio.
@@ -17,7 +17,7 @@ Esta página fornece uma lista de shorcuts de teclado que estão disponíveis em
 
 ### <a name="step-one-choose-model-contents"></a>Etapa 1: Escolher conteúdo do modelo
 
-![WizardOne](~/ef6/media/wizardone.png)
+![Um assistente](~/ef6/media/wizardone.png)
 
 | Atalho  | Ação                                                     | Observações                                               |
 |:----------|:-----------------------------------------------------------|:----------------------------------------------------|
@@ -27,7 +27,7 @@ Esta página fornece uma lista de shorcuts de teclado que estão disponíveis em
 
 ### <a name="step-two-choose-your-connection"></a>Etapa 2: Escolher sua Conexão
 
-![WizardTwo](~/ef6/media/wizardtwo.png)
+![Dois do Assistente](~/ef6/media/wizardtwo.png)
 
 | Atalho  | Ação                                                     | Observações                                                   |
 |:----------|:-----------------------------------------------------------|:--------------------------------------------------------|
@@ -41,7 +41,7 @@ Esta página fornece uma lista de shorcuts de teclado que estão disponíveis em
 
 ### <a name="step-three-choose-your-version"></a>Etapa três: Escolha sua versão
 
-![WizardThree](~/ef6/media/wizardthree.png)
+![Três Assistente](~/ef6/media/wizardthree.png)
 
 | Atalho  | Ação                                             | Observações                                                                                 |
 |:----------|:---------------------------------------------------|:--------------------------------------------------------------------------------------|
@@ -51,7 +51,7 @@ Esta página fornece uma lista de shorcuts de teclado que estão disponíveis em
 
 ### <a name="step-four-choose-your-database-objects-and-settings"></a>Etapa quatro: Escolha seus objetos de banco de dados e configurações
 
-![WizardFour](~/ef6/media/wizardfour.png)
+![Quatro Assistente](~/ef6/media/wizardfour.png)
 
 | Atalho  | Ação                                                                                    | Observações                                                               |
 |:----------|:------------------------------------------------------------------------------------------|:--------------------------------------------------------------------|
@@ -70,7 +70,7 @@ Esta página fornece uma lista de shorcuts de teclado que estão disponíveis em
 
 ## <a name="ef-designer-surface"></a>Superfície do Designer de EF
 
-![DesignerSurface](~/ef6/media/designersurface.png)
+![Superfície do Designer](~/ef6/media/designersurface.png)
 
 | Atalho                                                                                | Ação                      | Observações                                                                                                                                                                                                                               |
 |:----------------------------------------------------------------------------------------|:----------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -113,7 +113,7 @@ Esta página fornece uma lista de shorcuts de teclado que estão disponíveis em
 
 ## <a name="mapping-details-window"></a>Janela de detalhes de mapeamento
 
-![MappingDetailsShortcuts](~/ef6/media/mappingdetailsshortcuts.png)
+![Atalhos de detalhes de mapeamento](~/ef6/media/mappingdetailsshortcuts.png)
 
 | Atalho                  | Ação         | Observações                                                                                                                                 |
 |:--------------------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------|

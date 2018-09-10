@@ -3,12 +3,12 @@ title: Code First para um novo banco de dados - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
-ms.openlocfilehash: 50c6a4710bc50879304f64e781a46c4836f86882
-ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
+ms.openlocfilehash: 8ed1bfbc3536acc0d83b9c8ecdd180aeb44eff83
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/29/2018
-ms.locfileid: "43152472"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251044"
 ---
 # <a name="code-first-to-a-new-database"></a>Code First para um novo banco de dados
 Este passo a passo e vídeo passo a passo fornecem uma introdução ao desenvolvimento Code First, direcionando um novo banco de dados. Este cenário inclui o direcionamento de um banco de dados que não existe e Code First criará ou um banco de dados vazio que Code First será adicionar novas tabelas. Código primeiro permite que você defina seu modelo usando o C\# ou classes VB.Net. Configuração adicional, opcionalmente, pode ser executada usando atributos em classes e propriedades ou usando uma API fluente.
@@ -199,13 +199,13 @@ Você pode se conectar ao banco de dados usando o Gerenciador de servidores no V
 -   Clique com botão direito **conexões de dados** e selecione **Adicionar Conexão...**
 -   Se você ainda não tiver conectado a um banco de dados do Gerenciador de servidores antes de você precisará selecionar o Microsoft SQL Server como a fonte de dados
 
-    ![SelectDataSource](~/ef6/media/selectdatasource.png)
+    ![Selecionar fonte de dados](~/ef6/media/selectdatasource.png)
 
 -   Conectar-se ao LocalDB ou Express do SQL, dependendo de qual deles você ter instalado
 
 Agora podemos pode inspecionar o esquema que o código primeiro criou.
 
-![SchemaInitial](~/ef6/media/schemainitial.png)
+![Esquema inicial](~/ef6/media/schemainitial.png)
 
 DbContext solucionaram quais classes devem ser incluídas no modelo, observando as propriedades DbSet que definimos. Em seguida, ele usa o conjunto padrão de convenções Code First para determinar os nomes de tabela e coluna, determinar os tipos de dados, localize as chaves primárias, etc. Posteriormente neste passo a passo, examinaremos como você pode substituir essas convenções.
 
@@ -266,7 +266,7 @@ namespace CodeFirstNewDatabaseSample.Migrations
 
 A nova coluna de Url agora é adicionada à tabela Blogs no banco de dados:
 
-![SchemaWithUrl](~/ef6/media/schemawithurl.png)
+![Esquema de Url](~/ef6/media/schemawithurl.png)
 
 ## <a name="6-data-annotations"></a>6. Anotações de dados
 
@@ -316,7 +316,7 @@ public class User
 
 Agora, a nova tabela é adicionada ao banco de dados:
 
-![SchemaWithUsers](~/ef6/media/schemawithusers.png)
+![Esquema com usuários](~/ef6/media/schemawithusers.png)
 
 A lista completa de anotações com suporte pelo EF é:
 
@@ -365,7 +365,7 @@ public class BloggingContext : DbContext
 
 A coluna DisplayName agora foi renomeada para exibir\_nome:
 
-![SchemaWithDisplayNameRenamed](~/ef6/media/schemawithdisplaynamerenamed.png)
+![Esquema com nome de exibição renomeado](~/ef6/media/schemawithdisplaynamerenamed.png)
 
 ## <a name="summary"></a>Resumo
 

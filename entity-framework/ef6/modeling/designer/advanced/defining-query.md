@@ -3,12 +3,12 @@ title: Definição de consulta - EF Designer - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: e52a297e-85aa-42f6-a922-ba960f8a4b22
-ms.openlocfilehash: 60d5310589bb9bc3fdb971673422e80537357e55
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 8415a265cdbe078422e0467ee97da955a81b873d
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996301"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250966"
 ---
 # <a name="defining-query---ef-designer"></a>Consulta de definição - EF Designer
 Este passo a passo demonstra como adicionar uma definição de tipo de consulta e uma entidade correspondente a um modelo usando o EF Designer. Uma consulta de definição é comumente usada para fornecer funcionalidade semelhante àquela fornecida por uma exibição de banco de dados, mas a exibição é definida no modelo, não o banco de dados. Uma consulta de definição permite que você execute uma instrução SQL que é especificada na **DefiningQuery** elemento de um arquivo. edmx. Para obter mais informações, consulte **DefiningQuery** na [especificação de SSDL](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md).
@@ -54,11 +54,11 @@ Este passo a passo é usando o Visual Studio 2012 ou mais recente.
 -   No Gerenciador de soluções, clique com botão direito do **DefiningQueryModel.edmx** do arquivo e selecione **abrir com...** .
 -   Selecione **Editor de XML (texto)**.
 
-    ![XMLEditor](~/ef6/media/xmleditor.png)
+    ![Editor de XML](~/ef6/media/xmleditor.png)
 
 -   Clique em **Sim** se solicitado com a seguinte mensagem:
 
-    ![Warning2](~/ef6/media/warning2.png)
+    ![Aviso 2](~/ef6/media/warning2.png)
 
  
 
@@ -136,7 +136,7 @@ Abra o modelo no Designer de EF.
 -   Clique duas vezes o DefiningQueryModel.edmx.
 -   Digamos **Sim** à mensagem a seguir:
 
-    ![Warning2](~/ef6/media/warning2.png)
+    ![Aviso 2](~/ef6/media/warning2.png)
 
  
 
@@ -172,7 +172,7 @@ Nesta etapa, usaremos a janela de detalhes de mapeamento para mapear conceitual 
     O **Mapping Details** janela é exibida.
 -   Selecione **GradeReport** da **&lt;adicionar uma tabela ou exibição&gt;** lista suspensa (localizada na **tabela**s).  
     Padrão de mapeamentos entre conceitual e de armazenamento **GradeReport** tipo de entidade são exibidos.  
-    ![MappingDetails3](~/ef6/media/mappingdetails.png)
+    ![Mapeamento Details3](~/ef6/media/mappingdetails.png)
 
 Como resultado, o **EntitySetMapping** elemento é adicionado à seção de mapeamento do arquivo. edmx. 
 

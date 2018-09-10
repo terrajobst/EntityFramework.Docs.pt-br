@@ -3,12 +3,12 @@ title: Herança TPH Designer – EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 72d26a8e-20ab-4500-bd13-394a08e73394
-ms.openlocfilehash: 9a546f6450b5aa3b03c062d1ab2c6f9257ba8292
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 1eb935414b20d6e93e9d470ccc845bc13626ed3a
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994998"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250836"
 ---
 # <a name="designer-tph-inheritance"></a>Herança TPH Designer
 Este passo a passo mostra como implementar a herança do tabela por hierarquia (TPH) em seu modelo conceitual com o Entity Framework Designer (Designer de EF). Herança TPH usa uma tabela de banco de dados para manter os dados para todos os tipos de entidade em uma hierarquia de herança.
@@ -54,7 +54,7 @@ O Designer de entidade, que fornece uma superfície de design para editar seu mo
 
 Isto é como o **pessoa** tabela fica no banco de dados.
 
-![PersonTable](~/ef6/media/persontable.png) 
+![Tabela Person](~/ef6/media/persontable.png) 
 
 ## <a name="implement-table-per-hierarchy-inheritance"></a>Implementar a herança de tabela por hierarquia
 
@@ -94,14 +94,14 @@ Dois novos tipos de entidade foram adicionados à superfície de design. Uma set
 -   No **operador** coluna o **Mapping Details** janela, selecione = na lista suspensa.
 -   No **propriedade/valor** coluna, digite **instrutor**. O resultado final deve ter esta aparência:
 
-    ![MappingDetails2](~/ef6/media/mappingdetails2.png)
+    ![Detalhes de mapeamento](~/ef6/media/mappingdetails2.png)
 
 -   Repita essas etapas para o **aluno** tipo de entidade, mas verifique a condição igual a **aluno** valor.  
     *O motivo pelo qual desejamos remover os **discriminador** propriedade, é porque você não pode mapear uma coluna de tabela mais de uma vez. Esta coluna será usada para mapeamento condicional, então ele não pode ser usado para mapeamento de propriedade também. A única maneira que ele pode ser usado para ambos, se uma condição usa um **é nulo** ou **Is Not Null** comparação.*
 
 Herança de tabela por hierarquia agora é implementada.
 
-![FinalTPH](~/ef6/media/finaltph.png)
+![TPH final](~/ef6/media/finaltph.png)
 
 ## <a name="use-the-model"></a>Usar o modelo
 

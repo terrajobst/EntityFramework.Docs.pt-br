@@ -3,12 +3,12 @@ title: Async de consulta e salve - o EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: 64051dea740b2183cb904d7fb4293d7048c218ca
-ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
+ms.openlocfilehash: 35604fc16ea37415d39801831aa162d0d42c2a2f
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/29/2018
-ms.locfileid: "43152431"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250745"
 ---
 # <a name="async-query-and-save"></a>Async consultar e salvar
 > [!NOTE]
@@ -145,7 +145,7 @@ Como o código é síncrono, podemos pode observar o seguinte fluxo de execuçã
 4.  Consulta retorna e os resultados são gravados em **Console**
 5.  Cota do dia é gravada em **Console**
 
-![SyncOutput](~/ef6/media/syncoutput.png) 
+![Sincronização de saída](~/ef6/media/syncoutput.png) 
 
  
 
@@ -227,7 +227,7 @@ Agora que o código é assíncrona, podemos pode observar um fluxo de execução
 4.  Consulta para todos os **Blogs** é enviado para o banco de dados *novamente, o thread gerenciado é livre para executar outras tarefas enquanto a consulta é processada no banco de dados. Uma vez que todos os outra execução for concluída, o thread apenas interromperá na chamada espera entanto.*
 5.  Consulta retorna e os resultados são gravados em **Console**
 
-![AsyncOutput](~/ef6/media/asyncoutput.png) 
+![Saída de Async](~/ef6/media/asyncoutput.png) 
 
  
 

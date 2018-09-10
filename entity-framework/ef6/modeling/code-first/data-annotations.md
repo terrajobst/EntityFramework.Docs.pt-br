@@ -3,29 +3,29 @@ title: Primeira Data Annotations - EF6 de código
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 80abefbd-23c9-4fce-9cd3-520e5df9856e
-ms.openlocfilehash: 0ab66afa3babafe657b3ddb32c02c3fba0ae310e
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 57e2b988f81d9c82e10a07a5cd4f3a1decfd838a
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994580"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251200"
 ---
 # <a name="code-first-data-annotations"></a>Anotações de dados Code First
 > [!NOTE]
-> **EF4.1 em diante, somente** -recursos, APIs, etc. discutidos nesta página foram introduzidas no Entity Framework 4.1. Se você estiver usando uma versão anterior, algumas ou todas as informações não se aplicarão.
+> **EF4.1 em diante, somente** -recursos, APIs, etc. discutidos nesta página foram introduzidas no Entity Framework 4.1. Se você estiver usando uma versão anterior, algumas ou todas essas informações não se aplica.
 
-O conteúdo desta página é adaptado do e do artigo escrito originalmente de Julie Lerman (\<http://thedatafarm.com>).
+O conteúdo desta página é adaptado de um artigo escrito originalmente de Julie Lerman (\<http://thedatafarm.com>).
 
-Entity Framework Code First permite que você use suas próprias classes de domínio para representar o modelo que o EF depende para executar a consulta, altere de acompanhamento e a atualização de funções. Primeiro, o código aproveita um padrão de programação conhecido como convenção em detrimento da configuração. Isso significa que o código primeiro pressupor que suas classes seguem as convenções que usa o EF. Nesse caso, o EF será capaz de trabalhar em detalhes em que ele precisa para fazer seu trabalho. No entanto, se suas classes não seguir essas convenções, você tem a capacidade de adicionar as configurações para suas classes para fornecer o EF com as informações necessárias.
+Entity Framework Code First permite que você use suas próprias classes de domínio para representar o modelo de EF depende para executar a consulta, altere de controle e a atualização de funções. Código primeiro aproveita um padrão de programação conhecido como 'convenção em detrimento da configuração'. Código primeiro pressupor que suas classes de seguem as convenções do Entity Framework e nesse caso, funcionarão automaticamente como realizar seu trabalho. No entanto, se suas classes não seguir essas convenções, você tem a capacidade de adicionar as configurações para suas classes para fornecer o EF com as informações necessárias.
 
-Código primeiro oferece duas maneiras de adicionar essas configurações para suas classes. Uma é usando atributos simples chamados DataAnnotations e a outra é usando o código é a API Fluent, que fornece uma maneira de descrever as configurações de modo imperativo, no código.
+Código primeiro oferece duas maneiras de adicionar essas configurações para suas classes. Uma é usando atributos simples chamados DataAnnotations, e o segundo é usando a API do Fluent do Code First, que fornece uma maneira de descrever as configurações de modo imperativo, no código.
 
 Este artigo se concentra no uso de DataAnnotations (no namespace DataAnnotations) para configurar classes – realçando as configurações mais necessárias. DataAnnotations também são compreendidas por um número de aplicativos .NET, como o ASP.NET MVC, que permite que esses aplicativos para aproveitar as mesmas anotações para validações do lado do cliente.
 
 
 ## <a name="the-model"></a>O modelo
 
-Vou demonstrar DataAnnotations primeiro com um par simple de classes de código: Blog e Post.
+Vou demonstrar DataAnnotations de código primeiro com um par simple de classes: Blog e Post.
 
 ``` csharp
     public class Blog
@@ -47,15 +47,15 @@ Vou demonstrar DataAnnotations primeiro com um par simple de classes de código:
     }
 ```
 
-Como estão, as classes de postagem de Blog convenientemente seguem a convenção de código primeiro e necessários sem ajustes para ajudar o EF trabalhar com eles. Mas você também pode usar as anotações para fornecer mais informações para o EF sobre as classes e eles são mapeados para o banco de dados.
+Como estão, as classes de postagem de Blog convenientemente seguem a convenção de código primeiro e exigem sem ajustes para habilitar a compatibilidade do EF. No entanto, você também pode usar as anotações para fornecer mais informações para o EF sobre as classes e o banco de dados ao qual eles são mapeados.
 
  
 
 ## <a name="key"></a>Chave
 
-Entity Framework se baseia em cada entidade que tem um valor de chave que ele utiliza para entidades de rastreamento. Um das convenções de código primeiro depende é como ele implica a qual propriedade é a chave em cada uma das classes código primeiro. Essa convenção é procurar uma propriedade chamada "Id" ou que combina o nome de classe e a "Id", como "BlogId". A propriedade será mapeada para uma coluna de chave primária no banco de dados.
+Entity Framework se baseia em cada entidade que tem um valor de chave que é usado para acompanhamento de entidade. Uma convenção do Code First é implícitas propriedades-chave; Primeiro, código procurará uma propriedade chamada "Id" ou uma combinação de nome de classe e "Id", como "BlogId". Essa propriedade será mapeada para uma coluna de chave primária no banco de dados.
 
-As classes no Blog e Post seguem Esta convenção. Mas e se eles não? E se o Blog usou o nome *PrimaryTrackingKey* em vez disso, ou até mesmo *foo*? Se o código primeiro não encontrar uma propriedade que corresponde a essa convenção, ele lançará uma exceção devido ao requisito do Entity Framework que você deve ter uma propriedade de chave. Você pode usar a anotação de chave para especificar qual propriedade deve ser usado como EntityKey.
+As classes no Blog e Post seguem Esta convenção. E se eles não? E se o Blog usou o nome *PrimaryTrackingKey* em vez disso, ou até mesmo *foo*? Se o código primeiro não encontrar uma propriedade que corresponde a essa convenção, ele lançará uma exceção devido ao requisito do Entity Framework que você deve ter uma propriedade de chave. Você pode usar a anotação de chave para especificar qual propriedade deve ser usado como EntityKey.
 
 ``` csharp
     public class Blog
@@ -68,13 +68,13 @@ As classes no Blog e Post seguem Esta convenção. Mas e se eles não? E se o Bl
     }
 ```
 
-Se você estiver usando o código é o recurso de geração de banco de dados, a tabela Blog terá uma coluna de chave primária denominada PrimaryTrackingKey que também é definido como identidade, por padrão.
+Se você estiver usando o código é o recurso de geração de banco de dados, a tabela Blog terá uma coluna de chave primária denominada PrimaryTrackingKey, que também é definido como identidade, por padrão.
 
-![jj591583_figure01](~/ef6/media/jj591583-figure01.png)
+![Blog de tabela com a chave primária](~/ef6/media/jj591583-figure01.png)
 
 ### <a name="composite-keys"></a>Chaves compostas
 
-Entity Framework oferece suporte a chaves compostas - chaves primárias que consistem em mais de uma propriedade. Por exemplo, seu poderia ter uma classe de Passport cuja chave primária é uma combinação de PassportNumber e IssuingCountry.
+Entity Framework oferece suporte a chaves compostas - chaves primárias que consistem em mais de uma propriedade. Por exemplo, você poderia ter uma classe de Passport cuja chave primária é uma combinação de PassportNumber e IssuingCountry.
 
 ``` csharp
     public class Passport
@@ -88,11 +88,11 @@ Entity Framework oferece suporte a chaves compostas - chaves primárias que cons
     }
 ```
 
-Se você tentar e usar a classe acima em seu modelo EF você obteria um informando InvalidOperationExceptions;
+A tentativa de usar a classe acima em seu modelo EF resultaria em um `InvalidOperationException`:
 
 *Não é possível determinar a composição primário ordenação de chave para o tipo 'Passport'. Use o ColumnAttribute ou o método HasKey para especificar uma ordem para chaves primárias compostas.*
 
-Quando você tiver chaves compostas, o Entity Framework exige que você pode definir uma ordem das propriedades de chave. Você pode fazer isso usando a anotação de coluna para especificar uma ordem.
+Para usar chaves compostas, Entity Framework exige que você pode definir uma ordem para as propriedades de chave. Você pode fazer isso usando a anotação de coluna para especificar uma ordem.
 
 >[!NOTE]
 > O valor de ordem é relativo (em vez de índice com base) para que todos os valores possam ser usados. Por exemplo, 100 e 200 seria aceitável no lugar de 1 e 2.
@@ -111,7 +111,7 @@ Quando você tiver chaves compostas, o Entity Framework exige que você pode def
     }
 ```
 
-Se você tiver entidades com chaves estrangeiras compostas, em seguida, você deve especificar a mesma coluna de classificação que você usou para as propriedades de chave primárias correspondentes.
+Se você tiver entidades com chaves estrangeiras compostas, você deve especificar a mesma coluna de classificação que você usou para as propriedades de chave primárias correspondentes.
 
 Somente a ordenação relativa dentro das propriedades de chave estrangeiras deve ser o mesmo, os valores exatos atribuídos a **ordem** não precisa corresponder. Por exemplo, a seguinte classe, 3 e 4 poderiam ser usados no lugar de 1 e 2.
 
@@ -148,7 +148,7 @@ Adicionando necessárias para a propriedade Title forçará o EF (e MVC) para ga
 
 Sem nenhum adicional nenhum código ou marcação alterações no aplicativo, um aplicativo MVC executará validação do lado do cliente, até mesmo dinamicamente a criação de uma mensagem usando os nomes de propriedade e a anotação.
 
-![jj591583_figure02](~/ef6/media/jj591583-figure02.png)
+![Criar página com o título é obrigatório de erro](~/ef6/media/jj591583-figure02.png)
 
 O atributo Required também afetará o banco de dados gerado, tornando a propriedade mapeada não anuláveis. Observe que o campo de título foi alterado para "not null".
 
@@ -157,7 +157,7 @@ O atributo Required também afetará o banco de dados gerado, tornando a proprie
 
  
 
-![jj591583_figure03](~/ef6/media/jj591583-figure03.png)
+![Tabela de blogs](~/ef6/media/jj591583-figure03.png)
 
  
 
@@ -174,7 +174,7 @@ Aqui está o BloggerName com requisitos de comprimento. O exemplo também demons
 
 A anotação de MaxLength terá impacto sobre o banco de dados, definindo o comprimento da propriedade como 10.
 
-![jj591583_figure04](~/ef6/media/jj591583-figure04.png)
+![Tabela de blogs que mostra o tamanho máximo na coluna BloggerName](~/ef6/media/jj591583-figure04.png)
 
 Anotação do lado do cliente MVC e anotação do lado do servidor de EF 4.1 ambos respeitará essa validação novamente dinamicamente a criação de uma mensagem de erro: "o campo BloggerName deve ser um tipo de cadeia de caracteres ou matriz com um comprimento máximo de '10'". Essa mensagem é um pouco longa. Muitas anotações permitem que você especifique uma mensagem de erro com o atributo de ErrorMessage.
 
@@ -185,7 +185,7 @@ Anotação do lado do cliente MVC e anotação do lado do servidor de EF 4.1 amb
 
 Você também pode especificar ErrorMessage na anotação necessária.
 
-![jj591583_figure05](~/ef6/media/jj591583-figure05.png)
+![Criar página com a mensagem de erro personalizada](~/ef6/media/jj591583-figure05.png)
 
  
 
@@ -243,7 +243,7 @@ Agora você pode adicionar uma propriedade na classe para representar o BlogDeta
 
 No banco de dados, a tabela Blog conterá todas as propriedades do blog, incluindo as propriedades contidas na sua propriedade BlogDetail. Por padrão, cada uma delas é precedida pelo nome do tipo complexo, BlogDetail.
 
-![jj591583_figure06](~/ef6/media/jj591583-figure06.png)
+![Tabela de blog com tipo complexo](~/ef6/media/jj591583-figure06.png)
 
 Outra observação interessante é que, embora a propriedade DateCreated foi definida como uma data e hora não anuláveis na classe, o campo de banco de dados relevante é anulável. Você deve usar a anotação necessária se você quiser afetar o esquema de banco de dados.
 
@@ -284,7 +284,7 @@ Adicionando a seguinte propriedade à classe de Blog:
 
 resultados no código criando primeiro uma coluna de carimbo de hora não anulável na tabela de banco de dados.
 
-![jj591583_figure07](~/ef6/media/jj591583-figure07.png)
+![Blogs de tabela com coluna de carimbo de data / hora](~/ef6/media/jj591583-figure07.png)
 
  
 
@@ -310,7 +310,7 @@ Não confunda o atributo de TypeName da coluna com o DataType DataAnnotation. Ti
 
 Aqui está a tabela depois que ele é foi regenerado. O nome da tabela foi alterado para InternalBlogs e a coluna de descrição de tipo complexo é agora BlogDescription. Como o nome foi especificado na anotação, código pela primeira vez não usará a convenção de iniciar o nome da coluna com o nome do tipo complexo.
 
-![jj591583_figure08](~/ef6/media/jj591583-figure08.png)
+![Blogs de tabela e coluna renomeada](~/ef6/media/jj591583-figure08.png)
 
  
 
@@ -418,7 +418,7 @@ Ao gerar o banco de dados, o código primeiro vê a propriedade BlogId na classe
 
 A restrição no banco de dados mostra uma relação entre InternalBlogs.PrimaryTrackingKey e Posts.BlogId. 
 
-![jj591583_figure09](~/ef6/media/jj591583-figure09.png)
+![relação entre InternalBlogs.PrimaryTrackingKey e Posts.BlogId](~/ef6/media/jj591583-figure09.png)
 
 O InverseProperty é usado quando você tiver várias relações entre classes.
 
@@ -443,7 +443,7 @@ Você também precisará adicionar a classe Person referenciada por essas propri
 
 Code first não é capaz de corresponder as propriedades nas duas classes por conta própria. A tabela de banco de dados para postagens deve ter uma chave estrangeira para a pessoa CreatedBy e outro para a pessoa UpdatedBy mas o código primeiro criar propriedades de chave estrangeira quatro do será: pessoa\_Id, a pessoa\_Id1, CreatedBy\_Id e UpdatedBy\_ID.
 
-![jj591583_figure10](~/ef6/media/jj591583-figure10.png)
+![Tabela de postagens com chaves estrangeiras extra](~/ef6/media/jj591583-figure10.png)
 
 Para corrigir esses problemas, você pode usar a anotação InverseProperty para especificar o alinhamento das propriedades.
 
@@ -457,7 +457,7 @@ Para corrigir esses problemas, você pode usar a anotação InverseProperty para
 
 Como a propriedade PostsWritten pessoalmente sabe que isso se refere ao tipo de postagem, ele criará a relação para Post.CreatedBy. Da mesma forma, PostsUpdated será conectado ao Post.UpdatedBy. E o código primeiro não criará as chaves estrangeiras extra.
 
-![jj591583_figure11](~/ef6/media/jj591583-figure11.png)
+![Tabela de postagens sem chaves estrangeiras extra](~/ef6/media/jj591583-figure11.png)
 
  
 

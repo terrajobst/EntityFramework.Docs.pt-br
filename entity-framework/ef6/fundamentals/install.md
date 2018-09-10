@@ -3,12 +3,12 @@ title: Obter o Entity Framework - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 122c38a2-f9e8-4ecc-9c72-a83bc9af7814
-ms.openlocfilehash: 91b78e56f60edf7ebc8769b1c385f8547f63cd3d
-ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
+ms.openlocfilehash: 601f8d123d5494be6a658da1c4ad3743ed50385c
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/29/2018
-ms.locfileid: "43152382"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250875"
 ---
 # <a name="get-entity-framework"></a>Obter o Entity Framework
 Entity Framework é composto das ferramentas do EF para Visual Studio e o tempo de execução do EF.
@@ -27,7 +27,7 @@ A versão mais recente do Entity Framework está disponível como a [pacote Enti
 
 Você pode instalar o pacote EntityFramework clicando com o **referências** pasta do seu projeto e selecionando **gerenciar pacotes NuGet...**
 
-![ManageNuGetPackages](~/ef6/media/managenugetpackages.png)
+![Gerenciar pacotes NuGet](~/ef6/media/managenugetpackages.png)
 
 ### <a name="installing-from-package-manager-console"></a>Instalação do Console do Gerenciador de pacotes
 
@@ -55,7 +55,7 @@ Os métodos acima lhe dará a versão mais recente com suporte total a versão d
 
 Para instalar a visualização mais recente do EntityFramework, você pode selecionar **Include Prerelease** na janela Gerenciar pacotes NuGet. Se não há versões de pré-lançamento estão disponível automaticamente obterá a versão mais recente versão com suporte total do Entity Framework.
 
-![IncludePreRelease](~/ef6/media/includeprerelease.png)
+![Incluir pré-lançamento](~/ef6/media/includeprerelease.png)
 
 Como alternativa, você pode executar o comando a seguir [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console).
 

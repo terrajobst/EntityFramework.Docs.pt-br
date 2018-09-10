@@ -3,12 +3,12 @@ title: Os procedimentos armazenados com vários conjuntos de resultados - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 1b3797f9-cd3d-4752-a55e-47b84b399dc1
-ms.openlocfilehash: bb104ac5f584d26d279259a173de9afe3f018968
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 56c28f05bd7efe1b54d6cadd32afe0e9c6cf38b5
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996169"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251005"
 ---
 # <a name="stored-procedures-with-multiple-result-sets"></a>Procedimentos armazenados com vários conjuntos de resultados
 Às vezes, ao usar armazenados procedimentos, você precisará retornar mais de um resultado definem. Esse cenário normalmente é usado para reduzir o número de banco de dados de viagens de ida e necessárias para compor uma única tela. Antes do EF5, o Entity Framework permitiria que o procedimento armazenado a ser chamado, mas apenas retornaria o primeiro conjunto de resultados para o código de chamada.
@@ -104,7 +104,7 @@ Se você estiver usando o EF Designer, você também pode modificar o modelo par
 -   Para fazer isso, você precisará adicionar o procedimento armazenado ao seu modelo, como você faria para uma consulta de conjunto de resultados único.
 -   Depois de ter isso em seguida, você precisará clicar em seu modelo e selecione **abrir com...** em seguida, **Xml**
 
-    ![OpenAs](~/ef6/media/openas.png)
+    ![Abrir como](~/ef6/media/openas.png)
 
 Depois do modelo aberto como XML, em seguida, você precisa fazer as seguintes etapas:
 

@@ -3,12 +3,12 @@ title: Registro em log e interceptar operações de banco de dados - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: b5ee7eb1-88cc-456e-b53c-c67e24c3f8ca
-ms.openlocfilehash: 2e16502abf54be3f3b2f63fe69d2605ef13dea27
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 9a8be81af45d9f27caa8c26f66d219dc568b6604
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994629"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251265"
 ---
 # <a name="logging-and-intercepting-database-operations"></a>Registro em log e interceptar operações de banco de dados
 > [!NOTE]
@@ -36,8 +36,6 @@ using (var context = new BlogContext())
 ```  
 
 Observe que o contexto. Database. log é definido como console. Write. Isso é tudo o que é necessário para fazer logon SQL no console.  
-
-### <a name="example-output"></a>Saída de exemplo  
 
 Vamos adicionar alguns códigos simples de consulta/insert/update para que podemos ver algumas saídas:  
 
@@ -98,7 +96,7 @@ WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
 
 (Observe que isso é a saída, supondo que a inicialização de qualquer banco de dados já aconteceu. Se a inicialização do banco de dados já não ocorreu, em seguida, haverá muito mais saída, mostrando todo o trabalho migrações faz nos bastidores para verificar ou criar um novo banco de dados.)  
 
-### <a name="what-gets-logged"></a>O que é registrado em log?  
+## <a name="what-gets-logged"></a>O que é registrado em log?  
 
 Quando a propriedade de registro é definida todos os itens a seguir será registrada:  
 
@@ -124,7 +122,7 @@ Examinar a saída de exemplo acima, cada um dos quatro comandos registrados são
     - Observe os detalhes do parâmetro para as propriedades Title e de FK  
     - Observe que esses comandos estão sendo executados de forma assíncrona  
 
-### <a name="logging-to-different-places"></a>Registro em log para locais diferentes  
+## <a name="logging-to-different-places"></a>Registro em log para locais diferentes  
 
 Conforme mostrado acima do registro em log para o console é muito fácil. Também é fácil fazer a memória, arquivo, etc. usando tipos diferentes de [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx).  
 
@@ -147,7 +145,7 @@ var logger = new MyLogger();
 context.Database.Log = s => logger.Log("EFApp", s);
 ```  
 
-### <a name="result-logging"></a>Registro em log o resultado  
+## <a name="result-logging"></a>Registro em log o resultado  
 
 O agente de log padrão registra o texto do comando (SQL), parâmetros e a linha "Executando" com um carimbo de hora antes do comando é enviado ao banco de dados. Uma linha "concluída", que contém o tempo decorrido é registrada seguindo a execução do comando.  
 
@@ -155,11 +153,11 @@ Observe que para comandos assíncronos a linha "concluída" não está registrad
 
 A linha "concluída" contém informações diferentes dependendo do tipo de comando e ou não a execução foi bem-sucedida.  
 
-#### <a name="successful-execution"></a>Execução bem-sucedida  
+### <a name="successful-execution"></a>Execução bem-sucedida  
 
 Para comandos que concluída com êxito a saída é "concluído em x ms com resultado:" seguido por alguma indicação de qual foi o resultado. Para comandos que retornam o resultado de um leitor de dados indicação é o tipo de [DbDataReader](https://msdn.microsoft.com/library/system.data.common.dbdatareader.aspx) retornado. Para comandos que retornam um valor inteiro como a atualização de comando mostrado acima o resultado mostrado é esse inteiro.  
 
-#### <a name="failed-execution"></a>Execução com falha  
+### <a name="failed-execution"></a>Execução com falha  
 
 Para comandos que falham ao lançar uma exceção, a saída contém a mensagem da exceção. Por exemplo, usando SqlQuery para consulta em uma tabela que existe o resultado no log produzirá algo parecido com isto:  
 
@@ -169,7 +167,7 @@ SELECT * from ThisTableIsMissing
 -- Failed in 1 ms with error: Invalid object name 'ThisTableIsMissing'.
 ```  
 
-#### <a name="canceled-execution"></a>Execução cancelada  
+### <a name="canceled-execution"></a>Execução cancelada  
 
 Para comandos assíncronos em que a tarefa é cancelada o resultado poderia ser falha com uma exceção, já que este é o que o provedor ADO.NET subjacente geralmente faz quando é feita uma tentativa de cancelar. Se isso não acontecer e a tarefa é cancelada corretamente, em seguida, a saída será algo parecido com isso:  
 
@@ -180,8 +178,6 @@ update Blogs set Title = 'No' where Id = -1
 ```  
 
 ## <a name="changing-log-content-and-formatting"></a>Alterar o conteúdo do log e formatação  
-
-### <a name="databaselogformatter"></a>DatabaseLogFormatter  
 
 Nos bastidores a Database. log propriedade torna o uso de um objeto DatabaseLogFormatter. Esse objeto efetivamente associa uma implementação de IDbCommandInterceptor (veja abaixo) para um delegado que aceita cadeias de caracteres e um DbContext. Isso significa que métodos em DatabaseLogFormatter são chamados antes e após a execução de comandos pelo EF. Esses métodos DatabaseLogFormatter reunir e formatar a saída de log e enviá-lo ao delegado.  
 

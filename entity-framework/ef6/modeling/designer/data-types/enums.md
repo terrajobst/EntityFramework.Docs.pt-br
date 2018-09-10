@@ -3,12 +3,12 @@ title: Suporte a enum - EF Designer - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: c6ae6d8f-1ace-47db-ad47-b1718f1ba082
-ms.openlocfilehash: d4c5528c4dc13ab7189421feebf84c2cb2f4b2bb
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: a94a497e8c5b3213dd7eb4215de90164d437507d
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995631"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250629"
 ---
 # <a name="enum-support---ef-designer"></a>Suporte a enum - EF Designer
 > [!NOTE]
@@ -70,11 +70,11 @@ O assistente executa as seguintes ações:
 
 1.  No Entity Framework Designer, clique com botão direito a propriedade de nome, selecione **converter para enum**
 
-    ![ConvertToEnum](~/ef6/media/converttoenum.png)
+    ![Converter em Enum](~/ef6/media/converttoenum.png)
 
 2.  No **adicionar Enum** tipo de caixa de diálogo **DepartmentNames** para o nome do tipo Enum, altere o tipo subjacente para **Int32**, e, em seguida, adicione os seguintes membros para o tipo: inglês dos EUA, Matemática e economia
 
-    ![AddEnumType](~/ef6/media/addenumtype.png)
+    ![Adicionar tipo de enumeração](~/ef6/media/addenumtype.png)
 
 3.  Pressione **Okey**
 4.  Salvar o modelo e compilar o projeto
@@ -85,7 +85,7 @@ Se você observar a janela Propriedades, você observará que o tipo da propried
 
 Se você alternar para a janela do navegador de modelo, você verá que o tipo também foi adicionado ao nó de tipos Enum.
 
-![ModelBrowser](~/ef6/media/modelbrowser.png)
+![Navegador de modelo](~/ef6/media/modelbrowser.png)
 
 >[!NOTE]
 > Você também pode adicionar novos tipos de enum dessa janela clicando o botão direito do mouse e selecionando **Adicionar tipo de enumeração**. Depois que o tipo é criado ele aparecerá na lista de tipos e você poderá associar uma propriedade

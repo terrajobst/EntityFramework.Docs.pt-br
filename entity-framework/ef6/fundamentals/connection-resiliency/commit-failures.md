@@ -3,12 +3,12 @@ title: Tratamento de falhas de confirmação de transação - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 5b1f7a7d-1b24-4645-95ec-5608a31ef577
-ms.openlocfilehash: a22a651851bc46e2bf1fe652b3b9a921ec22b70b
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: f912777104c2e925122c05046d4d65660de8b8a8
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996831"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250842"
 ---
 # <a name="handling-transaction-commit-failures"></a>Tratamento de falhas de confirmação de transação
 > [!NOTE]
@@ -50,23 +50,23 @@ Embora o EF fará o melhor para remover linhas da tabela, quando eles não são 
 
 Antes do EF 6.1 não havia mecanismo para lidar com falhas de confirmação no produto EF. Há várias maneiras de lidar com essa situação que pode ser aplicada a versões anteriores do EF6:  
 
-### <a name="option-1---do-nothing"></a>Opção 1 - fazer nada  
+* Opção 1 - fazer nada  
 
-A probabilidade de uma falha de conexão durante a confirmação da transação é baixa, portanto, pode ser aceitável para o aplicativo falhar apenas se essa condição ocorrer, na verdade.  
+  A probabilidade de uma falha de conexão durante a confirmação da transação é baixa, portanto, pode ser aceitável para o aplicativo falhar apenas se essa condição ocorrer, na verdade.  
 
-## <a name="option-2---use-the-database-to-reset-state"></a>Opção 2 – usar o banco de dados para redefinir o estado  
+* Opção 2 – usar o banco de dados para redefinir o estado  
 
-1. Descartar o DbContext atual  
-2. Criar um novo DbContext e restaurar o estado do seu aplicativo do banco de dados  
-3. Informar ao usuário que a última operação talvez não tenham sido concluída com êxito  
+  1. Descartar o DbContext atual  
+  2. Criar um novo DbContext e restaurar o estado do seu aplicativo do banco de dados  
+  3. Informar ao usuário que a última operação talvez não tenham sido concluída com êxito  
 
-## <a name="option-3---manually-track-the-transaction"></a>Opção 3 - controlar manualmente a transação  
+* Opção 3 - controlar manualmente a transação  
 
-1. Adicione uma tabela de não rastreados no banco de dados usado para acompanhar o status das transações.  
-2. Inserir uma linha na tabela no início de cada transação.  
-3. Se a conexão falhar durante a confirmação, verifique a presença da linha correspondente no banco de dados.  
-    - Se a linha estiver presente, continue normalmente, conforme a transação foi confirmada com êxito  
-    - Se a linha estiver ausente, use uma estratégia de execução para repetir a operação atual.  
-4. Se a confirmação for bem-sucedida, exclua a linha correspondente para evitar o crescimento da tabela.  
+  1. Adicione uma tabela de não rastreados no banco de dados usado para acompanhar o status das transações.  
+  2. Inserir uma linha na tabela no início de cada transação.  
+  3. Se a conexão falhar durante a confirmação, verifique a presença da linha correspondente no banco de dados.  
+     - Se a linha estiver presente, continue normalmente, conforme a transação foi confirmada com êxito  
+     - Se a linha estiver ausente, use uma estratégia de execução para repetir a operação atual.  
+  4. Se a confirmação for bem-sucedida, exclua a linha correspondente para evitar o crescimento da tabela.  
 
 [Esta postagem de blog](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) contém código de exemplo para realizar isso no SQL Azure.  

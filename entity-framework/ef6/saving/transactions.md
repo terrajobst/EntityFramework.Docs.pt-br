@@ -3,12 +3,12 @@ title: Trabalhando com transações - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 0d0f1824-d781-4cb3-8fda-b7eaefced1cd
-ms.openlocfilehash: 20b63c88c41c10b5a69660d5027097c647c7eedd
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 26473e1e52a6044babc717d5b158ad73aac5c738
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997545"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250595"
 ---
 # <a name="working-with-transactions"></a>Trabalhando com transações
 > [!NOTE]
@@ -198,7 +198,7 @@ Esta seção fornece detalhes sobre como as transações acima interagem com:
 
 ### <a name="connection-resiliency"></a>Resiliência da conexão  
 
-O novo recurso de resiliência de Conexão não funciona com transações iniciadas pelo usuário. Para obter detalhes, consulte [limitações com estratégias de repetição de execução](~/ef6/fundamentals/connection-resiliency/retry-logic.md#limitations).  
+O novo recurso de resiliência de Conexão não funciona com transações iniciadas pelo usuário. Para obter detalhes, consulte [estratégias de repetição de execução](~/ef6/fundamentals/connection-resiliency/retry-logic.md#user-initiated-transactions-are-not-supported).  
 
 ### <a name="asynchronous-programming"></a>Programação assíncrona  
 

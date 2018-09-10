@@ -3,12 +3,12 @@ title: Designer CUD procedimentos armazenados – EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 1e773972-2da5-45e0-85a2-3cf3fbcfa5cf
-ms.openlocfilehash: 7a3176e1057816dd11ced5fc545aa3baa672bd03
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 36c9b97b77fec30136cba1d850a0259c689e69ae
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993883"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250914"
 ---
 # <a name="designer-cud-stored-procedures"></a>Procedimentos armazenados de CUD Designer
 Este passo a passo mostram como mapear o criar\\inserir, atualizar e excluir operações (CUD) de um tipo de entidade para procedimentos armazenados usando o Entity Framework Designer (Designer de EF).  Por padrão, o Entity Framework gera automaticamente as instruções SQL para as operações de CUD, mas você também pode mapear procedimentos armazenados para essas operações.  
@@ -54,7 +54,7 @@ Para concluir esta explicação passo a passo, será necessário:
 -   Além disso, selecione os seguintes procedimentos armazenados sob a **procedimentos armazenados e funções** nó: **DeletePerson**, **InsertPerson**, e **UpdatePerson** . 
 -   Começando com o Visual Studio 2012, o EF Designer oferece suporte a importação em massa de procedimentos armazenados. O **importação selecionado procedimentos armazenados e funções no modelo de entidade** é marcada por padrão. Como neste exemplo estamos têm procedimentos armazenados que inserir, atualizarem e excluir tipos de entidade, vamos não quiser importá-los e será desmarque essa caixa de seleção. 
 
-    ![ImportSProcs](~/ef6/media/importsprocs.jpg)
+    ![Importar S Procs](~/ef6/media/importsprocs.jpg)
 
 -   Clique em **Finalizar**.
     O Designer de EF, que fornece uma superfície de design para editar seu modelo, é exibido.
@@ -72,7 +72,7 @@ Para concluir esta explicação passo a passo, será necessário:
 -   Pressione **ENTER**.
 -   Por padrão, **NewPersonID** é mapeado para a chave de entidade **PersonID**. Observe que uma seta indica a direção do mapeamento: O valor da coluna de resultado é fornecido para a propriedade.
 
-    ![MappingDetails](~/ef6/media/mappingdetails.png)
+    ![Detalhes de mapeamento](~/ef6/media/mappingdetails.png)
 
 -   Clique em **&lt;Selecionar função de atualização&gt;** e selecione **UpdatePerson** na lista suspensa.
 -   Mapeamentos padrão entre os parâmetros de procedimento armazenado e as propriedades da entidade são exibidos.

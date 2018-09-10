@@ -3,12 +3,12 @@ title: Relações, as propriedades de navegação e chaves estrangeiras - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: a1653afd609280ab572ef88a9fcf8a6275b79fd6
-ms.sourcegitcommit: a81aed575372637997b18a0f9466d8fefb33350a
+ms.openlocfilehash: 53f428360be4ea2e11a42676d22e584633ceedbc
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/06/2018
-ms.locfileid: "43821394"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251213"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>Relações, as propriedades de navegação e chaves estrangeiras
 Este tópico fornece uma visão geral de como o Entity Framework gerencia os relacionamentos entre entidades. Ele também fornece algumas diretrizes sobre como mapear e manipular as relações.
@@ -19,7 +19,7 @@ Em bancos de dados relacionais (também chamadas de associações) de relações
 
 A imagem a seguir mostra duas tabelas que participam no relacionamento um-para-muitos. O **curso** tabela é a tabela dependente, porque ela contém o **DepartmentID** coluna que vincula-o para o **departamento** tabela.
 
-![Database2](~/ef6/media/database2.png)
+![Tabelas de departamento e do curso](~/ef6/media/database2.png)
 
 No Entity Framework, uma entidade pode estar relacionada a outras entidades por meio de uma associação ou relação. Todo relacionamento contém duas extremidades que descrevem o tipo de entidade e a multiplicidade do tipo (um, zero-ou-um ou muitos) para as duas entidades nessa relação. A relação pode ser regida por uma restrição referencial, que descreve qual ponta da relação é uma função principal e o que é uma função dependente.
 
@@ -33,7 +33,7 @@ Você pode optar por usar um ou ambos os tipos de associações em seu modelo. N
 
 A imagem a seguir mostra um modelo conceitual que foi criado com o Entity Framework Designer. O modelo contém duas entidades que participam da relação um-para-muitos. Ambas as entidades têm propriedades de navegação. **Curso** é a entidade depend e tem o **DepartmentID** propriedade de chave estrangeira definida.
 
-![RelationshipEFDesigner](~/ef6/media/relationshipefdesigner.png)
+![Tabelas de departamento e curso com propriedades de navegação](~/ef6/media/relationshipefdesigner.png)
 
 O trecho de código a seguir mostra o mesmo modelo que foi criado com o Code First.
 

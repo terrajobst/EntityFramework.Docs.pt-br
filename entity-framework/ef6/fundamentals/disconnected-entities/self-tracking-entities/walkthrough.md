@@ -3,12 +3,12 @@ title: Passo a passo de entidades - EF6 de autocontrole
 author: divega
 ms.date: 2016-10-23
 ms.assetid: b21207c9-1d95-4aa3-ae05-bc5fe300dab0
-ms.openlocfilehash: 64ca9ae42df1a1c740131e254b8f80f67b2f9f97
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 1c450bbb20c246d9b9d58707ac03eb48eadfa970
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995415"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251278"
 ---
 # <a name="self-tracking-entities-walkthrough"></a>Passo a passo entidades de autocontrole
 > [!IMPORTANT]
@@ -142,7 +142,7 @@ Em seguida, vamos adicionar um novo projeto e gerar as classes de entidade nele
 -   Selecione o **STETemplate.tt** arquivo
 -   Clique na seta suspensa ao lado de **Add** botão e selecione **adicionar como vínculo**
 
-    ![AddLinkedTemplate](~/ef6/media/addlinkedtemplate.png)
+    ![Adicionar modelo vinculado](~/ef6/media/addlinkedtemplate.png)
 
 Também vamos para garantir que as classes de entidade obterem geradas no mesmo namespace que o contexto. Isso apenas reduz o número de instruções, precisamos adicionar em todo o nosso aplicativo de uso.
 
@@ -552,4 +552,4 @@ Agora, você pode executar o aplicativo para vê-lo em ação.
 -   Clique com botão direito do **STESample.WPFTest** project no **Gerenciador de soluções** e selecione **Debug -&gt; iniciar nova instância**
 -   Você pode manipular os dados usando a tela e salvá-lo por meio do serviço usando o **salvar** botão
 
-![WPF](~/ef6/media/wpf.png)
+![Janela principal do WPF](~/ef6/media/wpf.png)

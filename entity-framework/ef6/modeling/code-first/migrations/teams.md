@@ -3,12 +3,12 @@ title: Migrações do Code First em ambientes de equipe - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 4c2d9a95-de6f-4e97-9738-c1f8043eff69
-ms.openlocfilehash: 42f52e63fd6cfc1f02d6a721594f4a161eea9a7b
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 31f8476c64d36d4d1cf3d18deb59ebc482dcc975
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997293"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251226"
 ---
 # <a name="code-first-migrations-in-team-environments"></a>Migrações do Code First em ambientes de equipe
 > [!NOTE]
@@ -54,7 +54,7 @@ A chave para usar com êxito as migrações em um ambiente de equipe é básico 
 
 Quando você adiciona a primeira migração ao seu projeto, executar algo como **Add-Migration primeiro** no Console do Gerenciador de pacotes. As etapas de alto níveis que executa esse comando são mostradas abaixo.
 
-![FirstMigration](~/ef6/media/firstmigration.png)
+![Primeira migração](~/ef6/media/firstmigration.png)
 
 O modelo atual é calculado a partir do código (1). Os objetos de banco de dados necessários, em seguida, são calculados pelo diferem de modelo (2) – como essa é a primeira migração modelo diferem apenas usa um modelo vazio para a comparação. As alterações necessárias são passadas para o gerador de código para compilar o código de migração necessárias (3), que é então adicionado à sua solução do Visual Studio (4).
 
@@ -66,7 +66,7 @@ Neste ponto, você provavelmente executaria **Update-Database** para aplicar sua
 
 Posteriormente, voltar e fazer algumas alterações ao seu modelo – em nosso exemplo, adicionaremos uma **Url** propriedade **Blog**. Você poderia, em seguida, emitir um comando, como **Add-Migration AddUrl** para criar o scaffolding de uma migração para o banco de dados correspondente de aplicar as alterações. As etapas de alto níveis que executa esse comando são mostradas abaixo.
 
-![SecondMigration](~/ef6/media/secondmigration.png)
+![Segunda migração](~/ef6/media/secondmigration.png)
 
 Assim como a última vez, o modelo atual é calculado a partir de código (1). No entanto, desta vez há migrações existentes para que o modelo anterior é recuperado da migração (2) mais recente. Esses dois modelos são foi comparado para localizar as alterações de banco de dados necessário (3) e, em seguida, o processo for concluído como antes.
 
@@ -96,14 +96,14 @@ Primeiro vamos examinar um exemplo concreto de tal um conflito de mesclagem. Con
 
 Vamos rastrear o modelo do EF e as migrações por meio de um número de alterações. Para um ponto de partida, ambos os desenvolvedores têm sincronizados com o repositório de controle de origem, conforme ilustrado no gráfico a seguir.
 
-![StartingPoint](~/ef6/media/startingpoint.png)
+![Ponto de partida](~/ef6/media/startingpoint.png)
 
 Developer \#1 e o desenvolvedor \#2 agora faz algumas alterações no modelo do EF no seu código local base. Developer \#1 adiciona um **Rating** propriedade a ser **Blog** – e gera um **AddRating** migração para aplicar as alterações no banco de dados. Developer \#2 adiciona uma **leitores** propriedade **Blog** – e gera correspondente **AddReaders** migração. Execute os dois desenvolvedores **Update-Database**, para aplicar as alterações em seus bancos de dados locais e, em seguida, continuar a desenvolver o aplicativo.
 
 > [!NOTE]
 > As migrações são prefixadas com um carimbo de hora, portanto, nosso gráfico representa que a migração AddReaders do desenvolvedor \#2 vem após a migração AddRating de desenvolvedor \#1. Se developer \#1 ou \#2 não gerado a torna a primeira migração nenhuma diferença para os problemas de trabalhar em uma equipe ou o processo para mesclá-las que veremos na próxima seção.
 
-![LocalChanges](~/ef6/media/localchanges.png)
+![Alterações locais](~/ef6/media/localchanges.png)
 
 Ele é um dia de sorte para desenvolvedor \#1 conforme acontecem enviar suas alterações primeiro. Porque nenhuma outra pessoa fez check-in, pois eles sincronizados seu repositório, eles apenas podem enviar suas alterações sem executar qualquer mesclagem.
 
@@ -147,7 +147,7 @@ O processo a seguir pode ser usado para essa abordagem, a partir do momento em q
 
 Aqui está o estado do desenvolvedor \#2 local do código base depois de usar essa abordagem.
 
-![MergeMigration](~/ef6/media/mergemigration.png)
+![Migração de mesclagem](~/ef6/media/mergemigration.png)
 
 ### <a name="option-2-update-the-model-snapshot-in-the-last-migration"></a>Opção 2: Atualizar o instantâneo do modelo em que a última migração
 
@@ -176,7 +176,7 @@ O processo a seguir pode ser usado para essa abordagem, a partir do momento em q
 
 Aqui está o estado do desenvolvedor \#2 local do código base depois de usar essa abordagem.
 
-![UpdatedMetadata](~/ef6/media/updatedmetadata.png)
+![Metadados atualizados](~/ef6/media/updatedmetadata.png)
 
 ## <a name="summary"></a>Resumo
 
