@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: 144cc8c8c9979e4ce24260c2975e6b10d4fdbb84
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: c8d53b47d215c0db673c9058e9d78a7e2e7b895f
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994917"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250732"
 ---
 # <a name="getting-started-with-entity-framework-core"></a>Introdução ao Entity Framework Core
 
@@ -23,5 +23,17 @@ Estes tutoriais de introdução não exigem conhecimento prévio do Entity Frame
 
 O Entity Framework Core pode criar um modelo com base em um banco de dados existente ou criar um banco de dados com base no seu modelo. Há tutoriais que demonstram essas duas abordagens.
 
+* .NET Framework (aplicativos do Console, WinForms, WPF)
+  * [Novo banco de dados](full-dotnet/new-db.md)
+  * [Banco de dados existente](full-dotnet/existing-db.md)
+* .NET Core (Windows, macOS, Linux)
+  * [Novo banco de dados](netcore/new-db-sqlite.md)
+* ASP.NET Core
+  * [Novo banco de dados](aspnetcore/new-db.md)
+  * [Banco de dados existente](aspnetcore/existing-db.md)
+  * [EF Core e Razor Pages](/aspnet/core/data/ef-rp/intro)
+* UWP (Plataforma Universal do Windows)
+  * [Novo banco de dados](uwp/getting-started.md)
+
 > [!NOTE]  
-> Esses tutoriais e os exemplos a seguir foram atualizados para usar o EF Core 2.0 (com exceção do tutorial UWP, que ainda usa EF Core 1.1). No entanto, na maioria dos casos, deve ser possível criar aplicativos que usam versões anteriores, com mínima modificação às instruções. 
+> Esses tutoriais e as amostras que os acompanham foram atualizados para usar o EF Core 2.1. No entanto, na maioria dos casos, deve ser possível criar aplicativos que usam versões anteriores, com mínima modificação às instruções. 

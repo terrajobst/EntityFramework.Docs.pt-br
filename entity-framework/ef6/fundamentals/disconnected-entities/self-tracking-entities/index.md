@@ -3,12 +3,12 @@ title: Entidades de rastreamento automático – EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 5e60f5be-7bbb-4bf8-835e-0ac808d6c84a
-ms.openlocfilehash: 8b555d211facd737aedf120a1ecfdc88d3903107
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: bd22df9e14fe71ae065baf1d747b1642dd7bafce
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42998010"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250851"
 ---
 # <a name="self-tracking-entities"></a>Entidades de rastreamento automático
 
@@ -28,7 +28,7 @@ Este item de modelo gera dois arquivos .tt (modelo de texto):
 
 Para começar, visite a página [Passo a passo de Entidades de Rastreamento Automático](walkthrough.md).  
 
-## <a name="considerations-when-working-with-self-tracking-entities"></a>Considerações ao trabalhar com entidades de rastreamento automático  
+## <a name="functional-considerations-when-working-with-self-tracking-entities"></a>Considerações funcionais ao trabalhar com entidades de rastreamento automático  
 > [!IMPORTANT]
 > Não recomendamos usar o modelo de entidades de rastreamento automático. Ele continuará disponível apenas para dar suporte aos aplicativos existentes. Se o seu aplicativo exigir o trabalho com grafos de entidades desconectados, considere outras alternativas como [Entidades Rastreáveis](http://trackableentities.github.io/), que são uma tecnologia semelhante às Entidades de Rastreamento Automático desenvolvidas mais ativamente pela comunidade, ou escreva um código personalizado usando as APIs de controle de alterações de baixo nível.
 
@@ -46,7 +46,7 @@ Considere o seguinte ao trabalhar com entidades de rastreamento automático:
 - As entidades de rastreamento automático não estão habilitadas para executar o carregamento lento.  
 - A serialização binária e a serialização para objetos de gerenciamento de estado do ASP.NET não são compatíveis com as entidades de rastreamento automático. No entanto, você pode personalizar o modelo para adicionar a compatibilidade à serialização binária. Para obter mais informações, consulte [Usando a serialização binária e ViewState com entidades de rastreamento automático](http://go.microsoft.com/fwlink/?LinkId=199208).  
 
-### <a name="security-considerations"></a>Considerações sobre segurança  
+## <a name="security-considerations"></a>Considerações sobre segurança  
 
 As considerações de segurança a seguir devem ser levadas em conta ao trabalhar com entidades de rastreamento automático:  
 
