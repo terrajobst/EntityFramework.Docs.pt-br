@@ -3,12 +3,12 @@ title: A divisão de tabela Designer - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 452f17c3-9f26-4de4-9894-8bc036e23b0f
-ms.openlocfilehash: 87b6e1bd0374f77dfffab342c659cf4e16c8a337
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: f07aeb0aa679f6fa8131c667ac808f17c3f03f20
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994497"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250979"
 ---
 # <a name="designer-table-splitting"></a>Tabela do Designer de divisão
 Este passo a passo mostra como mapear vários tipos de entidade para uma única tabela, modificando um modelo com o Entity Framework Designer (Designer de EF).
@@ -17,7 +17,7 @@ Um motivo que você talvez queira usar a divisão de tabela está atrasando o ca
 
 A imagem a seguir mostra as janelas principais que são usadas ao trabalhar com o EF Designer.
 
-![EFDesigner](~/ef6/media/efdesigner.png)
+![EF Designer](~/ef6/media/efdesigner.png)
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
@@ -130,8 +130,8 @@ Instruções T-SQL a seguir foram executadas em relação a **School** banco de 
 
 -   O seguinte **selecionar** foi executado como resultado da execução de contexto. People.FirstOrDefault() e seleciona apenas as colunas mapeadas para **pessoa**
 
-    ![Select1](~/ef6/media/select1.png)
+    ![Selecione 1](~/ef6/media/select1.png)
 
 -   O seguinte **selecionar** foi executado como resultado de acessar o existingPerson.Instructor de propriedade de navegação e seleciona apenas as colunas mapeadas para **HireInfo**
 
-    ![Select2](~/ef6/media/select2.png)
+    ![Selecione 2](~/ef6/media/select2.png)

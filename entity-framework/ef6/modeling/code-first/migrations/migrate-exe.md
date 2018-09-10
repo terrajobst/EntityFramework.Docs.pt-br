@@ -3,12 +3,12 @@ title: Usando migrate.exe - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 989ea862-e936-4c85-926a-8cfbef5df5b8
-ms.openlocfilehash: 39740578e4a8c2d5400bcabbcb107baf0648fba5
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 8f0ff6d472c39eaf000c31783fe7a769c8746fec
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993493"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251102"
 ---
 # <a name="using-migrateexe"></a>Usando migrate.exe
 Migrações do Code First pode ser usadas para atualizar um banco de dados de dentro do visual studio, mas também podem ser executadas por meio de linha de comando ferramenta migrate.exe. Esta página fornecerá uma visão geral rápida sobre como usar migrate.exe para executar migrações em relação a um banco de dados.
@@ -26,16 +26,14 @@ Se seu aplicativo tem como alvo o .NET 4, e não 4.5, em seguida, você precisar
 
 | .NET 4.5                                   | .NET 4.0                                   |
 |:-------------------------------------------|:-------------------------------------------|
-| ![Net45Files](~/ef6/media/net45files.png)  | ![Net40Files](~/ef6/media/net40files.png)  |
+| ![Arquivos do .NET 4.5](~/ef6/media/net45files.png)  | ![Arquivos do .NET 4.0](~/ef6/media/net40files.png)  |
 
 > [!NOTE]
 > Migrate.exe não dá suporte a x64 assemblies.
 
-## <a name="using-migrateexe"></a>Usando Migrate.exe
-
 Depois de mover migrate.exe para a pasta correta, em seguida, você poderá usá-lo para executar migrações no banco de dados. Tudo o que o utilitário é projetado para fazer é executar as migrações. Ele não é possível gerar migrações ou criar um script SQL.
 
-### <a name="see-options"></a>Consulte as opções
+## <a name="see-options"></a>Consulte as opções
 
 ``` console
 Migrate.exe /?
@@ -43,7 +41,7 @@ Migrate.exe /?
 
 As opções acima exibirá a página de ajuda associada com esse utilitário, observe que você precisará ter o EntityFramework no mesmo local que você está executando migrate.exe para que isso funcione.
 
-### <a name="migrate-to-the-latest-migration"></a>Migrar para a migração mais recente
+## <a name="migrate-to-the-latest-migration"></a>Migrar para a migração mais recente
 
 ``` console
 Migrate.exe MyMvcApplication.dll /startupConfigurationFile=”..\\web.config”
@@ -51,7 +49,7 @@ Migrate.exe MyMvcApplication.dll /startupConfigurationFile=”..\\web.config”
 
 Quando executar migrate.exe o parâmetro obrigatório somente é o assembly, que é o assembly que contém as migrações que você está tentando executar, mas ele usará a convenção de todas as configurações baseadas no se você não especificar o arquivo de configuração.
 
-### <a name="migrate-to-a-specific-migration"></a>Migrar para uma migração específica
+## <a name="migrate-to-a-specific-migration"></a>Migrar para uma migração específica
 
 ``` console
 Migrate.exe MyApp.exe /startupConfigurationFile=”MyApp.exe.config” /targetMigration=”AddTitle”
@@ -59,7 +57,7 @@ Migrate.exe MyApp.exe /startupConfigurationFile=”MyApp.exe.config” /targetMi
 
 Se você quiser executar as migrações até uma migração específica, você pode especificar o nome da migração. Isso executará todas as migrações anteriores conforme necessário até que a introdução à migração especificada.
 
-### <a name="specify-working-directory"></a>Especifique o diretório de trabalho
+## <a name="specify-working-directory"></a>Especifique o diretório de trabalho
 
 ``` console
 Migrate.exe MyApp.exe /startupConfigurationFile=”MyApp.exe.config” /startupDirectory=”c:\\MyApp”
@@ -67,7 +65,7 @@ Migrate.exe MyApp.exe /startupConfigurationFile=”MyApp.exe.config” /startupD
 
 Se você o assembly tem dependências ou lê arquivos em relação ao diretório de trabalho, em seguida, você precisará definir startupDirectory.
 
-### <a name="specify-migration-configuration-to-use"></a>Especifique a configuração da migração para usar
+## <a name="specify-migration-configuration-to-use"></a>Especifique a configuração da migração para usar
 
 ``` console
 Migrate.exe MyAssembly CustomConfig /startupConfigurationFile=”..\\web.config”
@@ -75,7 +73,7 @@ Migrate.exe MyAssembly CustomConfig /startupConfigurationFile=”..\\web.config�
 
 Se você tiver várias classes de configuração de migração, classes herdadas de DbMigrationConfiguration, em seguida, você precisa especificar qual deve ser usado para essa execução. Isso é especificado, fornecendo o segundo parâmetro opcional sem um comutador como acima.
 
-### <a name="provide-connection-string"></a>Forneça a cadeia de caracteres de conexão
+## <a name="provide-connection-string"></a>Forneça a cadeia de caracteres de conexão
 
 ``` console
 Migrate.exe BlogDemo.dll /connectionString=”Data Source=localhost;Initial Catalog=BlogDemo;Integrated Security=SSPI” /connectionProviderName=”System.Data.SqlClient”
