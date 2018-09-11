@@ -4,21 +4,33 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: cd4b7ddaafe9501c4bb9f2496e87f619d239ab62
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: fd9086c9911cdb0890117d44c2787780aad9a7cb
+ms.sourcegitcommit: a81aed575372637997b18a0f9466d8fefb33350a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995254"
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "43821355"
 ---
 # <a name="entity-framework-core-roadmap"></a>Roteiro do Entity Framework Core
 
 > [!IMPORTANT]
 > Lembre-se de que os conjuntos de recursos e agendamentos de versões futuras sempre estão sujeitos a alterações. Tentaremos manter esta página atualizada, mas ela pode não refletir nossos planos mais recentes.
 
+## <a name="last-release-ef-core-21"></a>Última versão: EF Core 2.1
+
 A versão estável do EF Core 2.1 foi lançada em 30 de maio de 2018. Mais informações sobre essa versão podem ser encontradas em [Novidades no EF Core 2.1](xref:core/what-is-new/ef-core-2.1).
 
-Ainda não concluímos o [processo de planejamento de lançamento](#release-planning-process) para a versão subsequente à versão 2.1.
+## <a name="future-releases"></a>Versões futuras
+
+### <a name="ef-core-22"></a>EF Core 2.2
+
+Esta versão inclui muitas correções de bug e um número relativamente pequeno de novos recursos. Detalhes sobre esta versão estão incluídos no [comunicado de roteiro do EF Core 2.2](https://github.com/aspnet/Announcements/issues/308). 
+
+### <a name="ef-core-30"></a>EF Core 3.0
+
+Embora não tenhamos concluído o [processo de planejamento da versão](#release-planning-process) para a próxima versão após a 2.2, atualmente estamos planejando ter uma versão principal, alinhada com o .NET Core 3.0 e o ASP.NET 3.0. 
+
+Você pode usar [esta consulta no nosso rastreador de problemas](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.0.0+sort%3Areactions-%2B1-desc) para ver itens de trabalho atribuídos provisoriamente a essa versão futura.
 
 ## <a name="schedule"></a>Agendamento
 
