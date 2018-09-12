@@ -3,12 +3,12 @@ title: Associação de dados com WinForms - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 80fc5062-2f1c-4dbd-ab6e-b99496784b36
-ms.openlocfilehash: 071172810f7dac45f42aca0efa7f329bac31e9cd
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 48e6d997875a25a5954484f854953df69a267d05
+ms.sourcegitcommit: 8d04a2ad98036f32ca70c77ce3040c5edb1cdf82
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44251187"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44384846"
 ---
 # <a name="databinding-with-winforms"></a>Associação de dados com WinForms
 Este passo a passo mostra como associar os tipos de POCO para controles de Windows Forms (WinForms) em um formulário de "master-detail". O aplicativo usa o Entity Framework para preencher os objetos com dados do banco de dados, controlar as alterações e manter os dados no banco de dados.
@@ -71,7 +71,7 @@ Propriedades de coleção devem implementar a interface IListSource para habilit
 
             IList IListSource.GetList()
             {
-                return _bindingList  (_bindingList = this.ToBindingList());
+                return _bindingList ?? (_bindingList = this.ToBindingList());
             }
         }
     }
