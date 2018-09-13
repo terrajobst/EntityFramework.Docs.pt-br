@@ -1,14 +1,14 @@
 ---
 title: Banco de dados de exemplo de escola - EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: e83a6a06-e63b-4530-8656-614bf609b12b
-ms.openlocfilehash: 4d113a7a3159edfa3d586e571c69b05b35434edf
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 1e9dc98edb8590021bbf3393e9edda1929d505e0
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997744"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490708"
 ---
 # <a name="school-sample-database"></a>Banco de dados de exemplo School
 Este tópico contém o esquema e os dados para o banco de dados de escola. O banco de dados do exemplo School é usado em vários locais em toda a documentação do Entity Framework.  

@@ -1,14 +1,14 @@
 ---
 title: Herança TPH Designer – EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 72d26a8e-20ab-4500-bd13-394a08e73394
-ms.openlocfilehash: 1eb935414b20d6e93e9d470ccc845bc13626ed3a
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 43ba34a98c3960a7a3052a00e2ed2751c2f2b121
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250836"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490085"
 ---
 # <a name="designer-tph-inheritance"></a>Herança TPH Designer
 Este passo a passo mostra como implementar a herança do tabela por hierarquia (TPH) em seu modelo conceitual com o Entity Framework Designer (Designer de EF). Herança TPH usa uma tabela de banco de dados para manter os dados para todos os tipos de entidade em uma hierarquia de herança.

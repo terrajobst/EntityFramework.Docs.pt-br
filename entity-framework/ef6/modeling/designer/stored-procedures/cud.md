@@ -1,14 +1,14 @@
 ---
 title: Designer CUD procedimentos armazenados – EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 1e773972-2da5-45e0-85a2-3cf3fbcfa5cf
-ms.openlocfilehash: 36c9b97b77fec30136cba1d850a0259c689e69ae
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 35a00aa817c8643352c517c233977efd49e3baac
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250914"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45489551"
 ---
 # <a name="designer-cud-stored-procedures"></a>Procedimentos armazenados de CUD Designer
 Este passo a passo mostram como mapear o criar\\inserir, atualizar e excluir operações (CUD) de um tipo de entidade para procedimentos armazenados usando o Entity Framework Designer (Designer de EF).  Por padrão, o Entity Framework gera automaticamente as instruções SQL para as operações de CUD, mas você também pode mapear procedimentos armazenados para essas operações.  

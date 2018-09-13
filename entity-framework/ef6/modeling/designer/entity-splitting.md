@@ -1,14 +1,14 @@
 ---
 title: Separação da entidade Designer - EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: aa2dd48a-1f0e-49dd-863d-d6b4f5834832
-ms.openlocfilehash: 06199be977276cd3656e2550df79bac24276ec51
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: ba1895ae491cec909ff88a8784eea82f1876f595
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250588"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490838"
 ---
 # <a name="designer-entity-splitting"></a>Separação da entidade Designer
 Este passo a passo mostra como mapear um tipo de entidade para duas tabelas, modificando um modelo com o Entity Framework Designer (Designer de EF). Você pode mapear uma entidade para várias tabelas quando as tabelas compartilham uma chave comum. Os conceitos que se aplicam a um tipo de entidade de mapeamento com duas tabelas são facilmente estendidos para mapear um tipo de entidade para mais de duas tabelas.
