@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: 5da1043310e2858638c81a0654a9cab23e39c220
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: a637e5e2f75e16bc7b11b1a51abcbe16274a1c75
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250810"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490759"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -52,3 +52,7 @@ Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamo
   * Siga esse padrão para adicionar suporte espacial ao seu provedor que é consistente com provedores.
 * https://github.com/aspnet/EntityFrameworkCore/pull/13199 -Adicionar depuração aprimorada para criação de provedor de serviços
   * Permite que DbContextOptionsExtensions implementar uma nova interface que pode ajudar as pessoas a entender por que está sendo compilado novamente o provedor de serviço interno
+* https://github.com/aspnet/EntityFrameworkCore/pull/13289 -Adiciona CanConnect API para uso por verificações de integridade
+  * Essa solicitação de pull adiciona o conceito de `CanConnect` que será usada pela integridade do ASP.NET Core verifica para determinar se o banco de dados está disponível. Por padrão, a implementação relacional apenas chama `Exist`, mas os provedores podem implementar algo diferente se necessário. Provedores não relacionais precisará implementar a nova API para que a verificação de integridade ser usado.
+* https://github.com/aspnet/EntityFrameworkCore/pull/13306 -Atualizar RelationalTypeMapping base para definir o tamanho de DbParameter
+  * Pare definindo o tamanho por padrão, pois isso pode causar truncamento. Provedores talvez seja necessário adicionar sua própria lógica, se o tamanho deve ser definida.

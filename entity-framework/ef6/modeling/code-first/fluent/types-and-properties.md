@@ -1,14 +1,14 @@
 ---
 title: API Fluent - Configurando e mapeamento de tipos e propriedades - EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 648ed274-c501-4630-88e0-d728ab5c4057
-ms.openlocfilehash: e65a3f4721e5c28de63d143e1143f3584e145477
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 031376d2fc4778e6f0fa2434ab7ccfd45d436c4a
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996981"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490164"
 ---
 # <a name="fluent-api---configuring-and-mapping-properties-and-types"></a>API Fluent - Configurando e mapeamento de tipos e propriedades
 Ao trabalhar com o Entity Framework Code First o comportamento padrão é mapear suas classes POCO para tabelas usando um conjunto de convenções integradas ao EF. Às vezes, no entanto, você não pode ou não deseja siga essas convenções e precisa mapear entidades para algo que não seja o que ditam as convenções.  

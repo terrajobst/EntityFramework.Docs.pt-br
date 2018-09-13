@@ -1,14 +1,14 @@
 ---
 title: Tratando conflitos de simultaneidade - EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 2318e4d3-f561-4720-bbc3-921556806476
-ms.openlocfilehash: f233af217287dd6bf35e5b7fea8e44974168b312
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 81ae186201fdfac331b1d4e7836b222545fe78b5
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997804"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45489148"
 ---
 # <a name="handling-concurrency-conflicts"></a>Como tratar conflitos de simultaneidade
 Otimista de simultaneidade suporá envolve a tentativa de salvar a entidade no banco de dados na esperança de que os dados lá não foram alterados desde a entidade foi carregada. Se for descoberto que os dados foram alterados, em seguida, uma exceção será lançada e você deve resolver o conflito antes de tentar salvar novamente. Este tópico aborda como lidar com essas exceções no Entity Framework. As técnicas mostradas neste tópico se aplicam igualmente a modelos criados com o Code First e com o EF Designer.  

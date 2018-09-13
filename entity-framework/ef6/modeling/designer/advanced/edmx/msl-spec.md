@@ -1,14 +1,14 @@
 ---
 title: Especificação de MSL - EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 13ae7bc1-74b4-4ee4-8d73-c337be841467
-ms.openlocfilehash: 77dc7072c70b104188cd23974f32308960daebb6
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 9519155422d8542d4a14bc1c612e91ebc22bf15e
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996025"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490552"
 ---
 # <a name="msl-specification"></a>Especificação de MSL
 Mapeamento de linguagem de especificação (MSL) é uma linguagem baseada em XML que descreve o mapeamento entre o modelo conceitual e o modelo de armazenamento de um aplicativo do Entity Framework.
