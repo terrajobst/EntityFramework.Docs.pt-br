@@ -3,12 +3,12 @@ title: Migrações do Code First – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 36591d8f-36e1-4835-8a51-90f34f633d1e
-ms.openlocfilehash: 0e2f33d3402929c93a339ea26dcade875da52a61
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 389da6c54e063a5dc598f98f8ac92cfc0e686019
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490271"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283843"
 ---
 # <a name="code-first-migrations"></a>Migrações do Code First
 Migrações do Code First é a maneira recomendada de evoluir o esquema de banco de dados do aplicativo se você estiver usando o fluxo de trabalho do Code First. As migrações oferecem um conjunto de ferramentas que permitem:
@@ -96,7 +96,7 @@ Antes de começar a usar as migrações, é necessário um projeto e um modelo d
     public string Url { get; set; }
 ```
 
-Se você fosse executar o aplicativo novamente, obteria um InvalidOperationException informando *O modelo dando suporte ao contexto 'BlogContext' foi alterado desde que o banco de dados foi criado. Considere usar as Migrações do Code First para atualizar o banco de dados (* [*http://go.microsoft.com/fwlink/?LinkId=238269*](http://go.microsoft.com/fwlink/?LinkId=238269)*).*
+Se você fosse executar o aplicativo novamente, obteria um InvalidOperationException informando *O modelo dando suporte ao contexto 'BlogContext' foi alterado desde que o banco de dados foi criado. Considere usar as Migrações do Code First para atualizar o banco de dados (* [*http://go.microsoft.com/fwlink/?LinkId=238269*](https://go.microsoft.com/fwlink/?LinkId=238269)*).*
 
 Como a exceção sugere, é hora de começar a usar as Migrações do Code First. A primeira etapa é habilitar migrações para o nosso contexto.
 
