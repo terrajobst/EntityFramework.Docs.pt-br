@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 11/15/2016
 ms.assetid: e079d4af-c455-4a14-8e15-a8471516d748
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: d6e31cf2b9b783ea503703536d159b34bf2e18c0
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: d5101d0622ddc2c90ddded16b9ec6cc4eb814c36
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997184"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283830"
 ---
 # <a name="connection-resiliency"></a>Resiliência da conexão
 
@@ -49,7 +49,7 @@ A solução é invocar manualmente a estratégia de execução com um delegado q
 
 ## <a name="transaction-commit-failure-and-the-idempotency-issue"></a>Falha de confirmação de transação e o problema de idempotência
 
-Em geral, quando houver uma falha de conexão a transação atual é revertida. No entanto, se a conexão for descartada enquanto a transação está sendo confirmada resultante estado da transação é desconhecido. Consulte este [postagem de blog](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) para obter mais detalhes.
+Em geral, quando houver uma falha de conexão a transação atual é revertida. No entanto, se a conexão for descartada enquanto a transação está sendo confirmada resultante estado da transação é desconhecido. Consulte este [postagem de blog](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) para obter mais detalhes.
 
 Por padrão, a estratégia de execução tentará repetir a operação como se a transação foi revertida, mas se não for o caso isso resultará em uma exceção se o novo estado do banco de dados é incompatível ou pode levar à **corrupção de dados** se a operação não se baseia em um estado específico, por exemplo, ao inserir uma nova linha com valores de chave gerada automaticamente.
 

@@ -3,12 +3,12 @@ title: Teste com uma estrutura de simulação - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: bd66a638-d245-44d4-8e71-b9c6cb335cc7
-ms.openlocfilehash: b50d0afb52ae1c496f2734ecc015cdaaa060aff7
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 20799b55b2dffe27637c4fb84df06cee174e6dd9
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489967"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46284090"
 ---
 # <a name="testing-with-a-mocking-framework"></a>Teste com uma estrutura de simulação
 > [!NOTE]
@@ -235,7 +235,7 @@ Entity Framework 6 introduziu um conjunto de métodos de extensão que pode ser 
 
 Porque as consultas do Entity Framework fazem uso do LINQ, os métodos de extensão são definidos no IQueryable e IEnumerable. No entanto, porque eles são criados somente para ser usado com o Entity Framework pode receber o seguinte erro se você tentar usá-las em uma consulta LINQ que não é uma consulta do Entity Framework:
 
-> A fonte de IQueryable não implementa IDbAsyncEnumerable{0}. Apenas as fontes que implementam IDbAsyncEnumerable podem ser usadas para operações assíncronas do Entity Framework. Para obter mais detalhes, consulte [ http://go.microsoft.com/fwlink/?LinkId=287068 ](http://go.microsoft.com/fwlink/?LinkId=287068).  
+> A fonte de IQueryable não implementa IDbAsyncEnumerable{0}. Apenas as fontes que implementam IDbAsyncEnumerable podem ser usadas para operações assíncronas do Entity Framework. Para obter mais detalhes, consulte [ http://go.microsoft.com/fwlink/?LinkId=287068 ](https://go.microsoft.com/fwlink/?LinkId=287068).  
 
 Embora os métodos assíncronos têm suporte apenas ao executar em uma consulta do EF, talvez queira usá-los em seu teste de unidade quando dupla de um DbSet de teste em execução em relação a na memória.  
 

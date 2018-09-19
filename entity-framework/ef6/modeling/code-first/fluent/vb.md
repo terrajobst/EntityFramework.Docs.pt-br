@@ -3,12 +3,12 @@ title: API Fluent com VB.NET - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 763dc6a2-764a-4600-896c-f6f13abf56ec
-ms.openlocfilehash: cbdd32696fb88d3de6cf1966040e5dda49fe19cd
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 6aa74fa72296f66f0b069b9b5ee7e2e016570525
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489460"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283739"
 ---
 # <a name="fluent-api-with-vbnet"></a>API Fluent com VB.NET
 Código primeiro permite que você defina seu modelo usando o C\# ou classes VB.NET. Configuração adicional, opcionalmente, pode ser executada usando atributos em classes e propriedades ou usando uma API fluente. Este passo a passo mostra como executar a configuração da API fluente usando VB.NET.
@@ -22,7 +22,7 @@ Esta página presume que você tem uma compreensão básica do Code First. Confi
 
 Você precisará ter pelo menos o Visual Studio 2010 ou Visual Studio 2012 instalado para concluir este passo a passo.
 
-Se você estiver usando o Visual Studio 2010, você também precisará ter [NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) instalado
+Se você estiver usando o Visual Studio 2010, você também precisará ter [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) instalado
 
 ## <a name="create-the-application"></a>Criar o aplicativo
 
@@ -139,7 +139,7 @@ Estamos prestes a começar a usar tipos do Entity Framework, portanto, precisamo
 
 -   * * Projeto –&gt; **gerenciar pacotes NuGet...**
 > [!NOTE]
-> Se você não tiver o **gerenciar pacotes NuGet...** opção, você deve instalar o [versão mais recente do NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
+> Se você não tiver o **gerenciar pacotes NuGet...** opção, você deve instalar o [versão mais recente do NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
 -   Selecione o **Online** guia
 -   Selecione o **EntityFramework** pacote
 -   Clique em **instalar**

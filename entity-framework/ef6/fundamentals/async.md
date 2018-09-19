@@ -3,12 +3,12 @@ title: Async de consulta e salve - o EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: a6f49f3c31601ab04a3c04c074ce8fddfc6fe301
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 4ed4f5c13341f33ccff8325a5ddacd8f7b195a76
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489681"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283817"
 ---
 # <a name="async-query-and-save"></a>Async consultar e salvar
 > [!NOTE]
@@ -28,7 +28,7 @@ Na maioria dos aplicativos usando o async não terão nenhum benefício percept�
 
 Aqui estão mais alguns recursos para saber mais sobre async:
 
--   [Visão geral do Brandon Bray de async/await no .NET 4.5](http://blogs.msdn.com/b/dotnet/archive/2012/04/03/async-in-4-5-worth-the-await.aspx)
+-   [Visão geral do Brandon Bray de async/await no .NET 4.5](https://blogs.msdn.com/b/dotnet/archive/2012/04/03/async-in-4-5-worth-the-await.aspx)
 -   [Programação assíncrona](https://msdn.microsoft.com/library/hh191443.aspx) páginas na biblioteca do MSDN
 -   [Como criar aplicativos de Web ASP.NET usando Async](http://channel9.msdn.com/events/teched/northamerica/2013/dev-b337) (inclui uma demonstração de taxa de transferência ampliada de servidores)
 

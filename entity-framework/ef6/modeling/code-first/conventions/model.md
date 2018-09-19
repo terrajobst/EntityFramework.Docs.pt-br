@@ -3,12 +3,12 @@ title: Convenções de baseado em modelo - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 0fc4eef8-29b8-4192-9c77-08fd33d3db3a
-ms.openlocfilehash: fb79164f71cb3afff705a83f5078a13d043abca8
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 80b722730b4ca6c9d00a8611b6c9027e8bc9fe61
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490929"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283701"
 ---
 # <a name="model-based-conventions"></a>Convenções de modelo
 > [!NOTE]
@@ -146,7 +146,7 @@ public class ForeignKeyNamingConvention : IStoreModelConvention<AssociationType>
 
 ## <a name="extending-existing-conventions"></a>Estendendo as convenções de existentes   
 
-Se você precisa escrever uma convenção que é semelhante a uma das convenções que o Entity Framework já se aplica ao seu modelo, que você pode estender sempre que a convenção para evitar a necessidade de reescrevê-lo a partir do zero.  Um exemplo disso é substituir a Id existente correspondente a convenção com uma personalizada.   Um benefício adicional para substituir a convenção de chave é que o método substituído será chamado apenas se não houver nenhuma chave já foi detectado ou configurado explicitamente. Uma lista de convenções que são usados pelo Entity Framework está disponível aqui: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  
+Se você precisa escrever uma convenção que é semelhante a uma das convenções que o Entity Framework já se aplica ao seu modelo, que você pode estender sempre que a convenção para evitar a necessidade de reescrevê-lo a partir do zero.  Um exemplo disso é substituir a Id existente correspondente a convenção com uma personalizada.   Um benefício adicional para substituir a convenção de chave é que o método substituído será chamado apenas se não houver nenhuma chave já foi detectado ou configurado explicitamente. Uma lista de convenções que são usados pelo Entity Framework está disponível aqui: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  
 
 ``` csharp
 using System.Data.Entity;
@@ -209,4 +209,4 @@ public class BlogContext : DbContext
 
 ## <a name="notes"></a>Observações  
 
-Uma lista de convenções que são aplicadas no momento pelo Entity Framework está disponível na documentação do MSDN aqui: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  Essa lista é extraída diretamente do nosso código-fonte.  O código-fonte para o Entity Framework 6 está disponível no [GitHub](https://github.com/aspnet/entityframework6/) e muitas das convenções usadas pelo Entity Framework são bons pontos de partida para o modelo personalizado com base em convenções.  
+Uma lista de convenções que são aplicadas no momento pelo Entity Framework está disponível na documentação do MSDN aqui: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  Essa lista é extraída diretamente do nosso código-fonte.  O código-fonte para o Entity Framework 6 está disponível no [GitHub](https://github.com/aspnet/entityframework6/) e muitas das convenções usadas pelo Entity Framework são bons pontos de partida para o modelo personalizado com base em convenções.  

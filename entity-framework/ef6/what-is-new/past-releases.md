@@ -3,12 +3,12 @@ title: Versões anteriores do Entity Framework - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
-ms.openlocfilehash: 4c711bb48938e5c0432881c61766b0bff66498f2
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 4fa27f8259ecc011d9d30080aee3c44353ef533d
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490136"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283986"
 ---
 # <a name="past-releases-of-entity-framework"></a>Versões anteriores do Entity Framework
 
@@ -127,7 +127,7 @@ O Entity Framework Designer no Visual Studio 2012 também introduz o suporte par
 
 Aqui está uma lista de conteúdo que reunimos especificamente para a versão do EF 5.
 
--   [Postagem de versão 5 do EF](http://blogs.msdn.com/b/adonet/archive/2012/08/15/ef5-released.aspx)
+-   [Postagem de versão 5 do EF](https://blogs.msdn.com/b/adonet/archive/2012/08/15/ef5-released.aspx)
 -   Novos recursos no EF5
     -   [Suporte a enum no código pela primeira vez](~/ef6/modeling/code-first/data-types/enums.md)
     -   [Suporte a enum no EF Designer](~/ef6/modeling/designer/data-types/enums.md)
@@ -194,16 +194,16 @@ Esta versão do patch incluído algumas correções de bug para a versão 4.3 do
 
 Aqui está uma lista de conteúdo que reunimos especificamente para o EF 4.3.1 de versão, a maioria do conteúdo fornecido para o EF 4.1 ainda se aplica ao EF 4.3 também.
 
--   [Postagem no Blog de versão EF 4.3.1](http://blogs.msdn.com/b/adonet/archive/2012/02/29/ef4-3-1-and-ef5-beta-1-available-on-nuget.aspx)
+-   [Postagem no Blog de versão EF 4.3.1](https://blogs.msdn.com/b/adonet/archive/2012/02/29/ef4-3-1-and-ef5-beta-1-available-on-nuget.aspx)
 
 ## <a name="ef-43"></a>EF 4.3
 O EF 4.3.0 tempo de execução foi lançado para o NuGet em fevereiro de 2012.
 Esta versão incluído o novo recurso de migrações do Code First que permite que um banco de dados criado pelo Code First incrementalmente seja alterado à medida que seu modelo Code First evolui.
 
 Aqui está uma lista de conteúdo que reunimos especificamente para a versão do EF 4.3, a maioria do conteúdo fornecido para o EF 4.1 ainda se aplica ao EF 4.3 bem:
--   [Postagem de versão 4.3 do EF](http://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-released.aspx)
--   [Passo a passo do EF 4.3 migrações baseadas em código](http://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-code-based-migrations-walkthrough.aspx)
--   [Passo a passo do EF 4.3 migrações automáticas](http://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-automatic-migrations-walkthrough.aspx)
+-   [Postagem de versão 4.3 do EF](https://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-released.aspx)
+-   [Passo a passo do EF 4.3 migrações baseadas em código](https://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-code-based-migrations-walkthrough.aspx)
+-   [Passo a passo do EF 4.3 migrações automáticas](https://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-automatic-migrations-walkthrough.aspx)
 
 ## <a name="ef-42"></a>EF 4.2
 O EF 4.2.0 em tempo de execução foi lançado para o NuGet em novembro de 2011.
@@ -212,9 +212,9 @@ Porque esta versão é incluído somente versão de patch de correções de bug 
 
 Aqui está uma lista de conteúdo que reunimos especificamente para a versão 4.2 do EF, o conteúdo fornecido para o EF 4.1 ainda se aplica ao EF 4.2 também.
 
--   [Postagem de versão 4.2 do EF](http://blogs.msdn.com/b/adonet/archive/2011/11/01/ef-4-2-released.aspx)
--   [Primeiro passo a passo de código](http://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-code-first-walkthrough.aspx)
--   [Modelo de & banco de dados primeiro passo a passo](http://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-model-amp-database-first-walkthrough.aspx)
+-   [Postagem de versão 4.2 do EF](https://blogs.msdn.com/b/adonet/archive/2011/11/01/ef-4-2-released.aspx)
+-   [Primeiro passo a passo de código](https://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-code-first-walkthrough.aspx)
+-   [Modelo de & banco de dados primeiro passo a passo](https://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-model-amp-database-first-walkthrough.aspx)
 
 ## <a name="ef-411"></a>EF 4.1.1
 O EF 4.1.10715 tempo de execução foi lançado para o NuGet em julho de 2011.
@@ -227,7 +227,7 @@ Considere esta versão como o EF 4.1 patch 1 (ou EF 4.1.1).
 
 Aqui está uma lista de conteúdo que reunimos para o 4.1.1 versão:
 
--   [Postagem de versão do EF 4.1.1](http://blogs.msdn.com/b/adonet/archive/2011/07/25/ef-4-1-update-1-released.aspx)
+-   [Postagem de versão do EF 4.1.1](https://blogs.msdn.com/b/adonet/archive/2011/07/25/ef-4-1-update-1-released.aspx)
 
 ## <a name="ef-41"></a>EF 4.1
 O EF 4.1.10331 tempo de execução foi a primeira a ser publicado no NuGet, em abril de 2011.
@@ -238,10 +238,10 @@ Usamos a usar versões de patch de data com base antes, decidimos adotar [contro
 
 Aqui está uma lista de conteúdo que reunimos para a versão 4.1. Muitas delas ainda se aplica a versões mais recentes do Entity Framework:
 
--   [Postagem de versão 4.1 do EF](http://blogs.msdn.com/b/adonet/archive/2011/04/11/ef-4-1-released.aspx)
--   [Primeiro passo a passo de código](http://blogs.msdn.com/b/adonet/archive/2011/03/15/ef-4-1-code-first-walkthrough.aspx)
--   [Modelo de & banco de dados primeiro passo a passo](http://blogs.msdn.com/b/adonet/archive/2011/03/15/ef-4-1-model-amp-database-first-walkthrough.aspx)
--   [SQL Azure federações e o Entity Framework](http://blogs.msdn.com/b/adonet/archive/2012/01/10/sql-azure-federations-and-the-entity-framework.aspx)
+-   [Postagem de versão 4.1 do EF](https://blogs.msdn.com/b/adonet/archive/2011/04/11/ef-4-1-released.aspx)
+-   [Primeiro passo a passo de código](https://blogs.msdn.com/b/adonet/archive/2011/03/15/ef-4-1-code-first-walkthrough.aspx)
+-   [Modelo de & banco de dados primeiro passo a passo](https://blogs.msdn.com/b/adonet/archive/2011/03/15/ef-4-1-model-amp-database-first-walkthrough.aspx)
+-   [SQL Azure federações e o Entity Framework](https://blogs.msdn.com/b/adonet/archive/2012/01/10/sql-azure-federations-and-the-entity-framework.aspx)
 
 ## <a name="ef-40"></a>EF 4.0
 Esta versão foi incluída no .NET Framework 4 e Visual Studio 2010, em abril de 2010.

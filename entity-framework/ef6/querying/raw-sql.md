@@ -3,12 +3,12 @@ title: Consultas SQL brutas - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9e1ee76e-2499-408c-81e8-9b6c5d1945a0
-ms.openlocfilehash: 6b00648939ccedffeed09b4e1d6e8d70fa262a36
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 168aee67186535bf2a50705e86bfc5a88147e369
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490578"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283778"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 Entity Framework permite que a consulta usando LINQ com as classes de entidade. No entanto, pode haver ocasiões em que você deseja executar consultas usando SQL bruto diretamente no banco de dados. Isso inclui chamar procedimentos armazenados, que podem ser útil para modelos Code First que atualmente não há suporte para o mapeamento para procedimentos armazenados. As técnicas mostradas neste tópico se aplicam igualmente a modelos criados com o Code First e com o EF Designer.  
@@ -82,4 +82,4 @@ Observe que todas as alterações feitas aos dados no banco de dados usando Exec
 
 ### <a name="output-parameters"></a>Parâmetros de saída  
 
-Se forem usados parâmetros de saída, seus valores não estará disponíveis até que os resultados foram lidas completamente. Isso é devido ao comportamento subjacente do DbDataReader, consulte [recuperando dados usando um DataReader](http://go.microsoft.com/fwlink/?LinkID=398589) para obter mais detalhes.  
+Se forem usados parâmetros de saída, seus valores não estará disponíveis até que os resultados foram lidas completamente. Isso é devido ao comportamento subjacente do DbDataReader, consulte [recuperando dados usando um DataReader](https://go.microsoft.com/fwlink/?LinkID=398589) para obter mais detalhes.  

@@ -3,12 +3,12 @@ title: Designer de consulta armazenados procedimentos - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9554ed25-c5c1-43be-acad-5da37739697f
-ms.openlocfilehash: 6284b10261e6f3b9bf69d1c15e121988e4976d48
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 04478ea1c8cd43a7ba4ee788e464992af3de7f64
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489941"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283895"
 ---
 # <a name="designer-query-stored-procedures"></a>Designer de consulta procedimentos armazenados
 Este passo a passo mostram como usar o Entity Framework Designer (Designer de EF) para importar os procedimentos armazenados em um modelo e, em seguida, chamar procedimentos armazenados para recuperar resultados importados. 
@@ -100,4 +100,4 @@ The department name is Engineering
 <a name="output-parameters"></a>Parâmetros de saída
 -----------------
 
-Se forem usados parâmetros de saída, seus valores não estará disponíveis até que os resultados foram lidas completamente. Isso é devido ao comportamento subjacente do DbDataReader, consulte [recuperando dados usando um DataReader](http://go.microsoft.com/fwlink/?LinkID=398589) para obter mais detalhes.
+Se forem usados parâmetros de saída, seus valores não estará disponíveis até que os resultados foram lidas completamente. Isso é devido ao comportamento subjacente do DbDataReader, consulte [recuperando dados usando um DataReader](https://go.microsoft.com/fwlink/?LinkID=398589) para obter mais detalhes.

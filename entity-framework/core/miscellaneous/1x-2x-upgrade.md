@@ -4,45 +4,38 @@ author: divega
 ms.date: 08/13/2017
 ms.assetid: 8BD43C8C-63D9-4F3A-B954-7BC518A1B7DB
 uid: core/miscellaneous/1x-2x-upgrade
-ms.openlocfilehash: f0d85b3ba22c09d2bd48e8b34ed628a7474322d3
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 5371c8f3b7c6102c621296bbae145d13779e0c6e
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490487"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283765"
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Atualizando aplicativos de versões anteriores para o EF Core 2.0
 
 Podemos ter aproveitado a oportunidade para refinar significativamente nossas APIs existentes e os comportamentos no 2.0. Há algumas melhorias que podem exigir a modificação do código de aplicativo existente, embora Nós acreditamos que, para a maioria dos aplicativos o impacto será baixo, na maioria dos casos que exigem apenas recompilação e alterações mínimas de guiado para substituir as APIs obsoletas.
 
-## <a name="procedures-common-to-all-applications"></a>Procedimentos comuns a todos os aplicativos
-
 Atualizando um aplicativo existente para o EF Core 2.0 pode exigir:
 
-1. Atualizando a plataforma do .NET de destino do aplicativo para um que dá suporte a .NET Standard 2.0. Ver [plataformas com suporte](../platforms/index.md) para obter mais detalhes.
+1. Atualizando a implementação do .NET de destino do aplicativo para um que dá suporte a .NET Standard 2.0. Ver [suporte para implementações do .NET](../platforms/index.md) para obter mais detalhes.
 
 2. Identifica um provedor para o banco de dados de destino que é compatível com o EF Core 2.0. Ver [EF Core 2.0 requer um provedor de banco de 2.0 dados](#ef-core-20-requires-a-20-database-provider) abaixo.
 
 3. Atualizar todos os pacotes do EF Core (tempo de execução e ferramentas) para 2.0. Consulte a [instalar o EF Core](../get-started/install/index.md) para obter mais detalhes.
 
-4. Faça as alterações de código necessário para compensar alterações significativas. Consulte a [alterações significativas](#breaking-changes) seção abaixo para obter mais detalhes.
+4. Faça as alterações de código necessário para compensar as alterações de quebra descritas no restante deste documento.
 
-## <a name="aspnet-core-applications"></a>Aplicativos ASP.NET Core
+## <a name="aspnet-core-now-includes-ef-core"></a>O ASP.NET Core agora inclui o EF Core
 
-1. Consulte em particular a [novo padrão para inicializar o provedor de serviços do aplicativo](#new-way-of-getting-application-services) descrito abaixo.
+Aplicativos que têm como destino o ASP.NET Core 2.0 podem usar o EF Core 2.0 sem dependências adicionais além de provedores de banco de dados de terceiros. No entanto, os aplicativos destinados a versões anteriores do ASP.NET Core precisam atualizar para o ASP.NET Core 2.0 para usar o EF Core 2.0. Para obter mais detalhes sobre como atualizar os aplicativos ASP.NET Core 2.0, consulte [documentação do ASP.NET Core sobre o assunto](https://docs.microsoft.com/aspnet/core/migration/1x-to-2x/).
 
-> [!TIP]  
-> A adoção desse novo padrão na atualização de aplicativos para o 2.0 é altamente recomendável e é necessária para recursos de produto como as migrações do Entity Framework Core para trabalhar. A outra alternativa comum é para [implementar *IDesignTimeDbContextFactory\<TContext >*](xref:core/miscellaneous/cli/dbcontext-creation#from-a-design-time-factory).
-
-2. Aplicativos que têm como destino o ASP.NET Core 2.0 podem usar o EF Core 2.0 sem dependências adicionais além de provedores de banco de dados de terceiros. No entanto, os aplicativos destinados a versões anteriores do ASP.NET Core precisam atualizar para o ASP.NET Core 2.0 para usar o EF Core 2.0. Para obter mais detalhes sobre como atualizar os aplicativos ASP.NET Core 2.0, consulte [documentação do ASP.NET Core sobre o assunto](https://docs.microsoft.com/aspnet/core/migration/1x-to-2x/).
-
-## <a name="new-way-of-getting-application-services"></a>Nova maneira de obter serviços de aplicativos
+## <a name="new-way-of-getting-application-services-in-aspnet-core"></a>Nova maneira de obter serviços de aplicativo no ASP.NET Core
 
 O padrão recomendado para aplicativos web ASP.NET Core foi atualizado para 2.0, de forma que interrompeu a lógica de tempo de design que do EF Core é usado em 1. x. Anteriormente no tempo de design, o EF Core seria tentar invocar `Startup.ConfigureServices` diretamente para acessar o provedor de serviços do aplicativo. No ASP.NET Core 2.0, a configuração é inicializada fora do `Startup` classe. Aplicativos que usam o EF Core normalmente acessam sua cadeia de caracteres de conexão da configuração, portanto, `Startup` por si só não é mais suficiente. Se você atualizar um aplicativo do ASP.NET Core 1.x, você pode receber o seguinte erro ao usar as ferramentas do EF Core.
 
 > Nenhum construtor sem parâmetros foi encontrado em 'ApplicationContext'. Adicione um construtor sem parâmetros para 'ApplicationContext' ou adicione uma implementação de ' IDesignTimeDbContextFactory&lt;ApplicationContext&gt;' no mesmo assembly como 'ApplicationContext'
 
-Um gancho de tempo de design novo foi adicionado no modelo de padrão do ASP.NET Core 2.0. Estático `Program.BuildWebHost` método permite que o EF Core acessar o provedor de serviços do aplicativo em tempo de design. Se você estiver atualizando um aplicativo do ASP.NET Core 1.x, você precisará atualizar você `Program` classe para ser semelhante à seguinte.
+Um gancho de tempo de design novo foi adicionado no modelo de padrão do ASP.NET Core 2.0. Estático `Program.BuildWebHost` método permite que o EF Core acessar o provedor de serviços do aplicativo em tempo de design. Se você estiver atualizando um aplicativo do ASP.NET Core 1.x, você precisará atualizar o `Program` classe para ser semelhante à seguinte.
 
 ``` csharp
 using Microsoft.AspNetCore;
@@ -64,6 +57,8 @@ namespace AspNetCoreDotNetCore2._0App
     }
 }
 ```
+
+A adoção desse novo padrão na atualização de aplicativos para o 2.0 é altamente recomendável e é necessária para recursos de produto como as migrações do Entity Framework Core para trabalhar. A outra alternativa comum é para [implementar *IDesignTimeDbContextFactory\<TContext >*](xref:core/miscellaneous/cli/dbcontext-creation#from-a-design-time-factory).
 
 ## <a name="idbcontextfactory-renamed"></a>IDbContextFactory renomeado
 

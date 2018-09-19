@@ -3,18 +3,18 @@ title: Tratamento de falhas de confirmação de transação - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 5b1f7a7d-1b24-4645-95ec-5608a31ef577
-ms.openlocfilehash: 71d5649dd993bb95e24165a55d812c71a37f03f3
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 27e75e6a1919ee2300fe76cfcdf67cceaad887b3
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489382"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283648"
 ---
 # <a name="handling-transaction-commit-failures"></a>Tratamento de falhas de confirmação de transação
 > [!NOTE]
 > **EF6.1 em diante, somente** -recursos, APIs, etc. discutidos nesta página foram introduzidas no Entity Framework 6.1. Se você estiver usando uma versão anterior, algumas ou todas as informações não se aplicarão.  
 
-Como parte de um 6.1, introduzimos um novo recurso de resiliência de conexão para o EF: a capacidade de detectar e recuperar automaticamente quando as falhas de conexão transitórias afetam a confirmação de confirmações de transações. Os detalhes completos do cenário são mais bem descritos na postagem do blog [conectividade de banco de dados SQL e o problema de idempotência](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx).  Em resumo, o cenário é que, quando uma exceção é gerada durante confirmação de uma transação há duas causas possíveis:  
+Como parte de um 6.1, introduzimos um novo recurso de resiliência de conexão para o EF: a capacidade de detectar e recuperar automaticamente quando as falhas de conexão transitórias afetam a confirmação de confirmações de transações. Os detalhes completos do cenário são mais bem descritos na postagem do blog [conectividade de banco de dados SQL e o problema de idempotência](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx).  Em resumo, o cenário é que, quando uma exceção é gerada durante confirmação de uma transação há duas causas possíveis:  
 
 1. A confirmação de transação que falhou no servidor
 2. A confirmação de transação foi bem-sucedida no servidor, mas um problema de conectividade impediu a notificação de êxito de atingir o cliente  
@@ -69,4 +69,4 @@ Antes do EF 6.1 não havia mecanismo para lidar com falhas de confirmação no p
      - Se a linha estiver ausente, use uma estratégia de execução para repetir a operação atual.  
   4. Se a confirmação for bem-sucedida, exclua a linha correspondente para evitar o crescimento da tabela.  
 
-[Esta postagem de blog](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) contém código de exemplo para realizar isso no SQL Azure.  
+[Esta postagem de blog](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) contém código de exemplo para realizar isso no SQL Azure.  

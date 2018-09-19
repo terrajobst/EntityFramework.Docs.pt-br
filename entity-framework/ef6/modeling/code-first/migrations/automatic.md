@@ -3,12 +3,12 @@ title: Automática as migrações Code First - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 0eb86787-2161-4cb4-9cb8-67c5d6e95650
-ms.openlocfilehash: 21f77ef49db2485047292b3928b4f63d49dbb180
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 2713afaf09707b7696e90464aac9945c2d82d274
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489980"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283908"
 ---
 # <a name="automatic-code-first-migrations"></a>Migrações automáticas do Code First
 As migrações automáticas permite que você use as migrações Code First sem a necessidade de um arquivo de código em seu projeto para cada alteração feita. Nem todas as alterações podem ser aplicadas automaticamente – por exemplo, renomeações de coluna exigem o uso de uma migração baseada em código.
@@ -97,7 +97,7 @@ Antes de começar a usar as migrações, é necessário um projeto e um modelo d
     public string Url { get; set; }
 ```
 
-Se você fosse executar o aplicativo novamente, obteria um InvalidOperationException informando *O modelo dando suporte ao contexto 'BlogContext' foi alterado desde que o banco de dados foi criado. Considere usar as Migrações do Code First para atualizar o banco de dados (* [*http://go.microsoft.com/fwlink/?LinkId=238269*](http://go.microsoft.com/fwlink/?LinkId=238269)*).*
+Se você fosse executar o aplicativo novamente, obteria um InvalidOperationException informando *O modelo dando suporte ao contexto 'BlogContext' foi alterado desde que o banco de dados foi criado. Considere usar as Migrações do Code First para atualizar o banco de dados (* [*http://go.microsoft.com/fwlink/?LinkId=238269*](https://go.microsoft.com/fwlink/?LinkId=238269)*).*
 
 Como a exceção sugere, é hora de começar a usar as Migrações do Code First. Como queremos usar as migrações automáticas, vamos especificar as **EnableAutomaticMigrations –** alternar.
 
