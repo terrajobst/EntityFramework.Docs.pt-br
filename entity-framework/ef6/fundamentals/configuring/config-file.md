@@ -3,12 +3,12 @@ title: Arquivo de configuração - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 000044c6-1d32-4cf7-ae1f-ea21d86ebf8f
-ms.openlocfilehash: 949ad4f030205753c5fbf9b95f4d183d8c0d1fe7
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: faba4e406b9f26f5bed6149f75c59da362d84692
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490864"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415777"
 ---
 # <a name="configuration-file-settings"></a>Arquivo de configuração
 Entity Framework permite uma série de configurações seja especificada do arquivo de configuração. Em geral o EF segue um princípio de 'convenção em detrimento da configuração': todas as configurações discutidas neste post têm um comportamento padrão, você só precisa se preocupar sobre como alterar a configuração, quando o padrão não atendem às suas necessidades.  
@@ -153,7 +153,7 @@ A seção de configuração permite que você especifique uma fábrica de conex�
 
 Quando você instalou o pacote NuGet do EF uma fábrica de conexão padrão foi registrada que aponta para o SQL Express ou LocalDB, dependendo de qual delas você instalou.  
 
-Para definir uma fábrica de conexão, você especifica o nome de tipo qualificado do assembly para o **deafultConnectionFactory** elemento.  
+Para definir uma fábrica de conexão, você especifica o nome de tipo qualificado do assembly para o **defaultConnectionFactory** elemento.  
 
 > [!NOTE]
 > Um nome qualificado do assembly é o nome qualificado de namespace, seguido por uma vírgula, em seguida, o assembly que reside o tipo. Você pode, opcionalmente, especifique também a versão do assembly, cultura e token de chave pública.  

@@ -3,12 +3,12 @@ title: Primeira Data Annotations - EF6 de código
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80abefbd-23c9-4fce-9cd3-520e5df9856e
-ms.openlocfilehash: 38ae52543ed99e5a1c1da7d19a2e15d168e3a1bd
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 54e27f1b866da14d68db66ca5eca5a6dde819e26
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490083"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415803"
 ---
 # <a name="code-first-data-annotations"></a>Anotações de dados Code First
 > [!NOTE]
@@ -319,13 +319,13 @@ Aqui está a tabela depois que ele é foi regenerado. O nome da tabela foi alter
 Recursos de um banco de dados importante é a capacidade de ter propriedades computadas. Se estiver mapeando suas classes de Code First para tabelas que contêm as colunas computadas, você não deseja o Entity Framework ao tentar atualizar as colunas. Mas se você desejar EF para retornar esses valores do banco de dados depois de inserido ou dados atualizados. Você pode usar a anotação DatabaseGenerated para sinalizar essas propriedades em sua classe, juntamente com o enum computado. Outras enumerações são None e identidade.
 
 ``` csharp
-    [DatabaseGenerated(DatabaseGenerationOption.Computed)]
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime DateCreated { get; set; }
 ```
 
 Você pode usar o banco de dados gerado em colunas timestamp ou byte ao código pela primeira vez é gerar o banco de dados, caso contrário, você deve usar isso apenas quando apontando para bancos de dados existentes, porque o código primeiro não será capaz de determinar a fórmula para a coluna computada.
 
-Ler acima, por padrão, uma propriedade de chave que é um número inteiro se torna uma chave de identidade no banco de dados. Que seria o mesmo que definir DatabaseGenerated como DatabaseGenerationOption.Identity. Se você não quiser que ele seja uma chave de identidade, você pode definir o valor para DatabaseGenerationOption.None.
+Ler acima, por padrão, uma propriedade de chave que é um número inteiro se torna uma chave de identidade no banco de dados. Que seria o mesmo que definir DatabaseGenerated como DatabaseGeneratedOption.Identity. Se você não quiser que ele seja uma chave de identidade, você pode definir o valor para DatabaseGeneratedOption.None.
 
  
 

@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: a637e5e2f75e16bc7b11b1a51abcbe16274a1c75
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: fa1362c84cb1954360d337670fb5fef21e5cf165
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490759"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415738"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -56,3 +56,6 @@ Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamo
   * Essa solicitação de pull adiciona o conceito de `CanConnect` que será usada pela integridade do ASP.NET Core verifica para determinar se o banco de dados está disponível. Por padrão, a implementação relacional apenas chama `Exist`, mas os provedores podem implementar algo diferente se necessário. Provedores não relacionais precisará implementar a nova API para que a verificação de integridade ser usado.
 * https://github.com/aspnet/EntityFrameworkCore/pull/13306 -Atualizar RelationalTypeMapping base para definir o tamanho de DbParameter
   * Pare definindo o tamanho por padrão, pois isso pode causar truncamento. Provedores talvez seja necessário adicionar sua própria lógica, se o tamanho deve ser definida.
+* https://github.com/aspnet/EntityFrameworkCore/pull/13372 -RevEng: Sempre especificar tipo de coluna para colunas decimais
+  * Sempre configure tipo de coluna para colunas decimais no código gerado por scaffolding em vez de configurar por convenção.
+  * Provedores não devem exigir qualquer alteração em seu lado.
