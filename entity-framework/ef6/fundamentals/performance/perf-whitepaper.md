@@ -3,12 +3,12 @@ title: Considerações sobre desempenho para o EF4, EF5 e EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d6d5a465-6434-45fa-855d-5eb48c61a2ea
-ms.openlocfilehash: a58461a6d18d9d53c002b5d45cecbff7b0cdf81e
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: fb184fe8720b552a2050607bb17648f0413c31d1
+ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490253"
+ms.lasthandoff: 09/30/2018
+ms.locfileid: "47459585"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>Considerações de desempenho do EF 4, 5 e 6
 Por David Obando, Eric Dettinger e outros
@@ -88,19 +88,17 @@ Para modelos pequenos e simples, o custo pode ser pequeno o suficiente para não
 
 ### <a name="23-using-pre-generated-views-to-decrease-model-load-time"></a>2.3 usando Pre-Generated modos de exibição para diminuir o modelo de tempo de carregamento
 
-#### <a name="231-pre-generated-views-using-the-entity-framework-power-tools"></a>2.3.1 exibições pré-geradas usando o Entity Framework Power Tools
+Para obter informações detalhadas sobre como usar exibições pré-gerados no Entity Framework 6, visite [Pre-Generated modos de exibição de mapeamento](~/ef6/fundamentals/performance/pre-generated-views.md)
 
-Você também pode considerar usando o Entity Framework Power Tools para gerar exibições dos modelos EDMX e o Code First clicando duas vezes o arquivo de classe de modelo e usando o menu do Entity Framework para selecionar "Gerar exibições". O Entity Framework Power Tools funcionam somente em contextos derivada de DbContext e podem ser encontrado em \<http://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d>.
+#### <a name="231-pre-generated-views-using-the-entity-framework-power-tools-community-edition"></a>2.3.1 exibições pré-geradas usando o Entity Framework Power Tools Community Edition
 
-Para obter mais informações sobre como usar exibições pré-gerados no Entity Framework 6, visite [modos de exibição de mapeamento Pre-Generated](~/ef6/fundamentals/performance/pre-generated-views.md).
+Você pode usar o [Entity Framework 6 Power Tools Community Edition](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) para gerar exibições dos modelos EDMX e o Code First clicando duas vezes o arquivo de classe de modelo e usando o menu do Entity Framework para selecionar "Gerar exibições". O Entity Framework Power Tools Community Edition funcionam somente em contextos derivada de DbContext.
 
 #### <a name="232-how-to-use-pre-generated-views-with-a-model-created-by-edmgen"></a>2.3.2 como usar exibições pré-geradas com um modelo criado pelo EDMGen
 
 EDMGen é um utilitário que é fornecido com o .NET e funciona com o Entity Framework 4 e 5, mas não com o Entity Framework 6. EDMGen permite que você gere um arquivo de modelo, a camada de objeto e os modos de exibição da linha de comando. Uma das saídas será um arquivo de modos de exibição em seu idioma de preferência, VB ou C\#. Este é um arquivo de código que contém trechos de código do Entity SQL para cada conjunto de entidades. Para habilitar exibições pré-geradas, basta incluir o arquivo em seu projeto.
 
 Se você fizer edições manualmente os arquivos de esquema para o modelo, será preciso gerar novamente o arquivo de modos de exibição. Você pode fazer isso executando EDMGen com o **/mode:ViewGeneration** sinalizador.
-
-Para referência adicional, consulte [como: Pre-Generate modos de exibição para melhorar o desempenho da consulta](https://msdn.microsoft.com/library/bb896240.aspx).
 
 #### <a name="233-how-to-use-pre-generated-views-with-an-edmx-file"></a>2.3.3 como usar exibições Pre-Generated com um arquivo EDMX
 
@@ -113,13 +111,9 @@ Blog da equipe do ADO.NET tem uma postagem que descreve como usar um modelo T4 p
 
 Se você estiver usando o Entity Framework 6 você pode obter a exibição de modelos de geração de T4 da Galeria do Visual Studio no \<http://visualstudiogallery.msdn.microsoft.com/18a7db90-6705-4d19-9dd1-0a6c23d0751f>.
 
-#### <a name="234-how-to-use-pre-generated-views-with-a-code-first-model"></a>2.3.4 como usar exibições Pre-Generated com um modelo Code First
-
-Também é possível usar exibições pré-geradas com um projeto do Code First. O Entity Framework Power Tools tem a capacidade de gerar um arquivo de modos de exibição para seu projeto de Code First. Você pode encontrar o Entity Framework Power Tools na Galeria do Visual Studio no \< http://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d/>.
-
 ### <a name="24-reducing-the-cost-of-view-generation"></a>2.4 reduzindo o custo de geração de exibição
 
-Usar exibições pré-geradas move o custo de geração de exibição de carregamento de modelo (tempo de execução) para o tempo de compilação. Enquanto isso melhora o desempenho de inicialização em tempo de execução, você ainda terá a dificuldade de geração de exibição enquanto você está desenvolvendo. Há várias outras dicas e truques que podem ajudar a reduzir o custo de geração de exibição, em tempo de compilação e tempo de execução.
+Usar exibições pré-geradas move o custo de geração de exibição do modelo de carregamento (tempo de execução) para tempo de design. Enquanto isso melhora o desempenho de inicialização em tempo de execução, você ainda terá a dificuldade de geração de exibição enquanto você está desenvolvendo. Há várias outras dicas e truques que podem ajudar a reduzir o custo de geração de exibição, em tempo de compilação e tempo de execução.
 
 #### <a name="241-using-foreign-key-associations-to-reduce-view-generation-cost"></a>2.4.1 usando as associações de chave estrangeira para reduzir o custo de geração de exibição
 

@@ -3,19 +3,19 @@ title: Modos de exibição de mapeamento pré-gerado - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 917ba9c8-6ddf-4631-ab8c-c4fb378c2fcd
-ms.openlocfilehash: da5d59ba5a899a0ee3a1eec3db0da1b4ece871d8
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 1fda9fe9638adce9b24a6b81aa081effeb0def81
+ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46284103"
+ms.lasthandoff: 09/30/2018
+ms.locfileid: "47459520"
 ---
 # <a name="pre-generated-mapping-views"></a>Modos de exibição de mapeamento gerados previamente
 Antes que o Entity Framework pode executar uma consulta ou salvar as alterações à fonte de dados, ele deve gerar um conjunto de exibições de mapeamento para acessar o banco de dados. Esses modos de exibição de mapeamento são um conjunto de instrução de Entity SQL que representam o banco de dados de uma maneira abstrata e fazem parte dos metadados que é armazenado em cache por domínio de aplicativo. Se você criar várias instâncias do mesmo contexto no mesmo domínio do aplicativo, eles serão reutilizar modos de exibição de mapeamento dos metadados em cache em vez de regenerá-los. Como geração de exibição de mapeamento é uma parte significativa do custo geral da execução da consulta primeiro, o Entity Framework permite que você gerar previamente exibições de mapeamento e incluí-los no projeto compilado. Para obter mais informações, consulte [considerações de desempenho (Entity Framework)](~/ef6/fundamentals/performance/perf-whitepaper.md).
 
-## <a name="generating-mapping-views-with-the-ef-power-tools"></a>Gerando mapeamento de exibições com as EF Power Tools
+## <a name="generating-mapping-views-with-the-ef-power-tools-community-edition"></a>Gerando mapeamento de exibições com o EF Power Tools Community Edition
 
-A maneira mais fácil de gerar previamente exibições é usar o [EF Power Tools](https://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d). Uma vez que o Power Tools instalado, você terá uma opção de menu para gerar exibições, como mostrado abaixo.
+A maneira mais fácil de gerar previamente exibições é usar o [EF Power Tools Community Edition](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition). Uma vez que o Power Tools instalado, você terá uma opção de menu para gerar exibições, como mostrado abaixo.
 
 -   Para **Code First** modelos com o botão direito no arquivo de código que contém sua classe DbContext.
 -   Para **EF Designer** modelos com o botão direito em seu arquivo EDMX.

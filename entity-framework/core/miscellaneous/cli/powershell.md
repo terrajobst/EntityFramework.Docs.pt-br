@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 09/18/2018
 uid: core/miscellaneous/cli/powershell
-ms.openlocfilehash: cde3c1f75d33808259654dfd9e1de51e662e8092
-ms.sourcegitcommit: ad1bdea58ed35d0f19791044efe9f72f94189c18
+ms.openlocfilehash: db4d89b6a0babe01bccbeadc51381a309ad8ca0f
+ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47447190"
+ms.lasthandoff: 09/30/2018
+ms.locfileid: "47459547"
 ---
 # <a name="entity-framework-core-tools-reference---package-manager-console-in-visual-studio"></a>Referência - Package Manager Console no Visual Studio das ferramentas do Entity Framework Core
 
@@ -118,7 +118,7 @@ Também é possível [coloque o código de migrações em uma biblioteca de clas
 
 As ferramentas do Console do Gerenciador de pacotes funcionam com projetos do .NET Core ou .NET Framework. Os aplicativos que têm o modelo do EF Core em uma biblioteca de classes .NET Standard não podem ter um projeto de .NET Framework ou .NET Core. Por exemplo, isso é verdadeiro para aplicativos Xamarin e plataforma Universal do Windows. Nesses casos, você pode criar um projeto de aplicativo de console .NET Core ou .NET Framework cuja única finalidade é atuar como projeto de inicialização para as ferramentas. O projeto pode ser um projeto fictício, sem nenhum código real &mdash; só é necessário fornecer um destino para as ferramentas.
 
-Por que é um projeto fictício necessário? Como mencionado anteriormente, as ferramentas de tem que executar o código do aplicativo em tempo de design. Para fazer isso, eles precisam usar o tempo de execução do .NET Core ou .NET Framework. Quando o modelo do EF Core está em um projeto que tem como alvo o .NET Core ou .NET Framework, as ferramentas do EF Core emprestam o tempo de execução do projeto. E não é possível fazer isso se o modelo do EF Core está em uma biblioteca de classes .NET Standard. O .NET Standard não é uma implementação real do .NET; é uma especificação de um conjunto de APIs que devem dar suporte a implementações do .NET. Portanto, .NET Standard não é suficiente para as ferramentas do EF Core executar o código do aplicativo. O projeto fictício, que você cria para usar como projeto de inicialização fornece uma plataforma de destino concreta na qual as ferramentas podem carregar a biblioteca de classes .NET Standard. 
+Por que é um projeto fictício necessário? Como mencionado anteriormente, as ferramentas de tem que executar o código do aplicativo em tempo de design. Para fazer isso, eles precisam usar o tempo de execução do .NET Core ou .NET Framework. Quando o modelo do EF Core está em um projeto que tem como alvo o .NET Core ou .NET Framework, as ferramentas do EF Core emprestam o tempo de execução do projeto. E não é possível fazer isso se o modelo do EF Core está em uma biblioteca de classes .NET Standard. O .NET Standard não é uma implementação real do .NET; é uma especificação de um conjunto de APIs que devem dar suporte a implementações do .NET. Portanto, .NET Standard não é suficiente para as ferramentas do EF Core executar o código do aplicativo. O projeto fictício, que você cria para usar como projeto de inicialização fornece uma plataforma de destino concreta na qual as ferramentas podem carregar a biblioteca de classes .NET Standard.
 
 ### <a name="aspnet-core-environment"></a>Ambiente do ASP.NET Core
 
@@ -129,7 +129,7 @@ Para especificar o ambiente para projetos do ASP.NET Core, defina **env:ASPNETCO
 A tabela a seguir mostra os parâmetros que são comuns a todos os comandos do EF Core:
 
 | Parâmetro                 | Descrição                                                                                                                                                                                                          |
-|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|:--------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | -O contexto \<cadeia de caracteres >        | O `DbContext` classe a ser usada. Nome de classe totalmente qualificado com namespaces ou única.  Se esse parâmetro for omitido, o EF Core encontra a classe de contexto. Se houver várias classes de contexto, esse parâmetro é necessário. |
 | -Projeto \<cadeia de caracteres >        | O projeto de destino. Se esse parâmetro for omitido, o **projeto padrão** para **Package Manager Console** é usado como o projeto de destino.                                                                             |
 | O projeto de inicialização - \<cadeia de caracteres > | O projeto de inicialização. Se esse parâmetro for omitido, o **projeto de inicialização** na **propriedades da solução** é usado como o projeto de destino.                                                                                 |
@@ -147,7 +147,7 @@ Adiciona uma nova migração.
 Parâmetros:
 
 | Parâmetro                         | Descrição                                                                                                             |
-|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+|:----------------------------------|:------------------------------------------------------------------------------------------------------------------------|
 | <nobr>-Nome \<cadeia de caracteres ><nobr>       | O nome da migração. Isso é um parâmetro posicional e é necessário.                                              |
 | <nobr>-OutputDir \<cadeia de caracteres ></nobr> | O diretório (e sub-namespace) para usar. Caminhos são relativos ao diretório de projeto de destino. O padrão é "Migrações". |
 
@@ -157,9 +157,9 @@ Descarta o banco de dados.
 
 Parâmetros:
 
-| Parâmetro | Descrição                                                |
-|-----------|------------------------------------------------------------|
-| -WhatIf   | Mostrar qual banco de dados deve ser descartado, mas não o remova.   |
+| Parâmetro | Descrição                                              |
+|:----------|:---------------------------------------------------------|
+| -WhatIf   | Mostrar qual banco de dados deve ser descartado, mas não o remova. |
 
 ## <a name="get-dbcontext"></a>Get-DbContext
 
@@ -167,12 +167,12 @@ Listas disponíveis `DbContext` tipos.
 
 ## <a name="remove-migration"></a>Remove-Migration
 
-Remove a última migração (reverte as alterações de código que foram feitas para a migração). 
+Remove a última migração (reverte as alterações de código que foram feitas para a migração).
 
 Parâmetros:
 
 | Parâmetro | Descrição                                                                     |
-|-----------|---------------------------------------------------------------------------------|
+|:----------|:--------------------------------------------------------------------------------|
 | -Force    | Reverter a migração (reverter as alterações que foram aplicadas ao banco de dados). |
 
 ## <a name="scaffold-dbcontext"></a>Scaffold-DbContext
@@ -181,18 +181,18 @@ Gera código para um `DbContext` e tipos de entidade para um banco de dados.
 
 Parâmetros:
 
-| Parâmetro                                  | Descrição                                                                                                                                                                                                                                                             |
-|--------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>-Conexão \<cadeia de caracteres ></nobr>         | A cadeia de conexão para o banco de dados. Para projetos do ASP.NET Core 2.x, o valor pode ser *nome =\<nome da cadeia de caracteres de conexão >*. Nesse caso, o nome vem de fontes de configuração que são configuradas para o projeto. Isso é um parâmetro posicional e é necessário. |
-| <nobr>-Provedor \<cadeia de caracteres ></nobr>           | O provedor a ser usado. Normalmente isso é o nome do pacote do NuGet, por exemplo: `Microsoft.EntityFrameworkCore.SqlServer`. Isso é um parâmetro posicional e é necessário.                                                                                           |
-| -OutputDir \<cadeia de caracteres >                       | O diretório para colocar os arquivos. Caminhos são relativos ao diretório do projeto.                                                                                                                                                                                             |
-| -ContextDir \<cadeia de caracteres >                      | O diretório para colocar o `DbContext` de arquivo no. Caminhos são relativos ao diretório do projeto.                                                                                                                                                                              |
-| -O contexto \<cadeia de caracteres >                         | O nome da `DbContext` classe gerar.                                                                                                                                                                                                                          |
-| -Esquemas \<String [] >                       | Os esquemas de tabelas para gerar tipos de entidade para. Se esse parâmetro for omitido, todos os esquemas são incluídos.                                                                                                                                                             |
-| -Tabelas \<String [] >                        | As tabelas para gerar tipos de entidade para. Se esse parâmetro for omitido, todas as tabelas são incluídas.                                                                                                                                                                         |
-| -DataAnnotations                           | Use atributos para configurar o modelo (quando possível). Se esse parâmetro for omitido, somente a API fluente é usada.                                                                                                                                                      |
-| -UseDatabaseNames                          | Use nomes de tabela e coluna exatamente como aparecem no banco de dados. Se esse parâmetro for omitido, os nomes de banco de dados são alterados de acordo com mais de perto para convenções de estilo de nome em C#.                                                                                       |
-| -Force                                     | Substitua arquivos existentes.                                                                                                                                                                                                                                               |
+| Parâmetro                          | Descrição                                                                                                                                                                                                                                                             |
+|:-----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <nobr>-Conexão \<cadeia de caracteres ></nobr> | A cadeia de conexão para o banco de dados. Para projetos do ASP.NET Core 2.x, o valor pode ser *nome =\<nome da cadeia de caracteres de conexão >*. Nesse caso, o nome vem de fontes de configuração que são configuradas para o projeto. Isso é um parâmetro posicional e é necessário. |
+| <nobr>-Provedor \<cadeia de caracteres ></nobr>   | O provedor a ser usado. Normalmente isso é o nome do pacote do NuGet, por exemplo: `Microsoft.EntityFrameworkCore.SqlServer`. Isso é um parâmetro posicional e é necessário.                                                                                           |
+| -OutputDir \<cadeia de caracteres >               | O diretório para colocar os arquivos. Caminhos são relativos ao diretório do projeto.                                                                                                                                                                                             |
+| -ContextDir \<cadeia de caracteres >              | O diretório para colocar o `DbContext` de arquivo no. Caminhos são relativos ao diretório do projeto.                                                                                                                                                                              |
+| -O contexto \<cadeia de caracteres >                 | O nome da `DbContext` classe gerar.                                                                                                                                                                                                                          |
+| -Esquemas \<String [] >               | Os esquemas de tabelas para gerar tipos de entidade para. Se esse parâmetro for omitido, todos os esquemas são incluídos.                                                                                                                                                             |
+| -Tabelas \<String [] >                | As tabelas para gerar tipos de entidade para. Se esse parâmetro for omitido, todas as tabelas são incluídas.                                                                                                                                                                         |
+| -DataAnnotations                   | Use atributos para configurar o modelo (quando possível). Se esse parâmetro for omitido, somente a API fluente é usada.                                                                                                                                                      |
+| -UseDatabaseNames                  | Use nomes de tabela e coluna exatamente como aparecem no banco de dados. Se esse parâmetro for omitido, os nomes de banco de dados são alterados de acordo com mais de perto para convenções de estilo de nome em C#.                                                                                       |
+| -Force                             | Substitua arquivos existentes.                                                                                                                                                                                                                                               |
 
 Exemplo:
 
@@ -212,12 +212,12 @@ Gera um script SQL que aplica todas as alterações de uma migração selecionad
 
 Parâmetros:
 
-| Parâmetro           | Descrição                                                                                                                                                                                                                |
-|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *-From* \<cadeia de caracteres >   | A migração inicial. As migrações podem ser identificadas por nome ou ID. O número de 0 é um caso especial que significa *antes da primeira migração*. O padrão é 0.                                                              |
-| *-Para* \<cadeia de caracteres >     | A migração final. O padrão é para a última migração.                                                                                                                                                                      |
-| <nobr>-Idempotentes</nobr>         | Gere um script que pode ser usado em um banco de dados em qualquer migração.                                                                                                                                                         |
-| -Saída \<cadeia de caracteres >   | O arquivo para gravar o resultado. Se esse parâmetro for omitido, o arquivo é criado com um nome gerado na mesma pasta, como arquivos de tempo de execução do aplicativo são criados, por exemplo: */obj/Debug/netcoreapp2.1/ghbkztfz.sql/*. |
+| Parâmetro                | Descrição                                                                                                                                                                                                                |
+|:-------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *-From* \<cadeia de caracteres >        | A migração inicial. As migrações podem ser identificadas por nome ou ID. O número de 0 é um caso especial que significa *antes da primeira migração*. O padrão é 0.                                                              |
+| *-Para* \<cadeia de caracteres >          | A migração final. O padrão é para a última migração.                                                                                                                                                                      |
+| <nobr>-Idempotentes</nobr> | Gere um script que pode ser usado em um banco de dados em qualquer migração.                                                                                                                                                         |
+| -Saída \<cadeia de caracteres >        | O arquivo para gravar o resultado. Se esse parâmetro for omitido, o arquivo é criado com um nome gerado na mesma pasta, como arquivos de tempo de execução do aplicativo são criados, por exemplo: */obj/Debug/netcoreapp2.1/ghbkztfz.sql/*. |
 
 > [!TIP]
 > Para, de, e os parâmetros de saída oferecem suporte a expansão da tabulação.
@@ -238,9 +238,9 @@ Script-Migration -From 20180904195021_InitialCreate
 
 Atualiza o banco de dados para a última migração ou para uma migração especificada.
 
-| Parâmetro                             | Descrição                                                                                                                                                                                                                                                     |
-|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>*-Migration* \<cadeia de caracteres ></nobr>   | A migração de destino. As migrações podem ser identificadas por nome ou ID. O número de 0 é um caso especial que significa *antes da primeira migração* e faz com que todas as migrações para ser revertido. Se nenhuma migração for especificada, o comando assume como padrão para a última migração. |
+| Parâmetro                           | Descrição                                                                                                                                                                                                                                                     |
+|:------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <nobr>*-Migration* \<cadeia de caracteres ></nobr> | A migração de destino. As migrações podem ser identificadas por nome ou ID. O número de 0 é um caso especial que significa *antes da primeira migração* e faz com que todas as migrações para ser revertido. Se nenhuma migração for especificada, o comando assume como padrão para a última migração. |
 
 > [!TIP]
 > O parâmetro de migração dá suporte à expansão da tabulação.
