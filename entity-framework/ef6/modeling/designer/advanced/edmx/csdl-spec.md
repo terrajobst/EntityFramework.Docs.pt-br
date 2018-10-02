@@ -3,12 +3,12 @@ title: Especificação de CSDL - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: c54255f4-253f-49eb-bec8-ad7927ac2fa3
-ms.openlocfilehash: f5bf0dc75a8195e9af979c9e044f36171f46c9b7
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 438af83b8a1ad51ee8414341181412e950d0e117
+ms.sourcegitcommit: 29f928a6116771fe78f306846e6f2d45cbe8d1f4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490513"
+ms.lasthandoff: 10/01/2018
+ms.locfileid: "47460144"
 ---
 # <a name="csdl-specification"></a>Especificação de CSDL
 Linguagem de definição de esquema conceitual (CSDL) é uma linguagem baseada em XML que descreve as entidades, relações e funções que compõem um modelo conceitual de um aplicativo controlado por dados. Esse modelo conceitual pode ser usado pelo Entity Framework ou do WCF Data Services. Os metadados que é descrito com a CSDL é usado pelo Entity Framework para mapear entidades e relações que são definidas em um modelo conceitual para uma fonte de dados. Para obter mais informações, consulte [especificação de SSDL](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md) e [especificação de MSL](~/ef6/modeling/designer/advanced/edmx/msl-spec.md).
@@ -1138,7 +1138,7 @@ A exemplo a seguir mostra uma **função** que usa um elemento **parâmetro** el
    Year(CurrentDateTime()) - Year(cast(Instructor.HireDate as DateTime))
    </DefiningExpression>
  </Function>
-``` 
+```
 
  
 

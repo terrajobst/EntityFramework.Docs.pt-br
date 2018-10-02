@@ -3,12 +3,12 @@ title: Especificação de MSL - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 13ae7bc1-74b4-4ee4-8d73-c337be841467
-ms.openlocfilehash: 9519155422d8542d4a14bc1c612e91ebc22bf15e
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 6bff1f5407bc0546e60b5bee1178be9aa4748bd8
+ms.sourcegitcommit: 29f928a6116771fe78f306846e6f2d45cbe8d1f4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490552"
+ms.lasthandoff: 10/01/2018
+ms.locfileid: "47460131"
 ---
 # <a name="msl-specification"></a>Especificação de MSL
 Mapeamento de linguagem de especificação (MSL) é uma linguagem baseada em XML que descreve o mapeamento entre o modelo conceitual e o modelo de armazenamento de um aplicativo do Entity Framework.
@@ -219,7 +219,7 @@ A exemplo a seguir mostra uma **AssociationSetMapping** elemento no qual o **FK\
      <ScalarProperty Name="CourseID" ColumnName="CourseID" />
    </EndProperty>
  </AssociationSetMapping>
-``` 
+```
 
 ## <a name="complexproperty-element-msl"></a>Elemento ComplexProperty (MSL)
 
