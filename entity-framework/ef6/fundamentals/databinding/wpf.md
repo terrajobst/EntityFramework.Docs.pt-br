@@ -3,12 +3,12 @@ title: Associação de dados com o WPF - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: e90d48e6-bea5-47ef-b756-7b89cce4daf0
-ms.openlocfilehash: 5bd4a9b98a12de41e4ec37c2cc7dbdc537210893
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 1933988277d3be8fecc02fced3293f2b7f80c901
+ms.sourcegitcommit: ae399f9f3d1bae2c446b552247bd3af3ca5a2cf9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490209"
+ms.lasthandoff: 10/04/2018
+ms.locfileid: "48575659"
 ---
 # <a name="databinding-with-wpf"></a>Associação de dados com o WPF
 Este passo a passo mostra como associar controles WPF em um formulário de "master-detail" tipos de POCO. O aplicativo usa as APIs do Entity Framework para preencher os objetos com dados do banco de dados, controlar as alterações e manter os dados no banco de dados.
@@ -31,7 +31,7 @@ Se necessário, você pode [reverter para a geração de código de ObjectContex
 
 Você precisa ter o Visual Studio 2013, Visual Studio 2012 ou Visual Studio 2010 instalado para concluir este passo a passo.
 
-Se você estiver usando o Visual Studio 2010, você também precisará instalar o NuGet. Para obter mais informações, consulte [instalando o NuGet](http://docs.nuget.org/docs/start-here/installing-nuget).  
+Se você estiver usando o Visual Studio 2010, você também precisará instalar o NuGet. Para obter mais informações, consulte [instalando o NuGet](https://docs.microsoft.com/nuget/install-nuget-client-tools).  
 
 ## <a name="create-the-application"></a>Criar o aplicativo
 
@@ -252,12 +252,12 @@ Adicione as classes que são definidas no modelo como fontes de dados para este 
 
     ![Data Sources](~/ef6/media/datasources.png)
 
--   Selecione o * * categoria * * fonte de dados e arraste-o no formulário.
+-   Selecione o **categoria** fonte de dados e arraste-o no formulário.
 
 O seguinte aconteceu quando foi arrastado essa fonte:
 
--   O **categoryViewSource** recursos e o * * categoryDataGrid * * o controle foram adicionados ao XAML. Para obter mais informações sobre DataViewSources, consulte http://bea.stollnitz.com/blog/?p=387.
--   A propriedade DataContext no elemento de grade pai foi definida como "{StaticResource **categoryViewSource** }".  O **categoryViewSource** recurso serve como uma origem da associação para o exterior\\elemento de grade pai. Os elementos internos de grade, em seguida, herdam o valor de DataContext do pai (a propriedade de ItemsSource do categoryDataGrid é definida como "{Binding}") de grade. 
+-   O **categoryViewSource** recursos e o **categoryDataGrid** controle foram adicionados ao XAML 
+-   A propriedade DataContext no elemento de grade pai foi definida como "{StaticResource **categoryViewSource** }". O **categoryViewSource** recurso serve como uma origem da associação para o exterior\\elemento de grade pai. Os elementos internos de grade, em seguida, herdam o valor de DataContext do pai (a propriedade de ItemsSource do categoryDataGrid é definida como "{Binding}") de grade
 
 ``` xml
     <Window.Resources>
@@ -282,7 +282,7 @@ O seguinte aconteceu quando foi arrastado essa fonte:
 
 Agora que temos uma grade para exibir categorias vamos adicionar uma grade de detalhes para exibir os produtos associados.
 
--   Selecione o * * produtos * * propriedade no * * categoria * * fonte de dados e arraste-o no formulário.
+-   Selecione o **produtos** propriedade no **categoria** fonte de dados e arraste-o no formulário.
     -   O **categoryProductsViewSource** recursos e **productDataGrid** grade são adicionados ao XAML
     -   O caminho de associação para este recurso é definido como produtos
     -   Estrutura de vinculação de dados do WPF garante que somente os produtos relacionados à categoria selecionada aparecem no **productDataGrid**
@@ -305,7 +305,7 @@ O formulário deve ser semelhante a este:
 
 Isso leva você ao code-behind para o formulário, agora vamos editar o código para usar o ProductContext para executar o acesso a dados. Atualize o código para a MainWindow, conforme mostrado abaixo.
 
-O código declara uma instância de execução longa da **ProductContext**. O **ProductContext** objeto é usado para consultar e salvar dados no banco de dados. O **Dispose**() na **ProductContext** instância é chamada de substituído **OnClosing** método. Os comentários do código fornecem detalhes sobre o que o código faz.
+O código declara uma instância de execução longa da **ProductContext**. O **ProductContext** objeto é usado para consultar e salvar dados no banco de dados. O **Dispose ()** sobre o **ProductContext** instância é chamada de substituído **OnClosing** método. Os comentários do código fornecem detalhes sobre o que o código faz.
 
 ``` csharp
     using System.Data.Entity;
@@ -389,6 +389,10 @@ O código declara uma instância de execução longa da **ProductContext**. O **
 
 -   Pressione a **salvar** botão para salvar os dados no banco de dados
 
-Após a chamada para do DbContext **SaveChanges**(), as IDs são preenchidas com os valores de banco de dados gerado. Pois chamamos **Refresh**() após **SaveChanges**() a **DataGrid** controles são atualizados com os novos valores.
+Após a chamada para do DbContext **SaveChanges ()**, as IDs são preenchidas com os valores de banco de dados gerado. Pois chamamos **Refresh()** após **SaveChanges ()** o **DataGrid** controles são atualizados com os novos valores.
 
 ![Janela principal com IDs preenchidas](~/ef6/media/screen2.png)
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+Para saber mais sobre vinculação de dados para coleções usando WPF, consulte [neste tópico](https://docs.microsoft.com/dotnet/framework/wpf/data/data-binding-overview#binding-to-collections) na documentação do WPF.  
