@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 09/20/2018
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: fad64c692273f58580c4b986e10f481402a222d8
-ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
+ms.openlocfilehash: 87b9c73e32eddbf48cd3408de93245d9974efdce
+ms.sourcegitcommit: 7a7da65404c9338e1e3df42576a13be536a6f95f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/30/2018
-ms.locfileid: "47459546"
+ms.lasthandoff: 10/06/2018
+ms.locfileid: "48834780"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Referência de ferramentas do Entity Framework Core - CLI do .NET
 
@@ -189,7 +189,7 @@ Listas disponíveis `DbContext` tipos.
 
 ## <a name="dotnet-ef-dbcontext-scaffold"></a>scaffold do dotnet ef dbcontext
 
-Gera código para um `DbContext` e tipos de entidade para um banco de dados.
+Gera código para um `DbContext` e tipos de entidade para um banco de dados. Para este comando para gerar um tipo de entidade que, a tabela de banco de dados deve ter uma chave primária.
 
 Argumentos:
 
