@@ -3,12 +3,12 @@ title: Glossário do Entity Framework - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 3f05ffdd-49bc-499c-9732-4a368bf5d2d7
-ms.openlocfilehash: 298913891fb372bf57d7504c5a54f1dc83ea1a80
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 9ed7a2d841c625de35de57edb4e57e69b89a3db9
+ms.sourcegitcommit: 5d74ac575f813110db6d870720f50dd7606446bc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490643"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48881261"
 ---
 # <a name="entity-framework-glossary"></a>Glossário do Entity Framework
 ## <a name="code-first"></a>Code First
@@ -60,7 +60,7 @@ Criar um modelo do Entity Framework, usando o Designer de EF, o que, em seguida,
 Uma propriedade de uma entidade que faz referência a outra entidade. Por exemplo, o produto contém uma propriedade de navegação de categoria e categoria contém uma propriedade de navegação de produtos.
 
 ## <a name="poco"></a>POCO
-Acrônimo para objeto Plain Old CLR. Uma classe de usuário simples que não tem nenhuma dependência com qualquer estrutura. No contexto do EF, um uma classe de entidade que não é derivado de EntityObject, implementar quaisquer interfaces ou executa qualquer atributo definido no EF. Essas classes de entidade que são separados da estrutura de persistência também devem ser "com ignorância de persistência".  
+Acrônimo para objeto Plain Old CLR. Uma classe de usuário simples que não tem nenhuma dependência com qualquer estrutura. No contexto do EF, uma classe de entidade que não é derivado de EntityObject, implementa quaisquer interfaces ou executa qualquer atributo definido no EF. Essas classes de entidade que são separados da estrutura de persistência também devem ser "com ignorância de persistência".  
 
 ## <a name="relationship-inverse"></a>Inverso da relação
 A extremidade oposta de uma relação, por exemplo, o produto. Categoria e categoria. Produto.
