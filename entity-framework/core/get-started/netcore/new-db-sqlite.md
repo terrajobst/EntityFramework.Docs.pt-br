@@ -6,12 +6,12 @@ description: Introdução ao .NET Core usando o Entity Framework Core
 ms.date: 08/03/2018
 ms.assetid: 099d179e-dd7b-4755-8f3c-fcde914bf50b
 uid: core/get-started/netcore/new-db-sqlite
-ms.openlocfilehash: 51f5752eebce5603c663072f7b36dfecd4ddf227
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: b30800afb63a51ab14aecb559dcc83fd89f71a71
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993686"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415764"
 ---
 # <a name="getting-started-with-ef-core-on-net-core-console-app-with-a-new-database"></a>Introdução ao EF Core no aplicativo de console do .NET Core com um novo banco de dados
 
@@ -29,9 +29,16 @@ Exiba o exemplo deste artigo no GitHub (https://github.com/aspnet/EntityFramewor
 
   ``` Console
   dotnet new console -o ConsoleApp.SQLite
+  ```
+## <a name="change-the-current-directory"></a>Alterar o diretório atual 
+
+Em etapas subsequentes, é preciso emitir comandos `dotnet` com relação ao aplicativo. 
+
+* Podemos alterar o diretório atual para o diretório do aplicativo como este:
+
+  ``` Console
   cd ConsoleApp.SQLite/
   ```
-
 ## <a name="install-entity-framework-core"></a>Instalar o Entity Framework Core
 
 Para usar o EF Core, instale o pacote do provedor do banco de dados para o qual você deseja direcionar. Este passo a passo usa SQLite. Para obter uma lista de provedores disponíveis, veja [Provedores de Banco de Dados](../../providers/index.md).
@@ -70,7 +77,7 @@ O banco de dados SQLite *blogging.db** está no diretório do projeto.
 
   [!code-csharp[Main](../../../../samples/core/GetStarted/NetCore/ConsoleApp.SQLite/Program.cs)]
 
-* Teste o aplicativo:
+* Teste o aplicativo do console. Veja a [observação do Visual Studio](#vs) para executar o aplicativo do Visual Studio.
 
   `dotnet run`
 
@@ -89,6 +96,20 @@ O banco de dados SQLite *blogging.db** está no diretório do projeto.
 - Se você fizer alterações no modelo, poderá usar o comando `dotnet ef migrations add` para realizar scaffolding de uma nova [migração](https://docs.microsoft.com/aspnet/core/data/ef-mvc/migrations#introduction-to-migrations). Depois de verificar o código após o scaffolding (e fazer as alterações necessárias), é possível usar o comando `dotnet ef database update` para aplicar as alterações do esquema no banco de dados.
 - O EF Core usa uma tabela `__EFMigrationsHistory` no banco de dados para controlar quais migrações já foram aplicadas ao banco de dados.
 - O mecanismo de banco de dados do SQLite não dá suporte a determinadas alterações de esquema que têm suporte na maioria dos outros bancos de dados relacionais. Por exemplo, não há suporte para a operação `DropColumn`. As migrações do EF Core geram código para essas operações. Mas se você tentar aplicá-las a um banco de dados ou gerar um script, o EF Core gerará exceções. Veja [Limitações do SQLite](../../providers/sqlite/limitations.md). Para novos desenvolvimentos, considere descartar o banco de dados e criar um novo em vez de usar migrações quando o modelo for alterado.
+- 
+
+<a name="vs"></a>
+
+### <a name="run-from-visual-studio"></a>Executar usando o Visual Studio
+
+Para executar este exemplo do Visual Studio, você deve definir o diretório de trabalho manualmente para ser a raiz do projeto. Se você não definir o diretório de trabalho, o seguinte `Microsoft.Data.Sqlite.SqliteException` será gerado: `SQLite Error 1: 'no such table: Blogs'`.
+
+Para definir o diretório de trabalho:
+
+* No **Gerenciador de Soluções**, clique com o botão direito do mouse no projeto e selecione **Propriedades**.
+* Selecione a guia **Depurar** no painel esquerdo.
+* Defina o **Diretório de trabalho** como o diretório do projeto.
+* Salve as alterações.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

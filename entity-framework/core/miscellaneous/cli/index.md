@@ -1,45 +1,27 @@
 ---
-title: Referência de Linha de Comando – EF Core
+title: Referência de ferramentas do Entity Framework Core – EF Core
 author: bricelam
 ms.author: bricelam
-ms.date: 11/06/2017
-ms.openlocfilehash: d43b01fc61bb1c9b678e12e41c27d7efe9a59fa5
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.date: 09/19/2018
+uid: core/miscellaneous/cli/index
+ms.openlocfilehash: 9fcb452c2798a3d07e39cbcc3c34629dca4394ff
+ms.sourcegitcommit: ad1bdea58ed35d0f19791044efe9f72f94189c18
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490357"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47447112"
 ---
-<a name="entity-framework-core-tools"></a>Ferramentas do Entity Framework Core
-===========================
-As Ferramentas do Entity Framework Core ajudam durante o desenvolvimento de aplicativos EF Core. Eles são usados principalmente para o scaffold de DbContext e tipos de entidade fazendo engenharia reversa do esquema de um banco de dados e para gerenciar as Migrações.
+# <a name="entity-framework-core-tools-reference"></a>Referência de ferramentas do Entity Framework Core
 
-As [Ferramentas PMC (Console do Gerenciador de Pacotes) do EF Core][1] oferece uma experiência superior no Visual Studio. Execute-as usando o [PMC (Console do Gerenciador de Pacotes)][2] do NuGet. Essas ferramentas funcionam com projetos do .NET Framework e o do .NET Core.
+As ferramentas do Entity Framework Core ajudam com tarefas de desenvolvimento de tempo de design. São usados principalmente para gerenciar Migrações e criar o scaffolding de um `DbContext` e tipos de entidade por engenharia reversa do esquema de um banco de dados.
 
-As [Ferramentas de Linha de Comando do EF Core .NET][3] são uma extensão das [Ferramentas da CLI (Interface de Linha de Comando) do .NET Core][4] que são de multiplaforma e podem ser executadas fora do Visual Studio. Essas ferramentas exigem um projeto de SDK do .NET Core (com `Sdk="Microsoft.NET.Sdk"` ou semelhantes no arquivo de projeto).
+* As [ferramentas do Console do Gerenciador de Pacotes do EF Core](powershell.md)) são executadas no [Console do Gerenciador de Pacotes](https://docs.microsoft.com/nuget/tools/package-manager-console) no Visual Studio. Essas ferramentas funcionam com projetos do .NET Framework e o do .NET Core.
 
-Ambas as ferramentas expõem a mesma funcionalidade. Se você estiver desenvolvendo no Visual Studio, é recomendável usar as Ferramentas de PMC, pois elas oferecem uma experiência mais integrada.
+* As [ferramentas de CLI (interface de linha de comando) do EF Core .NET](dotnet.md) são uma extensão das [ferramentas da CLI do .NET Core](https://docs.microsoft.com/dotnet/core/tools/) multiplataforma. Essas ferramentas exigem um projeto de SDK do .NET Core (com `Sdk="Microsoft.NET.Sdk"` ou semelhantes no arquivo de projeto).
 
-<a name="frameworks"></a>Estruturas
-----------
-As ferramentas são compatíveis com projetos voltados para o .NET Framework ou o .NET Core.
+Ambas as ferramentas expõem a mesma funcionalidade. Se você está desenvolvendo no Visual Studio, é recomendável usar as ferramentas do **Console do Gerenciador de Pacotes**, pois elas oferecem uma experiência mais integrada.
 
-Se você quiser usar uma biblioteca de classes, considere usar uma biblioteca de classes .NET Framework ou .NET Core, se possível. Assim, ocorrerão menos problemas com as ferramentas do .NET. Se, em vez disso, você quiser utilizar uma biblioteca de classes do .NET Standard, será necessário usar um projeto de inicialização que direcione para o .NET Framework ou .NET Core. Desse modo, as ferramentas terão uma plataforma de destino concreta, na qual poderão carregar a biblioteca de classes. Esse projeto de inicialização pode ser fictício, sem nenhum código real – ele só é necessário para fornecer um destino para as ferramentas.
+## <a name="next-steps"></a>Próximas etapas
 
-Se o projeto direcionar para outra estrutura (por exemplo, Plataforma Universal do Windows ou Xamarin), será necessário criar uma biblioteca de classes .NET Standard separada. Nesse caso, siga as diretrizes acima para criar um projeto de inicialização que possa ser usado pelas ferramentas.
-
-<a name="startup-and-target-projects"></a>Inicialização e projetos de destino
----------------------------
-Sempre que você invoca um comando, existem dois projetos envolvidos: o projeto de destino e o projeto de inicialização.
-
-O projeto de destino é aquele ao qual todos os arquivos são adicionados (ou, em alguns casos, removidos).
-
-O projeto de inicialização é aquele emulado pelas ferramentas durante a execução do código do seu projeto.
-
-O projeto de destino e o projeto de inicialização podem ser o mesmo.
-
-
-  [1]: powershell.md
-  [2]: https://docs.microsoft.com/nuget/tools/package-manager-console
-  [3]: dotnet.md
-  [4]: https://docs.microsoft.com/dotnet/core/tools/
+* [Referência de ferramentas do Console do Gerenciador de Pacotes do EF Core](powershell.md)
+* [Referência de ferramentas de CLI do .NET Core EF](dotnet.md)

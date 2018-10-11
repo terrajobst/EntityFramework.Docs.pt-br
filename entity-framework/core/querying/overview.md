@@ -1,15 +1,15 @@
 ---
 title: Como funciona a consulta – EF Core
 author: rowanmiller
-ms.date: 10/27/2016
+ms.date: 09/26/2018
 ms.assetid: de2e34cd-659b-4cab-b5ed-7a979c6bf120
 uid: core/querying/overview
-ms.openlocfilehash: f1c23471bfbc998b2d4f9dc579d1404d6202e109
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 23d26f9c0ac17fc0df744f5339946947ea366911
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993197"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415725"
 ---
 # <a name="how-queries-work"></a>Como funciona a consulta
 
@@ -45,4 +45,4 @@ As operações mais comuns que resultam na consulta que está sendo enviada para
 * Associação de dados de resultados de uma consulta para uma interface de usuário
 
 > [!WARNING]  
-> **Sempre valide a entrada do usuário:** embora o EF forneça proteção contra ataques de injeção de SQL, ele não faz nenhuma validação geral de entrada. Portanto, se os valores forem passados para as APIs, usados em consultas LINQ, atribuídos para propriedades de entidade etc., vindos de uma fonte não confiável, a validação apropriada, de acordo com os requisitos do aplicativo, deverá ser executada. Isso inclui qualquer entrada do usuário usada para construir consultas dinamicamente. Mesmo ao usar o LINQ, se você está aceitando entrada do usuário para criar expressões, precisa para garantir que apenas as expressões pretendidas possam ser criadas.
+> **Sempre validar a entrada do usuário:** enquanto o EF Core protege contra ataques de injeção SQL usando parâmetros e ignorando literais em consultas, ele não valida entradas. Validação apropriada, conforme os requisitos do aplicativo, deve ser executada antes de valores de fontes não confiáveis serem usados em consultas LINQ, atribuídos às propriedades da entidade ou transmitidos para outras APIs do EF Core. Isso inclui qualquer entrada do usuário usada para construir consultas dinamicamente. Mesmo ao usar o LINQ, se você está aceitando entrada do usuário para criar expressões, precisa para garantir que apenas as expressões pretendidas possam ser criadas.
