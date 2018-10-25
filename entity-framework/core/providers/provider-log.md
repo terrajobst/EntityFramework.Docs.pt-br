@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: f5a16e13de7f3b892cfb9b7ecb76e4973c175812
-ms.sourcegitcommit: ae399f9f3d1bae2c446b552247bd3af3ca5a2cf9
+ms.openlocfilehash: a87eca72aa58487415eea11e4f83de1a19e73506
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/04/2018
-ms.locfileid: "48575620"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022331"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -60,3 +60,4 @@ Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamo
   * Sempre configure tipo de coluna para colunas decimais no código gerado por scaffolding em vez de configurar por convenção.
   * Provedores não devem exigir qualquer alteração em seu lado.
 * https://github.com/aspnet/EntityFrameworkCore/pull/13469 -Adiciona CaseExpression para gerar as expressões de caso de SQL
+* https://github.com/aspnet/EntityFrameworkCore/pull/13648 – Adiciona a capacidade de especificar mapeamentos de tipo em SqlFunctionExpression para melhorar a inferência de tipo de repositório de argumentos e os resultados.

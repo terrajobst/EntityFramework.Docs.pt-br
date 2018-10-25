@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f6e35c6d-45b7-4258-be1d-87c1bb67438d
 uid: core/miscellaneous/logging
-ms.openlocfilehash: efc78fbada3c59bf9cf2c4cb694835bb5ad60e76
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 65501b5ac03ae544c51b7fc1a07fa9eea849f1e3
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996999"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022139"
 ---
 # <a name="logging"></a>Registrando em log
 
@@ -18,7 +18,7 @@ ms.locfileid: "42996999"
 
 ## <a name="aspnet-core-applications"></a>Aplicativos ASP.NET Core
 
-O EF Core integra-se automaticamente com os mecanismos de registro em log do ASP.NET Core sempre que `AddDbContext` ou `AddDbContextPool` é usado. Portanto, ao usar o ASP.NET Core, registro em log deve ser configurado conforme descrito na [documentação do ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging?tabs=aspnetcore2x).
+O EF Core integra-se automaticamente com os mecanismos de registro em log do ASP.NET Core sempre que `AddDbContext` ou `AddDbContextPool` é usado. Portanto, ao usar o ASP.NET Core, registro em log deve ser configurado conforme descrito na [documentação do ASP.NET Core](https://docs.microsoft.com/aspnet/core/fundamentals/logging?tabs=aspnetcore2x).
 
 ## <a name="other-applications"></a>Outros aplicativos
 
@@ -54,4 +54,4 @@ Neste exemplo, o log é filtrado para retornar apenas as mensagens:
 
 Para o EF Core, as categorias de agente são definidas no `DbLoggerCategory` classe para torná-lo mais fácil encontrar categorias, mas elas resolvem para cadeias de caracteres simples.
 
-Obter mais detalhes sobre a infraestrutura subjacente do registro em log podem ser encontrados na [documentação de registro em log do ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging?tabs=aspnetcore2x).
+Obter mais detalhes sobre a infraestrutura subjacente do registro em log podem ser encontrados na [documentação de registro em log do ASP.NET Core](https://docs.microsoft.com/aspnet/core/fundamentals/logging?tabs=aspnetcore2x).

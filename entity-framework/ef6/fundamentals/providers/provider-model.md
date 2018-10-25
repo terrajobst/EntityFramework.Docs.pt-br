@@ -3,12 +3,12 @@ title: O modelo de provedor do Entity Framework 6 - EF6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 066832F0-D51B-4655-8BE7-C983C557E0E4
-ms.openlocfilehash: de2e0a24f1b5f67d28cb831491b50d32f45af60a
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: d07a8689fe968bb1512095a59a61abc7ac346a31
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283921"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022318"
 ---
 # <a name="the-entity-framework-6-provider-model"></a>O modelo de provedor do Entity Framework 6
 
@@ -28,13 +28,13 @@ Um provedor do EF realmente é uma coleção de serviços específicos do proved
 
 ### <a name="dbproviderfactory"></a>DbProviderFactory
 
-O EF depende da presença de um tipo derivado [DbProviderFactory](https://msdn.microsoft.com/en-us/library/system.data.common.dbproviderfactory.aspx) para executar todo o acesso de baixo nível do banco de dados. DbProviderFactory não é parte do EF, mas em vez disso, é uma classe no .NET Framework que serve um ponto de entrada para os provedores ADO.NET que pode ser usada pelo EF, outro O/RMs, ou diretamente por um aplicativo para obter as instâncias de conexões, comandos, parâmetros e outras abstrações ADO.NET em um provedor de maneira independente. Para obter mais informações sobre o DbProviderFactory um ser encontrado na [documentação do MSDN para o ADO.NET](https://msdn.microsoft.com/en-us/library/a6cd7c08.aspx).
+O EF depende da presença de um tipo derivado [DbProviderFactory](https://msdn.microsoft.com/library/system.data.common.dbproviderfactory.aspx) para executar todo o acesso de baixo nível do banco de dados. DbProviderFactory não é parte do EF, mas em vez disso, é uma classe no .NET Framework que serve um ponto de entrada para os provedores ADO.NET que pode ser usada pelo EF, outro O/RMs, ou diretamente por um aplicativo para obter as instâncias de conexões, comandos, parâmetros e outras abstrações ADO.NET em um provedor de maneira independente. Para obter mais informações sobre o DbProviderFactory um ser encontrado na [documentação do MSDN para o ADO.NET](https://msdn.microsoft.com/library/a6cd7c08.aspx).
 
 ### <a name="dbproviderservices"></a>DbProviderServices
 
 O EF depende da presença de um tipo derivado de DbProviderServices para fornecer funcionalidade adicional necessária pelo EF sobre a funcionalidade já fornecida pelo provedor ADO.NET. Em versões anteriores do EF, a classe de DbProviderServices fazia parte do .NET Framework e foi encontrada no namespace Common. Começando com o EF6 esta classe agora é parte do EntityFramework e está no namespace System.Data.Entity.Core.Common.
 
-Mais detalhes sobre a funcionalidade fundamental de uma implementação de DbProviderServices podem ser encontrados em [MSDN](https://msdn.microsoft.com/en-us/library/ee789835.aspx). No entanto, observe que a partir da hora de escrever essa informação não é atualizado para o EF6 Embora a maioria dos conceitos ainda é válidas. As implementações do SQL Server e SQL Server Compact de DbProviderServices também são verificadas para o [base de código do código-fonte aberto](https://github.com/aspnet/EntityFramework6/) e pode servir como referências úteis para outras implementações.
+Mais detalhes sobre a funcionalidade fundamental de uma implementação de DbProviderServices podem ser encontrados em [MSDN](https://msdn.microsoft.com/library/ee789835.aspx). No entanto, observe que a partir da hora de escrever essa informação não é atualizado para o EF6 Embora a maioria dos conceitos ainda é válidas. As implementações do SQL Server e SQL Server Compact de DbProviderServices também são verificadas para o [base de código do código-fonte aberto](https://github.com/aspnet/EntityFramework6/) e pode servir como referências úteis para outras implementações.
 
 Em versões anteriores do EF para usar a implementação de DbProviderServices foi obtida diretamente de um provedor ADO.NET. Isso foi feito convertendo DbProviderFactory para IServiceProvider e chamando o método GetService. Esse acoplamento rígido o provedor do EF com o DbProviderFactory. Esse acoplamento bloqueado EF que estão sendo movidos para fora do .NET Framework e, portanto, para o EF6 esse acoplamento rígido foi removido e uma implementação de DbProviderServices agora é registrada diretamente no arquivo de configuração do aplicativo ou em baseado em código configuração, conforme descrito mais detalhadamente os _DbProviderServices registrando_ seção abaixo.
 
