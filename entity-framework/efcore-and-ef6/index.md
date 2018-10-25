@@ -5,12 +5,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
-ms.openlocfilehash: 8568f0a3c6c4585c4fe05508fd610614107c8f66
-ms.sourcegitcommit: 8b42045cd21f80f425a92f5e4e9dd4972a31720b
+ms.openlocfilehash: 0f9f0d4708fa283855eddf2cfc231b37356e413e
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/14/2018
-ms.locfileid: "49315640"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022344"
 ---
 # <a name="compare-ef-core--ef6"></a>Comparar EF Core e EF6
 
@@ -73,7 +73,7 @@ A coluna EF Core indica a versão do produto na qual o recurso apareceu pela pri
 
 ### <a name="querying-data"></a>Consultar dados
 
-| **Recurso                                             | **EF6**  | **EF Core**                           |
+| **Recurso**                                           | **EF6**  | **EF Core**                           |
 |:------------------------------------------------------|:---------|:--------------------------------------|
 | Consultas LINQ                                          | Sim      | 1.0 (em andamento para consultas complexas) |
 | SQL gerado legível                                | Ruim     | 1.0                                   |
@@ -147,7 +147,7 @@ A coluna EF Core indica a versão do produto na qual o recurso apareceu pela pri
 ## <a name="guidance-for-new-applications"></a>Orientação para novos aplicativos
 
 Considere usar o EF Core para um novo aplicativo se as duas condições a seguir forem verdadeiras:
-* O aplicativo precisa das funcionalidades do .NET Core. Para obter mais informações, confira [Escolhendo entre o .NET Core e o .NET Framework para aplicativos de servidor](https://docs.microsoft.com/en-us/dotnet/standard/choosing-core-framework-server).
+* O aplicativo precisa das funcionalidades do .NET Core. Para obter mais informações, confira [Escolhendo entre o .NET Core e o .NET Framework para aplicativos de servidor](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server).
 * O EF Core dá suporte a todos os recursos que o aplicativo requer. Se um recurso desejado estiver ausente, verifique o [Roteiro do EF Core](xref:core/what-is-new/roadmap) para descobrir se há planos para lhe dar suporte no futuro. 
 
 Considere usar o EF6 se as duas condições a seguir forem verdadeiras:
