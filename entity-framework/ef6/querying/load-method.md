@@ -3,12 +3,12 @@ title: O método Load - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 03c5a069-b7b4-455f-a16f-ee3b96cc4e28
-ms.openlocfilehash: 3a0d11552b6bfd8b83f15c58c6cb9f945d9d4536
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: bcea8ab2477f44281cd5de824457a72a84ccc766
+ms.sourcegitcommit: 4a795285004612ac03ab26532ac09ca333cb4c8f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490890"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50123811"
 ---
 # <a name="the-load-method"></a>O método Load
 Há vários cenários em que você talvez queira carregar entidades do banco de dados no contexto sem imediatamente fazer alguma coisa com essas entidades. Um bom exemplo disso é carregar entidades para vinculação de dados, conforme descrito em [dados locais](~/ef6/querying/local-data.md). Uma maneira comum de fazer isso é escrever uma consulta LINQ e, em seguida, chamar ToList nela, apenas para descartar imediatamente a lista criada. O método de extensão de carga funciona como ToList, exceto que evita completamente a criação da lista.  
@@ -40,7 +40,7 @@ using (var context = new BloggingContext())
     context.Entry(blog)
         .Collection(b => b.Posts)
         .Query()
-        .Where(p => p.Tags.Contains("entity-framework")
+        .Where(p => p.Tags.Contains("entity-framework"))
         .Load();
 }
 ```  
