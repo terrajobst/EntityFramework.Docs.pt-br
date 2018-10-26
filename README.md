@@ -1,14 +1,11 @@
+## <a name="microsoft-open-source-code-of-conduct"></a>Código de Conduta de Código-fonte da Microsoft
 
-# Contributing
+Este projeto adotou o [Código de Conduta de Código-fonte da Microsoft](https://opensource.microsoft.com/codeofconduct/).
+Para obter mais informações, consulte as [Perguntas frequentes sobre o Código de Conduta](https://opensource.microsoft.com/codeofconduct/faq/) ou contate [opencode@microsoft.com](mailto:opencode@microsoft.com) com outras perguntas ou comentários.
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+<a name="entity-framework-docs"></a>Documentação do Entity Framework
+=====================
 
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+Este projeto fornece a fonte para [docs.microsoft.com/ef](https://docs.microsoft.com/ef/).
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+**Aceitamos solicitações pull!** No entanto, antes de enviar uma solicitação pull, [leia as diretrizes de COLABORAÇÃO](CONTRIBUTING.md), que incluem informações sobre como criar os documentos localmente, bem como orientações sobre estilo e organizacionais.
