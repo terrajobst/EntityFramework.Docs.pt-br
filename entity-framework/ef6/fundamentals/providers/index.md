@@ -3,12 +3,12 @@ title: Provedores do Entity Framework – EF6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 7BFB7763-CD6C-4520-93A2-7B265F5FA586
-ms.openlocfilehash: c9afb32caeeef5111b32251c62019460b62f48b3
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 0cfe6c30d6533b0207f78a031d342847a7f68632
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489434"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022217"
 ---
 # <a name="entity-framework-6-providers"></a>Provedores do Entity Framework 6
 > [!NOTE]
@@ -68,7 +68,7 @@ O "tipo" desse registro é o nome qualificado pelo assembly do tipo de provedor 
 
 ### <a name="code-based-registration"></a>Registro baseado em código
 
-Começando com o Entity Framework 6, a configuração de todo o aplicativo para o EF pode ser especificada no código. Para obter os detalhes completos, consulte _[Configuração baseada em código do Entity Framework](https://msdn.microsoft.com/en-us/data/jj680699)_. A maneira normal de registrar um provedor do EF usando a configuração baseada em código é criar uma nova classe derivada de System.Data.Entity.DbConfiguration e colocá-la no mesmo assembly que a classe DbContext. A classe DbConfiguration deve, então, registrar o provedor em seu construtor. Por exemplo, para registrar o provedor do SQL Compact, a classe DbConfiguration esta aparência:
+Começando com o Entity Framework 6, a configuração de todo o aplicativo para o EF pode ser especificada no código. Para obter os detalhes completos, consulte _[Configuração baseada em código do Entity Framework](https://msdn.microsoft.com/data/jj680699)_. A maneira normal de registrar um provedor do EF usando a configuração baseada em código é criar uma nova classe derivada de System.Data.Entity.DbConfiguration e colocá-la no mesmo assembly que a classe DbContext. A classe DbConfiguration deve, então, registrar o provedor em seu construtor. Por exemplo, para registrar o provedor do SQL Compact, a classe DbConfiguration esta aparência:
 
 ``` csharp
     public class MyConfiguration : DbConfiguration

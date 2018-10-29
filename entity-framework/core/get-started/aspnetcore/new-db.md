@@ -5,12 +5,12 @@ ms.author: riande
 ms.date: 08/03/2018
 ms.assetid: e153627f-f132-4c11-b13c-6c9a607addce
 uid: core/get-started/aspnetcore/new-db
-ms.openlocfilehash: 803b0b71b2a2093432d76bc159875d65ab379b9a
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 2248c60045a914c902f1c958a86c69b283abd722
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489279"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022230"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>Introdução ao EF Core no ASP.NET Core com um novo banco de dados
 
@@ -72,11 +72,11 @@ Aviso: se você usar **Contas de Usuário Individuais** em vez de **Nenhum** par
 
 ## <a name="install-entity-framework-core"></a>Instalar o Entity Framework Core
 
-Para instalar o EF Core, instale o pacote dos provedores do banco de dados do EF Core para o qual você deseja direcionar. Para obter uma lista de provedores disponíveis, veja [Provedores de Banco de Dados](../../providers/index.md). 
+Para instalar o EF Core, instale o pacote dos provedores do banco de dados do EF Core para o qual você deseja direcionar. Para obter uma lista de provedores disponíveis, veja [Provedores de Banco de Dados](../../providers/index.md).
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Para este tutorial, não é necessário instalar um pacote de provedor, porque o tutorial usa o SQL Server. O pacote de provedor do SQL Server está incluído no [metapacote Microsoft.AspnetCore.App](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/metapackage-app?view=aspnetcore-2.1).
+Para este tutorial, não é necessário instalar um pacote de provedor, porque o tutorial usa o SQL Server. O pacote de provedor do SQL Server está incluído no [metapacote Microsoft.AspnetCore.App](https://docs.microsoft.com/aspnet/core/fundamentals/metapackage-app?view=aspnetcore-2.1).
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
@@ -144,7 +144,7 @@ Um aplicativo normalmente colocaria a cadeia de conexão em um arquivo de config
 
 ## <a name="create-the-database"></a>Criar o banco de dados
 
-As etapas a seguir usam [migrações](https://docs.microsoft.com/aspnet/core/data/ef-mvc/migrations#introduction-to-migrations) para criar um banco de dados.
+As etapas a seguir usam [migrações](xref:core/managing-schemas/migrations/index) para criar um banco de dados.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -192,7 +192,7 @@ Gere um controlador e os modos de exibição para a entidade `Blog`.
   dotnet tool install -g dotnet-aspnet-codegenerator
   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
   dotnet restore
-  dotnet aspnet-codegenerator controller -name BlogsController -m Blog -dc BloggingContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
+  dotnet aspnet-codegenerator controller -name BlogsController -m Blog -dc BloggingContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
   Os comandos `tool install` e `add package` instalam as ferramentas que podem realizar o scaffolding de controladores e exibições. O `restore` comando garante que todos os pacotes do projeto foram baixados e o `aspnet-codegenerator` comando realiza o scaffolding.
@@ -228,7 +228,6 @@ dotnet run
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [EF – Novo banco de dados com SQLite](xref:core/get-started/netcore/new-db-sqlite) – um tutorial EF de console de plataforma cruzada.
-* [Introdução ao ASP.NET Core MVC no Mac ou Linux](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-xplat/index)
-* [Introdução ao ASP.NET Core MVC com o Visual Studio](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/index)
-* [Introdução ao ASP.NET Core e ao Entity Framework Core usando o Visual Studio](https://docs.microsoft.com/aspnet/core/data/ef-mvc/index)
+* [Tutorial: Introdução ao EF Core no .NET Core com um novo banco de dados usando o SQLite](xref:core/get-started/netcore/new-db-sqlite)
+* [Tutorial: introdução ao Razor Pages no ASP.NET Core](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start)
+* [Tutorial: Razor Pages com o Entity Framework Core no ASP.NET Core](https://docs.microsoft.com/aspnet/core/data/ef-rp/intro)

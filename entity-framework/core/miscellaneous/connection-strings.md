@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: aeb0f5f8-b212-4f89-ae83-c642a5190ba0
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: 942865effba7b491dd950886ea30b69a86f1186c
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 7bb39d260f700e5087673e92a50377dc68151710
+ms.sourcegitcommit: 85ccc9ed42d4aaf7525c6312058c5c9ebdaed3ae
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997665"
+ms.lasthandoff: 10/27/2018
+ms.locfileid: "50191336"
 ---
 # <a name="connection-strings"></a>Cadeias de caracteres de conexão
 
@@ -77,7 +77,7 @@ No ASP.NET Core, o sistema de configuração é muito flexível e a cadeia de ca
 }
 ```
 
-O contexto é normalmente configurado no `Startup.cs` com a cadeia de caracteres de conexão que está sendo lida da configuração. Observe a `GetConnectionString()` método procura um valor de configuração cuja chave é `ConnectionStrings:<connection string name>`.
+O contexto é normalmente configurado no `Startup.cs` com a cadeia de caracteres de conexão que está sendo lida da configuração. Observe a `GetConnectionString()` método procura um valor de configuração cuja chave é `ConnectionStrings:<connection string name>`. Você precisa importar o [Extensions](https://docs.microsoft.com/dotnet/api/microsoft.extensions.configuration) namespace para usar esse método de extensão.
 
 ``` csharp
 public void ConfigureServices(IServiceCollection services)
