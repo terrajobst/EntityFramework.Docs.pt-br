@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: 393349c05ffaf42c6d2520e73abce23def6becc0
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: f5a9ae17471391442170d8c40264e4db6922cb08
+ms.sourcegitcommit: 39080d38e1adea90db741257e60dc0e7ed08aa82
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995932"
+ms.lasthandoff: 11/03/2018
+ms.locfileid: "50979996"
 ---
 # <a name="configuring-a-dbcontext"></a>Configurar um DbContext
 
@@ -25,7 +25,7 @@ Embora qualquer padrão que fornece informações de configuração necessárias
 
 `DbContext` deve ter uma instância de `DbContextOptions` para realizar qualquer trabalho. O `DbContextOptions` instância carrega as informações de configuração, como:
 
-- O provedor de banco de dados a ser usado, normalmente selecionado ao invocar um método como `UseSqlServer` ou `UseSqlite`
+- O provedor de banco de dados a ser usado, normalmente selecionado ao invocar um método como `UseSqlServer` ou `UseSqlite`. Esses métodos de extensão exigem o pacote correspondente do provedor, como `Microsoft.EntityFrameworkCore.SqlServer` ou `Microsoft.EntityFrameworkCore.Sqlite`. Os métodos são definidos na `Microsoft.EntityFrameworkCore` namespace.
 - Qualquer cadeia de caracteres de conexão necessárias ou o identificador da instância do banco de dados, normalmente passado como um argumento para o método de seleção de provedor mencionado acima
 - Seletores qualquer comportamento opcional do nível de provedor, normalmente também encadeadas dentro da chamada para o método de seleção de provedor
 - Qualquer gerais seletores de comportamento do EF Core, encadeados normalmente depois ou antes que o método de seletor de provedor
