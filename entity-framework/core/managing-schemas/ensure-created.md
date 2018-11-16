@@ -2,24 +2,24 @@
 title: Criar e remover APIs – EF Core
 author: bricelam
 ms.author: bricelam
-ms.date: 11/10/2017
-ms.openlocfilehash: 336f6fd655603a2474a58dfef377e121d9b04c3a
-ms.sourcegitcommit: a088421ecac4f5dc5213208170490181ae2f5f0f
+ms.date: 11/7/2018
+ms.openlocfilehash: 40d9e3aa0aba1bf2bc341f01dd815ed7cb7b48fa
+ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "51285633"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "51688623"
 ---
 # <a name="create-and-drop-apis"></a>Criar e remover APIs
 
-Os métodos EnsureCreated e EnsureDeleted fornecem uma alternativa leve para [migrações](migrations/index.md) para gerenciar o esquema de banco de dados. Isso é útil em cenários quando os dados são transitórios e podem ser descartados quando o esquema é alterado. Por exemplo durante a criação de protótipos, testes ou para caches locais.
+Os métodos EnsureCreated e EnsureDeleted fornecem uma alternativa leve para [migrações](migrations/index.md) para gerenciar o esquema de banco de dados. Esses métodos são úteis em cenários quando os dados são transitórios e podem ser descartados quando o esquema é alterado. Por exemplo durante a criação de protótipos, testes ou para caches locais.
 
-Alguns provedores (especialmente os não-relacional) não dão suporte a migrações. Nesses casos, EnsureCreated costuma ser a maneira mais fácil para inicializar o esquema de banco de dados.
+Alguns provedores (especialmente os não-relacional) não dão suporte a migrações. Para esses provedores, EnsureCreated costuma ser a maneira mais fácil para inicializar o esquema de banco de dados.
 
 > [!WARNING]
 > Migrações e EnsureCreated não funcionam bem juntos. Se você estiver usando as migrações, não use EnsureCreated para inicializar o esquema.
 
-A transição de EnsureCreated para migrações não é uma experiência perfeita. A maneira simpelest para conseguir isso é remover o banco de dados e recriá-lo usando as migrações. Se você antecipar o uso de migrações no futuro, é melhor começar com as migrações em vez de usar EnsureCreated.
+A transição de EnsureCreated para migrações não é uma experiência perfeita. A maneira mais simples de fazê-lo é remover o banco de dados e recriá-lo usando as migrações. Se você antecipar o uso de migrações no futuro, é melhor começar com as migrações em vez de usar EnsureCreated.
 
 ## <a name="ensuredeleted"></a>EnsureDeleted
 

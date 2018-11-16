@@ -5,12 +5,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
-ms.openlocfilehash: 0f9f0d4708fa283855eddf2cfc231b37356e413e
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: d5fe9b388707f653fdeb2d6a5daa7215ced71c1d
+ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022344"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "51688713"
 ---
 # <a name="compare-ef-core--ef6"></a>Comparar EF Core e EF6
 
@@ -57,7 +57,7 @@ A coluna EF Core indica a versão do produto na qual o recurso apareceu pela pri
 | Geração de chaves: Banco de dados                              | Sim      | 1.0                                   |
 | Geração de chaves: Cliente                                |          | 1.0                                   |
 | Tipos complexos/de propriedade                                   | Sim      | 2.0                                   |
-| Dados espaciais                                          | Sim      |                                       |
+| Dados espaciais                                          | Sim      | 2.2                                   |
 | Visualização gráfica do modelo                      | Sim      |                                       |
 | Editor de gráfico de modelo                                | Sim      |                                       |
 | Formato de modelo: Código                                    | Sim      | 1.0                                   |
