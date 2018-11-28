@@ -3,12 +3,12 @@ title: API Fluent - Configurando e mapeamento de tipos e propriedades - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 648ed274-c501-4630-88e0-d728ab5c4057
-ms.openlocfilehash: 031376d2fc4778e6f0fa2434ab7ccfd45d436c4a
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 7371cc99142ccf8fc6bea237d7d58d1e67fcecec
+ms.sourcegitcommit: 75f8a179ac9a70ad390fc7ab2a6c5e714e701b8b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490164"
+ms.lasthandoff: 11/27/2018
+ms.locfileid: "52339797"
 ---
 # <a name="fluent-api---configuring-and-mapping-properties-and-types"></a>API Fluent - Configurando e mapeamento de tipos e propriedades
 Ao trabalhar com o Entity Framework Code First o comportamento padrão é mapear suas classes POCO para tabelas usando um conjunto de convenções integradas ao EF. Às vezes, no entanto, você não pode ou não deseja siga essas convenções e precisa mapear entidades para algo que não seja o que ditam as convenções.  
@@ -24,7 +24,7 @@ A API fluente do code first é acessada com mais frequência, substituindo o [On
 Começando com o EF6, você pode usar o método HasDefaultSchema em DbModelBuilder para especificar o esquema de banco de dados a ser usado para todas as tabelas, procedimentos armazenados, etc. Essa configuração padrão será substituída para todos os objetos que você definir explicitamente um esquema diferente para.  
 
 ``` csharp
-modelBuilder.HasDefaultSchema(“sales”);
+modelBuilder.HasDefaultSchema("sales");
 ```  
 
 ### <a name="custom-conventions-ef6-onwards"></a>Convenções personalizadas (EF6 em diante)  
