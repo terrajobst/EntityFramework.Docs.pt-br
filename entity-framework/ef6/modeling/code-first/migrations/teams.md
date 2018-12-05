@@ -3,12 +3,12 @@ title: Migrações do Code First em ambientes de equipe - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 4c2d9a95-de6f-4e97-9738-c1f8043eff69
-ms.openlocfilehash: f5216a80928625040d6719f0e97ae786e5e33e05
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 53460b6cdd454099ccf93b4e2133e4ea21278a64
+ms.sourcegitcommit: fa863883f1193d2118c2f9cee90808baa5e3e73e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490500"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52857462"
 ---
 # <a name="code-first-migrations-in-team-environments"></a>Migrações do Code First em ambientes de equipe
 > [!NOTE]
@@ -82,7 +82,7 @@ Há inúmeros motivos que EF mantém o instantâneo em torno do modelo:
     -   Você deseja adicionar um Inserted e atualizada a coluna a um ou mais de suas tabelas, mas você não deseja incluir essas colunas no modelo do EF. Se as migrações examinou o banco de dados que ele continuamente tentar descartar essas colunas sempre gerada por scaffolding uma migração. Usando o modelo de instantâneo, EF só irá detectar alterações legítimas para o modelo.
     -   Você deseja alterar o corpo de um procedimento armazenado usado para atualizações para incluir algum registro em log. Se as migrações observou esse procedimento armazenado do banco de dados ele seria continuamente tente e redefini-la de volta para a definição de espera do EF. Ao usar o instantâneo do modelo, o EF só irá dar suporte código para alterar o procedimento armazenado, quando você altera a forma do procedimento no modelo do EF.
     -   Esses mesmos princípios se aplicam a adição de índices adicionais, incluindo as tabelas adicionais no banco de dados, mapeando o EF para uma exibição de banco de dados que se encontra em uma tabela, etc.
--   O modelo do EF contém mais do que apenas a forma do banco de dados. Todo o modelo permite que as migrações, examine informações sobre as propriedades e classes no seu modelo e como eles são mapeados para as tabelas e colunas. Essas informações permitem que as migrações ser mais inteligente no código que ele usa o Scaffold. Por exemplo, se você alterar o nome da coluna que uma propriedade é mapeada para migrações pode detectar a renomeação por ver que é a mesma propriedade – algo que não pode ser feito se você tiver apenas o esquema de banco de dados. 
+-   O modelo do EF contém mais do que apenas a forma do banco de dados. Todo o modelo permite que as migrações, examine informações sobre as propriedades e classes no seu modelo e como eles são mapeados para as tabelas e colunas. Essas informações permitem que as migrações ser mais inteligente no código que ele usa o Scaffold. Por exemplo, se você alterar o nome da coluna que uma propriedade é mapeada para migrações pode detectar a renomeação por ver que é a mesma propriedade – algo que não pode ser feito se você tiver apenas o esquema de banco de dados. 
 
 ## <a name="what-causes-issues-in-team-environments"></a>O que causa problemas em ambientes de equipe
 
@@ -109,7 +109,7 @@ Ele é um dia de sorte para desenvolvedor \#1 conforme acontecem enviar suas alt
 
 ![Enviar](~/ef6/media/submit.png)
 
-Agora é hora de desenvolvedor \#2 para enviar. Eles não tiveram tanta sorte. Porque alguém enviou as alterações, pois eles sincronizados, precisará puxar as alterações e mesclagem. O sistema de controle do código-fonte provavelmente será capaz de mesclar automaticamente as alterações no nível do código, pois são muito simples. O estado do desenvolvedor \#2 local do repositório após a sincronização é ilustrada no gráfico a seguir. 
+Agora é hora de desenvolvedor \#2 para enviar. Eles não tiveram tanta sorte. Porque alguém enviou as alterações, pois eles sincronizados, precisará puxar as alterações e mesclagem. O sistema de controle do código-fonte provavelmente será capaz de mesclar automaticamente as alterações no nível do código, pois são muito simples. O estado do desenvolvedor \#2 local do repositório após a sincronização é ilustrada no gráfico a seguir. 
 
 ![Pull](~/ef6/media/pull.png)
 
@@ -140,8 +140,7 @@ O processo a seguir pode ser usado para essa abordagem, a partir do momento em q
 1.  Certifique-se de que as alterações do modelo pendentes em sua base de código local tem sido escritas para uma migração. Essa etapa garante que você não perca quaisquer alterações legítimas quando chega o momento para gerar a migração em branco.
 2.  Sincronizar com o controle de origem.
 3.  Execute **Update-Database** para aplicar quaisquer migrações novo que outros desenvolvedores tem check-in.
-    **
-    *Observação: * * * se você não obtém todos os avisos do comando Update-Database não havia nenhuma nova migração de outros desenvolvedores e não é necessário para executar qualquer ainda mais a mesclagem.*
+    **_Observação:_**  *se você não obtém todos os avisos do comando Update-Database não havia nenhuma nova migração de outros desenvolvedores e não é necessário para executar qualquer ainda mais a mesclagem.*
 4.  Execute **Add-Migration &lt;escolher\_um\_nome&gt; – IgnoreChanges** (por exemplo, **Add-Migration mesclar – IgnoreChanges**). Isso gera uma migração com todos os metadados (incluindo um instantâneo do modelo atual), mas ignorará todas as alterações que ele detecta ao comparar os modelos atuais para o instantâneo nas migrações último (que significa que você obtenha um espaço em branco **backup** e **Para baixo** método).
 5.  Continuar a desenvolver ou envie ao controle de origem (depois de executar seu testes de unidade é claro).
 
@@ -162,14 +161,11 @@ O processo a seguir pode ser usado para essa abordagem, a partir do momento em q
 1.  Certifique-se de que as alterações do modelo pendentes em sua base de código local tem sido escritas para uma migração. Essa etapa garante que você não perca quaisquer alterações legítimas quando chega o momento para gerar a migração em branco.
 2.  Sincronizar com o controle do código-fonte.
 3.  Execute **Update-Database** para aplicar quaisquer migrações novo que outros desenvolvedores tem check-in.
-    **
-    *Observação: * * * se você não obtém todos os avisos do comando Update-Database não havia nenhuma nova migração de outros desenvolvedores e não é necessário para executar qualquer ainda mais a mesclagem.*
+    **_Observação:_**  *se você não obtém todos os avisos do comando Update-Database não havia nenhuma nova migração de outros desenvolvedores e não é necessário para executar qualquer ainda mais a mesclagem.*
 4.  Execute **Update-Database – TargetMigration &lt;segundo\_última\_migração&gt;**  (o exemplo estamos vem acompanhando, isso seria **Update-Database – TargetMigration AddRating**). Essa migração – efetivamente 'não aplicável' da última funções de banco de dados de volta para o estado do segundo a última migração do banco de dados.
-    **
-    *Observação: * * * esta etapa é necessária para torná-lo seguro editar os metadados da migração, pois os metadados também são armazenados na \_ \_MigrationsHistoryTable do banco de dados. É por isso você só deve usar essa opção se a última migração só estiver em sua base de código local. Se outros bancos de dados tinham a última migração aplicada você também teria revertê-las e aplicar novamente a última migração para atualizar os metadados.* 
+    **_Observação:_**  *essa etapa é necessária para torná-lo seguro editar os metadados da migração, pois os metadados também são armazenados na \_ \_MigrationsHistoryTable do banco de dados. É por isso você só deve usar essa opção se a última migração só estiver em sua base de código local. Se outros bancos de dados tinham a última migração aplicada você também teria revertê-las e aplicar novamente a última migração para atualizar os metadados.* 
 5.  Execute **Add-Migration &lt;completa\_nome\_incluindo\_timestamp\_de\_última\_migração** &gt; (no exemplo podemos vem acompanhando isso seria algo como **Add-Migration 201311062215252\_AddReaders**).
-    **
-    *Observação: * * * você precisa incluir o carimbo de hora para que as migrações Saiba que você deseja editar a migração existente em vez de gerar automaticamente um novo.*
+    **_Observação:_**  *você precisa incluir o carimbo de hora para que as migrações Saiba que você deseja editar a migração existente em vez de gerar automaticamente um novo.*
     Isso atualizará os metadados para a última migração coincidir com o modelo atual. Você obterá o seguinte aviso quando o comando for concluído, mas é exatamente o que você deseja. "*Somente o código de Designer para a migração ' 201311062215252\_'AddReaders foi gerado por scaffolding novamente. Para a migração de toda o scaffold novamente, use o parâmetro - Force. "*
 6.  Execute **Update-Database** aplicar novamente a migração mais recente com os metadados atualizados.
 7.  Continuar a desenvolver ou envie ao controle de origem (depois de executar seu testes de unidade é claro).
