@@ -4,12 +4,12 @@ author: anpete
 ms.date: 02/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 uid: core/modeling/query-types
-ms.openlocfilehash: 3328082dbc62aa80eb5fb29d2e57df1eef248d1f
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: cb391343e6f24092ae0874003c0ef2935dd4e03f
+ms.sourcegitcommit: 8dd71a57a01c439431164c163a0722877d0e5cd8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489486"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53028174"
 ---
 # <a name="query-types"></a>Tipos de consulta
 > [!NOTE]
@@ -56,28 +56,28 @@ Mapeando um tipo de consulta para um objeto de banco de dados é feito usando o 
 O exemplo a seguir mostra como usar o tipo de consulta para consultar uma exibição de banco de dados.
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFrameworkCore/tree/master/samples/QueryTypes) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/QueryTypes) deste artigo no GitHub.
 
 Primeiro, definimos um modelo simples de Blog e Post:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#Entities)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#Entities)]
 
 Em seguida, definimos uma exibição de banco de dados simples que nos permitirá consultar o número de postagens associada a cada blog:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#View)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#View)]
 
 Em seguida, definimos uma classe para manter o resultado da exibição do banco de dados:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#QueryType)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#QueryType)]
 
 Em seguida, configuramos o tipo de consulta no _OnModelCreating_ usando o `modelBuilder.Query<T>` API.
 Podemos usar APIs padrão de configuração fluente para configurar o mapeamento para o tipo de consulta:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#Configuration)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#Configuration)]
 
 Por fim, é possível consultar a exibição de banco de dados da maneira padrão:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#Query)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#Query)]
 
 > [!TIP]
 > Observe que também definimos uma propriedade de consulta de nível de contexto (DbQuery) para atuar como uma raiz para consultas em relação a esse tipo.
