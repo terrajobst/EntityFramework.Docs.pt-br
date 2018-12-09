@@ -3,12 +3,12 @@ title: Filtros de consulta global – EF Core
 author: anpete
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: 73efe62262cf45cc1841d7a86cf59249cf07c5ea
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 201292a440d37d240f31452eaebb23dcd4aee1a6
+ms.sourcegitcommit: 8dd71a57a01c439431164c163a0722877d0e5cd8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996659"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53028161"
 ---
 # <a name="global-query-filters"></a>Filtros de consulta global
 
@@ -22,17 +22,17 @@ Os filtros de consulta global são predicados de consulta LINQ (uma expressão b
 O exemplo a seguir mostra como usar filtros de consulta global para implementar a exclusão reversível e comportamentos de consulta de multilocação em um modelo simples de blogs.
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFrameworkCore/tree/master/samples/QueryFilters) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/QueryFilters) deste artigo no GitHub.
 
 Primeiro, defina as entidades:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#Entities)]
+[!code-csharp[Main](../../../samples/core/QueryFilters/Program.cs#Entities)]
 
 Observe a declaração de um campo __tenantId_ na entidade _Blog_. Isso será usado para associar cada instância de Blog a um locatário específico. Também definido é uma propriedade _IsDeleted_ no tipo de entidade _Post_. Isso é usado para controlar se uma instância _Post_ foi "excluída de maneira reversível". Ou seja, a instância está marcada como excluída sem remover fisicamente os dados subjacentes.
 
 Em seguida, configure os filtros de consulta no _OnModelCreating_ usando a API ```HasQueryFilter```.
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#Configuration)]
+[!code-csharp[Main](../../../samples/core/QueryFilters/Program.cs#Configuration)]
 
 As expressões de predicado passadas para as chamadas _HasQueryFilter_ agora serão automaticamente aplicadas a quaisquer consultas LINQ para esses tipos.
 
@@ -43,7 +43,7 @@ As expressões de predicado passadas para as chamadas _HasQueryFilter_ agora ser
 
 Os filtros podem ser desabilitados para consultas LINQ individuais usando o operador ```IgnoreQueryFilters()```.
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#IgnoreFilters)]
+[!code-csharp[Main](../../../samples/core/QueryFilters/Program.cs#IgnoreFilters)]
 
 ## <a name="limitations"></a>Limitações
 
