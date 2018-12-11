@@ -4,16 +4,16 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 21cb688d6775039def3b0be12768da71b5d96531
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 0ad9731840c5f72064f2f66932b9867a0144f437
+ms.sourcegitcommit: 2da6f9b05e1ce3a46491e5cc68f17758bdeb6b02
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997135"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53006863"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
-O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional. Isso pode ser útil se a consulta que você deseja realizar não puder ser expressa usando o LINQ ou se o uso de uma consulta do LINQ estiver resultando no envio de um SQL ineficiente para o banco de dados. Consultas SQL brutas podem retornar tipos de entidade ou, a partir do EF Core 2.1, [tipos de consulta](xref:core/modeling/query-types) que fazem parte do seu modelo.
+O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional. Isso pode ser útil quando a consulta que você deseja realizar não pode ser expressa usando o LINQ ou quando o uso de uma consulta do LINQ resulta em consultas SQL ineficientes. Consultas SQL brutas podem retornar tipos de entidade ou, a partir do EF Core 2.1, [tipos de consulta](xref:core/modeling/query-types) que fazem parte do seu modelo.
 
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
@@ -88,13 +88,13 @@ Você também pode construir um DbParameter e fornecê-lo como valor de parâmet
 var user = new SqlParameter("user", "johndoe");
 
 var blogs = context.Blogs
-    .FromSql("EXECUTE dbo.GetMostPopularBlogsForUser @user", user)
+    .FromSql("EXECUTE dbo.GetMostPopularBlogsForUser @user", user)
     .ToList();
 ```
 
 ## <a name="composing-with-linq"></a>Como compor com o LINQ
 
-Se a consulta SQL puder ser composta no banco de dados, é possível compor com base na consulta SQL bruta inicial usando os operadores LINQ. As consultas SQL que podem ser compostas com a palavra-chave `SELECT`.
+Se a consulta SQL puder ser composta no banco de dados, é possível compor com base na consulta SQL bruta inicial usando os operadores LINQ. As consultas SQL que podem ser compostas começam com a palavra-chave `SELECT`.
 
 O exemplo a seguir usa uma consulta SQL bruta que é selecionada de uma Função com Valor de Tabela (TVF) e compõe com base nela usando o LINQ para filtrar e classificar.
 
@@ -118,8 +118,8 @@ A composição com operadores LINQ pode ser usada para incluir dados relacionado
 var searchTerm = ".NET";
 
 var blogs = context.Blogs
-    .FromSql($"SELECT * FROM dbo.SearchBlogs({searchTerm})")
-    .Include(b => b.Posts)
+    .FromSql($"SELECT * FROM dbo.SearchBlogs({searchTerm})")
+    .Include(b => b.Posts)
     .ToList();
 ```
 
