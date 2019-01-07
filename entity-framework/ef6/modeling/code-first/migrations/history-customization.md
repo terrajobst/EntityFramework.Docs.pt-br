@@ -3,12 +3,12 @@ title: Personalizando a tabela de histórico de migrações - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: ed5518f0-a9a6-454e-9e98-a4fa7748c8d0
-ms.openlocfilehash: e3faefc4b812ec4bc440ed2bb48747053d8cb1b3
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: eb19f367611a86f685557a6741a5f2f0bad6b718
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283687"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058741"
 ---
 # <a name="customizing-the-migrations-history-table"></a>Personalizando a tabela de histórico de migrações
 > [!NOTE]
@@ -19,7 +19,7 @@ ms.locfileid: "46283687"
 
 ## <a name="what-is-migrations-history-table"></a>O que é a tabela de histórico de migrações?
 
-Tabela de histórico de migrações é uma tabela usada pelo migrações do Code First para armazenar detalhes sobre a migração aplicada ao banco de dados. Por padrão é o nome da tabela no banco de dados \_ \_MigrationHistory e ele é criado ao aplicar o primeiro faça de migração do banco de dados. No Entity Framework 5 desta tabela era uma tabela do sistema se o aplicativo usado o banco de dados do Microsoft Sql Server. Isso mudou no Entity Framework 6 no entanto, e a tabela de histórico de migrações não está marcado como uma tabela do sistema.
+Tabela de histórico de migrações é uma tabela usada pelo migrações do Code First para armazenar detalhes sobre a migração aplicada ao banco de dados. Por padrão é o nome da tabela no banco de dados \_ \_MigrationHistory e ele é criado ao aplicar a primeira migração para o banco de dados. No Entity Framework 5 desta tabela era uma tabela do sistema se o aplicativo usado o banco de dados do Microsoft Sql Server. Isso mudou no Entity Framework 6 no entanto, e a tabela de histórico de migrações não está marcado como uma tabela do sistema.
 
 ## <a name="why-customize-migrations-history-table"></a>Por que personalizar a tabela de histórico de migrações?
 
@@ -43,7 +43,7 @@ Primeiro, você precisará criar uma classe derivada da classe System.Data.Entit
 >[!NOTE]
 > Normalmente, quando você configura os modelos do EF não precisa chamar base. OnModelCreating () do método OnModelCreating substituído, pois o DbContext.OnModelCreating() tem corpo vazio. Isso não é o caso ao configurar a tabela de histórico de migrações. Nesse caso, a primeira coisa a fazer em sua substituição OnModelCreating () é, na verdade, chamar base. OnModelCreating (). Isso irá configurar a tabela de histórico de migrações da maneira padrão que você ajustá-la no método de substituição.
 
-Digamos que você deseja renomear a tabela de histórico de migrações e colocá-lo a um esquema personalizado chamado "admin". Além disso seu DBA que você renomeie a coluna MigrationId para migração\_ID.  Você pode fazer isso criando a seguinte classe derivada de HistoryContext:
+Digamos que você deseja renomear a tabela de histórico de migrações e colocá-lo a um esquema personalizado chamado "admin". Além disso seu DBA que você renomeie a coluna MigrationId para migração\_ID.  Você pode fazer isso criando a seguinte classe derivada de HistoryContext:
 
 ``` csharp
     using System.Data.Common;

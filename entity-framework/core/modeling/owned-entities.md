@@ -5,12 +5,12 @@ ms.author: ansvyryd
 ms.date: 02/26/2018
 ms.assetid: 2B0BADCE-E23E-4B28-B8EE-537883E16DF3
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 58da3b6b951b3fa4aa04ec75f5759555c1f0cde5
-ms.sourcegitcommit: 39080d38e1adea90db741257e60dc0e7ed08aa82
+ms.openlocfilehash: fe7e07b8bd483fb3f9b672ee78ef7541f06a21a4
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/03/2018
-ms.locfileid: "50980022"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058767"
 ---
 # <a name="owned-entity-types"></a>Tipos de entidade própria
 
@@ -50,7 +50,7 @@ Para entender como o EF Core controla esses objetos, é útil pensar que uma cha
 ## <a name="collections-of-owned-types"></a>Coleções de tipos próprios
 
 >[!NOTE]
-> Esse recurso é novo no EF Core 2.2.
+> Este recurso é novo no EF Core 2.2.
 
 Para configurar uma coleção de tipos próprios `OwnsMany` deve ser usado em `OnModelCreating`. No entanto a chave primária não será configurada por convenção, portanto, ela precisa ser especificado explicitamente. É comum usar uma chave complexa para esses tipos de entidades, incorporando a chave estrangeira para o proprietário e uma propriedade adicional exclusiva que também pode estar no estado de sombra:
 
@@ -126,4 +126,4 @@ Algumas dessas limitações são fundamentais para o trabalho de tipos de entida
 
 ### <a name="shortcomings-in-previous-versions"></a>Limitações nas versões anteriores
 - No EF Core 2.0, de propriedade navegações para tipos de entidade não podem ser declarados em tipos de entidade derivada, a menos que as entidades de propriedade estejam explicitamente mapeadas em uma tabela diferente da hierarquia de proprietário. Essa limitação foi removida no EF Core 2.1
-- En EF Core 2.0 e 2.1 única referência navegações para tipos próprios tinham suporte. Essa limitação foi removida no EF Core 2.2
+- No EF Core 2.0 e 2.1 somente a referência navegações para tipos próprios tinham suporte. Essa limitação foi removida no EF Core 2.2
