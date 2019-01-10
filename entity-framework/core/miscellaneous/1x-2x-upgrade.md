@@ -31,7 +31,7 @@ Aplicativos que têm como destino o ASP.NET Core 2.0 podem usar o EF Core 2.0 se
 
 ## <a name="new-way-of-getting-application-services-in-aspnet-core"></a>Nova maneira de obter serviços de aplicativo no ASP.NET Core
 
-O padrão recomendado para aplicativos web ASP.NET Core foi atualizado para 2.0, de forma que interrompeu a lógica de tempo de design que o EF Core usava na 1.x. Anteriormente no tempo de design, o EF Core tentava invocar `Startup.ConfigureServices` diretamente para acessar o provedor de serviços do aplicativo. No ASP.NET Core 2.0, a configuração é inicializada fora da classe `Startup`. Aplicativos que usam o EF Core normalmente acessam essa string de conexão de `Configuration`, portanto, `Startup` por si só não é mais suficiente. Se você atualizar um aplicativo do ASP.NET Core 1.x, poderá receber o seguinte erro ao usar as ferramentas do EF Core.
+O padrão recomendado para aplicativos web ASP.NET Core foi atualizado para 2.0, de forma que interrompeu a lógica de tempo de design que do EF Core é usado em 1. x. Anteriormente no tempo de design, o EF Core seria tentar invocar `Startup.ConfigureServices` diretamente para acessar o provedor de serviços do aplicativo. No ASP.NET Core 2.0, a configuração é inicializada fora do `Startup` classe. Aplicativos que usam o EF Core normalmente acessam sua cadeia de caracteres de conexão da configuração, portanto, `Startup` por si só não é mais suficiente. Se você atualizar um aplicativo do ASP.NET Core 1.x, você pode receber o seguinte erro ao usar as ferramentas do EF Core.
 
 > Nenhum construtor sem parâmetros foi encontrado em 'ApplicationContext'. Adicione um construtor sem parâmetros para 'ApplicationContext' ou adicione uma implementação de ' IDesignTimeDbContextFactory&lt;ApplicationContext&gt;' no mesmo assembly como 'ApplicationContext'
 
@@ -58,7 +58,7 @@ namespace AspNetCoreDotNetCore2._0App
 }
 ```
 
-A adoção desse novo padrão na atualização de aplicativos para o 2.0 é altamente recomendável e é necessária para recursos de produto como as migrações do Entity Framework Core para trabalhar. A outra alternativa comum é [implementar *IDesignTimeDbContextFactory\<TContext >*](xref:core/miscellaneous/cli/dbcontext-creation#from-a-design-time-factory).
+A adoção desse novo padrão na atualização de aplicativos para o 2.0 é altamente recomendável e é necessária para recursos de produto como as migrações do Entity Framework Core para trabalhar. A outra alternativa comum é para [implementar *IDesignTimeDbContextFactory\<TContext >*](xref:core/miscellaneous/cli/dbcontext-creation#from-a-design-time-factory).
 
 ## <a name="idbcontextfactory-renamed"></a>IDbContextFactory renomeado
 
