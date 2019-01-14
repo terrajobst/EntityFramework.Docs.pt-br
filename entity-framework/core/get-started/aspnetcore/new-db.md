@@ -5,12 +5,12 @@ ms.author: riande
 ms.date: 08/03/2018
 ms.assetid: e153627f-f132-4c11-b13c-6c9a607addce
 uid: core/get-started/aspnetcore/new-db
-ms.openlocfilehash: 2248c60045a914c902f1c958a86c69b283abd722
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: 4734586adc89e9c1d866a1b4accd8b5e51fe2bb0
+ms.sourcegitcommit: ebf661025d2ad2b62466fa7bf0e0772a7811cbe7
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022230"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54211160"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>Introdução ao EF Core no ASP.NET Core com um novo banco de dados
 
@@ -201,7 +201,7 @@ Gere um controlador e os modos de exibição para a entidade `Blog`.
 O mecanismo de scaffolding cria os seguintes arquivos:
 
 * Um controlador (*Controllers/BlogsController.cs*)
-* Exibições do Razor para as páginas Criar, Excluir, Detalhes, Editar e Índice (_Views/Movies/*.cshtml_)
+* Exibições das Razor Pages Criar, Excluir, Detalhes, Editar e Índice (_Views/Blogs/*.cshtml_)
 
 ## <a name="run-the-application"></a>Executar o aplicativo
 
@@ -228,6 +228,6 @@ dotnet run
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Tutorial: Introdução ao EF Core no .NET Core com um novo banco de dados usando o SQLite](xref:core/get-started/netcore/new-db-sqlite)
-* [Tutorial: introdução ao Razor Pages no ASP.NET Core](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start)
+* [Tutorial: introdução ao EF Core no .NET Core com um novo banco de dados usando o SQLite](xref:core/get-started/netcore/new-db-sqlite)
+* [Tutorial: introdução às Razor Pages no ASP.NET Core](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start)
 * [Tutorial: Razor Pages com o Entity Framework Core no ASP.NET Core](https://docs.microsoft.com/aspnet/core/data/ef-rp/intro)

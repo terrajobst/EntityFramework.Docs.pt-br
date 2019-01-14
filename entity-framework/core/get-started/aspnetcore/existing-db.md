@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 08/02/2018
 ms.assetid: 2bc68bea-ff77-4860-bf0b-cf00db6712a0
 uid: core/get-started/aspnetcore/existing-db
-ms.openlocfilehash: 23cd53b0e162afc5db0243b7032bb9c5f18bfb35
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
+ms.openlocfilehash: c8acb95395968f710e6b896de6c3598cb7b23676
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688687"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058780"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a>Introdução ao EF Core no ASP.NET Core com um banco de dados existente
 
@@ -48,7 +48,7 @@ Este tutorial usa um banco de dados de **blog** em sua instância do LocalDb com
 * **Arquivo > Novo > Projeto...**
 * No menu à esquerda, selecione **Instalado > Visual C# > Web**
 * Selecione o modelo de projeto **Aplicativo Web ASP.NET Core**
-* Insira **EFGetStarted.AspNetCore.ExistingDb** como o nome e clique em **OK**
+* Insira **EFGetStarted.AspNetCore.ExistingDb** como o nome (ele deve corresponder exatamente ao namespace usado posteriormente no código) e clique em **OK** 
 * Aguarde a caixa de diálogo **Novo Aplicativo Web ASP.NET Core** aparecer
 * Verifique se a lista suspensa da estrutura de destino está definida como **.NET Core** e a lista suspensa da versão definida como **ASP.NET Core 2.1**
 * Selecione o modelo **Aplicativo Web (Model-View-Controller)**

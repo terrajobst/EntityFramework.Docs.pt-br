@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 0ad9731840c5f72064f2f66932b9867a0144f437
-ms.sourcegitcommit: 2da6f9b05e1ce3a46491e5cc68f17758bdeb6b02
+ms.openlocfilehash: 5bddddfbc2fe8d0ba99914f03b28bde4076fae42
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53006863"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058702"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
@@ -28,7 +28,7 @@ Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
 
 * A consulta SQL não pode conter dados relacionados. No entanto, em muitos casos é possível combinar com base na consulta usando o operador `Include` para retornar dados relacionados (confira [Como incluir dados relacionados](#including-related-data)).
 
-* As instruções `SELECT` aprovadas para este método devem normalmente ser combináveis: se o EF Core precisar avaliar operadores de consulta adicionais no servidor (por exemplo, para traduzir operadores LINQ aplicados após `FromSql`), o SQL fornecido será tratado como uma subconsulta. Isso significa que o SQL aprovado não deve conter nenhum caractere ou opção não válida em uma subconsulta, como:
+* Instruções `SELECT` aprovadas para este método devem normalmente ser combináveis: se o EF Core precisar avaliar operadores de consulta adicionais no servidor (por exemplo, para traduzir operadores LINQ aplicados após `FromSql`), o SQL fornecido será tratado como uma consulta aninhada. Isso significa que o SQL aprovado não deve conter nenhum caractere ou opção não válida em uma subconsulta, como:
   * um ponto-e-vírgula à direita
   * No SQL Server, uma dica a nível de consulta à direita (por exemplo, `OPTION (HASH JOIN)`)
   * No SQL Server, um cláusula `ORDER BY` não é acompanhada de `TOP 100 PERCENT` na cláusula `SELECT`
@@ -81,7 +81,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-Você também pode construir um DbParameter e fornecê-lo como valor de parâmetro. Isso permite usar parâmetros nomeados na cadeia de caracteres de consulta SQL
+Você também pode construir um DbParameter e fornecê-lo como valor de parâmetro. Isso permite usar parâmetros nomeados na cadeia de caracteres de consulta SQL.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
