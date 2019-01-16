@@ -5,12 +5,12 @@ ms.author: ansvyryd
 ms.date: 11/02/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 uid: core/modeling/data-seeding
-ms.openlocfilehash: 8f28dfea12461572ade8fbf3910ebd216dafb389
-ms.sourcegitcommit: fa863883f1193d2118c2f9cee90808baa5e3e73e
+ms.openlocfilehash: 1c450b142573368d043430f55a3144b6696a8691
+ms.sourcegitcommit: b4a5ed177b86bf7f81602106dab6b4acc18dfc18
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52857423"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54316628"
 ---
 # <a name="data-seeding"></a>Propagação de dados
 
@@ -55,6 +55,8 @@ Depois que os dados tiverem sido adicionados ao modelo, [migrações](xref:core/
 > Se você precisar aplicar migrações como parte de uma implantação automatizada, você pode [criar um script SQL](xref:core/managing-schemas/migrations/index#generate-sql-scripts) que pode ser visualizado antes da execução.
 
 Como alternativa, você pode usar `context.Database.EnsureCreated()` para criar um novo banco de dados que contém os dados de semente, por exemplo, para um banco de dados de teste ou ao usar o provedor na memória ou qualquer banco de dados não-relação. Observe que, se o banco de dados já existe, `EnsureCreated()` não atualizará os dados de semente nem de esquema no banco de dados. Para bancos de dados relacionais, você não deve chamar `EnsureCreated()` se você planeja usar as migrações.
+
+### <a name="limitations-of-model-seed-data"></a>Limitações de propagação de dados do modelo
 
 Esse tipo de dados de propagação é gerenciado pelas migrações e o script para atualizar os dados que já está no banco de dados precisa ser gerado sem se conectar ao banco de dados. Isso impõe algumas restrições:
 * O valor de chave primária precisa ser especificado mesmo que ele normalmente é gerado pelo banco de dados. Ele será usado para detectar alterações de dados entre as migrações.
