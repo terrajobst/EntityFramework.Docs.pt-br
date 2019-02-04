@@ -3,12 +3,12 @@ title: Async de consulta e salve - o EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: de702365251fd05c423c8590ccaefa7d8542ad02
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.openlocfilehash: 89c7b9d533d37b4c9e123f37d8ab27c67ba26cc8
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058754"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668704"
 ---
 # <a name="async-query-and-save"></a>Async consultar e salvar
 > [!NOTE]
@@ -154,12 +154,12 @@ Como o código é síncrono, podemos pode observar o seguinte fluxo de execuçã
 
 Agora que temos nosso programa em execução, podemos começar a fazer uso de novo async e await palavras-chave. Fizemos as seguintes alterações ao Program.cs
 
-1.  Linha 2: O usando a instrução para o **Entity** namespace nos dá acesso aos métodos de extensão assíncrono EF.
+1.  Line 2: O usando a instrução para o **Entity** namespace nos dá acesso aos métodos de extensão assíncrono EF.
 2.  Linha 4: O usando a instrução para o **Tasks** namespace nos permite usar o **tarefa** tipo.
 3.  Linha 12 & 18: Capturamos como que monitora o andamento da tarefa **PerformSomeDatabaseOperations** (linha 12) e, em seguida, bloqueando a execução do programa para este de tarefas para uma vez concluída todo o trabalho para o programa é criado (linha 18).
-4.  25 de linha: Temos o update **PerformSomeDatabaseOperations** a ser marcado como **async** e retornar um **tarefa**.
-5.  Linha 35: Agora estamos chamando a versão assíncrona de SaveChanges e aguardando a conclusão de TI.
-6.  Linha 42: Agora estamos ligando para a versão assíncrona de ToList e aguardando no resultado.
+4.  Line 25: Temos o update **PerformSomeDatabaseOperations** a ser marcado como **async** e retornar um **tarefa**.
+5.  Line 35: Agora estamos chamando a versão assíncrona de SaveChanges e aguardando a conclusão de TI.
+6.  Line 42: Agora estamos ligando para a versão assíncrona de ToList e aguardando no resultado.
 
 Para obter uma lista abrangente dos métodos de extensão disponíveis no namespace System, consulte a classe QueryableExtensions. *Você também precisará adicionar "using System" ao seu usando as instruções.*
 
@@ -223,7 +223,7 @@ Agora que o código é assíncrona, podemos pode observar um fluxo de execução
 
 1.  **SaveChanges** começa a enviar por push a nova **Blog** no banco de dados *depois que o comando é enviado ao banco de dados não mais de computação tempo é necessária no thread gerenciado atual. O **PerformDatabaseOperations** método retorna (embora não foi concluída em execução) e fluxo do programa no método principal continua.*
 2.  **Cota do dia é gravada Console**
-    *porque não há nada mais trabalho a ser feito no método Main, o thread gerenciado é bloqueado em tempo de espera chamar até que a operação de banco de dados é concluída. Quando for concluído, o restante de nosso **PerformDatabaseOperations** * será executado.
+    *porque não há nada mais trabalho a ser feito no método Main, o thread gerenciado é bloqueado em tempo de espera chamar até que a operação de banco de dados é concluída. Quando for concluído, o restante de nosso **PerformDatabaseOperations** será executado.*
 3.  **SaveChanges** é concluída
 4.  Consulta para todos os **Blogs** é enviado para o banco de dados *novamente, o thread gerenciado é livre para executar outras tarefas enquanto a consulta é processada no banco de dados. Uma vez que todos os outra execução for concluída, o thread apenas interromperá na chamada espera entanto.*
 5.  Consulta retorna e os resultados são gravados em **Console**

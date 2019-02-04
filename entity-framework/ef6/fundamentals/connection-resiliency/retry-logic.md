@@ -3,12 +3,12 @@ title: Conexão resiliência e lógica de repetição - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 47d68ac1-927e-4842-ab8c-ed8c8698dff2
-ms.openlocfilehash: 09ebed18b43f864af36b6931f45638f3a3056229
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 7d6aa870cc32a2b344457fbb04525a7c2c8d1c61
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490799"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668759"
 ---
 # <a name="connection-resiliency-and-retry-logic"></a>Conexão resiliência e lógica de repetição
 > [!NOTE]
@@ -124,7 +124,7 @@ using (var db = new BloggingContext())
 
 Isso não é suportado ao usar uma estratégia de execução tentando novamente porque o EF não está ciente de todas as operações anteriores e como repeti-los. Por exemplo, se o SaveChanges segunda falha, em seguida, EF não tem as informações necessárias para repetir a primeira chamada SaveChanges.  
 
-### <a name="workaround-suspend-execution-strategy"></a>Solução alternativa: Suspenda a estratégia de execução  
+### <a name="workaround-suspend-execution-strategy"></a>Solução alternativa: Suspender estratégia de execução  
 
 Uma solução alternativa é possível suspender a estratégia de execução tentando novamente para o trecho de código que precisa usar um usuário iniciou a transação. A maneira mais fácil de fazer isso é adicionar um sinalizador SuspendExecutionStrategy ao seu código com base em classe de configuração e altere o lambda de estratégia de execução para retornar a estratégia de execução padrão (não retying) quando o sinalizador é definido.  
 
@@ -149,7 +149,7 @@ namespace Demo
         {
             get
             {
-                return (bool?)CallContext.LogicalGetData("SuspendExecutionStrategy")  false;
+                return (bool?)CallContext.LogicalGetData("SuspendExecutionStrategy") ?? false;
             }
             set
             {
