@@ -3,12 +3,12 @@ title: Migrações do Code First – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 36591d8f-36e1-4835-8a51-90f34f633d1e
-ms.openlocfilehash: f408ef861a2992783142fa1483d1433ca710399a
-ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
+ms.openlocfilehash: e5a91af73bab9d45b0f1f4242ce503c6b6f407f6
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47415790"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668694"
 ---
 # <a name="code-first-migrations"></a>Migrações do Code First
 Migrações do Code First é a maneira recomendada de evoluir o esquema de banco de dados do aplicativo se você está usando o fluxo de trabalho do Code First. As migrações oferecem um conjunto de ferramentas que permitem:
@@ -288,7 +288,7 @@ Até agora, sempre atualizamos para a migração mais recente, mas pode haver ca
 
 Vamos supor que queremos migrar nosso banco de dados para o estado em que estava após executar a migração **AddBlogUrl**. Podemos usar a opção **–TargetMigration** para fazer o downgrade para essa migração.
 
--   Execute o comando **Update-Database –TargetMigration: AddBlogUrl** no Console do Gerenciador de Pacotes.
+-   Execute o **Update-Database –TargetMigration: Comando AddBlogUrl** no Console do Gerenciador de Pacotes.
 
 Este comando executará o script Down para nossas migrações **AddBlogAbstract** e **AddPostClass**.
 
@@ -300,7 +300,7 @@ Se outro desenvolvedor quiser essas alterações em seu computador, ele poderá 
 
 -   Execute o comando **Update-Database**, mas desta vez especifique o sinalizador **–Script** para que as alterações sejam gravadas e um script em vez de aplicadas. Também especificaremos uma migração de origem e uma de destino para as quais gerar o script. Queremos um script que vá de um banco de dados vazio (**$InitialDatabase**) para a versão mais recente (migração **AddPostAbstract**).
     *Se você não especificar uma migração de destino, as migrações usarão a última migração como o destino. Se você não especificar uma migração de origem, as migrações usarão o estado atual do banco de dados.*
--   Execute o comando **Update-Database -Script -SourceMigration: $InitialDatabase -TargetMigration: AddPostAbstract** no Console do Gerenciador de Pacotes
+-   Execute o **Update-Database -Script -SourceMigration: $InitialDatabase -TargetMigration: Comando AddPostAbstract** no Console do Gerenciador de Pacotes
 
 As Migrações do Code First executarão o pipeline de migração, mas em vez de aplicar as alterações de fato, elas as gravarão em um arquivo .sql para você. Depois que o script é gerado, ele é aberto no Visual Studio, pronto para você exibir ou salvar.
 
@@ -330,7 +330,7 @@ Podemos atualizar o arquivo **Program.cs**, conforme mostrado abaixo, para defin
         {
             static void Main(string[] args)
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion\<BlogContext, Configuration>());
+                Database.SetInitializer(new MigrateDatabaseToLatestVersion<BlogContext, Configuration>());
 
                 using (var db = new BlogContext())
                 {
