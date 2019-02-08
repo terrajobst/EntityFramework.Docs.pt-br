@@ -4,12 +4,12 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: 58c79d477d590eea355a922b3e1233bbecb305cc
-ms.sourcegitcommit: a6082a2caee62029f101eb1000656966195cd6ee
+ms.openlocfilehash: 5ebc4edba07063ad5e77154adcde5f2664c0d748
+ms.sourcegitcommit: 85d17524d8e022f933cde7fc848313f57dfd3eb8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53181975"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55760516"
 ---
 # <a name="installing-entity-framework-core"></a>Instalar o Entity Framework Core
 
@@ -31,7 +31,7 @@ Para adicionar o EF Core a um aplicativo, instale o pacote do NuGet do provedor 
 
 Se você estiver criando um aplicativo do ASP.NET Core, não precisará instalar os provedores in-memory e do SQL Server. Esses provedores estão incluídos nas versões atuais do ASP.NET Core, juntamente com o tempo de execução do EF Core.  
 
-Para instalar ou atualizar os pacotes do NuGet, use a CLI (interface de linha de comando) do .NET Core, a Caixa de Diálogo do Gerenciador de Pacotes do Visual Studio ou o Console do Gerenciador de Pacotes do Visual Studio.
+Para instalar ou atualizar os pacotes NuGet, use a CLI (interface de linha de comando) do .NET Core, a Caixa de Diálogo do Gerenciador de Pacotes do Visual Studio ou o Console do Gerenciador de Pacotes do Visual Studio.
 
 ### <a name="net-core-cli"></a>CLI do .NET Core
 
