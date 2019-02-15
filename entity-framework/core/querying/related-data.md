@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 uid: core/querying/related-data
-ms.openlocfilehash: 65cfea07a40939c1c3615c97ec785a4082b21de5
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 4e042acb805c743ee794f4e61105b8d2136973b1
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994782"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668720"
 ---
 # <a name="loading-related-data"></a>Como carregar dados relacionados
 
@@ -52,7 +52,7 @@ Você pode combinar tudo isso para incluir dados relacionados de vários níveis
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IncludeTree)]
 
-Você talvez queira incluir várias entidades relacionadas para uma das entidades que está sendo incluída. Por exemplo, ao consultar `Blog`s, você inclui `Posts` e quer incluir o `Author` e o `Tags` do `Posts`. Para fazer isso, você precisará especificar cada uma para incluir o caminho a partir da raiz. Por exemplo, `Blog -> Posts -> Author` e `Blog -> Posts -> Tags`. Isso não significa que você obterá junções redundantes, na maioria dos casos, o EF consolidará as associações ao gerar o SQL.
+Você talvez queira incluir várias entidades relacionadas para uma das entidades que está sendo incluída. Por exemplo, ao consultar `Blog`s, você inclui `Posts` e quer incluir o `Author` e o `Tags` do `Posts`. Para fazer isso, você precisará especificar cada uma para incluir o caminho a partir da raiz. Por exemplo, `Blog -> Posts -> Author` e `Blog -> Posts -> Tags`. Isso não significa que você obterá junções redundantes. Na maioria dos casos, o EF consolidará as junções ao gerar o SQL.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#MultipleLeafIncludes)]
 
@@ -317,7 +317,7 @@ Como o EF Core automaticamente corrigirá as propriedades de navegação, você 
 
 Algumas estruturas de serialização não permitem esses ciclos. Por exemplo, Json.NET gerará a exceção a seguir se for encontrado um ciclo.
 
-> Newtonsoft.Json.JsonSerializationException: loop autorreferenciado detectado para a propriedade 'Blog' com tipo 'MyApplication.Models.Blog'.
+> Newtonsoft.Json.JsonSerializationException: loop autorreferenciado detectado para a propriedade 'Blog' com o tipo 'MyApplication.Models.Blog'.
 
 Se você estiver usando o ASP.NET Core, poderá configurar o Json.NET para ignorar os ciclos que encontrar no gráfico de objeto. Isso é feito no método `ConfigureServices(...)` no `Startup.cs`.
 

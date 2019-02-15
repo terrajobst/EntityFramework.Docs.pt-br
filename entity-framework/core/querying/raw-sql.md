@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 5bddddfbc2fe8d0ba99914f03b28bde4076fae42
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.openlocfilehash: 343162596780e6146b57f73a38221701009cd855
+ms.sourcegitcommit: 85d17524d8e022f933cde7fc848313f57dfd3eb8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058702"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55760503"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
@@ -17,23 +17,6 @@ O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brut
 
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
-
-## <a name="limitations"></a>Limitações
-
-Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
-
-* A consulta SQL deve retornar dados para todas as propriedades da entidade ou tipo de consulta.
-
-* Os nomes das colunas no conjunto de resultados devem corresponder aos nomes das colunas para as quais as propriedades são mapeadas. Observe que isso é diferente do EF6, onde o mapeamento de coluna/propriedade foi ignorado para consultas SQL brutas e os nomes das colunas do conjunto de resultados tinham que corresponder aos nomes das propriedades.
-
-* A consulta SQL não pode conter dados relacionados. No entanto, em muitos casos é possível combinar com base na consulta usando o operador `Include` para retornar dados relacionados (confira [Como incluir dados relacionados](#including-related-data)).
-
-* Instruções `SELECT` aprovadas para este método devem normalmente ser combináveis: se o EF Core precisar avaliar operadores de consulta adicionais no servidor (por exemplo, para traduzir operadores LINQ aplicados após `FromSql`), o SQL fornecido será tratado como uma consulta aninhada. Isso significa que o SQL aprovado não deve conter nenhum caractere ou opção não válida em uma subconsulta, como:
-  * um ponto-e-vírgula à direita
-  * No SQL Server, uma dica a nível de consulta à direita (por exemplo, `OPTION (HASH JOIN)`)
-  * No SQL Server, um cláusula `ORDER BY` não é acompanhada de `TOP 100 PERCENT` na cláusula `SELECT`
-
-* As instruções SQL, diferentes de `SELECT`, são reconhecidas automaticamente como não combináveis. Como consequência, os resultados completos de procedimentos armazenados são sempre retornados ao cliente e os operadores LINQ aplicados após `FromSql` são avaliados na memória.
 
 ## <a name="basic-raw-sql-queries"></a>Consultas SQL brutas básicas
 
@@ -109,9 +92,25 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-### <a name="including-related-data"></a>Como incluir dados relacionados
+## <a name="change-tracking"></a>Controle de Alterações
 
-A composição com operadores LINQ pode ser usada para incluir dados relacionados na consulta.
+As consultas que usam o `FromSql()` seguem exatamente as mesmas regras de controle de alterações que qualquer outra consulta LINQ no EF Core. Por exemplo, se a consulta projetar tipos de entidade, os resultados serão controlados por padrão.  
+
+O exemplo a seguir usa uma consulta SQL bruta que seleciona em uma TVF (função com valor de tabela) e, em seguida, desabilita o controle de alterações com a chamada para .AsNoTracking():
+
+<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+``` csharp
+var searchTerm = ".NET";
+
+var blogs = context.Query<SearchBlogsDto>()
+    .FromSql($"SELECT * FROM dbo.SearchBlogs({searchTerm})")
+    .AsNoTracking()
+    .ToList();
+```
+
+## <a name="including-related-data"></a>Como incluir dados relacionados
+
+O método `Include()` pode ser usado para incluir dados relacionados, assim como em qualquer outra consulta LINQ:
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -122,6 +121,23 @@ var blogs = context.Blogs
     .Include(b => b.Posts)
     .ToList();
 ```
+
+## <a name="limitations"></a>Limitações
+
+Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
+
+* A consulta SQL deve retornar dados para todas as propriedades da entidade ou tipo de consulta.
+
+* Os nomes das colunas no conjunto de resultados devem corresponder aos nomes das colunas para as quais as propriedades são mapeadas. Observe que isso é diferente do EF6, onde o mapeamento de coluna/propriedade foi ignorado para consultas SQL brutas e os nomes das colunas do conjunto de resultados tinham que corresponder aos nomes das propriedades.
+
+* A consulta SQL não pode conter dados relacionados. No entanto, em muitos casos é possível combinar com base na consulta usando o operador `Include` para retornar dados relacionados (confira [Como incluir dados relacionados](#including-related-data)).
+
+* Instruções `SELECT` aprovadas para este método devem normalmente ser combináveis: se o EF Core precisar avaliar operadores de consulta adicionais no servidor (por exemplo, para traduzir operadores LINQ aplicados após `FromSql`), o SQL fornecido será tratado como uma consulta aninhada. Isso significa que o SQL aprovado não deve conter nenhum caractere ou opção não válida em uma subconsulta, como:
+  * um ponto-e-vírgula à direita
+  * No SQL Server, uma dica a nível de consulta à direita (por exemplo, `OPTION (HASH JOIN)`)
+  * No SQL Server, um cláusula `ORDER BY` não é acompanhada de `TOP 100 PERCENT` na cláusula `SELECT`
+
+* As instruções SQL, diferentes de `SELECT`, são reconhecidas automaticamente como não combináveis. Como consequência, os resultados completos de procedimentos armazenados são sempre retornados ao cliente e os operadores LINQ aplicados após `FromSql` são avaliados na memória.
 
 > [!WARNING]  
 > **Sempre use a parametrização para consultas SQL brutas:** as APIs que aceitam uma cadeia de caracteres SQL, como `FromSql` e `ExecuteSqlCommand`, permitem que os valores sejam facilmente aprovados como parâmetros. Além de validar a entrada do usuário, sempre use a parametrização para os valores usados em um comando/consulta SQL bruta. Se você estiver usando a concatenação de cadeias de caracteres para criar de forma dinâmica qualquer parte da cadeia de caracteres de consulta, você é responsável por validar qualquer entrada para proteger-se de ataques de injeção de SQL.
