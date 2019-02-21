@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: ef729c0c26d5a1f57099f339eb51cda7e83289df
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
+ms.openlocfilehash: 6e61d2ebcf5ada365dcdb264bc371199574e12fa
+ms.sourcegitcommit: 33b2e84dae96040f60a613186a24ff3c7b00b6db
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688674"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56459179"
 ---
 # <a name="reverse-engineering"></a>Engenharia reversa
 
@@ -79,7 +79,7 @@ Nomes de tabela e coluna são corrigidos para que corresponda melhor às conven�
 
 Tipos de entidade são configurados usando a API Fluent por padrão. Especificar `-DataAnnotations` (PMC) ou `--data-annotations` (CLI) em vez disso, usar anotações de dados sempre que possível.
 
-Por exemplo, usando a API Fluent irá dar suporte a isso.
+Por exemplo, usando a API Fluent irá dar suporte isso:
 
 ``` csharp
 entity.Property(e => e.Title)
@@ -87,7 +87,7 @@ entity.Property(e => e.Title)
     .HasMaxLength(160);
 ```
 
-Ao usar anotações de dados irá dar suporte isso.
+Ao usar anotações de dados irá dar suporte isso:
 
 ``` csharp
 [Required]

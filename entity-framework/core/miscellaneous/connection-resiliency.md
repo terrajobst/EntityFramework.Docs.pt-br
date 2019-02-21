@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 11/15/2016
 ms.assetid: e079d4af-c455-4a14-8e15-a8471516d748
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: 729cf9b8c038ea2adba8c79c68d9f6fb1676fefa
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: 6d8cf117dfd94524a53e10bb4a23c2a44c4c8e7b
+ms.sourcegitcommit: 33b2e84dae96040f60a613186a24ff3c7b00b6db
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022178"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56459166"
 ---
 # <a name="connection-resiliency"></a>Resiliência da conexão
 
@@ -17,9 +17,21 @@ Resiliência de Conexão automaticamente repete comandos de banco de dados com f
 
 Por exemplo, o provedor SQL Server inclui uma estratégia de execução especificamente projetado para o SQL Server (incluindo SQL Azure). Ele está ciente dos tipos de exceção que podem ser repetidos e tem padrões específicos para o número máximo de tentativas, atraso entre as repetições, etc.
 
-Uma estratégia de execução é especificada ao configurar as opções para seu contexto. Isso é normalmente na `OnConfiguring` método de seu contexto derivado ou no `Startup.cs` para um aplicativo ASP.NET Core.
+Uma estratégia de execução é especificada ao configurar as opções para seu contexto. Isso é normalmente no `OnConfiguring` método de seu contexto derivado:
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/ConnectionResiliency/Program.cs#OnConfiguring)]
+
+ou no `Startup.cs` para um aplicativo ASP.NET Core:
+
+``` csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<PicnicContext>(
+        options => options.UseSqlServer(
+            "<connection string>",
+            providerOptions => providerOptions.EnableRetryOnFailure()));
+}
+```
 
 ## <a name="custom-execution-strategy"></a>Estratégia de execução personalizado
 
@@ -41,7 +53,7 @@ Uma estratégia de execução repete automaticamente em falhas precisa ser capaz
 
 No entanto, se seu código inicia uma transação usando `BeginTransaction()` você está definindo seu próprio grupo de operações que precisam ser tratados como uma unidade, e tudo dentro da transação precisarão ser reproduzidos deverá ocorrer de uma falha. Se você tentar fazer isso usando uma estratégia de execução, você receberá uma exceção semelhante ao seguinte:
 
-> InvalidOperationException: A estratégia de execução configurada 'SqlServerRetryingExecutionStrategy' não dá suporte a transações iniciadas pelo usuário. Use a estratégia de execução retornada por 'DbContext.Database.CreateExecutionStrategy()' para executar todas as operações na transação como uma unidade repetível.
+> InvalidOperationException: A estratégia de execução configurada 'SqlServerRetryingExecutionStrategy' não é compatível com transações iniciadas pelo usuário. Use a estratégia de execução retornada por 'DbContext.Database.CreateExecutionStrategy()' para executar todas as operações na transação como uma unidade repetível.
 
 A solução é invocar manualmente a estratégia de execução com um delegado que representa tudo que precisa para ser executado. Se ocorrer uma falha temporária, a estratégia de execução invocará o delegado novamente.
 
