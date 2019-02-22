@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: 7eba9e1a8e145ef407f844ff3a3ab3069495b7ae
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.openlocfilehash: 9064b323c11282418f2bedf70f874d45c18bb78a
+ms.sourcegitcommit: 735715f10cc8a231c213e4f055d79f0effd86570
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058728"
+ms.lasthandoff: 02/16/2019
+ms.locfileid: "56325334"
 ---
 # <a name="entity-framework-core-roadmap"></a>Roteiro do Entity Framework Core
 
@@ -23,7 +23,7 @@ Com o lançamento do EF Core 2.2, agora nosso foco principal é o EF Core 3.0, q
 Ainda não concluímos novos recursos, portanto, os [pacotes do EF Core 3.0 Preview 1 publicados na Galeria do NuGet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.0.0-preview.18572.1) em dezembro de 2018 contêm apenas [correções de bugs, pequenas melhorias e alterações feitas na preparação para o trabalho no 3.0](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aissue+milestone%3A3.0.0+is%3Aclosed+label%3Aclosed-fixed).
 
 Na verdade, ainda precisamos refinar nosso [planejamento de lançamento](#release-planning-process) do 3.0 para garantir que temos o conjunto certo de recursos que possam ser concluídos no tempo alocado.
-Compartilharemos mais informações à medida que houver mais clareza, mas aqui estão alguns recursos e temas de alto nível nos quais devemos trabalhar:
+Compartilharemos mais informações à medida que houver mais clareza, mas aqui estão alguns recursos e temas de alto nível nos quais pretendemos trabalhar:
 
 - **Melhorias no LINQ ([#12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795))**: O LINQ permite que você escreva consultas de banco de dados sem sair da linguagem de sua escolha, aproveitando as informações de tipo avançado para obter IntelliSense e a verificação do tipo em tempo de compilação.
   Mas o LINQ também permite que você escreva um número ilimitado de consultas complicadas, o que sempre foi um enorme desafio para provedores do LINQ.
