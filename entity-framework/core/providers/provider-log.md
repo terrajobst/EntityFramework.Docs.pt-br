@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: a87eca72aa58487415eea11e4f83de1a19e73506
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: cda5cc170646abc3e9d9a70d729237c01f028259
+ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022331"
+ms.lasthandoff: 03/06/2019
+ms.locfileid: "57463198"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -19,7 +19,15 @@ Esta página contém links para efetuar pull de solicitações feitas no reposit
 
 Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamos a [ `providers-beware` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-beware) e [ `providers-fyi` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-fyi) rótulos em nossos problemas e solicitações de pull.
 
-## <a name="21-----22"></a>2.1---> 2.2
+## <a name="22-----30"></a>2.2 ---> 3.0
+
+* https://github.com/aspnet/EntityFrameworkCore/pull/14022
+  * APIs obsoletas removidas e sobrecargas de parâmetros opcionais recolhido
+  * Removed DatabaseColumn.GetUnderlyingStoreType()
+* https://github.com/aspnet/EntityFrameworkCore/pull/14589
+  * Removidas as APIs obsoletas
+
+## <a name="21-----22"></a>2.1 ---> 2.2
 
 ### <a name="test-only-changes"></a>Alterações de teste
 
@@ -56,7 +64,7 @@ Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamo
   * Essa solicitação de pull adiciona o conceito de `CanConnect` que será usada pela integridade do ASP.NET Core verifica para determinar se o banco de dados está disponível. Por padrão, a implementação relacional apenas chama `Exist`, mas os provedores podem implementar algo diferente se necessário. Provedores não relacionais precisará implementar a nova API para que a verificação de integridade ser usado.
 * [https://github.com/aspnet/EntityFrameworkCore/pull/13306](https://github.com/aspnet/EntityFrameworkCore/pull/13306) -Atualizar RelationalTypeMapping base para definir o tamanho de DbParameter
   * Pare definindo o tamanho por padrão, pois isso pode causar truncamento. Provedores talvez seja necessário adicionar sua própria lógica, se o tamanho deve ser definida.
-* [https://github.com/aspnet/EntityFrameworkCore/pull/13372](https://github.com/aspnet/EntityFrameworkCore/pull/13372) -RevEng: Sempre especificar tipo de coluna para colunas decimais
+* https://github.com/aspnet/EntityFrameworkCore/pull/13372 -RevEng: Sempre especifique o tipo de coluna para colunas decimais
   * Sempre configure tipo de coluna para colunas decimais no código gerado por scaffolding em vez de configurar por convenção.
   * Provedores não devem exigir qualquer alteração em seu lado.
 * [https://github.com/aspnet/EntityFrameworkCore/pull/13469](https://github.com/aspnet/EntityFrameworkCore/pull/13469) -Adiciona CaseExpression para gerar as expressões de caso de SQL
