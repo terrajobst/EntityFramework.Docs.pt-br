@@ -4,20 +4,15 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: C21F89EE-FB08-4ED9-A2A0-76CB7656E6E4
 uid: core/what-is-new/index
-ms.openlocfilehash: 26589f75684be2428101739805336d9a673b9329
-ms.sourcegitcommit: fa863883f1193d2118c2f9cee90808baa5e3e73e
-ms.translationtype: HT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52857449"
 ---
-# <a name="what-is-new-in-ef-core"></a>Novidades no EF Core
 
-Você pode usar os links abaixo para saber mais sobre os novos recursos em cada versão:
+# <a name="what-is-new-in-ef-core"></a>Novidades no EF Core
 
 ## <a name="future-releases"></a>Versões futuras
 
-- [Roteiro do EF Core](xref:core/what-is-new/roadmap)
+O EF Core 3.0 está atualmente disponível em versão prévia. O EF Core 3.0 traz um conjunto de [novos recursos](xref:core/what-is-new/ef-core-3.0/features) e [alterações da falha](xref:core/what-is-new/ef-core-3.0/breaking-changes) aos quais você deve estar atento ao atualizar.
+
+Para obter mais detalhes sobre como estamos planejando os futuros lançamentos como 3.0 e posteriores, confira o [Roteiro do EF Core](xref:core/what-is-new/roadmap).
 
 ## <a name="recent-releases"></a>Versões recentes
 
