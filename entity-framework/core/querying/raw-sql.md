@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 343162596780e6146b57f73a38221701009cd855
-ms.sourcegitcommit: 85d17524d8e022f933cde7fc848313f57dfd3eb8
+ms.openlocfilehash: ad7ac3099cfd4c49b88acfbbff61f2af9294b6ec
+ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55760503"
+ms.lasthandoff: 03/06/2019
+ms.locfileid: "57463237"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
@@ -140,4 +140,6 @@ Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
 * As instruções SQL, diferentes de `SELECT`, são reconhecidas automaticamente como não combináveis. Como consequência, os resultados completos de procedimentos armazenados são sempre retornados ao cliente e os operadores LINQ aplicados após `FromSql` são avaliados na memória.
 
 > [!WARNING]  
-> **Sempre use a parametrização para consultas SQL brutas:** as APIs que aceitam uma cadeia de caracteres SQL, como `FromSql` e `ExecuteSqlCommand`, permitem que os valores sejam facilmente aprovados como parâmetros. Além de validar a entrada do usuário, sempre use a parametrização para os valores usados em um comando/consulta SQL bruta. Se você estiver usando a concatenação de cadeias de caracteres para criar de forma dinâmica qualquer parte da cadeia de caracteres de consulta, você é responsável por validar qualquer entrada para proteger-se de ataques de injeção de SQL.
+> **Sempre use a parametrização para consultas SQL brutas:** Além de validar a entrada do usuário, sempre use a parametrização para os valores usados em um comando/consulta SQL bruta. as APIs que aceitam uma cadeia de caracteres SQL, como `FromSql` e `ExecuteSqlCommand`, permitem que os valores sejam facilmente aprovados como parâmetros. Sobrecargas de `FromSql` e `ExecuteSqlCommand` que aceitam FormattableString também permitem usar syntaxt de interpolação da cadeia de caracteres maneira que ajude na proteção contra ataques de injeção de SQL. 
+> 
+> Se você estiver usando a concatenação de cadeia de caracteres ou de interpolação para criar dinamicamente qualquer parte da cadeia de caracteres de consulta ou passando a entrada do usuário para instruções ou procedimentos armazenados que podem executar essas entradas como SQL dinâmico, você será responsável por validar qualquer entrada para proteger-se contra ataques de injeção de SQL.
