@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/features
-ms.openlocfilehash: cf0d2cf032b9aa319fe706aece5b1ea66a5d6251
-ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
+ms.openlocfilehash: b6774f615b04bf9579aac5dea217e7321631da0c
+ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "57463348"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57829181"
 ---
 # <a name="new-features-included-in-ef-core-30-currently-in-preview"></a>Novos recursos incluídos no EF Core 3.0 (atualmente em versão prévia)
 
@@ -75,7 +75,7 @@ Essa característica as torna uma excelente escolha para exibições de banco de
 O trabalho nesse recurso foi iniciado, mas não está incluído na versão prévia atual. 
 
 Este recurso trata da habilitação das entidades que armazenam dados em propriedades indexadas em vez de propriedades regulares e também da capacidade de usar as instâncias da mesma classe do .NET (potencialmente algo tão simples quanto um `Dictionary<string, object>`) para representar tipos de entidades diferentes no mesmo modelo do EF Core.
-Este recurso é uma etapa fundamental para proporcionar suporte a relacionamentos de muitos para muitos sem uma entidade de junção, que é um dos aprimoramentos mais solicitados no EF Core.
+Este recurso é uma etapa fundamental para proporcionar suporte a relacionamentos de muitos para muitos sem uma entidade de junção, ([problema nº 1368](https://github.com/aspnet/EntityFrameworkCore/issues/1368)) que é um dos aprimoramentos mais solicitados no EF Core.
 
 ## <a name="ef-63-on-net-core"></a>EF 6.3 no .NET Core 
 
