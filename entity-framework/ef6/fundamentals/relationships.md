@@ -3,12 +3,12 @@ title: Relações, as propriedades de navegação e chaves estrangeiras - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: 46c2d11b5704ec7ae82a423ae042b87f5efe436f
-ms.sourcegitcommit: 8b42045cd21f80f425a92f5e4e9dd4972a31720b
+ms.openlocfilehash: 416eb1fb590330ba292a858347e26b83dddc74df
+ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/14/2018
-ms.locfileid: "49315653"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57829194"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>Relações, as propriedades de navegação e chaves estrangeiras
 Este tópico fornece uma visão geral de como o Entity Framework gerencia os relacionamentos entre entidades. Ele também fornece algumas diretrizes sobre como mapear e manipular as relações.
@@ -29,7 +29,7 @@ Propriedades de navegação fornecem uma maneira de navegar de uma associação 
 
 Quando colunas de chave estrangeira não são incluídas no modelo, as informações de associação são gerenciadas como um objeto independente. As relações são controladas por meio de referências de objeto, em vez de propriedades de chave estrangeira. Esse tipo de associação é chamado um *associação independente*. A maneira mais comum para modificar uma *associação independente* é modificar as propriedades de navegação que são geradas para cada entidade que participa da associação.
 
-Você pode optar por usar um ou ambos os tipos de associações em seu modelo. No entanto, se você tiver uma relação muitos-para-muitos pura que está conectada por uma tabela de junção que contém apenas as chaves estrangeiras, o EF usará uma associação independente para gerenciar essa relação de muitos-para-muitos.   
+Você pode optar por usar um ou ambos os tipos de associações em seu modelo. No entanto, se você tiver uma relação muitos-para-muitos pura que está conectada por uma tabela de junção que contém apenas as chaves estrangeiras, o EF usará uma associação independente para gerenciar essa relação de muitos-para-muitos.   
 
 A imagem a seguir mostra um modelo conceitual que foi criado com o Entity Framework Designer. O modelo contém duas entidades que participam da relação um-para-muitos. Ambas as entidades têm propriedades de navegação. **Curso** é a entidade depend e tem o **DepartmentID** propriedade de chave estrangeira definida.
 
@@ -51,7 +51,7 @@ public class Department
 {
    public Department()
    {
-     this.Course = new HashSet<Course>();
+     this.Courses = new HashSet<Course>();
    }  
    public int DepartmentID { get; set; }
    public string Name { get; set; }
