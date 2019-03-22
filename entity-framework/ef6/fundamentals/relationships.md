@@ -3,12 +3,12 @@ title: Relações, as propriedades de navegação e chaves estrangeiras - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: 416eb1fb590330ba292a858347e26b83dddc74df
-ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
+ms.openlocfilehash: 8292ae7af8d760240715854611d92ab340bf1ca7
+ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57829194"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58319186"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>Relações, as propriedades de navegação e chaves estrangeiras
 Este tópico fornece uma visão geral de como o Entity Framework gerencia os relacionamentos entre entidades. Ele também fornece algumas diretrizes sobre como mapear e manipular as relações.
@@ -147,7 +147,7 @@ Se você estiver usando as entidades POCO sem proxies, certifique-se de que o **
 
 ## <a name="loading-related-objects"></a>Objetos relacionados ao carregamento
 
-No Entity Framework, que você pode usar mais comumente use as propriedades de navegação para carregar entidades relacionadas à entidade retornada pela associação definida. Para obter mais informações, consulte [Carregando objetos relacionados](~/ef6/querying/related-data.md).
+No Entity Framework geralmente usam as propriedades de navegação carregar entidades relacionadas à entidade retornada pela associação definida. Para obter mais informações, consulte [Carregando objetos relacionados](~/ef6/querying/related-data.md).
 
 > [!NOTE]
 > Em uma associação de chave estrangeira, quando você carrega uma extremidade relacionada de um objeto dependente, o objeto relacionado será carregado com base no valor de chave estrangeira do dependente que está atualmente na memória:

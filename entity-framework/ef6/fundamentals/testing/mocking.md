@@ -3,12 +3,12 @@ title: Teste com uma estrutura de simulação - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: bd66a638-d245-44d4-8e71-b9c6cb335cc7
-ms.openlocfilehash: 80fd97073744be40d66c09706d3513dba18e724d
-ms.sourcegitcommit: 7a7da65404c9338e1e3df42576a13be536a6f95f
+ms.openlocfilehash: 3d39b41018beb70b72105dfb2fe4d61afc0b0525
+ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/06/2018
-ms.locfileid: "48834715"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58319199"
 ---
 # <a name="testing-with-a-mocking-framework"></a>Teste com uma estrutura de simulação
 > [!NOTE]
@@ -21,7 +21,7 @@ Ao escrever testes para seu aplicativo geralmente é desejável evitar atingir o
 Há duas abordagens diferentes que podem ser usadas para criar uma versão na memória de seu contexto.  
 
 - **Criar seus próprio duplicatas de teste** – essa abordagem envolve escrever sua própria implementação na memória de seu contexto e o DbSets. Isso lhe dá um grande controle sobre como as classes se comportam, mas podem envolver a gravação e possui uma quantidade razoável de código.  
-- **Use uma estrutura de simulação para criar duplicatas de teste** – usando uma estrutura de simulação (como o Moq) que as implementações de na memória que contexto e os conjuntos criados dinamicamente em tempo de execução para você.  
+- **Use uma estrutura de simulação para criar duplicatas de teste** – usando uma estrutura de simulação (como o Moq) que as implementações de na memória de seu contexto e os conjuntos criados dinamicamente em tempo de execução para você.  
 
 Este artigo irá lidar com o uso de uma estrutura de simulação. Para criar seus próprio duplicatas de teste, consulte [testes com seu duplicatas de teste próprio](writing-test-doubles.md).  
 

@@ -4,16 +4,18 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 912ffef7-86a0-4cdc-a776-55f907459d20
 uid: core/modeling/keys
-ms.openlocfilehash: 9e6946100ebabc6ba57cb792b3672219098b1e21
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 6272e323b83ccab2ed060a2ebbde1d1e8e353d66
+ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994015"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58319160"
 ---
 # <a name="keys-primary"></a>Chaves (primárias)
 
-Uma chave serve como o principal identificador exclusivo para cada instância de entidade. Ao usar um banco de dados relacional mapeia para o conceito de um *chave primária*. Você também pode configurar um identificador exclusivo que não é a chave primária (consulte [chaves alternativas](alternate-keys.md) para obter mais informações).
+Uma chave serve como o principal identificador exclusivo para cada instância de entidade. Ao usar um banco de dados relacional mapeia para o conceito de um *chave primária*. Você também pode configurar um identificador exclusivo que não é a chave primária (consulte [chaves alternativas](alternate-keys.md) para obter mais informações). 
+
+Um dos métodos a seguir pode ser usado para instalação/criação de uma chave primária.
 
 ## <a name="conventions"></a>Convenções
 
