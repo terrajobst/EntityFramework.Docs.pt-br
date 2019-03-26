@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 09/18/2018
 uid: core/miscellaneous/cli/powershell
-ms.openlocfilehash: 468698d1bbd17d4ad10b1b1601bfbc315a01c1ff
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
+ms.openlocfilehash: cb05e3fb66adf96f8a6778711a76520d0be24c71
+ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688700"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419764"
 ---
 # <a name="entity-framework-core-tools-reference---package-manager-console-in-visual-studio"></a>Referência - Package Manager Console no Visual Studio das ferramentas do Entity Framework Core
 
@@ -130,8 +130,8 @@ A tabela a seguir mostra os parâmetros que são comuns a todos os comandos do E
 
 | Parâmetro                 | Descrição                                                                                                                                                                                                          |
 |:--------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| -O contexto \<cadeia de caracteres >        | O `DbContext` classe a ser usada. Nome de classe totalmente qualificado com namespaces ou única.  Se esse parâmetro for omitido, o EF Core encontra a classe de contexto. Se houver várias classes de contexto, esse parâmetro é necessário. |
-| -Projeto \<cadeia de caracteres >        | O projeto de destino. Se esse parâmetro for omitido, o **projeto padrão** para **Package Manager Console** é usado como o projeto de destino.                                                                             |
+| -O contexto \<cadeia de caracteres >        | A classe `DbContext` a ser usada. Nome de classe totalmente qualificado com namespaces ou única.  Se esse parâmetro for omitido, o EF Core encontra a classe de contexto. Se houver várias classes de contexto, esse parâmetro é necessário. |
+| -Project \<String>        | O projeto de destino. Se esse parâmetro for omitido, o **projeto padrão** para **Package Manager Console** é usado como o projeto de destino.                                                                             |
 | O projeto de inicialização - \<cadeia de caracteres > | O projeto de inicialização. Se esse parâmetro for omitido, o **projeto de inicialização** na **propriedades da solução** é usado como o projeto de destino.                                                                                 |
 | -Verbose                  | Mostra saída detalhada.                                                                                                                                                                                                 |
 
@@ -148,8 +148,8 @@ Parâmetros:
 
 | Parâmetro                         | Descrição                                                                                                             |
 |:----------------------------------|:------------------------------------------------------------------------------------------------------------------------|
-| <nobr>-Nome \<cadeia de caracteres ><nobr>       | O nome da migração. Isso é um parâmetro posicional e é necessário.                                              |
-| <nobr>-OutputDir \<cadeia de caracteres ></nobr> | O diretório (e sub-namespace) para usar. Caminhos são relativos ao diretório de projeto de destino. O padrão é "Migrações". |
+| <nobr>-Name \<String><nobr>       | O nome da migração. Isso é um parâmetro posicional e é necessário.                                              |
+| <nobr>-OutputDir \<String></nobr> | O diretório (e sub-namespace) para usar. Caminhos são relativos ao diretório de projeto de destino. O padrão é "Migrações". |
 
 ## <a name="drop-database"></a>Banco de dados de destino
 
@@ -163,7 +163,7 @@ Parâmetros:
 
 ## <a name="get-dbcontext"></a>Get-DbContext
 
-Listas disponíveis `DbContext` tipos.
+Obtém informações sobre um `DbContext` tipo.
 
 ## <a name="remove-migration"></a>Remove-Migration
 
@@ -188,7 +188,7 @@ Parâmetros:
 | -OutputDir \<cadeia de caracteres >               | O diretório para colocar os arquivos. Caminhos são relativos ao diretório do projeto.                                                                                                                                                                                             |
 | -ContextDir \<cadeia de caracteres >              | O diretório para colocar o `DbContext` de arquivo no. Caminhos são relativos ao diretório do projeto.                                                                                                                                                                              |
 | -O contexto \<cadeia de caracteres >                 | O nome da `DbContext` classe gerar.                                                                                                                                                                                                                          |
-| -Esquemas \<String [] >               | Os esquemas de tabelas para gerar tipos de entidade para. Se esse parâmetro for omitido, todos os esquemas são incluídos.                                                                                                                                                             |
+| -Schemas \<String[]>               | Os esquemas de tabelas para gerar tipos de entidade para. Se esse parâmetro for omitido, todos os esquemas são incluídos.                                                                                                                                                             |
 | -Tabelas \<String [] >                | As tabelas para gerar tipos de entidade para. Se esse parâmetro for omitido, todas as tabelas são incluídas.                                                                                                                                                                         |
 | -DataAnnotations                   | Use atributos para configurar o modelo (quando possível). Se esse parâmetro for omitido, somente a API fluente é usada.                                                                                                                                                      |
 | -UseDatabaseNames                  | Use nomes de tabela e coluna exatamente como aparecem no banco de dados. Se esse parâmetro for omitido, os nomes de banco de dados são alterados de acordo com mais de perto para convenções de estilo de nome em C#.                                                                                       |
@@ -214,9 +214,9 @@ Parâmetros:
 
 | Parâmetro                | Descrição                                                                                                                                                                                                                |
 |:-------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *-From* \<cadeia de caracteres >        | A migração inicial. As migrações podem ser identificadas por nome ou ID. O número de 0 é um caso especial que significa *antes da primeira migração*. O padrão é 0.                                                              |
-| *-Para* \<cadeia de caracteres >          | A migração final. O padrão é para a última migração.                                                                                                                                                                      |
-| <nobr>-Idempotentes</nobr> | Gere um script que pode ser usado em um banco de dados em qualquer migração.                                                                                                                                                         |
+| *-From* \<String>        | A migração inicial. As migrações podem ser identificadas por nome ou ID. O número de 0 é um caso especial que significa *antes da primeira migração*. O padrão é 0.                                                              |
+| *-To* \<String>          | A migração final. O padrão é para a última migração.                                                                                                                                                                      |
+| <nobr>-Idempotent</nobr> | Gere um script que pode ser usado em um banco de dados em qualquer migração.                                                                                                                                                         |
 | -Saída \<cadeia de caracteres >        | O arquivo para gravar o resultado. Se esse parâmetro for omitido, o arquivo é criado com um nome gerado na mesma pasta, como arquivos de tempo de execução do aplicativo são criados, por exemplo: */obj/Debug/netcoreapp2.1/ghbkztfz.sql/*. |
 
 > [!TIP]
@@ -240,7 +240,7 @@ Atualiza o banco de dados para a última migração ou para uma migração espec
 
 | Parâmetro                           | Descrição                                                                                                                                                                                                                                                     |
 |:------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>*-Migration* \<cadeia de caracteres ></nobr> | A migração de destino. As migrações podem ser identificadas por nome ou ID. O número de 0 é um caso especial que significa *antes da primeira migração* e faz com que todas as migrações para ser revertido. Se nenhuma migração for especificada, o comando assume como padrão para a última migração. |
+| <nobr>*-Migration* \<String></nobr> | A migração de destino. As migrações podem ser identificadas por nome ou ID. O número de 0 é um caso especial que significa *antes da primeira migração* e faz com que todas as migrações para ser revertido. Se nenhuma migração for especificada, o comando assume como padrão para a última migração. |
 
 > [!TIP]
 > O parâmetro de migração dá suporte à expansão da tabulação.

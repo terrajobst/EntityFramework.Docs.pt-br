@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: 0f8389decbc1995cc629d24c5baa197255cd328a
-ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
+ms.openlocfilehash: 1133976d8d25e4099b64a1a30a8d2066ff3f6cd7
+ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/21/2019
-ms.locfileid: "58319134"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419660"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -20,6 +20,8 @@ Esta página contém links para efetuar pull de solicitações feitas no reposit
 Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamos a [ `providers-beware` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-beware) e [ `providers-fyi` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-fyi) rótulos em nossos problemas e solicitações de pull.
 
 ## <a name="22-----30"></a>2.2 ---> 3.0
+
+Observe que muitos do [alterações significativas de nível de aplicativo](../what-is-new/ef-core-3.0/breaking-changes.md) também terá impacto sobre provedores.
 
 * https://github.com/aspnet/EntityFrameworkCore/pull/14022
   * APIs obsoletas removidas e sobrecargas de parâmetros opcionais recolhido
@@ -30,6 +32,35 @@ Esse log estamos começando com alterações da 2.1 para 2.2. Antes de 2.1 usamo
   * As subclasses de CharTypeMapping podem ter sido interrompidas devido a alterações de comportamento necessárias para corrigir alguns bugs na implementação de base.
 * https://github.com/aspnet/EntityFrameworkCore/pull/15090
   * Adicionada uma classe base para IDatabaseModelFactory e atualizá-lo para usar um objeto de parâmetro inválido para atenuar as quebras de futuras.
+* https://github.com/aspnet/EntityFrameworkCore/pull/15123
+  * Usado objetos de parâmetro no MigrationsSqlGenerator para atenuar as quebras de futuras.
+* https://github.com/aspnet/EntityFrameworkCore/pull/14972
+  * Configuração explícita de níveis de log necessário algumas alterações às APIs que podem estar usando provedores. Especificamente, se provedores estiver usando a infraestrutura de registro em log diretamente, essa alteração pode interromper que usam. Além disso, os provedores que usam a infraestrutura (que será pública) no futuro será necessário derivar `LoggingDefinitions` ou `RelationalLoggingDefinitions`. Consulte os provedores SQL Server e na memória para obter exemplos.
+* https://github.com/aspnet/EntityFrameworkCore/pull/15091
+  * Agora o Core, relacional e abstrações de cadeias de caracteres de recurso são públicas.
+  * `CoreLoggerExtensions` e `RelationalLoggerExtensions` agora são públicos. Provedores devem usar essas APIs quando o log de eventos que são definidos no nível relacional ou core. Não acessam recursos de registro em log diretamente; Esses são ainda internos.
+  * `IRawSqlCommandBuilder` foi alterado de um serviço singleton para um serviço com escopo
+  * `IMigrationsSqlGenerator` foi alterado de um serviço singleton para um serviço com escopo
+* https://github.com/aspnet/EntityFrameworkCore/pull/14706
+  * A infraestrutura para a criação de comandos relacionais se tornou pública para que possa ser com segurança usada por provedores e refatorado um pouco.
+  * `IRelationalCommandBuilderFactory`foi alterado de serviço singleton para um serviço com escopo
+  * `IShaperCommandContextFactory` foi alterado de serviço singleton para um serviço com escopo
+  * `ISelectExpressionFactory` foi alterado de serviço singleton para um serviço com escopo
+* https://github.com/aspnet/EntityFrameworkCore/pull/14733
+  * `ILazyLoader` foi alterado de um serviço com escopo para um serviço transitório
+* https://github.com/aspnet/EntityFrameworkCore/pull/14610
+  * `IUpdateSqlGenerator` foi alterado de um serviço com escopo para um serviço singleton
+  * Além disso, `ISingletonUpdateSqlGenerator` foi removido
+* https://github.com/aspnet/EntityFrameworkCore/pull/15067
+  * Muito código interno que estava sendo usado por provedores agora foi publicado
+  * Ele não deve mais ser necssary para fazer referência a `IndentedStringBuilder` , pois ele foi decomposto fora de locais que são expostos a ele
+  * Usos `NonCapturingLazyInitializer` deve ser substituído pelo `LazyInitializer` da BCL
+* https://github.com/aspnet/EntityFrameworkCore/pull/14608
+  * Essa alteração está totalmente coberta no aplicativo quebra o documento de alterações. Para provedores, isso pode ser mais afetando porque o teste do EF core pode resultar em tendo esse problema, portanto, a infraestrutura de teste foi alterado para certificar que menos provável.
+* https://github.com/aspnet/EntityFrameworkCore/issues/13961
+  * `EntityMaterializerSource` foi simplificado
+* https://github.com/aspnet/EntityFrameworkCore/pull/14895
+  * StartsWith tradução foi alterado de forma que provedores podem desejar/precisar react
 
 ## <a name="21-----22"></a>2.1 ---> 2.2
 
