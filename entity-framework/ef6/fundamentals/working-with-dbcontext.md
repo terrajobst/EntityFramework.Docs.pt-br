@@ -14,7 +14,7 @@ ms.locfileid: "45489057"
 
 Para usar o Entity Framework para consultar, inserir, atualizar e excluir dados usando objetos .NET, você primeiro precisa [criar um modelo](~/ef6/modeling/index.md) que mapeia as entidades e relações que são definidas em seu modelo para tabelas em um banco de dados.
 
-Depois de ter um modelo, a classe principal de seu aplicativo interage com é `System.Data.Entity.DbContext` (também conhecido como a classe de contexto). Você pode usar um DbContext associado a um modelo para:
+Depois de ter um modelo, a classe principal com a qual seu aplicativo interage é `System.Data.Entity.DbContext` (também conhecido como a classe de contexto). Você pode usar um DbContext associado a um modelo para:
 - Criar e executar consultas   
 - Materializar resultados da consulta como objetos de entidade
 - Acompanhar as alterações feitas a esses objetos
