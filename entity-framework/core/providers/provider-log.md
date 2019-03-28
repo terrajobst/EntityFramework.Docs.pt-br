@@ -99,7 +99,7 @@ Observe que muitos do [alterações significativas de nível de aplicativo](../w
   * Essa solicitação de pull adiciona o conceito de `CanConnect` que será usada pela integridade do ASP.NET Core verifica para determinar se o banco de dados está disponível. Por padrão, a implementação relacional apenas chama `Exist`, mas os provedores podem implementar algo diferente se necessário. Provedores não relacionais precisará implementar a nova API para que a verificação de integridade ser usado.
 * [https://github.com/aspnet/EntityFrameworkCore/pull/13306](https://github.com/aspnet/EntityFrameworkCore/pull/13306) -Atualizar RelationalTypeMapping base para definir o tamanho de DbParameter
   * Pare definindo o tamanho por padrão, pois isso pode causar truncamento. Provedores talvez seja necessário adicionar sua própria lógica, se o tamanho deve ser definida.
-* https://github.com/aspnet/EntityFrameworkCore/pull/13372 -RevEng: Sempre especifique o tipo de coluna para colunas decimais
+* (https://github.com/aspnet/EntityFrameworkCore/pull/13372) -RevEng: Sempre especifique o tipo de coluna para colunas decimais
   * Sempre configure tipo de coluna para colunas decimais no código gerado por scaffolding em vez de configurar por convenção.
   * Provedores não devem exigir qualquer alteração em seu lado.
 * [https://github.com/aspnet/EntityFrameworkCore/pull/13469](https://github.com/aspnet/EntityFrameworkCore/pull/13469) -Adiciona CaseExpression para gerar as expressões de caso de SQL
