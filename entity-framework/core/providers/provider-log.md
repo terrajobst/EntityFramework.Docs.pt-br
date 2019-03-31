@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: 1133976d8d25e4099b64a1a30a8d2066ff3f6cd7
-ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
+ms.openlocfilehash: 229c15ec0402e1706318593a099236f723d80595
+ms.sourcegitcommit: ab847dd881d51122e695b7cd8c025fcf3a5a9033
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419660"
+ms.lasthandoff: 03/30/2019
+ms.locfileid: "58678385"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -61,6 +61,10 @@ Observe que muitos do [alterações significativas de nível de aplicativo](../w
   * `EntityMaterializerSource` foi simplificado
 * https://github.com/aspnet/EntityFrameworkCore/pull/14895
   * StartsWith tradução foi alterado de forma que provedores podem desejar/precisar react
+* https://github.com/aspnet/EntityFrameworkCore/pull/15168
+  * Serviços de conjunto de convenção foram alterados. Agora, os provedores devem herdar de "ProviderConventionSet" ou "RelationalConventionSet".
+  * As personalizações podem ser adicionadas por meio de `IConventionSetCustomizer` serviços, mas isso se destina a ser usado por outras extensões, não os provedores.
+  * As convenções usadas no tempo de execução devem ser resolvidas a partir `IConventionSetBuilder`.
 
 ## <a name="21-----22"></a>2.1 ---> 2.2
 
