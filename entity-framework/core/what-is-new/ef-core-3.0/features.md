@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/features
-ms.openlocfilehash: b6774f615b04bf9579aac5dea217e7321631da0c
-ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
+ms.openlocfilehash: 7501a806271c9734e85e31845f260f2d512da077
+ms.sourcegitcommit: a8b04050033c5dc46c076b7e21b017749e0967a8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57829181"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58867951"
 ---
 # <a name="new-features-included-in-ef-core-30-currently-in-preview"></a>Novos recursos incluídos no EF Core 3.0 (atualmente em versão prévia)
 
@@ -50,6 +50,31 @@ O provedor ativará a maioria dos recursos do EF Core, como controle automático
 Iniciamos este trabalho antes do EF Core 2.2 e [fizemos algumas versões prévias do provedor disponível](https://blogs.msdn.microsoft.com/dotnet/2018/10/17/announcing-entity-framework-core-2-2-preview-3/).
 O novo plano é continuar desenvolvendo o provedor junto com o EF Core 3.0. 
 
+## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>As entidades dependentes compartilham a tabela com a entidade de segurança agora são opcionais
+
+[Acompanhamento de problema nº 9005](https://github.com/aspnet/EntityFrameworkCore/issues/9005)
+
+Esse recurso será introduzido no EF Core 3.0 – versão prévia 4.
+
+Considere o modelo a seguir:
+```C#
+public class Order
+{
+    public int Id { get; set; }
+    public int CustomerId { get; set; }
+    public OrderDetails Details { get; set; }
+}
+
+public class OrderDetails
+{
+    public int Id { get; set; }
+    public string ShippingAddress { get; set; }
+}
+```
+
+Da versão 3.0 do EF Core em diante, se `OrderDetails` pertencer a `Order` ou for explicitamente mapeado para a mesma tabela, será possível adicionar um `Order` sem um `OrderDetails`, e todas as propriedades `OrderDetails`, com exceção da chave primária, serão mapeadas para colunas que permitam valor nulo.
+Ao realizar consultas, o EF Core definirá `OrderDetails` para `null` se qualquer uma de suas propriedades requeridas não tiver um valor ou se ele não tiver nenhuma propriedade necessária além da chave primária e todas as propriedades forem `null`.
+
 ## <a name="c-80-support"></a>Suporte do C# 8.0
 
 [Acompanhamento do problema nº 12047](https://github.com/aspnet/EntityFrameworkCore/issues/12047)
@@ -68,7 +93,7 @@ Esse recurso não está incluído na versão prévia atual.
 [Tipos de consulta](xref:core/modeling/query-types), introduzidos no EF Core 2.1 e considerados tipos de entidade sem chaves no EF Core 3.0, representam dados que podem ser lidos do banco de dados, mas não podem ser atualizados.
 Essa característica as torna uma excelente escolha para exibições de banco de dados na maioria dos cenários, portanto, planejamos automatizar a criação de tipos de entidade sem chaves ao realizar engenharia reversa de exibições de banco de dados.
 
-## <a name="property-bag-entities"></a>Entidades de recipiente de propriedade 
+## <a name="property-bag-entities"></a>Entidades de recipiente de propriedade
 
 [Acompanhamento de problema nº 13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) e [nº 9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914)
 
@@ -77,9 +102,9 @@ O trabalho nesse recurso foi iniciado, mas não está incluído na versão prév
 Este recurso trata da habilitação das entidades que armazenam dados em propriedades indexadas em vez de propriedades regulares e também da capacidade de usar as instâncias da mesma classe do .NET (potencialmente algo tão simples quanto um `Dictionary<string, object>`) para representar tipos de entidades diferentes no mesmo modelo do EF Core.
 Este recurso é uma etapa fundamental para proporcionar suporte a relacionamentos de muitos para muitos sem uma entidade de junção, ([problema nº 1368](https://github.com/aspnet/EntityFrameworkCore/issues/1368)) que é um dos aprimoramentos mais solicitados no EF Core.
 
-## <a name="ef-63-on-net-core"></a>EF 6.3 no .NET Core 
+## <a name="ef-63-on-net-core"></a>EF 6.3 no .NET Core
 
-[Acompanhamento de problema EF6#271](https://github.com/aspnet/EntityFramework6/issues/271)
+[Acompanhamento de problema EF6 nº 271](https://github.com/aspnet/EntityFramework6/issues/271)
 
 O trabalho nesse recurso foi iniciado, mas não está incluído na versão prévia atual. 
 

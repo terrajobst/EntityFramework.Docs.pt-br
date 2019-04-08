@@ -1,10 +1,18 @@
+---
+ms.openlocfilehash: 79a2a10cae9f8a5541bca132e407d4abbe95e093
+ms.sourcegitcommit: ce44f85a5bce32ef2d3d09b7682108d3473511b3
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 04/04/2019
+ms.locfileid: "58914098"
+---
 # <a name="contributing-to-the-entity-framework-documentation"></a>Contribuindo para a documentação do Entity Framework
 
-Este documento aborda o processo para contribuir com os artigos e exemplos de código hospedados no [site de documentação do Entity Framework](https://docs.microsoft.com/ef). As contribuições podem ser tão simples quanto correções de erro de digitação ou tão complexas quanto novos artigos.
+O processo de contribuir com artigos e exemplos de código para a documentação do Entity Framework é explicado abaixo. As contribuições podem ser tão simples quanto correções de erro de digitação ou tão complexas quanto novos artigos.
 
 ## <a name="how-to-make-a-simple-correction-or-suggestion"></a>Como fazer uma correção ou sugestão simples
 
-Artigos são armazenados no repositório, como arquivos de Markdown. Podem ser feitas alterações simples ao conteúdo de um arquivo Markdown no navegador ao tocar no link **Editar** no canto superior direito da janela do navegador. (Em uma janela de navegador estreita, pode ser necessário expandir a barra **Opções** para ver o link **Editar**.) Siga as instruções para criar uma PR (solicitação de pull). A equipe EF vai examinar a PR a aprová-la ou sugerir alterações.
+Artigos são armazenados neste repositório como arquivos de Markdown. Para fazer uma alteração simples ao conteúdo de um arquivo Markdown, clique no link **Editar** no canto superior direito da janela do navegador. Pode ser necessário expandir a barra **Opções** para ver o link **Editar**. Siga as instruções para criar uma PR (solicitação de pull). A equipe EF vai examinar a PR a aprová-la ou sugerir alterações.
 
 ## <a name="how-to-make-a-more-complex-submission"></a>Como fazer um envio mais complexo
 
@@ -17,7 +25,7 @@ Você precisará de uma compreensão básica do [Git e do GitHub.com](https://gu
 
 ## <a name="markdown-syntax"></a>Sintaxe de markdown
 
-Os artigos são escritos em [Markdown para DocFx](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), que é um superconjunto de [GFM (Markdown para GitHub)](https://guides.github.com/features/mastering-markdown/). Para obter exemplos de sintaxe do DFM para recursos de interface do usuário comumente usados na documentação do EF, confira [Metadados e Modelo de Markdown](https://github.com/dotnet/docs/blob/master/styleguide/template.md) no guia de estilo do repositório do .NET Core. 
+Os artigos são escritos em [DFM (Markdown para DocFx)](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), um superconjunto de [GFM (Markdown para GitHub)](https://guides.github.com/features/mastering-markdown/). Para obter exemplos de sintaxe do DFM e metadados para recursos de interface do usuário comumente usados na documentação do EF, confira [Metadados e Modelo de Markdown](https://github.com/dotnet/docs/blob/master/styleguide/template.md) no guia de estilo do repositório do .NET Core.
 
 ## <a name="folder-structure-conventions"></a>Convenções de estrutura de pasta
 
@@ -43,7 +51,7 @@ Para renderizar uma parte de um arquivo como um snippet usando números de linha
 [!code-csharp[Main](../../../samples/core/saving/Program.cs?range=1-10]
 ```
 
-Para snippets C#, faça referência a uma [região do C#](https://msdn.microsoft.com/library/9a1ybwek.aspx). Sempre que possível, use regiões, em vez de números de linha, pois números de linha em um arquivo de código tendem a mudar e sair de sincronia com referências de número de linha em Markdown. As regiões C# podem ser aninhadas e, se você fizer referência à região externa, as diretivas internas `#region` e `#endregion` não serão renderizadas em um snippet de código.
+Para snippets C#, faça referência a uma [região do C#](https://msdn.microsoft.com/library/9a1ybwek.aspx). Use regiões em vez de números de linha. Números de linha em um arquivo de código tendem a sofrer alterações e sair de sincronia com as referências de número de linha em Markdown. Regiões do C# podem ser aninhadas. Se você fizer referência à região externa, as diretivas internas `#region` e `#endregion` não serão renderizadas em um snippet.
 
 Para renderizar uma região C# chamada "snippet_Example":
 
