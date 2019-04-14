@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 0d0590f1-1ea3-4d5c-8f44-db17395cd3f3
 uid: core/miscellaneous/testing/in-memory
-ms.openlocfilehash: 2754d1deba98fcee0eb88669293b2197545c8874
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 8aaea52f22954ef6a2b7d9b9c5627597c61ac644
+ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997886"
+ms.lasthandoff: 04/14/2019
+ms.locfileid: "59562540"
 ---
 # <a name="testing-with-inmemory"></a>Testando com InMemory
 
@@ -64,6 +64,6 @@ A chave para teste com esse provedor é a capacidade de informar o contexto para
 Aqui está um exemplo de uma classe de teste que usa o banco de dados InMemory. Cada método de teste especifica um nome de banco de dados exclusivo, que significa que cada método possui seu próprio banco de dados InMemory.
 
 >[!TIP]
-> Para usar o `.UseInMemoryDatabase()` método de extensão, o pacote NuGet de referência `Microsoft.EntityFrameworkCore.InMemory`.
+> Para usar o `.UseInMemoryDatabase()` método de extensão, o pacote NuGet de referência [entityframeworkcore](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory/).
 
 [!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/TestProject/InMemory/BlogServiceTests.cs)]
