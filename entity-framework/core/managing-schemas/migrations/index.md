@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 10/05/2018
 uid: core/managing-schemas/migrations/index
-ms.openlocfilehash: 5ae06a4342a556936dc44c5bf6622814eaad4733
-ms.sourcegitcommit: 7a7da65404c9338e1e3df42576a13be536a6f95f
+ms.openlocfilehash: b94ac567644a9d98a05a40857cc072c500203370
+ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/06/2018
-ms.locfileid: "48834734"
+ms.lasthandoff: 04/14/2019
+ms.locfileid: "59562553"
 ---
 <a name="migrations"></a>Migrações
 ==========
@@ -47,14 +47,14 @@ dotnet ef migrations add InitialCreate
 
 Três arquivos são adicionados ao seu projeto no diretório **Migrações**:
 
-* **00000000000000_InitialCreate.CS**– o arquivo principal de migrações. Contém as operações necessárias para aplicar a migração (em `Up()`) e revertê-la (em `Down()`).
-* **00000000000000_InitialCreate.Designer.CS**– o arquivo de metadados de migrações. Contém informações usadas pelo EF.
+* **XXXXXXXXXXXXXX_InitialCreate.cs**– o arquivo principal de migrações. Contém as operações necessárias para aplicar a migração (em `Up()`) e revertê-la (em `Down()`).
+* **XXXXXXXXXXXXXX_InitialCreate.Designer.cs**– o arquivo de metadados de migrações. Contém informações usadas pelo EF.
 * **MyContextModelSnapshot.cs**– um instantâneo do seu modelo atual. Usado para determinar o que mudou ao adicionar a próxima migração.
 
 O carimbo de data/hora no nome de arquivo ajuda a mantê-lo organizado por ordem cronológica para que você possa ver o andamento das alterações.
 
 > [!TIP]
-> Você tem liberdade para mover os arquivos de Migrações e alterar o namespace deles. Novas migrações são criadas como irmãs da última migração.
+> Você é livre para mover os arquivos de Migrações e alterar o namespace deles. Novas migrações são criadas como irmãs da última migração.
 
 <a name="update-the-database"></a>Atualizar o banco de dados
 -------------------
@@ -198,7 +198,7 @@ myDbContext.Database.Migrate();
 ```
 
 > [!WARNING]
-> * Esta abordagem não é para todo mundo. Embora seja ótima para aplicativos com um banco de dados local, a maioria dos aplicativos exigirá uma estratégia de implantação mais robusta, como gerar scripts SQL.
+> * Esta abordagem não é para todo mundo. Embora seja ótimo para aplicativos com um banco de dados local, a maioria dos aplicativos exigirá uma estratégia de implantação mais robusta, como gerar scripts SQL.
 > * Não chame `EnsureCreated()` antes de `Migrate()`. O `EnsureCreated()` ignora as Migrações para criar o esquema e causa falha no `Migrate()`.
 
 <a name="next-steps"></a>Próximas etapas
