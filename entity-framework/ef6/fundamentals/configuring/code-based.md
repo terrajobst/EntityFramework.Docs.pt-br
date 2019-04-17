@@ -3,12 +3,12 @@ title: Configuração baseada em código – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 13886d24-2c74-4a00-89eb-aa0dee328d83
-ms.openlocfilehash: c317f112f713612f7b9aef3764a0bd004fef5424
-ms.sourcegitcommit: 735715f10cc8a231c213e4f055d79f0effd86570
+ms.openlocfilehash: 079a4ab30af74eac8b1f51ece5801ff40a867a29
+ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/16/2019
-ms.locfileid: "56325347"
+ms.lasthandoff: 04/16/2019
+ms.locfileid: "59619279"
 ---
 # <a name="code-based-configuration"></a>Configuração baseada em código
 > [!NOTE]
@@ -106,7 +106,7 @@ Para isso, o EntityFramework permite que um manipulador de eventos a ser registr
 - Na inicialização do aplicativo (antes do EF é usado) o plug-in ou o provedor deve se registrar para o método de manipulador de eventos para este evento. (Observe que isso deve ocorrer antes que o aplicativo usa o EF).  
 - O manipulador de eventos faz uma chamada para replaceservice tenha para cada serviço que precisa ser substituído.  
 
-Por exemplo, repalce IDbConnectionFactory e DbProviderService, você deve registrar um manipulador algo assim:  
+Por exemplo, para substituir IDbConnectionFactory e DbProviderService você poderia registrar um manipulador algo assim:  
 
 ``` csharp
 DbConfiguration.Loaded += (_, a) =>
