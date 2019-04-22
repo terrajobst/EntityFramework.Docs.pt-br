@@ -4,19 +4,19 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: f466d112e5ed8661ad1e2d91079c1c01d34b9002
-ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
+ms.openlocfilehash: e9d1a707c643036fa15b1e0e46730eadefd65518
+ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "57463224"
+ms.lasthandoff: 04/14/2019
+ms.locfileid: "59562462"
 ---
 # <a name="entity-framework-core-roadmap"></a>Roteiro do Entity Framework Core
 
 > [!IMPORTANT]
 > Lembre-se de que os conjuntos de recursos e agendamentos de versões futuras sempre estão sujeitos a alterações. Tentaremos manter esta página atualizada, mas ela pode não refletir nossos planos mais recentes.
 
-### <a name="ef-core-30"></a>EF Core 3.0
+## <a name="ef-core-30"></a>EF Core 3.0
 
 Com o lançamento do EF Core 2.2, nosso foco principal agora é o EF Core 3.0.
 Veja [O que há de novo no EF Core 3.0](xref:core/what-is-new/ef-core-3.0/index) para obter informações sobre os [novos recursos](xref:core/what-is-new/ef-core-3.0/features) planejado e as [alterações significativas](xref:core/what-is-new/ef-core-3.0/breaking-changes) intencionais incluídas na versão.
