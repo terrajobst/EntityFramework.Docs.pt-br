@@ -3,14 +3,17 @@ title: Filtros de consulta global – EF Core
 author: anpete
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: 201292a440d37d240f31452eaebb23dcd4aee1a6
-ms.sourcegitcommit: 8dd71a57a01c439431164c163a0722877d0e5cd8
+ms.openlocfilehash: 4afc9fb0338d34845639d57013ac710445321940
+ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53028161"
+ms.lasthandoff: 04/14/2019
+ms.locfileid: "59562436"
 ---
 # <a name="global-query-filters"></a>Filtros de consulta global
+
+> [!NOTE]
+> Essa funcionalidade foi introduzida no EF Core 2.0.
 
 Os filtros de consulta global são predicados de consulta LINQ (uma expressão booliana normalmente passada ao operador de consulta LINQ *Where*) aplicado aos Tipos de Entidade no modelo de metadados (normalmente, *OnModelCreating*). Esses filtros são aplicados automaticamente em qualquer consulta LINQ que envolva esses Tipos de Entidade, incluindo Tipos de Entidade referenciados indiretamente, como usando as referências de propriedade de navegação direta ou de Inclusão. Alguns aplicativos comuns desse recurso são:
 

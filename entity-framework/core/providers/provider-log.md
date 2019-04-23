@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: 9ef87a737111053df0359f3b2d7a4f82d25c578a
-ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
+ms.openlocfilehash: 61a58bd6119763d90731fac62343b983af510cb6
+ms.sourcegitcommit: 87fcaba46535aa351db4bdb1231bd14b40e459b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "58867938"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59929869"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -62,6 +62,7 @@ Observe que muitos do [alterações significativas de nível de aplicativo](../w
   * Serviços de conjunto de convenção foram alterados. Agora, os provedores devem herdar de "ProviderConventionSet" ou "RelationalConventionSet".
   * As personalizações podem ser adicionadas por meio de `IConventionSetCustomizer` serviços, mas isso se destina a ser usado por outras extensões, não os provedores.
   * As convenções usadas no tempo de execução devem ser resolvidas a partir `IConventionSetBuilder`.
+* https://github.com/aspnet/EntityFrameworkCore/pull/15288 -Propagação de dados foi refatorado em uma API pública para evitar a necessidade de usar tipos internos. Isso só deve afetar provedores não relacionais, desde que a propagação é manipulada pela classe base relacional para todos os provedores relacionais.
 
 ## <a name="21-----22"></a>2.1 ---> 2.2
 
@@ -82,7 +83,6 @@ Observe que muitos do [alterações significativas de nível de aplicativo](../w
   * Talvez seja necessário reagir provedores que usam esses testes
 * [https://github.com/aspnet/EntityFrameworkCore/pull/12141](https://github.com/aspnet/EntityFrameworkCore/pull/12141) -Retornar o contexto para o pool em vez de descartar em testes funcionais
   * Essa alteração inclui certa refatoração do teste que podem exigir provedores reagir
-
 
 ### <a name="test-and-product-code-changes"></a>Alterações de código do produto e de teste
 

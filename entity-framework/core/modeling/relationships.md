@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 0ff736a3-f1b0-4b58-a49c-4a7094bd6935
 uid: core/modeling/relationships
-ms.openlocfilehash: a53a862cc2443a1c4461aa287def100284635f26
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 9ef1a9269fc99f5b27a81c11a161ed5f9d74180d
+ms.sourcegitcommit: 87fcaba46535aa351db4bdb1231bd14b40e459b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994936"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59929931"
 ---
 # <a name="relationships"></a>Relações
 
@@ -22,21 +22,21 @@ Uma relação define como duas entidades se relacionam entre si. Em um banco de 
 
 Há um número de termos usados para descrever relações
 
-* **Entidade dependente:** essa é a entidade que contém a propriedade de chave estrangeira (s). Às vezes chamado de "filho" da relação.
+* **Entidade dependente:** Essa é a entidade que contém a propriedade de chave estrangeira (s). Às vezes chamado de "filho" da relação.
 
-* **Entidade principal:** essa é a entidade que contém as propriedades de chave alternativo/primário. Às vezes chamado de 'parent' da relação.
+* **Entidade principal:** Essa é a entidade que contém as propriedades de chave alternativo/primário. Às vezes chamado de 'parent' da relação.
 
-* **Chave estrangeira:** a propriedade (s) em que é usada para armazenar os valores da propriedade de chave principal que a entidade está relacionada à entidade dependente.
+* **Chave estrangeira:** Propriedade (s) em que é usada para armazenar os valores da propriedade de chave principal que a entidade está relacionada à entidade dependente.
 
-* **Chave da entidade:** a propriedade (s) que identifica exclusivamente a entidade principal. Isso pode ser a chave primária ou uma chave alternativa.
+* **Chave da entidade:** A propriedade (s) que identifica exclusivamente a entidade principal. Isso pode ser a chave primária ou uma chave alternativa.
 
-* **Propriedade de navegação:** uma propriedade definida na entidade dependente e/ou entidade de segurança que contém uma referência (s) para a entidade relacionada (s).
+* **Propriedade de navegação:** Uma propriedade definida na entidade dependente e/ou entidade de segurança que contém uma referência (s) para a entidade relacionada (s).
 
-  * **Propriedade de navegação de coleção:** uma propriedade de navegação que contém referências a várias entidades relacionadas.
+  * **Propriedade de navegação de coleção:** Uma propriedade de navegação que contém referências a várias entidades relacionadas.
 
-  * **Referência de propriedade de navegação:** uma propriedade de navegação que contém uma referência a uma única entidade relacionada.
+  * **Propriedade de navegação de referência:** Uma propriedade de navegação que contém uma referência a uma única entidade relacionada.
 
-  * **Propriedade de navegação inverso:** ao discutir uma propriedade de navegação em particular, este termo refere-se para a propriedade de navegação na outra extremidade da relação.
+  * **Propriedade de navegação inversa:** Ao discutir uma propriedade de navegação em particular, este termo refere-se a propriedade de navegação na outra extremidade da relação.
 
 A listagem de código a seguir mostra uma relação um-para-muitos entre `Blog` e `Post`
 
@@ -98,13 +98,13 @@ Ver [exclusão em cascata](../saving/cascade-delete.md) para obter mais detalhes
 
 ## <a name="data-annotations"></a>Anotações de dados
 
-Há duas anotações de dados que podem ser usadas para configurar as relações, `[ForeignKey]` e `[InverseProperty]`.
+Há duas anotações de dados que podem ser usadas para configurar as relações, `[ForeignKey]` e `[InverseProperty]`. Eles estão disponíveis no `System.ComponentModel.DataAnnotations.Schema` namespace.
 
 ### <a name="foreignkey"></a>[ForeignKey]
 
 Você pode usar as anotações de dados para configurar qual propriedade deve ser usada como a propriedade de chave estrangeira para uma determinada relação. Normalmente, isso é feito quando a propriedade de chave estrangeira não for descoberta por convenção.
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Relationships/ForeignKey.cs?name=Entities&highlight=17)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Relationships/ForeignKey.cs?highlight=30)]
 
 > [!TIP]  
 > O `[ForeignKey]` anotação pode ser colocada em uma das propriedades de navegação na relação. Ele não precisa ir na propriedade de navegação na classe de entidade dependente.
@@ -113,29 +113,29 @@ Você pode usar as anotações de dados para configurar qual propriedade deve se
 
 Você pode usar as anotações de dados para configurar como as propriedades de navegação em entidades dependentes e principais ao emparelhar. Normalmente, isso é feito quando há mais de um par de propriedades de navegação entre dois tipos de entidade.
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Relationships/InverseProperty.cs?name=Entities&highlight=20,23)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Relationships/InverseProperty.cs?highlight=33,36)]
 
 ## <a name="fluent-api"></a>API fluente
 
 Para configurar uma relação na API do Fluent, inicie identificando as propriedades de navegação que compõem a relação. `HasOne` ou `HasMany` identifica a propriedade de navegação no tipo de entidade que você estiver iniciando a configuração em. Uma chamada para então encadear `WithOne` ou `WithMany` para identificar a navegação inversa. `HasOne`/`WithOne` são usados para as propriedades de navegação de referência e `HasMany` / `WithMany` são usados para as propriedades de navegação de coleção.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/NoForeignKey.cs?name=Model&highlight=8,9,10)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/NoForeignKey.cs?highlight=14-16)]
 
 ### <a name="single-navigation-property"></a>Propriedade de navegação único
 
 Se você tiver apenas uma propriedade de navegação, há sobrecargas sem parâmetro de `WithOne` e `WithMany`. Isso indica que há conceitualmente uma referência ou uma coleção na outra extremidade da relação, mas não há nenhuma propriedade de navegação incluída na classe de entidade.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/OneNavigation.cs?name=Model&highlight=10)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/OneNavigation.cs?highlight=14-16)]
 
 ### <a name="foreign-key"></a>Chave estrangeira
 
 Você pode usar a API Fluent para configurar qual propriedade deve ser usada como a propriedade de chave estrangeira para uma determinada relação.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/ForeignKey.cs?name=Model&highlight=11)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/ForeignKey.cs?highlight=17)]
 
 A listagem de código a seguir mostra como configurar uma chave estrangeira composta.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/CompositeForeignKey.cs?name=Model&highlight=13)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/CompositeForeignKey.cs?highlight=20)]
 
 Você pode usar a sobrecarga de cadeia de caracteres de `HasForeignKey(...)` para configurar uma propriedade de sombra como uma chave estrangeira (consulte [propriedades de sombra](shadow-properties.md) para obter mais informações). É recomendável adicionar explicitamente a propriedade de sombra para o modelo antes de usá-lo como uma chave estrangeira (conforme mostrado abaixo).
 
