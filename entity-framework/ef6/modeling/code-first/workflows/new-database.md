@@ -14,7 +14,7 @@ ms.locfileid: "46284116"
 Este passo a passo e vídeo passo a passo fornecem uma introdução ao desenvolvimento Code First, direcionando um novo banco de dados. Este cenário inclui o direcionamento de um banco de dados que não existe e Code First criará ou um banco de dados vazio que Code First será adicionar novas tabelas. Código primeiro permite que você defina seu modelo usando o C\# ou classes VB.Net. Configuração adicional, opcionalmente, pode ser executada usando atributos em classes e propriedades ou usando uma API fluente.
 
 ## <a name="watch-the-video"></a>Assista ao vídeo
-Este vídeo fornece uma introdução ao desenvolvimento Code First, direcionando um novo banco de dados. Este cenário inclui o direcionamento de um banco de dados que não existe e Code First criará ou um banco de dados vazio que Code First será adicionar novas tabelas. Código primeiro permite que você defina seu modelo usando classes c# ou VB.Net. Configuração adicional, opcionalmente, pode ser executada usando atributos em classes e propriedades ou usando uma API fluente.
+Este vídeo fornece uma introdução ao desenvolvimento Code First, direcionando um novo banco de dados. Este cenário inclui o direcionamento de um banco de dados que não existe e Code First criará ou um banco de dados vazio que Code First será adicionar novas tabelas. Código primeiro permite que você defina seu modelo usando classes C# ou VB.Net. Configuração adicional, opcionalmente, pode ser executada usando atributos em classes e propriedades ou usando uma API fluente.
 
 **Apresentado por**: [Rowan Miller](http://romiller.com/)
 

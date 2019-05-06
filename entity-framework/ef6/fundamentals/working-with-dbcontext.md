@@ -37,7 +37,7 @@ public class ProductContext : DbContext
 
 Quando você tiver um contexto, você teria consultar, adicionar (usando `Add` ou `Attach` métodos) ou remover (usando `Remove`) entidades no contexto por meio dessas propriedades. Acessando um `DbSet` propriedade em um objeto de contexto representa uma consulta inicial que retorna todas as entidades do tipo especificado. Observe que apenas acesso a uma propriedade não será executado a consulta. Uma consulta é executada quando:  
 
-- Ele é enumerado por um `foreach` (c#) ou `For Each` declaração (Visual Basic).  
+- Ele é enumerado por um `foreach` (C#) ou `For Each` declaração (Visual Basic).  
 - Ele é enumerado por uma operação de coleção, como `ToArray`, `ToDictionary`, ou `ToList`.  
 - Operadores LINQ, como `First` ou `Any` são especificados na parte externa da consulta.  
 - Um dos seguintes métodos são chamados: o `Load` método de extensão `DbEntityEntry.Reload`, `Database.ExecuteSqlCommand`, e `DbSet<T>.Find`, se uma entidade com a chave especificada não for encontrada já carregada no contexto.  

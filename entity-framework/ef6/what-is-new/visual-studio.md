@@ -25,7 +25,7 @@ Ver [What's New](~/ef6/what-is-new/index.md) para obter mais detalhes sobre essa
 Manualmente, você pode instalar ou atualizar para qualquer pacote NuGet do EF disponível online.
 - Por padrão, a instância do SQL Server disponível com esta versão do Visual Studio é uma instância do LocalDB chamada MSSQLLocalDB.
 A seção de servidor da cadeia de caracteres de conexão que você deve usar é "(localdb)\\MSSQLLocalDB".
-Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código c#.  
+Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código C#.  
 
 
 ## <a name="visual-studio-2015-to-visual-studio-2017-156"></a>Visual Studio 2015 para Visual Studio 2017 15.6
@@ -36,7 +36,7 @@ Ver [últimas versões](~/ef6/what-is-new/past-releases.md#ef-613) para obter ma
 Manualmente, você pode instalar ou atualizar para qualquer pacote NuGet do EF disponível online.
 - Por padrão, a instância do SQL Server disponível com esta versão do Visual Studio é uma instância do LocalDB chamada MSSQLLocalDB.
 A seção de servidor da cadeia de caracteres de conexão que você deve usar é "(localdb)\\MSSQLLocalDB".
-Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código c#.  
+Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código C#.  
 
 
 ## <a name="visual-studio-2013"></a>Visual Studio 2013
@@ -47,7 +47,7 @@ Ver [últimas versões](~/ef6/what-is-new/past-releases.md#ef-613) para obter ma
 Manualmente, você pode instalar ou atualizar para qualquer pacote NuGet do EF disponível online.
 - Por padrão, a instância do SQL Server disponível com esta versão do Visual Studio é uma instância do LocalDB chamada MSSQLLocalDB.
 A seção de servidor da cadeia de caracteres de conexão que você deve usar é "(localdb)\\MSSQLLocalDB".
-Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código c#.  
+Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código C#.  
 
 ## <a name="visual-studio-2012"></a>Visual Studio 2012
 
@@ -58,7 +58,7 @@ Ver [últimas versões](~/ef6/what-is-new/past-releases.md#ef-613) para obter ma
 Manualmente, você pode instalar ou atualizar para qualquer pacote NuGet do EF disponível online.
 - Por padrão, a instância do SQL Server disponível com esta versão do Visual Studio é uma instância do LocalDB chamada v11.0.
 A seção de servidor da cadeia de caracteres de conexão que você deve usar é "(localdb)\\v11.0".
-Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código c#.  
+Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código C#.  
 
 ## <a name="visual-studio-2010"></a>Visual Studio 2010
 
@@ -66,8 +66,8 @@ Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique d
 - Por padrão, as ferramentas do Entity Framework adicionará o Entity Framework 4.0 para seus projetos.
 Para criar aplicativos usando as versões mais recentes do EF, você primeiro precisará instalar o [extensão do Gerenciador de pacotes NuGet](https://marketplace.visualstudio.com/items?itemName=NuGetTeam.NuGetPackageManager).
 - Por padrão, todos os de geração de código na versão do ferramentas do EF baseia-se em EntityObject e Entity Framework 4.
-Recomendamos que você alterne a geração de código deve ser baseado em DbContext e o Entity Framework 5, instalando os modelos de geração de código do DbContext para [c#](https://marketplace.visualstudio.com/items?itemName=EntityFrameworkTeam.EF5xDbContextGeneratorforC) ou [Visual Basic](https://marketplace.visualstudio.com/items?itemName=EntityFrameworkTeam.EF5xDbContextGeneratorforVBNET).
+Recomendamos que você alterne a geração de código deve ser baseado em DbContext e o Entity Framework 5, instalando os modelos de geração de código do DbContext para [C#](https://marketplace.visualstudio.com/items?itemName=EntityFrameworkTeam.EF5xDbContextGeneratorforC) ou [Visual Basic](https://marketplace.visualstudio.com/items?itemName=EntityFrameworkTeam.EF5xDbContextGeneratorforVBNET).
 - Depois de instalar as extensões do Gerenciador de pacotes NuGet, você pode instalar manualmente ou atualize para qualquer pacote NuGet do EF disponível online e usam o EF6 Code First, que não exige que um designer.
 - Por padrão, a instância do SQL Server disponível com esta versão do Visual Studio é o SQL Server Express denominada SQLEXPRESS.
 A seção de servidor da cadeia de caracteres de conexão que você deve usar é ". \\SQLEXPRESS ".
-Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código c#.
+Lembre-se de usar uma cadeia de caracteres textual prefixada com `@` ou clique duas vezes invertidas "\\\\" ao especificar uma cadeia de caracteres de conexão no código C#.
