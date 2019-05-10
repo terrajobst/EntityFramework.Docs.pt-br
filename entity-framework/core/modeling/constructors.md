@@ -4,12 +4,12 @@ author: ajcvickers
 ms.date: 02/23/2018
 ms.assetid: 420AFFE7-B709-4A68-9149-F06F8746FB33
 uid: core/modeling/constructors
-ms.openlocfilehash: 1b36197465fb9a6571a306d36eb1e9d885a5399e
-ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
+ms.openlocfilehash: 5bf49718f02c1860871b1f4c255ec4d98fce2fc7
+ms.sourcegitcommit: 960e42a01b3a2f76da82e074f64f52252a8afecc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/29/2018
-ms.locfileid: "43152459"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "65405253"
 ---
 # <a name="entity-types-with-constructors"></a>Tipos de entidade com construtores
 
@@ -90,7 +90,7 @@ Algumas coisas a observar:
 * Nem todas as propriedades precisam ter os parâmetros do construtor. Por exemplo, a propriedade de Post.Content não é definida por qualquer parâmetro de construtor, portanto, o EF Core defini-lo depois de chamar o construtor da maneira normal.
 * Os nomes e tipos de parâmetro devem corresponder ao tipos de propriedade e nomes, exceto que as propriedades podem ser padrão Pascal-case enquanto os parâmetros estão em camel case.
 * O EF Core não é possível definir propriedades de navegação (por exemplo, Blog ou postagens acima) usando um construtor.
-* O construtor pode ser público, privada ou ter outros recursos de acessibilidade.
+* O construtor pode ser público, privada ou ter outros recursos de acessibilidade. No entanto, o carregamento lento proxies exigem que o construtor é acessível pela classe de proxy de herança. Geralmente, isso significa tornando-o público ou protegido.
 
 ### <a name="read-only-properties"></a>Propriedades somente leitura
 

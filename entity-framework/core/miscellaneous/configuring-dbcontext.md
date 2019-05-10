@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: 0350b25d0d0efe05df7cb9e93a3f4ae2d864fd63
-ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
+ms.openlocfilehash: 316d363d4a1b8a909efc1c32b492280c0d16cb4e
+ms.sourcegitcommit: 960e42a01b3a2f76da82e074f64f52252a8afecc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "59363931"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "65405216"
 ---
 # <a name="configuring-a-dbcontext"></a>Configurar um DbContext
 
@@ -163,7 +163,13 @@ var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();
 ```
 ## <a name="avoiding-dbcontext-threading-issues"></a>Evitando problemas de threading de DbContext
 
-O Entity Framework Core não oferece suporte a várias operações simultâneas que estão sendo executadas no mesmo `DbContext` instância. Acesso simultâneo pode resultar em comportamento indefinido, panes de aplicativos e dados corrompidos. Por isso é importante usar sempre separar `DbContext` instâncias para operações executadas em paralelo. 
+O Entity Framework Core não oferece suporte a várias operações simultâneas que estão sendo executadas no mesmo `DbContext` instância. Isso inclui a execução paralela de consultas de async e qualquer uso explícito de simultâneo de vários threads. Portanto, sempre `await` assíncrono chama imediatamente ou usar separado `DbContext` instâncias para operações executadas em paralelo.
+
+Quando o EF Core detecta uma tentativa de usar um `DbContext` da instância ao mesmo tempo, você verá um `InvalidOperationException` com uma mensagem como esta: 
+
+> Uma segunda operação iniciada nesse contexto antes de uma operação anterior foi concluída. Isso geralmente é causado por threads diferentes usando a mesma instância do DbContext, no entanto o membros de instância não são garantidos ser thread-safe.
+
+Quando o acesso simultâneo sendo detectado, ele pode resultar em comportamento indefinido, panes de aplicativos e dados corrompidos.
 
 Há erros comuns que podem fazer o inadvernetly access simultâneas na mesma `DbContext` instância:
 

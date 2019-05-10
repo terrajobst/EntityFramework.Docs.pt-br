@@ -3,12 +3,12 @@ title: Trabalhando com transações - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 0d0f1824-d781-4cb3-8fda-b7eaefced1cd
-ms.openlocfilehash: 7197733ab25c8475746e7863963384730919e3ff
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 96cfff4cca59ab27dd68f50d0260e90902e33a92
+ms.sourcegitcommit: eefcab31142f61a7aaeac03ea90dcd39f158b8b8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489772"
+ms.lasthandoff: 04/29/2019
+ms.locfileid: "64873228"
 ---
 # <a name="working-with-transactions"></a>Trabalhando com transações
 > [!NOTE]
@@ -39,7 +39,7 @@ Antes do EF6 Entity Framework insistiam em dizer sobre como abrir a conexão de 
 
 Começando com o EF6 o framework agora fornece:  
 
-1. **Database.BeginTransaction()** : um método mais fácil para um usuário iniciar e concluir as transações em si dentro de um DbContext existente – permitindo que várias operações a serem combinados na mesma transação e, portanto, todos os confirmados ou todos revertida como um. Ele também permite que o usuário especifique mais facilmente o nível de isolamento da transação.  
+1. **Database.BeginTransaction()** : Um método mais fácil para um usuário iniciar e concluir as transações em si dentro de um DbContext existente – permitindo que várias operações a serem combinados na mesma transação e, portanto, a todos os confirmada ou revertida como um. Ele também permite que o usuário especifique mais facilmente o nível de isolamento da transação.  
 2. **Database.UseTransaction()** : o que permite que o DbContext usar uma transação que foi iniciada fora do Entity Framework.  
 
 ### <a name="combining-several-operations-into-one-transaction-within-the-same-context"></a>Combinando várias operações em uma transação no mesmo contexto  
@@ -126,7 +126,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-sing System.Transactions;
+using System.Transactions;
 
 namespace TransactionsExamples
 {
