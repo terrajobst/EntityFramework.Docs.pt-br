@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 4b251638de43af6525f3e6faa0bd4113ab1714b9
-ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
+ms.openlocfilehash: b1b5e286e08a8b6b4efe225a176e76023f9fdd20
+ms.sourcegitcommit: 960e42a01b3a2f76da82e074f64f52252a8afecc
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2019
-ms.locfileid: "59619253"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "65405242"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>Alterações da falha incluídas no EF Core 3.0 (atualmente em versão prévia)
 
@@ -76,6 +76,35 @@ Os desenvolvedores agora também podem controlar exatamente quando o EF Core e o
 
 Para usar o EF Core em um aplicativo ASP.NET Core 3.0 ou qualquer outro aplicativo com suporte, adicione explicitamente uma referência de pacote ao provedor de banco de dados do EF Core que seu aplicativo usará.
 
+## <a name="the-ef-core-command-line-tool-dotnet-ef-is-no-longer-part-of-the-net-core-sdk"></a>A ferramenta de linha de comando do EF Core, dotnet ef, não é parte do SDK do .NET Core
+
+[Acompanhamento de problema n. 14016](https://github.com/aspnet/EntityFrameworkCore/issues/14016)
+
+Essa alteração foi introduzida no EF Core 3.0-preview 4 e na versão correspondente do SDK do .NET Core.
+
+**Comportamento antigo**
+
+Antes da 3.0, a ferramenta `dotnet ef` foi incluída no SDK do .NET Core e ficou prontamente disponível para uso na linha de comando de qualquer projeto sem a necessidade de etapas adicionais. 
+
+**Comportamento novo**
+
+Da 3.0 em diante, o SDK do .NET não inclui a ferramenta `dotnet ef`, portanto, antes que você possa usá-la, você precisa instalá-la explicitamente como uma ferramenta local ou global. 
+
+**Por que**
+
+Essa alteração permite distribuir e atualizar `dotnet ef` como uma ferramenta de CLI do .NET regular no NuGet, consistente com o fato de que o EF Core 3.0 também é sempre distribuído como um pacote do NuGet.
+
+**Mitigações**
+
+Para ser capaz de gerenciar as migrações ou fazer scaffold de um `DbContext`, instale `dotnet-ef` usando o comando `dotnet tool install`.
+Por exemplo, para instalá-lo como uma ferramenta global, você pode digitar este comando:
+
+  ``` console
+  $ dotnet tool install --global dotnet-ef --version <exact-version>
+  ```
+
+Você também pode obtê-lo como uma ferramenta local quando você restaura as dependências de um projeto que o declara como uma dependência de ferramentas usando um [arquivo de manifesto de ferramenta](https://github.com/dotnet/cli/issues/10288).
+
 ## <a name="fromsql-executesql-and-executesqlasync-have-been-renamed"></a>FromSql, ExecuteSql e ExecuteSqlAsync foram renomeados
 
 [Acompanhamento de questões nº 10996](https://github.com/aspnet/EntityFrameworkCore/issues/10996)
@@ -109,7 +138,7 @@ Observe que ambas as consultas acima produzirão o mesmo SQL parametrizado com o
 
 **Por que**
 
-Usando sobrecargas de método como esta, é muito fácil chamar acidentalmente o método de cadeia de caracteres bruta quando a intenção era chamar o método de cadeia de caracteres interpolada e vice-versa.
+Sobrecargas de método como essa tornam muito fácil chamar acidentalmente o método de cadeia de caracteres bruta quando a intenção era para chamar o método de cadeia de caracteres interpolada e vice-versa.
 Isso pode resultar em consultas não parametrizadas, quando deveriam ter sido.
 
 **Mitigações**
@@ -602,7 +631,7 @@ Da versão 3.0 em diante, o EF Core fecha a conexão assim que termina de usá-l
 
 **Por que**
 
-Essa alteração permite para usar vários contextos no mesmo `TransactionScope`. O novo comportamento corresponde ao EF6.
+Essa alteração permite para usar vários contextos no mesmo `TransactionScope`. O novo comportamento também corresponde ao EF6.
 
 **Mitigações**
 
@@ -660,7 +689,7 @@ A exceção a isso era a execução da consulta, em que o campo de suporte seria
 
 **Comportamento novo**
 
-A partir do EF Core 3.0, se o campo de suporte para uma propriedade for conhecido, ele sempre lerá e gravará aquela propriedade usando o campo de suporte.
+Do EF Core 3.0 em diante, se o campo de suporte para uma propriedade é conhecido, o EF Core sempre lê e grava essa propriedade usando o campo de suporte.
 Isso poderá causar uma interrupção de aplicativo se o aplicativo depender do comportamento adicional codificado para os métodos getter ou setter.
 
 **Por que**
