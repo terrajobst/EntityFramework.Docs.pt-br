@@ -3,12 +3,12 @@ title: Considerações sobre desempenho para o EF4, EF5 e EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d6d5a465-6434-45fa-855d-5eb48c61a2ea
-ms.openlocfilehash: 4c1f03533cf6df49555c3ef8d09d5949b9a3335c
-ms.sourcegitcommit: 33b2e84dae96040f60a613186a24ff3c7b00b6db
+ms.openlocfilehash: f8fa1001c85366e169cf50e89efdb65bd92b671e
+ms.sourcegitcommit: f277883a5ed28eba57d14aaaf17405bc1ae9cf94
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/21/2019
-ms.locfileid: "56459205"
+ms.lasthandoff: 05/18/2019
+ms.locfileid: "65874604"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>Considerações de desempenho do EF 4, 5 e 6
 Por David Obando, Eric Dettinger e outros
@@ -119,9 +119,9 @@ Usar exibições pré-geradas move o custo de geração de exibição do modelo 
 
 Temos visto um número de casos em que a troca as associações no modelo de associações independente para as associações de chave estrangeira drasticamente aprimorado o tempo gasto na geração de exibição.
 
-Para demonstrar essa melhoria, geramos duas versões do modelo Navision usando EDMGen. *Observação: seeappendix Cfor uma descrição do modelo Navision.* O modelo Navision é interessante para este exercício devido a sua quantidade muito grande de entidades e relações entre eles.
+Para demonstrar essa melhoria, geramos duas versões do modelo Navision usando EDMGen. *Observação: consulte o Apêndice C para obter uma descrição do modelo Navision.* O modelo Navision é interessante para este exercício devido a sua quantidade muito grande de entidades e relações entre eles.
 
-Uma versão desse modelo muito grandes foi gerada com associações de chaves estrangeiras e outro foi gerado com associações independentes. Podemos então atingiu o tempo quanto tempo levou para gerar os modos de exibição para cada modelo. Teste de Framework5 de entidade usado o método GenerateViews() da classe EntityViewGenerator para gerar os modos de exibição, enquanto o teste do Entity Framework 6 usou o método GenerateViews() da classe StorageMappingItemCollection. Isso devido a reestruturação do código que ocorreram na Base de código do Entity Framework 6.
+Uma versão desse modelo muito grandes foi gerada com associações de chaves estrangeiras e outro foi gerado com associações independentes. Podemos então atingiu o tempo quanto tempo levou para gerar os modos de exibição para cada modelo. Teste do Entity Framework 5 usado o método GenerateViews() da classe EntityViewGenerator para gerar os modos de exibição, enquanto o teste do Entity Framework 6 usou o método GenerateViews() da classe StorageMappingItemCollection. Isso devido a reestruturação do código que ocorreram na Base de código do Entity Framework 6.
 
 Usando o Entity Framework 5, geração de exibição para o modelo com chaves estrangeiras levou 65 minutos em um computador de laboratório. Sabe quanto seria necessário para gerar os modos de exibição para o modelo que usado associações independentes. Deixamos que o teste em execução por mais de um mês antes do computador foi reinicializado em nosso laboratório para instalar atualizações mensais.
 
@@ -240,7 +240,7 @@ Observe que o timer de remoção do cache é iniciado quando houver 800 entidade
 
 #### <a name="323-test-metrics-demonstrating-query-plan-caching-performance"></a>3.2.3 métricas demonstrando o desempenho do cache de plano de consulta de teste
 
-Para demonstrar o efeito de plano de consulta em cache no desempenho do seu aplicativo, realizamos um teste no qual executamos um número de consultas do Entity SQL com base no modelo Navision. Consulte o Apêndice para obter uma descrição do modelo Navision e os tipos de consultas que foram executadas. Este teste, primeiro iterar na lista de consultas e executar cada um de uma vez para adicioná-los no cache (se o cache é habilitado). Esta etapa é untimed. Em seguida, podemos suspender o thread principal para mais de 60 segundos permitir que o cache de varredura para assumir o lugar; Por fim, iteramos por meio de tempo a lista um 2º para executar as consultas armazenadas em cache. Além disso, ele cache de plano do SQL Server é liberado antes de cada conjunto de consultas é executado para que os horários que obtemos com precisão refletem o benefício dado pelo cache de plano de consulta.
+Para demonstrar o efeito de plano de consulta em cache no desempenho do seu aplicativo, realizamos um teste no qual executamos um número de consultas do Entity SQL com base no modelo Navision. Consulte o Apêndice para obter uma descrição do modelo Navision e os tipos de consultas que foram executadas. Este teste, primeiro iterar na lista de consultas e executar cada um de uma vez para adicioná-los no cache (se o cache é habilitado). Esta etapa é untimed. Em seguida, podemos suspender o thread principal para mais de 60 segundos permitir que o cache de varredura para assumir o lugar; Por fim, iteramos por meio de tempo a lista um 2º para executar as consultas armazenadas em cache. Além disso, o cache de plano do SQL Server é liberado antes de cada conjunto de consultas é executado para que os horários que obtemos com precisão refletem o benefício dado pelo cache de plano de consulta.
 
 ##### <a name="3231-test-results"></a>3.2.3.1 resultados de teste
 
@@ -487,7 +487,7 @@ Uma versão mais rápida desse mesmo código envolveria chamando Skip com um lam
 
 ``` csharp
 var customers = context.Customers.OrderBy(c => c.LastName);
-for (var i = 0; i \< count; ++i)
+for (var i = 0; i < count; ++i)
 {
     var currentCustomer = customers.Skip(() => i).FirstOrDefault();
     ProcessCustomer(currentCustomer);
