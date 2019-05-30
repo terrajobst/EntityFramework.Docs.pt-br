@@ -62,7 +62,7 @@ Observe que muitos do [alterações significativas de nível de aplicativo](../w
   * Serviços de conjunto de convenção foram alterados. Agora, os provedores devem herdar de "ProviderConventionSet" ou "RelationalConventionSet".
   * As personalizações podem ser adicionadas por meio de `IConventionSetCustomizer` serviços, mas isso se destina a ser usado por outras extensões, não os provedores.
   * As convenções usadas no tempo de execução devem ser resolvidas a partir `IConventionSetBuilder`.
-* https://github.com/aspnet/EntityFrameworkCore/pull/15288 -Propagação de dados foi refatorado em uma API pública para evitar a necessidade de usar tipos internos. Isso só deve afetar provedores não relacionais, desde que a propagação é manipulada pela classe base relacional para todos os provedores relacionais.
+* [https://github.com/aspnet/EntityFrameworkCore/pull/15288](https://github.com/aspnet/EntityFrameworkCore/pull/15288) -Propagação de dados foi refatorado em uma API pública para evitar a necessidade de usar tipos internos. Isso só deve afetar provedores não relacionais, desde que a propagação é manipulada pela classe base relacional para todos os provedores relacionais.
 
 ## <a name="21-----22"></a>2.1 ---> 2.2
 
