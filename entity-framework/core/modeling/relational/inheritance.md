@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 9a7c5488-aaf4-4b40-b1ff-f435ff30f6ec
 uid: core/modeling/relational/inheritance
-ms.openlocfilehash: 2aaceb05bbc1b0eb5c116b3dc1fb33c90c115a70
-ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
+ms.openlocfilehash: 2d0a2abc554f5f115479f886ca3f9f4f01b80b5b
+ms.sourcegitcommit: ea1cdec0b982b922a59b9d9301d3ed2b94baca0f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419673"
+ms.lasthandoff: 05/31/2019
+ms.locfileid: "66452287"
 ---
 # <a name="inheritance-relational-database"></a>Herança (banco de dados relacional)
 
@@ -52,7 +52,7 @@ public class RssBlog : Blog
 ![imagem](_static/inheritance-tph-data.png)
 
 >[!NOTE]
-> Colmmns de banco de dados são feitas automaticamente que permite valor nulo, conforme necessário ao usar o mapeamento TPH.
+> Colunas de banco de dados são feitas automaticamente que permite valor nulo, conforme necessário ao usar o mapeamento TPH.
 
 ## <a name="data-annotations"></a>Anotações de dados
 
