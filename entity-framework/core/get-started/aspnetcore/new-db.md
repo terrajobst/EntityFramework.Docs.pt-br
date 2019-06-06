@@ -5,12 +5,12 @@ ms.author: riande
 ms.date: 08/03/2018
 ms.assetid: e153627f-f132-4c11-b13c-6c9a607addce
 uid: core/get-started/aspnetcore/new-db
-ms.openlocfilehash: fbc1a00d6d6d0624bcbbfa1e51f4e21a915baaaa
-ms.sourcegitcommit: f277883a5ed28eba57d14aaaf17405bc1ae9cf94
+ms.openlocfilehash: 2eb1668b8c077fabc9cb21088452fd1bead7ff22
+ms.sourcegitcommit: ea1cdec0b982b922a59b9d9301d3ed2b94baca0f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/18/2019
-ms.locfileid: "65874573"
+ms.lasthandoff: 05/31/2019
+ms.locfileid: "66452243"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>Introdução ao EF Core no ASP.NET Core com um novo banco de dados
 
@@ -226,8 +226,12 @@ dotnet run
 
   ![Página de índice](_static/index-new-db.png)
 
-## <a name="additional-resources"></a>Recursos adicionais
+## <a name="additional-tutorials"></a>Tutoriais adicionais
 
-* [Tutorial: introdução ao EF Core no .NET Core com um novo banco de dados usando o SQLite](xref:core/get-started/netcore/new-db-sqlite)
-* [Introdução às Razor Pages no ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start) ou [Introdução ao ASP.NET Core MVC](/aspnet/core/tutorials/first-mvc-app/start-mvc)
-* [Tutorial: Razor Pages com o Entity Framework Core no ASP.NET Core](https://docs.microsoft.com/aspnet/core/data/ef-rp/intro) ou [Introdução ao EF Core em um aplicativo Web do ASP.NET MVC](/aspnet/core/data/ef-mvc/intro)
+* [Introdução ao EF Core no .NET Core com um novo banco de dados, usando o SQLite](xref:core/get-started/netcore/new-db-sqlite)
+* ASP.NET Core, MVC:
+  * [Introdução ao ASP.NET Core MVC](/aspnet/core/tutorials/first-mvc-app/start-mvc)
+  * [Introdução ao EF Core em um aplicativo Web ASP.NET MVC](/aspnet/core/data/ef-mvc/intro)
+* [Razor Pages](/aspnet/core/razor-pages/index):
+  * [Introdução às Razor Pages no ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start)
+  * [Razor Pages com o Entity Framework Core no ASP.NET Core](https://docs.microsoft.com/aspnet/core/data/ef-rp/intro)
