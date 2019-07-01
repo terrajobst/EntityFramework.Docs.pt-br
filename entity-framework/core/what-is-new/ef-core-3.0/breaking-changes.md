@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 9112d8d235237e68232aac54453d584af0edb524
-ms.sourcegitcommit: b188194a1901f4d086d05765cbc5c9b8c9dc5eed
+ms.openlocfilehash: 96586808862c4373168dcd34a5f00c9f2f7563c3
+ms.sourcegitcommit: 9bd64a1a71b7f7aeb044aeecc7c4785b57db1ec9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/11/2019
-ms.locfileid: "66829489"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67394825"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>Alterações da falha incluídas no EF Core 3.0 (atualmente em versão prévia)
 
@@ -167,34 +167,18 @@ Especificar `FromSql` em qualquer lugar em vez de `DbSet` não tinha nenhum sign
 
 As invocações de `FromSql` devem ser movidas para estarem diretamente no `DbSet` ao qual se aplicam.
 
-## <a name="query-execution-is-logged-at-debug-level"></a>A execução de consulta é registrada no nível de Depuração
+## <a name="query-execution-is-logged-at-debug-level-reverted"></a>~~A execução de consulta é registrada no nível da Depuração~~ Revertida
 
 [Acompanhamento de problema nº 14523](https://github.com/aspnet/EntityFrameworkCore/issues/14523)
 
-Essa alteração foi introduzida no EF Core 3.0 versão prévia 3.
+Essa alteração será revertida no EF Core 3.0 – versão prévia 7.
 
-**Comportamento antigo**
-
-Antes do EF Core 3.0, a execução de consultas e outros comandos era registrada em log no nível `Info`.
-
-**Comportamento novo**
-
-A partir do EF Core 3.0, o registro em log da execução do comando/SQL está no nível `Debug`.
-
-**Por que**
-
-Essa alteração foi feita para reduzir o ruído no nível de log de `Info`.
-
-**Mitigações**
-
-Esse evento de registro em log é definido por `RelationalEventId.CommandExecuting` com a ID de evento 20100.
-Para fazer novamente o log do SQL no nível `Info`, configure explicitamente o nível em `OnConfiguring` ou `AddDbContext`.
-Por exemplo:
+Revertemos essa alteração porque a nova configuração do EF Core 3.0 permite que o nível de log de qualquer evento seja especificado pelo aplicativo. Por exemplo, para alternar o registro em log do SQL para `Debug`, configure explicitamente o nível em `OnConfiguring` ou `AddDbContext`:
 ```C#
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
         .UseSqlServer(connectionString)
-        .ConfigureWarnings(c => c.Log((RelationalEventId.CommandExecuting, LogLevel.Info)));
+        .ConfigureWarnings(c => c.Log((RelationalEventId.CommandExecuting, LogLevel.Debug)));
 ```
 
 ## <a name="temporary-key-values-are-no-longer-set-onto-entity-instances"></a>Valores de chave temporários não estão definidos em instâncias de entidade
@@ -918,28 +902,6 @@ Nesses casos, a maioria das coisas ainda funcionará, mas qualquer serviço sing
 
 Se você enfrentar situações como essa, registre um problema no [Rastreador de problemas do GitHub do EF Core](https://github.com/aspnet/EntityFrameworkCore/issues) para informar como você está usando `ILoggerFactory` para que possamos entender melhor como não interromper isso novamente no futuro.
 
-## <a name="idbcontextoptionsextensionwithdebuginfo-merged-into-idbcontextoptionsextension"></a>IDbContextOptionsExtensionWithDebugInfo mesclado em IDbContextOptionsExtension
-
-[Acompanhamento de problema nº 13552](https://github.com/aspnet/EntityFrameworkCore/issues/13552)
-
-Essa alteração foi introduzida no EF Core 3.0 versão prévia 3.
-
-**Comportamento antigo**
-
-`IDbContextOptionsExtensionWithDebugInfo` era uma interface opcional adicional estendida de `IDbContextOptionsExtension` para evitar fazer uma alteração da falha à interface durante o ciclo de versão 2. x.
-
-**Comportamento novo**
-
-As interfaces agora são mescladas em conjunto em `IDbContextOptionsExtension`.
-
-**Por que**
-
-Essa alteração foi feita porque as interfaces são conceitualmente uma.
-
-**Mitigações**
-
-Quaisquer implementações de `IDbContextOptionsExtension` precisarão ser atualizadas para dar suporte ao novo membro.
-
 ## <a name="lazy-loading-proxies-no-longer-assume-navigation-properties-are-fully-loaded"></a>Proxies de carregamento lento não presumem mais que as propriedades de navegação estejam totalmente carregadas
 
 [Acompanhamento de problema nº 12780](https://github.com/aspnet/EntityFrameworkCore/issues/12780)
@@ -1352,6 +1314,30 @@ UPDATE __EFMigrationsHistory
 SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 150))
 ```
 
+## <a name="extension-infometadata-has-been-removed-from-idbcontextoptionsextension"></a>As informações de extensão/metadados foram removidas do IDbContextOptionsExtension
+
+[Acompanhamento de problema nº 16119](https://github.com/aspnet/EntityFrameworkCore/issues/16119)
+
+Essa alteração foi introduzida no EF Core 3.0 – versão prévia 7.
+
+**Comportamento antigo**
+
+`IDbContextOptionsExtension` continha métodos para fornecer metadados sobre a extensão.
+
+**Comportamento novo**
+
+Esses métodos foram movidos para uma nova classe base abstrata `DbContextOptionsExtensionInfo`, que é retornada da nova propriedade `IDbContextOptionsExtension.Info`.
+
+**Por que**
+
+Nas versões 2.0 a 3.0, precisamos adicionar ou alterar esses métodos várias vezes.
+Dividi-los em uma nova classe base abstrata facilitará a realização desse tipo de alteração sem interromper as extensões existentes.
+
+**Mitigações**
+
+Atualize as extensões para que sigam o novo padrão.
+Os exemplos são encontrados em várias implementações de `IDbContextOptionsExtension` em diferentes tipos de extensões no código-fonte do EF Core.
+
 ## <a name="logquerypossibleexceptionwithaggregateoperator-has-been-renamed"></a>LogQueryPossibleExceptionWithAggregateOperator foi renomeado
 
 [Acompanhamento de problema nº 10985](https://github.com/aspnet/EntityFrameworkCore/issues/10985)
@@ -1399,3 +1385,81 @@ Essa alteração traz consistência à nomeação nessa área e também esclarec
 **Mitigações**
 
 Use o novo nome.
+
+## <a name="irelationaldatabasecreatorhastableshastablesasync-have-been-made-public"></a>IRelationalDatabaseCreator.HasTables/HasTablesAsync tornaram-se públicos
+
+[Acompanhamento de problema nº 15997](https://github.com/aspnet/EntityFrameworkCore/issues/15997)
+
+Essa alteração foi introduzida no EF Core 3.0 – versão prévia 7.
+
+**Comportamento antigo**
+
+Antes do EF Core 3.0, esses métodos eram protegidos.
+
+```C#
+var constraintName = myForeignKey.Name;
+```
+
+**Comportamento novo**
+
+A partir do EF Core 3.0, esses métodos são públicos.
+
+**Por que**
+
+Esses métodos são usados pelo EF para determinar se um banco de dados foi criado, mas está vazio. Isso também pode ser útil fora do EF ao determinar se as migrações serão ou não aplicadas.
+
+**Mitigações**
+
+Altere a acessibilidade de todas as substituições.
+
+## <a name="microsoftentityframeworkcoredesign-is-now-a-developmentdependency-package"></a>Agora Microsoft.EntityFrameworkCore.Design é um pacote de DevelopmentDependency
+
+[Acompanhamento de problema nº 11506](https://github.com/aspnet/EntityFrameworkCore/issues/11506)
+
+Essa alteração foi introduzida no EF Core 3.0 versão prévia 4.
+
+**Comportamento antigo**
+
+Antes do EF Core 3.0, o Microsoft.EntityFrameworkCore.Design era um pacote regular do NuGet cujo assembly podia ser referenciado por projetos que dependiam dele.
+
+**Comportamento novo**
+
+A partir do EF Core 3.0, ele se tornou um pacote de DevelopmentDependency. Isso significa que a dependência não fluirá transitivamente para outros projetos e que você não poderá mais, por padrão, referenciar o assembly dele.
+
+**Por que**
+
+Esse pacote destina-se para uso somente em tempo de design. Os aplicativos implantados não devem fazer referência a ele. Tornar o pacote um DevelopmentDependency reforça essa recomendação.
+
+**Mitigações**
+
+Se você precisar fazer referência a esse pacote para substituir o comportamento de tempo de design do EF Core, poderá atualizar os metadados do item PackageReference no seu projeto. Se o pacote estiver sendo referenciado transitivamente por meio de Microsoft.EntityFrameworkCore.Tools, você precisará adicionar um PackageReference explícito ao pacote para alterar seus metadados.
+
+``` xml
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0-preview4.19216.3">
+  <PrivateAssets>all</PrivateAssets>
+  <!-- Remove IncludeAssets to allow compiling against the assembly -->
+  <!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
+</PackageReference>
+```
+
+## <a name="sqlitepclraw-updated-to-version-200"></a>SQLitePCL.raw atualizado para a versão 2.0.0
+
+[Acompanhamento de problema nº 14824](https://github.com/aspnet/EntityFrameworkCore/issues/14824)
+
+Essa alteração foi introduzida no EF Core 3.0 – versão prévia 7.
+
+**Comportamento antigo**
+
+Anteriormente, Microsoft.EntityFrameworkCore.Sqlite dependia da versão 1.1.12 do SQLitePCL.raw.
+
+**Comportamento novo**
+
+Atualizamos nosso pacote para depender da versão 2.0.0.
+
+**Por que**
+
+A versão 2.0.0 do SQLitePCL.raw é voltada para o .NET Standard 2.0. Anteriormente, era voltada ao .NET Standard 1.1, o que exigia um fechamento grande de pacotes transitivos para funcionar.
+
+**Mitigações**
+
+O SQLitePCL.raw versão 2.0.0 inclui algumas alterações de falha. Confira as [notas sobre a versão](https://github.com/ericsink/SQLitePCL.raw/blob/v2/v2.md) para obter mais detalhes.
