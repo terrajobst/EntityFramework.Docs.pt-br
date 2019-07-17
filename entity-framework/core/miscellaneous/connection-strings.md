@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: aeb0f5f8-b212-4f89-ae83-c642a5190ba0
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: 52a8527170845d3e73ebcec518713ade3f3844f0
-ms.sourcegitcommit: 06073f8efde97dd5f540dbfb69f574d8380566fe
+ms.openlocfilehash: c306f9ca7a51fc9e3db18e883fd44f56dd1a3cb4
+ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/24/2019
-ms.locfileid: "67333849"
+ms.lasthandoff: 07/17/2019
+ms.locfileid: "68286455"
 ---
 # <a name="connection-strings"></a>Cadeias de caracteres de conexão
 
@@ -17,7 +17,7 @@ A maioria dos provedores de banco de dados exigem alguma forma de cadeia de cone
 
 ## <a name="net-framework-applications"></a>Aplicativos do .NET framework
 
-Aplicativos do .NET framework, como WinForms, WPF, Console e ASP.NET 4, têm um padrão de cadeia de caracteres de conexão testada e. A cadeia de caracteres de conexão deve ser adicionada ao seu arquivo App. config de aplicativos (Web. config se você estiver usando ASP.NET). Se a cadeia de conexão contém informações confidenciais, como nome de usuário e senha, você pode proteger o conteúdo do arquivo de configuração usando [configuração protegida](https://docs.microsoft.com/dotnet/framework/data/adonet/connection-strings-and-configuration-files#encrypting-configuration-file-sections-using-protected-configuration).
+Aplicativos do .NET framework, como WinForms, WPF, Console e ASP.NET 4, têm um padrão de cadeia de caracteres de conexão testada e. A cadeia de caracteres de conexão deve ser adicionada ao arquivo App. config de seu aplicativo (Web. config se você estiver usando ASP.NET). Se a cadeia de conexão contém informações confidenciais, como nome de usuário e senha, você pode proteger o conteúdo do arquivo de configuração usando [configuração protegida](https://docs.microsoft.com/dotnet/framework/data/adonet/connection-strings-and-configuration-files#encrypting-configuration-file-sections-using-protected-configuration).
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>

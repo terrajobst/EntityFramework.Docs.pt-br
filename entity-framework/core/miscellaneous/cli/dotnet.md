@@ -2,14 +2,14 @@
 title: EF Core ferramentas reference (CLI) do .NET - Core EF
 author: bricelam
 ms.author: bricelam
-ms.date: 09/20/2018
+ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 959785c7b10ca668f3691106f62076d538978c03
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
+ms.openlocfilehash: 05c5f89fc79556e72a7e629c147aa817fe7d1a6b
+ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688661"
+ms.lasthandoff: 07/17/2019
+ms.locfileid: "68286463"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Referência de ferramentas do Entity Framework Core - CLI do .NET
 
@@ -23,9 +23,28 @@ Se você estiver usando o Visual Studio, é recomendável o [ferramentas do Cons
 
 O procedimento de instalação depende do tipo de projeto e de versão:
 
+* EF Core 3.x
 * ASP.NET Core versão 2.1 e posterior
 * EF Core 2.x
 * EF Core 1.x
+
+### <a name="ef-core-3x"></a>EF Core 3.x
+
+* `dotnet ef` deve ser instalado como uma ferramenta global ou local. A maioria dos desenvolvedores instalará `dotnet ef` como uma ferramenta global com o seguinte comando:
+
+  ``` console
+    $ dotnet tool install --global dotnet-ef --version 3.0.0-*
+  ```
+
+  Você também pode usar `dotnet ef` como ferramenta de local. Para usá-lo como uma ferramenta local, restaure as dependências de um projeto que declara-o como uma dependência de ferramentas usando um [arquivo de manifesto de ferramenta](https://github.com/dotnet/cli/issues/10288).
+
+* Instalar o [.NET Core SDK 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0)). O SDK deve ser instalado, mesmo se você tiver a versão mais recente do Visual Studio.
+
+* Instale o versão mais recente `Microsoft.EntityFrameworkCore.Design` pacote.
+
+  ``` Console
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  ```
 
 ### <a name="aspnet-core-21"></a>ASP.NET Core 2.1 +
 
@@ -37,7 +56,7 @@ O procedimento de instalação depende do tipo de projeto e de versão:
 
 O `dotnet ef` comandos forem incluídos no SDK do .NET Core, mas para habilitar os comandos que você precisa instalar o `Microsoft.EntityFrameworkCore.Design` pacote.
 
-* Instalar o atual [SDK do .NET Core](https://www.microsoft.com/net/download/core). O SDK precisa ser instalado, mesmo se você tiver a versão mais recente do Visual Studio 2017.
+* Instalar o atual [SDK do .NET Core](https://www.microsoft.com/net/download/core). O SDK deve ser instalado, mesmo se você tiver a versão mais recente do Visual Studio.
 
 * Instalar o estável mais recente `Microsoft.EntityFrameworkCore.Design` pacote.
 
@@ -140,7 +159,7 @@ Para especificar o ambiente para projetos do ASP.NET Core, defina as **ASPNETCOR
 |                   | Opção                            | Descrição                                                                                                                                                                                                                                                   |
 |:------------------|:----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |                   | `--json`                          | Mostra a saída JSON.                                                                                                                                                                                                                                             |
-| <nobr>`-c`</nobr> | `--context <DBCONTEXT>`           | O `DbContext` classe a ser usada. Nome de classe totalmente qualificado com namespaces ou única.  Se essa opção for omitida, o EF Core encontrará a classe de contexto. Se houver várias classes de contexto, essa opção é necessária.                                            |
+| <nobr>`-c`</nobr> | `--context <DBCONTEXT>`           | A classe `DbContext` a ser usada. Nome de classe totalmente qualificado com namespaces ou única.  Se essa opção for omitida, o EF Core encontrará a classe de contexto. Se houver várias classes de contexto, essa opção é necessária.                                            |
 | `-p`              | `--project <PROJECT>`             | Caminho relativo à pasta do projeto do projeto de destino.  Valor padrão é a pasta atual.                                                                                                                                                              |
 | `-s`              | `--startup-project <PROJECT>`     | Caminho relativo à pasta do projeto do projeto de inicialização. Valor padrão é a pasta atual.                                                                                                                                                              |
 |                   | `--framework <FRAMEWORK>`         | O [Moniker da estrutura de destino](/dotnet/standard/frameworks#supported-target-framework-versions) para o [estrutura de destino](/dotnet/standard/frameworks).  Use quando o arquivo de projeto especifica várias estruturas de destino, e você deseja selecionar um deles. |
@@ -195,7 +214,7 @@ Argumentos:
 
 | Argumento       | Descrição                                                                                                                                                                                                             |
 |:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<CONNECTION>` | A cadeia de conexão para o banco de dados. Para projetos do ASP.NET Core 2.x, o valor pode ser *nome =\<nome da cadeia de caracteres de conexão >*. Nesse caso, o nome vem de fontes de configuração que são configuradas para o projeto. |
+| `<CONNECTION>` | A cadeia de conexão para o banco de dados. Para projetos do ASP.NET Core 2.x, o valor pode ser *nome =\<nome da cadeia de caracteres de conexão >* . Nesse caso, o nome vem de fontes de configuração que são configuradas para o projeto. |
 | `<PROVIDER>`   | O provedor a ser usado. Normalmente isso é o nome do pacote do NuGet, por exemplo: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
 
 Opções:

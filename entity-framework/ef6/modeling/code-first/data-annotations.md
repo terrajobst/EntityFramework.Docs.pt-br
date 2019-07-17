@@ -3,12 +3,12 @@ title: Primeira Data Annotations - EF6 de código
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80abefbd-23c9-4fce-9cd3-520e5df9856e
-ms.openlocfilehash: e6b017306b4f66f5bac2a9964e11391da28ceb40
-ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
+ms.openlocfilehash: fcd01aef7303573001460b352f8099b2cc6e224a
+ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "57463276"
+ms.lasthandoff: 07/17/2019
+ms.locfileid: "68286472"
 ---
 # <a name="code-first-data-annotations"></a>Anotações de dados Code First
 > [!NOTE]
@@ -146,7 +146,7 @@ Adicionando necessárias para a propriedade Title forçará o EF (e MVC) para ga
     public string Title { get; set; }
 ```
 
-Sem nenhum adicional nenhum código ou marcação alterações no aplicativo, um aplicativo MVC executará validação do lado do cliente, até mesmo dinamicamente a criação de uma mensagem usando os nomes de propriedade e a anotação.
+Sem código adicional ou alterações de marcação no aplicativo, um aplicativo MVC executará validação do lado do cliente, até mesmo dinamicamente a criação de uma mensagem usando os nomes de propriedade e a anotação.
 
 ![Criar página com o título é obrigatório de erro](~/ef6/media/jj591583-figure02.png)
 
