@@ -1,38 +1,38 @@
 ---
-title: Conexão resiliência e lógica de repetição - EF6
+title: Resiliência de conexão e lógica de repetição-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 47d68ac1-927e-4842-ab8c-ed8c8698dff2
-ms.openlocfilehash: 7d6aa870cc32a2b344457fbb04525a7c2c8d1c61
-ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
+ms.openlocfilehash: a01216c3399ca4a04943563435eacd0047337a5f
+ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/03/2019
-ms.locfileid: "55668759"
+ms.lasthandoff: 07/18/2019
+ms.locfileid: "68306570"
 ---
-# <a name="connection-resiliency-and-retry-logic"></a>Conexão resiliência e lógica de repetição
+# <a name="connection-resiliency-and-retry-logic"></a>Resiliência de conexão e lógica de repetição
 > [!NOTE]
 > **EF6 em diante apenas**: os recursos, as APIs etc. discutidos nessa página foram introduzidos no Entity Framework 6. Se você estiver usando uma versão anterior, algumas ou todas as informações não se aplicarão.  
 
-Aplicativos que se conectam a um servidor de banco de dados sempre foram vulneráveis a interrupções de conexão devido a falhas de back-end e instabilidade de rede. No entanto, em um ambiente de LAN com base em trabalhar com servidores de banco de dados dedicado, esses erros são bastante raros que lógica extra para lidar com essas falhas geralmente não é necessária. Com o aumento da nuvem com base conexões e servidores de banco de dados como banco de dados SQL do Windows Azure em redes menos confiáveis agora é mais comum para quebras de conexão ocorra. Isso pode ser devido a técnicas de defesa que bancos de dados de uso para garantir a integridade do serviço, como as limitações de conexão ou à instabilidade na rede, causando tempos limite de intermitente e outros erros transitórios de nuvem.  
+Os aplicativos que se conectam a um servidor de banco de dados sempre foram vulneráveis a quebras de conexão devido a falhas de back-end e instabilidade de rede. No entanto, em um ambiente baseado em LAN que trabalha com servidores de banco de dados dedicados, esses erros são raros o suficiente para que a lógica extra para lidar com essas falhas não seja geralmente necessária. Com o aumento dos servidores de banco de dados baseados em nuvem, como o banco de dados SQL do Windows Azure e as conexões em redes menos confiáveis, agora é mais comum que as interrupções de conexão ocorram. Isso pode ser devido a técnicas defensivas que os bancos de dados de nuvem usam para garantir a imparcialidade do serviço, como a limitação de conexão ou a instabilidade na rede, causando tempos limite intermitentes e outros erros transitórios.  
 
-Resiliência de Conexão refere-se à capacidade para o EF repetir automaticamente a todos os comandos que falharem devido a essas quebras de conexão.  
+A resiliência da conexão refere-se à capacidade do EF de repetir automaticamente os comandos que falharem devido a essas quebras de conexão.  
 
 ## <a name="execution-strategies"></a>Estratégias de execução  
 
-Repetição de Conexão é tratada por uma implementação da interface IDbExecutionStrategy. Implementações do IDbExecutionStrategy será responsáveis por aceitar uma operação e, se ocorrer uma exceção, determinando se uma repetição é apropriada e tentar novamente se ele for. Há quatro estratégias de execução que são fornecidos com o EF:  
+A repetição de conexão é encarregada por uma implementação da interface IDbExecutionStrategy. As implementações do IDbExecutionStrategy serão responsáveis por aceitar uma operação e, se ocorrer uma exceção, determinando se uma repetição é apropriada e tentando novamente se for. Há quatro estratégias de execução fornecidas com o EF:  
 
-1. **DefaultExecutionStrategy**: essa estratégia de execução não tenta novamente todas as operações, é o padrão para bancos de dados diferente do sql server.  
-2. **DefaultSqlExecutionStrategy**: isso é uma estratégia de execução interna que é usada por padrão. Essa estratégia não é repetida, no entanto, ele vai encapsular quaisquer exceções que poderiam ser transitórias para informar os usuários que desejam habilitar a resiliência de conexão.  
-3. **DbExecutionStrategy**: esta classe é adequada como uma classe base para outras estratégias de execução, incluindo seus próprios conectores personalizados. Ele implementa uma política de repetição exponencial, onde a repetição inicial acontece com zero atraso e o atraso aumenta exponencialmente até que a contagem máxima de novas tentativas for atingida. Essa classe tem um método abstrato ShouldRetryOn que pode ser implementado em estratégias de execução derivada para controlar quais exceções devem ser recuperadas.  
-4. **SqlAzureExecutionStrategy**: essa estratégia de execução herda DbExecutionStrategy e tentará novamente no exceções que são conhecidas como transitório, possivelmente, ao trabalhar com o banco de dados SQL.
+1. **DefaultExecutionStrategy**: essa estratégia de execução não repete nenhuma operação, é o padrão para bancos de dados diferentes do SQL Server.  
+2. **DefaultSqlExecutionStrategy**: essa é uma estratégia de execução interna que é usada por padrão. No entanto, essa estratégia não é repetida. no entanto, ela encapsulará as exceções que poderiam ser transitórias para informar os usuários de que eles podem querer habilitar a resiliência da conexão.  
+3. **DbExecutionStrategy**: essa classe é adequada como uma classe base para outras estratégias de execução, incluindo suas próprias personalizadas. Ele implementa uma política de repetição exponencial, em que a nova tentativa inicial ocorre com um atraso zero e o atraso aumenta exponencialmente até que a contagem máxima de repetições seja atingida. Essa classe tem um método abstrato ShouldRetryOn que pode ser implementado em estratégias de execução derivadas para controlar quais exceções devem ser repetidas.  
+4. **SqlAzureExecutionStrategy**: essa estratégia de execução herda de DbExecutionStrategy e tentará novamente as exceções conhecidas como possivelmente transitórias ao trabalhar com o banco de dados SQL do Azure.
 
 > [!NOTE]
-> Estratégias de execução 2 e 4 são incluídas no provedor do Sql Server que é fornecido com o EF, que está no assembly EntityFramework. SQLServer e são projetadas para trabalhar com o SQL Server.  
+> As estratégias de execução 2 e 4 estão incluídas no provedor do SQL Server que acompanha o EF, que está no assembly do EntityFramework. SqlServer e foi projetado para trabalhar com SQL Server.  
 
 ## <a name="enabling-an-execution-strategy"></a>Habilitando uma estratégia de execução  
 
-A maneira mais fácil de informar ao EF para usar uma estratégia de execução é com o método SetExecutionStrategy a [DbConfiguration](~/ef6/fundamentals/configuring/code-based.md) classe:  
+A maneira mais fácil de dizer ao EF para usar uma estratégia de execução é com o método SetExecutionStrategy da classe [DbConfiguration](~/ef6/fundamentals/configuring/code-based.md) :  
 
 ``` csharp
 public class MyConfiguration : DbConfiguration
@@ -44,13 +44,13 @@ public class MyConfiguration : DbConfiguration
 }
 ```  
 
-Esse código diz ao EF para usar o SqlAzureExecutionStrategy ao se conectar ao SQL Server.  
+Esse código informa ao EF para usar o SqlAzureExecutionStrategy ao se conectar a SQL Server.  
 
 ## <a name="configuring-the-execution-strategy"></a>Configurando a estratégia de execução  
 
-O construtor do SqlAzureExecutionStrategy pode aceitar dois parâmetros, MaxRetryCount e MaxDelay. Contagem de MaxRetry é o número máximo de vezes que a estratégia será tentada. O MaxDelay é um TimeSpan que representa o atraso máximo entre novas tentativas que usará a estratégia de execução.  
+O construtor de SqlAzureExecutionStrategy pode aceitar dois parâmetros, MaxRetryCount e MaxDelay. Contagem de MaxRetry é o número máximo de vezes que a estratégia tentará novamente. O MaxDelay é um TimeSpan que representa o atraso máximo entre as tentativas que serão usadas pela estratégia de execução.  
 
-Para definir o número máximo de tentativas para 1 e o atraso máximo para 30 segundos, você faria execue o seguinte:  
+Para definir o número máximo de repetições como 1 e o atraso máximo para 30 segundos, você deve executar o seguinte:  
 
 ``` csharp
 public class MyConfiguration : DbConfiguration
@@ -64,15 +64,15 @@ public class MyConfiguration : DbConfiguration
 }
 ```  
 
-A SqlAzureExecutionStrategy tentará instantaneamente na primeira vez que uma falha temporária ocorre, mas atrasará mais entre cada repetição até que o limite de repetição de ambos o máximo for excedida, ou o tempo total atinge o atraso máximo.  
+O SqlAzureExecutionStrategy tentará instantaneamente na primeira vez que ocorrer uma falha transitória, mas atrasará mais tempo entre cada repetição até que o limite máximo de tentativas seja excedido ou o tempo total atinja o atraso máximo.  
 
-As estratégias de execução tentará apenas um número limitado de exceções que são geralmente tansient, você ainda precisará lidar com outros erros, bem como capturar a exceção RetryLimitExceeded para o caso em que um erro não é transitório ou levar muito tempo resolver em si.  
+As estratégias de execução tentarão apenas um número limitado de exceções que normalmente são transitórias, você ainda precisará lidar com outros erros, bem como capturar a exceção RetryLimitExceeded para o caso em que um erro não é transitório ou leva muito tempo para ser resolvido próprio.  
 
-Há alguns conhecidos de limitações ao usar uma estratégia de execução tentando novamente:  
+Há algumas limitações conhecidas ao usar uma estratégia de execução de repetição:  
 
 ## <a name="streaming-queries-are-not-supported"></a>Não há suporte para consultas de streaming  
 
-Por padrão, EF6 e versões posteriores armazenará em buffer os resultados da consulta em vez de streaming-los. Se você quiser ter resultados transmitidos você pode usar o método AsStreaming para alterar um LINQ para consulta de entidades para streaming.  
+Por padrão, o EF6 e a versão posterior armazenarão em buffer os resultados da consulta em vez de transmiti-los. Se desejar que os resultados sejam transmitidos, você poderá usar o método de transmissão para alterar uma consulta de LINQ to Entities para streaming.  
 
 ``` csharp
 using (var db = new BloggingContext())
@@ -84,15 +84,15 @@ using (var db = new BloggingContext())
 }
 ```  
 
-Não há suporte para o fluxo quando uma estratégia de execução tentando novamente é registrada. Essa limitação existe porque a conexão foi possível descartar metade do caminho pelos resultados que estão sendo retornados. Quando isso ocorrer, o EF precisa executar novamente a consulta inteira, mas não tem nenhuma maneira confiável de saber quais resultados já foram retornados (dados podem ter sido alterado desde a consulta inicial foi enviada, os resultados podem vir de volta em uma ordem diferente, os resultados não podem ter um identificador exclusivo etc.).  
+Não há suporte para streaming quando uma estratégia de execução de repetição é registrada. Essa limitação existe porque a conexão pode encaixar a parte por meio dos resultados retornados. Quando isso ocorre, o EF precisa executar novamente a consulta inteira, mas não tem uma maneira confiável de saber quais resultados já foram retornados (os dados podem ter sido alterados desde que a consulta inicial foi enviada, os resultados podem voltar em uma ordem diferente, os resultados podem não ter um identificador exclusivo , etc.).  
 
 ## <a name="user-initiated-transactions-are-not-supported"></a>Não há suporte para transações iniciadas pelo usuário  
 
-Quando você tiver configurado uma estratégia de execução que resulta em tentativas, há algumas limitações em torno do uso de transações.  
+Quando você configurou uma estratégia de execução que resulta em novas tentativas, há algumas limitações em relação ao uso de transações.  
 
-Por padrão, o EF executará todas as atualizações de banco de dados dentro de uma transação. Você não precisa fazer nada para habilitar isso, o EF sempre faz isso automaticamente.  
+Por padrão, o EF executará qualquer atualização de banco de dados em uma transação. Você não precisa fazer nada para habilitar isso, o EF sempre faz isso automaticamente.  
 
-Por exemplo, no código a seguir SaveChanges é executada automaticamente em uma transação. Se SaveChanges falhar depois de inserir uma do novo Site e em seguida, a transação deve ser revertida e nenhuma alteração aplicada ao banco de dados. O contexto também for deixado em um estado que permite que o SaveChanges ser chamado novamente para tentar novamente a aplicação das alterações.  
+Por exemplo, no código a seguir, SaveChanges é executado automaticamente em uma transação. Se o SaveChanges falhar após a inserção de um dos novos sites, a transação seria revertida e nenhuma alteração foi aplicada ao banco de dados. O contexto também é deixado em um estado que permite que SaveChanges seja chamado novamente para tentar aplicar as alterações novamente.  
 
 ``` csharp
 using (var db = new BloggingContext())
@@ -103,7 +103,7 @@ using (var db = new BloggingContext())
 }
 ```  
 
-Quando não estiver usando uma estratégia de execução tentando novamente, você pode encapsular várias operações em uma única transação. Por exemplo, o seguinte código conclui duas chamadas SaveChanges em uma única transação. Se qualquer parte de uma ou outra operação falhar, em seguida, nenhuma alteração será aplicada.  
+Quando não estiver usando uma estratégia de execução de repetição, você poderá encapsular várias operações em uma única transação. Por exemplo, o código a seguir encapsula duas chamadas SaveChanges em uma única transação. Se qualquer parte de uma operação falhar, nenhuma das alterações será aplicada.  
 
 ``` csharp
 using (var db = new BloggingContext())
@@ -122,11 +122,11 @@ using (var db = new BloggingContext())
 }
 ```  
 
-Isso não é suportado ao usar uma estratégia de execução tentando novamente porque o EF não está ciente de todas as operações anteriores e como repeti-los. Por exemplo, se o SaveChanges segunda falha, em seguida, EF não tem as informações necessárias para repetir a primeira chamada SaveChanges.  
+Isso não é suportado quando se usa uma estratégia de execução de repetição porque o EF não reconhece nenhuma operação anterior e como repeti-las. Por exemplo, se o segundo SaveChanges falhar, o EF não terá mais as informações necessárias para tentar novamente a primeira chamada SaveChanges.  
 
 ### <a name="workaround-suspend-execution-strategy"></a>Solução alternativa: Suspender estratégia de execução  
 
-Uma solução alternativa é possível suspender a estratégia de execução tentando novamente para o trecho de código que precisa usar um usuário iniciou a transação. A maneira mais fácil de fazer isso é adicionar um sinalizador SuspendExecutionStrategy ao seu código com base em classe de configuração e altere o lambda de estratégia de execução para retornar a estratégia de execução padrão (não retying) quando o sinalizador é definido.  
+Uma solução possível é suspender a estratégia de execução de repetição para o trecho de código que precisa usar uma transação iniciada pelo usuário. A maneira mais fácil de fazer isso é adicionar um sinalizador SuspendExecutionStrategy à sua classe de configuração baseada em código e alterar o lambda da estratégia de execução para retornar a estratégia de execução padrão (sem revinculação) quando o sinalizador for definido.  
 
 ``` csharp
 using System.Data.Entity;
@@ -160,9 +160,9 @@ namespace Demo
 }
 ```  
 
-Observe que estamos usando CallContext para armazenar o valor do sinalizador. Isso fornece uma funcionalidade semelhante para o armazenamento local de thread, mas é seguro usar com o código assíncrono - incluindo consulta assíncrona e salvar com o Entity Framework.  
+Observe que estamos usando CallContext para armazenar o valor do sinalizador. Isso fornece uma funcionalidade semelhante ao armazenamento local de thread, mas é seguro usá-lo com código assíncrono, incluindo a consulta assíncrona e salvar com Entity Framework.  
 
-Agora podemos pode suspender a estratégia de execução para a seção de código que usa uma transação iniciada pelo usuário.  
+Agora podemos suspender a estratégia de execução para a seção de código que usa uma transação iniciada pelo usuário.  
 
 ``` csharp
 using (var db = new BloggingContext())
@@ -187,9 +187,9 @@ using (var db = new BloggingContext())
 
 ### <a name="workaround-manually-call-execution-strategy"></a>Solução alternativa: Chamar manualmente a estratégia de execução  
 
-Outra opção é usar a estratégia de execução manualmente e dê a ele o conjunto inteiro de lógica a ser executado, para que ele pode repetir tudo o que se uma das operações falhar. Ainda precisamos suspender a estratégia de execução - usando a técnica mostrada acima - para que nenhum contexto usado dentro do bloco de código com nova tentativa não tentará repetir a ação.  
+Outra opção é usar manualmente a estratégia de execução e dar a ela o conjunto inteiro de lógica a ser executado, para que possa tentar novamente tudo se uma das operações falhar. Ainda precisamos suspender a estratégia de execução-usando a técnica mostrada acima, de modo que os contextos usados dentro do bloco de código com nova tentativa não tentem novamente.  
 
-Observe que nenhum contexto deve ser construído dentro do bloco de código para ser repetida. Isso garante que estamos começando com um estado limpo para cada repetição.  
+Observe que os contextos devem ser construídos dentro do bloco de código a ser repetido. Isso garante que estamos começando com um estado limpo para cada repetição.  
 
 ``` csharp
 var executionStrategy = new SqlAzureExecutionStrategy();
