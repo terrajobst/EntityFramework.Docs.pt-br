@@ -316,7 +316,7 @@ Esse método auxiliar seria invocado da seguinte maneira:
 
 #### <a name="332-composing-over-a-compiledquery"></a>3.3.2 compondo ao longo de um CompiledQuery
 
-A capacidade de composição ao longo de qualquer consulta LINQ é extremamente útil; Para fazer isso, você simplesmente invoca um método após o IQueryable como *Skip* ou *Count ()*. No entanto, fazer, então, essencialmente, retorna um novo objeto IQueryable. Embora não haja nada tecnicamente de composição ao longo de um CompiledQuery, isso fará com que a geração de um novo objeto IQueryable que exige passar por meio do compilador plano novamente.
+A capacidade de composição ao longo de qualquer consulta LINQ é extremamente útil; Para fazer isso, você simplesmente invoca um método após o IQueryable como *Skip* ou *Count ()* . No entanto, fazer, então, essencialmente, retorna um novo objeto IQueryable. Embora não haja nada tecnicamente de composição ao longo de um CompiledQuery, isso fará com que a geração de um novo objeto IQueryable que exige passar por meio do compilador plano novamente.
 
 Alguns componentes usarão IQueryable composto objetos para habilitar a funcionalidade avançada. Por exemplo, o ASP. GridView da rede pode ser associada a dados para um objeto IQueryable por meio da propriedade SelectMethod. O GridView será, em seguida, compor sobre esse objeto IQueryable para permitir a classificação e paginação em relação ao modelo de dados. Como você pode ver, usando um CompiledQuery do GridView não seria atingidos a consulta compilada, mas geraria uma nova consulta autocompiled.
 
@@ -877,7 +877,7 @@ Consulte as "Considerações de desempenho ao usar herança TPT (tabela por tipo
 
 Quando você cria um modelo em um banco de dados existente que tenha um esquema TPT, você não tem muitas opções. Mas, ao criar um aplicativo usando Model First ou Code First, você deve evitar herança TPT para questões de desempenho.
 
-Quando você usa o Model First no Entity Designer de assistente, você obterá TPT para qualquer herança em seu modelo. Se você quiser mudar para uma estratégia de herança TPH com Model First, você pode usar o "Entity Designer de banco de dados Generation Power Pack" disponíveis na Galeria do Visual Studio ( \< http://visualstudiogallery.msdn.microsoft.com/df3541c3-d833-4b65-b942-989e7ec74c87/>).
+Quando você usa o Model First no Entity Designer de assistente, você obterá TPT para qualquer herança em seu modelo. Se você quiser mudar para uma estratégia de herança TPH com Model First, você pode usar o "Entity Designer de banco de dados Generation Power Pack" disponíveis na Galeria do Visual Studio ( \<http://visualstudiogallery.msdn.microsoft.com/df3541c3-d833-4b65-b942-989e7ec74c87/>).
 
 Ao usar o Code First para configurar o mapeamento de um modelo com a herança, o EF usará TPH por padrão, portanto todas as entidades na hierarquia de herança serão mapeadas para a mesma tabela. Consulte a seção "Mapeamento com a API Fluent" do artigo "Código primeiro na entidade Framework4.1" na MSDN Magazine ( [http://msdn.microsoft.com/magazine/hh126815.aspx](https://msdn.microsoft.com/magazine/hh126815.aspx)) para obter mais detalhes.
 
