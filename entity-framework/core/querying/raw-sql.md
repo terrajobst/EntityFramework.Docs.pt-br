@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 3024c0101c9d886ef844d1b7dc85aaf1be27e86b
-ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
+ms.openlocfilehash: 91592ea9f7c73f10446993282c1874c852000871
+ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "58914072"
+ms.lasthandoff: 07/18/2019
+ms.locfileid: "68306552"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
@@ -146,11 +146,11 @@ Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
 * Instruções `SELECT` aprovadas para este método devem normalmente ser combináveis: se o EF Core precisar avaliar operadores de consulta adicionais no servidor (por exemplo, para traduzir operadores LINQ aplicados após `FromSql`), o SQL fornecido será tratado como uma consulta aninhada. Isso significa que o SQL aprovado não deve conter nenhum caractere ou opção não válida em uma subconsulta, como:
   * um ponto-e-vírgula à direita
   * No SQL Server, uma dica a nível de consulta à direita (por exemplo, `OPTION (HASH JOIN)`)
-  * No SQL Server, um cláusula `ORDER BY` não é acompanhada de `TOP 100 PERCENT` na cláusula `SELECT`
+  * No SQL Server, uma cláusula `ORDER BY` não é acompanhada de `OFFSET 0` OR `TOP 100 PERCENT` na cláusula `SELECT`
 
 * As instruções SQL, diferentes de `SELECT`, são reconhecidas automaticamente como não combináveis. Como consequência, os resultados completos de procedimentos armazenados são sempre retornados ao cliente e os operadores LINQ aplicados após `FromSql` são avaliados na memória.
 
 > [!WARNING]  
-> **Sempre use a parametrização para consultas SQL brutas:** Além de validar a entrada do usuário, sempre use a parametrização para os valores usados em um comando/consulta SQL bruta. as APIs que aceitam uma cadeia de caracteres SQL, como `FromSql` e `ExecuteSqlCommand`, permitem que os valores sejam facilmente aprovados como parâmetros. Sobrecargas de `FromSql` e `ExecuteSqlCommand` que aceitam FormattableString também permitem usar syntaxt de interpolação da cadeia de caracteres maneira que ajude na proteção contra ataques de injeção de SQL. 
+> **Sempre use a parametrização para consultas SQL brutas:** Além de validar a entrada do usuário, sempre use a parametrização para os valores usados em um comando/consulta SQL bruta. as APIs que aceitam uma cadeia de caracteres SQL, como `FromSql` e `ExecuteSqlCommand`, permitem que os valores sejam facilmente aprovados como parâmetros. As sobrecargas de `FromSql` e `ExecuteSqlCommand` que aceitam FormattableString também permitem usar a sintaxe de interpolação da cadeia de caracteres para ajudar na proteção contra ataques de injeção de SQL. 
 > 
 > Se você estiver usando a concatenação de cadeia de caracteres ou de interpolação para criar dinamicamente qualquer parte da cadeia de caracteres de consulta ou passando a entrada do usuário para instruções ou procedimentos armazenados que podem executar essas entradas como SQL dinâmico, você será responsável por validar qualquer entrada para proteger-se contra ataques de injeção de SQL.
