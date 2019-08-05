@@ -1,17 +1,18 @@
 ---
 title: Introdução ao ASP.NET Core – Banco de dados existente – EF Core
 author: rowanmiller
+description: Introdução ao EF Core no ASP.NET Core com um Banco de Dados existente
 ms.date: 08/02/2018
 ms.assetid: 2bc68bea-ff77-4860-bf0b-cf00db6712a0
 uid: core/get-started/aspnetcore/existing-db
-ms.openlocfilehash: c8acb95395968f710e6b896de6c3598cb7b23676
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.openlocfilehash: 6b0ed0a9222644bee31d23234aa27b2084137f4a
+ms.sourcegitcommit: 755a15a789631cc4ea581e2262a2dcc49c219eef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058780"
+ms.lasthandoff: 07/25/2019
+ms.locfileid: "68497519"
 ---
-# <a name="getting-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a>Introdução ao EF Core no ASP.NET Core com um banco de dados existente
+# <a name="get-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a>Introdução ao EF Core no ASP.NET Core com um banco de dados existente
 
 Neste tutorial, você compila um aplicativo MVC do ASP.NET Core que realiza acesso básico a dados usando o Entity Framework Core. Realize a engenharia reversa de um banco de dados existente para criar um modelo do Entity Framework.
 
