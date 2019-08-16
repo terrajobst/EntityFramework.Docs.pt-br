@@ -188,8 +188,8 @@ O novo recurso de resiliência de conexão não funciona com transações inicia
 
 ### <a name="asynchronous-programming"></a>Programação assíncrona  
 
-A abordagem descrita nas seções anteriores não precisa de mais opções ou configurações para trabalhar com os métodos [](~/ef6/fundamentals/async.md
-)de consulta assíncrona e salvar. Mas lembre-se de que, dependendo do que você faz dentro dos métodos assíncronos, isso pode resultar em transações de longa execução, o que pode, por sua vez, causar deadlocks ou bloqueios que são ruins para o desempenho do aplicativo geral.  
+A abordagem descrita nas seções anteriores não precisa de mais opções ou configurações para trabalhar com os métodos [consulta assíncrona e salvar métodos](~/ef6/fundamentals/async.md
+) Mas lembre-se de que, dependendo do que você faz dentro dos métodos assíncronos, isso pode resultar em transações de longa execução, o que pode, por sua vez, causar deadlocks ou bloqueios que são ruins para o desempenho do aplicativo geral.  
 
 ### <a name="transactionscope-transactions"></a>Transações TransactionScope  
 
