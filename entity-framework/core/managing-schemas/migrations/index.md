@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 10/05/2018
 uid: core/managing-schemas/migrations/index
-ms.openlocfilehash: b94ac567644a9d98a05a40857cc072c500203370
-ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
+ms.openlocfilehash: 7d97551044ae4a8fc42d1676199da884f3e2994d
+ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/14/2019
-ms.locfileid: "59562553"
+ms.lasthandoff: 08/17/2019
+ms.locfileid: "69565251"
 ---
 <a name="migrations"></a>Migrações
 ==========
@@ -191,7 +191,7 @@ Um script **idempotente** pode ser gerado como opção. Esse script aplicará mi
 ---------------------------
 Alguns aplicativos talvez queiram aplicar migrações no tempo de execução durante a inicialização ou a primeira execução. Faça isso usando o método `Migrate()`.
 
-Este método é criado sobre o serviço `IMigrator`, que pode ser usado em cenários mais avançados. Use `DbContext.GetService<IMigrator>()` para acessá-lo.
+Este método é criado sobre o serviço `IMigrator`, que pode ser usado em cenários mais avançados. Use `myDbContext.GetInfrastructure().GetService<IMigrator>()` para acessá-lo.
 
 ``` csharp
 myDbContext.Database.Migrate();
