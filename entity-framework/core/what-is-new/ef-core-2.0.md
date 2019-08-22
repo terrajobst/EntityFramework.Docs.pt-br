@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: b5ac31722f49589f1494a3d8d1c8a7011a4cf9ce
-ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
+ms.openlocfilehash: 2712845512d9eb349ef3a7e14f4365327db0fcd6
+ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "57463263"
+ms.lasthandoff: 08/17/2019
+ms.locfileid: "69565330"
 ---
 # <a name="new-features-in-ef-core-20"></a>Novos recursos no EF Core 2.0
 
@@ -32,6 +32,7 @@ modelBuilder.Entity<Product>()
 modelBuilder.Entity<Product>().ToTable("Products");
 modelBuilder.Entity<ProductDetails>().ToTable("Products");
 ```
+Leia a [seção sobre separação de tabela](xref:core/modeling/table-splitting) para obter mais informações sobre esse recurso.
 
 ### <a name="owned-types"></a>Tipos próprios
 
@@ -91,7 +92,7 @@ public class BloggingContext : DbContext
     }
 }
 ```
-Definimos um filtro no nível de modelo que implementa a multilocação e a exclusão reversível para instâncias do Tipo de Entidade ```Post```. Observe o uso de uma propriedade em nível de instância DbContext: ```TenantId```. Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância de contexto que está executando a consulta).
+Definimos um filtro no nível de modelo que implementa a multilocação e a exclusão reversível para instâncias do Tipo de Entidade `Post`. Observe o uso de uma propriedade em nível de instância DbContext: `TenantId`. Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância de contexto que está executando a consulta).
 
 Os filtros podem ser desabilitados para consultas LINQ individuais usando o operador IgnoreQueryFilters().
 
@@ -159,7 +160,7 @@ builder.ApplyConfiguration(new CustomerConfiguration());
 
 O padrão básico para usar o EF Core em um aplicativo ASP.NET Core geralmente envolve registrar um tipo DbContext personalizado no sistema de injeção de dependência e então obter instâncias desse tipo por meio de parâmetros do construtor em controladores. Isso significa que uma nova instância de DbContext é criada para cada solicitação.
 
-Na versão 2.0, estamos introduzindo uma nova maneira de registrar os tipos DbContext personalizados na injeção de dependência que introduz de modo transparente um pool de instâncias de DbContext reutilizáveis. Para usar o pool de DbContext, use o ```AddDbContextPool```, em vez de ```AddDbContext```, durante o registro do serviço:
+Na versão 2.0, estamos introduzindo uma nova maneira de registrar os tipos DbContext personalizados na injeção de dependência que introduz de modo transparente um pool de instâncias de DbContext reutilizáveis. Para usar o pool de DbContext, use o `AddDbContextPool`, em vez de `AddDbContext`, durante o registro do serviço:
 
 ``` csharp
 services.AddDbContextPool<BloggingContext>(
@@ -172,7 +173,7 @@ Isso é conceitualmente semelhante a como o pool de conexão opera em provedores
 
 ### <a name="limitations"></a>Limitações
 
-O novo método apresenta algumas limitações sobre o que pode ser feito no método ```OnConfiguring()``` do DbContext.
+O novo método apresenta algumas limitações sobre o que pode ser feito no método `OnConfiguring()` do DbContext.
 
 > [!WARNING]  
 > Evite usar o pooling do DbContext se você mantém seu próprio estado (por exemplo, campos privados) em sua classe DbContext derivada que não deve ser compartilhada entre solicitações. O EF Core somente redefinirá o estado que reconhecer antes de adicionar uma instância de DbContext ao pool.
@@ -218,7 +219,7 @@ Este trabalho melhora o SQL gerado para associações de grupo. Associações de
 
 ### <a name="string-interpolation-in-fromsql-and-executesqlcommand"></a>Interpolação de cadeia de caracteres em FromSql e ExecuteSqlCommand
 
-C# 6 introduziu Interpolação de Cadeia de Caracteres, um recurso que permite inserir expressões C# diretamente em literais de cadeia de caracteres, oferecendo uma ótima maneira de criar cadeias de caracteres no tempo de execução. No EF Core 2.0, adicionamos suporte especial para cadeias de caracteres interpoladas às nossas duas APIs primárias que aceitam cadeias de caracteres SQL brutas: ```FromSql``` e ```ExecuteSqlCommand```. Esse novo suporte permite que a interpolação de cadeia de caracteres C# seja usada de maneira “segura”. Ou seja, de uma maneira que proteja contra erros comuns de injeção de SQL que podem ocorrer ao criar SQL dinamicamente no tempo de execução.
+C# 6 introduziu Interpolação de Cadeia de Caracteres, um recurso que permite inserir expressões C# diretamente em literais de cadeia de caracteres, oferecendo uma ótima maneira de criar cadeias de caracteres no tempo de execução. No EF Core 2.0, adicionamos suporte especial para cadeias de caracteres interpoladas às nossas duas APIs primárias que aceitam cadeias de caracteres SQL brutas: `FromSql` e `ExecuteSqlCommand`. Esse novo suporte permite que a interpolação de cadeia de caracteres C# seja usada de maneira “segura”. Ou seja, de uma maneira que proteja contra erros comuns de injeção de SQL que podem ocorrer ao criar SQL dinamicamente no tempo de execução.
 
 Veja um exemplo:
 
