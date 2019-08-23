@@ -3,12 +3,12 @@ title: DataBinding com WinForms-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80fc5062-2f1c-4dbd-ab6e-b99496784b36
-ms.openlocfilehash: ad55ef4d496bbfe30eafcab9811c92989066519f
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 3c7c58f5ded29c136bbdca1d81c64b07c53ce583
+ms.sourcegitcommit: 7391cc31193c1216ec9ed485709042ad0c2106cf
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306557"
+ms.lasthandoff: 08/23/2019
+ms.locfileid: "69985470"
 ---
 # <a name="databinding-with-winforms"></a>Associação de dados com WinForms
 Este guia passo a passo mostra como associar tipos POCO a controles Window Forms (WinForms) em um formulário "Master-Detail". O aplicativo usa Entity Framework para preencher objetos com dados do banco de dados, controlar alterações e manter dados no banco de dado.
@@ -263,7 +263,7 @@ Compile o projeto.
 
 ## <a name="lazy-loading"></a>Carregamento lento
 
-A  Propriedade Products na classe **Category** e a propriedade **Category** na classe **Product** são propriedades de navegação. Em Entity Framework, as propriedades de navegação fornecem uma maneira de navegar em uma relação entre dois tipos de entidade.
+A Propriedade Products na classe **Category** e a propriedade **Category** na classe **Product** são propriedades de navegação. Em Entity Framework, as propriedades de navegação fornecem uma maneira de navegar em uma relação entre dois tipos de entidade.
 
 O EF oferece a você uma opção de carregar entidades relacionadas do banco de dados automaticamente na primeira vez que você acessa a propriedade de navegação. Com esse tipo de carregamento (chamado de carregamento lento), lembre-se de que na primeira vez que você acessar cada propriedade de navegação, uma consulta separada será executada no banco de dados se o conteúdo ainda não estiver no contexto.
 
@@ -280,8 +280,8 @@ Adicione as classes que são definidas no modelo como fontes de dados para este 
 
     ![fonte de dados](~/ef6/media/datasource.png)
 
--   Clique em **concluir.** Se a *janela fontes de dados não estiver aparecendo, selecione * * * Exibir&gt; -outras fontes&gt; de dados do Windows* 
-    *
+-   Clique em **concluir.**
+    Se a janela fontes de dados não estiver aparecendo, selecione **Exibir&gt; -outras fontes&gt; de dados do Windows**
 -   Pressione o ícone de pino para que a janela fontes de dados não seja ocultada automaticamente. Talvez seja necessário pressionar o botão atualizar se a janela já estava visível.
 
     ![Fonte de dados 2](~/ef6/media/datasource2.png)
