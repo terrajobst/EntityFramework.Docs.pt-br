@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: 2712845512d9eb349ef3a7e14f4365327db0fcd6
-ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
-ms.translationtype: HT
+ms.openlocfilehash: 28b2180e898b91d233b590b1639674a464f8c679
+ms.sourcegitcommit: 0cc9578fd49802789a00c0044b4e57325476ca2e
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/17/2019
-ms.locfileid: "69565330"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70271427"
 ---
 # <a name="new-features-in-ef-core-20"></a>Novos recursos no EF Core 2.0
 
@@ -303,7 +303,7 @@ Isso oferece uma solução mais robusta no Microsoft.Data.Sqlite para distribuir
 ### <a name="only-one-provider-per-model"></a>Somente um provedor por modelo
 Aumenta significativamente o modo como provedores podem interagir com o modelo e simplifica o modo como convenções, anotações e APIs fluente funcionam com diferentes provedores.
 
-O EF Core 2.0 agora criará um [IModel](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IModel.cs) diferente para cada provedor diferente que está sendo usado. Isso normalmente é transparente para o aplicativo. Isso facilitou uma simplificação de APIs de metadados de nível inferior de modo que qualquer acesso a *conceitos de metadados relacionados comuns* pé feito sempre por meio de uma chamada para `.Relational`, em vez de `.SqlServer`, `.Sqlite` etc.
+O EF Core 2.0 agora criará um [IModel](https://github.com/aspnet/EntityFramework/blob/master/src/EFCore/Metadata/IModel.cs) diferente para cada provedor diferente que está sendo usado. Isso normalmente é transparente para o aplicativo. Isso facilitou uma simplificação de APIs de metadados de nível inferior de modo que qualquer acesso a *conceitos de metadados relacionados comuns* pé feito sempre por meio de uma chamada para `.Relational`, em vez de `.SqlServer`, `.Sqlite` etc.
 
 ### <a name="consolidated-logging-and-diagnostics"></a>Consolidar registro em log e diagnóstico
 
@@ -311,6 +311,6 @@ Registro em log (com base em ILogger) e mecanismos de diagnóstico (com base em 
 
 As IDs de evento das mensagens enviadas a um ILogger foram alteradas no 2.0. As IDs de evento são exclusivas em todo o código do EF Core. Essas mensagens agora também seguem o padrão para o registro em log estruturado usado pelo MVC, por exemplo.
 
-As categorias de agente também foram alteradas. Há agora um conjunto bem conhecido de categorias acessadas por meio de [DbLoggerCategory](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/DbLoggerCategory.cs).
+As categorias de agente também foram alteradas. Há agora um conjunto bem conhecido de categorias acessadas por meio de [DbLoggerCategory](https://github.com/aspnet/EntityFramework/blob/master/src/EFCore/DbLoggerCategory.cs).
 
 Eventos de DiagnosticSource agora usam os mesmos nomes de ID de evento como as mensagens `ILogger` correspondentes.

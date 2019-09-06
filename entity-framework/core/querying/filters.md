@@ -3,12 +3,12 @@ title: Filtros de consulta global – EF Core
 author: anpete
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: e1cb9f5afc54aaa12e5880ace606277b00911c06
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
-ms.translationtype: HT
+ms.openlocfilehash: c9bbb8a5889834ea078ddb7e432863b3d0cf2ffe
+ms.sourcegitcommit: 0cc9578fd49802789a00c0044b4e57325476ca2e
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306467"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70271453"
 ---
 # <a name="global-query-filters"></a>Filtros de consulta global
 
@@ -41,6 +41,9 @@ As expressões de predicado passadas para as chamadas _HasQueryFilter_ agora ser
 
 > [!TIP]
 > Observe o uso de um campo de nível de instância de DbContext: `_tenantId` usado para definir o locatário atual. Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância que está executando a consulta).
+
+> [!NOTE]
+> No momento, não é possível definir vários filtros de consulta na mesma entidade; somente o último será aplicado. No entanto, você pode definir um único filtro com várias condições usando o operador _and_ lógico ([ `&&` em C# ](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/boolean-logical-operators#conditional-logical-and-operator-)).
 
 ## <a name="disabling-filters"></a>Como desabilitar filtros
 
