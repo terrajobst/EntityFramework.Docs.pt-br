@@ -4,12 +4,12 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: db1b83a9222e00a5e226a134085b18247b31f29a
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 62194d1db4efcdaed53ca0e14f160315f8e3cf03
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306483"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921751"
 ---
 # <a name="installing-entity-framework-core"></a>Instalar o Entity Framework Core
 
@@ -19,9 +19,9 @@ ms.locfileid: "68306483"
 
 * Por exemplo, é possível usar o EF Core para desenvolver aplicativos para o .NET Core. Para criar aplicativos do .NET Core, é necessária a [SDK do .NET Core](https://dotnet.microsoft.com/download). Como opção, também é possível usar um ambiente de desenvolvimento como o Visual Studio, o Visual Studio para Mac ou o Visual Studio Code. Para saber mais, confira a [Introdução ao .NET Core](/dotnet/core/get-started).
 
-* É possível usar o EF Core para desenvolver aplicativos para o .NET Framework 4.6.1 ou posterior no Windows usando o Visual Studio. É recomendável usar a versão mais recente do Visual Studio. Se você quiser usar uma versão mais antiga, como o Visual Studio 2015, [atualize o cliente NuGet para a versão 3.6.0](https://www.nuget.org/downloads). Assim, a versão anterior funcionará com as bibliotecas do .NET Standard 2.0.
+* É possível usar o EF Core para desenvolver aplicativos para o .NET Framework 4.6.1 ou posterior no Windows usando o Visual Studio. É recomendável usar a versão mais recente do [Visual Studio](https://visualstudio.microsoft.com/vs). Se você quiser usar uma versão mais antiga, como o Visual Studio 2015, [atualize o cliente NuGet para a versão 3.6.0](https://www.nuget.org/downloads). Assim, a versão anterior funcionará com as bibliotecas do .NET Standard 2.0.
 
-* O EF Core pode ser executado em outras implementações do .NET, como Xamarin e .NET Native. No entanto, na prática, essas implementações têm limitações de tempo de execução que podem afetar o funcionamento do EF Core no aplicativo. Para saber mais, confira [Implementações do .NET compatíveis com o EF Core](xref:core/platforms/index).
+* O EF Core pode ser executado em outras implementações do .NET, como [Xamarin](https://dotnet.microsoft.com/apps/xamarin) e .NET Native. No entanto, na prática, essas implementações têm limitações de tempo de execução que podem afetar o funcionamento do EF Core no aplicativo. Para saber mais, confira [Implementações do .NET compatíveis com o EF Core](xref:core/platforms/index).
 
 * Por fim, provedores de banco de dados diferentes podem exigir versões específicas de mecanismo de banco de dados, implementações do .NET ou sistemas operacionais. Verifique se há um [provedor de banco de dados do EF Core](xref:core/providers/index) disponível que seja compatível com o ambiente correto para o aplicativo.
 

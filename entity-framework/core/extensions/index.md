@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 01/07/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: 08231cd93002a6d1b3cebe20f4f7cf57ea085af2
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 43b98c1f09a89f7e5451e28cbf2f78a2cb1040e5
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306399"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921772"
 ---
 # <a name="ef-core-tools--extensions"></a>Ferramentas e Extensões do EF Core
 
@@ -168,3 +168,9 @@ Amplia o DbContext com recursos como: Filtro de Include, Auditoria, Cache, Consu
 Amplia o DbContext com operações em massa de alto desempenho: BulkSaveChanges, BulkInsert, BulkUpdate, BulkDelete, BulkMerge e muito mais.
 
 [Site](https://entityframework-extensions.net/)
+
+### <a name="reconciler"></a>Reconciler
+
+Atualize um grafo de entidade no repositório para um determinado grafo, inserindo, atualizando e removendo as respectivas entidades.
+
+[Repositório do GitHub](https://github.com/jtheisen/reconciler)
