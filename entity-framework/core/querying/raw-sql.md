@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 91592ea9f7c73f10446993282c1874c852000871
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
-ms.translationtype: HT
+ms.openlocfilehash: 7a0df6fb656be58103971f45b9e12e9f1383311f
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306552"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921712"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
@@ -22,7 +22,7 @@ O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brut
 
 Você pode usar o método de extensão *FromSql* para iniciar uma consulta LINQ com base em uma consulta SQL bruta.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var blogs = context.Blogs
     .FromSql("SELECT * FROM dbo.Blogs")
@@ -31,7 +31,7 @@ var blogs = context.Blogs
 
 As consultas SQL brutas podem ser usadas para executar um procedimento armazenado.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var blogs = context.Blogs
     .FromSql("EXECUTE dbo.GetMostPopularBlogs")
@@ -44,7 +44,7 @@ Assim como acontece com qualquer API que aceita SQL, é importante parametrizar 
 
 O exemplo a seguir aprova um único parâmetro para um procedimento armazenado. Embora isso possa parecer a sintaxe `String.Format`, o valor fornecido é encapsulado em um parâmetro e o nome de parâmetro gerado é inserido onde o espaço reservado `{0}` foi especificado.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var user = "johndoe";
 
@@ -55,7 +55,7 @@ var blogs = context.Blogs
 
 Essa é a mesma consulta, mas usando a sintaxe de interpolação de cadeia de caracteres, que tem suporte no EF Core 2.0 e posterior:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var user = "johndoe";
 
@@ -66,7 +66,7 @@ var blogs = context.Blogs
 
 Você também pode construir um DbParameter e fornecê-lo como valor de parâmetro:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var user = new SqlParameter("user", "johndoe");
 
@@ -77,7 +77,7 @@ var blogs = context.Blogs
 
 Isso permite que você use parâmetros nomeados na cadeia de consulta SQL, o que é útil quando um procedimento armazenado tem parâmetros opcionais:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var user = new SqlParameter("user", "johndoe");
 
@@ -92,7 +92,7 @@ Se a consulta SQL puder ser composta no banco de dados, é possível compor com 
 
 O exemplo a seguir usa uma consulta SQL bruta que é selecionada de uma Função com Valor de Tabela (TVF) e compõe com base nela usando o LINQ para filtrar e classificar.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var searchTerm = ".NET";
 
@@ -109,7 +109,7 @@ As consultas que usam o `FromSql()` seguem exatamente as mesmas regras de contro
 
 O exemplo a seguir usa uma consulta SQL bruta que seleciona em uma TVF (função com valor de tabela) e, em seguida, desabilita o controle de alterações com a chamada para .AsNoTracking():
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var searchTerm = ".NET";
 
@@ -123,7 +123,7 @@ var blogs = context.Query<SearchBlogsDto>()
 
 O método `Include()` pode ser usado para incluir dados relacionados, assim como em qualquer outra consulta LINQ:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var searchTerm = ".NET";
 

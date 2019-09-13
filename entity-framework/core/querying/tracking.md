@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
 uid: core/querying/tracking
-ms.openlocfilehash: 6c5d516fcb3950ae168860029660e1b1061546b8
-ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
-ms.translationtype: HT
+ms.openlocfilehash: d93be5c2b727d8fbaddd103f8f367c699ae80a7c
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/03/2019
-ms.locfileid: "55668772"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921649"
 ---
 # <a name="tracking-vs-no-tracking-queries"></a>Consultas com acompanhamento versus Consultas sem acompanhamento
 
@@ -24,7 +24,7 @@ Por padrão, as consultas que retornam tipos de entidade são de acompanhamento.
 
 No exemplo a seguir, a alteração para a classificação de blogs será detectada e persistida no banco de dados durante a `SaveChanges()`.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -40,7 +40,7 @@ As consulta sem acompanhamento são úteis quando os resultados são usados em u
 
 Você pode trocar uma consulta individual para ser sem acompanhamento:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs?highlight=4)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs?highlight=4)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -52,7 +52,7 @@ using (var context = new BloggingContext())
 
 Você também pode alterar o comportamento de acompanhamento padrão no nível de instância do contexto:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs?highlight=3)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs?highlight=3)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -69,7 +69,7 @@ using (var context = new BloggingContext())
 
 Mesmo se o tipo de resultado da consulta não for um tipo de entidade, se o resultado contiver tipos de entidade, ele ainda será rastreado por padrão. Na consulta a seguir, que retorna um tipo anônimo, as instâncias do `Blog` no conjunto de resultados será rastreado.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs?highlight=7)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs?highlight=7)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -85,7 +85,7 @@ using (var context = new BloggingContext())
 
 Se o conjunto de resultados não contiver tipos de entidade, nenhum acompanhamento será executado. Na consulta a seguir, que retorna um tipo anônimo com alguns dos valores da entidade (mas não há instâncias do tipo de entidade real), não há nenhum acompanhamento executado.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {

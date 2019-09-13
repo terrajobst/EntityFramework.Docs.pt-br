@@ -3,12 +3,12 @@ title: Consulta assíncrona e Save-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: bf2039110962e8dd114242dcd0b9454963750774
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: ae578976ffc88b407ef0aaa0017935005bedd093
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306590"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921622"
 ---
 # <a name="async-query-and-save"></a>Consulta assíncrona e salvar
 > [!NOTE]
@@ -221,12 +221,14 @@ Para obter uma lista abrangente dos métodos de extensão disponíveis no namesp
 
 Agora que o código é assíncrono, podemos observar um fluxo de execução diferente quando executamos o programa:
 
-1.  **SaveChanges** começa a enviar por push o novo **blog** para *o banco de dados depois que o comando é enviado ao banco de dados, não é necessário mais tempo de computação no thread gerenciado atual. O método **PerformDatabaseOperations** retorna (mesmo que não tenha terminado a execução) e o fluxo do programa no método Main continua.*
-2.  **A cotação do dia é gravada no console**
-     *, já que não há mais trabalho a ser feito no método principal, o thread gerenciado é bloqueado na chamada de espera até que a operação do banco de dados seja concluída. Após a conclusão, o restante de nosso **PerformDatabaseOperations** será executado.*
-3.  **SaveChanges** é concluído
-4.  A consulta de todos os **Blogs** é enviada ao *banco de dados novamente, o thread gerenciado está livre para realizar outro trabalho enquanto a consulta é processada no banco de dados. Como todas as outras execuções foram concluídas, o thread simplesmente será interrompido na chamada Wait.*
-5.  Retornos de consulta e resultados são gravados no **console**
+1. **SaveChanges** começa a enviar por push o novo **blog** para o banco de dados  
+    *Depois que o comando é enviado ao banco de dados, não é necessário mais tempo de computação no thread gerenciado atual. O método **PerformDatabaseOperations** retorna (mesmo que não tenha terminado a execução) e o fluxo do programa no método Main continua.*
+2. **A cotação do dia é gravada no console do**  
+    *Como não há mais trabalho a fazer no método Main, o thread gerenciado é bloqueado na chamada Wait até que a operação do banco de dados seja concluída. Após a conclusão, o restante de nosso **PerformDatabaseOperations** será executado.*
+3.  **SaveChanges** é concluído  
+4.  A consulta de todos os **Blogs** é enviada ao banco de dados  
+    *Novamente, o thread gerenciado está livre para realizar outros trabalhos enquanto a consulta é processada no banco de dados. Como todas as outras execuções foram concluídas, o thread simplesmente será interrompido na chamada Wait.*
+5.  Retornos de consulta e resultados são gravados no **console**  
 
 ![Saída assíncrona](~/ef6/media/asyncoutput.png) 
 

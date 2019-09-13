@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/features
-ms.openlocfilehash: a71aa01e81d9830d7b9e6cb01c200851100a15df
-ms.sourcegitcommit: 87e72899d17602f7526d6ccd22f3c8ee844145df
-ms.translationtype: HT
+ms.openlocfilehash: d61fa884f4669daa220ffc96ae59dd63518e6d5a
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/20/2019
-ms.locfileid: "69628422"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921682"
 ---
 # <a name="new-features-included-in-ef-core-30-currently-in-preview"></a>Novos recursos incluídos no EF Core 3.0 (atualmente em versão prévia)
 
@@ -94,15 +94,6 @@ Esse recurso não está incluído na versão prévia atual.
 
 [Tipos de consulta](xref:core/modeling/query-types), introduzidos no EF Core 2.1 e considerados tipos de entidade sem chaves no EF Core 3.0, representam dados que podem ser lidos do banco de dados, mas não podem ser atualizados.
 Essa característica as torna uma excelente escolha para exibições de banco de dados na maioria dos cenários, portanto, planejamos automatizar a criação de tipos de entidade sem chaves ao realizar engenharia reversa de exibições de banco de dados.
-
-## <a name="property-bag-entities"></a>Entidades de recipiente de propriedade
-
-[Acompanhamento de problema nº 13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) e [nº 9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914)
-
-O trabalho nesse recurso foi iniciado, mas não está incluído na versão prévia atual. 
-
-Este recurso trata da habilitação das entidades que armazenam dados em propriedades indexadas em vez de propriedades regulares e também da capacidade de usar as instâncias da mesma classe do .NET (potencialmente algo tão simples quanto um `Dictionary<string, object>`) para representar tipos de entidades diferentes no mesmo modelo do EF Core.
-Este recurso é uma etapa fundamental para proporcionar suporte a relacionamentos de muitos para muitos sem uma entidade de junção, ([problema nº 1368](https://github.com/aspnet/EntityFrameworkCore/issues/1368)) que é um dos aprimoramentos mais solicitados no EF Core.
 
 ## <a name="ef-63-on-net-core"></a>EF 6.3 no .NET Core
 
