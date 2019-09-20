@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 9af0cba7-7605-4f8f-9cfa-dd616fcb880c
 uid: core/providers/in-memory/index
-ms.openlocfilehash: ca802f55d973b9f79073c2507c1e0c7a853a1fce
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 28f5f262b41cbc1f196e41d75c8b88ca60e678fe
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993314"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149229"
 ---
 # <a name="ef-core-in-memory-database-provider"></a>Provedor de Banco de Dados na Memória do EF Core
 
@@ -33,13 +33,3 @@ Os recursos a seguir ajudará você a começar a usar esse provedor.
 ## <a name="supported-database-engines"></a>Mecanismos de banco de dados compatíveis
 
 * Banco de dados na memória interno (projetado somente para fins de teste)
-
-## <a name="supported-platforms"></a>Plataformas compatíveis
-
-* .NET Framework (4.5.1 em diante)
-
-* .NET Core
-
-* Mono (4.2.0 em diante)
-
-* Plataforma Universal do Windows

@@ -1,23 +1,23 @@
 ---
-title: Cadeias de caracteres de Conexão – EF Core
+title: Cadeias de conexão-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: aeb0f5f8-b212-4f89-ae83-c642a5190ba0
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: c306f9ca7a51fc9e3db18e883fd44f56dd1a3cb4
-ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
+ms.openlocfilehash: ed89d6d09b15b0dea7fd8bc3ff3e3f631495ecb7
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/17/2019
-ms.locfileid: "68286455"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149107"
 ---
 # <a name="connection-strings"></a>Cadeias de caracteres de conexão
 
-A maioria dos provedores de banco de dados exigem alguma forma de cadeia de conexão para se conectar ao banco de dados. Às vezes, essa cadeia de caracteres de conexão contém informações confidenciais que precisam ser protegidos. Você também precisará alterar a cadeia de caracteres de conexão ao seu aplicativo mudar entre ambientes, como desenvolvimento, teste e produção.
+A maioria dos provedores de banco de dados requer alguma forma de cadeia de conexão para se conectar ao banco de dados. Às vezes, essa cadeia de conexão contém informações confidenciais que precisam ser protegidas. Talvez você também precise alterar a cadeia de conexão ao mover seu aplicativo entre ambientes, como desenvolvimento, teste e produção.
 
-## <a name="net-framework-applications"></a>Aplicativos do .NET framework
+## <a name="winforms--wpf-applications"></a>WinForms & aplicativos do WPF
 
-Aplicativos do .NET framework, como WinForms, WPF, Console e ASP.NET 4, têm um padrão de cadeia de caracteres de conexão testada e. A cadeia de caracteres de conexão deve ser adicionada ao arquivo App. config de seu aplicativo (Web. config se você estiver usando ASP.NET). Se a cadeia de conexão contém informações confidenciais, como nome de usuário e senha, você pode proteger o conteúdo do arquivo de configuração usando [configuração protegida](https://docs.microsoft.com/dotnet/framework/data/adonet/connection-strings-and-configuration-files#encrypting-configuration-file-sections-using-protected-configuration).
+Os aplicativos WinForms, WPF e ASP.NET 4 têm um padrão de cadeia de conexão testado e testado. A cadeia de conexão deve ser adicionada ao arquivo app. config do seu aplicativo (Web. config se você estiver usando ASP.NET). Se a cadeia de conexão contiver informações confidenciais, como nome de usuário e senha, você poderá proteger o conteúdo do arquivo de configuração usando a [ferramenta Gerenciador de segredo](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager).
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -31,9 +31,9 @@ Aplicativos do .NET framework, como WinForms, WPF, Console e ASP.NET 4, têm um 
 ```
 
 > [!TIP]  
-> O `providerName` configuração não é necessário em cadeias de caracteres de conexão do EF Core armazenadas em App. config porque o provedor de banco de dados está configurado por meio de código.
+> A `providerName` configuração não é necessária em EF Core cadeias de conexão armazenadas em app. config porque o provedor de banco de dados está configurado por meio de código.
 
-Você pode ler a cadeia de conexão usando o `ConfigurationManager` API em seu contexto `OnConfiguring` método. Talvez você precise adicionar uma referência para o `System.Configuration` assembly do framework para poder usar essa API.
+Em seguida, você pode ler a cadeia de `ConfigurationManager` conexão usando a API no `OnConfiguring` método do contexto. Talvez seja necessário adicionar uma referência ao assembly da `System.Configuration` estrutura para poder usar essa API.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -50,7 +50,7 @@ public class BloggingContext : DbContext
 
 ## <a name="universal-windows-platform-uwp"></a>UWP (Plataforma Universal do Windows)
 
-Cadeias de caracteres de Conexão em um aplicativo da UWP são normalmente uma conexão de SQLite que especifica apenas um nome de arquivo local. Eles normalmente não contêm informações confidenciais e não precisa ser alterado como um aplicativo é implantado. Dessa forma, essas cadeias de caracteres de conexão são normalmente bem a ser deixado no código, conforme mostrado abaixo. Se você quiser movê-los fora do código, em seguida, UWP é compatível com o conceito de configurações, consulte o [seção de configurações do aplicativo da documentação do UWP](https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data) para obter detalhes.
+Cadeias de conexão em um aplicativo UWP normalmente são uma conexão do SQLite que especifica apenas um nome de arquivo local. Normalmente, eles não contêm informações confidenciais e não precisam ser alterados à medida que um aplicativo é implantado. Como tal, essas cadeias de conexão normalmente são boas para serem deixadas no código, como mostrado abaixo. Se você quiser movê-los para fora do código, o UWP dá suporte ao conceito de configurações, consulte a [seção Configurações do aplicativo da documentação do UWP](https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data) para obter detalhes.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -67,7 +67,7 @@ public class BloggingContext : DbContext
 
 ## <a name="aspnet-core"></a>ASP.NET Core
 
-No ASP.NET Core, o sistema de configuração é muito flexível e a cadeia de caracteres de conexão pode ser armazenada em `appsettings.json`, uma variável de ambiente, o repositório de segredos do usuário ou outra fonte de configuração. Consulte a [seção de configuração da documentação do ASP.NET Core](https://docs.asp.net/en/latest/fundamentals/configuration.html) para obter mais detalhes. O exemplo a seguir mostra a cadeia de conexão armazenada no `appsettings.json`.
+Em ASP.NET Core o sistema de configuração é muito flexível, e a cadeia de conexão pode ser `appsettings.json`armazenada no, uma variável de ambiente, o armazenamento de segredo do usuário ou outra fonte de configuração. Consulte a [seção configuração da documentação do ASP.NET Core](https://docs.asp.net/en/latest/fundamentals/configuration.html) para obter mais detalhes. O exemplo a seguir mostra a cadeia de conexão `appsettings.json`armazenada em.
 
 ``` json
 {
@@ -77,7 +77,7 @@ No ASP.NET Core, o sistema de configuração é muito flexível e a cadeia de ca
 }
 ```
 
-O contexto é normalmente configurado no `Startup.cs` com a cadeia de caracteres de conexão que está sendo lida da configuração. Observe a `GetConnectionString()` método procura um valor de configuração cuja chave é `ConnectionStrings:<connection string name>`. Você precisa importar o [Extensions](https://docs.microsoft.com/dotnet/api/microsoft.extensions.configuration) namespace para usar esse método de extensão.
+O contexto é normalmente configurado em `Startup.cs` com a cadeia de conexão que está sendo lida da configuração. Observe que `GetConnectionString()` o método procura um valor de configuração cuja chave `ConnectionStrings:<connection string name>`seja. Você precisa importar o namespace [Microsoft. Extensions. Configuration](https://docs.microsoft.com/dotnet/api/microsoft.extensions.configuration) para usar esse método de extensão.
 
 ``` csharp
 public void ConfigureServices(IServiceCollection services)

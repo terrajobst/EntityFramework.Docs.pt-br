@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/features
-ms.openlocfilehash: 528733d6eec33de2c9538541a6ed5be704b9d433
-ms.sourcegitcommit: d01fc19aa42ca34c3bebccbc96ee26d06fcecaa2
+ms.openlocfilehash: d938f17daecd5031147951d0018602c5635de41d
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/16/2019
-ms.locfileid: "71005565"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149094"
 ---
 # <a name="new-features-included-in-ef-core-30"></a>Novos recursos incluídos no EF Core 3,0
 
@@ -57,7 +57,7 @@ var orders =
 
 await foreach(var o in orders)
 {
-  Proccess(o);
+  Process(o);
 } 
 ```
 
@@ -71,7 +71,7 @@ A nova API de interceptação no EF Core 3,0 permite observar e modificar de for
 
 ## <a name="reverse-engineering-of-database-views"></a>Engenharia reversa de exibições de banco de dados
 
-Tipos de entidade sem chaves (anteriormente conhecidas como [tipos de consulta](xref:core/modeling/query-types)) representam dados que podem ser lidos do banco de dado, mas não podem ser atualizados.
+Tipos de entidade sem chaves (anteriormente conhecidas como [tipos de consulta](xref:core/modeling/keyless-entity-types)) representam dados que podem ser lidos do banco de dado, mas não podem ser atualizados.
 Essa característica torna-se uma ótima opção para mapear exibições de banco de dados na maioria dos cenários, portanto, automatizamos a criação de tipos de entidade sem chaves ao reverter exibições de banco de dados.
 
 ## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>As entidades dependentes compartilham a tabela com a entidade de segurança agora são opcionais
@@ -108,5 +108,5 @@ Há algumas limitações, por exemplo:
 
 Alguns recursos originalmente planejados para EF Core 3,0 foram adiados para versões futuras: 
 
-- Capacidade de ingore partes de um modelo em migrações, controladas por [#2725](https://github.com/aspnet/EntityFrameworkCore/issues/2725).
-- Entidades do recipiente de propriedades, rastreadas por dois problemas separados: [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914) sobre entidades de tipo compartilhado e [#13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) sobre o suporte a mapeamento de propriedade indexada.
+- Capacidade de ingore partes de um modelo em migrações, rastreadas como [#2725](https://github.com/aspnet/EntityFrameworkCore/issues/2725).
+- Entidades do recipiente de propriedades, rastreadas como dois problemas separados: [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914) sobre entidades de tipo compartilhado e [#13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) sobre o suporte a mapeamento de propriedade indexada.

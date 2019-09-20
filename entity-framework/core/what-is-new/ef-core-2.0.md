@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: 28b2180e898b91d233b590b1639674a464f8c679
-ms.sourcegitcommit: 0cc9578fd49802789a00c0044b4e57325476ca2e
+ms.openlocfilehash: 781578d9de05895cdbc777aa53c3f6d6f9777869
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70271427"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149053"
 ---
 # <a name="new-features-in-ef-core-20"></a>Novos recursos no EF Core 2.0
 
@@ -36,7 +36,7 @@ Leia a [seção sobre separação de tabela](xref:core/modeling/table-splitting)
 
 ### <a name="owned-types"></a>Tipos próprios
 
-Um tipo de entidade própria pode compartilhar o mesmo tipo CLR com outro tipo de entidade própria, mas, considerando que ele não pode ser identificado apenas pelo tipo CLR, deve haver uma navegação para ele de outro tipo de entidade. A entidade que contém a navegação de definição é o proprietário. Ao consultar o proprietário, os tipos próprios serão incluídos por padrão.
+Um tipo de entidade de propriedade pode compartilhar o mesmo tipo .NET com outro tipo de entidade de propriedade, mas como não pode ser identificado apenas pelo tipo .NET, deve haver uma navegação para ele de outro tipo de entidade. A entidade que contém a navegação de definição é o proprietário. Ao consultar o proprietário, os tipos próprios serão incluídos por padrão.
 
 Por convenção, uma chave primária de sombra será criada para o tipo próprio e mapeada para a mesma tabela que a do proprietário usando a divisão de tabela. Isso permite usar tipos próprios de maneira similar a como os tipos complexos são usados em EF6:
 
