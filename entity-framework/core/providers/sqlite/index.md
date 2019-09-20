@@ -4,50 +4,29 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3e2f7698-fec2-4cec-9e2d-2e3e0074120c
 uid: core/providers/sqlite/index
-ms.openlocfilehash: 31de8449a12a10d4f98ebb4bb6125389606e9bbd
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e4cbdba46f901831892192a343db2920a5760042
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993996"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149261"
 ---
-# <a name="sqlite-ef-core-database-provider"></a><span data-ttu-id="30898-102">Provedor de Banco de Dados EF Core SQLite</span><span class="sxs-lookup"><span data-stu-id="30898-102">SQLite EF Core Database Provider</span></span>
+# <a name="sqlite-ef-core-database-provider"></a><span data-ttu-id="c6b14-102">Provedor de Banco de Dados EF Core SQLite</span><span class="sxs-lookup"><span data-stu-id="c6b14-102">SQLite EF Core Database Provider</span></span>
 
-<span data-ttu-id="30898-103">Este provedor de banco de dados permite que o Entity Framework Core seja usado com SQLite.</span><span class="sxs-lookup"><span data-stu-id="30898-103">This database provider allows Entity Framework Core to be used with SQLite.</span></span> <span data-ttu-id="30898-104">O provedor é mantido como parte do [projeto do Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore).</span><span class="sxs-lookup"><span data-stu-id="30898-104">The provider is maintained as part of the [Entity Framework Core project](https://github.com/aspnet/EntityFrameworkCore).</span></span>
+<span data-ttu-id="c6b14-103">Este provedor de banco de dados permite que o Entity Framework Core seja usado com SQLite.</span><span class="sxs-lookup"><span data-stu-id="c6b14-103">This database provider allows Entity Framework Core to be used with SQLite.</span></span> <span data-ttu-id="c6b14-104">O provedor é mantido como parte do [projeto do Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore).</span><span class="sxs-lookup"><span data-stu-id="c6b14-104">The provider is maintained as part of the [Entity Framework Core project](https://github.com/aspnet/EntityFrameworkCore).</span></span>
 
-## <a name="install"></a><span data-ttu-id="30898-105">Instalar o</span><span class="sxs-lookup"><span data-stu-id="30898-105">Install</span></span>
+## <a name="install"></a><span data-ttu-id="c6b14-105">Instalar o</span><span class="sxs-lookup"><span data-stu-id="c6b14-105">Install</span></span>
 
-<span data-ttu-id="30898-106">Instale o [pacote NuGet Microsoft.EntityFrameworkCore.Sqlite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/).</span><span class="sxs-lookup"><span data-stu-id="30898-106">Install the [Microsoft.EntityFrameworkCore.Sqlite NuGet package](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/).</span></span>
+<span data-ttu-id="c6b14-106">Instale o [pacote NuGet Microsoft.EntityFrameworkCore.Sqlite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/).</span><span class="sxs-lookup"><span data-stu-id="c6b14-106">Install the [Microsoft.EntityFrameworkCore.Sqlite NuGet package](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/).</span></span>
 
 ``` powershell
 Install-Package Microsoft.EntityFrameworkCore.Sqlite
 ```
 
-## <a name="get-started"></a><span data-ttu-id="30898-107">Introdução</span><span class="sxs-lookup"><span data-stu-id="30898-107">Get Started</span></span>
+## <a name="supported-database-engines"></a><span data-ttu-id="c6b14-107">Mecanismos de banco de dados compatíveis</span><span class="sxs-lookup"><span data-stu-id="c6b14-107">Supported Database Engines</span></span>
 
-<span data-ttu-id="30898-108">Os recursos a seguir ajudará você a começar a usar esse provedor.</span><span class="sxs-lookup"><span data-stu-id="30898-108">The following resources will help you get started with this provider.</span></span>
-* [<span data-ttu-id="30898-109">SQLite Local em UWP</span><span class="sxs-lookup"><span data-stu-id="30898-109">Local SQLite on UWP</span></span>](../../get-started/uwp/getting-started.md)
+* <span data-ttu-id="c6b14-108">SQLite (3.7 em diante)</span><span class="sxs-lookup"><span data-stu-id="c6b14-108">SQLite (3.7 onwards)</span></span>
 
-* [<span data-ttu-id="30898-110">Aplicativo .NET Core para Novo Banco de Dados SQLite</span><span class="sxs-lookup"><span data-stu-id="30898-110">.NET Core Application to New SQLite Database</span></span>](../../get-started/netcore/new-db-sqlite.md)
+## <a name="limitations"></a><span data-ttu-id="c6b14-109">Limitações</span><span class="sxs-lookup"><span data-stu-id="c6b14-109">Limitations</span></span>
 
-* [<span data-ttu-id="30898-111">Aplicativo de Exemplo Unicorn Clicker</span><span class="sxs-lookup"><span data-stu-id="30898-111">Unicorn Clicker Sample Application</span></span>](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornClicker/UWP)
-
-* [<span data-ttu-id="30898-112">Aplicativo de Exemplo Unicorn Packer</span><span class="sxs-lookup"><span data-stu-id="30898-112">Unicorn Packer Sample Application</span></span>](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornPacker)
-
-## <a name="supported-database-engines"></a><span data-ttu-id="30898-113">Mecanismos de banco de dados compatíveis</span><span class="sxs-lookup"><span data-stu-id="30898-113">Supported Database Engines</span></span>
-
-* <span data-ttu-id="30898-114">SQLite (3.7 em diante)</span><span class="sxs-lookup"><span data-stu-id="30898-114">SQLite (3.7 onwards)</span></span>
-
-## <a name="supported-platforms"></a><span data-ttu-id="30898-115">Plataformas compatíveis</span><span class="sxs-lookup"><span data-stu-id="30898-115">Supported Platforms</span></span>
-
-* <span data-ttu-id="30898-116">.NET Framework (4.5.1 em diante)</span><span class="sxs-lookup"><span data-stu-id="30898-116">.NET Framework (4.5.1 onwards)</span></span>
-
-* <span data-ttu-id="30898-117">.NET Core</span><span class="sxs-lookup"><span data-stu-id="30898-117">.NET Core</span></span>
-
-* <span data-ttu-id="30898-118">Mono (4.2.0 em diante)</span><span class="sxs-lookup"><span data-stu-id="30898-118">Mono (4.2.0 onwards)</span></span>
-
-* <span data-ttu-id="30898-119">Plataforma Universal do Windows</span><span class="sxs-lookup"><span data-stu-id="30898-119">Universal Windows Platform</span></span>
-
-## <a name="limitations"></a><span data-ttu-id="30898-120">Limitações</span><span class="sxs-lookup"><span data-stu-id="30898-120">Limitations</span></span>
-
-<span data-ttu-id="30898-121">Consulte [Limitações do SQLite](limitations.md) para algumas limitações importantes do provedor SQLite.</span><span class="sxs-lookup"><span data-stu-id="30898-121">See [SQLite Limitations](limitations.md) for some important limitations of the SQLite provider.</span></span>
+<span data-ttu-id="c6b14-110">Consulte [Limitações do SQLite](limitations.md) para algumas limitações importantes do provedor SQLite.</span><span class="sxs-lookup"><span data-stu-id="c6b14-110">See [SQLite Limitations](limitations.md) for some important limitations of the SQLite provider.</span></span>
