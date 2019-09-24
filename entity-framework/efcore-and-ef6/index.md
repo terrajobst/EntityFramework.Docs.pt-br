@@ -5,12 +5,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
-ms.openlocfilehash: ad0807a3cfd62c6c09a97df1a45134db7a538623
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 3d2f72e64e6846d2d8bb6d4d507e04090287114d
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149061"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71198013"
 ---
 # <a name="compare-ef-core--ef6"></a>Comparar EF Core e EF6
 
@@ -148,7 +148,7 @@ A coluna EF Core indica a versão do produto na qual o recurso apareceu pela pri
 
 Considere usar o EF Core para um novo aplicativo se as duas condições a seguir forem verdadeiras:
 * O aplicativo precisa das funcionalidades do .NET Core. Para obter mais informações, confira [Escolhendo entre o .NET Core e o .NET Framework para aplicativos de servidor](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server).
-* O EF Core dá suporte a todos os recursos que o aplicativo requer. Se um recurso desejado estiver ausente, verifique o [Roteiro do EF Core](xref:core/what-is-new/roadmap) para descobrir se há planos para lhe dar suporte no futuro.
+* O EF Core dá suporte a todos os recursos que o aplicativo requer. Se um recurso desejado estiver ausente, verifique o [Roteiro do EF Core](xref:core/what-is-new/index) para descobrir se há planos para lhe dar suporte no futuro. 
 
 Considere usar o EF6 se as duas condições a seguir forem verdadeiras:
 * O aplicativo será executado no Windows e no .NET Framework 4.0 ou posterior.
