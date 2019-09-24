@@ -1,39 +1,169 @@
 ---
 title: Introdução – EF Core
-author: rowanmiller
-ms.date: 10/27/2016
+author: rick-anderson
+ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: b846d63f2c285a43d60eecfb2be3d460a5d31924
-ms.sourcegitcommit: 064b09431f05848830e145a6cd65cad58881557c
+ms.openlocfilehash: 41ebdcbb3f51c914ee7befb3c1a9c0042e9b43c8
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52552588"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71196893"
 ---
-# <a name="getting-started-with-entity-framework-core"></a>Introdução ao Entity Framework Core
+# <a name="getting-started-with-ef-core"></a>Introdução ao EF Core
 
-## <a name="installing-ef-coreinstallindexmd"></a>[Instalar o EF Core](install/index.md)
+Neste tutorial, você criará um aplicativo de console do .NET Core que executa acesso a dados em um banco de dados SQLite usando o Entity Framework Core.
 
-Um resumo das etapas necessárias para adicionar o EF Core ao seu aplicativo em diferentes plataformas e IDEs populares.
+Você pode seguir o tutorial usando o Visual Studio no Windows ou usando a CLI do .NET Core no Windows, macOS ou Linux.
 
-## <a name="step-by-step-tutorials"></a>Tutoriais passo a passo
+[Exiba o exemplo deste artigo no GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).
 
-Estes tutoriais de introdução não exigem conhecimento prévio do Entity Framework Core nem de um IDE em particular. Eles o conduzirão passo a passo durante a criação de um aplicativo simples que consulta e salva os dados de um banco de dados. Oferecemos tutoriais para você começar a usar vários tipos de aplicativos e sistemas operacionais.
+## <a name="prerequisites"></a>Pré-requisitos
 
-O Entity Framework Core pode criar um modelo com base em um banco de dados existente ou criar um banco de dados com base no seu modelo. Há tutoriais que demonstram essas duas abordagens.
+Instale o software a seguir:
 
-* Aplicativos de console do .NET Core
-  * [Novo banco de dados](netcore/new-db-sqlite.md)
-* Aplicativos ASP.NET Core
-  * [Novo banco de dados](aspnetcore/new-db.md)
-  * [Banco de dados existente](aspnetcore/existing-db.md)
-  * [EF Core e Razor Pages](/aspnet/core/data/ef-rp/intro)
-* Aplicativos da UWP (Plataforma Universal do Windows)
-  * [Novo banco de dados](uwp/getting-started.md)
-* Aplicativos do .NET Framework
-  * [Novo banco de dados](full-dotnet/new-db.md)
-  * [Banco de dados existente](full-dotnet/existing-db.md)
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
-> [!NOTE]  
-> Esses tutoriais e as amostras que os acompanham foram atualizados para usar o EF Core 2.1. No entanto, na maioria dos casos, deve ser possível criar aplicativos que usam versões anteriores, com mínima modificação às instruções. 
+* [SDK do .NET Core 3.0](https://www.microsoft.com/net/download/core).
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* [Visual Studio 2019 versão 16.3 ou posterior](https://www.visualstudio.com/downloads/) com esta carga de trabalho:
+  * **Desenvolvimento de plataforma cruzada do .NET Core** (em **Outros conjuntos de ferramentas**)
+
+---
+
+## <a name="create-a-new-project"></a>Criar um novo projeto
+
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+
+``` Console
+dotnet new console -o EFGetStarted
+cd EFGetStarted
+```
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Abrir o Visual Studio
+* Clique em **Criar um novo projeto**
+* Selecione **Aplicativo de Console (.NET Core)** com a marca **C#** e clique em **Avançar**
+* Insira **EFGetStarted** como o nome e clique em **Criar**
+
+---
+
+## <a name="install-entity-framework-core"></a>Instalar o Entity Framework Core
+
+Para instalar o EF Core, instale o pacote dos provedores do banco de dados do EF Core para o qual você deseja direcionar. Este tutorial usa SQLite porque ele é executado em todas as plataformas que dão suporte a .NET Core. Para obter uma lista de provedores disponíveis, veja [Provedores de Banco de Dados](../providers/index.md).
+
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+
+``` Console
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+```
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* **Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**
+* Execute os seguintes comandos:
+
+  ``` PowerShell
+  Install-Package Microsoft.EntityFrameworkCore.Sqlite
+  ```
+
+Dica: você também pode instalar pacotes clicando com o botão direito do mouse no projeto e selecionando **Gerenciar Pacotes NuGet**
+
+---
+
+## <a name="create-the-model"></a>Criar o modelo
+
+Defina uma classe de contexto e classes de entidade que compõem o modelo.
+
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+
+* No diretório do projeto, crie **Model.cs** com o seguinte código
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Clique com o botão direito do mouse no projeto e selecione **Adicionar > Classe**
+* Insira **Model.cs** como o nome e clique em **Adicionar**
+* Substitua o conteúdo do arquivo pelo seguinte código
+
+---
+
+[!code-csharp[Main](../../../samples/core/GetStarted/Model.cs)]
+
+O EF Core também pode fazer a [engenharia reversa](../managing-schemas/scaffolding.md) de um modelo de um banco de dados existente.
+
+Dica: em um aplicativo real, você coloca cada classe em um arquivo separado e coloca a [cadeia de conexão](../miscellaneous/connection-strings.md) em um arquivo de configuração ou na variável de ambiente. Para simplificar o tutorial, tudo está contido em um arquivo.
+
+## <a name="create-the-database"></a>Criar o banco de dados
+
+As etapas a seguir usam [migrações](xref:core/managing-schemas/migrations/index) para criar um banco de dados.
+
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+
+* Execute os seguintes comandos:
+
+  ``` Console
+  dotnet tool install --global dotnet-ef
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  dotnet ef migrations add InitialCreate
+  dotnet ef database update
+  ```
+
+  Isso instala o [dotnet ef](../miscellaneous/cli/dotnet.md) e o pacote de design necessário para executar o comando em um projeto. O comando `migrations` realiza o scaffolding de uma migração e cria o conjunto inicial de tabelas para o modelo. O comando `database update` cria o banco de dados e aplica a nova migração a ele.
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Execute os seguintes comandos no **Console do Gerenciador de Pacotes**
+
+  ``` PowerShell
+  Install-Package Microsoft.EntityFrameworkCore.Tools
+  Add-Migration InitialCreate
+  Update-Database
+  ```
+
+  Isso instala as [ferramentas do PMC para EF Core](../miscellaneous/cli/powershell.md). O comando `Add-Migration` realiza o scaffolding de uma migração e cria o conjunto inicial de tabelas para o modelo. O comando `Update-Database` cria o banco de dados e aplica a nova migração a ele.
+
+---
+
+## <a name="create-read-update--delete"></a>Criar, ler, atualizar e excluir
+
+* Abra *Program.cs* e substitua o conteúdo pelo código a seguir:
+
+  [!code-csharp[Main](../../../samples/core/GetStarted/Program.cs)]
+
+## <a name="run-the-app"></a>Executar o aplicativo
+
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+
+``` Console
+dotnet run
+```
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+O Visual Studio usa um diretório de trabalho divergente ao executar aplicativos de console do .NET Core. (confira [dotnet/project-system#3619](https://github.com/dotnet/project-system/issues/3619)) Isso faz com que uma exceção seja gerada: *não existe essa tabela: Blogs*. Para atualizar o diretório de trabalho:
+
+* clique com o botão direito do mouse no projeto e selecione **Editar Arquivo de Projeto**
+* Logo abaixo da propriedade *TargetFramework*, adicione o seguinte:
+
+  ``` XML
+  <StartWorkingDirectory>$(MSBuildProjectDirectory)</StartWorkingDirectory>
+  ```
+
+* Salve o arquivo
+
+Agora, você pode executar o aplicativo:
+
+* **Depurar > Iniciar sem depuração**
+
+---
+
+# <a name="next-steps"></a>Próximas etapas
+
+* Siga o [Tutorial do ASP.NET Core](/aspnet/core/data/ef-rp/intro) para usar o EF Core em um aplicativo Web
+* Saiba mais sobre as [expressões de consulta LINQ](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)
+* [Configure seu modelo](xref:core/modeling/index) para especificar configurações como [obrigatório](xref:core/modeling/required-optional) e [comprimento máximo](xref:core/modeling/max-length)
+* Use [Migrações](xref:core/managing-schemas/migrations/index) para atualizar o esquema do banco de dados após alterar seu modelo
