@@ -3,12 +3,12 @@ title: Como tratar conflitos de simultaneidade – EF Core
 author: rowanmiller
 ms.date: 03/03/2018
 uid: core/saving/concurrency
-ms.openlocfilehash: e050b17bfa31a4785161c700bc0355e83162b405
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
-ms.translationtype: HT
+ms.openlocfilehash: 4d6ff24e58caa0b228e9c1e4313beda78d1025fc
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993106"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197838"
 ---
 # <a name="handling-concurrency-conflicts"></a>Como tratar conflitos de simultaneidade
 
@@ -16,7 +16,7 @@ ms.locfileid: "42993106"
 > Esta página documenta como a simultaneidade funciona no EF Core e como lidar com conflitos de simultaneidade no seu aplicativo. Confira [Tokens de Simultaneidade](xref:core/modeling/concurrency) para obter detalhes sobre como configurar os tokens de simultaneidade no seu modelo.
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Concurrency/) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Concurrency/) deste artigo no GitHub.
 
 _Simultaneidade do banco de dados_ se refere a situações nas quais vários processos ou usuários acessam ou alteram os mesmos dados em um banco de dados ao mesmo tempo. _Controle de simultaneidade_ se refere a mecanismos específicos usados para garantir a consistência dos dados na presença de alterações simultâneas.
 
@@ -71,4 +71,4 @@ A abordagem geral para lidar com um conflito de simultaneidade é:
 
 No exemplo a seguir, `Person.FirstName` e `Person.LastName` são configurados como tokens de simultaneidade. Há um comentário `// TODO:` no local onde você inclui a lógica específica para o aplicativo para escolher o valor a ser salvo.
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Concurrency/Sample.cs?name=ConcurrencyHandlingCode&highlight=34-35)]
+[!code-csharp[Main](../../../samples/core/Saving/Concurrency/Sample.cs?name=ConcurrencyHandlingCode&highlight=34-35)]

@@ -4,16 +4,16 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 1f63593631017a61c39ccab9216adbc4663700e7
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: f7c241159c689d4648b2778b53e50c22f580deb0
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71148899"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197928"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>Alterações recentes incluídas no EF Core 3,0
 As alterações de API e comportamento a seguir têm o potencial de interromper os aplicativos existentes ao atualizá-los para o 3.0.0.
-As alterações que esperamos que afetem apenas os provedores de banco de dados estão documentadas em [alterações de provedor](../../providers/provider-log.md).
+As alterações que esperamos que afetem apenas os provedores de banco de dados estão documentadas em [alterações de provedor](xref:core/providers/provider-log).
 As interrupções de uma visualização 3,0 para outra versão prévia 3,0 não estão documentadas aqui.
 
 ## <a name="summary"></a>Resumo
@@ -23,6 +23,7 @@ As interrupções de uma visualização 3,0 para outra versão prévia 3,0 não 
 | [As consultas LINQ não são mais avaliadas no cliente](#linq-queries-are-no-longer-evaluated-on-the-client)         | Alta       |
 | [O EF Core 3.0 tem como destino o .NET Standard 2.1 em vez do .NET Standard 2.0](#netstandard21) | Alta      |
 | [A ferramenta de linha de comando do EF Core, dotnet ef, não faz mais parte do SDK do .NET Core](#dotnet-ef) | Alta      |
+| [DetectChanges respeita os valores de chave gerados pelo repositório](#dc) | Alta      |
 | [FromSql, ExecuteSql e ExecuteSqlAsync foram renomeados](#fromsql) | Alta      |
 | [Tipos de consulta são consolidados com tipos de entidade](#qt) | Alta      |
 | [O Entity Framework Core não faz mais parte da estrutura compartilhada do ASP.NET Core](#no-longer) | Médio      |
@@ -37,7 +38,6 @@ As interrupções de uma visualização 3,0 para outra versão prévia 3,0 não 
 | [Os métodos FromSql só podem ser especificados em raízes de consulta](#fromsql) | Baixo      |
 | [~~A execução de consulta é registrada no nível da Depuração~~ Revertida](#qe) | Baixo      |
 | [Valores de chave temporários não estão mais definidos em instâncias de entidade](#tkv) | Baixo      |
-| [DetectChanges respeita os valores de chave gerados pelo repositório](#dc) | Baixo      |
 | [As entidades dependentes que compartilham a tabela com a entidade de segurança agora são opcionais](#de) | Baixo      |
 | [Todas as entidades que compartilham uma tabela com uma coluna de token de simultaneidade precisam mapeá-la para uma propriedade](#aes) | Baixo      |
 | [Agora, as propriedades herdadas de tipos não mapeados são mapeadas para uma única coluna para todos os tipos derivados](#ip) | Baixo      |
@@ -69,6 +69,7 @@ As interrupções de uma visualização 3,0 para outra versão prévia 3,0 não 
 | [SQLitePCL.raw atualizado para a versão 2.0.0](#SQLitePCL) | Baixo      |
 | [NetTopologySuite atualizado para a versão 2.0.0](#NetTopologySuite) | Baixo      |
 | [Várias relações ambíguas de autorreferência devem ser configuradas](#mersa) | Baixo      |
+| [DbFunction. Schema sendo nulo ou a cadeia de caracteres vazia o configura para estar no esquema padrão do modelo](#udf-empty-string) | Baixo      |
 
 ### <a name="linq-queries-are-no-longer-evaluated-on-the-client"></a>Consultas LINQ não são mais avaliadas no cliente
 
@@ -174,7 +175,7 @@ Essa alteração permite distribuir e atualizar `dotnet ef` como uma ferramenta 
 Para conseguir gerenciar migrações ou scaffold no `DbContext`, instale `dotnet-ef` como uma ferramenta global:
 
   ``` console
-    $ dotnet tool install --global dotnet-ef --version 3.0.0-*
+    $ dotnet tool install --global dotnet-ef
   ```
 
 Você também pode obtê-lo como uma ferramenta local quando você restaura as dependências de um projeto que o declara como uma dependência de ferramentas usando um [arquivo de manifesto de ferramenta](https://github.com/dotnet/cli/issues/10288).
@@ -1714,4 +1715,39 @@ modelBuilder
      .Entity<User>()
      .HasOne(e => e.UpdatedBy)
      .WithMany();
+```
+
+<a name="udf-empty-string"></a>
+### <a name="dbfunctionschema-being-null-or-empty-string-configures-it-to-be-in-models-default-schema"></a>DbFunction. Schema sendo nulo ou a cadeia de caracteres vazia o configura para estar no esquema padrão do modelo
+
+[Acompanhamento do problema #12757](https://github.com/aspnet/EntityFrameworkCore/issues/12757)
+
+Essa alteração foi introduzida no EF Core 3.0 – versão prévia 7.
+
+**Comportamento antigo**
+
+Um DbFunction configurado com o esquema como uma cadeia de caracteres vazia foi tratado como função interna sem um esquema. Por exemplo, o código a `DatePart` seguir mapeará `DATEPART` a função CLR para a função interna no SqlServer.
+
+```C#
+[DbFunction("DATEPART", Schema = "")]
+public static int? DatePart(string datePartArg, DateTime? date) => throw new Exception();
+
+```
+
+**Comportamento novo**
+
+Todos os mapeamentos DbFunction são considerados mapeados para funções definidas pelo usuário. Portanto, o valor da cadeia de caracteres vazia colocaria a função dentro do esquema padrão para o modelo. Que poderia ser o esquema configurado explicitamente por meio da `modelBuilder.HasDefaultSchema()` API `dbo` Fluent ou de outra forma.
+
+**Por que**
+
+O esquema anterior sendo vazio era uma maneira de tratar que a função é interna, mas essa lógica só é aplicável ao SqlServer, em que funções internas não pertencem a nenhum esquema.
+
+**Mitigações**
+
+Configure a tradução do DbFunction manualmente para mapeá-lo para uma função interna.
+
+```C#
+modelBuilder
+    .HasDbFunction(typeof(MyContext).GetMethod(nameof(MyContext.DatePart)))
+    .HasTranslation(args => SqlFunctionExpression.Create("DatePart", args, typeof(int?), null));
 ```

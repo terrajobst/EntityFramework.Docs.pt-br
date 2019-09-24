@@ -1,19 +1,19 @@
 ---
-title: Índices – EF Core
+title: Índices-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 85b92003-b692-417d-ac1d-76d40dce664b
 uid: core/modeling/indexes
-ms.openlocfilehash: 87fe893243377e3ab83d419ae9bedf813ca50c3f
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: b6f11401b69bd8e8795f6b22e5392ba16fc9ba2e
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995474"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197251"
 ---
 # <a name="indexes"></a>Índices
 
-Os índices são um conceito comum entre vários armazenamentos de dados. Embora sua implementação no armazenamento de dados pode variar, eles são usados para fazer pesquisas com base em uma coluna (ou conjunto de colunas) mais eficiente.
+Os índices são um conceito comum entre vários armazenamentos de dados. Embora sua implementação no armazenamento de dados possa variar, elas são usadas para fazer pesquisas com base em uma coluna (ou conjunto de colunas) mais eficiente.
 
 ## <a name="conventions"></a>Convenções
 
@@ -25,9 +25,9 @@ Não é possível criar índices usando anotações de dados.
 
 ## <a name="fluent-api"></a>API fluente
 
-Você pode usar a API Fluent para especificar um índice em uma única propriedade. Por padrão, os índices são não exclusivo.
+Você pode usar a API fluente para especificar um índice em uma única propriedade. Por padrão, os índices são não exclusivos.
 
-<!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Index.cs?highlight=7,8)] -->
+<!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Index.cs?highlight=7,8)] -->
 ``` csharp
 class MyContext : DbContext
 {
@@ -47,9 +47,9 @@ public class Blog
 }
 ```
 
-Você também pode especificar que um índice deve ser exclusivo, que significa que não há duas entidades podem ter o mesmo valor (es) para a propriedade fornecido (s).
+Você também pode especificar que um índice deve ser exclusivo, o que significa que duas entidades podem ter os mesmos valores para as propriedades especificadas.
 
-<!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/IndexUnique.cs?highlight=3)] -->
+<!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/IndexUnique.cs?highlight=3)] -->
 ``` csharp
         modelBuilder.Entity<Blog>()
             .HasIndex(b => b.Url)
@@ -58,7 +58,7 @@ Você também pode especificar que um índice deve ser exclusivo, que significa 
 
 Você também pode especificar um índice em mais de uma coluna.
 
-<!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/IndexComposite.cs?highlight=7,8)] -->
+<!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/IndexComposite.cs?highlight=7,8)] -->
 ``` csharp
 class MyContext : DbContext
 {
@@ -80,4 +80,4 @@ public class Person
 ```
 
 > [!TIP]  
-> Há apenas um índice por um conjunto distinto de propriedades. Se você usar a API Fluent para configurar um índice em um conjunto de propriedades que já tem um índice definido, por convenção ou configuração anterior, em seguida, você estará alterando a definição de índice. Isso é útil se você deseja configurar um índice que foi criado por convenção.
+> Há apenas um índice por conjunto distinto de propriedades. Se você usar a API fluente para configurar um índice em um conjunto de propriedades que já tem um índice definido, seja por convenção ou configuração anterior, você alterará a definição desse índice. Isso será útil se você quiser configurar ainda mais um índice que foi criado por convenção.

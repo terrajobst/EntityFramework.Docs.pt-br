@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 15b7e69676ef9aeb70121fcec404c34a17e5e2bb
-ms.sourcegitcommit: 8d04a2ad98036f32ca70c77ce3040c5edb1cdf82
-ms.translationtype: HT
+ms.openlocfilehash: ec04de4eab2a28e3aa81ff27accef4fc11c83995
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44384833"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197796"
 ---
 # <a name="cascade-delete"></a>Excluir em cascata
 
@@ -66,13 +66,13 @@ Em um alto nível:
 > No EF Core, ao contrário de EF6, os efeitos em cascata não ocorrem imediatamente, apenas quando SaveChanges é chamado.
 
 > [!NOTE]  
-> **Alterações no EF Core 2.0:** em versões anteriores, *Restrict* causaria as propriedades de chave estrangeira opcionais em entidades dependentes controladas serem definidas como nulas e o padrão era o comportamento de exclusão para relações opcionais. No EF Core 2.0, o *ClientSetNull* foi introduzido para representar esse comportamento e tornou-se o padrão para relações opcionais. O comportamento de *Restrict* foi ajustado para nunca ter efeitos colaterais em entidades dependentes.
+> **Alterações no EF Core 2,0:** Nas versões anteriores, *restringir* faria com que as propriedades de chave estrangeira opcionais em entidades dependentes controladas fossem definidas como nulas e o comportamento de exclusão padrão para relações opcionais. No EF Core 2.0, o *ClientSetNull* foi introduzido para representar esse comportamento e tornou-se o padrão para relações opcionais. O comportamento de *Restrict* foi ajustado para nunca ter efeitos colaterais em entidades dependentes.
 
 ## <a name="entity-deletion-examples"></a>Exemplos de exclusão de entidade
 
-O código a seguir faz parte de um [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/CascadeDelete/) que pode ser baixado e executado. O exemplo mostra o que acontece para cada comportamento de exclusão para relações obrigatórias e opcionais quando uma entidade pai é excluída.
+O código a seguir faz parte de um [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/CascadeDelete/) que pode ser baixado e executado. O exemplo mostra o que acontece para cada comportamento de exclusão para relações obrigatórias e opcionais quando uma entidade pai é excluída.
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/CascadeDelete/Sample.cs#DeleteBehaviorVariations)]
+[!code-csharp[Main](../../../samples/core/Saving/CascadeDelete/Sample.cs#DeleteBehaviorVariations)]
 
 Vamos examinar cada variação para entender o que está acontecendo.
 
@@ -181,9 +181,9 @@ Vamos examinar cada variação para entender o que está acontecendo.
 
 ## <a name="delete-orphans-examples"></a>Exemplos de exclusão de órfãos
 
-O código a seguir faz parte de um [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/CascadeDelete/) que pode ser baixado e executado. O exemplo mostra o que acontece para cada comportamento de exclusão de relações obrigatórias e opcionais quando a relação entre um pai/entidade de segurança e seus filhos/dependentes for desfeita. Neste exemplo, a relação é desfeita removendo os dependentes/filhos (postagens) da propriedade de navegação da coleção na entidade de segurança/pai (blog). No entanto, o comportamento é o mesmo se a referência de dependente/filho a entidade de segurança/pai em vez disso for anulada.
+O código a seguir faz parte de um [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/CascadeDelete/) que pode ser baixado e executado. O exemplo mostra o que acontece para cada comportamento de exclusão de relações obrigatórias e opcionais quando a relação entre um pai/entidade de segurança e seus filhos/dependentes for desfeita. Neste exemplo, a relação é desfeita removendo os dependentes/filhos (postagens) da propriedade de navegação da coleção na entidade de segurança/pai (blog). No entanto, o comportamento é o mesmo se a referência de dependente/filho a entidade de segurança/pai em vez disso for anulada.
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/CascadeDelete/Sample.cs#DeleteOrphansVariations)]
+[!code-csharp[Main](../../../samples/core/Saving/CascadeDelete/Sample.cs#DeleteOrphansVariations)]
 
 Vamos examinar cada variação para entender o que está acontecendo.
 

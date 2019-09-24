@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 0278353640ea242df9e6ee5278c9dda78bfd341b
-ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
+ms.openlocfilehash: 910136871cce5818b8e70a012e5132259b66e4c1
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/17/2019
-ms.locfileid: "69565273"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197586"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Referência de ferramentas de Entity Framework Core-CLI .NET
 
@@ -33,7 +33,7 @@ O procedimento de instalação depende do tipo de projeto e da versão:
 * `dotnet ef`deve ser instalado como uma ferramenta global ou local. A maioria dos desenvolvedores `dotnet ef` será instalada como uma ferramenta global com o seguinte comando:
 
   ``` console
-  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  dotnet tool install --global dotnet-ef
   ```
 
   Você também pode usar `dotnet ef` como ferramenta local. Para usá-lo como uma ferramenta local, restaure as dependências de um projeto que a declare como uma dependência de ferramentas usando um [arquivo de manifesto da ferramenta](https://github.com/dotnet/cli/issues/10288).
@@ -50,7 +50,7 @@ O procedimento de instalação depende do tipo de projeto e da versão:
 
 * Instale o [SDK do .NET Core](https://www.microsoft.com/net/download/core)atual. O SDK precisa ser instalado, mesmo se você tiver a versão mais recente do Visual Studio 2017.
 
-  Isso é tudo o que é necessário para o ASP.NET Core 2.1 + `Microsoft.EntityFrameworkCore.Design` porque o pacote está incluído no metapacote [Microsoft. AspNetCore. app](/aspnet/core/fundamentals/metapackage-app).
+  Isso é tudo o que é necessário para o ASP.NET Core 2.1 + `Microsoft.EntityFrameworkCore.Design` porque o pacote está incluído no [metapacote Microsoft. AspNetCore. app](/aspnet/core/fundamentals/metapackage-app).
 
 ### <a name="ef-core-2x-not-aspnet-core"></a>EF Core 2. x (não ASP.NET Core)
 

@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: 775a929982b9f4fb10aad9cd43bbb555ce632ad1
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: afe2c865305ade93dd10c8838b80c8b4177e7e8e
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149022"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197199"
 ---
 # <a name="reverse-engineering"></a>Engenharia reversa
 
@@ -121,13 +121,12 @@ Em seguida, ele usa as informações de esquema para criar um modelo de EF Core.
 
 Por fim, o modelo é usado para gerar código. As classes de tipo de entidade, a API fluente e as anotações de dados correspondentes são com Scaffold para recriar o mesmo modelo a partir de seu aplicativo.
 
-## <a name="what-doesnt-work"></a>O que não funciona
+## <a name="limitations"></a>Limitações
 
-Nem tudo sobre um modelo pode ser representado usando um esquema de banco de dados. Por exemplo, as informações sobre [**hierarquias de herança**](../modeling/inheritance.md), [**tipos de propriedade**](../modeling/owned-entities.md)e divisão de [**tabela**](../modeling/table-splitting.md) não estão presentes no esquema de banco de dados. Por isso, essas construções nunca serão revertidas com engenharia reversa.
-
-Além disso, **alguns tipos de coluna** podem não ser suportados pelo provedor de EF Core. Essas colunas não serão incluídas no modelo.
-
-Você pode definir [**tokens de simultaneidade**](../modeling/concurrency.md), em um modelo de EF Core para impedir que dois usuários atualizem a mesma entidade ao mesmo tempo. Alguns bancos de dados têm um tipo especial para representar esse tipo de coluna (por exemplo, de SQL Server) nesse caso, podemos reverter a engenharia dessas informações; no entanto, outros tokens de simultaneidade não terão engenharia reversa.
+* Nem tudo sobre um modelo pode ser representado usando um esquema de banco de dados. Por exemplo, as informações sobre [**hierarquias de herança**](../modeling/inheritance.md), [**tipos de propriedade**](../modeling/owned-entities.md)e divisão de [**tabela**](../modeling/table-splitting.md) não estão presentes no esquema de banco de dados. Por isso, essas construções nunca serão revertidas com engenharia reversa.
+* Além disso, **alguns tipos de coluna** podem não ser suportados pelo provedor de EF Core. Essas colunas não serão incluídas no modelo.
+* Você pode definir [**tokens de simultaneidade**](../modeling/concurrency.md), em um modelo de EF Core para impedir que dois usuários atualizem a mesma entidade ao mesmo tempo. Alguns bancos de dados têm um tipo especial para representar esse tipo de coluna (por exemplo, de SQL Server) nesse caso, podemos reverter a engenharia dessas informações; no entanto, outros tokens de simultaneidade não terão engenharia reversa.
+* [O C# recurso de tipo de referência anulável 8](/dotnet/csharp/tutorials/nullable-reference-types) não tem suporte no momento na engenharia reversa: EF Core sempre gera C# código que assume que o recurso está desabilitado. Por exemplo, colunas de texto anuláveis serão com Scaffold como uma propriedade com `string` tipo, `string?`não, com a API Fluent ou as anotações de dados usadas para configurar se uma propriedade é necessária ou não. Você pode editar o código com Scaffold e substituí-los C# por anotações de nulidade. O suporte do scaffolding para tipos de referência anuláveis é acompanhado pelo problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
 
 ## <a name="customizing-the-model"></a>Personalizando o modelo
 

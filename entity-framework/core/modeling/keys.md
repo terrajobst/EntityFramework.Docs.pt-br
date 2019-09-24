@@ -1,27 +1,27 @@
 ---
-title: Chaves (primárias) – EF Core
+title: Chaves (primárias)-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 912ffef7-86a0-4cdc-a776-55f907459d20
 uid: core/modeling/keys
-ms.openlocfilehash: 51d163b867085f42f415dbd7afa9e311ab1781a0
-ms.sourcegitcommit: 87fcaba46535aa351db4bdb1231bd14b40e459b9
+ms.openlocfilehash: 8b32bf6417890a954c933a5973a2c90c609beeca
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59929823"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197276"
 ---
 # <a name="keys-primary"></a>Chaves (primárias)
 
-Uma chave serve como o principal identificador exclusivo para cada instância de entidade. Ao usar um banco de dados relacional mapeia para o conceito de um *chave primária*. Você também pode configurar um identificador exclusivo que não é a chave primária (consulte [chaves alternativas](alternate-keys.md) para obter mais informações). 
+Uma chave serve como o identificador exclusivo primário para cada instância de entidade. Ao usar um banco de dados relacional, isso é mapeado para o conceito de uma *chave primária*. Você também pode configurar um identificador exclusivo que não seja a chave primária (consulte [chaves alternativas](alternate-keys.md) para obter mais informações). 
 
-Um dos métodos a seguir pode ser usado para instalação/criação de uma chave primária.
+Um dos métodos a seguir pode ser usado para configurar/criar uma chave primária.
 
 ## <a name="conventions"></a>Convenções
 
-Por convenção, uma propriedade chamada `Id` ou `<type name>Id` serão configurados como a chave de uma entidade.
+Por convenção, uma propriedade chamada `Id` ou `<type name>Id` será configurada como a chave de uma entidade.
 
-<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/Samples/KeyId.cs?highlight=3)] -->
+<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/KeyId.cs?highlight=3)] -->
 ``` csharp
 class Car
 {
@@ -32,7 +32,7 @@ class Car
 }
 ```
 
-<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/Samples/KeyTypeNameId.cs?highlight=3)] -->
+<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/KeyTypeNameId.cs?highlight=3)] -->
 ``` csharp
 class Car
 {
@@ -45,16 +45,16 @@ class Car
 
 ## <a name="data-annotations"></a>Anotações de dados
 
-Você pode usar anotações de dados para configurar uma única propriedade para ser a chave de uma entidade.
+Você pode usar as anotações de dados para configurar uma única propriedade para ser a chave de uma entidade.
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/KeySingle.cs?highlight=13)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/KeySingle.cs?highlight=13)]
 
 ## <a name="fluent-api"></a>API fluente
 
 Você pode usar a API Fluent para configurar uma única propriedade para ser a chave de uma entidade.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/KeySingle.cs?highlight=11,12)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeySingle.cs?highlight=11,12)]
 
-Você também pode usar a API Fluent para configurar várias propriedades para ser a chave de uma entidade (conhecida como uma chave composta). Chaves compostas só podem ser configuradas usando a API Fluent - convenções nunca irá configurar uma chave composta, e você não pode usar anotações de dados para configurar um.
+Você também pode usar a API fluente para configurar várias propriedades para ser a chave de uma entidade (conhecida como chave composta). As chaves compostas só podem ser configuradas usando a API fluente – as convenções nunca instalarão uma chave composta e você não poderá usar as anotações de dados para configurar uma.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/KeyComposite.cs?highlight=11,12)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeyComposite.cs?highlight=11,12)]
