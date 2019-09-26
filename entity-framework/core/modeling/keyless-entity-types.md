@@ -5,16 +5,16 @@ ms.author: ansvyryd
 ms.date: 02/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 uid: core/modeling/keyless-entity-types
-ms.openlocfilehash: b968ac9602b9aa1f1c1e3181b6b76a64394d70f0
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: e78b9f91fd2505de300ced7b5e73291b5d1ad3b4
+ms.sourcegitcommit: 7bc43f21e7bdd64926314ea949aae689f1911956
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71150839"
+ms.lasthandoff: 09/25/2019
+ms.locfileid: "71266768"
 ---
-# <a name="keyless-entity-types"></a>Tipos de entidade de subunidade
+# <a name="keyless-entity-types"></a>Tipos de entidade sem chave
 > [!NOTE]
-> Este recurso é novo no EF Core 2.1. Antes de 3,0 eles eram conhecidos como tipos de consulta
+> Esse recurso foi adicionado no EF Core 2,1 sob o nome dos tipos de consulta. No EF Core 3,0, o conceito foi renomeado para tipos de entidade de subunidade.
 
 Além dos tipos de entidade regulares, um modelo de EF Core pode conter _tipos de entidade sem_chave, que podem ser usados para realizar consultas de banco de dados em relação a data que não contém valores de chaves.
 
@@ -56,7 +56,7 @@ O mapeamento de um tipo de entidade sem um objeto de banco de dados `ToTable` é
 O exemplo a seguir mostra como usar tipos de entidade para consultar uma exibição de banco de dados.
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/QueryTypes) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/KeylessEntityTypes) deste artigo no GitHub.
 
 Primeiro, definimos um modelo simples de Blog e Post:
 
