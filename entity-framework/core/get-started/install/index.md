@@ -4,12 +4,12 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: eb808dd9d9b1b214947524cd83999f67be9cc0ff
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 7bdedf563b7d919ba334db79af73c3eed3ba4129
+ms.sourcegitcommit: 2caec1e63f2ce1d9439ef6193df5a77da2fedd0f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149072"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71317575"
 ---
 # <a name="installing-entity-framework-core"></a>Instalar o Entity Framework Core
 
@@ -17,7 +17,7 @@ ms.locfileid: "71149072"
 
 * O EF Core é uma biblioteca do [.NET Standard 2.1](/dotnet/standard/net-standard). Sendo assim, para o EF Core ser executado, é necessária uma implementação do .NET compatível com o .NET Standard 2.1. O EF Core também pode ser referenciado por outras bibliotecas do .NET Standard 2.1. 
 
-* Por exemplo, é possível usar o EF Core para desenvolver aplicativos para o .NET Core. Para criar aplicativos do .NET Core, é necessária a [SDK do .NET Core](https://dotnet.microsoft.com/download). Como opção, também é possível usar um ambiente de desenvolvimento como o Visual Studio, o Visual Studio para Mac ou o Visual Studio Code. Para saber mais, confira a [Introdução ao .NET Core](/dotnet/core/get-started).
+* Por exemplo, é possível usar o EF Core para desenvolver aplicativos para o .NET Core. Para criar aplicativos do .NET Core, é necessária a [SDK do .NET Core](https://dotnet.microsoft.com/download). Também é possível usar um ambiente de desenvolvimento como o [Visual Studio](https://visualstudio.microsoft.com/vs), o [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac) ou o [Visual Studio Code](https://code.visualstudio.com). Para saber mais, confira a [Introdução ao .NET Core](/dotnet/core/get-started).
 
 * É possível usar o EF Core para desenvolver aplicativos no Windows usando o Visual Studio. É recomendável usar a versão mais recente do [Visual Studio](https://visualstudio.microsoft.com/vs).
 

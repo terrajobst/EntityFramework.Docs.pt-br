@@ -5,12 +5,12 @@ ms.author: ansvyryd
 ms.date: 09/12/2019
 ms.assetid: 28264681-4486-4891-888c-be5e4ade24f1
 uid: core/providers/cosmos/index
-ms.openlocfilehash: c753bb71089c91cbb26b970cddd118645fb18d56
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 683436aa485d2fef9aa8bf6c6ff02b00dfeb28cf
+ms.sourcegitcommit: 2caec1e63f2ce1d9439ef6193df5a77da2fedd0f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71150723"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71317571"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>Provedor do Azure Cosmos DB no EF Core
 
@@ -34,7 +34,9 @@ Install-Package Microsoft.EntityFrameworkCore.Cosmos
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Cosmos) deste artigo no GitHub.
 
-Assim como para outros provedores, a primeira etapa é chamar `UseCosmos`: [!code-csharp[Configuration](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=Configuration)]
+Assim como para outros provedores, a primeira etapa é chamar `UseCosmos`:
+
+[!code-csharp[Configuration](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=Configuration)]
 
 > [!WARNING]
 > Aqui, o ponto de extremidade e a chave são embutidos no código para simplificar, mas em um aplicativo de produção, eles devem ser [armazenados com segurança](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager)
@@ -45,7 +47,9 @@ Neste exemplo, `Order` é uma entidade simples com uma referência ao [tipo pró
 
 [!code-csharp[StreetAddress](../../../../samples/core/Cosmos/ModelBuilding/StreetAddress.cs?name=StreetAddress)]
 
-O processo de salvar e consultar dados segue o padrão de EF normal: [!code-csharp[HelloCosmos](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=HelloCosmos)]
+O processo de salvar e consultar dados segue o padrão de EF normal:
+
+[!code-csharp[HelloCosmos](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=HelloCosmos)]
 
 > [!IMPORTANT]
 > Chamar `EnsureCreated` é necessário para criar as coleções necessárias e inserir os [dados de semente](../../modeling/data-seeding.md), se eles estiverem presentes no modelo. No entanto, `EnsureCreated` só deve ser chamado durante a implantação, não durante a operação normal, pois isso pode causar problemas de desempenho.
