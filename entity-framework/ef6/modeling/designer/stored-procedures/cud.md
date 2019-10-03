@@ -1,96 +1,98 @@
 ---
-title: Designer CUD procedimentos armazenados – EF6
+title: Procedimentos armazenados do designer CUD – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 1e773972-2da5-45e0-85a2-3cf3fbcfa5cf
-ms.openlocfilehash: 35a00aa817c8643352c517c233977efd49e3baac
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: bdb0df969c33d5ad3f103bfa9af6002c9c2bb9b3
+ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489551"
+ms.lasthandoff: 10/02/2019
+ms.locfileid: "71813557"
 ---
-# <a name="designer-cud-stored-procedures"></a>Procedimentos armazenados de CUD Designer
-Este passo a passo mostram como mapear o criar\\inserir, atualizar e excluir operações (CUD) de um tipo de entidade para procedimentos armazenados usando o Entity Framework Designer (Designer de EF).  Por padrão, o Entity Framework gera automaticamente as instruções SQL para as operações de CUD, mas você também pode mapear procedimentos armazenados para essas operações.  
+# <a name="designer-cud-stored-procedures"></a>Procedimentos armazenados do designer CUD
 
-Observe que o Code First não suporta o mapeamento para procedimentos armazenados ou funções. No entanto, você pode chamar procedimentos armazenados ou funções por meio do método System.Data.Entity.DbSet.SqlQuery. Por exemplo:
+Esta explicação passo a passo mostra como mapear as operações Create @ no__t-0insert, Update e Delete (CUD) de um tipo de entidade para procedimentos armazenados usando o Entity Framework Designer (EF designer).  Por padrão, o Entity Framework gera automaticamente as instruções SQL para as operações CUD, mas você também pode mapear procedimentos armazenados para essas operações.  
+
+Observe que Code First não dá suporte ao mapeamento para procedimentos armazenados ou funções. No entanto, você pode chamar procedimentos armazenados ou funções usando o método System. Data. Entity. DbSet. SQLQuery. Por exemplo:
+
 ``` csharp
 var query = context.Products.SqlQuery("EXECUTE [dbo].[GetAllProducts]");
 ```
 
-## <a name="considerations-when-mapping-the-cud-operations-to-stored-procedures"></a>Considerações ao mapear as operações de CUD de procedimentos armazenados
+## <a name="considerations-when-mapping-the-cud-operations-to-stored-procedures"></a>Considerações ao mapear as operações de CUD para procedimentos armazenados
 
-Ao mapear as operações de CUD para procedimentos armazenados, as seguintes considerações se aplicam: 
+Ao mapear as operações de CUD para procedimentos armazenados, as seguintes considerações se aplicam:
 
--   Se uma das operações CUD estiver mapeando para um procedimento armazenado, mapeie todos eles. Se você não mapear todos os três, as operações não mapeadas falhará se executado e uma **UpdateException** será lançada.
--   Você deve mapear cada parâmetro do procedimento armazenado para as propriedades da entidade.
--   Se o servidor gera o valor de chave primária para a linha inserida, você deve mapear esse valor para a propriedade de chave da entidade. No exemplo a seguir, o **InsertPerson** procedimento armazenado retorna a chave primária recentemente criada como parte do conjunto de resultados do procedimento armazenado. A chave primária é mapeada para a chave de entidade (**PersonID**) usando o **&lt;adicionar associações de resultado&gt;** recurso do EF Designer.
--   As chamadas de procedimento armazenado são mapeados 1:1 com as entidades no modelo conceitual. Por exemplo, se você implementar uma hierarquia de herança no modelo conceitual e mapeie o CUD procedimentos armazenados para o **pai** (base) e o **filho** entidades (derivadas), salvando o **Filho** alterações chamará somente o **filho**de procedimentos armazenados, ele não disparará a **pai**do armazenados chamadas de procedimentos.
+- Se você estiver mapeando uma das operações CUD para um procedimento armazenado, mapeie todas elas. Se você não mapear todos os três, as operações não mapeadas falharão se executadas e uma **updateexception** will ser lançada.
+- Você deve mapear todos os parâmetros do procedimento armazenado para as propriedades da entidade.
+- Se o servidor gerar o valor de chave primária para a linha inserida, você deverá mapear esse valor de volta para a propriedade de chave da entidade. No exemplo a seguir, o procedimento **InsertPerson** stored retorna a chave primária recém-criada como parte do conjunto de resultados do procedimento armazenado. A chave primária é mapeada para a chave de entidade (**PersonID**) usando as **associações de resultado &lt;Add @ no__t-3** FEATURE do designer do EF.
+- As chamadas de procedimento armazenado são mapeadas 1:1 com as entidades no modelo conceitual. Por exemplo, se você implementar uma hierarquia de herança em seu modelo conceitual e, em seguida, mapear os procedimentos armazenados do CUD para as entidades **pai** (base) e **filho** (derivado), salvar as alterações **filho** chamará somente o **filho**' os procedimentos armazenados de s, não dispararão as chamadas de procedimentos armazenados do **pai**.
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
 Para concluir esta explicação passo a passo, será necessário:
 
 - Uma versão recente do Visual Studio.
-- O [banco de dados de exemplo School](~/ef6/resources/school-database.md).
+- O [banco de dados de exemplo da escola](~/ef6/resources/school-database.md).
 
 ## <a name="set-up-the-project"></a>Configurar o projeto
 
--   Abra o Visual Studio 2012.
--   Selecione **arquivo -&gt; New -&gt; projeto**
--   No painel esquerdo, clique em **Visual C#\#** e, em seguida, selecione o **Console** modelo.
--   Insira **CUDSProcsSample** como o nome.
--   Selecione **OK**.
+- Abra o Visual Studio 2012.
+- Selecione **arquivo-&gt; Projeto New-&gt;**
+- No painel esquerdo, clique em **Visual C @ no__t-1**e selecione o modelo de **console** .
+- Insira **CUDSProcsSample** As o nome.
+- Selecione **OK**.
 
 ## <a name="create-a-model"></a>Criar um modelo
 
--   O nome do projeto no Gerenciador de soluções e selecione **Add -&gt; Novo Item**.
--   Selecione **dados** no menu esquerdo e selecione **modelo de dados de entidade ADO.NET** no painel de modelos.
--   Insira **CUDSProcs.edmx** para o nome de arquivo e clique **Add**.
--   Na caixa de diálogo Escolher conteúdo do modelo, selecione **gerar a partir do banco de dados**e, em seguida, clique em **próxima**.
--   Clique em **nova Conexão**. Na caixa de diálogo Propriedades de Conexão, insira o nome do servidor (por exemplo, **(localdb)\\mssqllocaldb**), selecione o método de autenticação, digite **School** para o nome do banco de dados e, em seguida, Clique em **Okey**.
-    A caixa de diálogo Escolher sua Conexão de dados é atualizada com sua configuração de conexão de banco de dados.
--   Na escolha seu objetos de banco de dados caixa de diálogo do **tabelas** nó, selecione o **pessoa** tabela.
--   Além disso, selecione os seguintes procedimentos armazenados sob a **procedimentos armazenados e funções** nó: **DeletePerson**, **InsertPerson**, e **UpdatePerson** . 
--   Começando com o Visual Studio 2012, o EF Designer oferece suporte a importação em massa de procedimentos armazenados. O **importação selecionado procedimentos armazenados e funções no modelo de entidade** é marcada por padrão. Como neste exemplo estamos têm procedimentos armazenados que inserir, atualizarem e excluir tipos de entidade, vamos não quiser importá-los e será desmarque essa caixa de seleção. 
+- Clique com o botão direito do mouse no nome do projeto em Gerenciador de Soluções e selecione **Adicionar-&gt; novo item**.
+- Selecione **dados** no menu à esquerda e, em seguida, selecione **ADO.NET modelo de dados de entidade** no painel modelos.
+- Digite **CUDSProcs. edmx** para o nome do arquivo e clique em **Adicionar**.
+- Na caixa de diálogo escolher conteúdo do modelo, selecione **gerar do banco de dados**e clique em **Avançar**.
+- Clique em **nova conexão**. Na caixa de diálogo Propriedades da conexão, digite o nome do servidor (por exemplo, **(\\LocalDB) mssqllocaldb**), selecione o método de autenticação, digite **School** para o nome do banco de dados e clique em **OK**.
+    A caixa de diálogo escolher sua conexão de dados é atualizada com a configuração de conexão de banco de dado.
+- Na caixa de diálogo escolher seu objeto de banco de dados, nas **tabelas** node, selecione a tabela **Person** .
+- Além disso, selecione os seguintes procedimentos armazenados no nó **procedimentos armazenados e funções** : **DeletePerson**, **InsertPerson**e **UpdatePerson**.
+- A partir do Visual Studio 2012, o designer do EF dá suporte à importação em massa de procedimentos armazenados. As **funções e os procedimentos armazenados selecionados no modelo de entidade** são verificados por padrão. Como neste exemplo temos procedimentos armazenados que inserem, atualizam e excluem tipos de entidade, não queremos importá-los e Desmarcarei essa caixa de seleção.
 
-    ![Importar S Procs](~/ef6/media/importsprocs.jpg)
+    ![Importar os procs](~/ef6/media/importsprocs.jpg)
 
--   Clique em **Finalizar**.
-    O Designer de EF, que fornece uma superfície de design para editar seu modelo, é exibido.
+- Clique em **concluir**.
+    O designer do EF, que fornece uma superfície de design para editar seu modelo, é exibido.
 
-## <a name="map-the-person-entity-to-stored-procedures"></a>Mapear a entidade de pessoa para procedimentos armazenados
+## <a name="map-the-person-entity-to-stored-procedures"></a>Mapear a entidade Person para procedimentos armazenados
 
--   Clique com botão direito do **pessoa** tipo de entidade e selecione **mapeamento de procedimento armazenado**.
--   Os mapeamentos de procedimento armazenado são exibidos na **Mapping Details** janela.
--   Clique em  **&lt;selecione Inserir função&gt;**.
-    O campo se torna uma lista suspensa dos procedimentos armazenados no modelo de armazenamento que podem ser mapeados para tipos de entidade no modelo conceitual.
-    Selecione **InsertPerson** na lista suspensa.
--   Mapeamentos padrão entre os parâmetros de procedimento armazenado e as propriedades da entidade são exibidos. Observe que as setas indicam a direção de mapeamento: valores de propriedade são fornecidos para os parâmetros de procedimento armazenado.
--   Clique em  **&lt;Adicionar associação de resultado&gt;**.
--   Tipo de **NewPersonID**, o nome do parâmetro retornado pelo **InsertPerson** procedimento armazenado. Certifique-se de não digite espaços à esquerda ou à direita.
--   Pressione **ENTER**.
--   Por padrão, **NewPersonID** é mapeado para a chave de entidade **PersonID**. Observe que uma seta indica a direção do mapeamento: O valor da coluna de resultado é fornecido para a propriedade.
+- Clique com o botão direito do mouse no tipo **Person** entity e selecione **mapeamento de procedimento armazenado**.
+- Os mapeamentos de procedimento armazenado são exibidos nos **detalhes de mapeamento** window.
+- Clique em **&lt;Select inserir função @ no__t-2**.
+    O campo torna-se uma lista suspensa dos procedimentos armazenados no modelo de armazenamento que podem ser mapeados para tipos de entidade no modelo conceitual.
+    Selecione **InsertPerson** from a lista suspensa.
+- Os mapeamentos padrão entre parâmetros de procedimento armazenado e propriedades de entidade são exibidos. Observe que as setas indicam a direção do mapeamento: Os valores de propriedade são fornecidos para parâmetros de procedimento armazenado.
+- Clique em **Associação de resultado &lt;Add @ no__t-2**.
+- Digite **NewPersonID**, o nome do parâmetro retornado pelo procedimento **InsertPerson** stored. Certifique-se de não digitar espaços à esquerda ou à direita.
+- Pressione **Enter**.
+- Por padrão, **NewPersonID** is mapeado para a chave de entidade **PersonID**. Observe que uma seta indica a direção do mapeamento: O valor da coluna de resultado é fornecido para a propriedade.
 
-    ![Detalhes de mapeamento](~/ef6/media/mappingdetails.png)
+    ![Detalhes do mapeamento](~/ef6/media/mappingdetails.png)
 
--   Clique em **&lt;Selecionar função de atualização&gt;** e selecione **UpdatePerson** na lista suspensa.
--   Mapeamentos padrão entre os parâmetros de procedimento armazenado e as propriedades da entidade são exibidos.
--   Clique em **&lt;Selecionar função de exclusão&gt;** e selecione **DeletePerson** na lista suspensa.
--   Mapeamentos padrão entre os parâmetros de procedimento armazenado e as propriedades da entidade são exibidos.
+- Clique em **&lt;Select função de atualização @ no__t-2** and selecione **UpdatePerson** from a lista suspensa resultante.
+- Os mapeamentos padrão entre parâmetros de procedimento armazenado e propriedades de entidade são exibidos.
+- Clique em **&lt;Select excluir função @ no__t-2** and selecione **DeletePerson** from a lista suspensa resultante.
+- Os mapeamentos padrão entre parâmetros de procedimento armazenado e propriedades de entidade são exibidos.
 
-Inserir, atualizar e excluir operações do **pessoa** tipo de entidade agora são mapeados para procedimentos armazenados.
+As operações de inserção, atualização e exclusão do tipo **Person** entity agora são mapeadas para procedimentos armazenados.
 
-Se você quiser habilitar a verificação de concorrência ao atualizar ou excluir uma entidade com procedimentos armazenados, use uma das seguintes opções:
+Se você quiser habilitar a verificação de simultaneidade ao atualizar ou excluir uma entidade com procedimentos armazenados, use uma das seguintes opções:
 
--   Use uma **saída** afetados de parâmetro para retornar o número de linhas do procedimento armazenado e verifique se o **linhas afetadas parâmetro** caixa de seleção ao lado do nome do parâmetro. Se o valor retornado é zero quando a operação é chamada, uma [ **OptimisticConcurrencyException** ](https://msdn.microsoft.com/library/system.data.optimisticconcurrencyexception.aspx) será lançada.
--   Verifique as **usar o valor Original** caixa de seleção ao lado de uma propriedade que você deseja usar para verificação de simultaneidade. Quando uma tentativa de atualização, o valor da propriedade que foi originalmente leitura do banco de dados será usado ao gravar dados de volta para o banco de dados. Se o valor não coincide com o valor no banco de dados, uma **OptimisticConcurrencyException** será lançada.
+- Use um parâmetro de **saída** para retornar o número de linhas afetadas do procedimento armazenado e verifique o **parâmetro de linhas afetado** checkbox ao lado do nome do parâmetro. Se o valor retornado for zero quando a operação for chamada, um  [**OptimisticConcurrencyException**](https://msdn.microsoft.com/library/system.data.optimisticconcurrencyexception.aspx) will será lançado.
+- Marque a caixa de seleção **usar valor original** ao lado de uma propriedade que você deseja usar para verificação de simultaneidade. Quando uma atualização for tentada, o valor da propriedade que foi originalmente lida do banco de dados será usado ao gravar os dados de volta no banco de dado. Se o valor não corresponder ao valor no banco de dados, um **OptimisticConcurrencyException** will será lançado.
 
 ## <a name="use-the-model"></a>Usar o modelo
 
-Abra o **Program.cs** do arquivo onde o **Main** método é definido. Adicione o seguinte código na função principal.
+Abra o arquivo **Program.cs** em que o método **Main** está definido. Adicione o código a seguir à função main.
 
-O código cria um novo **pessoa** objeto, em seguida, atualiza o objeto e, por fim, exclui o objeto.         
+O código cria um novo objeto **Person** , depois atualiza o objeto e, por fim, exclui o objeto.
 
 ``` csharp
     using (var context = new SchoolEntities())
@@ -140,17 +142,18 @@ O código cria um novo **pessoa** objeto, em seguida, atualiza o objeto e, por f
     }
 ```
 
--   Compile e execute o aplicativo. O programa produz a saída a seguir *
-    >[!NOTE]
+- Compile e execute o aplicativo. O programa produz a seguinte saída *
+
+> [!NOTE]
 > PersonID é gerado automaticamente pelo servidor, portanto, você provavelmente verá um número diferente *
 
-```
+``` Output
 Added Robyn Martin to the context.
 Before SaveChanges, the PersonID is: 0
 After SaveChanges, the PersonID is: 51
 A person with PersonID 51 was deleted.
 ```
 
-Se você estiver trabalhando com a versão Ultimate do Visual Studio, você pode usar o Intellitrace com o depurador para ver as instruções SQL que são executadas.
+Se você estiver trabalhando com a versão final do Visual Studio, poderá usar o IntelliTrace com o depurador para ver as instruções SQL que são executadas.
 
 ![IntelliTrace](~/ef6/media/intellitrace.png)

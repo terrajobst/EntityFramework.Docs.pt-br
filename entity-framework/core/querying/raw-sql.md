@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: ebec5775770c0f1e297eaaf35bf644c605a69afc
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: d8f52edfdf4bd7776ab8d81185c867cbfd7bcf44
+ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197763"
+ms.lasthandoff: 10/02/2019
+ms.locfileid: "71813590"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
@@ -62,7 +62,6 @@ Como alternativa ao `FromSqlRaw`, você pode usar `FromSqlInterpolated` o que pe
 
 > [!NOTE]
 > Antes da versão 3,0, `FromSqlRaw` e `FromSqlInterpolated` foram duas sobrecargas nomeadas `FromSql`. Consulte a [seção versões anteriores](#previous-versions) para obter mais detalhes.
-
 
 <!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -172,6 +171,6 @@ Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
 
 * Observe que SQL Server não permite a composição de chamadas de procedimento armazenado, portanto, qualquer tentativa de aplicar operadores de consulta adicionais a tal chamada resultará em um SQL inválido. Os operadores de consulta podem ser `AsEnumerable()` introduzidos depois para avaliação do cliente.
 
-# <a name="previous-versions"></a>Versões anteriores
+## <a name="previous-versions"></a>Versões anteriores
 
 EF core versão 2,2 e anterior tinham duas sobrecargas chamadas `FromSql` que se compararam da mesma maneira que as mais `FromSqlRaw` recentes `FromSqlInterpolated`e. Isso tornou muito fácil chamar acidentalmente o método de cadeia de caracteres bruto quando a intenção era chamar o método de cadeia de caracteres interpolado e o contrário. Isso pode resultar em consultas não parametrizadas, quando deveriam ter sido.
