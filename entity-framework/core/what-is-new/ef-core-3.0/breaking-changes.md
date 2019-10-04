@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 0dd4c5c4aa1a5d241fb48abf1372a678d0f7a7a3
-ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
+ms.openlocfilehash: f7f04efa8fb8ebc1eb06f256b8ccbd3110af47ab
+ms.sourcegitcommit: 705e898b4684e639a57c787fb45c932a27650c2d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/02/2019
-ms.locfileid: "71813628"
+ms.lasthandoff: 10/03/2019
+ms.locfileid: "71934878"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>Alterações recentes incluídas no EF Core 3,0
 As alterações de API e comportamento a seguir têm o potencial de interromper os aplicativos existentes ao atualizá-los para o 3.0.0.
@@ -27,6 +27,7 @@ As alterações que esperamos que afetem apenas os provedores de banco de dados 
 | [Tipos de consulta são consolidados com tipos de entidade](#qt) | Alto      |
 | [O Entity Framework Core não faz mais parte da estrutura compartilhada do ASP.NET Core](#no-longer) | Média      |
 | [Agora, as exclusões em cascata acontecem imediatamente por padrão](#cascade) | Média      |
+| [O carregamento adiantado de entidades relacionadas agora ocorre em uma única consulta](#eager-loading-single-query) | Média      |
 | [DeleteBehavior.Restrict tem uma semântica mais limpa](#deletebehavior) | Média      |
 | [A API de configuração para relações de tipo de propriedade mudou](#config) | Média      |
 | [Cada propriedade usa geração de chave de inteiro em memória independente](#each) | Média      |
@@ -34,6 +35,7 @@ As alterações que esperamos que afetem apenas os provedores de banco de dados 
 | [Alterações na API de metadados](#metadata-api-changes) | Média      |
 | [Alterações na API de metadados específicos do provedor](#provider) | Média      |
 | [UseRowNumberForPaging foi removido](#urn) | Média      |
+| [O método das quando usado com o procedimento armazenado não pode ser composto](#fromsqlsproc) | Média      |
 | [Os métodos FromSql só podem ser especificados em raízes de consulta](#fromsql) | Baixa      |
 | [~~A execução de consulta é registrada no nível da Depuração~~ Revertida](#qe) | Baixa      |
 | [Valores de chave temporários não estão mais definidos em instâncias de entidade](#tkv) | Baixa      |
@@ -210,6 +212,35 @@ Isso pode resultar em consultas não parametrizadas, quando deveriam ter sido.
 
 Mude para usar os novos nomes de método.
 
+<a name="fromsqlsproc"></a>
+### <a name="fromsql-method-when-used-with-stored-procedure-cannot-be-composed"></a>O método das quando usado com o procedimento armazenado não pode ser composto
+
+[Acompanhamento do problema #15392](https://github.com/aspnet/EntityFrameworkCore/issues/15392)
+
+**Comportamento antigo**
+
+Antes EF Core 3,0, o método das tentou detectar se o SQL passado pode ser composto. Ele fez a avaliação do cliente quando o SQL era não combinável como um procedimento armazenado. A consulta a seguir funcionou executando o procedimento armazenado no servidor e fazendo FirstOrDefault no lado do cliente.
+
+```C#
+context.Products.FromSqlRaw("[dbo].[Ten Most Expensive Products]").FirstOrDefault();
+```
+
+**Comportamento novo**
+
+A partir do EF Core 3,0, EF Core não tentará analisar o SQL. Portanto, se você estiver compondo após FromSqlRaw/FromSqlInterpolated, EF Core comporá o SQL fazendo a subconsulta. Portanto, se você estiver usando um procedimento armazenado com composição, receberá uma exceção de sintaxe SQL inválida.
+
+**Por que**
+
+O EF Core 3,0 não dá suporte à avaliação automática do cliente, pois foi propenso a erros, conforme explicado [aqui](#linq-queries-are-no-longer-evaluated-on-the-client).
+
+**Atenuação**
+
+Se você estiver usando um procedimento armazenado em FromSqlRaw/FromSqlInterpolated, saberá que ele não pode ser composto, para que você possa adicionar __AsEnumerable/AsAsyncEnumerable__ logo após a chamada do método das para evitar qualquer composição no lado do servidor.
+
+```C#
+context.Products.FromSqlRaw("[dbo].[Ten Most Expensive Products]").AsEnumerable().FirstOrDefault();
+```
+
 <a name="fromsql"></a>
 
 ### <a name="fromsql-methods-can-only-be-specified-on-query-roots"></a>Os métodos FromSql só podem ser especificados em raízes de consulta
@@ -366,6 +397,29 @@ Por exemplo:
 context.ChangeTracker.CascadeDeleteTiming = CascadeTiming.OnSaveChanges;
 context.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
 ```
+<a name="eager-loading-single-query"></a>
+### <a name="eager-loading-of-related-entities-now-happens-in-a-single-query"></a>O carregamento adiantado de entidades relacionadas agora ocorre em uma única consulta
+
+[Acompanhamento do problema #18022](https://github.com/aspnet/EntityFrameworkCore/issues/18022)
+
+**Comportamento antigo**
+
+Antes de 3,0, carregar cuidadosamente as navegações de coleção por meio de operadores `Include` fizeram com que várias consultas sejam geradas no banco de dados relacional, uma para cada tipo de entidade relacionada.
+
+**Comportamento novo**
+
+A partir do 3,0, o EF Core gera uma única consulta com junções em bancos de dados relacionais.
+
+**Por que**
+
+A emissão de várias consultas para implementar uma única consulta LINQ causou vários problemas, incluindo o desempenho negativo à medida que várias viagens de ida e volta do banco de dados eram necessárias e os problemas de coerência do dado, uma vez que cada consulta poderia observar um estado diferente.
+
+**Mitigações**
+
+Embora tecnicamente essa não seja uma alteração significativa, ela pode ter um efeito considerável no desempenho do aplicativo quando uma única consulta contém um grande número de operador `Include` em navegações de coleção. [Consulte este comentário](https://github.com/aspnet/EntityFrameworkCore/issues/18022#issuecomment-537219137) para obter mais informações e reescrever consultas de maneira mais eficiente.
+
+**
+
 <a name="deletebehavior"></a>
 ### <a name="deletebehaviorrestrict-has-cleaner-semantics"></a>DeleteBehavior.Restrict tem uma semântica de limpeza
 
