@@ -3,20 +3,20 @@ title: Criando um modelo – EF6
 author: divega
 ms.date: 07/05/2018
 ms.assetid: 4890228E-CEA1-4595-B8AD-CA81253F8767
-ms.openlocfilehash: c02cdf0550116b703fb6436f8b0c6b064b5d1408
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: bd9843a93121f53518a307c9d2d43b68ae03369c
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283570"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182472"
 ---
 # <a name="creating-a-model"></a>Criar um Modelo
 
 Um modelo do EF armazena os detalhes sobre como as propriedades e classes de aplicativo são mapeadas para colunas e tabelas de banco de dados. Existem duas maneiras principais de criar um modelo do EF:
 
-- **Usando o Code First**: o desenvolvedor escreve o código para especificar o modelo. O EF gera os modelos e os mapeamentos em tempo de execução com base em classes de entidade e configurações de modelo adicionais fornecidas pelo desenvolvedor.
+- **Usar o Code First**: o desenvolvedor escreve o código para especificar o modelo. O EF gera os modelos e os mapeamentos em tempo de execução com base em classes de entidade e configurações de modelo adicionais fornecidas pelo desenvolvedor.
 
-- **Usando o EF Designer**: o desenvolvedor desenha caixas e linhas para especificar o modelo usando o EF Designer. O modelo resultante é armazenado como XML em um arquivo com a extensão EDMX. Os objetos de domínio do aplicativo normalmente são gerados de forma automática com base no modelo conceitual.
+- **Usar o EF Designer**: o desenvolvedor desenha caixas e linhas para especificar o modelo usando o EF Designer. O modelo resultante é armazenado como XML em um arquivo com a extensão EDMX. Os objetos de domínio do aplicativo normalmente são gerados de forma automática com base no modelo conceitual.
 
 ## <a name="ef-workflows"></a>Fluxos de trabalho do EF
 
@@ -32,7 +32,7 @@ Saiba sobre qual é melhor para você:
 
 Este breve vídeo explica as diferenças e como encontrar o que é ideal para você.
 
-**Apresentado por**: [Rowan Miller](http://romiller.com/)
+**Apresentado por**: [Rowan Miller](https://romiller.com/)
 
 ![Which Workflow Thumb](../media/whichworkflow-thumb.png) [WMV](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.wmv) | [MP4](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_mp4video_ChoseYourWorkflow.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.zip)
 
@@ -46,7 +46,7 @@ Independentemente de você usar o Code First ou o EF Designer, um modelo do EF s
 
 - Um modelo conceitual, consistindo em tipos de entidade específicos de domínio e relacionamentos, descritos usando o [Modelo de Dados de Entidade](~/ef6/resources/glossary.md#entity-data-model). Essa camada normalmente é referida com a letra “C”, para _conceitual_.
 
-- Um modelo de armazenamento que representam tabelas, colunas e relações, conforme definido no banco de dados. Essa camada normalmente é referida com a letra “s”, para _storage (armazenamento)_.  
+- Um modelo de armazenamento que representam tabelas, colunas e relações, conforme definido no banco de dados. Essa camada normalmente é referida com a letra “s”, para _storage (armazenamento)_ .  
 
 - Um mapeamento entre o modelo conceitual e o esquema de banco de dados. Esse mapeamento é conhecido como mapeamento de "C-S".
 

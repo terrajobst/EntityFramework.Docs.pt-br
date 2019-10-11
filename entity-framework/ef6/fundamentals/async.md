@@ -3,12 +3,12 @@ title: Consulta assíncrona e Save-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: ae578976ffc88b407ef0aaa0017935005bedd093
-ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.openlocfilehash: 0642dc13e7aa3906fa1495031c62701fc16f0192
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "70921622"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181842"
 ---
 # <a name="async-query-and-save"></a>Consulta assíncrona e salvar
 > [!NOTE]
@@ -29,8 +29,8 @@ Na maioria dos aplicativos, o uso de Async não terá benefícios perceptíveis 
 Veja mais alguns recursos para saber mais sobre Async:
 
 -   [Visão geral de Async/Await do Brandon Bray no .NET 4,5](https://blogs.msdn.com/b/dotnet/archive/2012/04/03/async-in-4-5-worth-the-await.aspx)
--   Páginas de [programação](https://msdn.microsoft.com/library/hh191443.aspx) assíncronas na biblioteca MSDN
--   [Como criar aplicativos Web ASP.NET usando Async](http://channel9.msdn.com/events/teched/northamerica/2013/dev-b337) (inclui uma demonstração do aumento da taxa de transferência do servidor)
+-   Páginas de [programação assíncronas](https://msdn.microsoft.com/library/hh191443.aspx) na biblioteca MSDN
+-   [Como criar aplicativos Web ASP.NET usando Async](https://channel9.msdn.com/events/teched/northamerica/2013/dev-b337) (inclui uma demonstração do aumento da taxa de transferência do servidor)
 
 ## <a name="create-the-model"></a>Criar o modelo
 
@@ -222,12 +222,12 @@ Para obter uma lista abrangente dos métodos de extensão disponíveis no namesp
 Agora que o código é assíncrono, podemos observar um fluxo de execução diferente quando executamos o programa:
 
 1. **SaveChanges** começa a enviar por push o novo **blog** para o banco de dados  
-    *Depois que o comando é enviado ao banco de dados, não é necessário mais tempo de computação no thread gerenciado atual. O método **PerformDatabaseOperations** retorna (mesmo que não tenha terminado a execução) e o fluxo do programa no método Main continua.*
+    *Once o comando é enviado ao banco de dados, não é necessário mais tempo de computação no thread gerenciado atual. O método **PerformDatabaseOperations** retorna (mesmo que não tenha terminado a execução) e o fluxo do programa no método principal continua.*
 2. **A cotação do dia é gravada no console do**  
-    *Como não há mais trabalho a fazer no método Main, o thread gerenciado é bloqueado na chamada Wait até que a operação do banco de dados seja concluída. Após a conclusão, o restante de nosso **PerformDatabaseOperations** será executado.*
+    *Since não há mais trabalho a ser feito no método Main, o thread gerenciado é bloqueado na chamada Wait até que a operação do banco de dados seja concluída. Após a conclusão, o restante de nosso **PerformDatabaseOperations** será executado.*
 3.  **SaveChanges** é concluído  
 4.  A consulta de todos os **Blogs** é enviada ao banco de dados  
-    *Novamente, o thread gerenciado está livre para realizar outros trabalhos enquanto a consulta é processada no banco de dados. Como todas as outras execuções foram concluídas, o thread simplesmente será interrompido na chamada Wait.*
+    *Again, o thread gerenciado é livre para realizar outro trabalho enquanto a consulta é processada no banco de dados. Como todas as outras execuções foram concluídas, o thread simplesmente será interrompido na chamada Wait.*
 5.  Retornos de consulta e resultados são gravados no **console**  
 
 ![Saída assíncrona](~/ef6/media/asyncoutput.png) 

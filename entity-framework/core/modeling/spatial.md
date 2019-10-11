@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: 026df735473e31f1c1463c1fbc6f46c4fd6dfd4f
-ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.openlocfilehash: cced53edadb890e4e86753ec2628218ffc4d1d5b
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "70921730"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181388"
 ---
 # <a name="spatial-data"></a>Dados espaciais
 
@@ -32,7 +32,7 @@ Npgsql.EntityFrameworkCore.PostgreSQL   | [Npgsql. EntityFrameworkCore. PostgreS
 
 ## <a name="reverse-engineering"></a>Engenharia reversa
 
-Os pacotes de NuGet espaciais também habilitam modelos de [engenharia reversa](../managing-schemas/scaffolding.md) com propriedades espaciais, mas você precisa `Scaffold-DbContext` instalar `dotnet ef dbcontext scaffold`o pacote ***antes*** de executar ou. Caso contrário, você receberá avisos sobre não encontrar mapeamentos de tipo para as colunas e as colunas serão ignoradas.
+Os pacotes de NuGet espaciais também habilitam modelos de [engenharia reversa](../managing-schemas/scaffolding.md) com propriedades espaciais, mas você precisa instalar o pacote ***antes*** de executar `Scaffold-DbContext` ou `dotnet ef dbcontext scaffold`. Caso contrário, você receberá avisos sobre não encontrar mapeamentos de tipo para as colunas e as colunas serão ignoradas.
 
 ## <a name="nettopologysuite-nts"></a>NetTopologySuite (NTS)
 
@@ -46,7 +46,7 @@ optionsBuilder.UseSqlServer(
     x => x.UseNetTopologySuite());
 ```
 
-Há vários tipos de dados espaciais. O tipo usado depende dos tipos de formas que você deseja permitir. Aqui está a hierarquia de tipos NTS que você pode usar para propriedades em seu modelo. Eles estão localizados no `NetTopologySuite.Geometries` namespace.
+Há vários tipos de dados espaciais. O tipo usado depende dos tipos de formas que você deseja permitir. Aqui está a hierarquia de tipos NTS que você pode usar para propriedades em seu modelo. Eles estão localizados no namespace `NetTopologySuite.Geometries`.
 
 * Geometry
   * Ponto
@@ -62,7 +62,7 @@ Há vários tipos de dados espaciais. O tipo usado depende dos tipos de formas q
 
 Usar o tipo base Geometry permite que qualquer tipo de forma seja especificado pela propriedade.
 
-As classes de entidade a seguir podem ser usadas para mapear para tabelas no [banco de dados de exemplo Wide World Importers](http://go.microsoft.com/fwlink/?LinkID=800630).
+As classes de entidade a seguir podem ser usadas para mapear para tabelas no [banco de dados de exemplo Wide World Importers](https://go.microsoft.com/fwlink/?LinkID=800630).
 
 ``` csharp
 [Table("Cities", Schema = "Application"))]
@@ -101,7 +101,7 @@ var currentLocation = geometryFactory.CreatePoint(-122.121512, 47.6739882);
 
 ### <a name="longitude-and-latitude"></a>Longitude e latitude
 
-As coordenadas em NTS estão em termos de valores X e Y. Para representar a longitude e a latitude, use X para longitude e Y para latitude. Observe que isso é para **trás** do `latitude, longitude` formato em que você normalmente vê esses valores.
+As coordenadas em NTS estão em termos de valores X e Y. Para representar a longitude e a latitude, use X para longitude e Y para latitude. Observe que isso é **retroativa** no formato `latitude, longitude` no qual você normalmente vê esses valores.
 
 ### <a name="srid-ignored-during-client-operations"></a>SRID ignorado durante as operações do cliente
 
@@ -213,15 +213,15 @@ Se você estiver usando SQL Server, haverá algumas coisas adicionais das quais 
 
 ### <a name="geography-or-geometry"></a>Geografia ou Geometry
 
-Por padrão, as propriedades espaciais são `geography` mapeadas para colunas em SQL Server. Para usar `geometry`, [Configure o tipo de coluna](xref:core/modeling/relational/data-types) em seu modelo.
+Por padrão, as propriedades espaciais são mapeadas para colunas `geography` em SQL Server. Para usar `geometry`, [Configure o tipo de coluna](xref:core/modeling/relational/data-types) em seu modelo.
 
 ### <a name="geography-polygon-rings"></a>Anéis de polígono de Geografia
 
-Ao usar o `geography` tipo de coluna, SQL Server impõe requisitos adicionais no anel exterior (ou no Shell) e nos anéis interiores (ou buracos). O anel exterior deve ser orientado no sentido anti-horário e nos anéis interiores no sentido horário. NTS valida isso antes de enviar valores para o banco de dados.
+Ao usar o tipo de coluna `geography`, SQL Server impõe requisitos adicionais no anel exterior (ou no Shell) e nos anéis interiores (ou buracos). O anel exterior deve ser orientado no sentido anti-horário e nos anéis interiores no sentido horário. NTS valida isso antes de enviar valores para o banco de dados.
 
 ### <a name="fullglobe"></a>FullGlobe
 
-SQL Server tem um tipo de geometria não padrão para representar o globo inteiro ao usar o `geography` tipo de coluna. Ele também tem uma maneira de representar polígonos com base em todo o globo (sem um anel exterior). Nenhuma delas é suportada pelo NTS.
+SQL Server tem um tipo de geometria não padrão para representar o globo inteiro ao usar o tipo de coluna `geography`. Ele também tem uma maneira de representar polígonos com base em todo o globo (sem um anel exterior). Nenhuma delas é suportada pelo NTS.
 
 > [!WARNING]
 > Os FullGlobe e polígonos baseados nele não são suportados pelo NTS.
@@ -331,5 +331,5 @@ Polygon. NumInteriorRings | ✔ | ✔ | ✔ | ✔
 
 * [Dados espaciais em SQL Server](https://docs.microsoft.com/sql/relational-databases/spatial/spatial-data-sql-server)
 * [Home Page do SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite)
-* [Documentação espacial do Npgsql](http://www.npgsql.org/efcore/mapping/nts.html)
-* [Documentação do PostGIS](http://postgis.net/documentation/)
+* [Documentação espacial do Npgsql](https://www.npgsql.org/efcore/mapping/nts.html)
+* [Documentação do PostGIS](https://postgis.net/documentation/)

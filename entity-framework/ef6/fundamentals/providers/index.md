@@ -3,12 +3,12 @@ title: Provedores do Entity Framework – EF6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 7BFB7763-CD6C-4520-93A2-7B265F5FA586
-ms.openlocfilehash: f6e34d1273bd1004ce9d1610ce3613068088eb5e
-ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
+ms.openlocfilehash: bf07296503e4bb5d1e13f5f6f29e7118cbbde61d
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/03/2019
-ms.locfileid: "55668733"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181686"
 ---
 # <a name="entity-framework-6-providers"></a>Provedores do Entity Framework 6
 > [!NOTE]
@@ -21,15 +21,15 @@ O Entity Framework agora está sendo desenvolvido sob uma licença de software l
 Os provedores que sabemos que foram recompilados para o EF6 incluem:
 
 *   **Provedor do Microsoft SQL Server**
-    *   Compilado da [base de código de software livre do Entity Framework](http://github.com/aspnet/EntityFramework6)
-    *   Enviado como parte do [pacote NuGet EntityFramework](http://nuget.org/packages/EntityFramework)
+    *   Compilado da [base de código de software livre do Entity Framework](https://github.com/aspnet/EntityFramework6)
+    *   Enviado como parte do [pacote NuGet EntityFramework](https://nuget.org/packages/EntityFramework)
 *   **Provedor do Microsoft SQL Server Compact Edition**
-    *   Compilado da [base de código de software livre do Entity Framework](http://github.com/aspnet/EntityFramework6)
-    *   Enviado no [pacote NuGet EntityFramework.SqlServerCompact](http://nuget.org/packages/EntityFramework.SqlServerCompact)
-*   [**Provedores de dados do Devart dotConnect**](http://www.devart.com/dotconnect/)
-    *   Há provedores de terceiros da [Devart](http://www.devart.com/) para uma variedade de bancos de dados, incluindo Oracle, MySQL, PostgreSQL, SQLite, Salesforce, DB2 e SQL Server
-*   [**Provedores do CDATA Software**](http://www.cdata.com/ado/)
-    *   Há provedores de terceiros da [CData Software](http://www.cdata.com/ado/) para uma variedade de armazenamentos de dados, incluindo Salesforce, Armazenamento de Tabelas do Azure, MySql e muito mais
+    *   Compilado da [base de código de software livre do Entity Framework](https://github.com/aspnet/EntityFramework6)
+    *   Enviado no [pacote NuGet EntityFramework.SqlServerCompact](https://nuget.org/packages/EntityFramework.SqlServerCompact)
+*   [**Provedores de dados do Devart dotConnect**](https://www.devart.com/dotconnect/)
+    *   Há provedores de terceiros da [Devart](https://www.devart.com/) para uma variedade de bancos de dados, incluindo Oracle, MySQL, PostgreSQL, SQLite, Salesforce, DB2 e SQL Server
+*   [**Provedores do CDATA Software**](https://www.cdata.com/ado/)
+    *   Há provedores de terceiros da [CData Software](https://www.cdata.com/ado/) para uma variedade de armazenamentos de dados, incluindo Salesforce, Armazenamento de Tabelas do Azure, MySql e muito mais
 *   **Provedor do Firebird**
     *   Disponível como um [Pacote NuGet](https://www.nuget.org/packages/EntityFramework.Firebird/)
 *   **Provedor do Visual Fox Pro**
@@ -68,7 +68,7 @@ O "tipo" desse registro é o nome qualificado pelo assembly do tipo de provedor 
 
 ### <a name="code-based-registration"></a>Registro baseado em código
 
-Começando com o Entity Framework 6, a configuração de todo o aplicativo para o EF pode ser especificada no código. Para obter os detalhes completos, consulte _[Configuração baseada em código do Entity Framework](https://msdn.microsoft.com/data/jj680699)_. A maneira normal de registrar um provedor do EF usando a configuração baseada em código é criar uma nova classe derivada de System.Data.Entity.DbConfiguration e colocá-la no mesmo assembly que a classe DbContext. A classe DbConfiguration deve, então, registrar o provedor em seu construtor. Por exemplo, para registrar o provedor do SQL Compact, a classe DbConfiguration esta aparência:
+Começando com o Entity Framework 6, a configuração de todo o aplicativo para o EF pode ser especificada no código. Para obter os detalhes completos, consulte _[Configuração baseada em código do Entity Framework](https://msdn.microsoft.com/data/jj680699)_ . A maneira normal de registrar um provedor do EF usando a configuração baseada em código é criar uma nova classe derivada de System.Data.Entity.DbConfiguration e colocá-la no mesmo assembly que a classe DbContext. A classe DbConfiguration deve, então, registrar o provedor em seu construtor. Por exemplo, para registrar o provedor do SQL Compact, a classe DbConfiguration esta aparência:
 
 ``` csharp
     public class MyConfiguration : DbConfiguration

@@ -3,12 +3,12 @@ title: Trabalhando com entidades desconectadas – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 12138003-a373-4817-b1b7-724130202f5f
-ms.openlocfilehash: 11ca2a9a4161e02d32d98bf03dd4cf28545334b7
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: f1ce44e7b00ec4c60a81ed850ce5c9d866495e1b
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022165"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181765"
 ---
 # <a name="working-with-disconnected-entities"></a>Trabalhando com entidades desconectadas
 Em um aplicativo baseado no Entity Framework, uma classe de contexto é responsável por detectar alterações aplicadas a entidades controladas. Chamar o método SaveChanges mantém as alterações controladas pelo contexto para o banco de dados. Ao trabalhar com aplicativos de N camadas, os objetos de entidade normalmente são modificados enquanto estão desconectados do contexto, e você deve decidir como rastrear as alterações e relatar essas alterações de volta para o contexto. Este tópico discute as diferentes opções que estão disponíveis ao usar o Entity Framework com entidades desconectadas.   
@@ -30,4 +30,4 @@ O controle de alterações em grafos arbitrários de entidades enquanto estão d
 Esse modelo pode ser usado com modelos criados usando o EF Designer, mas não pode ser usado com modelos do Code First. Para obter mais informações, consulte [Entidades de rastreamento automático](self-tracking-entities/index.md).  
 
 > [!IMPORTANT]
-> Não recomendamos usar o modelo de entidades de rastreamento automático. Ele continuará disponível apenas para dar suporte aos aplicativos existentes. Se o seu aplicativo exigir o trabalho com grafos de entidades desconectados, considere outras alternativas como [Entidades Rastreáveis](http://trackableentities.github.io/), que são uma tecnologia semelhante às Entidades de Rastreamento Automático desenvolvidas mais ativamente pela comunidade, ou escreva um código personalizado usando as APIs de controle de alterações de baixo nível.
+> Não recomendamos usar o modelo de entidades de rastreamento automático. Ele continuará disponível apenas para dar suporte aos aplicativos existentes. Se o seu aplicativo exigir o trabalho com grafos de entidades desconectados, considere outras alternativas como [Entidades Rastreáveis](https://trackableentities.github.io/), que são uma tecnologia semelhante às Entidades de Rastreamento Automático desenvolvidas mais ativamente pela comunidade, ou escreva um código personalizado usando as APIs de controle de alterações de baixo nível.

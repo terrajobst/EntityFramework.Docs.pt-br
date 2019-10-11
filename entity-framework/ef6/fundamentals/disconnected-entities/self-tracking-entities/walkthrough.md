@@ -1,63 +1,63 @@
 ---
-title: Passo a passo de entidades - EF6 de autocontrole
+title: Walkthrough-EF6 de entidades de rastreamento automático
 author: divega
 ms.date: 10/23/2016
 ms.assetid: b21207c9-1d95-4aa3-ae05-bc5fe300dab0
-ms.openlocfilehash: d89c452410d34bea71e8220aae141c3bfca3e1ce
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 9bd644461f50a7eff1006cb8866ca9a3b08b6b8d
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490266"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181712"
 ---
-# <a name="self-tracking-entities-walkthrough"></a>Passo a passo entidades de autocontrole
+# <a name="self-tracking-entities-walkthrough"></a>Instruções de auto-acompanhamento de entidades
 > [!IMPORTANT]
-> Não recomendamos usar o modelo de entidades de rastreamento automático. Ele continuará disponível apenas para dar suporte aos aplicativos existentes. Se o seu aplicativo exigir o trabalho com grafos de entidades desconectados, considere outras alternativas como [Entidades Rastreáveis](http://trackableentities.github.io/), que são uma tecnologia semelhante às Entidades de Rastreamento Automático desenvolvidas mais ativamente pela comunidade, ou escreva um código personalizado usando as APIs de controle de alterações de baixo nível.
+> Não recomendamos usar o modelo de entidades de rastreamento automático. Ele continuará disponível apenas para dar suporte aos aplicativos existentes. Se o seu aplicativo exigir o trabalho com grafos de entidades desconectados, considere outras alternativas como [Entidades Rastreáveis](https://trackableentities.github.io/), que são uma tecnologia semelhante às Entidades de Rastreamento Automático desenvolvidas mais ativamente pela comunidade, ou escreva um código personalizado usando as APIs de controle de alterações de baixo nível.
 
-Este passo a passo demonstra o cenário no qual um serviço do Windows Communication Foundation (WCF) expõe uma operação que retorna um gráfico de entidade. Em seguida, um aplicativo cliente manipula esse gráfico e envia as modificações em uma operação de serviço que valida e salva as atualizações em um banco de dados usando o Entity Framework.
+Este tutorial demonstra o cenário em que um serviço Windows Communication Foundation (WCF) expõe uma operação que retorna um grafo de entidade. Em seguida, um aplicativo cliente manipula esse grafo e envia as modificações a uma operação de serviço que valida e salva as atualizações em um banco de dados usando Entity Framework.
 
-Antes de concluir este passo a passo, não deixe de ler o [entidades de autorrastreamento](index.md) página.
+Antes de concluir este passo a passos, certifique-se de ler a página de [entidades de autoacompanhamento](index.md) .
 
-Este passo a passo conclui as seguintes ações:
+Este passo a passos conclui as seguintes ações:
 
--   Cria um banco de dados para acessar.
+-   Cria um banco de dados a ser acessado.
 -   Cria uma biblioteca de classes que contém o modelo.
--   Trocas do modelo de rastreamento automático gerador de entidade.
+-   Alterna para o modelo de gerador de entidade de rastreamento automático.
 -   Move as classes de entidade para um projeto separado.
--   Cria um serviço WCF que expõe as operações para consultar e salvar as entidades.
--   Cria aplicativos (Console e WPF) que consomem o serviço de cliente.
+-   Cria um serviço WCF que expõe operações para consultar e salvar entidades.
+-   Cria aplicativos cliente (console e WPF) que consomem o serviço.
 
-Vamos usar banco de dados primeiro neste passo a passo, mas as mesmas técnicas se aplicam igualmente ao Model First.
+Usaremos Database First neste passo a passos, mas as mesmas técnicas se aplicam igualmente a Model First.
 
 ## <a name="pre-requisites"></a>Pré-requisitos
 
-Para concluir este passo a passo, você precisará uma versão recente do Visual Studio.
+Para concluir este passo a passos, você precisará de uma versão recente do Visual Studio.
 
 ## <a name="create-a-database"></a>Criar um banco de dados
 
-O servidor de banco de dados que é instalado com o Visual Studio é diferente dependendo da versão do Visual Studio que você instalou:
+O servidor de banco de dados instalado com o Visual Studio é diferente dependendo da versão do Visual Studio instalada:
 
--   Se você estiver usando o Visual Studio 2012, em seguida, você criará um banco de dados LocalDB.
--   Se você estiver usando o Visual Studio 2010 você criará um banco de dados do SQL Express.
+-   Se você estiver usando o Visual Studio 2012, criará um banco de dados LocalDB.
+-   Se você estiver usando o Visual Studio 2010, criará um banco de dados do SQL Express.
 
-Vamos prosseguir e gerar o banco de dados.
+Vamos continuar e gerar o banco de dados.
 
 -   Abrir o Visual Studio
--   **Exibição -&gt; Gerenciador de servidores**
--   Clique com botão direito **conexões de dados -&gt; Adicionar Conexão...**
--   Se você ainda não tiver conectado a um banco de dados do Gerenciador de servidores antes de você precisará selecionar **Microsoft SQL Server** como fonte de dados
--   Conectar-se ao LocalDB ou Express do SQL, dependendo de qual deles você ter instalado
+-   **Exibir-&gt; Gerenciador de Servidores**
+-   Clique com o botão direito em **conexões de dados-&gt; Adicionar conexão...**
+-   Se você ainda não se conectou a um banco de dados do Gerenciador de Servidores antes de precisar selecionar **Microsoft SQL Server** como a fonte de dado
+-   Conecte-se ao LocalDB ou ao SQL Express, dependendo de qual deles você instalou
 -   Insira **STESample** como o nome do banco de dados
--   Selecione **Okey** e você será solicitado se você deseja criar um novo banco de dados, selecione **Sim**
--   O novo banco de dados agora aparecerão no Gerenciador de servidores
+-   Selecione **OK** e você será perguntado se deseja criar um novo banco de dados, selecione **Sim**
+-   O novo banco de dados aparecerá agora no Gerenciador de Servidores
 -   Se você estiver usando o Visual Studio 2012
-    -   Clique com botão direito no banco de dados no Gerenciador de servidores e selecione **nova consulta**
-    -   Copie o SQL a seguir para a nova consulta e, em seguida, clique com botão direito na consulta e selecione **Execute**
+    -   Clique com o botão direito do mouse no banco de dados em Gerenciador de Servidores e selecione **nova consulta**
+    -   Copie o SQL a seguir na nova consulta, clique com o botão direito do mouse na consulta e selecione **executar**
 -   Se você estiver usando o Visual Studio 2010
-    -   Selecione **dados -&gt; Transact SQL Editor -&gt; nova Conexão de consulta...**
-    -   Insira **.\\ SQLEXPRESS** como o nome do servidor e clique em **Okey**
-    -   Selecione o **STESample** de banco de dados na lista suspensa na parte superior do editor de consultas
-    -   Copie o SQL a seguir para a nova consulta e, em seguida, clique com botão direito na consulta e selecione **executar SQL**
+    -   Selecione **Data-&gt; editor TRANSACT SQL-&gt; nova conexão de consulta...**
+    -   Insira **. \\SQLEXPRESS** como o nome do servidor e clique em **OK**
+    -   Selecione o banco de dados **STESample** na lista suspensa na parte superior do editor de consultas
+    -   Copie o SQL a seguir na nova consulta, clique com o botão direito do mouse na consulta e selecione **Executar SQL**
 
 ``` SQL
     CREATE TABLE [dbo].[Blogs] (
@@ -85,103 +85,103 @@ Vamos prosseguir e gerar o banco de dados.
 
 ## <a name="create-the-model"></a>Criar o modelo
 
-Primeiro, precisamos colocar o modelo em um projeto.
+Primeiro, precisamos de um projeto no qual colocar o modelo.
 
--   **Arquivo -&gt; New -&gt; projeto...**
--   Selecione **Visual C#\#**  no painel esquerdo e, em seguida, **biblioteca de classes**
--   Insira **STESample** como o nome e clique em **Okey**
+-   **Arquivo-&gt; Projeto New-&gt;...**
+-   Selecione **Visual C @ no__t-1** no painel esquerdo e biblioteca de **classes**
+-   Insira **STESample** como o nome e clique em **OK**
 
-Agora vamos criar um modelo simples no EF Designer para acessar nosso banco de dados:
+Agora, vamos criar um modelo simples no designer do EF para acessar nosso banco de dados:
 
--   **Projeto -&gt; Adicionar Novo Item...**
--   Selecione **dados** no painel esquerdo e, em seguida, **modelo de dados de entidade ADO.NET**
--   Insira **BloggingModel** como o nome e clique em **Okey**
--   Selecione **gerar a partir do banco de dados** e clique em **Avançar**
--   Insira as informações de conexão para o banco de dados que você criou na seção anterior
--   Insira **BloggingContext** como o nome para a cadeia de caracteres de conexão e clique em **Avançar**
--   A caixa de seleção ao lado **tabelas** e clique em **concluir**
+-   **Projeto-&gt; adicionar novo item...**
+-   Selecione **dados** no painel esquerdo e, em seguida, **ADO.NET modelo de dados de entidade**
+-   Insira **BloggingModel** como o nome e clique em **OK**
+-   Selecione **gerar do banco de dados** e clique em **Avançar**
+-   Insira as informações de conexão do banco de dados que você criou na seção anterior
+-   Insira **BloggingContext** como o nome da cadeia de conexão e clique em **Avançar**
+-   Marque a caixa ao lado de **tabelas** e clique em **concluir**
 
-## <a name="swap-to-ste-code-generation"></a>Alterne para a geração de código lar
+## <a name="swap-to-ste-code-generation"></a>Alternar para geração de código lar
 
-Agora, é necessário desabilitar a geração de código padrão e a troca para entidades de autorrastreamento.
+Agora, precisamos desabilitar a geração de código padrão e alternar para entidades de autocontrole.
 
 ### <a name="if-you-are-using-visual-studio-2012"></a>Se você estiver usando o Visual Studio 2012
 
--   Expandir **BloggingModel.edmx** na **Gerenciador de soluções** e exclua os **BloggingModel.tt** e **BloggingModel.Context.tt** 
-     *Isso desabilitará a geração de código padrão*
--   Clique com botão direito no EF Designer na superfície e selecione uma área vazia **Adicionar Item de geração de código...**
--   Selecione **Online** no painel esquerdo e procure para **gerador lar**
--   Selecione o **lar gerador para C\#**  modelo, insira **STETemplate** como o nome e clique em **adicionar**
--   O **STETemplate.tt** e **STETemplate.Context.tt** arquivos são adicionados aninhado sob o arquivo BloggingModel.edmx
+-   Expanda **BloggingModel. edmx** em **Gerenciador de soluções** e exclua o **BloggingModel.tt** e o **BloggingModel.Context.tt**
+    *isso desabilitará a geração de código padrão*
+-   Clique com o botão direito do mouse em uma área vazia na superfície do designer do EF e selecione **Adicionar item de geração de código...**
+-   Selecione **online** no painel esquerdo e procure por **gerador de lar**
+-   Selecione o **gerador de lar para o modelo C @ no__t-1** , digite **STETemplate** como o nome e clique em **Adicionar**
+-   Os arquivos **STETemplate.tt** e **STETemplate.Context.tt** são adicionados aninhados no arquivo BloggingModel. edmx
 
 ### <a name="if-you-are-using-visual-studio-2010"></a>Se você estiver usando o Visual Studio 2010
 
--   Clique com botão direito no EF Designer na superfície e selecione uma área vazia **Adicionar Item de geração de código...**
--   Selecione **código** no painel esquerdo e, em seguida, **gerador de entidade de rastreamento automático do ADO.NET**
--   Insira **STETemplate** como o nome e clique em **adicionar**
--   O **STETemplate.tt** e **STETemplate.Context.tt** arquivos são adicionados diretamente ao seu projeto
+-   Clique com o botão direito do mouse em uma área vazia na superfície do designer do EF e selecione **Adicionar item de geração de código...**
+-   Selecione o **código** no painel esquerdo e, em seguida, **ADO.net gerador de entidade de rastreamento automático**
+-   Insira **STETemplate** como o nome e clique em **Adicionar**
+-   Os arquivos **STETemplate.tt** e **STETemplate.Context.tt** são adicionados diretamente ao seu projeto
 
-## <a name="move-entity-types-into-separate-project"></a>Mover os tipos de entidade em um projeto separado
+## <a name="move-entity-types-into-separate-project"></a>Mover tipos de entidade para projeto separado
 
-Para usar entidades de autorrastreamento nosso aplicativo cliente precisa acessar as classes de entidade gerados a partir de nosso modelo. Porque não queremos expor o modelo inteiro para o aplicativo cliente, vamos para mover as classes de entidade em um projeto separado.
+Para usar entidades de autoacompanhamento, nosso aplicativo cliente precisa acessar as classes de entidade geradas de nosso modelo. Como não queremos expor todo o modelo ao aplicativo cliente, vamos mover as classes de entidade para um projeto separado.
 
-A primeira etapa é pare de gerar classes de entidade no projeto existente:
+A primeira etapa é parar a geração de classes de entidade no projeto existente:
 
--   Clique duas vezes em **STETemplate.tt** na **Gerenciador de soluções** e selecione **propriedades**
--   No **propriedades** janela clara **TextTemplatingFileGenerator** do **CustomTool** propriedade
--   Expandir **STETemplate.tt** na **Gerenciador de soluções** e excluir todos os arquivos aninhados sob ela
+-   Clique com o botão direito do mouse em **STETemplate.tt** em **Gerenciador de soluções** e selecione **Propriedades**
+-   Na janela **Propriedades** , limpe **TextTemplatingFileGenerator** da propriedade **CustomTool**
+-   Expanda **STETemplate.tt** em **Gerenciador de soluções** e exclua todos os arquivos aninhados nele
 
 Em seguida, vamos adicionar um novo projeto e gerar as classes de entidade nele
 
--   **Arquivo -&gt; Add -&gt; projeto...**
--   Selecione **Visual C#\#**  no painel esquerdo e, em seguida, **biblioteca de classes**
--   Insira **STESample.Entities** como o nome e clique em **Okey**
--   **Projeto -&gt; Adicionar Item existente...**
--   Navegue até a **STESample** pasta do projeto
--   Selecione para exibir **todos os arquivos (\*.\*)**
--   Selecione o **STETemplate.tt** arquivo
--   Clique na seta suspensa ao lado de **Add** botão e selecione **adicionar como vínculo**
+-   **Arquivo-&gt; Add-&gt; projeto...**
+-   Selecione **Visual C @ no__t-1** no painel esquerdo e biblioteca de **classes**
+-   Insira **STESample. Entities** como o nome e clique em **OK**
+-   **Projeto-&gt; Adicionar item existente...**
+-   Navegue até a pasta do projeto **STESample**
+-   Selecione para exibir **todos os arquivos (\*. \*)**
+-   Selecione o arquivo **STETemplate.tt**
+-   Clique na seta suspensa ao lado do botão **Adicionar** e selecione **Adicionar como link**
 
     ![Adicionar modelo vinculado](~/ef6/media/addlinkedtemplate.png)
 
-Também vamos para garantir que as classes de entidade obterem geradas no mesmo namespace que o contexto. Isso apenas reduz o número de instruções, precisamos adicionar em todo o nosso aplicativo de uso.
+Também vamos garantir que as classes de entidade sejam geradas no mesmo namespace que o contexto. Isso apenas reduz o número de instruções de uso que precisamos adicionar em todo o nosso aplicativo.
 
--   Clique duas vezes em vinculada **STETemplate.tt** na **Gerenciador de soluções** e selecione **propriedades**
--   No **propriedades** janela conjunto **Namespace de ferramenta personalizada** para **STESample**
+-   Clique com o botão direito do mouse no **STETemplate.tt** vinculado em **Gerenciador de soluções** e selecione **Propriedades**
+-   Na janela **Propriedades** , defina **namespace da ferramenta personalizada** como **STESample**
 
-O código gerado pelo modelo lar precisará de uma referência a **Serialization** fim de compilar. Essa biblioteca é necessária para o WCF **DataContract** e **DataMember** atributos que são usados nos tipos de entidade serializável.
+O código gerado pelo modelo lar precisará de uma referência a **System. Runtime. Serialization** para compilar. Essa biblioteca é necessária para os atributos **DataContract** e **DataMember** do WCF que são usados nos tipos de entidade serializáveis.
 
--   Clique com botão direito do **STESample.Entities** project no **Gerenciador de soluções** e selecione **adicionar referência...**
-    -   No Visual Studio 2012 – marque a caixa ao lado **Serialization** e clique em **Okey**
-    -   No Visual Studio 2010 - selecione **Serialization** e clique em **Okey**
+-   Clique com o botão direito do mouse no projeto **STESample. Entities** em **Gerenciador de soluções** e selecione **Adicionar referência..** .
+    -   No Visual Studio 2012-marque a caixa ao lado de **System. Runtime. Serialization** e clique em **OK**
+    -   No Visual Studio 2010-selecione **System. Runtime. Serialization** e clique em **OK**
 
-Por fim, o projeto com o nosso contexto em que ele precisa de uma referência para os tipos de entidade.
+Por fim, o projeto com nosso contexto será necessário uma referência aos tipos de entidade.
 
--   Clique com botão direito do **STESample** project no **Gerenciador de soluções** e selecione **adicionar referência...**
-    -   No Visual Studio 2012 – selecione **Solution** no painel esquerdo, marque a caixa ao lado de **STESample.Entities** e clique em **Okey**
-    -   No Visual Studio 2010 – selecione o **projetos** guia, selecione **STESample.Entities** e clique em **Okey**
+-   Clique com o botão direito do mouse no projeto **STESample** em **Gerenciador de soluções** e selecione **Adicionar referência..** .
+    -   No Visual Studio 2012 – selecione **solução** no painel esquerdo, marque a caixa ao lado de **STESample. Entities** e clique em **OK**
+    -   No Visual Studio 2010-selecione a guia **projetos** , selecione **STESample. Entities** e clique em **OK**
 
 >[!NOTE]
-> Outra opção para mover os tipos de entidade para um projeto separado é mover o arquivo de modelo, em vez de vinculá-lo do local padrão. Se você fizer isso, você precisará atualizar o **arquivo_de_entrada** variável no modelo para fornecer o caminho relativo para o arquivo edmx (neste exemplo que seriam **... \\BloggingModel.edmx**).
+> Outra opção para mover os tipos de entidade para um projeto separado é mover o arquivo de modelo, em vez de vinculá-lo de seu local padrão. Se você fizer isso, precisará atualizar a variável **InputFile** no modelo para fornecer o caminho relativo para o arquivo EDMX (neste exemplo, que seria **.. \\BloggingModel. edmx**).
 
 ## <a name="create-a-wcf-service"></a>Criar um serviço WCF
 
-Agora é hora de adicionar um serviço WCF para expor nossos dados, vamos começar pela criação do projeto.
+Agora é hora de adicionar um serviço WCF para expor nossos dados, vamos começar criando o projeto.
 
--   **Arquivo -&gt; Add -&gt; projeto...**
--   Selecione **Visual C#\#**  no painel esquerdo e, em seguida, **aplicativo de serviço WCF**
--   Insira **STESample.Service** como o nome e clique em **Okey**
--   Adicione uma referência para o **Entity** assembly
--   Adicione uma referência para o **STESample** e **STESample.Entities** projetos
+-   **Arquivo-&gt; Add-&gt; projeto...**
+-   Selecione **Visual C @ no__t-1** no painel esquerdo e, em seguida, **aplicativo de serviço WCF**
+-   Insira **STESample. Service** como o nome e clique em **OK**
+-   Adicionar uma referência ao assembly **System. Data. Entity**
+-   Adicione uma referência aos projetos **STESample** e **STESample. Entities**
 
-É preciso copiar a cadeia de caracteres de conexão do EF para este projeto para que ele é encontrado em tempo de execução.
+Precisamos copiar a cadeia de conexão do EF para este projeto para que ele seja encontrado em tempo de execução.
 
--   Abra o **App. config** do arquivo para o * * STESample * * projeto e copie o **connectionStrings** elemento
--   Colar a **connectionStrings** como um elemento filho da **configuration** elemento do **Web. config** de arquivo no **STESample.Service** projeto
+-   Abra o arquivo **app. config** para o projeto **STESample **e copie o elemento **connectionStrings**
+-   Cole o elemento **connectionStrings** como um elemento filho do elemento **Configuration** do arquivo **Web. config** no projeto **STESample. Service**
 
 Agora é hora de implementar o serviço real.
 
--   Abra **IService1.cs** e substitua o conteúdo com o código a seguir
+-   Abra **IService1.cs** e substitua o conteúdo pelo código a seguir
 
 ``` csharp
     using System.Collections.Generic;
@@ -201,7 +201,7 @@ Agora é hora de implementar o serviço real.
     }
 ```
 
--   Abra **Service1.svc** e substitua o conteúdo com o código a seguir
+-   Abra **Service1. svc** e substitua o conteúdo pelo código a seguir
 
 ``` csharp
     using System;
@@ -254,24 +254,24 @@ Agora é hora de implementar o serviço real.
     }
 ```
 
-## <a name="consume-the-service-from-a-console-application"></a>Consumir o serviço de um aplicativo de Console
+## <a name="consume-the-service-from-a-console-application"></a>Consumir o serviço de um aplicativo de console
 
-Vamos criar um aplicativo de console que usa o nosso serviço.
+Vamos criar um aplicativo de console que usa nosso serviço.
 
--   **Arquivo -&gt; New -&gt; projeto...**
--   Selecione **Visual C#\#**  no painel esquerdo e, em seguida, **aplicativo de Console**
--   Insira **STESample.ConsoleTest** como o nome e clique em **Okey**
--   Adicione uma referência para o **STESample.Entities** projeto
+-   **Arquivo-&gt; Projeto New-&gt;...**
+-   Selecione **Visual C @ no__t-1** no painel esquerdo e, em seguida, **aplicativo de console**
+-   Insira **STESample. ConsoleTest** como o nome e clique em **OK**
+-   Adicionar uma referência ao projeto **STESample. Entities**
 
 Precisamos de uma referência de serviço para nosso serviço WCF
 
--   Clique com botão direito do **STESample.ConsoleTest** project no **Gerenciador de soluções** e selecione **adicionar referência de serviço...**
+-   Clique com o botão direito do mouse no projeto **STESample. ConsoleTest** em **Gerenciador de Soluções** e selecione **Adicionar referência de serviço...**
 -   Clique em **descobrir**
--   Insira **BloggingService** como o namespace e clique em **Okey**
+-   Insira **BloggingService** como o namespace e clique em **OK**
 
-Agora podemos escrever algum código para consumir o serviço.
+Agora, podemos escrever um código para consumir o serviço.
 
--   Abra **Program.cs** e substitua o conteúdo com o código a seguir.
+-   Abra **Program.cs** e substitua o conteúdo pelo código a seguir.
 
 ``` csharp
     using STESample.ConsoleTest.BloggingService;
@@ -400,11 +400,11 @@ Agora podemos escrever algum código para consumir o serviço.
 
 Agora, você pode executar o aplicativo para vê-lo em ação.
 
--   Clique com botão direito do **STESample.ConsoleTest** project no **Gerenciador de soluções** e selecione **Debug -&gt; iniciar nova instância**
+-   Clique com o botão direito do mouse no projeto **STESample. ConsoleTest** no **Gerenciador de soluções** e selecione **debug-&gt; iniciar nova instância**
 
-Você verá a seguinte saída quando o aplicativo é executado.
+Você verá a saída a seguir quando o aplicativo for executado.
 
-```
+```console
 Initial Data:
 ADO.NET Blog
 - Intro to EF
@@ -434,24 +434,24 @@ ADO.NET Blog
 Press any key to exit...
 ```
 
-## <a name="consume-the-service-from-a-wpf-application"></a>Consumir o serviço de um aplicativo WPF
+## <a name="consume-the-service-from-a-wpf-application"></a>Consumir o serviço de um aplicativo do WPF
 
-Vamos criar um aplicativo WPF que usa o nosso serviço.
+Vamos criar um aplicativo WPF que usa nosso serviço.
 
--   **Arquivo -&gt; New -&gt; projeto...**
--   Selecione **Visual C#\#**  no painel esquerdo e, em seguida, **aplicativo WPF**
--   Insira **STESample.WPFTest** como o nome e clique em **Okey**
--   Adicione uma referência para o **STESample.Entities** projeto
+-   **Arquivo-&gt; Projeto New-&gt;...**
+-   Selecione **Visual C @ no__t-1** no painel esquerdo e, em seguida, **aplicativo WPF**
+-   Insira **STESample. WPFTest** como o nome e clique em **OK**
+-   Adicionar uma referência ao projeto **STESample. Entities**
 
 Precisamos de uma referência de serviço para nosso serviço WCF
 
--   Clique com botão direito do **STESample.WPFTest** project no **Gerenciador de soluções** e selecione **adicionar referência de serviço...**
+-   Clique com o botão direito do mouse no projeto **STESample. WPFTest** em **Gerenciador de Soluções** e selecione **Adicionar referência de serviço...**
 -   Clique em **descobrir**
--   Insira **BloggingService** como o namespace e clique em **Okey**
+-   Insira **BloggingService** como o namespace e clique em **OK**
 
-Agora podemos escrever algum código para consumir o serviço.
+Agora, podemos escrever um código para consumir o serviço.
 
--   Abra **MainWindow. XAML** e substitua o conteúdo com o código a seguir.
+-   Abra **MainWindow. XAML** e substitua o conteúdo pelo código a seguir.
 
 ``` xaml
     <Window
@@ -495,7 +495,7 @@ Agora podemos escrever algum código para consumir o serviço.
     </Window>
 ```
 
--   Abra o code-behind para MainWindow (**MainWindow.xaml.cs**) e substitua o conteúdo com o código a seguir
+-   Abra o code-behind para MainWindow (**MainWindow.XAML.cs**) e substitua o conteúdo pelo código a seguir
 
 ``` csharp
     using STESample.WPFTest.BloggingService;
@@ -549,7 +549,7 @@ Agora podemos escrever algum código para consumir o serviço.
 
 Agora, você pode executar o aplicativo para vê-lo em ação.
 
--   Clique com botão direito do **STESample.WPFTest** project no **Gerenciador de soluções** e selecione **Debug -&gt; iniciar nova instância**
--   Você pode manipular os dados usando a tela e salvá-lo por meio do serviço usando o **salvar** botão
+-   Clique com o botão direito do mouse no projeto **STESample. WPFTest** no **Gerenciador de soluções** e selecione **debug-&gt; iniciar nova instância**
+-   Você pode manipular os dados usando a tela e salvá-los por meio do serviço usando o botão **salvar**
 
 ![Janela principal do WPF](~/ef6/media/wpf.png)

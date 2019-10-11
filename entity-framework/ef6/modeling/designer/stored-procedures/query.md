@@ -1,19 +1,19 @@
 ---
-title: Designer de consulta armazenados procedimentos - EF6
+title: Procedimentos armazenados de consulta do designer-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9554ed25-c5c1-43be-acad-5da37739697f
-ms.openlocfilehash: 04478ea1c8cd43a7ba4ee788e464992af3de7f64
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 2e0092b526278597e8477d47eeb642598647bb91
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283895"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182479"
 ---
-# <a name="designer-query-stored-procedures"></a>Designer de consulta procedimentos armazenados
-Este passo a passo mostram como usar o Entity Framework Designer (Designer de EF) para importar os procedimentos armazenados em um modelo e, em seguida, chamar procedimentos armazenados para recuperar resultados importados. 
+# <a name="designer-query-stored-procedures"></a>Procedimentos armazenados de consulta do designer
+Esta explicação passo a passo mostra como usar o Entity Framework Designer (EF designer) para importar procedimentos armazenados em um modelo e, em seguida, chamar os procedimentos armazenados importados para recuperar resultados. 
 
-Observe que o Code First não suporta o mapeamento para procedimentos armazenados ou funções. No entanto, você pode chamar procedimentos armazenados ou funções por meio do método System.Data.Entity.DbSet.SqlQuery. Por exemplo:
+Observe que Code First não dá suporte ao mapeamento para procedimentos armazenados ou funções. No entanto, você pode chamar procedimentos armazenados ou funções usando o método System. Data. Entity. DbSet. SQLQuery. Por exemplo:
 ``` csharp
 var query = context.Products.SqlQuery("EXECUTE [dbo].[GetAllProducts]")`;
 ```
@@ -23,47 +23,47 @@ var query = context.Products.SqlQuery("EXECUTE [dbo].[GetAllProducts]")`;
 Para concluir esta explicação passo a passo, será necessário:
 
 - Uma versão recente do Visual Studio.
-- O [banco de dados de exemplo School](~/ef6/resources/school-database.md).
+- O [banco de dados de exemplo da escola](~/ef6/resources/school-database.md).
 
 ## <a name="set-up-the-project"></a>Configurar o projeto
 
 -   Abra o Visual Studio 2012.
--   Selecione **arquivo -&gt; New -&gt; projeto**
--   No painel esquerdo, clique em **Visual C#\#** e, em seguida, selecione o **Console** modelo.
--   Insira **EFwithSProcsSample** como o nome.
--   Selecione **OK**.
+-   Selecione **arquivo-&gt; Projeto New-&gt;**
+-   No painel esquerdo, clique em **Visual C @ no__t-1**e selecione o modelo de **console** .
+-   Insira **EFwithSProcsSample** As o nome.
+-   Selecione **OK**.
 
 ## <a name="create-a-model"></a>Criar um modelo
 
--   Clique com botão direito no projeto no Gerenciador de soluções e selecione **Add -&gt; Novo Item**.
--   Selecione **dados** no menu esquerdo e selecione **modelo de dados de entidade ADO.NET** no painel de modelos.
--   Insira **EFwithSProcsModel.edmx** para o nome de arquivo e clique **Add**.
--   Na caixa de diálogo Escolher conteúdo do modelo, selecione **gerar a partir do banco de dados**e, em seguida, clique em **próxima**.
--   Clique em **nova Conexão**.  
-    Na caixa de diálogo Propriedades de Conexão, insira o nome do servidor (por exemplo, **(localdb)\\mssqllocaldb**), selecione o método de autenticação, digite **School** para o nome do banco de dados e, em seguida, Clique em **Okey**.  
-    A caixa de diálogo Escolher sua Conexão de dados é atualizada com sua configuração de conexão de banco de dados.
--   Na caixa de diálogo Choose Your Database Objects, verifique as **tabelas** caixa de seleção para selecionar todas as tabelas.  
-    Além disso, selecione os seguintes procedimentos armazenados sob a **procedimentos armazenados e funções** nó: **GetStudentGrades** e **GetDepartmentName**. 
+-   Clique com o botão direito do mouse no projeto no Gerenciador de Soluções e selecione **Adicionar-&gt; novo item**.
+-   Selecione **dados** no menu à esquerda e, em seguida, selecione **ADO.NET modelo de dados de entidade** no painel modelos.
+-   Digite **EFwithSProcsModel. edmx** para o nome do arquivo e clique em **Adicionar**.
+-   Na caixa de diálogo escolher conteúdo do modelo, selecione **gerar do banco de dados**e clique em **Avançar**.
+-   Clique em **nova conexão**.  
+    Na caixa de diálogo Propriedades da conexão, digite o nome do servidor (por exemplo, **(LocalDB) \\mssqllocaldb**), selecione o método de autenticação, digite **School** for o nome do banco de dados e clique em **OK**.  
+    A caixa de diálogo escolher sua conexão de dados é atualizada com a configuração de conexão de banco de dado.
+-   Na caixa de diálogo escolher seu objeto de banco de dados, verifique as **tabelas** checkbox para selecionar todas as tabelas.  
+    Além disso, selecione os seguintes procedimentos armazenados no nó **procedimentos armazenados e funções** : **GetStudentGrades** e **getdepartmentname**. 
 
     ![Importar](~/ef6/media/import.jpg)
 
-    *Começando com o Visual Studio 2012, o EF Designer oferece suporte a importação em massa de procedimentos armazenados. O **importação selecionado procedimentos armazenados e funções no modelo theentity** é marcada por padrão.*
--   Clique em **Finalizar**.
+    *Starting com o Visual Studio 2012, o designer do EF dá suporte à importação em massa de procedimentos armazenados. A **importação de procedimentos armazenados e funções selecionados para o modelo de entidade** é marcada por padrão.*
+-   Clique em **concluir**.
 
-Por padrão, a forma de resultado de cada importados de procedimento armazenado ou função que retorna mais de uma coluna tornará automaticamente um novo tipo complexo. Neste exemplo desejamos mapear os resultados do **GetStudentGrades** funcionar para o **StudentGrade** entidade e os resultados do **GetDepartmentName** para **none** (**none** é o valor padrão).
+Por padrão, a forma de resultado de cada procedimento armazenado importado ou função que retorna mais de uma coluna se tornará automaticamente um novo tipo complexo. Neste exemplo, queremos mapear os resultados da função **GetStudentGrades** para a entidade **StudentGrade** e os resultados de **getdepartmentname** para **None** (**None** é o valor padrão).
 
-Para uma importação de função retornar um tipo de entidade, as colunas retornadas pelo procedimento armazenado correspondente devem corresponder exatamente as propriedades escalares do tipo de entidade retornada. Uma importação de função também pode retornar coleções de tipos simples, tipos complexos ou nenhum valor.
+Para uma importação de função retornar um tipo de entidade, as colunas retornadas pelo procedimento armazenado correspondente devem corresponder exatamente às propriedades escalares do tipo de entidade retornado. Uma importação de função também pode retornar coleções de tipos simples, tipos complexos ou nenhum valor.
 
--   Clique com botão direito a superfície de design e selecione **Model Browser**.
--   Na **Model Browser**, selecione **Function Imports**e, em seguida, clique duas vezes o **GetStudentGrades** função.
--   Na caixa de diálogo Editar importação de função, selecione **entidades** e escolha **StudentGrade**.  
-    *O **importação de função é passível de composição** na parte superior da caixa de seleção a **Function Imports** diálogo permitirá que você mapear para funções combináveis. Se você marcar esta caixa, apenas funções combináveis (funções com valor de tabela) aparecerá na **procedimento armazenado / nome da função** lista suspensa. Se você não marcar essa caixa, apenas as funções não combináveis serão mostradas na lista.*
+-   Clique com o botão direito do mouse na superfície de design e selecione **navegador de modelos**.
+-   No **navegador de modelos**, selecione **importações de função**e clique duas vezes na função **GetStudentGrades** .
+-   Na caixa de diálogo Editar importação de função, selecione **entidades** And escolha **StudentGrade**.  
+    @no__t-a caixa de seleção **importação de função 0The é combinável** na parte superior da caixa de diálogo **importações de função** permitirá que você mapeie para funções combináveis. Se você marcar essa caixa, somente as funções combináveis (funções com valor de tabela) aparecerão na lista suspensa **procedimento armazenado/nome da função** . Se você não marcar essa caixa, somente as funções não combináveis serão mostradas na lista. *
 
 ## <a name="use-the-model"></a>Usar o modelo
 
-Abra o **Program.cs** do arquivo onde o **Main** método é definido. Adicione o seguinte código na função principal.
+Abra o arquivo **Program.cs** em que o método **Main** está definido. Adicione o código a seguir à função main.
 
-O código chama dois procedimentos armazenados: **GetStudentGrades** (retorna **StudentGrades** especificado *StudentId*) e **GetDepartmentName** (retorna o nome do departamento no parâmetro de saída).  
+O código chama dois procedimentos armazenados: **GetStudentGrades** (retorna **StudentGrades** para a *StudentId*especificada) e **getdepartmentname** (retorna o nome do departamento no parâmetro de saída).  
 
 ``` csharp
     using (SchoolEntities context = new SchoolEntities())
@@ -89,7 +89,7 @@ O código chama dois procedimentos armazenados: **GetStudentGrades** (retorna **
 
 Compile e execute o aplicativo. O programa produz a seguinte saída:
 
-```
+```console
 StudentID: 2
 Student grade: 4.00
 StudentID: 2
@@ -100,4 +100,4 @@ The department name is Engineering
 <a name="output-parameters"></a>Parâmetros de saída
 -----------------
 
-Se forem usados parâmetros de saída, seus valores não estará disponíveis até que os resultados foram lidas completamente. Isso é devido ao comportamento subjacente do DbDataReader, consulte [recuperando dados usando um DataReader](https://go.microsoft.com/fwlink/?LinkID=398589) para obter mais detalhes.
+Se os parâmetros de saída forem usados, seus valores não estarão disponíveis até que os resultados tenham sido completamente lidos. Isso ocorre devido ao comportamento subjacente de DbDataReader, consulte [recuperando dados usando um DataReader](https://go.microsoft.com/fwlink/?LinkID=398589) para obter mais detalhes.

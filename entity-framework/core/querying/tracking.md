@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
 uid: core/querying/tracking
-ms.openlocfilehash: d93be5c2b727d8fbaddd103f8f367c699ae80a7c
-ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.openlocfilehash: 588dee012039ce5ecc83f0ecf263a4ea6ca38c29
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "70921649"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181979"
 ---
 # <a name="tracking-vs-no-tracking-queries"></a>Consultas com acompanhamento versus Consultas sem acompanhamento
 
@@ -63,7 +63,7 @@ using (var context = new BloggingContext())
 ```
 
 > [!NOTE]  
-> As consultas sem controle ainda executam a resolução de identidade dentro da consulta de execução. Se o conjunto de resultados contém a mesma entidade várias vezes, a mesma instância da classe da entidade será retornada para cada ocorrência do conjunto de resultados. No entanto, as referências fracas são usadas para controlar as entidades que já foram retornadas. Se um resultado anterior com a mesma identidade sai do escopo e a coleta de lixo é executada, você poderá receber uma nova instância da entidade. Para saber mais, veja [Como funciona a consulta](overview.md).
+> As consultas sem controle ainda executam a resolução de identidade dentro da consulta de execução. Se o conjunto de resultados contém a mesma entidade várias vezes, a mesma instância da classe da entidade será retornada para cada ocorrência do conjunto de resultados. No entanto, as referências fracas são usadas para controlar as entidades que já foram retornadas. Se um resultado anterior com a mesma identidade sai do escopo e a coleta de lixo é executada, você poderá receber uma nova instância da entidade. Para saber mais, veja [Como funciona a consulta](xref:core/querying/how-query-works).
 
 ## <a name="tracking-and-projections"></a>Acompanhamento e projeções
 

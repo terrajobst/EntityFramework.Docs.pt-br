@@ -1,15 +1,15 @@
 ---
-title: Instalar o Entity Framework Core
+title: Instalar o Entity Framework Core – EF Core
 author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: 7bdedf563b7d919ba334db79af73c3eed3ba4129
-ms.sourcegitcommit: 2caec1e63f2ce1d9439ef6193df5a77da2fedd0f
+ms.openlocfilehash: b4ae13ae1b22bb78c2c0407c0b3da64ee12ff2c1
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "71317575"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181211"
 ---
 # <a name="installing-entity-framework-core"></a>Instalar o Entity Framework Core
 
@@ -128,8 +128,7 @@ Nos aplicativos do ASP.NET Core, esse pacote está incluído automaticamente.
   * Os pacotes de tempo de design do provedor do banco de dados, como `Microsoft.EntityFrameworkCore.SqlServer.Design`, não são mais necessários nem compatíveis com o EF Core 2.0, mas não são automaticamente removidos ao atualizar os outros pacotes.
 
   * As ferramentas da CLI do .NET estão incluídas no SDK do .NET desde a versão 2.1, portanto, a referência a esse pacote pode ser removida do arquivo de projeto:
-
-    ```
+    ```xml
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     ```
 

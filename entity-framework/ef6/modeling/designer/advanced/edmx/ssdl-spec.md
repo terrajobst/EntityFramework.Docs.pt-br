@@ -1,55 +1,55 @@
 ---
-title: Especificação de SSDL - EF6
+title: Especificação de SSDL-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: a4af4b1a-40f4-48cc-b2e0-fa8f5d9d5419
-ms.openlocfilehash: a8b1f844a34c44d283982a52cef3bf80afd7e679
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: b20d1f99f1da9c53a8a164fccc461e07d19c879d
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490344"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182544"
 ---
 # <a name="ssdl-specification"></a>Especificação de SSDL
-Linguagem de definição de esquema de Store (SSDL) é uma linguagem baseada em XML que descreve o modelo de armazenamento de um aplicativo do Entity Framework.
+O SSDL (Store Schema Definition Language) é uma linguagem baseada em XML que descreve o modelo de armazenamento de um aplicativo Entity Framework.
 
-Em um aplicativo do Entity Framework, os metadados de modelo de armazenamento é carregado de um arquivo. SSDL (escrito em SSDL) em uma instância da System.Data.Metadata.Edm.StoreItemCollection em são acessados por meio de métodos no Classe System.Data.Metadata.Edm.MetadataWorkspace. Entity Framework usa metadados do modelo de armazenamento para converter consultas no modelo conceitual para comandos específicos do repositório.
+Em um aplicativo Entity Framework, os metadados do modelo de armazenamento são carregados de um arquivo. SSDL (gravado em SSDL) em uma instância do System. Data. Metadata. Edm. StoreItemCollection e é acessível usando métodos no Classe System. Data. Metadata. Edm. MetadataWorkspace. Entity Framework usa metadados do modelo de armazenamento para converter consultas em relação ao modelo conceitual para armazenar comandos específicos do armazenamento.
 
-O Entity Framework Designer (Designer de EF) armazena informações de modelo de armazenamento em um arquivo. edmx em tempo de design. No momento da compilação o Entity Designer usa as informações em um arquivo. edmx para criar o arquivo. SSDL que é necessário pelo Entity Framework em tempo de execução.
+O Entity Framework Designer (EF designer) armazena informações do modelo de armazenamento em um arquivo. edmx em tempo de design. No momento da compilação, o Entity Designer usa informações em um arquivo. edmx para criar o arquivo. SSDL necessário para Entity Framework em tempo de execução.
 
-Versões de SSDL são diferenciadas por namespaces XML.
+As versões de SSDL são diferenciadas por namespaces XML.
 
-| Versão SSDL | Namespace XML                                     |
+| Versão do SSDL | Namespace XML                                     |
 |:-------------|:--------------------------------------------------|
-| SSDL v1      | http://schemas.microsoft.com/ado/2006/04/edm/ssdl |
-| SSDL v2      | http://schemas.microsoft.com/ado/2009/02/edm/ssdl |
-| SSDL v3      | http://schemas.microsoft.com/ado/2009/11/edm/ssdl |
+| SSDL v1      | https://schemas.microsoft.com/ado/2006/04/edm/ssdl |
+| SSDL v2      | https://schemas.microsoft.com/ado/2009/02/edm/ssdl |
+| SSDL v3      | https://schemas.microsoft.com/ado/2009/11/edm/ssdl |
 
-## <a name="association-element-ssdl"></a>Elemento de associação (SSDL)
+## <a name="association-element-ssdl"></a>Elemento Association (SSDL)
 
-Uma **associação** elemento na linguagem de definição de esquema de armazenamento (SSDL) especifica colunas que participam da tabela em uma restrição de chave estrangeira no banco de dados subjacente. Dois elementos de final de filho obrigatório especificam tabelas nas extremidades da associação e a multiplicidade em cada extremidade. Um elemento ReferentialConstraint opcional especifica as entidade e dependentes extremidades de associação, bem como as colunas participantes. Se nenhum **ReferentialConstraint** elemento estiver presente, um elemento AssociationSetMapping deve ser usado para especificar os mapeamentos de coluna para a associação.
+Um elemento de **Associação** na linguagem de definição de esquema de repositório (SSDL) especifica colunas de tabela que participam de uma restrição de chave estrangeira no banco de dados subjacente. Dois elementos end filho obrigatórios especificam tabelas nas extremidades da associação e a multiplicidade em cada extremidade. Um elemento ReferentialConstraint opcional especifica as extremidades principais e dependentes da associação, bem como as colunas participantes. Se nenhum elemento **ReferentialConstraint** estiver presente, um elemento AssociationSetMapping deverá ser usado para especificar os mapeamentos de coluna para a associação.
 
-O **associação** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento **Association** pode ter os seguintes elementos filho (na ordem listada):
 
 -   Documentação (zero ou um)
--   End (exatamente dois)
+-   Término (exatamente duas)
 -   ReferentialConstraint (zero ou um)
 -   Elementos de anotação (zero ou mais)
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **associação** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Association** .
 
 | Nome do atributo | É obrigatório | Valor                                                                            |
 |:---------------|:------------|:---------------------------------------------------------------------------------|
-| **Nome**       | Sim         | O nome da restrição de chave estrangeira correspondente no banco de dados subjacente. |
+| **Name**       | Sim         | O nome da restrição de chave estrangeira correspondente no banco de dados subjacente. |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **associação** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **Association** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **associação** elemento que usa um **ReferentialConstraint** elemento para especificar as colunas que participam do **FK\_CustomerOrders**  restrição de chave estrangeira:
+O exemplo a seguir mostra um elemento **Association** que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira **CE @ no__t-3CustomerOrders** :
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -72,11 +72,11 @@ A exemplo a seguir mostra uma **associação** elemento que usa um **Referential
 
 ## <a name="associationset-element-ssdl"></a>Elemento AssociationSet (SSDL)
 
-O **AssociationSet** elemento na linguagem de definição de esquema de armazenamento (SSDL) representa uma restrição de chave estrangeira entre duas tabelas no banco de dados subjacente. As colunas da tabela que participam da restrição de chave estrangeira são especificadas em um elemento de associação. O **associação** elemento que corresponde a um determinado **AssociationSet** especificado no elemento a **associação** atributo do **AssociationSet**  elemento.
+O elemento **AssociationSet** na linguagem de definição de esquema de repositório (SSDL) representa uma restrição de chave estrangeira entre duas tabelas no banco de dados subjacente. As colunas da tabela que participam da restrição FOREIGN KEY são especificadas em um elemento Association. O elemento **Association** que corresponde a um determinado elemento **AssociationSet** é especificado no atributo **Association** do elemento **AssociationSet** .
 
-Conjuntos de associações de SSDL são mapeados para conjuntos de associações de CSDL por um elemento AssociationSetMapping. No entanto, se definir a associação de CSDL para um determinado association da CSDL é definida por meio de um elemento ReferentialConstraint, nenhum correspondente **AssociationSetMapping** elemento é necessário. Nesse caso, se um **AssociationSetMapping** elemento estiver presente, ele define os mapeamentos de serão substituídos pela **ReferentialConstraint** elemento.
+Os conjuntos de associação SSDL são mapeados para conjuntos de associação CSDL por um elemento AssociationSetMapping. No entanto, se a associação de CSDL para um determinado conjunto de associação de CSDL for definida usando um elemento ReferentialConstraint, nenhum elemento **AssociationSetMapping** correspondente será necessário. Nesse caso, se um elemento **AssociationSetMapping** estiver presente, os mapeamentos que ele definir serão substituídos pelo elemento **ReferentialConstraint** .
 
-O **AssociationSet** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento **AssociationSet** pode ter os seguintes elementos filho (na ordem listada):
 
 -   Documentação (zero ou um)
 -   End (zero ou dois)
@@ -84,19 +84,19 @@ O **AssociationSet** elemento pode ter os seguintes elementos filho (na ordem li
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **AssociationSet** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **AssociationSet** .
 
 | Nome do atributo  | É obrigatório | Valor                                                                                                |
 |:----------------|:------------|:-----------------------------------------------------------------------------------------------------|
-| **Nome**        | Sim         | O nome da restrição de chave estrangeira que a associação definida representa.                          |
-| **Associação** | Sim         | O nome da associação que define as colunas que participam na restrição de chave estrangeira. |
+| **Name**        | Sim         | O nome da restrição de chave estrangeira que o conjunto de associação representa.                          |
+| **Associação** | Sim         | O nome da associação que define as colunas que participam da restrição FOREIGN KEY. |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **AssociationSet** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **AssociationSet** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **AssociationSet** elemento que representa o `FK_CustomerOrders` restrição de chave estrangeira no banco de dados subjacente:
+O exemplo a seguir mostra um elemento **AssociationSet** que representa a restrição de chave estrangeira `FK_CustomerOrders` no banco de dados subjacente:
 
 ``` xml
  <AssociationSet Name="FK_CustomerOrders"
@@ -108,14 +108,14 @@ A exemplo a seguir mostra uma **AssociationSet** elemento que representa o `FK_C
 
 ## <a name="collectiontype-element-ssdl"></a>Elemento CollectionType (SSDL)
 
-O **CollectionType** elemento na linguagem de definição de esquema de armazenamento (SSDL) Especifica que o tipo de retorno da função é uma coleção. O **CollectionType** elemento é um filho do elemento ReturnType. O tipo de coleção é especificado usando o elemento RowType filho:
+O elemento **CollectionType** em repositório de linguagem de definição de esquema (SSDL) especifica que o tipo de retorno de uma função é uma coleção. O elemento **CollectionType** é um filho do elemento ReturnType. O tipo de coleção é especificado usando o elemento filho RowType:
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **CollectionType** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **CollectionType** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra uma função que usa um **CollectionType** elemento para especificar que a função retorna uma coleção de linhas.
+O exemplo a seguir mostra uma função que usa um elemento **CollectionType** para especificar que a função retorna uma coleção de linhas.
 
 ``` xml
    <Function Name="GetProducts" IsComposable="true" Schema="dbo">
@@ -135,15 +135,15 @@ O exemplo a seguir mostra uma função que usa um **CollectionType** elemento pa
 
 ## <a name="commandtext-element-ssdl"></a>Elemento CommandText (SSDL)
 
-O **CommandText** elemento na linguagem de definição de esquema de armazenamento (SSDL) é um filho do elemento de função que permite que você defina uma instrução SQL que é executada no banco de dados. O **CommandText** elemento permite que você adicione funcionalidade semelhante a um procedimento armazenado no banco de dados, mas definir a **CommandText** elemento no modelo de armazenamento.
+O elemento **CommandText** na Store (linguagem de definição de esquema) do repositório é um filho do elemento Function que permite que você defina uma instrução SQL que é executada no banco de dados. O elemento **CommandText** permite adicionar funcionalidade semelhante a um procedimento armazenado no banco de dados, mas você define o elemento **CommandText** no modelo de armazenamento.
 
-O **CommandText** elemento não pode ter elementos filho. O corpo dos **CommandText** elemento deve ser uma instrução SQL válida para o banco de dados subjacente.
+O elemento **CommandText** não pode ter elementos filho. O corpo do elemento **CommandText** deve ser uma instrução SQL válida para o banco de dados subjacente.
 
-Atributos não são aplicáveis para o **CommandText** elemento.
+Nenhum atributo é aplicável ao elemento **CommandText** .
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **função** elemento com um filho **CommandText** elemento. Expor a **UpdateProductInOrder** funcionará como um método no ObjectContext, importá-los para o modelo conceitual.  
+O exemplo a seguir mostra um elemento **Function** com um elemento de **CommandText** filho. Expor a função **UpdateProductInOrder** como um método no ObjectContext importando-o para o modelo conceitual.  
 
 ``` xml
  <Function Name="UpdateProductInOrder" IsComposable="false">
@@ -163,9 +163,9 @@ A exemplo a seguir mostra uma **função** elemento com um filho **CommandText**
 
 ## <a name="definingquery-element-ssdl"></a>Elemento DefiningQuery (SSDL)
 
-O **DefiningQuery** elemento na linguagem de definição de esquema de armazenamento (SSDL) permite que você execute uma instrução SQL diretamente no banco de dados subjacente. O **DefiningQuery** elemento normalmente é usado como um modo de exibição de banco de dados, mas o modo de exibição é definido no modelo de armazenamento, em vez do banco de dados. O modo de exibição definido em uma **DefiningQuery** elemento pode ser mapeado para um tipo de entidade no modelo conceitual por meio de um elemento EntitySetMapping. Esses mapeamentos são somente leitura.  
+O elemento **DefiningQuery** na linguagem de definição de esquema de repositório (SSDL) permite executar uma instrução SQL diretamente no banco de dados subjacente. O elemento **DefiningQuery** é comumente usado como uma exibição de banco de dados, mas a exibição é definida no modelo de armazenamento em vez do banco de dados. O modo de exibição definido em um elemento **DefiningQuery** pode ser mapeado para um tipo de entidade no modelo conceitual por meio de um elemento EntitySetMapping. Esses mapeamentos são somente leitura.  
 
-A sintaxe SSDL a seguir mostra a declaração de um **EntitySet** seguido de **DefiningQuery** elemento que contém uma consulta usada para recuperar o modo de exibição.
+A sintaxe SSDL a seguir mostra a declaração de um **EntitySet** seguido pelo elemento **DefiningQuery** que contém uma consulta usada para recuperar a exibição.
 
 ``` xml
  <Schema>
@@ -180,33 +180,33 @@ A sintaxe SSDL a seguir mostra a declaração de um **EntitySet** seguido de **D
  </Schema>
 ```
 
-Você pode usar procedimentos armazenados no Entity Framework para habilitar cenários de leitura / gravação sobre modos de exibição. Você pode usar uma exibição da fonte de dados ou uma exibição de Entity SQL que a tabela base para recuperação de dados e para processamento por procedimentos armazenados de alterações.
+Você pode usar procedimentos armazenados no Entity Framework para habilitar cenários de leitura/gravação em exibições. Você pode usar uma exibição da fonte de dados ou uma exibição Entity SQL como a tabela base para recuperar dados e para o processamento de alterações por procedimentos armazenados.
 
-Você pode usar o **DefiningQuery** elemento para o Microsoft SQL Server Compact 3.5 de destino. Embora o SQL Server Compact 3.5 não oferece suporte a procedimentos armazenados, você pode implementar uma funcionalidade semelhante a **DefiningQuery** elemento. É outro lugar onde ele pode ser útil na criação de procedimentos armazenados para superar uma incompatibilidade entre os tipos de dados usados na linguagem de programação e aqueles da fonte de dados. Você poderia escrever um **DefiningQuery** que leva a um determinado conjunto de parâmetros e, em seguida, chama um procedimento armazenado com um conjunto diferente de parâmetros, por exemplo, um procedimento armazenado que exclui dados.
+Você pode usar o elemento **DefiningQuery** para direcionar Microsoft SQL Server Compact 3,5. Embora SQL Server Compact 3,5 não ofereça suporte a procedimentos armazenados, você pode implementar uma funcionalidade semelhante com o elemento **DefiningQuery** . Outro lugar onde pode ser útil é a criação de procedimentos armazenados para superar uma incompatibilidade entre os tipos de dados usados na linguagem de programação e os da fonte de dados. Você poderia escrever um **DefiningQuery** que usa um determinado conjunto de parâmetros e, em seguida, chama um procedimento armazenado com um conjunto diferente de parâmetros, por exemplo, um procedimento armazenado que exclui dados.
 
 ## <a name="dependent-element-ssdl"></a>Elemento dependente (SSDL)
 
-O **dependentes** na linguagem de definição de esquema de armazenamento (SSDL) é um elemento filho ao elemento ReferentialConstraint que define o final dependente de uma restrição de chave estrangeira (também chamado de uma restrição referencial). O **dependentes** elemento Especifica a coluna (ou colunas) em uma tabela que fazem referência a uma coluna de chave primária (ou colunas). **PropertyRef** elementos especificam quais colunas são referenciadas. O Principal elemento Especifica as colunas de chave primária referenciadas pelas colunas especificadas na **dependentes** elemento.
+O elemento **dependente** na linguagem de definição de esquema de repositório (SSDL) é um elemento filho para o elemento ReferentialConstraint que define a extremidade dependente de uma restrição FOREIGN KEY (também chamada de restrição referencial). O elemento **dependente** especifica a coluna (ou colunas) em uma tabela que faz referência a uma coluna de chave primária (ou colunas). Os elementos **PropertyRef** especificam quais colunas são referenciadas. O elemento principal especifica as colunas de chave primária que são referenciadas por colunas que são especificadas no elemento **dependente** .
 
-O **dependentes** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento **dependente** pode ter os seguintes elementos filho (na ordem listada):
 
 -   PropertyRef (um ou mais)
 -   Elementos de anotação (zero ou mais)
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **dependentes** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **dependente** .
 
 | Nome do atributo | É obrigatório | Valor                                                                                                                                                       |
 |:---------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Função**       | Sim         | O mesmo valor que o **função** (se usado) de atributo do elemento final correspondente; caso contrário, o nome da tabela que contém a coluna de referência. |
+| **Função**       | Sim         | O mesmo valor que o atributo de **função** (se usado) do elemento final correspondente; caso contrário, o nome da tabela que contém a coluna de referência. |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **dependentes** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para CSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **dependente** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para CSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento de associação que usa uma **ReferentialConstraint** elemento para especificar as colunas que participam do **FK\_CustomerOrders** chave estrangeira restrição. O **dependentes** elemento Especifica a **CustomerId** coluna do **ordem** tabela como o final dependente da restrição.
+O exemplo a seguir mostra um elemento Association que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira **CE @ no__t-2CustomerOrders** . O elemento **dependente** especifica a coluna **CustomerID** da tabela **Order** como a extremidade dependente da restrição.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -229,20 +229,20 @@ O exemplo a seguir mostra um elemento de associação que usa uma **ReferentialC
 
 ## <a name="documentation-element-ssdl"></a>Elemento Documentation (SSDL)
 
-O **documentação** elemento na linguagem de definição de esquema de armazenamento (SSDL) pode ser usado para fornecer informações sobre um objeto que é definido em um elemento pai.
+O elemento **Documentation** na Store (linguagem de definição de esquema de repositório) pode ser usado para fornecer informações sobre um objeto que é definido em um elemento pai.
 
-O **documentação** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento de **documentação** pode ter os seguintes elementos filho (na ordem listada):
 
--   **Resumo**: uma breve descrição do elemento pai. (zero ou um elemento)
--   **LongDescription**: uma descrição abrangente do elemento pai. (zero ou um elemento)
+-   **Resumo**: Uma breve descrição do elemento pai. (zero ou um elemento)
+-   **LongDescription**: Uma descrição abrangente do elemento pai. (zero ou um elemento)
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **documentação** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para CSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento de **documentação** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para CSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra a **documentação** como um elemento filho de um elemento EntityType.
+O exemplo a seguir mostra o elemento de **documentação** como um elemento filho de um elemento EntityType.
 
 ``` xml
  <EntityType Name="Customers">
@@ -260,13 +260,13 @@ A exemplo a seguir mostra a **documentação** como um elemento filho de um elem
 
 ## <a name="end-element-ssdl"></a>Elemento final (SSDL)
 
-O **final** elemento na linguagem de definição de esquema de armazenamento (SSDL) Especifica a tabela e o número de linhas em uma extremidade de uma restrição de chave estrangeira no banco de dados subjacente. O **final** elemento pode ser um filho do elemento de associação ou o elemento AssociationSet. Em cada caso, os possíveis elementos filho e atributos aplicáveis são diferentes.
+O elemento **final** na Store de linguagem de definição de esquema (SSDL) especifica a tabela e o número de linhas em uma extremidade de uma restrição de chave estrangeira no banco de dados subjacente. O elemento **end** pode ser filho do elemento Association ou do elemento AssociationSet. Em cada caso, os possíveis elementos filho e os atributos aplicáveis são diferentes.
 
-### <a name="end-element-as-a-child-of-the-association-element"></a>Elemento final como um filho do elemento de associação
+### <a name="end-element-as-a-child-of-the-association-element"></a>Elemento end como um filho do elemento Association
 
-Uma **final** elemento (como um filho a **associação** elemento) Especifica a tabela e o número de linhas no final de uma restrição de chave estrangeira com a **tipo** e **Multiplicidade** atributos, respectivamente. Extremidades de uma restrição de chave estrangeira são definidas como parte de uma associação de SSDL; uma associação de SSDL deve ter exatamente duas extremidades.
+Um elemento **final** (como um filho do elemento **Association** ) especifica a tabela e o número de linhas no final de uma restrição FOREIGN KEY com os atributos **Type** e **multiplicidade** , respectivamente. As extremidades de uma restrição FOREIGN KEY são definidas como parte de uma associação SSDL; uma associação SSDL deve ter exatamente duas extremidades.
 
-Uma **final** elemento pode ter os seguintes elementos filho (na ordem listada):
+Um elemento **final** pode ter os seguintes elementos filho (na ordem listada):
 
 -   Documentação (zero ou um elemento)
 -   OnDelete (zero ou um elemento)
@@ -274,20 +274,20 @@ Uma **final** elemento pode ter os seguintes elementos filho (na ordem listada):
 
 #### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **final** elemento quando ele for o filho de um **associação** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **final** quando ele é o filho de um elemento **Association** .
 
 | Nome do atributo   | É obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                      |
 |:-----------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Tipo**         | Sim         | O nome totalmente qualificado do conjunto de entidades SSDL é no final da restrição de chave estrangeira.                                                                                                                                                                                                                                                                                          |
-| **Função**         | Não          | O valor de **função** atributo no elemento Principal ou dependente do elemento ReferentialConstraint correspondente (se usado).                                                                                                                                                                                                                                             |
-| **Multiplicidade** | Sim         | **1**, **entre 0 e 1**, ou **\*** dependendo do número de linhas que podem estar no final da restrição de chave estrangeira. <br/> **1** indica que exatamente uma linha existe no final de restrição de chave estrangeira. <br/> **entre 0 e 1** indica que existe de zero ou uma linha no final de restrição de chave estrangeira. <br/> **\*** indica que zero, um ou mais linhas existem no final de restrição de chave estrangeira. |
+| **Tipo**         | Sim         | O nome totalmente qualificado do conjunto de entidades SSDL que está no final da restrição de chave estrangeira.                                                                                                                                                                                                                                                                                          |
+| **Função**         | Não          | O valor do atributo **role** no elemento principal ou dependente do elemento ReferentialConstraint correspondente (se usado).                                                                                                                                                                                                                                             |
+| **Multiplicidade** | Sim         | **1**, **0.. 1**ou **\*** , dependendo do número de linhas que podem estar no final da restrição de chave estrangeira. <br/> **1** indica que exatamente uma linha existe no final da restrição de chave estrangeira. <br/> **0.. 1** indica que zero ou uma linha existe no final da restrição de chave estrangeira. <br/> **\*** indica que zero, uma ou mais linhas existem no final da restrição de chave estrangeira. |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **final** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para CSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **final** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para CSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 #### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **associação** elemento que define o **FK\_CustomerOrders** restrição de chave estrangeira. O **multiplicidade** valores especificados em cada **final** elemento indicam que muitas linhas no **pedidos** tabela pode ser associada uma linha no **clientes**  tabela, mas apenas uma linha em de **clientes** tabela pode ser associada uma linha no **pedidos** tabela. Além disso, o **OnDelete** elemento indica que todas as linhas a **pedidos** tabelas que fazem referência a uma linha específica no **clientes** tabela será excluída se a linha na o **clientes** tabela for excluída.
+O exemplo a seguir mostra um elemento **Association** que define a restrição de chave estrangeira **CE @ no__t-2CustomerOrders** . Os valores de **multiplicidade** especificados em cada elemento de **extremidade** indicam que muitas linhas na tabela **Orders** podem ser associadas a uma linha na tabela **Customers** , mas apenas uma linha na tabela **Customers** pode ser associada a uma linha na tabela **Orders** . Além disso, o elemento **OnDelete** indica que todas as linhas na tabela **Orders** que fazem referência a uma linha específica na tabela **Customers** serão excluídas se a linha na tabela **Customers** for excluída.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -308,30 +308,30 @@ A exemplo a seguir mostra uma **associação** elemento que define o **FK\_Custo
  </Association>
 ```
 
-### <a name="end-element-as-a-child-of-the-associationset-element"></a>Elemento final como um filho do elemento AssociationSet
+### <a name="end-element-as-a-child-of-the-associationset-element"></a>Elemento end como um filho do elemento AssociationSet
 
-O **final** elemento (como um filho de **AssociationSet** elemento) especifica uma tabela em uma extremidade de uma restrição de chave estrangeira no banco de dados subjacente.
+O elemento **end** (como um filho do elemento **AssociationSet** ) especifica uma tabela em uma extremidade de uma restrição FOREIGN KEY no banco de dados subjacente.
 
-Uma **final** elemento pode ter os seguintes elementos filho (na ordem listada):
+Um elemento **final** pode ter os seguintes elementos filho (na ordem listada):
 
 -   Documentação (zero ou um)
 -   Elementos de anotação (zero ou mais)
 
 #### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **final** elemento quando ele for o filho de um **AssociationSet** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **final** quando ele é o filho de um elemento **AssociationSet** .
 
 | Nome do atributo | É obrigatório | Valor                                                                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------|
-| **EntitySet**  | Sim         | O nome do conjunto de entidades SSDL é no final da restrição de chave estrangeira.                                      |
-| **Função**       | Não          | O valor de um dos **função** atributos especificados em um **final** elemento do elemento de associação correspondente. |
+| **EntitySet**  | Sim         | O nome do conjunto de entidades SSDL que está no final da restrição de chave estrangeira.                                      |
+| **Função**       | Não          | O valor de um dos atributos de **função** especificados em um elemento **end** do elemento Association correspondente. |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **final** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para CSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **final** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para CSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 #### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **EntityContainer** elemento com um **AssociationSet** elemento com dois **final** elementos:
+O exemplo a seguir mostra um elemento **EntityContainer** com um elemento **AssociationSet** com dois elementos **end** :
 
 ``` xml
  <EntityContainer Name="ExampleModelStoreContainer">
@@ -351,11 +351,11 @@ A exemplo a seguir mostra uma **EntityContainer** elemento com um **AssociationS
 
 ## <a name="entitycontainer-element-ssdl"></a>Elemento EntityContainer (SSDL)
 
-Uma **EntityContainer** elemento na linguagem de definição de esquema de armazenamento (SSDL) descreve a estrutura da fonte de dados subjacente em um aplicativo do Entity Framework: conjuntos de entidades SSDL (definidos em elementos EntitySet) representam tabelas um banco de dados, tipos de entidade SSDL (definidos em elementos EntityType) representam linhas em uma tabela e conjuntos de associações (definidos em elementos de AssociationSet) representam as restrições de chave estrangeira em um banco de dados. Um contêiner de entidade do modelo de armazenamento é mapeado para um contêiner de entidade do modelo conceitual através de elemento EntityContainerMapping.
+Um elemento **EntityContainer** na Store (linguagem de definição de esquema) de repositório descreve a estrutura da fonte de dados subjacente em um aplicativo Entity Framework: Os conjuntos de entidades SSDL (definidos em elementos EntitySet) representam tabelas em um banco de dados, os tipos de entidade SSDL (definidos em elementos EntityType) representam linhas em uma tabela e os conjuntos de associação (definidos em elementos AssociationSet) representam restrições Foreign Key em um banco. Um contêiner de entidade de modelo de armazenamento é mapeado para um contêiner de entidade de modelo conceitual por meio do elemento EntityContainerMapping.
 
-Uma **EntityContainer** elemento pode ter zero ou mais elementos de documentação. Se um **documentação** elemento estiver presente, ela deve preceder todos os outros elementos filho.
+Um elemento **EntityContainer** pode ter zero ou um elementos de documentação. Se um elemento de **documentação** estiver presente, ele deverá preceder todos os outros elementos filho.
 
-Uma **EntityContainer** elemento pode ter zero ou mais dos seguintes elementos filho (na ordem listada):
+Um elemento **EntityContainer** pode ter zero ou mais dos seguintes elementos filho (na ordem listada):
 
 -   EntitySet
 -   AssociationSet
@@ -363,18 +363,18 @@ Uma **EntityContainer** elemento pode ter zero ou mais dos seguintes elementos f
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **EntityContainer** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntityContainer** .
 
 | Nome do atributo | É obrigatório | Valor                                                                   |
 |:---------------|:------------|:------------------------------------------------------------------------|
-| **Nome**       | Sim         | O nome do contêiner de entidade. Esse nome não pode conter pontos (.). |
+| **Name**       | Sim         | O nome do contêiner de entidade. Este nome não pode conter pontos (.). |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **EntityContainer** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **EntityContainer** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **EntityContainer** elemento que define dois conjuntos de entidades e um conjunto de associações. Observe que os nomes de tipo de associação e o tipo de entidade são qualificados pelo nome de namespace do modelo conceitual.
+O exemplo a seguir mostra um elemento **EntityContainer** que define dois conjuntos de entidades e um conjunto de associação. Observe que o tipo de entidade e os nomes de tipo de associação são qualificados pelo nome do namespace do modelo conceitual.
 
 ``` xml
  <EntityContainer Name="ExampleModelStoreContainer">
@@ -394,9 +394,9 @@ A exemplo a seguir mostra uma **EntityContainer** elemento que define dois conju
 
 ## <a name="entityset-element-ssdl"></a>Elemento EntitySet (SSDL)
 
-Uma **EntitySet** elemento na linguagem de definição de esquema de armazenamento (SSDL) representa uma tabela ou exibição no banco de dados subjacente. Um elemento EntityType em SSDL representa uma linha na tabela ou exibição. O **EntityType** atributo de uma **EntitySet** elemento Especifica o tipo de entidade específico SSDL que representa as linhas em um conjunto de entidades SSDL. O mapeamento entre um conjunto de entidades do CSDL e um conjunto de entidades SSDL é especificado em um elemento EntitySetMapping.
+Um elemento **EntitySet** na linguagem de definição de esquema de repositório (SSDL) representa uma tabela ou exibição no banco de dados subjacente. Um elemento EntityType em SSDL representa uma linha na tabela ou exibição. O atributo **EntityType** de um elemento **EntitySet** especifica o tipo de entidade SSDL específico que representa linhas em um conjunto de entidades SSDL. O mapeamento entre um conjunto de entidades CSDL e um conjunto de entidades SSDL é especificado em um elemento EntitySetMapping.
 
-O **EntitySet** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento **EntitySet** pode ter os seguintes elementos filho (na ordem listada):
 
 -   Documentação (zero ou um elemento)
 -   DefiningQuery (zero ou um elemento)
@@ -404,24 +404,24 @@ O **EntitySet** elemento pode ter os seguintes elementos filho (na ordem listada
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **EntitySet** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntitySet** .
 
 > [!NOTE]
-> Alguns atributos (não listados aqui) podem ser qualificados com o **armazenar** alias. Esses atributos são usados pelo Assistente de modelo de atualização ao atualizar um modelo.
+> Alguns atributos (não listados aqui) podem ser qualificados com o alias da **loja** . Esses atributos são usados pelo assistente de modelo de atualização ao atualizar um modelo.
 
 | Nome do atributo | É obrigatório | Valor                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------|
-| **Nome**       | Sim         | O nome do conjunto de entidades.                                                              |
-| **EntityType** | Sim         | O nome totalmente qualificado do tipo de entidade para a qual o conjunto de entidades contém instâncias. |
-| **Esquema**     | Não          | O esquema de banco de dados.                                                                     |
-| **Tabela**      | Não          | A tabela de banco de dados.                                                                      |
+| **Name**       | Sim         | O nome do conjunto de entidades.                                                              |
+| **EntityType** | Sim         | O nome totalmente qualificado do tipo de entidade para o qual o conjunto de entidades contém instâncias. |
+| **Esquema**     | Não          | O esquema do banco de dados.                                                                     |
+| **Tabela**      | Não          | A tabela do banco de dados.                                                                      |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **EntitySet** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **EntitySet** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **EntityContainer** elemento que tem dois **EntitySet** elementos e um **AssociationSet** elemento:
+O exemplo a seguir mostra um elemento **EntityContainer** que tem dois elementos **EntitySet** e um elemento **AssociationSet** :
 
 ``` xml
  <EntityContainer Name="ExampleModelStoreContainer">
@@ -441,9 +441,9 @@ A exemplo a seguir mostra uma **EntityContainer** elemento que tem dois **Entity
 
 ## <a name="entitytype-element-ssdl"></a>Elemento EntityType (SSDL)
 
-Uma **EntityType** elemento na linguagem de definição de esquema de armazenamento (SSDL) representa uma linha em uma tabela ou exibição de banco de dados subjacente. Um elemento de EntitySet em SSDL representa a tabela ou exibição na qual as linhas ocorrerem. O **EntityType** atributo de uma **EntitySet** elemento Especifica o tipo de entidade específico SSDL que representa as linhas em um conjunto de entidades SSDL. O mapeamento entre um tipo de entidade SSDL e um tipo de entidade CSDL é especificado em um elemento EntityTypeMapping.
+Um elemento **EntityType** na linguagem de definição de esquema de repositório (SSDL) representa uma linha em uma tabela ou exibição do banco de dados subjacente. Um elemento EntitySet em SSDL representa a tabela ou exibição na qual as linhas ocorrem. O atributo **EntityType** de um elemento **EntitySet** especifica o tipo de entidade SSDL específico que representa linhas em um conjunto de entidades SSDL. O mapeamento entre um tipo de entidade SSDL e um tipo de entidade CSDL é especificado em um elemento EntityTypeMapping.
 
-O **EntityType** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento **EntityType** pode ter os seguintes elementos filho (na ordem listada):
 
 -   Documentação (zero ou um elemento)
 -   Chave (zero ou um elemento)
@@ -451,18 +451,18 @@ O **EntityType** elemento pode ter os seguintes elementos filho (na ordem listad
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **EntityType** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntityType** .
 
 | Nome do atributo | É obrigatório | Valor                                                                                                                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nome**       | Sim         | O nome do tipo de entidade. Esse valor geralmente é igual ao nome da tabela na qual o tipo de entidade representa uma linha. Esse valor não pode conter nenhum pontos (.). |
+| **Name**       | Sim         | O nome do tipo de entidade. Esse valor é geralmente o mesmo que o nome da tabela na qual o tipo de entidade representa uma linha. Esse valor não pode conter pontos (.). |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **EntityType** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **EntityType** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **EntityType** elemento com duas propriedades:
+O exemplo a seguir mostra um elemento **EntityType** com duas propriedades:
 
 ``` xml
  <EntityType Name="Customers">
@@ -480,9 +480,9 @@ A exemplo a seguir mostra uma **EntityType** elemento com duas propriedades:
 
 ## <a name="function-element-ssdl"></a>Elemento Function (SSDL)
 
-O **função** elemento na linguagem de definição de esquema de armazenamento (SSDL) especifica um procedimento armazenado que existe no banco de dados subjacente.
+O elemento **Function** na linguagem de definição de esquema de repositório (SSDL) especifica um procedimento armazenado que existe no banco de dados subjacente.
 
-O **função** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento **Function** pode ter os seguintes elementos filho (na ordem listada):
 
 -   Documentação (zero ou um)
 -   Parâmetro (zero ou mais)
@@ -490,41 +490,41 @@ O **função** elemento pode ter os seguintes elementos filho (na ordem listada)
 -   ReturnType (zero ou mais)
 -   Elementos de anotação (zero ou mais)
 
-Retornar de um tipo para uma função deve ser especificado com qualquer um de **ReturnType** elemento ou o **ReturnType** atributo (veja abaixo), mas não ambos.
+Um tipo de retorno para uma função deve ser especificado com o elemento **ReturnType** ou o atributo **ReturnType** (veja abaixo), mas não ambos.
 
-Os procedimentos armazenados que são especificados no modelo de armazenamento podem ser importados para o modelo conceitual de um aplicativo. Para obter mais informações, consulte [consultando com procedimentos armazenados](~/ef6/modeling/designer/stored-procedures/query.md). O **função** elemento também pode ser usado para definir funções personalizadas no modelo de armazenamento.  
+Os procedimentos armazenados que são especificados no modelo de armazenamento podem ser importados para o modelo conceitual de um aplicativo. Para obter mais informações, consulte [consultando com procedimentos armazenados](~/ef6/modeling/designer/stored-procedures/query.md). O elemento **Function** também pode ser usado para definir funções personalizadas no modelo de armazenamento.  
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **função** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Function** .
 
 > [!NOTE]
-> Alguns atributos (não listados aqui) podem ser qualificados com o **armazenar** alias. Esses atributos são usados pelo Assistente de modelo de atualização ao atualizar um modelo.
+> Alguns atributos (não listados aqui) podem ser qualificados com o alias da **loja** . Esses atributos são usados pelo assistente de modelo de atualização ao atualizar um modelo.
 
 | Nome do atributo             | É obrigatório | Valor                                                                                                                                                                                                              |
 |:---------------------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nome**                   | Sim         | O nome do procedimento armazenado.                                                                                                                                                                                  |
+| **Name**                   | Sim         | O nome do procedimento armazenado.                                                                                                                                                                                  |
 | **ReturnType**             | Não          | O tipo de retorno do procedimento armazenado.                                                                                                                                                                           |
-| **Aggregate**              | Não          | **Verdadeiro** se o procedimento armazenado retorna um valor de agregação; caso contrário **falso**.                                                                                                                                  |
-| **Interno**                | Não          | **Verdadeiro** se a função for uma interna<sup>1</sup> função; caso contrário **False**.                                                                                                                                  |
+| **Aggregate**              | Não          | **True** se o procedimento armazenado retornar um valor de agregação; caso contrário, **false**.                                                                                                                                  |
+| **BuiltIn**                | Não          | **True** se a função for uma função interna<sup>1</sup> ; caso contrário, **false**.                                                                                                                                  |
 | **StoreFunctionName**      | Não          | O nome do procedimento armazenado.                                                                                                                                                                                  |
-| **NiladicFunction**        | Não          | **Verdadeiro** se a função for um niladic<sup>2</sup> função; **Falsos** caso contrário.                                                                                                                                   |
-| **IsComposable**           | Não          | **Verdadeiro** se a função for um Combinável<sup>3</sup> função; **Falsos** caso contrário.                                                                                                                                |
-| **ParameterTypeSemantics** | Não          | A enumeração que define a semântica de tipo usada para resolver as sobrecargas de função. A enumeração é definida no manifesto do provedor por definição de função. O valor padrão é **AllowImplicitConversion**. |
+| **NiladicFunction**        | Não          | **True** se a função for uma função niladic<sup>2</sup> ; Caso contrário, **false** .                                                                                                                                   |
+| **IsComposable**           | Não          | **True** se a função for uma função combinável<sup>3</sup> ; Caso contrário, **false** .                                                                                                                                |
+| **ParameterTypeSemantics** | Não          | A enumeração que define a semântica de tipo usada para resolver sobrecargas de função. A enumeração é definida no manifesto do provedor por definição de função. O valor padrão é **AllowImplicitConversion**. |
 | **Esquema**                 | Não          | O nome do esquema no qual o procedimento armazenado é definido.                                                                                                                                                   |
 
-<sup>1</sup> uma função interna é uma função que é definida no banco de dados. Para obter informações sobre as funções que são definidos no modelo de armazenamento, consulte o elemento CommandText (SSDL).
+<sup>1</sup> uma função interna é uma função que é definida no banco de dados. Para obter informações sobre as funções definidas no modelo de armazenamento, consulte elemento CommandText (SSDL).
 
 <sup>2</sup> uma função niladic é uma função que não aceita parâmetros e, quando chamado, não requer parênteses.
 
 <sup>3</sup> duas funções são combináveis se a saída de uma função pode ser a entrada para a outra função.
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **função** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **Function** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **função** elemento que corresponde do **UpdateOrderQuantity** procedimento armazenado. O procedimento armazenado aceita dois parâmetros e não retorna um valor.
+O exemplo a seguir mostra um elemento **Function** que corresponde ao procedimento armazenado **UpdateOrderQuantity** . O procedimento armazenado aceita dois parâmetros e não retorna um valor.
 
 ``` xml
  <Function Name="UpdateOrderQuantity"
@@ -539,20 +539,20 @@ A exemplo a seguir mostra uma **função** elemento que corresponde do **UpdateO
  </Function>
 ```
 
-## <a name="key-element-ssdl"></a>Elemento key (SSDL)
+## <a name="key-element-ssdl"></a>Elemento Key (SSDL)
 
-O **chave** elemento na linguagem de definição de esquema de armazenamento (SSDL) representa a chave primária de uma tabela no banco de dados subjacente. **Chave** é um elemento filho de um elemento EntityType, que representa uma linha em uma tabela. A chave primária é definida na **chave** elemento fazendo referência a um ou mais elementos de propriedade são definidos na **EntityType** elemento.
+O elemento de **chave** na linguagem de definição de esquema de repositório (SSDL) representa a chave primária de uma tabela no banco de dados subjacente. **Key** é um elemento filho de um elemento EntityType, que representa uma linha em uma tabela. A chave primária é definida no elemento de **chave** referenciando um ou mais elementos de propriedade que são definidos no elemento **EntityType** .
 
-O **chave** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento **Key** pode ter os seguintes elementos filho (na ordem listada):
 
 -   PropertyRef (um ou mais)
 -   Elementos de anotação
 
-Atributos não são aplicáveis para o **chave** elemento.
+Nenhum atributo é aplicável ao elemento de **chave** .
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **EntityType** elemento com uma chave que faz referência a uma propriedade:
+O exemplo a seguir mostra um elemento **EntityType** com uma chave que faz referência a uma propriedade:
 
 ``` xml
  <EntityType Name="Customers">
@@ -568,29 +568,29 @@ A exemplo a seguir mostra uma **EntityType** elemento com uma chave que faz refe
  </EntityType>
 ```
 
-## <a name="ondelete-element-ssdl"></a>Elemento OnDelete (SSDL)
+## <a name="ondelete-element-ssdl"></a>Elemento ondelery (SSDL)
 
-O **OnDelete** elemento na linguagem de definição de esquema de armazenamento (SSDL) reflete o comportamento do banco de dados quando uma linha que participa de uma restrição de chave estrangeira é excluída. Se a ação for definida como **Cascade**, em seguida, as linhas que fazem referência a uma linha que está sendo excluída também serão excluídas. Se a ação for definida como **None**, em seguida, as linhas que fazem referência a uma linha que está sendo excluída também não são excluídas. Uma **OnDelete** é um elemento filho de um elemento final.
+O elemento **OnDelete** na Store (linguagem de definição de esquema) do repositório reflete o comportamento do banco de dados quando uma linha que participa de uma restrição de chave estrangeira é excluída. Se a ação for definida como **Cascade**, as linhas que fazem referência a uma linha que está sendo excluída também serão excluídas. Se a ação for definida como **nenhuma**, as linhas que fazem referência a uma linha que está sendo excluída também não serão excluídas. Um elemento **OnDelete** é um elemento filho de um elemento end.
 
-Uma **OnDelete** elemento pode ter os seguintes elementos filho (na ordem listada):
+Um elemento **OnDelete** pode ter os seguintes elementos filho (na ordem listada):
 
 -   Documentação (zero ou um)
 -   Elementos de anotação (zero ou mais)
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **OnDelete** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **OnDelete** .
 
 | Nome do atributo | É obrigatório | Valor                                                                                               |
 |:---------------|:------------|:----------------------------------------------------------------------------------------------------|
-| **Ação**     | Sim         | **CASCADE** ou **None**. (O valor **Restricted** é válida, mas tem o mesmo comportamento **None**.) |
+| **Ação**     | Sim         | **Cascade** ou **None**. (O valor **restrito** é válido, mas tem o mesmo comportamento que **nenhum**.) |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **OnDelete** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **OnDelete** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **associação** elemento que define o **FK\_CustomerOrders** restrição de chave estrangeira. O **OnDelete** elemento indica que todas as linhas a **pedidos** tabelas que fazem referência a uma linha específica no **clientes** tabela será excluída se na linha do **Os clientes** tabela for excluída.
+O exemplo a seguir mostra um elemento **Association** que define a restrição de chave estrangeira **CE @ no__t-2CustomerOrders** . O elemento **OnDelete** indica que todas as linhas na tabela **Orders** que fazem referência a uma linha específica na tabela **Customers** serão excluídas se a linha na tabela **Customers** for excluída.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -613,33 +613,33 @@ A exemplo a seguir mostra uma **associação** elemento que define o **FK\_Custo
 
 ## <a name="parameter-element-ssdl"></a>Elemento Parameter (SSDL)
 
-O **parâmetro** elemento na linguagem de definição de esquema de armazenamento (SSDL) é um filho do elemento de função que especifica os parâmetros para um procedimento armazenado no banco de dados.
+O elemento **Parameter** na linguagem de definição de esquema de repositório (SSDL) é um filho do elemento Function que especifica parâmetros para um procedimento armazenado no banco de dados.
 
-O **parâmetro** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento **Parameter** pode ter os seguintes elementos filho (na ordem listada):
 
 -   Documentação (zero ou um)
 -   Elementos de anotação (zero ou mais)
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **parâmetro** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Parameter** .
 
 | Nome do atributo | É obrigatório | Valor                                                                                                                                                                                                                           |
 |:---------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nome**       | Sim         | O nome do parâmetro.                                                                                                                                                                                                      |
+| **Name**       | Sim         | O nome do parâmetro.                                                                                                                                                                                                      |
 | **Tipo**       | Sim         | O tipo de parâmetro.                                                                                                                                                                                                             |
-| **Modo**       | Não          | **Na**, **Out**, ou **InOut** dependendo se o parâmetro for uma entrada, saída ou parâmetro de entrada/saída.                                                                                                                |
+| **Modo**       | Não          | **In**, **out**ou **Inout** , dependendo se o parâmetro é um parâmetro de entrada, saída ou entrada/saída.                                                                                                                |
 | **MaxLength**  | Não          | O comprimento máximo do parâmetro.                                                                                                                                                                                            |
 | **Precisão**  | Não          | A precisão do parâmetro.                                                                                                                                                                                                 |
 | **Ajustar Escala**      | Não          | A escala do parâmetro.                                                                                                                                                                                                     |
-| **SRID**       | Não          | Identificador de referência espacial do sistema. Válido somente para parâmetros de tipos espaciais. Para obter mais informações, consulte [SRID](http://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
+| **SRID**       | Não          | Identificador de referência de sistema espacial. Válido somente para parâmetros de tipos espaciais. Para obter mais informações, consulte [SRID](https://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **parâmetro** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **Parameter** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **função** elemento que tem dois **parâmetro** elementos que especificam parâmetros de entrada:
+O exemplo a seguir mostra um elemento **Function** que tem dois elementos de **parâmetro** que especificam parâmetros de entrada:
 
 ``` xml
  <Function Name="UpdateOrderQuantity"
@@ -654,29 +654,29 @@ A exemplo a seguir mostra uma **função** elemento que tem dois **parâmetro** 
  </Function>
 ```
 
-## <a name="principal-element-ssdl"></a>Elemento de entidade de segurança (SSDL)
+## <a name="principal-element-ssdl"></a>Elemento principal (SSDL)
 
-O **Principal** na linguagem de definição de esquema de armazenamento (SSDL) é um elemento filho ao elemento ReferentialConstraint que define o final principal de uma restrição de chave estrangeira (também chamado de uma restrição referencial). O **Principal** elemento Especifica a coluna de chave primária (ou colunas) em uma tabela que é referenciada por outra coluna (ou colunas). **PropertyRef** elementos especificam quais colunas são referenciadas. O elemento dependente Especifica colunas que fazem referência a colunas de chave primária que são especificadas na **Principal** elemento.
+O elemento **principal** no SSDL (Store Schema Definition Language) é um elemento filho do elemento ReferentialConstraint que define a extremidade principal de uma restrição FOREIGN KEY (também chamada de restrição referencial). O elemento **principal** especifica a coluna de chave primária (ou colunas) em uma tabela que é referenciada por outra coluna (ou colunas). Os elementos **PropertyRef** especificam quais colunas são referenciadas. O elemento dependente especifica colunas que referenciam as colunas de chave primária que são especificadas no elemento **principal** .
 
-O **Principal** elemento pode ter os seguintes elementos filho (na ordem listada):
+O elemento **principal** pode ter os seguintes elementos filho (na ordem listada):
 
 -   PropertyRef (um ou mais)
 -   Elementos de anotação (zero ou mais)
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **Principal** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **principal** .
 
 | Nome do atributo | É obrigatório | Valor                                                                                                                                                      |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Função**       | Sim         | O mesmo valor que o **função** (se usado) de atributo do elemento final correspondente; caso contrário, o nome da tabela que contém a coluna referenciada. |
+| **Função**       | Sim         | O mesmo valor que o atributo de **função** (se usado) do elemento final correspondente; caso contrário, o nome da tabela que contém a coluna referenciada. |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **Principal** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para CSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **principal** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para CSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento de associação que usa uma **ReferentialConstraint** elemento para especificar as colunas que participam do **FK\_CustomerOrders** chave estrangeira restrição. O **Principal** elemento Especifica a **CustomerId** coluna do **cliente** tabela como o final principal da restrição.
+O exemplo a seguir mostra um elemento Association que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira **CE @ no__t-2CustomerOrders** . O elemento **principal** especifica a coluna **CustomerID** da tabela **Customer** como a extremidade principal da restrição.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -697,37 +697,37 @@ O exemplo a seguir mostra um elemento de associação que usa uma **ReferentialC
  </Association>
 ```
 
-## <a name="property-element-ssdl"></a>Elemento de propriedade (SSDL)
+## <a name="property-element-ssdl"></a>Elemento Property (SSDL)
 
-O **propriedade** elemento na linguagem de definição de esquema de armazenamento (SSDL) representa uma coluna em uma tabela no banco de dados subjacente. **Propriedade** elementos são filhos de elementos de EntityType, que representam as linhas em uma tabela. Cada **propriedade** elemento definido em um **EntityType** elemento representa uma coluna.
+O elemento de **Propriedade** na linguagem de definição de esquema de repositório (SSDL) representa uma coluna em uma tabela no banco de dados subjacente. Elementos de **Propriedade** são filhos de elementos EntityType, que representam linhas em uma tabela. Cada elemento de **Propriedade** definido em um elemento **EntityType** representa uma coluna.
 
-Um **propriedade** elemento não pode ter elementos filho.
+Um elemento de **Propriedade** não pode ter nenhum elemento filho.
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **propriedade** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Property** .
 
 | Nome do atributo            | É obrigatório | Valor                                                                                                                                                                                                                           |
 |:--------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nome**                  | Sim         | O nome da coluna correspondente.                                                                                                                                                                                           |
+| **Name**                  | Sim         | O nome da coluna correspondente.                                                                                                                                                                                           |
 | **Tipo**                  | Sim         | O tipo da coluna correspondente.                                                                                                                                                                                           |
-| **Permite valor nulo**              | Não          | **Verdadeiro** (o valor padrão) ou **falso** dependendo se a coluna correspondente pode ter um valor nulo.                                                                                                                  |
+| **Anula**              | Não          | **True** (o valor padrão) ou **false** , dependendo se a coluna correspondente pode ter um valor nulo.                                                                                                                  |
 | **DefaultValue**          | Não          | O valor padrão da coluna correspondente.                                                                                                                                                                                  |
 | **MaxLength**             | Não          | O comprimento máximo da coluna correspondente.                                                                                                                                                                                 |
-| **FixedLength**           | Não          | **Verdadeiro** ou **falso** dependendo se o valor da coluna correspondente será armazenado como uma cadeia de caracteres de comprimento fixo.                                                                                                              |
+| **Cadeia**           | Não          | **True** ou **false** dependendo se o valor da coluna correspondente será armazenado como uma cadeia de caracteres de comprimento fixo.                                                                                                              |
 | **Precisão**             | Não          | A precisão da coluna correspondente.                                                                                                                                                                                      |
 | **Ajustar Escala**                 | Não          | A escala da coluna correspondente.                                                                                                                                                                                          |
-| **Unicode**               | Não          | **Verdadeiro** ou **falso** dependendo se o valor da coluna correspondente será armazenado como uma cadeia de caracteres Unicode.                                                                                                                   |
-| **Agrupamento**             | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usado na fonte de dados.                                                                                                                                                   |
-| **SRID**                  | Não          | Identificador de referência espacial do sistema. Válido somente para as propriedades de tipos espaciais. Para obter mais informações, consulte [SRID](http://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
-| **StoreGeneratedPattern** | Não          | **None**, **Identity** (se o valor da coluna correspondente é uma identidade que é gerada no banco de dados), ou **calculado** (se o valor da coluna correspondente é calculado no banco de dados). Não válido para RowType propriedades. |
+| **Unicode**               | Não          | **True** ou **false** dependendo se o valor da coluna correspondente será armazenado como uma cadeia de caracteres Unicode.                                                                                                                   |
+| **Agrupamento**             | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                   |
+| **SRID**                  | Não          | Identificador de referência de sistema espacial. Válido somente para propriedades de tipos espaciais. Para obter mais informações, consulte [SRID](https://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
+| **StoreGeneratedPattern** | Não          | **None**, **Identity** (se o valor da coluna correspondente for uma identidade gerada no banco de dados) ou **computado** (se o valor da coluna correspondente for computado no banco de dados). Não é válido para propriedades RowType. |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **propriedade** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **Property** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **EntityType** elemento com dois filhos **propriedade** elementos:
+O exemplo a seguir mostra um elemento **EntityType** com dois elementos de **Propriedade** filho:
 
 ``` xml
  <EntityType Name="Customers">
@@ -745,30 +745,30 @@ A exemplo a seguir mostra uma **EntityType** elemento com dois filhos **propried
 
 ## <a name="propertyref-element-ssdl"></a>Elemento PropertyRef (SSDL)
 
-O **PropertyRef** elemento na linguagem de definição de esquema de armazenamento (SSDL) faz referência a uma propriedade definida em um elemento EntityType para indicar que a propriedade realizará uma das seguintes funções:
+O elemento **PropertyRef** na linguagem de definição de esquema de repositório (SSDL) faz referência a uma propriedade definida em um elemento EntityType para indicar que a propriedade executará uma das seguintes funções:
 
--   Fazer parte da chave primária da tabela que o **EntityType** representa. Um ou mais **PropertyRef** elementos podem ser usados para definir uma chave primária. Para obter mais informações, consulte o elemento de chave.
--   Ser a parte final dependente ou entidade de segurança de uma restrição referencial. Para obter mais informações, consulte o elemento ReferentialConstraint.
+-   Faça parte da chave primária da tabela que o **EntityType** representa. Um ou mais elementos **PropertyRef** podem ser usados para definir uma chave primária. Para obter mais informações, consulte Key Element.
+-   Ser a extremidade dependente ou de entidade de uma restrição referencial. Para obter mais informações, consulte elemento ReferentialConstraint.
 
-O **PropertyRef** elemento só pode ter os seguintes elementos filho:
+O elemento **PropertyRef** só pode ter os seguintes elementos filho:
 
 -   Documentação (zero ou um)
 -   Elementos de anotação
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos que podem ser aplicados para o **PropertyRef** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **PropertyRef** .
 
 | Nome do atributo | É obrigatório | Valor                                |
 |:---------------|:------------|:-------------------------------------|
-| **Nome**       | Sim         | O nome da propriedade referenciada. |
+| **Name**       | Sim         | O nome da propriedade referenciada. |
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **PropertyRef** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para CSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **PropertyRef** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para CSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **PropertyRef** elemento usado para definir uma chave primária, fazendo referência a uma propriedade que é definida em um **EntityType** elemento.
+O exemplo a seguir mostra um elemento **PropertyRef** usado para definir uma chave primária referenciando uma propriedade que é definida em um elemento **EntityType** .
 
 ``` xml
  <EntityType Name="Customers">
@@ -786,24 +786,24 @@ A exemplo a seguir mostra uma **PropertyRef** elemento usado para definir uma ch
 
 ## <a name="referentialconstraint-element-ssdl"></a>Elemento ReferentialConstraint (SSDL)
 
-O **ReferentialConstraint** elemento na linguagem de definição de esquema de armazenamento (SSDL) representa uma restrição de chave estrangeira (também chamada de uma restrição de integridade referencial) no banco de dados subjacente. As extremidades de entidade e dependentes da restrição são especificadas pelos elementos filhos entidade e dependente, respectivamente. Colunas que integram as extremidades de entidade e dependentes são referenciadas com elementos PropertyRef.
+O elemento **ReferentialConstraint** na linguagem de definição de esquema de repositório (SSDL) representa uma restrição FOREIGN KEY (também chamada de restrição de integridade referencial) no banco de dados subjacente. As extremidades principais e dependentes da restrição são especificadas pelos elementos filho principal e dependente, respectivamente. As colunas que participam das extremidades principal e dependente são referenciadas com elementos PropertyRef.
 
-O **ReferentialConstraint** é um elemento filho opcional do elemento de associação. Se um **ReferentialConstraint** elemento não será usado para mapear a restrição de chave estrangeira que é especificada na **associação** elemento, um AssociationSetMapping elemento deve ser usado para fazer isso.
+O elemento **ReferentialConstraint** é um elemento filho opcional do elemento Association. Se um elemento **ReferentialConstraint** não for usado para mapear a restrição FOREIGN KEY especificada no elemento **Association** , um elemento AssociationSetMapping deverá ser usado para fazer isso.
 
-O **ReferentialConstraint** elemento pode ter os seguintes elementos filho:
+O elemento **ReferentialConstraint** pode ter os seguintes elementos filho:
 
 -   Documentação (zero ou um)
 -   Entidade de segurança (exatamente uma)
--   Dependente (exatamente uma)
+-   Dependente (exatamente um)
 -   Elementos de anotação (zero ou mais)
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **ReferentialConstraint** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **ReferentialConstraint** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **associação** elemento que usa um **ReferentialConstraint** elemento para especificar as colunas que participam do **FK\_CustomerOrders**  restrição de chave estrangeira:
+O exemplo a seguir mostra um elemento **Association** que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira **CE @ no__t-3CustomerOrders** :
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -826,16 +826,16 @@ A exemplo a seguir mostra uma **associação** elemento que usa um **Referential
 
 ## <a name="returntype-element-ssdl"></a>Elemento ReturnType (SSDL)
 
-O **ReturnType** elemento na linguagem de definição de esquema de armazenamento (SSDL) Especifica o tipo de retorno para uma função que é definido em um **função** elemento. Uma função de tipo de retorno também pode ser especificado com um **ReturnType** atributo.
+O elemento **ReturnType** na linguagem de definição de esquema de repositório (SSDL) especifica o tipo de retorno para uma função que é definida em um elemento **Function** . Um tipo de retorno de função também pode ser especificado com um atributo **ReturnType** .
 
-O tipo de retorno de uma função é especificado com o **tipo** atributo ou o **ReturnType** elemento.
+O tipo de retorno de uma função é especificado com o atributo **Type** ou o elemento **ReturnType** .
 
-O **ReturnType** elemento pode ter os seguintes elementos filho:
+O elemento **ReturnType** pode ter os seguintes elementos filho:
 
 - CollectionType (um)  
 
 > [!NOTE]
-> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado para o **ReturnType** elemento. No entanto, os atributos personalizados não podem pertencer a qualquer namespace XML que é reservado para o SSDL. Os nomes totalmente qualificados para os dois atributos personalizados não podem ser o mesmo.
+> Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **ReturnType** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
@@ -860,17 +860,17 @@ O exemplo a seguir usa uma **função** que retorna uma coleção de linhas.
 
 ## <a name="rowtype-element-ssdl"></a>Elemento RowType (SSDL)
 
-Um **RowType** elemento na linguagem de definição de esquema de armazenamento (SSDL) define uma estrutura sem nome como um retorno de tipo para uma função definida no repositório.
+Um elemento **RowType** na linguagem de definição de esquema de repositório (SSDL) define uma estrutura sem nome como um tipo de retorno para uma função definida no repositório.
 
-Um **RowType** é o elemento filho do **CollectionType** elemento:
+Um elemento **RowType** é o elemento filho do elemento **CollectionType** :
 
-Um **RowType** elemento pode ter os seguintes elementos filho:
+Um elemento **RowType** pode ter os seguintes elementos filho:
 
 - Propriedade (um ou mais)  
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra uma função de armazenamento que usa um **CollectionType** elemento para especificar que a função retorna uma coleção de linhas (conforme especificado na **RowType** elemento).
+O exemplo a seguir mostra uma função de repositório que usa um elemento **CollectionType** para especificar que a função retorna uma coleção de linhas (conforme especificado no elemento **RowType** ).
 
 
 ``` xml
@@ -891,39 +891,39 @@ O exemplo a seguir mostra uma função de armazenamento que usa um **CollectionT
 
 ## <a name="schema-element-ssdl"></a>Elemento de esquema (SSDL)
 
-O **esquema** na linguagem de definição de esquema de armazenamento (SSDL) é o elemento raiz de uma definição de modelo de armazenamento. Ele contém definições para os contêineres que compõem um modelo de armazenamento, funções e objetos.
+O elemento de **esquema** na linguagem de definição de esquema de repositório (SSDL) é o elemento raiz de uma definição de modelo de armazenamento. Ele contém definições para os objetos, funções e contêineres que compõem um modelo de armazenamento.
 
-O **esquema** elemento pode conter zero ou mais dos seguintes elementos filho:
+O elemento **Schema** pode conter zero ou mais dos seguintes elementos filho:
 
 -   Associação
 -   EntityType
 -   EntityContainer
 -   Função
 
-O **esquema** elemento usa o **Namespace** atributo para definir o namespace para os objetos de associação e o tipo de entidade em um modelo de armazenamento. Dentro de um namespace, não possui dois objetos podem ter o mesmo nome.
+O elemento **Schema** usa o atributo **namespace** para definir o namespace para o tipo de entidade e objetos de associação em um modelo de armazenamento. Em um namespace, dois objetos não podem ter o mesmo nome.
 
-Um namespace de modelo de armazenamento é diferente do namespace de XML o **esquema** elemento. Um namespace de modelo de armazenamento (conforme definido pela **Namespace** atributo) é um contêiner lógico para tipos de entidade e tipos de associação. O namespace de XML (indicado pelo **xmlns** atributo) de uma **esquema** elemento é o namespace padrão para os elementos filho e atributos dos **esquema** elemento. Namespaces XML do formulário http://schemas.microsoft.com/ado/YYYY/MM/edm/ssdl (em que aaaa e MM representam um ano e mês, respectivamente) são reservados para SSDL. Atributos e elementos personalizados não podem ser nos namespaces que têm esse formulário.
+Um namespace do modelo de armazenamento é diferente do namespace XML do elemento **Schema** . Um namespace de modelo de armazenamento (conforme definido pelo atributo **namespace** ) é um contêiner lógico para tipos de entidade e tipos de associação. O namespace XML (indicado pelo atributo **xmlns** ) de um elemento **Schema** é o namespace padrão para elementos filho e atributos do elemento **Schema** . Os namespaces XML do formulário https://schemas.microsoft.com/ado/YYYY/MM/edm/ssdl (em que AAAA e MM representam um ano e um mês respectivamente) são reservados para SSDL. Atributos e elementos personalizados não podem estar em namespaces que tenham esse formulário.
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
-A tabela a seguir descreve os atributos podem ser aplicados para o **esquema** elemento.
+A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Schema** .
 
 | Nome do atributo            | É obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |:--------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Namespace**             | Sim         | O namespace do modelo de armazenamento. O valor de **Namespace** atributo é usado para formar o nome totalmente qualificado de um tipo. Por exemplo, se um **EntityType** denominado *Customer* está no namespace ExampleModel.Store e, em seguida, o nome totalmente qualificado do **EntityType** é ExampleModel.Store.Customer. <br/> As seguintes cadeias de caracteres não podem ser usadas como o valor para o **Namespace** atributo: **sistema**, **transitório**, ou **Edm**. O valor para o **Namespace** atributo não pode ser o mesmo que o valor para o **Namespace** atributo no elemento do esquema de CSDL. |
-| **Alias**                 | Não          | Um identificador usado no lugar do nome de namespace. Por exemplo, se um **EntityType** denominado *Customer* está no namespace ExampleModel.Store e o valor da **Alias** atributo é *StorageModel*, em seguida, você pode usar StorageModel.Customer como o nome totalmente qualificado do **EntityType.**                                                                                                                                                                                                                                                                                    |
+| **Namespace**             | Sim         | O namespace do modelo de armazenamento. O valor do atributo **namespace** é usado para formar o nome totalmente qualificado de um tipo. Por exemplo, se um **EntityType** chamado *Customer* estiver no namespace ExampleModel. Store, o nome totalmente qualificado do **EntityType** será ExampleModel. Store. Customer. <br/> As seguintes cadeias de caracteres não podem ser usadas como o valor do atributo **namespace** : **Sistema**, **transitório**ou **EDM**. O valor do atributo **namespace** não pode ser o mesmo que o valor do atributo **namespace** no elemento de esquema CSDL. |
+| **Alias**                 | Não          | Um identificador usado no lugar do nome do namespace. Por exemplo, se um **EntityType** chamado *Customer* estiver no namespace ExampleModel. Store e o valor do atributo **alias** for *StorageModel*, você poderá usar StorageModel. Customer como o nome totalmente qualificado do  **EntityType.**                                                                                                                                                                                                                                                                                    |
 | **Provedor**              | Sim         | O provedor de dados.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| **ProviderManifestToken** | Sim         | Um token que indica ao provedor que manifesto do provedor para retornar. Nenhum formato para o token é definido. Valores para o token são definidos pelo provedor. Para obter informações sobre tokens de manifesto de provedor do SQL Server, consulte SqlClient para Entity Framework.                                                                                                                                                                                                                                                                                                                        |
+| **ProviderManifestToken** | Sim         | Um token que indica ao provedor que o manifesto do provedor deve retornar. Nenhum formato para o token está definido. Os valores para o token são definidos pelo provedor. Para obter informações sobre SQL Server tokens de manifesto do provedor, consulte SqlClient para Entity Framework.                                                                                                                                                                                                                                                                                                                        |
 
 ### <a name="example"></a>Exemplo
 
-A exemplo a seguir mostra uma **esquema** elemento que contém uma **EntityContainer** elemento, dois **EntityType** elementos e um **associação** elemento.
+O exemplo a seguir mostra um elemento de **esquema** que contém um elemento **EntityContainer** , dois elementos **EntityType** e um elemento **Association** .
 
 ``` xml
  <Schema Namespace="ExampleModel.Store"
        Alias="Self" Provider="System.Data.SqlClient"
        ProviderManifestToken="2008"
-       xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+       xmlns="https://schemas.microsoft.com/ado/2009/11/edm/ssdl">
    <EntityContainer Name="ExampleModelStoreContainer">
      <EntitySet Name="Customers"
                 EntityType="ExampleModel.Store.Customers"
@@ -1005,16 +1005,16 @@ A exemplo a seguir mostra uma **esquema** elemento que contém uma **EntityConta
 
 ## <a name="annotation-attributes"></a>Atributos de anotação
 
-Atributos de anotação na linguagem de definição de esquema de armazenamento (SSDL) são atributos XML personalizados no modelo de armazenamento que fornecem metadados extras sobre os elementos no modelo de armazenamento. Além de ter a estrutura XML válida, as seguintes restrições se aplicam aos atributos de anotação:
+Os atributos de anotação no SSDL (Store Schema Definition Language) são atributos XML personalizados no modelo de armazenamento que fornecem metadados extras sobre os elementos no modelo de armazenamento. Além de ter uma estrutura XML válida, as seguintes restrições se aplicam aos atributos de anotação:
 
--   Atributos de anotação não devem estar em qualquer namespace XML que é reservado para o SSDL.
--   Os nomes totalmente qualificados de todos os atributos dois anotação não pode ser o mesmo.
+-   Os atributos de anotação não devem estar em nenhum namespace XML reservado para SSDL.
+-   Os nomes totalmente qualificados de quaisquer dois atributos de anotação não devem ser iguais.
 
-Mais de um atributo de anotação pode ser aplicado a um determinado elemento SSDL. Os metadados contidos em elementos de anotação podem ser acessado no tempo de execução usando classes no namespace Metadata.
+Mais de um atributo Annotation pode ser aplicado a um determinado elemento SSDL. Os metadados contidos nos elementos de anotação podem ser acessados em tempo de execução usando classes no namespace System. Data. Metadata. Edm.
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento EntityType que tem um atributo de anotação aplicado para o **OrderId** propriedade. O exemplo também mostram um elemento de anotação adicionado para o **EntityType** elemento.
+O exemplo a seguir mostra um elemento EntityType que tem um atributo Annotation aplicado à propriedade **OrderID** . O exemplo também mostra um elemento Annotation adicionado ao elemento **EntityType** .
 
 ``` xml
  <EntityType Name="Orders" xmlns:c="http://CustomNamespace">
@@ -1034,17 +1034,17 @@ O exemplo a seguir mostra um elemento EntityType que tem um atributo de anotaç�
 
 ## <a name="annotation-elements-ssdl"></a>Elementos de anotação (SSDL)
 
-Elementos de anotação de linguagem de definição de esquema de armazenamento (SSDL) são elementos XML personalizados no modelo de armazenamento que fornecem metadados extras sobre o modelo de armazenamento. Além de ter a estrutura XML válida, as seguintes restrições se aplicam a elementos de anotação:
+Os elementos de anotação no SSDL (Store Schema Definition Language) são elementos XML personalizados no modelo de armazenamento que fornecem metadados extras sobre o modelo de armazenamento. Além de ter uma estrutura XML válida, as seguintes restrições se aplicam aos elementos de anotação:
 
--   Elementos de anotação não devem estar em qualquer namespace XML que é reservado para o SSDL.
--   Os nomes totalmente qualificados de quaisquer elementos de dois de anotação não pode ser o mesmo.
--   Elementos de anotação devem aparecer após todos os outros elementos filho de um determinado elemento SSDL.
+-   Os elementos de anotação não devem estar em nenhum namespace XML reservado para SSDL.
+-   Os nomes totalmente qualificados de quaisquer dois elementos de anotação não devem ser iguais.
+-   Os elementos de anotação devem aparecer após todos os outros elementos filho de um determinado elemento SSDL.
 
-Mais de um elemento de anotação pode ser um filho de um determinado elemento SSDL. Começando com o .NET Framework versão 4, os metadados contidos nos elementos de anotação podem ser acessado no tempo de execução usando classes no namespace Metadata.
+Mais de um elemento Annotation pode ser um filho de um determinado elemento SSDL. A partir do .NET Framework versão 4, os metadados contidos nos elementos de anotação podem ser acessados em tempo de execução usando classes no namespace System. Data. Metadata. Edm.
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento EntityType que tem um elemento de anotação (**CustomElement**). O exemplo também mostra um atributo de anotação aplicado para o **OrderId** propriedade.
+O exemplo a seguir mostra um elemento EntityType que tem um elemento Annotation (**customelement**). O exemplo também mostra um atributo Annotation aplicado à propriedade **OrderID** .
 
 ``` xml
  <EntityType Name="Orders" xmlns:c="http://CustomNamespace">
@@ -1064,15 +1064,15 @@ O exemplo a seguir mostra um elemento EntityType que tem um elemento de anotaç�
 
 ## <a name="facets-ssdl"></a>Facetas (SSDL)
 
-Facetas na linguagem de definição de esquema de armazenamento (SSDL) representam as restrições nos tipos de coluna são especificadas em elementos de propriedade. As facetas são implementadas como atributos XML em **propriedade** elementos.
+As facetas na linguagem de definição de esquema de repositório (SSDL) representam restrições em tipos de coluna que são especificados em elementos de propriedade. As facetas são implementadas como atributos XML em elementos de **Propriedade** .
 
-A tabela a seguir descreve as facetas que são suportadas em SSDL:
+A tabela a seguir descreve as facetas com suporte no SSDL:
 
 | Aspecto           | Descrição                                                                                                                                                                                                                                                 |
 |:----------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Agrupamento**   | Especifica a sequência de agrupamento (ou sequência de classificação) a ser usadas para executar a comparação e em ordenação operações em valores de propriedade.                                                                                                             |
-| **FixedLength** | Especifica se o comprimento do valor da coluna pode variar.                                                                                                                                                                                                  |
+| **Cadeia** | Especifica se o comprimento do valor da coluna pode variar.                                                                                                                                                                                                  |
 | **MaxLength**   | Especifica o comprimento máximo do valor da coluna.                                                                                                                                                                                                           |
-| **Precisão**   | Para propriedades do tipo **Decimal**, especifica o número de dígitos de um valor da propriedade pode ter. Para propriedades do tipo **tempo**, **DateTime**, e **DateTimeOffset**, especifica o número de dígitos para a parte fracionária de segundos do valor da coluna. |
+| **Precisão**   | Para propriedades do tipo **decimal**, especifica o número de dígitos que um valor de propriedade pode ter. Para propriedades do tipo **time**, **DateTime**e **DateTimeOffset**, especifica o número de dígitos para a parte fracionária de segundos do valor da coluna. |
 | **Ajustar Escala**       | Especifica o número de dígitos à direita do ponto decimal para o valor da coluna.                                                                                                                                                                      |
 | **Unicode**     | Indica se o valor da coluna é armazenado como Unicode.                                                                                                                                                                                                    |

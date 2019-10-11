@@ -3,17 +3,17 @@ title: Entidades de rastreamento automático – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 5e60f5be-7bbb-4bf8-835e-0ac808d6c84a
-ms.openlocfilehash: b098736ef47e79c916f4bf054716022d5032eee5
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 3bb9759d89fbd0c10b911625aa7d0afd7747de14
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283804"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181722"
 ---
 # <a name="self-tracking-entities"></a>Entidades de rastreamento automático
 
 > [!IMPORTANT]
-> Não recomendamos usar o modelo de entidades de rastreamento automático. Ele continuará disponível apenas para dar suporte aos aplicativos existentes. Se o seu aplicativo exigir o trabalho com grafos de entidades desconectados, considere outras alternativas como [Entidades Rastreáveis](http://trackableentities.github.io/), que são uma tecnologia semelhante às Entidades de Rastreamento Automático desenvolvidas mais ativamente pela comunidade, ou escreva um código personalizado usando as APIs de controle de alterações de baixo nível.
+> Não recomendamos usar o modelo de entidades de rastreamento automático. Ele continuará disponível apenas para dar suporte aos aplicativos existentes. Se o seu aplicativo exigir o trabalho com grafos de entidades desconectados, considere outras alternativas como [Entidades Rastreáveis](https://trackableentities.github.io/), que são uma tecnologia semelhante às Entidades de Rastreamento Automático desenvolvidas mais ativamente pela comunidade, ou escreva um código personalizado usando as APIs de controle de alterações de baixo nível.
 
 Em um aplicativo baseado no Entity Framework, um contexto é responsável por controlar as alterações nos objetos. Você, em seguida, usa o método SaveChanges para manter as alterações no banco de dados. Ao trabalhar com aplicativos de N camadas, os objetos de entidade normalmente são desconectados do contexto, e você deve decidir como rastrear as alterações e relatar essas alterações de volta para o contexto. As STEs (Entidades de Rastreamento Automático) podem ajudá-lo a rastrear as alterações em qualquer camada e repetir essas alterações em um contexto para serem salvas.  
 
@@ -30,7 +30,7 @@ Para começar, visite a página [Passo a passo de Entidades de Rastreamento Auto
 
 ## <a name="functional-considerations-when-working-with-self-tracking-entities"></a>Considerações funcionais ao trabalhar com entidades de rastreamento automático  
 > [!IMPORTANT]
-> Não recomendamos usar o modelo de entidades de rastreamento automático. Ele continuará disponível apenas para dar suporte aos aplicativos existentes. Se o seu aplicativo exigir o trabalho com grafos de entidades desconectados, considere outras alternativas como [Entidades Rastreáveis](http://trackableentities.github.io/), que são uma tecnologia semelhante às Entidades de Rastreamento Automático desenvolvidas mais ativamente pela comunidade, ou escreva um código personalizado usando as APIs de controle de alterações de baixo nível.
+> Não recomendamos usar o modelo de entidades de rastreamento automático. Ele continuará disponível apenas para dar suporte aos aplicativos existentes. Se o seu aplicativo exigir o trabalho com grafos de entidades desconectados, considere outras alternativas como [Entidades Rastreáveis](https://trackableentities.github.io/), que são uma tecnologia semelhante às Entidades de Rastreamento Automático desenvolvidas mais ativamente pela comunidade, ou escreva um código personalizado usando as APIs de controle de alterações de baixo nível.
 
 Considere o seguinte ao trabalhar com entidades de rastreamento automático:  
 
@@ -39,7 +39,7 @@ Considere o seguinte ao trabalhar com entidades de rastreamento automático:
 - Quando você envia o grafo que foi modificado no cliente para o serviço e, em seguida, pretende continuar trabalhando com o mesmo grafo no cliente, precisa iterar manualmente o grafo e chamar o método **AcceptChanges** em cada objeto para redefinir o rastreador de alterações.  
 
     > Se os objetos no seu grafo contiverem propriedades com valores gerados pelo banco de dados (por exemplo, valores de simultaneidade ou identidade), o Entity Framework substituirá os valores dessas propriedades pelos valores gerados pelo banco de dados após o método **SaveChanges** ser chamado. Você pode implementar sua operação de serviço para retornar objetos salvos ou uma lista de valores de propriedade gerada para os objetos de volta ao cliente. O cliente precisará substituir as instâncias de objeto ou os valores de propriedade do objeto pelos objetos ou valores de propriedade retornados da operação de serviço.  
-- Mesclar grafos de várias solicitações de serviço pode introduzir objetos com valores de chave duplicados no grafo resultante. O Entity Framework não remove os objetos com chaves duplicadas quando você chama o método **ApplyChanges**, mas gera uma exceção. Para evitar ter grafos com valores de chave duplicados, suga um dos padrões descritos no blog a seguir: [Self-Tracking Entities: ApplyChanges and duplicate entities](https://go.microsoft.com/fwlink/?LinkID=205119&clcid=0x409) (Entidades de Rastreamento Automático: ApplyChanges e entidades duplicadas).  
+- Mesclar grafos de várias solicitações de serviço pode introduzir objetos com valores de chave duplicados no grafo resultante. O Entity Framework não remove os objetos com chaves duplicadas quando você chama o método **ApplyChanges**, mas gera uma exceção. Para evitar ter grafos com valores de chave duplicados, siga um dos padrões descritos no blog a seguir: [Self-Tracking Entities: ApplyChanges and duplicate entities](https://go.microsoft.com/fwlink/?LinkID=205119&clcid=0x409) (Entidades de Rastreamento Automático: ApplyChanges e entidades duplicadas).  
 - Quando você altera a relação entre objetos definindo a propriedade de chave estrangeira, a propriedade de navegação de referência é definida como null e não é sincronizada com a entidade de segurança apropriada no cliente. Depois que o grafo é anexado ao contexto de objeto (por exemplo, depois de chamar o método **ApplyChanges**), as propriedades de chave estrangeira e as propriedades de navegação são sincronizadas.  
 
     > Não ter uma propriedade de navegação de referência sincronizada com o objeto de entidade de segurança apropriada poderia ser um problema se você tivesse especificado a exclusão em cascata na relação da chave estrangeira. Se você excluir a entidade de segurança, a exclusão não será propagada para os objetos dependentes. Se você tiver exclusões em cascata especificadas, use as propriedades de navegação para alterar a relação em vez de configurar a propriedade de chave estrangeira.  

@@ -1,26 +1,26 @@
 ---
-title: Funções com valor de tabela (TVFs) - EF6
+title: Funções com valor de tabela (TVFs) – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: f019c97b-87b0-4e93-98f4-2c539f77b2dc
-ms.openlocfilehash: 34aebd8f5f2c3b43c80e21c1a17a386597596c05
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 35684196dcd7b708a8feeb1eca3096e8d4e555ec
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283947"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182530"
 ---
 # <a name="table-valued-functions-tvfs"></a>Funções com valor de tabela (TVFs)
 > [!NOTE]
-> **EF5 em diante, somente** -recursos, APIs, etc. discutidos nesta página foram introduzidas no Entity Framework 5. Se você estiver usando uma versão anterior, algumas ou todas as informações não se aplicarão.
+> **Somente EF5 em diante** – os recursos, as APIs, etc. abordados nesta página foram introduzidos no Entity Framework 5. Se você estiver usando uma versão anterior, algumas ou todas as informações não se aplicarão.
 
-O passo a passo e vídeo passo a passo mostra como mapear funções avaliadas por tabela (TVFs) usando o Entity Framework Designer. Ele também demonstra como chamar uma TVF de uma consulta LINQ.
+O vídeo e instruções passo a passo mostram como mapear TVFs (funções com valor de tabela) usando o Entity Framework Designer. Ele também demonstra como chamar um TVF de uma consulta LINQ.
 
-TVFs estão atualmente só tem suporte no banco de dados primeiro fluxo de trabalho.
+Atualmente, os TVFs só têm suporte no fluxo de trabalho Database First.
 
-Suporte TVF foi introduzido no Entity Framework versão 5. Observe que, para usar os novos recursos, como funções com valor de tabela, enumerações e tipos espaciais, você deve ter como destino .NET Framework 4.5. Visual Studio 2012 tem como alvo o .NET 4.5 por padrão.
+O suporte a TVF foi introduzido na versão 5 do Entity Framework. Observe que para usar os novos recursos, como funções com valor de tabela, enums e tipos espaciais, você deve direcionar .NET Framework 4,5. O Visual Studio 2012 visa o .NET 4,5 por padrão.
 
-TVFs são muito semelhantes aos procedimentos armazenados com uma diferença importante: o resultado de uma TVF é passível de composição. Isso significa que os resultados de uma TVF podem ser usados em uma consulta LINQ, enquanto os resultados de um procedimento armazenado não é possível.
+TVFs são muito semelhantes aos procedimentos armazenados com uma diferença importante: o resultado de um TVF é combinável. Isso significa que os resultados de um TVF podem ser usados em uma consulta LINQ, enquanto os resultados de um procedimento armazenado não podem.
 
 ## <a name="watch-the-video"></a>Assista ao vídeo
 
@@ -30,26 +30,26 @@ TVFs são muito semelhantes aos procedimentos armazenados com uma diferença imp
 
 ## <a name="pre-requisites"></a>Pré-requisitos
 
-Para concluir este passo a passo, você precisa:
+Para concluir este passo a passos, você precisa:
 
-- Instalar o [banco de dados School](~/ef6/resources/school-database.md).
+- Instale o [banco de dados escolar](~/ef6/resources/school-database.md).
 
 - Ter uma versão recente do Visual Studio
 
 ## <a name="set-up-the-project"></a>Configurar o projeto
 
 1.  Abrir o Visual Studio
-2.  Sobre o **arquivo** , aponte para **New**e, em seguida, clique em **projeto**
-3.  No painel esquerdo, clique em **Visual C#\#** e, em seguida, selecione o **Console** modelo
-4.  Insira **TVF** como o nome do projeto e clique em **Okey**
+2.  No menu **arquivo** , aponte para **novo**e clique em **projeto**
+3.  No painel esquerdo, clique em **Visual C @ no__t-1**e selecione o modelo de **console**
+4.  Insira **TVF** como o nome do projeto e clique em **OK**
 
-## <a name="add-a-tvf-to-the-database"></a>Adicionar uma TVF ao banco de dados
+## <a name="add-a-tvf-to-the-database"></a>Adicionar um TVF ao banco de dados
 
--   Selecione **exibição -&gt; Pesquisador de objetos do SQL Server**
--   Se o LocalDB não está na lista de servidores: clique duas vezes em **do SQL Server** e selecione **adicionar SQL Server** Use o padrão **autenticação do Windows** para se conectar ao servidor do LocalDB
--   Expanda o nó do LocalDB
--   Sob o nó bancos de dados, clique com botão direito no nó do banco de dados de escola e selecione **nova consulta...**
--   No Editor T-SQL, cole a seguinte definição de TVF
+-   Selecione **Exibir-&gt; pesquisador de objetos do SQL Server**
+-   Se o LocalDB não estiver na lista de servidores: Clique com o botão direito do mouse em **SQL Server** e selecione **Adicionar SQL Server** usar a autenticação padrão do **Windows** para se conectar ao servidor LocalDB
+-   Expandir o nó LocalDB
+-   No nó bancos de dados, clique com o botão direito do mouse no nó escolar e selecione **nova consulta...**
+-   No Editor T-SQL, Cole a seguinte definição de TVF
 
 ``` SQL
 CREATE FUNCTION [dbo].[GetStudentGradesForCourse]
@@ -67,29 +67,29 @@ RETURN
     WHERE  CourseID = @CourseID
 ```
 
--   Clique no botão direito do mouse no editor T-SQL e selecione **Execute**
+-   Clique com o botão direito do mouse no Editor T-SQL e selecione **executar**
 -   A função GetStudentGradesForCourse é adicionada ao banco de dados School
 
- 
+ 
 
 ## <a name="create-a-model"></a>Criar um modelo
 
-1.  Clique no nome do projeto no Gerenciador de soluções, aponte para **Add**e, em seguida, clique em **Novo Item**
-2.  Selecione **dados** no menu esquerdo e selecione **modelo de dados de entidade ADO.NET** no **modelos** painel
-3.  Insira **TVFModel.edmx** para o nome de arquivo e clique **adicionar**
-4.  Na caixa de diálogo Escolher conteúdo do modelo, selecione **gerar a partir do banco de dados**e, em seguida, clique em **Avançar**
-5.  Clique em **nova Conexão** Enter **(localdb)\\mssqllocaldb** no texto de nome de servidor caixa Enter **School** para o banco de dados nome clique **Okey**
-6.  Na escolha seu objetos de banco de dados caixa de diálogo do **tabelas** nó, selecione o **pessoa**, **StudentGrade**, e **curso** tabelas
-7.  Selecione o **GetStudentGradesForCourse** função localizado sob a **procedimentos armazenados e funções** nó nota, começando com o Visual Studio 2012, o Entity Designer permite a importação de lote seus procedimentos armazenados e funções
-8.  Clique em **concluir**
-9.  O Designer de entidade, que fornece uma superfície de design para editar seu modelo, é exibido. Todos os objetos que você selecionou na **Choose Your Database Objects** caixa de diálogo são adicionados ao modelo.
-10. Por padrão, a forma de resultado de cada importados de procedimento armazenado ou função tornará automaticamente um novo tipo complexo em seu modelo de entidade. Mas queremos mapear os resultados da função GetStudentGradesForCourse à entidade StudentGrade: a superfície de design e selecione com o botão direito **Model Browser** no Pesquisador de modelos, selecione **Function Imports**e, em seguida, clique duas vezes o **GetStudentGradesForCourse** caixa de diálogo no the Editar função importar função, selecione **entidades** e escolha **StudentGrade**
+1.  Clique com o botão direito do mouse no nome do projeto em Gerenciador de Soluções, aponte para **Adicionar**e clique em **novo item**
+2.  Selecione **dados** no menu à esquerda e, em seguida, selecione **ADO.NET modelo de dados de entidade** no painel **modelos**
+3.  Digite **TVFModel. edmx** para o nome do arquivo e clique em **Adicionar**
+4.  Na caixa de diálogo escolher conteúdo do modelo, selecione **gerar do banco de dados**e clique em **Avançar**
+5.  Clique em **nova conexão** inserir **(LocalDB) \\mssqllocaldb** na caixa de texto nome do servidor, digite **School** for o nome do banco de dados clique em **OK**
+6.  Na caixa de diálogo escolher seu objeto de banco de dados, nas **tabelas** node, selecione **pessoa**, **StudentGrade**e **curso** tables
+7.  Selecione a função **GetStudentGradesForCourse** localizada em **procedimentos armazenados e funções** node Observe que, começando com o Visual Studio 2012, o Entity designer permite que você importe em lote seus procedimentos armazenados e funções
+8.  Clique em **concluir**
+9.  O Entity Designer, que fornece uma superfície de design para editar seu modelo, é exibido. Todos os objetos que você selecionou na caixa **escolher seus objetos de banco de dados** dialog são adicionados ao modelo.
+10. Por padrão, a forma de resultado de cada procedimento armazenado ou função importada se tornará automaticamente um novo tipo complexo em seu modelo de entidade. Mas queremos mapear os resultados da função GetStudentGradesForCourse para a entidade StudentGrade: Clique com o botão direito do mouse na superfície de design e selecione **navegador de modelos** no navegador de modelos, selecione **importações de função**e clique duas vezes na função **GetStudentGradesForCourse** na caixa de diálogo Editar importação de função, selecione **entidades**  and escolher **StudentGrade**
 
 ## <a name="persist-and-retrieve-data"></a>Persistir e recuperar dados
 
-Abra o arquivo onde o método Main é definido. Adicione o seguinte código na função principal.
+Abra o arquivo em que o método Main está definido. Adicione o código a seguir à função main.
 
-O código a seguir demonstra como criar uma consulta que usa uma função com valor de tabela. A consulta projeta os resultados em um tipo anônimo que contém o título do curso relacionado e os alunos relacionados com um nível maior ou igual a 3.5.
+O código a seguir demonstra como criar uma consulta que usa uma função com valor de tabela. A consulta projeta os resultados em um tipo anônimo que contém o título do curso relacionado e os alunos relacionados com uma taxa maior ou igual a 3,5.
 
 ``` csharp
 using (var context = new SchoolEntities())
@@ -119,11 +119,11 @@ using (var context = new SchoolEntities())
 
 Compile e execute o aplicativo. O programa produz a seguinte saída:
 
-```
+```console
 Couse: Microeconomics, Student: Arturo Anand
 Couse: Microeconomics, Student: Carson Bryant
 ```
 
 ## <a name="summary"></a>Resumo
 
-Neste passo a passo analisamos como mapear funções avaliadas por tabela (TVFs) usando o Entity Framework Designer. Ele também demonstrou como chamar uma TVF de uma consulta LINQ.
+Neste tutorial, vimos como mapear TVFs (funções com valor de tabela) usando o Entity Framework Designer. Ele também demonstrou como chamar um TVF de uma consulta LINQ.

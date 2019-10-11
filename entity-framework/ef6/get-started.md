@@ -3,12 +3,12 @@ title: Introdução ao Entity Framework 6 – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 66ce9113-81d2-480f-8c16-d00ec405b2f7
-ms.openlocfilehash: c25bf16bd2c39530d54b286b7743ceb83c941e4d
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
-ms.translationtype: HT
+ms.openlocfilehash: bf54879ea94e597dfeac3e4bd70571dad290dd9e
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489278"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181406"
 ---
 # <a name="get-started-with-entity-framework-6"></a>Introdução ao Entity Framework 6
 
@@ -20,11 +20,11 @@ Este guia contém uma coleção de links para artigos de documentação selecion
 
   Aqui você aprenderá a adicionar o Entity Framework aos seus aplicativos. Se desejar usar o EF Designer, o instale no Visual Studio.
 
-* [Criação de um modelo: o Code First, o EF Designer e os Fluxos de trabalho do EF](~/ef6/modeling/index.md)
+* [Creating um modelo: Code First, o designer do EF e os fluxos de trabalho do EF @ no__t-0
 
   Você prefere especificar seu modelo do EF escrevendo código ou desenhando caixas e linhas?
 Você usará o EF para mapear seus objetos para um banco de dados existente ou gostaria que o EF criasse um banco de dados personalizado para seus objetos?
-Aqui você conhecerá duas abordagens diferentes para usar o EF6: o EF Designer e o Code First.
+Aqui, você aprenderá sobre duas abordagens diferentes para usar o EF6: Designer e Code First do EF.
 Siga a discussão e assista ao vídeo sobre a diferença.
 
 * [Como trabalhar com DbContext](~/ef6/fundamentals/working-with-dbcontext.md)
@@ -35,7 +35,7 @@ Siga a discussão e assista ao vídeo sobre a diferença.
 
   Descubra como obter ajuda de especialistas e contribuir com suas próprias respostas à comunidade.
 
-* [Contribuir](http://github.com/aspnet/EntityFramework6/)
+* [Contribuir](https://github.com/aspnet/EntityFramework6/)
 
   O Entity Framework 6 usa um modelo de desenvolvimento aberto. Descubra como é possível ajudar a aprimorar ainda mais o EF acessando nosso repositório do GitHub.
 
