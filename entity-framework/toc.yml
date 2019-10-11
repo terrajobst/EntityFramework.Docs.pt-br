@@ -175,8 +175,6 @@
           items:
             - name: Visão geral
               href: core/querying/index.md
-            - name: Consulta básica
-              href: core/querying/basic.md
             - name: Como carregar dados relacionados
               href: core/querying/related-data.md
             - name: Cliente versus Avaliação do Servidor
@@ -188,7 +186,7 @@
             - name: Consultas assíncronas
               href: core/querying/async.md
             - name: Como a consulta funciona
-              href: core/querying/overview.md
+              href: core/querying/how-query-works.md
             - name: Filtros de consulta global
               href: core/querying/filters.md
             - name: Marcas de consulta
