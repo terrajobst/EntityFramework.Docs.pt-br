@@ -4,19 +4,19 @@ author: smitpatel
 ms.date: 10/08/2019
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 33601d570fa0b7a1fcada1705843da3798c00094
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: b7087771f1a9e8ee5e044cfea367d74a0b1c1d35
+ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181982"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72445925"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
 O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional. Consultas SQL brutas são úteis se a consulta que você deseja não pode ser expressa usando LINQ. As consultas SQL não processadas também são usadas se o uso de uma consulta LINQ resultar em uma consulta SQL ineficiente. Consultas SQL brutas podem retornar tipos de entidade regulares ou [tipos de entidade sem](xref:core/modeling/keyless-entity-types) formatação que fazem parte do seu modelo.
 
 > [!TIP]  
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying/RawSQL/Sample.cs) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying/) deste artigo no GitHub.
 
 ## <a name="basic-raw-sql-queries"></a>Consultas SQL brutas básicas
 

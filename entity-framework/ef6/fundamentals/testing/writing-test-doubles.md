@@ -3,12 +3,12 @@ title: Testando com suas próprias duplicatas de teste-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 16a8b7c0-2d23-47f4-9cc0-e2eb2e738ca3
-ms.openlocfilehash: 4631206ae26d364e92c932857fa1970804a7a335
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 3d8933fb5e17f8c01f3971495a1fcdb5b8cfab57
+ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181410"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72446033"
 ---
 # <a name="testing-with-your-own-test-doubles"></a>Testando com suas próprias duplicatas de teste
 > [!NOTE]
@@ -157,9 +157,9 @@ namespace TestingDemo
         }
     }
 }
-```  
+```
 
-<a name="creating-the-in-memory-test-doubles"/> # # criando as duplicatas de teste na memória  
+## <a name="creating-the-in-memory-test-doubles"></a>Criando duplicatas de teste na memória  
 
 Agora que temos o modelo real de EF e o serviço que pode usá-lo, é hora de criar o duplo de teste na memória que podemos usar para teste. Criamos um duplo de teste TestContext para nosso contexto. Em duplicatas de teste, podemos escolher o comportamento que queremos para dar suporte aos testes que vamos executar. Neste exemplo, estamos apenas capturando o número de vezes que SaveChanges é chamado, mas você pode incluir qualquer lógica necessária para verificar o cenário que você está testando.  
 

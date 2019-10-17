@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: f7f04efa8fb8ebc1eb06f256b8ccbd3110af47ab
-ms.sourcegitcommit: 705e898b4684e639a57c787fb45c932a27650c2d
+ms.openlocfilehash: 690c7828cfe5019f4e7ae904c92430fab4726cb9
+ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/03/2019
-ms.locfileid: "71934878"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72446021"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>Alterações recentes incluídas no EF Core 3,0
 As alterações de API e comportamento a seguir têm o potencial de interromper os aplicativos existentes ao atualizá-los para o 3.0.0.
@@ -19,58 +19,58 @@ As alterações que esperamos que afetem apenas os provedores de banco de dados 
 
 | **Alteração significativa**                                                                                               | **Causa** |
 |:------------------------------------------------------------------------------------------------------------------|------------|
-| [As consultas LINQ não são mais avaliadas no cliente](#linq-queries-are-no-longer-evaluated-on-the-client)         | Alto       |
-| [O EF Core 3.0 tem como destino o .NET Standard 2.1 em vez do .NET Standard 2.0](#netstandard21) | Alto      |
-| [A ferramenta de linha de comando do EF Core, dotnet ef, não faz mais parte do SDK do .NET Core](#dotnet-ef) | Alto      |
-| [DetectChanges respeita os valores de chave gerados pelo repositório](#dc) | Alto      |
-| [FromSql, ExecuteSql e ExecuteSqlAsync foram renomeados](#fromsql) | Alto      |
-| [Tipos de consulta são consolidados com tipos de entidade](#qt) | Alto      |
-| [O Entity Framework Core não faz mais parte da estrutura compartilhada do ASP.NET Core](#no-longer) | Média      |
-| [Agora, as exclusões em cascata acontecem imediatamente por padrão](#cascade) | Média      |
-| [O carregamento adiantado de entidades relacionadas agora ocorre em uma única consulta](#eager-loading-single-query) | Média      |
-| [DeleteBehavior.Restrict tem uma semântica mais limpa](#deletebehavior) | Média      |
-| [A API de configuração para relações de tipo de propriedade mudou](#config) | Média      |
-| [Cada propriedade usa geração de chave de inteiro em memória independente](#each) | Média      |
-| [As consultas sem acompanhamento não executam mais a resolução de identidade](#notrackingresolution) | Média      |
-| [Alterações na API de metadados](#metadata-api-changes) | Média      |
-| [Alterações na API de metadados específicos do provedor](#provider) | Média      |
-| [UseRowNumberForPaging foi removido](#urn) | Média      |
-| [O método das quando usado com o procedimento armazenado não pode ser composto](#fromsqlsproc) | Média      |
-| [Os métodos FromSql só podem ser especificados em raízes de consulta](#fromsql) | Baixa      |
-| [~~A execução de consulta é registrada no nível da Depuração~~ Revertida](#qe) | Baixa      |
-| [Valores de chave temporários não estão mais definidos em instâncias de entidade](#tkv) | Baixa      |
-| [As entidades dependentes que compartilham a tabela com a entidade de segurança agora são opcionais](#de) | Baixa      |
-| [Todas as entidades que compartilham uma tabela com uma coluna de token de simultaneidade precisam mapeá-la para uma propriedade](#aes) | Baixa      |
-| [Agora, as propriedades herdadas de tipos não mapeados são mapeadas para uma única coluna para todos os tipos derivados](#ip) | Baixa      |
-| [A convenção da propriedade de chave estrangeira não corresponde mais ao mesmo nome que a propriedade de entidade de segurança](#fkp) | Baixa      |
-| [Agora, a conexão de banco de dados será fechada se não for mais usada antes da conclusão do TransactionScope](#dbc) | Baixa      |
-| [Os campos de suporte são usados por padrão](#backing-fields-are-used-by-default) | Baixa      |
-| [Gerar se vários campos de suporte compatíveis são encontrados](#throw-if-multiple-compatible-backing-fields-are-found) | Baixa      |
-| [Os nomes de propriedade somente de campo devem corresponder ao nome de campo](#field-only-property-names-should-match-the-field-name) | Baixa      |
-| [AddDbContext/AddDbContextPool não chama mais AddLogging e AddMemoryCache](#adddbc) | Baixa      |
-| [DbContext.Entry agora executa uma DetectChanges local](#dbe) | Baixa      |
-| [As chaves de matriz de byte e cadeia de caracteres não são geradas pelo cliente por padrão](#string-and-byte-array-keys-are-not-client-generated-by-default) | Baixa      |
-| [ILoggerFactory agora é um serviço com escopo](#ilf) | Baixa      |
-| [Os proxies de carregamento lento não presumem mais que as propriedades de navegação estejam totalmente carregadas](#lazy-loading-proxies-no-longer-assume-navigation-properties-are-fully-loaded) | Baixa      |
-| [Agora, a criação excessiva de provedores de serviço internos é um erro por padrão](#excessive-creation-of-internal-service-providers-is-now-an-error-by-default) | Baixa      |
-| [Novo comportamento para HasOne/HasMany chamado com uma única cadeia de caracteres](#nbh) | Baixa      |
-| [O tipo de retorno para vários métodos assíncronos foi alterado de Task para ValueTask](#rtnt) | Baixa      |
-| [A anotação Relational:TypeMapping agora é apenas TypeMapping](#rtt) | Baixa      |
-| [ToTable em um tipo derivado gera uma exceção](#totable-on-a-derived-type-throws-an-exception) | Baixa      |
-| [O EF Core não envia mais pragma para imposição do FK SQLite](#pragma) | Baixa      |
-| [Microsoft.EntityFrameworkCore.Sqlite agora depende de SQLitePCLRaw.bundle_e_sqlite3](#sqlite3) | Baixa      |
-| [Os valores de Guid agora são armazenados como TEXTO no SQLite](#guid) | Baixa      |
-| [Os valores Char agora são armazenados como TEXTO no SQLite](#char) | Baixa      |
-| [As IDs de migração agora são geradas usando o calendário da cultura invariável](#migid) | Baixa      |
-| [As informações de extensão/metadados foram removidas do IDbContextOptionsExtension](#xinfo) | Baixa      |
-| [LogQueryPossibleExceptionWithAggregateOperator foi renomeado](#lqpe) | Baixa      |
-| [Esclarecer a API para nomes da restrição de chave estrangeira](#clarify) | Baixa      |
-| [IRelationalDatabaseCreator.HasTables/HasTablesAsync foram tornados públicos](#irdc2) | Baixa      |
-| [Microsoft.EntityFrameworkCore.Design agora é um pacote de DevelopmentDependency](#dip) | Baixa      |
-| [SQLitePCL.raw atualizado para a versão 2.0.0](#SQLitePCL) | Baixa      |
-| [NetTopologySuite atualizado para a versão 2.0.0](#NetTopologySuite) | Baixa      |
-| [Várias relações ambíguas de autorreferência devem ser configuradas](#mersa) | Baixa      |
-| [DbFunction. Schema sendo nulo ou a cadeia de caracteres vazia o configura para estar no esquema padrão do modelo](#udf-empty-string) | Baixa      |
+| [As consultas LINQ não são mais avaliadas no cliente](#linq-queries-are-no-longer-evaluated-on-the-client)         | Alta       |
+| [O EF Core 3.0 tem como destino o .NET Standard 2.1 em vez do .NET Standard 2.0](#netstandard21) | Alta      |
+| [A ferramenta de linha de comando do EF Core, dotnet ef, não faz mais parte do SDK do .NET Core](#dotnet-ef) | Alta      |
+| [DetectChanges respeita os valores de chave gerados pelo repositório](#dc) | Alta      |
+| [FromSql, ExecuteSql e ExecuteSqlAsync foram renomeados](#fromsql) | Alta      |
+| [Tipos de consulta são consolidados com tipos de entidade](#qt) | Alta      |
+| [O Entity Framework Core não faz mais parte da estrutura compartilhada do ASP.NET Core](#no-longer) | Médio      |
+| [Agora, as exclusões em cascata acontecem imediatamente por padrão](#cascade) | Médio      |
+| [O carregamento adiantado de entidades relacionadas agora ocorre em uma única consulta](#eager-loading-single-query) | Médio      |
+| [DeleteBehavior.Restrict tem uma semântica mais limpa](#deletebehavior) | Médio      |
+| [A API de configuração para relações de tipo de propriedade mudou](#config) | Médio      |
+| [Cada propriedade usa geração de chave de inteiro em memória independente](#each) | Médio      |
+| [As consultas sem acompanhamento não executam mais a resolução de identidade](#notrackingresolution) | Médio      |
+| [Alterações na API de metadados](#metadata-api-changes) | Médio      |
+| [Alterações na API de metadados específicos do provedor](#provider) | Médio      |
+| [UseRowNumberForPaging foi removido](#urn) | Médio      |
+| [O método das quando usado com o procedimento armazenado não pode ser composto](#fromsqlsproc) | Médio      |
+| [Os métodos FromSql só podem ser especificados em raízes de consulta](#fromsql) | Baixo      |
+| [~~A execução de consulta é registrada no nível da Depuração~~ Revertida](#qe) | Baixo      |
+| [Valores de chave temporários não estão mais definidos em instâncias de entidade](#tkv) | Baixo      |
+| [As entidades dependentes que compartilham a tabela com a entidade de segurança agora são opcionais](#de) | Baixo      |
+| [Todas as entidades que compartilham uma tabela com uma coluna de token de simultaneidade precisam mapeá-la para uma propriedade](#aes) | Baixo      |
+| [Agora, as propriedades herdadas de tipos não mapeados são mapeadas para uma única coluna para todos os tipos derivados](#ip) | Baixo      |
+| [A convenção da propriedade de chave estrangeira não corresponde mais ao mesmo nome que a propriedade de entidade de segurança](#fkp) | Baixo      |
+| [Agora, a conexão de banco de dados será fechada se não for mais usada antes da conclusão do TransactionScope](#dbc) | Baixo      |
+| [Os campos de suporte são usados por padrão](#backing-fields-are-used-by-default) | Baixo      |
+| [Gerar se vários campos de suporte compatíveis são encontrados](#throw-if-multiple-compatible-backing-fields-are-found) | Baixo      |
+| [Os nomes de propriedade somente de campo devem corresponder ao nome de campo](#field-only-property-names-should-match-the-field-name) | Baixo      |
+| [AddDbContext/AddDbContextPool não chama mais AddLogging e AddMemoryCache](#adddbc) | Baixo      |
+| [DbContext.Entry agora executa uma DetectChanges local](#dbe) | Baixo      |
+| [As chaves de matriz de byte e cadeia de caracteres não são geradas pelo cliente por padrão](#string-and-byte-array-keys-are-not-client-generated-by-default) | Baixo      |
+| [ILoggerFactory agora é um serviço com escopo](#ilf) | Baixo      |
+| [Os proxies de carregamento lento não presumem mais que as propriedades de navegação estejam totalmente carregadas](#lazy-loading-proxies-no-longer-assume-navigation-properties-are-fully-loaded) | Baixo      |
+| [Agora, a criação excessiva de provedores de serviço internos é um erro por padrão](#excessive-creation-of-internal-service-providers-is-now-an-error-by-default) | Baixo      |
+| [Novo comportamento para HasOne/HasMany chamado com uma única cadeia de caracteres](#nbh) | Baixo      |
+| [O tipo de retorno para vários métodos assíncronos foi alterado de Task para ValueTask](#rtnt) | Baixo      |
+| [A anotação Relational:TypeMapping agora é apenas TypeMapping](#rtt) | Baixo      |
+| [ToTable em um tipo derivado gera uma exceção](#totable-on-a-derived-type-throws-an-exception) | Baixo      |
+| [O EF Core não envia mais pragma para imposição do FK SQLite](#pragma) | Baixo      |
+| [Microsoft.EntityFrameworkCore.Sqlite agora depende de SQLitePCLRaw.bundle_e_sqlite3](#sqlite3) | Baixo      |
+| [Os valores de Guid agora são armazenados como TEXTO no SQLite](#guid) | Baixo      |
+| [Os valores Char agora são armazenados como TEXTO no SQLite](#char) | Baixo      |
+| [As IDs de migração agora são geradas usando o calendário da cultura invariável](#migid) | Baixo      |
+| [As informações de extensão/metadados foram removidas do IDbContextOptionsExtension](#xinfo) | Baixo      |
+| [LogQueryPossibleExceptionWithAggregateOperator foi renomeado](#lqpe) | Baixo      |
+| [Esclarecer a API para nomes da restrição de chave estrangeira](#clarify) | Baixo      |
+| [IRelationalDatabaseCreator.HasTables/HasTablesAsync foram tornados públicos](#irdc2) | Baixo      |
+| [Microsoft.EntityFrameworkCore.Design agora é um pacote de DevelopmentDependency](#dip) | Baixo      |
+| [SQLitePCL.raw atualizado para a versão 2.0.0](#SQLitePCL) | Baixo      |
+| [NetTopologySuite atualizado para a versão 2.0.0](#NetTopologySuite) | Baixo      |
+| [Várias relações ambíguas de autorreferência devem ser configuradas](#mersa) | Baixo      |
+| [DbFunction. Schema sendo nulo ou a cadeia de caracteres vazia o configura para estar no esquema padrão do modelo](#udf-empty-string) | Baixo      |
 
 ### <a name="linq-queries-are-no-longer-evaluated-on-the-client"></a>Consultas LINQ não são mais avaliadas no cliente
 
@@ -416,7 +416,7 @@ A emissão de várias consultas para implementar uma única consulta LINQ causou
 
 **Mitigações**
 
-Embora tecnicamente essa não seja uma alteração significativa, ela pode ter um efeito considerável no desempenho do aplicativo quando uma única consulta contém um grande número de operador `Include` em navegações de coleção. [Consulte este comentário](https://github.com/aspnet/EntityFrameworkCore/issues/18022#issuecomment-537219137) para obter mais informações e reescrever consultas de maneira mais eficiente.
+Embora tecnicamente essa não seja uma alteração significativa, ela pode ter um efeito considerável no desempenho do aplicativo quando uma única consulta contém um grande número de operador `Include` em navegações de coleção. [Consulte este comentário](https://github.com/aspnet/EntityFrameworkCore/issues/18022#issuecomment-542397085) para obter mais informações e reescrever consultas de maneira mais eficiente.
 
 **
 
@@ -1679,7 +1679,7 @@ modelBuilder
 
 **Comportamento antigo**
 
-Um DbFunction configurado com o esquema como uma cadeia de caracteres vazia foi tratado como função interna sem um esquema. Por exemplo, o código a `DatePart` seguir mapeará `DATEPART` a função CLR para a função interna no SqlServer.
+Um DbFunction configurado com o esquema como uma cadeia de caracteres vazia foi tratado como função interna sem um esquema. Por exemplo, o código a seguir mapeará a função `DatePart` CLR para `DATEPART` função interna no SqlServer.
 
 ```C#
 [DbFunction("DATEPART", Schema = "")]
@@ -1689,7 +1689,7 @@ public static int? DatePart(string datePartArg, DateTime? date) => throw new Exc
 
 **Comportamento novo**
 
-Todos os mapeamentos DbFunction são considerados mapeados para funções definidas pelo usuário. Portanto, o valor da cadeia de caracteres vazia colocaria a função dentro do esquema padrão para o modelo. Que poderia ser o esquema configurado explicitamente por meio da `modelBuilder.HasDefaultSchema()` API `dbo` Fluent ou de outra forma.
+Todos os mapeamentos DbFunction são considerados mapeados para funções definidas pelo usuário. Portanto, o valor da cadeia de caracteres vazia colocaria a função dentro do esquema padrão para o modelo. Que poderia ser o esquema configurado explicitamente por meio da API fluente `modelBuilder.HasDefaultSchema()` ou `dbo`, caso contrário.
 
 **Por que**
 

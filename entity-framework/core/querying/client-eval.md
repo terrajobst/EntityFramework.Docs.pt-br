@@ -1,27 +1,27 @@
 ---
-title: Cliente versus Avaliação do Servidor – EF Core
+title: Avaliação do cliente versus do servidor-EF Core
 author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: 8b6697cc-7067-4dc2-8007-85d80503d123
 uid: core/querying/client-eval
-ms.openlocfilehash: 3d70324f0b57a0ea9b165b5140a2154001c326f4
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 5cfb05041f04246712fb699f58b407f70a75ce92
+ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181913"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72445960"
 ---
-# <a name="client-vs-server-evaluation"></a>Cliente versus Avaliação do Servidor
+# <a name="client-vs-server-evaluation"></a>Avaliação do cliente versus do servidor
 
 Como regra geral, Entity Framework Core tenta avaliar uma consulta no servidor o máximo possível. EF Core converte partes da consulta em parâmetros, que podem ser avaliadas no lado do cliente. O resto da consulta (juntamente com os parâmetros gerados) é fornecido ao provedor de banco de dados para determinar a consulta de banco de dados equivalente a ser avaliada no servidor. O EF Core dá suporte à avaliação parcial do cliente na projeção de nível superior (essencialmente, a última chamada para `Select()`). Se a projeção de nível superior na consulta não puder ser convertida no servidor, EF Core obterá todos os dados necessários do servidor e avaliará as partes restantes da consulta no cliente. Se EF Core detectar uma expressão, em qualquer lugar diferente da projeção de nível superior, que não pode ser traduzida para o servidor, ele lançará uma exceção de tempo de execução. Veja [como a consulta funciona](xref:core/querying/how-query-works) para entender como EF Core determina o que não pode ser convertido no servidor.
 
 > [!NOTE]
 > Antes da versão 3,0, Entity Framework Core avaliação de cliente com suporte em qualquer lugar na consulta. Para obter mais informações, consulte a [seção versões anteriores](#previous-versions).
 
-## <a name="client-evaluation-in-the-top-level-projection"></a>Avaliação do cliente na projeção de nível superior
-
 > [!TIP]
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
+
+## <a name="client-evaluation-in-the-top-level-projection"></a>Avaliação do cliente na projeção de nível superior
 
 No exemplo a seguir, um método auxiliar é usado para padronizar URLs para Blogs, que são retornados de um banco de dados SQL Server. Como o provedor de SQL Server não tem informações sobre como esse método é implementado, não é possível convertê-lo em SQL. Todos os outros aspectos da consulta são avaliados no banco de dados, mas a passagem do `URL` retornado por esse método é feita no cliente.
 
@@ -50,9 +50,9 @@ Nesses casos, você pode explicitamente optar pela avaliação do cliente chaman
 
 Como a conversão de consultas e a compilação são caras, EF Core armazena em cache o plano de consulta compilado. O delegado em cache pode usar o código do cliente enquanto faz a avaliação do cliente da projeção de nível superior. EF Core gera parâmetros para as partes avaliadas pelo cliente da árvore e reutiliza o plano de consulta substituindo os valores de parâmetro. Mas determinadas constantes na árvore de expressão não podem ser convertidas em parâmetros. Se o delegado em cache contiver essas constantes, esses objetos não poderão ser coletados pelo lixo, pois ainda estão sendo referenciados. Se esse objeto contiver um DbContext ou outros serviços nele, isso poderá fazer com que o uso da memória do aplicativo cresça ao longo do tempo. Esse comportamento geralmente é um sinal de perda de memória. EF Core gera uma exceção sempre que se encontra entre constantes de um tipo que não podem ser mapeadas usando o provedor de banco de dados atual. As causas comuns e suas soluções são as seguintes:
 
-- **Usando um método de instância**: Ao usar métodos de instância em uma projeção de cliente, a árvore de expressão contém uma constante da instância. Se o método não usar nenhum dado da instância, considere tornar o método estático. Se você precisar de dados de instância no corpo do método, passe os dados específicos como um argumento para o método.
-- **Passando argumentos constantes para o método**: Esse caso ocorre geralmente usando `this` em um argumento para o método de cliente. Considere dividir o argumento em vários argumentos escalares, que podem ser mapeados pelo provedor de banco de dados.
-- **Outras constantes**: Se uma constante estiver em qualquer outro caso, você poderá avaliar se a constante é necessária no processamento. Se for necessário ter a constante ou se você não puder usar uma solução dos casos acima, crie uma variável local para armazenar o valor e use a variável local na consulta. EF Core converterá a variável local em um parâmetro.
+- **Usando um método de instância**: ao usar métodos de instância em uma projeção de cliente, a árvore de expressão contém uma constante da instância. Se o método não usar nenhum dado da instância, considere tornar o método estático. Se você precisar de dados de instância no corpo do método, passe os dados específicos como um argumento para o método.
+- **Passando argumentos constantes para o método**: esse caso ocorre geralmente usando `this` em um argumento para o método de cliente. Considere dividir o argumento em vários argumentos escalares, que podem ser mapeados pelo provedor de banco de dados.
+- **Outras constantes**: se uma constante for proveniente de qualquer outro caso, você poderá avaliar se a constante é necessária no processamento. Se for necessário ter a constante ou se você não puder usar uma solução dos casos acima, crie uma variável local para armazenar o valor e use a variável local na consulta. EF Core converterá a variável local em um parâmetro.
 
 ## <a name="previous-versions"></a>Versões anteriores
 

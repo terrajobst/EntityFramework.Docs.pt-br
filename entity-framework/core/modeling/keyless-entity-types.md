@@ -5,14 +5,15 @@ ms.author: ansvyryd
 ms.date: 02/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 uid: core/modeling/keyless-entity-types
-ms.openlocfilehash: e78b9f91fd2505de300ced7b5e73291b5d1ad3b4
-ms.sourcegitcommit: 7bc43f21e7bdd64926314ea949aae689f1911956
+ms.openlocfilehash: 3dbc2700fc9bb277eb90885dfc2506c250ae21f1
+ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/25/2019
-ms.locfileid: "71266768"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72445940"
 ---
 # <a name="keyless-entity-types"></a>Tipos de entidade sem chave
+
 > [!NOTE]
 > Esse recurso foi adicionado no EF Core 2,1 sob o nome dos tipos de consulta. No EF Core 3,0, o conceito foi renomeado para tipos de entidade de subunidade.
 
@@ -20,19 +21,19 @@ Além dos tipos de entidade regulares, um modelo de EF Core pode conter _tipos d
 
 ## <a name="keyless-entity-types-characteristics"></a>Características de tipos de entidade de subtipo
 
-Os tipos de entidade keyless dão suporte a muitos dos mesmos recursos de mapeamento que os tipos de entidade regular, como o mapeamento de herança e as propriedades de navegação. Em repositórios relacionais, eles podem configurar as colunas por meio de métodos da API fluentes ou anotações de dados e objetos de banco de dados de destino.
+Os tipos de entidade keyless dão suporte a muitos dos mesmos recursos de mapeamento que os tipos de entidade regular, como o mapeamento de herança e as propriedades de navegação. Em repositórios relacionais, eles podem configurar os objetos e as colunas do banco de dados de destino por meio de métodos de API fluente ou anotações de data.
 
 No entanto, eles são diferentes dos tipos de entidade regulares, pois:
 
 - Não é possível definir uma chave.
 - Nunca são rastreadas para alterações no _DbContext_ e, portanto, nunca são inseridas, atualizadas ou excluídas no banco de dados.
-- Nunca são descobertos pela convenção.
+- Nunca são descobertas por convenção.
 - Dá suporte apenas a um subconjunto de recursos de mapeamento de navegação, especificamente:
-  - Eles nunca podem agir como o final principal de uma relação.
+  - Eles podem nunca atuar como a extremidade principal de uma relação.
   - Eles podem não ter navegações para entidades pertencentes
   - Eles só podem conter Propriedades de navegação de referência apontando para entidades regulares.
   - As entidades não podem conter Propriedades de navegação para tipos de entidade sem nenhum.
-- Precisa ser configurado com a `.HasNoKey()` chamada de método.
+- Precisa ser configurado com a chamada de método `.HasNoKey()`.
 - Pode ser mapeado para uma _consulta de definição_. Uma consulta de definição é uma consulta declarada no modelo que atua como uma fonte de dados para um tipo de entidade sem modelo.
 
 ## <a name="usage-scenarios"></a>Cenários de uso
@@ -46,10 +47,10 @@ Alguns dos principais cenários de uso para tipos de entidade de tipo de subunid
 
 ## <a name="mapping-to-database-objects"></a>Mapeando para objetos de banco de dados
 
-O mapeamento de um tipo de entidade sem um objeto de banco de dados `ToTable` é `ToView` obtido usando o ou a API fluente. Da perspectiva do EF Core, o objeto de banco de dados especificado neste método é um _exibição_, que significa que ela é tratada como uma fonte de consulta somente leitura e não pode ser o destino da atualização, inserir ou excluir operações. No entanto, isso não significa que o objeto de banco de dados é realmente necessário para ser uma exibição de banco de dados. Como alternativa, ele pode ser uma tabela de banco de dados que será tratada como somente leitura. Por outro lado, para tipos de entidade regulares, EF Core pressupõe que um objeto de banco de `ToTable` dados especificado no método possa ser tratado como uma _tabela_, o que significa que ele pode ser usado como uma fonte de consulta, mas também direcionado por operações de atualização, exclusão e inserção. Na verdade, você pode especificar o nome de uma exibição de banco de dados em `ToTable` e tudo deve funcionar bem, desde que o modo de exibição está configurado para ser atualizável no banco de dados.
+O mapeamento de um tipo de entidade sem um objeto de banco de dados é obtido usando a API Fluent `ToTable` ou `ToView`. Da perspectiva do EF Core, o objeto de banco de dados especificado nesse método é uma _exibição_, o que significa que ele é tratado como uma fonte de consulta somente leitura e não pode ser o destino de operações de atualização, inserção ou exclusão. No entanto, isso não significa que o objeto de banco de dados é realmente necessário para ser uma exibição de banco de dados. Como alternativa, ele pode ser uma tabela de banco de dados que será tratada como somente leitura. Por outro lado, para tipos de entidade regulares, EF Core pressupõe que um objeto de banco de dados especificado no método `ToTable` pode ser tratado como uma _tabela_, o que significa que ele pode ser usado como uma fonte de consulta, mas também direcionado pelas operações Update, DELETE e INSERT. Na verdade, você pode especificar o nome de uma exibição de banco de dados no `ToTable` e tudo deve funcionar bem, desde que a exibição esteja configurada para ser atualizável no banco de dados.
 
 > [!NOTE]
-> `ToView`supõe que o objeto já existe no banco de dados e não será criado por migrações.
+> `ToView` supõe que o objeto já existe no banco de dados e não será criado por migrações.
 
 ## <a name="example"></a>Exemplo
 
@@ -58,11 +59,11 @@ O exemplo a seguir mostra como usar tipos de entidade para consultar uma exibiç
 > [!TIP]
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/KeylessEntityTypes) deste artigo no GitHub.
 
-Primeiro, definimos um modelo simples de Blog e Post:
+Primeiro, definimos um blog simples e um modelo de postagem:
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#Entities)]
 
-Em seguida, definimos uma exibição de banco de dados simples que nos permitirá consultar o número de postagens associada a cada blog:
+Em seguida, definimos um modo de exibição de banco de dados simples que nos permitirá consultar o número de postagens associadas a cada blog:
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#View)]
 
@@ -70,16 +71,16 @@ Em seguida, definimos uma classe para manter o resultado da exibição do banco 
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#KeylessEntityType)]
 
-Em seguida, configuramos o tipo de entidade keyless em `HasNoKey` OnModelCreating usando a API.
+Em seguida, configuramos o tipo de entidade keyless em _OnModelCreating_ usando a API `HasNoKey`.
 Usamos a API de configuração fluente para configurar o mapeamento para o tipo de entidade de automenos:
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#Configuration)]
 
-Em seguida, configuramos o `DbContext` para `DbSet<T>`incluir:
+Em seguida, configuramos o `DbContext` para incluir o `DbSet<T>`:
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#DbSet)]
 
-Por fim, é possível consultar a exibição de banco de dados da maneira padrão:
+Por fim, podemos consultar a exibição do banco de dados da maneira padrão:
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#Query)]
 

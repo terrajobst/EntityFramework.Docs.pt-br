@@ -4,18 +4,18 @@ author: roji
 ms.date: 09/09/2019
 ms.assetid: bde4e0ee-fba3-4813-a849-27049323d301
 uid: core/miscellaneous/nullable-reference-types
-ms.openlocfilehash: ab35e63a6eeb2f02ed07a715fd65855b4d30eaf5
-ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
+ms.openlocfilehash: 055f492214596506ce2c28485ade359d175c4ac2
+ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/02/2019
-ms.locfileid: "71813452"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72445905"
 ---
 # <a name="working-with-nullable-reference-types"></a>Trabalhando com tipos de referência anuláveis
 
 C#8 introduziu um novo recurso chamado [tipos de referência anulável](/dotnet/csharp/tutorials/nullable-reference-types), permitindo que os tipos de referência sejam anotados, indicando se é válido para que eles contenham nulo ou não. Se você for novo nesse recurso, é recomendável que você se familiarize com ele lendo os C# documentos.
 
-Esta página apresenta o suporte de EF Core de tipos de referência anulável e descreve as práticas recomendadas para trabalhar com eles.
+Esta página apresenta o suporte de EF Core para tipos de referência anuláveis e descreve as práticas recomendadas para trabalhar com eles.
 
 ## <a name="required-and-optional-properties"></a>Propriedades obrigatórias e opcionais
 
@@ -26,7 +26,7 @@ A documentação principal sobre as propriedades obrigatórias e opcionais e sua
 
 ## <a name="dbcontext-and-dbset"></a>DbContext e DbSet
 
-Quando tipos de referência anuláveis são habilitados, o C# compilador emite avisos para qualquer propriedade não anulável não inicializada, pois eles conteriam NULL. Como resultado, a prática comum de definir uma não anulável `DbSet` em um contexto irá gerar um aviso. No entanto, EF Core sempre `DbSet` Inicializa todas as propriedades em tipos derivados de DbContext, de modo que elas são garantidas nunca serem nulas, mesmo que o compilador não tenha conhecimento disso. Portanto, é recomendável manter suas `DbSet` Propriedades não anuláveis – permitindo que você as acesse sem verificações nulas, e para silenciar os avisos do compilador, definindo-os explicitamente como NULL com a ajuda do operador NULL-tolerante (!):
+Quando tipos de referência anuláveis são habilitados, o C# compilador emite avisos para qualquer propriedade não anulável não inicializada, pois eles conteriam NULL. Como resultado, a prática comum de definir um `DbSet` não anulável em um contexto irá gerar um aviso. No entanto, EF Core sempre Inicializa todas as propriedades de `DbSet` em tipos derivados de DbContext, portanto, eles são garantidos que nunca serão nulos, mesmo que o compilador não esteja ciente disso. Portanto, é recomendável manter suas propriedades `DbSet` não anuláveis, permitindo que você as acesse sem verificações nulas, e para silenciar os avisos do compilador, definindo-os explicitamente como NULL com a ajuda do operador NULL-tolerante (!):
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/NullableReferenceTypesContext.cs?name=Context&highlight=3-4)]
 
@@ -65,4 +65,4 @@ Se você estiver fazendo isso muito, e os tipos de entidade em questão forem pr
 
 ## <a name="scaffolding"></a>Scaffolding
 
-[O C# recurso de tipo de referência anulável 8](/dotnet/csharp/tutorials/nullable-reference-types) não tem suporte no momento na engenharia reversa: EF Core sempre gera C# código que assume que o recurso está desativado. Por exemplo, colunas de texto anuláveis serão com Scaffold como uma propriedade com `string` tipo, `string?`não, com a API Fluent ou as anotações de dados usadas para configurar se uma propriedade é necessária ou não. Você pode editar o código com Scaffold e substituí-los C# por anotações de nulidade. O suporte do scaffolding para tipos de referência anuláveis é acompanhado pelo problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
+[No C# momento, não há suporte para o recurso de tipo de referência anulável 8](/dotnet/csharp/tutorials/nullable-reference-types) na engenharia reversa: EF Core sempre gera C# código que assume que o recurso está desativado. Por exemplo, colunas de texto anuláveis serão com Scaffold como uma propriedade com o tipo `string`, não `string?`, com a API Fluent ou as anotações de dados usadas para configurar se uma propriedade é necessária ou não. Você pode editar o código com Scaffold e substituí-los C# por anotações de nulidade. O suporte do scaffolding para tipos de referência anuláveis é acompanhado pelo problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
