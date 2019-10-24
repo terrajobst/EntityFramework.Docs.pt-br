@@ -175,22 +175,24 @@
           items:
             - name: Visão geral
               href: core/querying/index.md
-            - name: Como carregar dados relacionados
-              href: core/querying/related-data.md
             - name: Cliente versus Avaliação do Servidor
               href: core/querying/client-eval.md
             - name: Consultas com acompanhamento versus Sem controle
               href: core/querying/tracking.md
-            - name: Consultas SQL brutas
-              href: core/querying/raw-sql.md
+            - name: Operadores de consulta complexa
+              href: core/querying/complex-query-operators.md
+            - name: Como carregar dados relacionados
+              href: core/querying/related-data.md
             - name: Consultas assíncronas
               href: core/querying/async.md
-            - name: Como a consulta funciona
-              href: core/querying/how-query-works.md
+            - name: Consultas SQL brutas
+              href: core/querying/raw-sql.md
             - name: Filtros de consulta global
               href: core/querying/filters.md
             - name: Marcas de consulta
               href: core/querying/tags.md
+            - name: Como a consulta funciona
+              href: core/querying/how-query-works.md
         - name: Salvar Dados
           items:
             - name: Visão geral
