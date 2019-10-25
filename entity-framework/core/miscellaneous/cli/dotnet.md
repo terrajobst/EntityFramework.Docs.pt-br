@@ -4,18 +4,19 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: e5b42275aa575d711e1dcdf3d2ba3cb29a036727
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 29434c26a503fabb16b43ee8f0c36136a0b5b745
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181251"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72811966"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Referência de ferramentas de Entity Framework Core-CLI .NET
 
 As ferramentas da CLI (interface de linha de comando) para Entity Framework Core executar tarefas de desenvolvimento em tempo de design. Por exemplo, eles criam [migrações](/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-2.0), aplicam migrações e geram código para um modelo com base em um banco de dados existente. Os comandos são uma extensão para o comando [dotnet](/dotnet/core/tools) de plataforma cruzada, que faz parte do [SDK do .NET Core](https://www.microsoft.com/net/core). Essas ferramentas funcionam com projetos do .NET Core.
 
 Se você estiver usando o Visual Studio, recomendamos as [ferramentas de console do Gerenciador de pacotes](powershell.md) em vez disso:
+
 * Eles trabalham automaticamente com o projeto atual selecionado no **console do Gerenciador de pacotes** sem exigir que você alterne manualmente os diretórios.
 * Eles abrem automaticamente os arquivos gerados por um comando após a conclusão do comando.
 
@@ -30,17 +31,17 @@ O procedimento de instalação depende do tipo de projeto e da versão:
 
 ### <a name="ef-core-3x"></a>EF Core 3. x
 
-* o `dotnet ef` deve ser instalado como uma ferramenta global ou local. A maioria dos desenvolvedores irá instalar `dotnet ef` como uma ferramenta global com o seguinte comando:
+* `dotnet ef` deve ser instalado como uma ferramenta global ou local. A maioria dos desenvolvedores irá instalar `dotnet ef` como uma ferramenta global com o seguinte comando:
 
   ``` console
   dotnet tool install --global dotnet-ef
   ```
 
-  Você também pode usar `dotnet ef` como ferramenta local. Para usá-lo como uma ferramenta local, restaure as dependências de um projeto que a declare como uma dependência de ferramentas usando um [arquivo de manifesto da ferramenta](https://github.com/dotnet/cli/issues/10288).
+  Você também pode usar `dotnet ef` ferramenta local. Para usá-lo como uma ferramenta local, restaure as dependências de um projeto que a declare como uma dependência de ferramentas usando um [arquivo de manifesto da ferramenta](https://github.com/dotnet/cli/issues/10288).
 
 * Instale o [SDK do .NET Core 3,0](https://dotnet.microsoft.com/download/dotnet-core/3.0)). O SDK deve ser instalado mesmo que você tenha a versão mais recente do Visual Studio.
 
-* Instale o pacote `Microsoft.EntityFrameworkCore.Design` mais recente.
+* Instale o pacote de `Microsoft.EntityFrameworkCore.Design` mais recente.
 
   ``` Console
   dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -50,15 +51,15 @@ O procedimento de instalação depende do tipo de projeto e da versão:
 
 * Instale o [SDK do .NET Core](https://www.microsoft.com/net/download/core)atual. O SDK precisa ser instalado, mesmo se você tiver a versão mais recente do Visual Studio 2017.
 
-  Isso é tudo o que é necessário para o ASP.NET Core 2.1 + porque o pacote `Microsoft.EntityFrameworkCore.Design` está incluído no [metapacote Microsoft. AspNetCore. app](/aspnet/core/fundamentals/metapackage-app).
+  Isso é tudo o que é necessário para o ASP.NET Core 2.1 + porque o pacote de `Microsoft.EntityFrameworkCore.Design` está incluído no [metapacote Microsoft. AspNetCore. app](/aspnet/core/fundamentals/metapackage-app).
 
 ### <a name="ef-core-2x-not-aspnet-core"></a>EF Core 2. x (não ASP.NET Core)
 
-Os comandos `dotnet ef` são incluídos no SDK do .NET Core, mas para habilitar os comandos, você precisa instalar o pacote `Microsoft.EntityFrameworkCore.Design`.
+Os comandos `dotnet ef` estão incluídos no SDK do .NET Core, mas para habilitar os comandos, você precisa instalar o pacote `Microsoft.EntityFrameworkCore.Design`.
 
 * Instale o [SDK do .NET Core](https://www.microsoft.com/net/download/core)atual. O SDK deve ser instalado mesmo que você tenha a versão mais recente do Visual Studio.
 
-* Instale o pacote mais recente de `Microsoft.EntityFrameworkCore.Design` estável.
+* Instale o pacote de `Microsoft.EntityFrameworkCore.Design` estável mais recente.
 
   ``` Console
   dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -70,9 +71,9 @@ Os comandos `dotnet ef` são incluídos no SDK do .NET Core, mas para habilitar 
 
 * Configure o aplicativo para usar a versão do SDK do 2.1.200 modificando seu arquivo [global. JSON](/dotnet/core/tools/global-json) . Esse arquivo é normalmente incluído no diretório da solução (um acima do projeto).
 
-* Edite o arquivo de projeto e adicione `Microsoft.EntityFrameworkCore.Tools.DotNet` como um item `DotNetCliToolReference`. Especifique a versão mais recente do 1. x, por exemplo: 1.1.6. Consulte o exemplo de arquivo de projeto no final desta seção.
+* Edite o arquivo de projeto e adicione `Microsoft.EntityFrameworkCore.Tools.DotNet` como um item de `DotNetCliToolReference`. Especifique a versão mais recente do 1. x, por exemplo: 1.1.6. Consulte o exemplo de arquivo de projeto no final desta seção.
 
-* Instale a versão mais recente do 1. x do pacote `Microsoft.EntityFrameworkCore.Design`, por exemplo:
+* Instale a versão mais recente do 1. x do pacote de `Microsoft.EntityFrameworkCore.Design`, por exemplo:
 
   ```console
   dotnet add package Microsoft.EntityFrameworkCore.Design -v 1.1.6
@@ -146,7 +147,7 @@ Também é possível [colocar o código de migrações em uma biblioteca de clas
 
 ### <a name="other-target-frameworks"></a>Outras estruturas de destino
 
-As ferramentas da CLI funcionam com projetos do .NET Core e .NET Framework projetos. Os aplicativos que têm o modelo de EF Core em uma biblioteca de classes de .NET Standard podem não ter um projeto do .NET Core ou do .NET Framework. Por exemplo, isso é verdadeiro para aplicativos Xamarin e Plataforma Universal do Windows. Nesses casos, você pode criar um projeto de aplicativo de console do .NET Core cuja única finalidade é agir como projeto de inicialização para as ferramentas. O projeto pode ser um projeto fictício sem código real &mdash; é necessário apenas para fornecer um destino para as ferramentas.
+As ferramentas da CLI funcionam com projetos do .NET Core e .NET Framework projetos. Os aplicativos que têm o modelo de EF Core em uma biblioteca de classes de .NET Standard podem não ter um projeto do .NET Core ou do .NET Framework. Por exemplo, isso é verdadeiro para aplicativos Xamarin e Plataforma Universal do Windows. Nesses casos, você pode criar um projeto de aplicativo de console do .NET Core cuja única finalidade é agir como projeto de inicialização para as ferramentas. O projeto pode ser um projeto fictício sem código real &mdash; só é necessário fornecer um destino para as ferramentas.
 
 Por que um projeto fictício é necessário? Conforme mencionado anteriormente, as ferramentas precisam executar o código do aplicativo em tempo de design. Para fazer isso, eles precisam usar o tempo de execução do .NET Core. Quando o modelo de EF Core está em um projeto direcionado ao .NET Core ou .NET Framework, as ferramentas de EF Core emprestam o tempo de execução do projeto. Eles não poderão fazer isso se o modelo de EF Core estiver em uma biblioteca de classes .NET Standard. O .NET Standard não é uma implementação real do .NET; é uma especificação de um conjunto de APIs para as quais as implementações do .NET devem dar suporte. Portanto .NET Standard não é suficiente para as ferramentas de EF Core executarem o código do aplicativo. O projeto fictício que você cria para usar como projeto de inicialização fornece uma plataforma de destino concreta na qual as ferramentas podem carregar o .NET Standard biblioteca de classes.
 
@@ -163,7 +164,7 @@ Para especificar o ambiente para projetos de ASP.NET Core, defina a variável de
 | `-p`              | `--project <PROJECT>`             | Caminho relativo para a pasta do projeto de destino.  O valor padrão é a pasta atual.                                                                                                                                                              |
 | `-s`              | `--startup-project <PROJECT>`     | Caminho relativo para a pasta do projeto de inicialização. O valor padrão é a pasta atual.                                                                                                                                                              |
 |                   | `--framework <FRAMEWORK>`         | O [moniker da estrutura de destino](/dotnet/standard/frameworks#supported-target-framework-versions) para a [estrutura de destino](/dotnet/standard/frameworks).  Use quando o arquivo de projeto especificar várias estruturas de destino e você desejar selecionar uma delas. |
-|                   | `--configuration <CONFIGURATION>` | A configuração de compilação, por exemplo: `Debug` ou `Release`.                                                                                                                                                                                                   |
+|                   | `--configuration <CONFIGURATION>` | A configuração de Build, por exemplo: `Debug` ou `Release`.                                                                                                                                                                                                   |
 |                   | `--runtime <IDENTIFIER>`          | O identificador do tempo de execução de destino para o qual restaurar os pacotes. Para obter uma lista de RIDs (Identificadores de Tempo de Execução), veja o [Catálogo de RIDs](/dotnet/core/rid-catalog).                                                                                                      |
 | `-h`              | `--help`                          | Mostrar informações de ajuda.                                                                                                                                                                                                                                        |
 | `-v`              | `--verbose`                       | Mostrar saída detalhada.                                                                                                                                                                                                                                          |
@@ -200,11 +201,11 @@ dotnet ef database update 20180904195021_InitialCreate
 
 ## <a name="dotnet-ef-dbcontext-info"></a>informações do dotnet EF DbContext
 
-Obtém informações sobre um tipo `DbContext`.
+Obtém informações sobre um tipo de `DbContext`.
 
 ## <a name="dotnet-ef-dbcontext-list"></a>lista de DbContext de EF do dotnet
 
-Lista os tipos `DbContext` disponíveis.
+Lista os tipos de `DbContext` disponíveis.
 
 ## <a name="dotnet-ef-dbcontext-scaffold"></a>dotnet EF DbContext Scaffold
 
@@ -214,7 +215,7 @@ Argumentos:
 
 | Argumento       | Descrição                                                                                                                                                                                                             |
 |:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<CONNECTION>` | A cadeia de conexão para o banco de dados. Para projetos ASP.NET Core 2. x, o valor pode ser *Name = \<Name da cadeia de conexão >* . Nesse caso, o nome é proveniente das fontes de configuração que estão configuradas para o projeto. |
+| `<CONNECTION>` | A cadeia de conexão para o banco de dados. Para projetos ASP.NET Core 2. x, o valor pode ser *nome =\<nome da cadeia de conexão >* . Nesse caso, o nome é proveniente das fontes de configuração que estão configuradas para o projeto. |
 | `<PROVIDER>`   | O provedor a ser usado. Normalmente, esse é o nome do pacote NuGet, por exemplo: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
 
 Opções:
@@ -222,8 +223,8 @@ Opções:
 |                 | Opção                                   | Descrição                                                                                                                                                                    |
 |:----------------|:-----------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <nobr>-d</nobr> | `--data-annotations`                     | Use atributos para configurar o modelo (sempre que possível). Se essa opção for omitida, somente a API fluente será usada.                                                                |
-| `-c`            | `--context <NAME>`                       | O nome da classe `DbContext` a ser gerada.                                                                                                                                 |
-|                 | `--context-dir <PATH>`                   | O diretório no qual colocar o arquivo de classe `DbContext`. Os caminhos são relativos ao diretório do projeto. Os namespaces são derivados dos nomes de pasta.                                 |
+| `-c`            | `--context <NAME>`                       | O nome da classe de `DbContext` a ser gerada.                                                                                                                                 |
+|                 | `--context-dir <PATH>`                   | O diretório no qual colocar o arquivo de classe de `DbContext`. Os caminhos são relativos ao diretório do projeto. Os namespaces são derivados dos nomes de pasta.                                 |
 | `-f`            | `--force`                                | Substitui os arquivos existentes.                                                                                                                                                      |
 | `-o`            | `--output-dir <PATH>`                    | O diretório no qual colocar os arquivos de classe de entidade. Os caminhos são relativos ao diretório do projeto.                                                                                       |
 |                 | <nobr>`--schema <SCHEMA_NAME>...`</nobr> | Os esquemas de tabelas para os quais gerar tipos de entidade. Para especificar vários esquemas, repita `--schema` para cada um. Se essa opção for omitida, todos os esquemas serão incluídos.          |

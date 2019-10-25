@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a628795e-64df-4f24-a5e8-76bc261e7ed8
 uid: core/modeling/backing-field
-ms.openlocfilehash: c3ca8bb97992c192672e8c2f2040b0de029df68d
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 288440a4494117fe59d27187e24424c4d2fd44ab
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197488"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72811884"
 ---
 # <a name="backing-fields"></a>Campos de backup
 
@@ -51,16 +51,12 @@ Você pode configurar quando o EF usa o campo ou a propriedade. Consulte a [Enum
 
 Você também pode criar uma propriedade conceitual em seu modelo que não tem uma propriedade CLR correspondente na classe de entidade, mas, em vez disso, usa um campo para armazenar os dados na entidade. Isso é diferente das [Propriedades de sombra](shadow-properties.md), onde os dados são armazenados no controlador de alterações. Isso normalmente seria usado se a classe de entidade usa métodos para obter/definir valores.
 
-Você pode dar ao EF o nome do campo na `Property(...)` API. Se não houver nenhuma propriedade com o nome fornecido, o EF procurará um campo.
+Você pode dar ao EF o nome do campo na API `Property(...)`. Se não houver nenhuma propriedade com o nome fornecido, o EF procurará um campo.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/BackingFieldNoProperty.cs#Sample)]
 
-Você também pode optar por dar um nome à propriedade, diferente do nome do campo. Esse nome é usado ao criar o modelo, mais notavelmente, ele será usado para o nome de coluna que está mapeado no banco de dados.
-
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/BackingFieldConceptualProperty.cs#Sample)]
-
-Quando não há nenhuma propriedade na classe de entidade, você pode usar o `EF.Property(...)` método em uma consulta LINQ para fazer referência à propriedade que é conceitualmente parte do modelo.
+Quando não há nenhuma propriedade na classe de entidade, você pode usar o método `EF.Property(...)` em uma consulta LINQ para referir-se à propriedade que é conceitualmente parte do modelo.
 
 ``` csharp
-var blogs = db.blogs.OrderBy(b => EF.Property<string>(b, "Url"));
+var blogs = db.blogs.OrderBy(b => EF.Property<string>(b, "_validatedUrl"));
 ```
