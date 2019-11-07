@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: cced53edadb890e4e86753ec2628218ffc4d1d5b
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 335d4f3a601624f7c994b7dcacefe4ef6798beb3
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181388"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655608"
 ---
 # <a name="spatial-data"></a>Dados espaciais
 
@@ -46,7 +46,7 @@ optionsBuilder.UseSqlServer(
     x => x.UseNetTopologySuite());
 ```
 
-Há vários tipos de dados espaciais. O tipo usado depende dos tipos de formas que você deseja permitir. Aqui está a hierarquia de tipos NTS que você pode usar para propriedades em seu modelo. Eles estão localizados no namespace `NetTopologySuite.Geometries`.
+Há vários tipos de dados espaciais. O tipo usado depende dos tipos de formas que você deseja permitir. Aqui está a hierarquia de tipos NTS que você pode usar para propriedades em seu modelo. Eles estão localizados dentro do namespace `NetTopologySuite.Geometries`.
 
 * Geometry
   * Ponto
@@ -101,7 +101,7 @@ var currentLocation = geometryFactory.CreatePoint(-122.121512, 47.6739882);
 
 ### <a name="longitude-and-latitude"></a>Longitude e latitude
 
-As coordenadas em NTS estão em termos de valores X e Y. Para representar a longitude e a latitude, use X para longitude e Y para latitude. Observe que isso é **retroativa** no formato `latitude, longitude` no qual você normalmente vê esses valores.
+As coordenadas em NTS estão em termos de valores X e Y. Para representar a longitude e a latitude, use X para longitude e Y para latitude. Observe que isso é **retroativa** no formato de `latitude, longitude` no qual você normalmente vê esses valores.
 
 ### <a name="srid-ignored-during-client-operations"></a>SRID ignorado durante as operações do cliente
 
@@ -213,7 +213,7 @@ Se você estiver usando SQL Server, haverá algumas coisas adicionais das quais 
 
 ### <a name="geography-or-geometry"></a>Geografia ou Geometry
 
-Por padrão, as propriedades espaciais são mapeadas para colunas `geography` em SQL Server. Para usar `geometry`, [Configure o tipo de coluna](xref:core/modeling/relational/data-types) em seu modelo.
+Por padrão, as propriedades espaciais são mapeadas para `geography` colunas em SQL Server. Para usar `geometry`, [Configure o tipo de coluna](xref:core/modeling/relational/data-types) em seu modelo.
 
 ### <a name="geography-polygon-rings"></a>Anéis de polígono de Geografia
 
@@ -232,7 +232,7 @@ Aqui estão algumas informações adicionais para as que usam o SQLite.
 
 ### <a name="installing-spatialite"></a>Instalando o SpatiaLite
 
-No Windows, a biblioteca mod_spatialite nativa é distribuída como uma dependência de pacote NuGet. Outras plataformas precisam instalá-lo separadamente. Isso normalmente é feito usando um Gerenciador de pacotes de software. Por exemplo, você pode usar a APT no Ubuntu e no Homebrew no MacOS.
+No Windows, a biblioteca de mod_spatialite nativa é distribuída como uma dependência de pacote NuGet. Outras plataformas precisam instalá-lo separadamente. Isso normalmente é feito usando um Gerenciador de pacotes de software. Por exemplo, você pode usar a APT no Ubuntu e no Homebrew no MacOS.
 
 ``` sh
 # Ubuntu
@@ -271,7 +271,7 @@ Geometry. asbinary () | ✔ | ✔ | ✔ | ✔
 Geometry. astext () | ✔ | ✔ | ✔ | ✔
 Geometry. limite | ✔ | | ✔ | ✔
 Geometry. buffer (duplo) | ✔ | ✔ | ✔ | ✔
-Geometry. buffer (Double, int) | | | ✔
+Geometry. buffer (Double, int) | | | ✔ | ✔
 Geometry. centróide | ✔ | | ✔ | ✔
 Geometry. Contains (geometry) | ✔ | ✔ | ✔ | ✔
 Geometry. ConvexHull () | ✔ | ✔ | ✔ | ✔
@@ -287,17 +287,17 @@ Geometry. EqualsExact (geometry) | | | | ✔
 Geometry. EqualsTopologically (geometry) | ✔ | ✔ | ✔ | ✔
 Geometry. GeometryType | ✔ | ✔ | ✔ | ✔
 Geometry. getgeometryn (int) | ✔ | | ✔ | ✔
-Geometry. InteriorPoint | ✔ | | ✔
+Geometry. InteriorPoint | ✔ | | ✔ | ✔
 Geometry. Intersection (geometry) | ✔ | ✔ | ✔ | ✔
 Geometry. Intersects (geometry) | ✔ | ✔ | ✔ | ✔
 Geometry. IsEmpty | ✔ | ✔ | ✔ | ✔
 Geometry. IsSimple | ✔ | | ✔ | ✔
 Geometry. IsValid | ✔ | ✔ | ✔ | ✔
-Geometry. IsWithinDistance (Geometry, Double) | ✔ | | ✔
+Geometry. IsWithinDistance (Geometry, Double) | ✔ | | ✔ | ✔
 Geometry. Length | ✔ | ✔ | ✔ | ✔
 Geometry. NumGeometries | ✔ | ✔ | ✔ | ✔
 Geometry. NumPoints | ✔ | ✔ | ✔ | ✔
-Geometry. OgcGeometryType | ✔ | ✔ | ✔
+Geometry. OgcGeometryType | ✔ | ✔ | ✔ | ✔
 Geometry. oversobrepõetes (geometry) | ✔ | ✔ | ✔ | ✔
 Geometry. PointOnSurface | ✔ | | ✔ | ✔
 Geometry. relacioná (Geometry, String) | ✔ | | ✔ | ✔
@@ -307,7 +307,7 @@ Geometry. SymmetricDifference (geometry) | ✔ | ✔ | ✔ | ✔
 Geometry. ToBinary () | ✔ | ✔ | ✔ | ✔
 Geometry. totext () | ✔ | ✔ | ✔ | ✔
 Geometry. toques (geometry) | ✔ | | ✔ | ✔
-Geometry. Union () | | | ✔
+Geometry. Union () | | | ✔ | ✔
 Geometry. Union (geometry) | ✔ | ✔ | ✔ | ✔
 Geometry. Within (geometry) | ✔ | ✔ | ✔ | ✔
 GeometryCollection. Count | ✔ | ✔ | ✔ | ✔

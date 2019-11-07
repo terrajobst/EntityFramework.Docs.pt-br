@@ -4,16 +4,17 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: 781578d9de05895cdbc777aa53c3f6d6f9777869
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 72393e96c195af1df5a169025ca2ce7a7acb16bb
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149053"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656216"
 ---
 # <a name="new-features-in-ef-core-20"></a>Novos recursos no EF Core 2.0
 
 ## <a name="net-standard-20"></a>.NET Standard 2.0
+
 O EF Core agora tem como destino o .NET Standard 2.0, o que significa que ele pode funcionar com o .NET Core 2.0, .NET Framework 4.6.1 e outras bibliotecas que implementam o .NET Standard 2.0.
 Consulte [Implementações do .NET compatíveis](../platforms/index.md) para obter mais detalhes sobre o que é compatível.
 
@@ -32,6 +33,7 @@ modelBuilder.Entity<Product>()
 modelBuilder.Entity<Product>().ToTable("Products");
 modelBuilder.Entity<ProductDetails>().ToTable("Products");
 ```
+
 Leia a [seção sobre separação de tabela](xref:core/modeling/table-splitting) para obter mais informações sobre esse recurso.
 
 ### <a name="owned-types"></a>Tipos próprios
@@ -65,6 +67,7 @@ public class StreetAddress
     public string City { get; set; }
 }
 ```
+
 Leia a [seção sobre tipos de entidade de propriedade](xref:core/modeling/owned-entities) para obter mais informações sobre esse recurso.
 
 ### <a name="model-level-query-filters"></a>Filtros de consulta de nível de modelo
@@ -92,6 +95,7 @@ public class BloggingContext : DbContext
     }
 }
 ```
+
 Definimos um filtro no nível de modelo que implementa a multilocação e a exclusão reversível para instâncias do Tipo de Entidade `Post`. Observe o uso de uma propriedade em nível de instância DbContext: `TenantId`. Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância de contexto que está executando a consulta).
 
 Os filtros podem ser desabilitados para consultas LINQ individuais usando o operador IgnoreQueryFilters().
@@ -219,7 +223,7 @@ Este trabalho melhora o SQL gerado para associações de grupo. Associações de
 
 ### <a name="string-interpolation-in-fromsql-and-executesqlcommand"></a>Interpolação de cadeia de caracteres em FromSql e ExecuteSqlCommand
 
-C# 6 introduziu Interpolação de Cadeia de Caracteres, um recurso que permite inserir expressões C# diretamente em literais de cadeia de caracteres, oferecendo uma ótima maneira de criar cadeias de caracteres no tempo de execução. No EF Core 2.0, adicionamos suporte especial para cadeias de caracteres interpoladas às nossas duas APIs primárias que aceitam cadeias de caracteres SQL brutas: `FromSql` e `ExecuteSqlCommand`. Esse novo suporte permite que a interpolação de cadeia de caracteres C# seja usada de maneira “segura”. Ou seja, de uma maneira que proteja contra erros comuns de injeção de SQL que podem ocorrer ao criar SQL dinamicamente no tempo de execução.
+C# 6 introduziu Interpolação de Cadeia de Caracteres, um recurso que permite inserir expressões C# diretamente em literais de cadeia de caracteres, oferecendo uma ótima maneira de criar cadeias de caracteres no runtime. No EF Core 2.0, adicionamos suporte especial para cadeias de caracteres interpoladas às nossas duas APIs primárias que aceitam cadeias de caracteres SQL brutas: `FromSql` e `ExecuteSqlCommand`. Esse novo suporte permite que a interpolação de cadeia de caracteres C# seja usada de maneira “segura”. Ou seja, de uma maneira que proteja contra erros comuns de injeção de SQL que podem ocorrer ao criar SQL dinamicamente no runtime.
 
 Veja um exemplo:
 
@@ -298,9 +302,11 @@ public class MyPluralizer : IPluralizer
 ## <a name="others"></a>Outras pessoas
 
 ### <a name="move-adonet-sqlite-provider-to-sqlitepclraw"></a>Mover o provedor ADO.NET SQLite para SQLitePCL.raw
+
 Isso oferece uma solução mais robusta no Microsoft.Data.Sqlite para distribuir binários SQLite nativos em diferentes plataformas.
 
 ### <a name="only-one-provider-per-model"></a>Somente um provedor por modelo
+
 Aumenta significativamente o modo como provedores podem interagir com o modelo e simplifica o modo como convenções, anotações e APIs fluente funcionam com diferentes provedores.
 
 O EF Core 2.0 agora criará um [IModel](https://github.com/aspnet/EntityFramework/blob/master/src/EFCore/Metadata/IModel.cs) diferente para cada provedor diferente que está sendo usado. Isso normalmente é transparente para o aplicativo. Isso facilitou uma simplificação de APIs de metadados de nível inferior de modo que qualquer acesso a *conceitos de metadados relacionados comuns* pé feito sempre por meio de uma chamada para `.Relational`, em vez de `.SqlServer`, `.Sqlite` etc.

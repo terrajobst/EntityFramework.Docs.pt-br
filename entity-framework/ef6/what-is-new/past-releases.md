@@ -3,12 +3,13 @@ title: Versões anteriores do Entity Framework-EF6
 author: divega
 ms.date: 09/12/2019
 ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
-ms.openlocfilehash: 478dec6b2401efd554e84a231fe78e71dcbf5771
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+uid: ef6/what-is-new/past-releases
+ms.openlocfilehash: fada7740453cd9a55a1d0069236efcecbd9aa314
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182116"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656138"
 ---
 # <a name="past-releases-of-entity-framework"></a>Versões anteriores do Entity Framework
 
@@ -36,13 +37,13 @@ Ela inclui melhorias para alguns pontos de problemas comuns:
 - Solução alternativa para a regressão de desempenho do SQL Server ao gerar modelos de bancos de dados existentes [#4](https://github.com/aspnet/entityframework6/issues/4)
 - Suporte para atualizar modelos maiores no SQL Server [#185](https://github.com/aspnet/EntityFramework6/issues/185)
 
-Outra melhoria nessa nova versão das ferramentas do EF é a instalação do tempo de execução do EF 6.2 quando um modelo é criado em um novo projeto. Com versões mais antigas do Visual Studio, é possível usar o tempo de execução do EF 6.2 (bem como qualquer versão anterior do EF) instalando a versão correspondente do pacote NuGet.
+Outra melhoria nessa nova versão das ferramentas do EF é a instalação do runtime do EF 6.2 quando um modelo é criado em um novo projeto. Com versões mais antigas do Visual Studio, é possível usar o runtime do EF 6.2 (bem como qualquer versão anterior do EF) instalando a versão correspondente do pacote NuGet.
 
 ## <a name="ef-620"></a>6\.2.0 EF
-O tempo de execução do EF 6.2 foi lançado para o NuGet em outubro de 2017.
+O runtime do EF 6.2 foi lançado para o NuGet em outubro de 2017.
 Graças, em grande parte, aos esforços de nossa comunidade de colaboradores de software livre, o EF 6.2 inclui várias [correções de bugs](https://github.com/aspnet/entityframework6/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A6.2.0%20is%3Aclosed%20label%3Aclosed-fixed%20-label%3Aarea-tools%20label%3Atype-bug) e [aprimoramentos de produtos](https://github.com/aspnet/entityframework6/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A6.2.0%20is%3Aclosed%20label%3Aclosed-fixed%20-label%3Aarea-tools%20label%3Atype-enhancement%20).
 
-Aqui está uma lista resumida das alterações mais importantes que afetam o tempo de execução do EF 6.2:
+Aqui está uma lista resumida das alterações mais importantes que afetam o runtime do EF 6.2:
 
 - Redução do tempo de inicialização carregando modelos do Code First concluídos de um cache persistente [#275](https://github.com/aspnet/EntityFramework6/issues/275)
 - API fluente para definir índices [#274](https://github.com/aspnet/EntityFramework6/issues/274)
@@ -50,15 +51,15 @@ Aqui está uma lista resumida das alterações mais importantes que afetam o tem
 - Agora Migrate.exe é compatível com a opção -script [#240](https://github.com/aspnet/EntityFramework6/issues/240)
 - Agora o EF6 pode trabalhar com valores de chave gerados por uma sequência no SQL Server [#165](https://github.com/aspnet/EntityFramework6/issues/165)
 - Atualização da lista de erros transitórios para a estratégia de execução do SQL Azure [n#83](https://github.com/aspnet/EntityFramework6/issues/83)
-- Bug: A repetição das consultas ou dos comandos SQL falhou em "O SqlParameter já está contido em outro SqlParameterCollection" [#81](https://github.com/aspnet/EntityFramework6/issues/81)
-- Bug: A avaliação do DbQuery.ToString() atinge frequentemente o tempo limite no depurador [#73](https://github.com/aspnet/EntityFramework6/issues/73)
+- Bug: a repetição de consultas ou comandos SQL falha com "O SqlParameter já está contido em outro SqlParameterCollection" [#81](https://github.com/aspnet/EntityFramework6/issues/81)
+- Bug: a avaliação de DbQuery.ToString() frequentemente atinge o tempo limite no depurador [#73](https://github.com/aspnet/EntityFramework6/issues/73)
 
 ## <a name="ef-613"></a>6\.1.3 EF
 O tempo de execução de 6.1.3 do EF foi liberado para o NuGet em outubro de 2015.
 Esta versão contém apenas correções para defeitos de alta prioridade e regressões relatadas na versão do 6.1.2.
 As correções incluem:
 
-- Consulta: Regressão no EF 6.1.2: APLICAÇÃO externa introduzida e consultas mais complexas para relações 1:1 e cláusula "Let"
+- Consulta: regressão no EF 6.1.2: aplicação externa introduzida e consultas mais complexas para relações 1:1 e cláusula "Let"
 - Problema de TPT com a propriedade de classe base oculta na classe herdada
 - Falha de DbMigration. SQL quando a palavra ' Go ' está contida no texto
 - Criar sinalizador de compatibilidade para UnionAll e interceptar suporte de mesclagem
@@ -79,7 +80,7 @@ Essa versão é principalmente sobre correções de bugs. Também aceitamos algu
 ## <a name="ef-611"></a>FE 6.1.1
 O tempo de execução do EF 6.1.1 foi liberado para o NuGet em junho de 2014.
 Esta versão contém correções para problemas que várias pessoas encontraram. Entre outros:
-- Designer Erro ao abrir o EF5 edmx com precisão decimal no designer de EF6
+- Designer: erro ao abrir o EF5 edmx com precisão decimal no designer de EF6
 - A lógica de detecção de instância padrão para LocalDB não funciona com SQL Server 2014
 
 ## <a name="ef-610"></a>6\.1.0 EF
@@ -125,7 +126,7 @@ Os recursos a seguir funcionam para modelos criados com Code First ou o designer
 - **Enums, espacial e melhor desempenho no .net 4,0** – ao mover os componentes principais que costumavam estar no .NET Framework no pacote NUGET do EF, agora podemos oferecer suporte a enum, tipos de dados espaciais e melhorias de desempenho do EF5 no .NET 4,0.
 - **Desempenho aprimorado de Enumerable. Contains em consultas LINQ**.
 - **Tempo de aquecimento aprimorado (geração de exibição)** , especialmente para modelos grandes.
-- **Serviço de singularização &amp; conectável de pluralização**.
+- **Pluralização conectável &amp; serviço de singularização**.
 - Agora há suporte para **implementações personalizadas de Equals ou GetHashCode** em classes de entidade.
 - **DbSet. AddRange/RemoveRange** fornece uma maneira otimizada para adicionar ou remover várias entidades de um conjunto.
 - **DbChangeTracker. HasChanges** fornece uma maneira fácil e eficiente de ver se há alterações pendentes a serem salvas no banco de dados.
@@ -138,11 +139,11 @@ Os recursos a seguir se aplicam somente a Code First:
 - Os **[scripts de migrações idempotentes](~/ef6/modeling/code-first/migrations/index.md)** permitem gerar um script SQL que pode atualizar um banco de dados em qualquer versão até a versão mais recente.
 - A **[tabela de histórico de migrações configuráveis](~/ef6/modeling/code-first/migrations/history-customization.md)** permite que você personalize a definição da tabela de histórico de migrações. Isso é particularmente útil para provedores de banco de dados que exigem os tipos de dado apropriados, etc. para serem especificados para que a tabela de histórico de migrações funcione corretamente.
 - **Vários contextos por banco de dados** remove a limitação anterior de um modelo de Code First por banco de dados ao usar migrações ou quando Code First criou automaticamente o banco de dados para você.
-- **[DbModelBuilder. HasDefaultSchema](~/ef6/modeling/code-first/fluent/types-and-properties.md)** é uma nova API Code First que permite que o esquema de banco de dados padrão de um modelo de Code First seja configurado em um único local. Anteriormente, o esquema padrão Code First era embutido em código para &quot;dbo @ no__t-1 e a única maneira de configurar o esquema ao qual uma tabela pertencia era por meio da API ToTable.
+- **[DbModelBuilder. HasDefaultSchema](~/ef6/modeling/code-first/fluent/types-and-properties.md)** é uma nova API Code First que permite que o esquema de banco de dados padrão de um modelo de Code First seja configurado em um único local. Anteriormente, o esquema padrão Code First era embutido em código para &quot;dbo&quot; e a única maneira de configurar o esquema ao qual uma tabela pertencia era por meio da API ToTable.
 - O **método DbModelBuilder. Configurations. AddFromAssembly** permite que você adicione facilmente todas as classes de configuração definidas em um assembly quando você está usando classes de configuração com o Code First API fluente.
 - **[As operações de migração personalizadas](https://romiller.com/2013/02/27/ef6-writing-your-own-code-first-migration-operations/)** permitiram que você adicione operações adicionais a serem usadas em suas migrações baseadas em código.
 - O **nível de isolamento da transação padrão é alterado para READ_COMMITTED_SNAPSHOT** para bancos de dados criados usando Code First, permitindo mais escalabilidade e menos deadlocks.
-- Os **tipos de entidade e complexos agora podem ser classes nestedinside**. |
+- Os **tipos de entidade e complexos agora podem ser classes nestedinside**.
 
 ## <a name="ef-50"></a>EF 5,0
 O tempo de execução de 5.0.0 do EF foi liberado para o NuGet em agosto de 2012.
@@ -150,7 +151,7 @@ Esta versão apresenta alguns recursos novos, incluindo suporte a enum, funçõe
 
 O Entity Framework Designer no Visual Studio 2012 também apresenta suporte para vários diagramas por modelo, cor das formas na superfície de design e na importação em lote de procedimentos armazenados.
 
-Aqui está uma lista de conteúdo que reunimos especificamente para a versão do EF 5.
+Aqui está uma lista de conteúdo que reunimos especificamente para a versão do EF 5:
 
 -   [Postagem de versão do EF 5](https://blogs.msdn.com/b/adonet/archive/2012/08/15/ef5-released.aspx)
 -   Novos recursos no EF5
@@ -162,7 +163,7 @@ Aqui está uma lista de conteúdo que reunimos especificamente para a versão do
     -   [Funções com valor de tabela](~/ef6/modeling/designer/advanced/tvfs.md)
     -   [Vários diagramas por modelo](~/ef6/modeling/designer/multiple-diagrams.md)
 -   Configurando seu modelo
-    -   [Criar um Modelo](~/ef6/modeling/index.md)
+    -   [Criação de um modelo](~/ef6/modeling/index.md)
     -   [Conexões e modelos](~/ef6/fundamentals/configuring/connection-strings.md)
     -   [Considerações sobre desempenho](~/ef6/fundamentals/performance/perf-whitepaper.md)
     -   [Trabalhando com o Microsoft SQL Azure](~/ef6/fundamentals/connection-resiliency/retry-logic.md)
@@ -217,7 +218,7 @@ Aqui está uma lista de conteúdo que reunimos especificamente para a versão do
 O tempo de execução do EF 4.3.1 foi liberado para o NuGet em fevereiro de 2012 logo após o EF 4.3.0.
 Esta versão de patch incluiu algumas correções de bug para a versão do EF 4,3 e introduziu melhor suporte do LocalDB para clientes que usam o EF 4,3 com o Visual Studio 2012.
 
-Aqui está uma lista de conteúdo que reunimos especificamente para a versão do EF 4.3.1, a maior parte do conteúdo fornecido para o EF 4,1 ainda se aplica ao EF 4,3 também.
+Aqui está uma lista de conteúdo que reunimos especificamente para a versão do EF 4.3.1, a maior parte do conteúdo fornecido para o EF 4,1 ainda se aplica ao EF 4,3 também:
 
 -   [Postagem do blog da versão do EF 4.3.1](https://blogs.msdn.com/b/adonet/archive/2012/02/29/ef4-3-1-and-ef5-beta-1-available-on-nuget.aspx)
 
@@ -235,7 +236,7 @@ O tempo de execução de 4.2.0 do EF foi lançado para o NuGet em novembro de 20
 Esta versão inclui correções de bugs para a versão do EF 4.1.1.
 Como esta versão inclui apenas correções de bug, ele poderia ter sido a versão de patch do EF 4.1.2, mas optamos por mudar para 4,2 para nos permitirmos sair dos números de versão de patch com base na data que usamos nas versões 4.1. x e adotar o padrão de [controle de versão de semântica](https://semver.org) para s controle de versão do emantic.
 
-Aqui está uma lista de conteúdo que reunimos especificamente para a versão do EF 4,2, o conteúdo fornecido para o EF 4,1 ainda se aplica ao EF 4,2 também.
+Aqui está uma lista de conteúdo que reunimos especificamente para a versão do EF 4,2, o conteúdo fornecido para o EF 4,1 ainda se aplica ao EF 4,2 também:
 
 -   [Postagem de versão do EF 4,2](https://blogs.msdn.com/b/adonet/archive/2011/11/01/ef-4-2-released.aspx)
 -   [Instruções Code First](https://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-code-first-walkthrough.aspx)

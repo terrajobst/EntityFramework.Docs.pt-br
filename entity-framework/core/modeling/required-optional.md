@@ -4,27 +4,27 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ddaa0a54-9f43-4c34-aae3-f95c96c69842
 uid: core/modeling/required-optional
-ms.openlocfilehash: fd9e96e6f79965e63b07c21217edd004fd5c4d54
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 62b2b3f5a761c0aacece986ecd0b2dd2f958d048
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197842"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655657"
 ---
 # <a name="required-and-optional-properties"></a>Propriedades obrigatórias e opcionais
 
-Uma propriedade será considerada opcional se for válida para conter `null`. Se `null` não for um valor válido a ser atribuído a uma propriedade, será considerada uma propriedade necessária.
+Uma propriedade será considerada opcional se for válida para que ela contenha `null`. Se `null` não for um valor válido a ser atribuído a uma propriedade, então será considerada uma propriedade necessária.
 
 Ao mapear para um esquema de banco de dados relacional, as propriedades obrigatórias são criadas como colunas não anuláveis e as propriedades opcionais são criadas como colunas anuláveis.
 
 ## <a name="conventions"></a>Convenções
 
-Por convenção, uma propriedade cujo tipo .NET pode conter NULL será configurada como opcional, enquanto as propriedades cujo tipo .NET não pode conter NULL serão configuradas conforme necessário. Por exemplo, todas as propriedades com tipos de valor`int`do `decimal`.NET `bool`(,,, etc.) são configuradas como obrigatórias, e todas as propriedades `decimal?`com `bool?`tipos de valor do .net anuláveis (`int?`,,, etc.) são configurado como opcional.
+Por convenção, uma propriedade cujo tipo .NET pode conter NULL será configurada como opcional, enquanto as propriedades cujo tipo .NET não pode conter NULL serão configuradas conforme necessário. Por exemplo, todas as propriedades com tipos de valor do .NET (`int`, `decimal`, `bool`, etc.) são configuradas conforme necessário, e todas as propriedades com tipos de valor do .NET anuláveis (`int?`, `decimal?`, `bool?`, etc.) são configuradas como opcionais.
 
 C#8 introduziu um novo recurso chamado [tipos de referência anulável](/dotnet/csharp/tutorials/nullable-reference-types), que permite que os tipos de referência sejam anotados, indicando se é válido para que eles contenham NULL ou não. Esse recurso está desabilitado por padrão e, se habilitado, ele modifica o comportamento do EF Core da seguinte maneira:
 
-* Se tipos de referência anuláveis estiverem desabilitados (o padrão), todas as propriedades com tipos de referência do .NET serão configuradas como opcionais por convenção (por exemplo `string`,).
-* Se os tipos de C# referência anuláveis estiverem habilitados, as propriedades serão configuradas com base na nulidade `string?` de seu tipo .net: serão configuradas como opcionais, enquanto `string` que serão configuradas conforme necessário.
+* Se tipos de referência anuláveis estiverem desabilitados (o padrão), todas as propriedades com tipos de referência do .NET serão configuradas como opcionais por convenção (por exemplo, `string`).
+* Se os tipos de referência anuláveis estiverem habilitados, as propriedades serão C# configuradas com base na nulidade de seu tipo .net: `string?` será configurado como opcional, enquanto `string` será configurada conforme necessário.
 
 O exemplo a seguir mostra um tipo de entidade com propriedades obrigatórias e opcionais, com o recurso de referência anulável desabilitado (o padrão) e habilitado:
 
@@ -53,7 +53,7 @@ Uma propriedade que seria opcional por convenção pode ser configurada para ser
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Required.cs?highlight=14)]
 
-# <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api) 
+# <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Required.cs?highlight=11-13)]
 

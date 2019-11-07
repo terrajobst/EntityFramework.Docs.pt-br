@@ -4,31 +4,32 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 uid: core/querying/related-data
-ms.openlocfilehash: 4e4ba21cd099daab4db8a8f358800fde26980c14
-ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
+ms.openlocfilehash: bfabe8fd5b0a64edd5d97baff3beab9d712f1c20
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/02/2019
-ms.locfileid: "71813587"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73654627"
 ---
 # <a name="loading-related-data"></a>Como carregar dados relacionados
 
 O Entity Framework Core permite que você use as propriedades de navegação em seu modelo para carregar as entidades relacionadas. Há três padrões de O/RM comuns usados para carregar os dados relacionados.
+
 * **Carregamento adiantado** significa que os dados relacionados são carregados do banco de dados como parte da consulta inicial.
 * **Carregamento explícito** significa que os dados relacionados são explicitamente carregados do banco de dados em um momento posterior.
-* **Carregamento preguiçoso** significa que os dados relacionados são transparentemente carregados do banco de dados quando a propriedade de navegação é acessada.
+* **Carregamento lento** significa que os dados relacionados são carregados de modo transparente do banco de dados quando a propriedade de navegação é acessada.
 
 > [!TIP]  
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="eager-loading"></a>Carregamento adiantado
 
-Você pode usar o método `Include` para especificar dados relacionados a serem incluídos nos resultados da consulta. No exemplo a seguir, os blogs que são retornados nos resultados terão suas propriedades `Posts` preenchidas com as postagens relacionadas.
+Você pode usar o método `Include` para especificar os dados relacionados a serem incluídos nos resultados da consulta. No exemplo a seguir, os blogs que são retornados nos resultados terão suas propriedades `Posts` preenchidas com as postagens relacionadas.
 
 [!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#SingleInclude)]
 
 > [!TIP]  
-> O Entity Framework Core corrigirá automaticamente as propriedades de navegação para outras entidades que foram previamente carregadas para a instância de contexto. Então, mesmo se você não incluir de forma explícita os dados para a propriedade de navegação, a propriedade ainda pode ser populada se algumas ou todas as entidades relacionadas foram carregadas anteriormente.
+> O Entity Framework Core corrigirá automaticamente as propriedades de navegação para outras entidades que forem carregadas anteriormente na instância do contexto. Então, mesmo se você não incluir de forma explícita os dados para a propriedade de navegação, a propriedade ainda pode ser populada se algumas ou todas as entidades relacionadas foram carregadas anteriormente.
 
 Você pode incluir dados relacionados de várias relações em uma única consulta.
 
@@ -48,16 +49,16 @@ Você pode combinar tudo isso para incluir dados relacionados de vários níveis
 
 [!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#IncludeTree)]
 
-Você talvez queira incluir várias entidades relacionadas para uma das entidades que está sendo incluída. Por exemplo, ao consultar os `Blogs`, você inclui os `Posts` e, em seguida, o `Author` e as `Tags` dos `Posts`. Para fazer isso, você precisa especificar cada `Include` a partir da raiz do caminho. Por exemplo, `Blog -> Posts -> Author` e `Blog -> Posts -> Tags`. Isso não significa que você obterá junções redundantes. Na maioria dos casos, o EF consolidará as junções ao gerar o SQL.
+Você talvez queira incluir várias entidades relacionadas para uma das entidades que está sendo incluída. Por exemplo, ao consultar os `Blogs`, você inclui os `Posts` e, em seguida, o `Author` e as `Tags` dos `Posts`. Para fazer isso, você precisará especificar cada uma para incluir o caminho a partir da raiz. Por exemplo, `Blog -> Posts -> Author` e `Blog -> Posts -> Tags`. Isso não significa que você obterá junções redundantes. Na maioria dos casos, o EF consolidará as junções ao gerar o SQL.
 
 [!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#MultipleLeafIncludes)]
 
 > [!CAUTION]
-> Desde a versão 3.0.0, cada `Include` fará com que uma junção adicional seja adicionada às consultas SQL produzidas por provedores relacionais, enquanto as versões anteriores geraram consultas SQL adicionais. Isso pode alterar significativamente o desempenho de suas consultas, para melhor ou pior. Em particular, consultas LINQ com um número extremamente alto de operadores `Include` podem precisar ser divididos em várias consultas LINQ separadas para evitar o problema de explosão cartesiano.
+> Desde a versão 3.0.0, cada `Include` fará com que uma junção adicional seja adicionada às consultas SQL produzidas por provedores relacionais, enquanto as versões anteriores geraram consultas SQL adicionais. Isso pode alterar significativamente o desempenho de suas consultas, para melhor ou pior. Em particular, as consultas LINQ com um número extremamente alto de operadores de `Include` podem precisar ser divididas em várias consultas LINQ separadas para evitar o problema de explosão cartesiano.
 
 ### <a name="include-on-derived-types"></a>Incluir para tipos derivados
 
-Você pode incluir dados relacionados de navegações definidas apenas em um tipo derivado usando `Include` e `ThenInclude`. 
+Você pode incluir dados relacionados de navegações definidas apenas em um tipo derivado usando `Include` e `ThenInclude`.
 
 Com o seguinte modelo:
 
@@ -95,28 +96,31 @@ public class School
 
 Conteúdo da navegação em `School` de todas as pessoas que são alunos pode ser carregada de maneira adiantada usando um número de padrões:
 
-- usando conversão
+* usando conversão
+
   ```csharp
   context.People.Include(person => ((Student)person).School).ToList()
   ```
 
-- usando o operador `as`
+* usando o operador `as`
+
   ```csharp
   context.People.Include(person => (person as Student).School).ToList()
   ```
 
-- usando a sobrecarga de `Include` que usa o parâmetro de tipo `string`
+* usando a sobrecarga de `Include` que usa o parâmetro de tipo `string`
+
   ```csharp
   context.People.Include("School").ToList()
   ```
 
 ## <a name="explicit-loading"></a>Carregamento explícito
 
-Você pode carregar explicitamente uma propriedade de navegação por meio da API `DbContext.Entry(...)`.
+Você pode carregar explicitamente uma propriedade de navegação pela API `DbContext.Entry(...)`.
 
 [!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#Eager)]
 
-Você também pode carregar explicitamente uma propriedade de navegação executando uma consulta separada que retorna as entidades relacionadas. Se o controle de alterações estiver habilitado, ao carregar uma entidade, o EF Core vai automaticamente definir as propriedades de navegação da entidade carregada recentemente para se referir a qualquer entidade já carregada e definir as propriedades de navegação das entidades já carregadas para se referir às entidades carregadas recentemente.
+Você também pode carregar explicitamente uma propriedade de navegação executando uma consulta separada que retorna as entidades relacionadas. Se o controle de alterações estiver habilitado, ao carregar uma entidade, o EF Core automaticamente definirá as propriedades de navegação da entidade recém-carregada para se referirem a alguma entidade já carregada e definir as propriedades de navegação das entidades já carregadas para se referirem à entidade recém-carregada.
 
 ### <a name="querying-related-entities"></a>Como consultar entidades relacionadas
 
@@ -132,7 +136,7 @@ Você também pode filtrar quais entidades relacionadas são carregadas na memó
 
 ## <a name="lazy-loading"></a>Carregamento lento
 
-A maneira mais simples de usar o carregamento lento é instalando o pacote [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) e o habilitando com uma chamada para `UseLazyLoadingProxies`. Por exemplo:
+A maneira mais simples para usar o carregamento lento é instalando o pacote [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) e habilitá-lo com uma chamada para `UseLazyLoadingProxies`. Por exemplo:
 
 ```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -140,6 +144,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         .UseLazyLoadingProxies()
         .UseSqlServer(myConnectionString);
 ```
+
 Ou ao usar AddDbContext:
 
 ```csharp
@@ -148,7 +153,7 @@ Ou ao usar AddDbContext:
           .UseSqlServer(myConnectionString));
 ```
 
-O EF Core, em seguida, habilitará o carregamento lento para qualquer propriedade de navegação que pode ser substituída – ou seja, deverá ser `virtual` e em uma classe que pode ser herdada. Por exemplo, nas entidades a seguir, as propriedades de navegação `Post.Blog` e `Blog.Posts` terão carregamento lento.
+O EF Core, em seguida, habilitará o carregamento lento para qualquer propriedade de navegação que pode ser substituída – ou seja, deverá ser `virtual` e em uma classe que pode ser herdada. Por exemplo, nas entidades a seguir, as propriedades de navegação `Post.Blog` e `Blog.Posts` serão de carregamento lento.
 
 ```csharp
 public class Blog
@@ -171,7 +176,7 @@ public class Post
 
 ### <a name="lazy-loading-without-proxies"></a>Carregamento lento sem proxies
 
-Proxies de carregamento lento trabalham inserindo o serviço `ILazyLoader` em uma entidade, conforme descrito em [construtores de tipo de entidade](../modeling/constructors.md). Por exemplo:
+Os proxies de carregamento lento funcionam inserindo o serviço `ILazyLoader` em uma entidade, conforme descrito em [Construtores de tipo de entidade](../modeling/constructors.md). Por exemplo:
 
 ```csharp
 public class Blog
@@ -281,7 +286,7 @@ public class Post
 }
 ```
 
-O código acima usa um método de extensão `Load` para fazer o uso do delegate um pouco mais limpo:
+O código acima usa um método de extensão `Load` para deixar o representante um pouco mais limpo:
 
 ```csharp
 public static class PocoLoadingExtensions
@@ -305,13 +310,13 @@ public static class PocoLoadingExtensions
 
 ## <a name="related-data-and-serialization"></a>Serialização e dados relacionados
 
-Como o EF Core irá automaticamente corrigir as propriedades de navegação, você pode acabar com ciclos em seu gráfico de objetos. Por exemplo, o carregamento de um blog e suas postagens relacionadas resultará em um objeto de blog que referencia uma coleção de postagens. Cada uma dessas postagens terá uma referência de volta para o blog.
+Como o EF Core automaticamente corrigirá as propriedades de navegação, você poderá acabar com ciclos em seu gráfico de objeto. Por exemplo, o carregamento de um blog e suas postagens relacionadas resultará em um objeto de blog que referencia uma coleção de postagens. Cada uma dessas postagens terá uma referência de volta para o blog.
 
-Algumas estruturas de serialização não permitem esses ciclos. Por exemplo, Json.NET lançará a exceção a seguir se for encontrado um ciclo.
+Algumas estruturas de serialização não permitem esses ciclos. Por exemplo, Json.NET gerará a exceção a seguir se for encontrado um ciclo.
 
-> Newtonsoft.Json.JsonSerializationException: loop autorreferenciado detectado para a propriedade 'Blog' com o tipo 'MyApplication.Models.Blog'.
+> Newtonsoft.Json.JsonSerializationException: loop autorreferenciado detectado para a propriedade 'Blog' com tipo 'MyApplication.Models.Blog'.
 
-Se você estiver usando o ASP.NET Core, poderá configurar Json.NET para ignorar ciclos que ele encontrar no gráfico de objeto. Isso é feito no método `ConfigureServices(...)` em `Startup.cs`.
+Se você estiver usando o ASP.NET Core, poderá configurar o Json.NET para ignorar os ciclos que encontrar no gráfico de objeto. Isso é feito no método `ConfigureServices(...)` no `Startup.cs`.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

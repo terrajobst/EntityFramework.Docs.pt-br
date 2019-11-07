@@ -1,32 +1,32 @@
 ---
-title: Convenções de baseado em modelo - EF6
+title: Convenções baseadas em modelo-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 0fc4eef8-29b8-4192-9c77-08fd33d3db3a
-ms.openlocfilehash: 80b722730b4ca6c9d00a8611b6c9027e8bc9fe61
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: c873e9a216bd9bd1934f2149ae6af602072f3608
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283701"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656162"
 ---
-# <a name="model-based-conventions"></a>Convenções de modelo
+# <a name="model-based-conventions"></a>Convenções baseadas em modelo
 > [!NOTE]
 > **EF6 em diante apenas**: os recursos, as APIs etc. discutidos nessa página foram introduzidos no Entity Framework 6. Se você estiver usando uma versão anterior, algumas ou todas as informações não se aplicarão.  
 
-Convenções de modelo com base são um método avançado de configuração do modelo baseado na convenção. Na maioria dos cenários de [personalizado convenção de API do Code First no DbModelBuilder](~/ef6/modeling/code-first/conventions/custom.md) deve ser usado. Uma compreensão da API DbModelBuilder para convenções é recomendada antes de usar as convenções de modelo com base.  
+As convenções baseadas em modelo são um método avançado de configuração de modelo baseada em convenção. Para a maioria dos cenários, a [API de Convenção de Code First personalizada em DbModelBuilder](~/ef6/modeling/code-first/conventions/custom.md) deve ser usada. É recomendável compreender a API DbModelBuilder para convenções antes de usar convenções baseadas em modelo.  
 
-Convenções de modelo com base em permitem a criação de convenções que afetam as tabelas que não são configuráveis por meio de convenções de padrão e propriedades. Exemplos disso são colunas de discriminador de tabela por modelos de hierarquia e as colunas de associação independente.  
+As convenções baseadas em modelo permitem a criação de convenções que afetam as propriedades e as tabelas que não são configuráveis por meio de convenções padrão. Exemplos deles são colunas discriminadoras em modelos de tabela por hierarquia e colunas de associação independentes.  
 
-## <a name="creating-a-convention"></a>Criar uma convenção   
+## <a name="creating-a-convention"></a>Criando uma Convenção   
 
-A primeira etapa na criação de uma convenção de modelo com base é escolher quando o pipeline a convenção de precisa ser aplicado ao modelo. Há dois tipos de convenções de modelo conceitual (C-Space) e Store (S-Space). Uma convenção de C-Space é aplicada ao modelo de que o aplicativo for compilado, enquanto uma convenção de S-Space é aplicada para a versão do modelo que representa o banco de dados e controles de coisas, como colunas como automaticamente gerados são nomeadas.  
+A primeira etapa na criação de uma convenção baseada em modelo é escolher quando no pipeline a Convenção precisa ser aplicada ao modelo. Há dois tipos de convenções de modelo, conceitual (C-Space) e loja (S-Space). Uma Convenção de espaço C é aplicada ao modelo que o aplicativo cria, enquanto uma Convenção de S-Space é aplicada à versão do modelo que representa o banco de dados e controla itens como, por exemplo, como as colunas geradas automaticamente são nomeadas.  
 
-Uma convenção de modelo é uma classe que se estende do IConceptualModelConvention ou IStoreModelConvention.  Essas interfaces que ambos aceitar um tipo genérico que pode ser do tipo MetadataItem que é usado para filtrar o tipo de dados que se aplica a convenção a.  
+Uma Convenção de modelo é uma classe que se estende de IConceptualModelConvention ou IStoreModelConvention.  Essas interfaces aceitam um tipo genérico que pode ser do tipo MetadataItem, que é usado para filtrar o tipo de dados ao qual a Convenção se aplica.  
 
-## <a name="adding-a-convention"></a>Adicionando uma convenção   
+## <a name="adding-a-convention"></a>Adicionando uma Convenção   
 
-Convenções de modelo são adicionadas da mesma forma como as classes de convenções regular. No **OnModelCreating** método, adicione a convenção à lista de convenções para um modelo.  
+As convenções de modelo são adicionadas da mesma maneira que as classes de convenções regulares. No método **OnModelCreating** , adicione a Convenção à lista de convenções para um modelo.  
 
 ``` csharp
 using System.Data.Entity;
@@ -46,7 +46,7 @@ public class BlogContext : DbContext
 }
 ```  
 
-Também é possível adicionar uma convenção em relação à outra convenção usando o Conventions.AddBefore\< \> ou Conventions.AddAfter\< \> métodos. Para obter mais informações sobre as convenções que aplica-se do Entity Framework, consulte a seção Observações.  
+Uma convenção também pode ser adicionada em relação a outra convenção usando as convenções. addantes\<\> ou convenções. addapós\<métodos \>. Para obter mais informações sobre as convenções que Entity Framework se aplica, consulte a seção observações.  
 
 ``` csharp
 protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -55,11 +55,11 @@ protected override void OnModelCreating(DbModelBuilder modelBuilder)
 }
 ```  
 
-## <a name="example-discriminator-model-convention"></a>Exemplo: Convenção de modelo do discriminador  
+## <a name="example-discriminator-model-convention"></a>Exemplo: Convenção de modelo discriminador  
 
-Renomear colunas geradas pelo EF é um exemplo de algo que você não pode fazer com as outras convenções de APIs.  Essa é uma situação em que usar as convenções de modelo é sua única opção.  
+Renomear colunas geradas pelo EF é um exemplo de algo que você não pode fazer com as outras APIs de convenções.  Essa é uma situação em que o uso de convenções de modelo é sua única opção.  
 
-Um exemplo de como usar uma convenção de modelo com base em para configurar colunas geradas é Personalizando a maneira como colunas de discriminador são nomeadas.  Abaixo está um exemplo de uma convenção de modelo simples com base em que renomeia todas as colunas no modelo denominada "Discriminadora" para "EntityType".  Isso inclui colunas que o desenvolvedor simplesmente denominada "Discriminadora". Uma vez que a coluna "Discriminadora" é uma coluna gerada, que isso deve ser executado no espaço de S.  
+Um exemplo de como usar uma convenção baseada em modelo para configurar colunas geradas é personalizar a maneira como as colunas discriminadoras são nomeadas.  Abaixo está um exemplo de uma convenção simples baseada em modelo que renomeia cada coluna no modelo chamado "discriminador" como "EntityType".  Isso inclui colunas que o desenvolvedor simplesmente chama "discriminador". Como a coluna "discriminador" é uma coluna gerada, isso precisa ser executado em S-Space.  
 
 ``` csharp
 using System.Data.Entity;
@@ -79,11 +79,11 @@ class DiscriminatorRenamingConvention : IStoreModelConvention<EdmProperty>
 }
 ```  
 
-## <a name="example-general-ia-renaming-convention"></a>Exemplo: IA geral renomeando convenção   
+## <a name="example-general-ia-renaming-convention"></a>Exemplo: Convenção de renomeação de IA geral   
 
-Outro exemplo mais complicado de convenções de modelo com base em ação é configurar o modo como os que associações independentes (IAs) são nomeadas.  Essa é uma situação em que as convenções de modelo são aplicáveis porque IAs são gerados pelo EF e não estão presentes no modelo que pode acessar a API do DbModelBuilder.  
+Outro exemplo mais complicado de convenções baseadas em modelo em ação é configurar a maneira como as associações independentes (IAs) são nomeadas.  Essa é uma situação em que as convenções de modelo são aplicáveis porque o IAs é gerado pelo EF e não estão presentes no modelo que a API DbModelBuilder pode acessar.  
 
-Quando o EF gera um IA, ele cria uma coluna denominada EntityType_KeyName. Por exemplo, para uma associação chamada Customer com uma coluna de chave chamado CustomerId isso geraria uma coluna denominada Customer_CustomerId. As faixas de convenção a seguir o '\_' caractere fora do nome da coluna que é gerado para o IA.  
+Quando o EF gera um IA, ele cria uma coluna chamada EntityType_KeyName. Por exemplo, para uma associação chamada Customer com uma coluna de chave chamada CustomerId, ela geraria uma coluna chamada Customer_CustomerId. A Convenção a seguir remove o caractere '\_' do nome da coluna que é gerado para IA.  
 
 ``` csharp
 using System.Data.Entity;
@@ -132,7 +132,7 @@ public class ForeignKeyNamingConvention : IStoreModelConvention<AssociationType>
 
     private void NormalizeForeignKeyProperties(ReadOnlyMetadataCollection<EdmProperty> properties)
     {
-        for (int i = 0; i \< properties.Count; ++i)
+        for (int i = 0; i < properties.Count; ++i)
         {
             int underscoreIndex = properties[i].Name.IndexOf('_');
             if (underscoreIndex > 0)
@@ -144,9 +144,9 @@ public class ForeignKeyNamingConvention : IStoreModelConvention<AssociationType>
 }
 ```  
 
-## <a name="extending-existing-conventions"></a>Estendendo as convenções de existentes   
+## <a name="extending-existing-conventions"></a>Estendendo convenções existentes   
 
-Se você precisa escrever uma convenção que é semelhante a uma das convenções que o Entity Framework já se aplica ao seu modelo, que você pode estender sempre que a convenção para evitar a necessidade de reescrevê-lo a partir do zero.  Um exemplo disso é substituir a Id existente correspondente a convenção com uma personalizada.   Um benefício adicional para substituir a convenção de chave é que o método substituído será chamado apenas se não houver nenhuma chave já foi detectado ou configurado explicitamente. Uma lista de convenções que são usados pelo Entity Framework está disponível aqui: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  
+Se você precisar escrever uma convenção semelhante a uma das convenções que Entity Framework já se aplica ao modelo, você sempre poderá estender essa Convenção para evitar ter que reescrevê-la do zero.  Um exemplo disso é substituir a Convenção de correspondência de ID existente por uma personalizada.   Um benefício adicional para substituir a Convenção de chave é que o método substituído será chamado somente se não houver nenhuma chave já detectada ou configurada explicitamente. Uma lista de convenções que são usadas pelo Entity Framework está disponível aqui: [http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  
 
 ``` csharp
 using System.Data.Entity;
@@ -191,7 +191,7 @@ public class CustomKeyDiscoveryConvention : KeyDiscoveryConvention
 }
 ```  
 
-Em seguida, precisamos adicionar nossa nova convenção antes da convenção de chave existente. Depois de adicionarmos o CustomKeyDiscoveryConvention, podemos remover o IdKeyDiscoveryConvention.  Se não removemos o IdKeyDiscoveryConvention existente essa convenção ainda terão precedência sobre a convenção de descoberta de Id, pois ele é executado pela primeira vez, mas no caso em que nenhuma propriedade de "chave" for encontrada, a convenção de "id" será executado.  Podemos ver esse comportamento porque cada convenção vê o modelo conforme atualizado pela convenção de anterior (em vez de operar de forma independente e todos os que estão sendo combinados) para que se, por exemplo, uma convenção anterior atualizado para corresponder a algo de um nome de coluna interesse sua convenção personalizada (quando antes que o nome não era de interesse), em seguida, ela será aplicada a essa coluna.  
+Em seguida, precisamos adicionar nossa nova Convenção antes da Convenção de chave existente. Depois de adicionarmos o CustomKeyDiscoveryConvention, podemos remover o IdKeyDiscoveryConvention.  Se não removermos o IdKeyDiscoveryConvention existente, essa Convenção ainda terá precedência sobre a Convenção de descoberta de ID, pois ela é executada primeiro, mas, no caso em que nenhuma propriedade "Key" for encontrada, a Convenção "ID" será executada.  Vemos esse comportamento porque cada convenção vê o modelo como atualizado pela Convenção anterior (em vez de operar nele de forma independente e tudo sendo combinado) para que, por exemplo, uma Convenção anterior tenha atualizado um nome de coluna para corresponder a algo de de interesse para sua Convenção personalizada (quando antes de o nome não ser interessante), ela será aplicada a essa coluna.  
 
 ``` csharp
 public class BlogContext : DbContext
@@ -207,6 +207,6 @@ public class BlogContext : DbContext
 }
 ```  
 
-## <a name="notes"></a>Observações  
+## <a name="notes"></a>Anotações  
 
-Uma lista de convenções que são aplicadas no momento pelo Entity Framework está disponível na documentação do MSDN aqui: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  Essa lista é extraída diretamente do nosso código-fonte.  O código-fonte para o Entity Framework 6 está disponível no [GitHub](https://github.com/aspnet/entityframework6/) e muitas das convenções usadas pelo Entity Framework são bons pontos de partida para o modelo personalizado com base em convenções.  
+Uma lista de convenções atualmente aplicadas pelo Entity Framework está disponível na documentação do MSDN aqui: [http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  Essa lista é extraída diretamente do nosso código-fonte.  O código-fonte para o Entity Framework 6 está disponível no [GitHub](https://github.com/aspnet/entityframework6/) e muitas das convenções usadas pelo Entity Framework são bons pontos de partida para as convenções personalizadas baseadas em modelos.  

@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 754be334-dd21-450e-9d22-2591e80012a2
 uid: core/modeling/inheritance
-ms.openlocfilehash: 1f20c455176b5922364584f8c7688c15a4c3f0f9
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: abc1caa4d3839b7cdb52b316bcfc8f648b609b70
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197295"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655683"
 ---
 # <a name="inheritance"></a>Herança
 
@@ -19,11 +19,11 @@ A herança no modelo do EF é usada para controlar como a herança nas classes d
 
 Por convenção, cabe ao provedor de banco de dados determinar como a herança será representada no banco de dados. Consulte [herança (banco de dados relacional)](relational/inheritance.md) para saber como isso é tratado com um provedor de banco de dados relacional.
 
-O EF só configurará a herança se dois ou mais tipos herdados forem explicitamente incluídos no modelo. O EF não examinará os tipos base ou derivados que não foram incluídos de outra forma no modelo. Você pode incluir tipos no modelo expondo um *DbSet<TEntity>*  para cada tipo na hierarquia de herança.
+O EF só configurará a herança se dois ou mais tipos herdados forem explicitamente incluídos no modelo. O EF não examinará os tipos base ou derivados que não foram incluídos de outra forma no modelo. Você pode incluir tipos no modelo expondo um *DbSet\<TEntity >* para cada tipo na hierarquia de herança.
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/InheritanceDbSets.cs?highlight=3-4&name=Model)]
 
-Se você não quiser expor um *DbSet<TEntity>*  para uma ou mais entidades na hierarquia, poderá usar a API fluente para garantir que elas sejam incluídas no modelo.
+Se você não quiser expor um *DbSet\<TEntity >* para uma ou mais entidades na hierarquia, poderá usar a API fluente para garantir que elas sejam incluídas no modelo.
 E se você não depender de convenções, poderá especificar o tipo base explicitamente usando `HasBaseType`.
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/InheritanceModelBuilder.cs?highlight=7&name=Context)]

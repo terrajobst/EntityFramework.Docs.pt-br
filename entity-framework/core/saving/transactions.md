@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d3e6515b-8181-482c-a790-c4a6778748c1
 uid: core/saving/transactions
-ms.openlocfilehash: ff12c4e7ace1f1b9e503cb2353bcdd53efd87cce
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 952cb891d145a47666f1d506ec00f066be9f245d
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197904"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73654746"
 ---
 # <a name="using-transactions"></a>Como usar transações
 
@@ -99,9 +99,9 @@ Também é possível se inscrever em uma transação explícita.
 
 ### <a name="limitations-of-systemtransactions"></a>Limitações do System.Transactions  
 
-1. O EF Core depende dos provedores de banco de dados para implementar o suporte para System.Transactions. Embora o suporte seja muito comum entre os provedores de ADO.NET para .NET Framework, a API só foi adicionada recentemente ao .NET Core e, portanto, o suporte ainda não está tão difundido. Se um provedor não implementar o suporte para System.Transactions, é possível que as chamadas para essas APIs sejam ignoradas completamente. O SqlClient para .NET Core não oferecerá suporte do 2.1 em diante. O SqlClient para .NET Core 2.0 gerará uma exceção se você tentar usar o recurso. 
+1. O EF Core depende dos provedores de banco de dados para implementar o suporte para System.Transactions. Embora o suporte seja muito comum entre os provedores de ADO.NET para .NET Framework, a API só foi adicionada recentemente ao .NET Core e, portanto, o suporte ainda não está tão difundido. Se um provedor não implementar o suporte para System.Transactions, é possível que as chamadas para essas APIs sejam ignoradas completamente. O SqlClient para .NET Core não oferecerá suporte do 2.1 em diante. O SqlClient para .NET Core 2.0 gerará uma exceção se você tentar usar o recurso.
 
    > [!IMPORTANT]  
-   > Recomendamos testar se a API funciona corretamente com seu provedor antes de depender dela para o gerenciamento de transações. Caso ela não funcione, fale com o mantenedor do provedor do banco de dados. 
+   > Recomendamos testar se a API funciona corretamente com seu provedor antes de depender dela para o gerenciamento de transações. Caso ela não funcione, fale com o mantenedor do provedor do banco de dados.
 
-2. A partir da versão 2.1, a implementação do System.Transactions no .NET Core não incluirá o suporte a transações distribuídas, portanto, você não pode usar `TransactionScope` ou `CommittableTransaction` para coordenar transações em vários gerenciadores de recursos. 
+2. A partir da versão 2.1, a implementação do System.Transactions no .NET Core não incluirá o suporte a transações distribuídas, portanto, você não pode usar `TransactionScope` ou `CommittableTransaction` para coordenar transações em vários gerenciadores de recursos.

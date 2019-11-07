@@ -3,12 +3,13 @@ title: Introdução ao Entity Framework 6 – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 66ce9113-81d2-480f-8c16-d00ec405b2f7
-ms.openlocfilehash: bf54879ea94e597dfeac3e4bd70571dad290dd9e
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+uid: ef6/get-started
+ms.openlocfilehash: 74ae347af3c386639631f28ccb2ddbe9f444953a
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181406"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655837"
 ---
 # <a name="get-started-with-entity-framework-6"></a>Introdução ao Entity Framework 6
 
@@ -20,11 +21,11 @@ Este guia contém uma coleção de links para artigos de documentação selecion
 
   Aqui você aprenderá a adicionar o Entity Framework aos seus aplicativos. Se desejar usar o EF Designer, o instale no Visual Studio.
 
-* [Creating um modelo: Code First, o designer do EF e os fluxos de trabalho do EF @ no__t-0
+* [Criação de um modelo: o Code First, o EF Designer e os Fluxos de trabalho do EF](~/ef6/modeling/index.md)
 
   Você prefere especificar seu modelo do EF escrevendo código ou desenhando caixas e linhas?
 Você usará o EF para mapear seus objetos para um banco de dados existente ou gostaria que o EF criasse um banco de dados personalizado para seus objetos?
-Aqui, você aprenderá sobre duas abordagens diferentes para usar o EF6: Designer e Code First do EF.
+Aqui você conhecerá duas abordagens diferentes para usar o EF6: o EF Designer e o Code First.
 Siga a discussão e assista ao vídeo sobre a diferença.
 
 * [Como trabalhar com DbContext](~/ef6/fundamentals/working-with-dbcontext.md)

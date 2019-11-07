@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/08/2017
 uid: core/managing-schemas/migrations/providers
-ms.openlocfilehash: c9b1a2563ef548e592374f90a6242b0bd851bc98
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.openlocfilehash: c764a7c7858dc46a5e478f79476f55a34e0fdabd
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72811951"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655582"
 ---
 # <a name="migrations-with-multiple-providers"></a>Migrações com vários provedores
 
@@ -36,15 +36,21 @@ class MySqliteDbContext : MyDbContext
 
 Ao adicionar uma nova migração, especifique os tipos de contexto.
 
-``` powershell
-Add-Migration InitialCreate -Context MyDbContext -OutputDir Migrations\SqlServerMigrations
-Add-Migration InitialCreate -Context MySqliteDbContext -OutputDir Migrations\SqliteMigrations
-```
+## <a name="net-core-clitabdotnet-core-cli"></a>[CLI do .NET Core](#tab/dotnet-core-cli)
 
 ``` Console
 dotnet ef migrations add InitialCreate --context MyDbContext --output-dir Migrations/SqlServerMigrations
 dotnet ef migrations add InitialCreate --context MySqliteDbContext --output-dir Migrations/SqliteMigrations
 ```
+
+## <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
+
+``` powershell
+Add-Migration InitialCreate -Context MyDbContext -OutputDir Migrations\SqlServerMigrations
+Add-Migration InitialCreate -Context MySqliteDbContext -OutputDir Migrations\SqliteMigrations
+```
+
+***
 
 > [!TIP]
 > Você não precisa especificar o diretório de saída para migrações subsequentes, pois elas são criadas como irmãos para a última.

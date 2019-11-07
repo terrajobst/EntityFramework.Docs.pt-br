@@ -5,12 +5,12 @@ ms.author: avickers
 ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 070f2ad396ec21858096c29413ac80bdf8547328
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 88c3fa8ea5b8246a932f5cf21e674bc7cc71c0ea
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197802"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656265"
 ---
 # <a name="disconnected-entities"></a>Entidades desconectadas
 
@@ -18,11 +18,13 @@ Uma instância DbContext automaticamente controlará as entidades retornadas do 
 
 No entanto, às vezes, as entidades são consultadas usando uma instância de contexto e, em seguida, salvas usando uma instância diferente. Isso geralmente ocorre em cenários "desconectados", por exemplo, um aplicativo da Web onde as entidades são consultadas, enviadas ao cliente, modificadas, enviadas de volta para o servidor em uma solicitação e salvas. Nesse caso, o contexto da segunda instância precisa saber se as entidades são novas (devem ser inseridas) ou existentes (devem ser atualizadas).
 
-> [!TIP]  
+<!-- markdownlint-disable MD028 -->
+> [!TIP]
 > Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Disconnected/) deste artigo no GitHub.
 
 > [!TIP]
 > O EF Core só pode controlar uma instância de qualquer entidade com um determinado valor de chave primária. A melhor maneira de evitar que esse seja um problema é usar um contexto de curta duração para cada unidade de trabalho, de modo que o contexto começa vazio, tem entidades anexadas a ele, salva essas entidades e, em seguida, o contexto é descartado.
+<!-- markdownlint-enable MD028 -->
 
 ## <a name="identifying-new-entities"></a>Identificando novas entidades
 
@@ -50,8 +52,9 @@ No entanto, o EF também tem uma forma interna de fazer isso para qualquer tipo 
 ### <a name="with-other-keys"></a>Com outras chaves
 
 Algum outro mecanismo é necessário para identificar novas entidades quando os valores de chave não são gerados automaticamente. Há duas abordagens gerais para isso:
- * Consulta para a entidade
- * Passar um sinalizador do cliente
+
+* Consulta para a entidade
+* Passar um sinalizador do cliente
 
 Para consultar para a entidade, use apenas o método de localização:
 
@@ -74,11 +77,12 @@ O método de atualização normalmente marca a entidade para a atualização, n�
 > [!TIP]  
 > Esse comportamento foi introduzido no EF Core 2.0. Para versões anteriores, sempre é necessário escolher explicitamente adicionar ou atualizar.
 
-Se a entidade não estiver usando chaves geradas automaticamente, o aplicativo deverá decidir se a entidade deve ser inserida ou atualizada: Por exemplo:
+Se a entidade não estiver usando as chaves geradas automaticamente, o aplicativo deverá decidir se a entidade deve ser inserida ou atualizada. Por exemplo:
 
 [!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertOrUpdateSingleEntityWithFind)]
 
 As etapas aqui são:
+
 * Se Localizar retornar nulo, isso significa que o banco de dados ainda não contém o blog com essa ID; portanto, chamamos Adicionar e a marcaremos para inserção.
 * Se Localizar retornar uma entidade, ela existirá no banco de dados e o contexto agora é controlar a entidade existente
   * Em seguida, usamos SetValues para definir os valores de todas as propriedades nessa entidade para os estados que vieram do cliente.

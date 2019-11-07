@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 uid: core/saving/cascade-delete
-ms.openlocfilehash: af86383bad52c87d2874fa4f8eb247a656601312
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 51c8b6f4517a3f87821ed1e4e2d60549e06ed39d
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182007"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656065"
 ---
 # <a name="cascade-delete"></a>Excluir em cascata
 
@@ -18,9 +18,11 @@ A Exclusão em cascata é geralmente usada na terminologia de banco de dados par
 O EF Core implementa vários comportamentos de exclusão diferentes e permite a configuração dos comportamentos de exclusão de relações individuais. O EF Core também implementa convenções que configuram automaticamente os comportamentos de exclusão padrão úteis para cada relação com base nas [exigências do relacionamento](../modeling/relationships.md#required-and-optional-relationships).
 
 ## <a name="delete-behaviors"></a>Comportamentos de exclusão
+
 Os comportamentos de exclusão são definidos no tipo de enumerador *DeleteBehavior* e pode ser passado para a API fluente *OnDelete* para controlar se a exclusão de uma entidade de segurança/pai ou o corte da relação com entidades dependentes/filho deve ter um efeito colateral nas entidades dependentes/filho.
 
 Há três ações que o EF pode executar quando uma entidade de segurança/pai é excluída ou a relação com o filho é desligada:
+
 * O filho/dependente pode ser excluído
 * Os valores de chave estrangeira do filho podem ser definidos como nulo
 * O filho permanece inalterado
@@ -28,11 +30,12 @@ Há três ações que o EF pode executar quando uma entidade de segurança/pai �
 > [!NOTE]  
 > O comportamento de exclusão configurado no modelo do EF Core só é aplicado quando a entidade de segurança é excluída usando o EF Core e as entidades dependentes são carregadas na memória (ou seja, para dependentes controlados). Um comportamento em cascata correspondente precisa ser configurado no banco de dados para garantir que não esteja sendo controlado pelo contexto e tenha a ação necessária aplicada. Se você usar o EF Core para criar o banco de dados, esse comportamento em cascata será configurado para você.
 
-Para a segunda ação acima, definir um valor de chave estrangeira como nulo não será válido se a chave estrangeira não for anulável. (Uma chave estrangeira não anulável é equivalente a uma relação obrigatória). Nesses casos, o Core EF controla se a propriedade de chave estrangeira foi marcada como nula até SaveChanges ser chamado, o momento em que uma exceção será gerada porque as alterações não podem ser mantidas no banco de dados. Isso é semelhante a obter uma violação de restrição do banco de dados.
+Para a segunda ação acima, definir um valor de chave estrangeira como nulo não será válido se a chave estrangeira não for anulável. (Uma chave estrangeira não anulável é equivalente a uma relação necessária.) Nesses casos, EF Core rastreia que a propriedade de chave estrangeira foi marcada como nula até que SaveChanges seja chamado, quando uma exceção é gerada porque a alteração não pode persistir no banco de dados. Isso é semelhante a obter uma violação de restrição do banco de dados.
 
 Há quatro comportamentos de exclusão, conforme o listado nas tabelas a seguir.
 
 ### <a name="optional-relationships"></a>Relações opcionais
+
 Para relações opcionais (chave estrangeira anulável), _é_ possível salvar um valor de chave estrangeiro nulo, que resulta nos seguintes efeitos:
 
 | Nome do comportamento               | Efeito em dependente/filho na memória    | Efeito em dependente/filho no banco de dados  |
@@ -43,6 +46,7 @@ Para relações opcionais (chave estrangeira anulável), _é_ possível salvar u
 | **Restrict**                | Nenhum                                   | Nenhum                                   |
 
 ### <a name="required-relationships"></a>Relações necessárias
+
 Para relações obrigatórias (chave estrangeira não anulável), _não_ pode salvar um valor de chave estrangeiro nulo, que resulta nos seguintes efeitos:
 
 | Nome do comportamento         | Efeito em dependente/filho na memória | Efeito em dependente/filho no banco de dados |
@@ -55,6 +59,7 @@ Para relações obrigatórias (chave estrangeira não anulável), _não_ pode sa
 Nas tabelas acima, *Nenhum* pode resultar em uma violação de restrição. Por exemplo, se uma entidade de segurança/filho for excluída, mas nenhuma ação for tomada para alterar a chave estrangeira de um dependente/filho, então o banco de dados provavelmente gerará SaveChanges devido a uma violação de restrição de chave estrangeira.
 
 Em um alto nível:
+
 * Se você tiver entidades que não podem existir sem um pai, e você deseja que o EF cuide para excluir os filhos automaticamente, use *Cascade*.
   * As entidades que não podem existir sem um pai geralmente usam as relações obrigatórias, para as quais *Cascade* é o padrão.
 * Se você tiver entidades que podem ou não ter um pai, e deseja que o EF cuide de anular a chave estrangeira para você, use *ClientSetNull*
@@ -66,7 +71,7 @@ Em um alto nível:
 > No EF Core, ao contrário de EF6, os efeitos em cascata não ocorrem imediatamente, apenas quando SaveChanges é chamado.
 
 > [!NOTE]  
-> **Alterações no EF Core 2,0:** Nas versões anteriores, *restringir* faria com que as propriedades de chave estrangeira opcionais em entidades dependentes controladas fossem definidas como nulas e o comportamento de exclusão padrão para relações opcionais. No EF Core 2.0, o *ClientSetNull* foi introduzido para representar esse comportamento e tornou-se o padrão para relações opcionais. O comportamento de *Restrict* foi ajustado para nunca ter efeitos colaterais em entidades dependentes.
+> **Alterações no EF Core 2.0:** em versões anteriores, *Restrict* causaria as propriedades de chave estrangeira opcionais em entidades dependentes controladas serem definidas como nulas e o padrão era o comportamento de exclusão para relações opcionais. No EF Core 2.0, o *ClientSetNull* foi introduzido para representar esse comportamento e tornou-se o padrão para relações opcionais. O comportamento de *Restrict* foi ajustado para nunca ter efeitos colaterais em entidades dependentes.
 
 ## <a name="entity-deletion-examples"></a>Exemplos de exclusão de entidade
 
@@ -107,7 +112,7 @@ Vamos examinar cada variação para entender o que está acontecendo.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>DeleteBehavior.ClientSetNull ou DeleteBehavior.SetNull com relação obrigatória
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -130,7 +135,7 @@ Vamos examinar cada variação para entender o que está acontecendo.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>DeleteBehavior.ClientSetNull ou DeleteBehavior.SetNull com relação opcional
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -160,7 +165,7 @@ Vamos examinar cada variação para entender o que está acontecendo.
 
 ### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>DeleteBehavior.Restrict com relação obrigatória ou opcional
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -189,7 +194,7 @@ Vamos examinar cada variação para entender o que está acontecendo.
 
 ### <a name="deletebehaviorcascade-with-required-or-optional-relationship"></a>DeleteBehavior.Cascade com relação obrigatória ou opcional
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -217,7 +222,7 @@ Vamos examinar cada variação para entender o que está acontecendo.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>DeleteBehavior.ClientSetNull ou DeleteBehavior.SetNull com relação obrigatória
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -240,7 +245,7 @@ Vamos examinar cada variação para entender o que está acontecendo.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>DeleteBehavior.ClientSetNull ou DeleteBehavior.SetNull com relação opcional
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -268,7 +273,7 @@ Vamos examinar cada variação para entender o que está acontecendo.
 
 ### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>DeleteBehavior.Restrict com relação obrigatória ou opcional
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.

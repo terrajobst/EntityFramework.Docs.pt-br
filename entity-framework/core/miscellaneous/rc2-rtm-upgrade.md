@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: c3c1940b-136d-45d8-aa4f-cb5040f8980a
 uid: core/miscellaneous/rc2-rtm-upgrade
-ms.openlocfilehash: e7f121d18931e26e7b5d11842da6da4a9b789efe
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 779caad7883d13684b389dab7515be44bc42e1ef
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181358"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655813"
 ---
 # <a name="upgrading-from-ef-core-10-rc2-to-rtm"></a>Atualizando do EF Core 1,0 RC2 para RTM
 
@@ -23,41 +23,34 @@ Os nomes dos pacotes de nível superior que você normalmente instalaria em um a
 
 * Pacotes de tempo de execução (por exemplo, `Microsoft.EntityFrameworkCore.SqlServer`) alterados de `1.0.0-rc2-final` para `1.0.0`.
 
-* O pacote `Microsoft.EntityFrameworkCore.Tools` mudou de `1.0.0-preview1-final` para `1.0.0-preview2-final`. Observe que as ferramentas ainda são pré-lançamento.
+* O pacote de `Microsoft.EntityFrameworkCore.Tools` alterado de `1.0.0-preview1-final` para `1.0.0-preview2-final`. Observe que as ferramentas ainda são pré-lançamento.
 
 ## <a name="existing-migrations-may-need-maxlength-added"></a>As migrações existentes podem precisar de maxLength adicionado
 
-No RC2, a definição de coluna em uma migração ficou como `table.Column<string>(nullable: true)` e o comprimento da coluna foi pesquisado em alguns metadados que armazenamos no código por trás da migração. No RTM, o comprimento agora está incluído no código com Scaffold `table.Column<string>(maxLength: 450, nullable: true)`.
+No RC2, a definição de coluna em uma migração parece `table.Column<string>(nullable: true)` e o comprimento da coluna foi pesquisado em alguns metadados que armazenamos no código por trás da migração. No RTM, o comprimento agora está incluído no código com Scaffold `table.Column<string>(maxLength: 450, nullable: true)`.
 
 Todas as migrações existentes que foram com scaffolddas antes de usar a versão RTM não terão o argumento `maxLength` especificado. Isso significa que o comprimento máximo com suporte do banco de dados será usado (`nvarchar(max)` em SQL Server). Isso pode ser adequado para algumas colunas, mas as colunas que fazem parte de uma chave, chave estrangeira ou índice precisam ser atualizadas para incluir um comprimento máximo. Por convenção, 450 é o comprimento máximo usado para chaves, chaves estrangeiras e colunas indexadas. Se você tiver configurado explicitamente um comprimento no modelo, deverá usar esse comprimento em vez disso.
 
-**ASP.NET Identity**
+### <a name="aspnet-identity"></a>ASP.NET Identity
 
 Essa alteração afeta os projetos que usam ASP.NET Identity e foram criados a partir de um modelo de projeto anterior ao RTM. O modelo de projeto inclui uma migração usada para criar o banco de dados. Essa migração deve ser editada para especificar um comprimento máximo de `256` para as colunas a seguir.
 
-*  **AspNetRoles**
-
-    * Nome
-
-    * NormalizedName
-
-*  **AspNetUsers**
-
-   * Email
-
-   * NormalizedEmail
-
-   * NormalizedUserName
-
-   * UserName
+* **AspNetRoles**
+  * Name
+  * NormalizedName
+* **AspNetUsers**
+  * Email
+  * NormalizedEmail
+  * NormalizedUserName
+  * UserName
 
 A falha ao fazer essa alteração resultará na seguinte exceção quando a migração inicial for aplicada a um banco de dados.
 
-```console
+``` Console
 System.Data.SqlClient.SqlException (0x80131904): Column 'NormalizedName' in table 'AspNetRoles' is of a type that is invalid for use as a key column in an index.
 ```
 
-## <a name="net-core-remove-imports-in-projectjson"></a>.NET Core: Remover "Imports" em Project. JSON
+## <a name="net-core-remove-imports-in-projectjson"></a>.NET Core: remover "Imports" em Project. JSON
 
 Se você estiver visando o .NET Core com o RC2, precisaria adicionar `imports` ao Project. JSON como uma solução alternativa temporária para algumas das dependências de EF Core que não dão suporte a .NET Standard. Agora eles podem ser removidos.
 
@@ -78,7 +71,7 @@ Se você estiver visando o .NET Core com o RC2, precisaria adicionar `imports` a
 
 A tentativa de executar comandos do EF em projetos Plataforma Universal do Windows (UWP) resulta no seguinte erro:
 
-```console
+```output
 System.IO.FileLoadException: Could not load file or assembly 'System.IO.FileSystem.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference.
 ```
 

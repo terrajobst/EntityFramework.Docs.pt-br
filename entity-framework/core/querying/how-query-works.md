@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 09/26/2018
 ms.assetid: de2e34cd-659b-4cab-b5ed-7a979c6bf120
 uid: core/querying/how-query-works
-ms.openlocfilehash: bc085755f39b1288f092a8b2df892c1bf82a89f1
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: ba0d68469530e6272ffbb51946d7856122a261c7
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72186263"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656248"
 ---
 # <a name="how-queries-work"></a>Como funciona a consulta
 
@@ -33,16 +33,17 @@ Veja a seguir uma visão geral de alto nível do processo pelo qual cada consult
       * Nesse caso, a entidade existente será retornada <sup>(1)</sup>
       * Caso contrário, uma nova entidade será criada e retornada
 
-<sup>(1)</sup> As consultas sem acompanhamento usam referências fracas para controlar as entidades que já foram retornadas. Se um resultado anterior com a mesma identidade sai do escopo e a coleta de lixo é executada, você poderá receber uma nova instância da entidade.
+<sup>(1)</sup> as consultas sem controle usam referências fracas para manter o controle das entidades que já foram retornadas. Se um resultado anterior com a mesma identidade sai do escopo e a coleta de lixo é executada, você poderá receber uma nova instância da entidade.
 
 ## <a name="when-queries-are-executed"></a>Quando as consultas são executadas
 
 Quando você chama operadores LINQ, está criando simplesmente uma representação na memória da consulta. A consulta é enviada somente para o banco de dados quando os resultados são consumidos.
 
 As operações mais comuns que resultam na consulta que está sendo enviada para o banco de dados são:
+
 * Iteração dos resultados em um loop `for`
 * Como usar um operador como `ToList`, `ToArray`, `Single`, `Count`
 * Associação de dados de resultados de uma consulta para uma interface de usuário
 
 > [!WARNING]  
-> **Sempre validar entrada do usuário:** Embora EF Core proteja contra ataques de injeção de SQL usando parâmetros e literais de escape em consultas, ele não valida entradas. Validação apropriada, conforme os requisitos do aplicativo, deve ser executada antes de valores de fontes não confiáveis serem usados em consultas LINQ, atribuídos às propriedades da entidade ou transmitidos para outras APIs do EF Core. Isso inclui qualquer entrada do usuário usada para construir consultas dinamicamente. Mesmo ao usar o LINQ, se você está aceitando entrada do usuário para criar expressões, precisa para garantir que apenas as expressões pretendidas possam ser criadas.
+> **Sempre validar a entrada do usuário:** enquanto o EF Core protege contra ataques de injeção SQL usando parâmetros e ignorando literais em consultas, ele não valida entradas. Validação apropriada, conforme os requisitos do aplicativo, deve ser executada antes de valores de fontes não confiáveis serem usados em consultas LINQ, atribuídos às propriedades da entidade ou transmitidos para outras APIs do EF Core. Isso inclui qualquer entrada do usuário usada para construir consultas dinamicamente. Mesmo ao usar o LINQ, se você está aceitando entrada do usuário para criar expressões, precisa para garantir que apenas as expressões pretendidas possam ser criadas.

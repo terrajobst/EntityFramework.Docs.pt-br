@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3f1993c2-cdf5-425b-bac2-a2665a20322b
 uid: core/saving/explicit-values-generated-properties
-ms.openlocfilehash: d6aa9a0a9ce34e09a39026ad7ea9195b6777858c
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: ea469b9b7199cc767b2d0da1a5999026f938d087
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197859"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656254"
 ---
 # <a name="setting-explicit-values-for-generated-properties"></a>Como configurar valores explícitos para propriedades geradas
 
@@ -33,6 +33,7 @@ A propriedade `Employee.EmploymentStarted` está configurada para ter valores ge
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/EmployeeContext.cs#EmploymentStarted)]
 
 O código a seguir insere dois funcionários no banco de dados.
+
 * Para a primeira, nenhum valor é atribuído à propriedade `Employee.EmploymentStarted`; portanto, ele permanece definido como o valor padrão CLR para `DateTime`.
 * Para o segundo, configuramos um valor explícito de `1-Jan-2000`.
 
@@ -73,13 +74,14 @@ A propriedade `Employee.LastPayRaise` está configurada para ter valores gerados
 > Por padrão, o EF Core gerará uma exceção se você tentar salvar um valor explícito para uma propriedade que está configurada para ser gerada durante a atualização. Para evitar isso, você precisará passar para a API de metadados de nível inferior e definir o `AfterSaveBehavior` (conforme mostrado acima).
 
 > [!NOTE]  
-> **Alterações no EF Core 2,0:** Em versões anteriores, o comportamento após salvar foi controlado por meio `IsReadOnlyAfterSave` do sinalizador. Esse sinalizador foi obsoleto e substituído por `AfterSaveBehavior`.
+> **Alterações no EF Core 2.0:** nas versões anteriores, o comportamento de salvar depois foi controlado por meio do sinalizador `IsReadOnlyAfterSave`. Esse sinalizador foi obsoleto e substituído por `AfterSaveBehavior`.
 
 Também há um gatilho no banco de dados para gerar valores para a coluna `LastPayRaise` durante operações `UPDATE`.
 
 [!code-sql[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/employee_UPDATE.sql)]
 
 O código a seguir aumenta o salário de dois funcionários no banco de dados.
+
 * Para a primeira, nenhum valor é atribuído à propriedade `Employee.LastPayRaise`; portanto, ele permanece definido como nulo.
 * Para o segundo, configuramos um valor explícito de uma semana atrás (antes da data do aumento de salário).
 

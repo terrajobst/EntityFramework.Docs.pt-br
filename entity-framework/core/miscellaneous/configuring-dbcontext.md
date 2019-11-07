@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: e04c1b65df96819f3493e0ed34ccf26609511f6a
-ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
+ms.openlocfilehash: 3ab90d46b7a4476044e5ea38eaf04f995708e7bf
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72445916"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655797"
 ---
 # <a name="configuring-a-dbcontext"></a>Configurar um DbContext
 
@@ -163,11 +163,12 @@ using (var context = serviceProvider.GetService<BloggingContext>())
 
 var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();
 ```
+
 ## <a name="avoiding-dbcontext-threading-issues"></a>Evitando problemas de threading de DbContext
 
 Entity Framework Core não dá suporte a várias operações paralelas sendo executadas na mesma instância de `DbContext`. Isso inclui a execução paralela de consultas assíncronas e qualquer uso simultâneo explícito de vários threads. Portanto, sempre `await` as chamadas assíncronas imediatamente ou usar instâncias `DbContext` separadas para operações executadas em paralelo.
 
-Quando EF Core detectar uma tentativa de usar uma instância de `DbContext` simultaneamente, você verá um `InvalidOperationException` com uma mensagem como esta: 
+Quando EF Core detectar uma tentativa de usar uma instância de `DbContext` simultaneamente, você verá um `InvalidOperationException` com uma mensagem como esta:
 
 > Uma segunda operação foi iniciada neste contexto antes da conclusão de uma operação anterior. Isso geralmente é causado por threads diferentes usando a mesma instância de DbContext, no entanto, não há garantia de que os membros de instância sejam thread-safe.
 
@@ -177,13 +178,13 @@ Há erros comuns que podem causar inadvertidamente acesso simultâneo na mesma i
 
 ### <a name="forgetting-to-await-the-completion-of-an-asynchronous-operation-before-starting-any-other-operation-on-the-same-dbcontext"></a>Esquecendo de aguardar a conclusão de uma operação assíncrona antes de iniciar qualquer outra operação no mesmo DbContext
 
-Os métodos assíncronos permitem que EF Core iniciem operações que acessam o banco de dados de uma maneira sem bloqueio. Mas se um chamador não aguardar a conclusão de um desses métodos e continuar a executar outras operações no `DbContext`, o estado do `DbContext` poderá ser (e provavelmente será) corrompido. 
+Os métodos assíncronos permitem que EF Core iniciem operações que acessam o banco de dados de uma maneira sem bloqueio. Mas se um chamador não aguardar a conclusão de um desses métodos e continuar a executar outras operações no `DbContext`, o estado do `DbContext` poderá ser (e provavelmente será) corrompido.
 
 Sempre Await EF Core métodos assíncronos imediatamente.  
 
 ### <a name="implicitly-sharing-dbcontext-instances-across-multiple-threads-via-dependency-injection"></a>Compartilhando instâncias DbContext implicitamente em vários threads por meio de injeção de dependência
 
-O método de extensão [`AddDbContext`](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) registra os tipos `DbContext` com um [tempo de vida com escopo](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection#service-lifetimes) definido por padrão. 
+O método de extensão [`AddDbContext`](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) registra os tipos `DbContext` com um [tempo de vida com escopo](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection#service-lifetimes) definido por padrão.
 
 Isso é seguro contra problemas de acesso simultâneos em aplicativos ASP.NET Core porque há apenas um thread executando cada solicitação de cliente em um determinado momento, e como cada solicitação Obtém um escopo de injeção de dependência separado (e, portanto, uma instância do `DbContext` separada).
 
@@ -193,5 +194,5 @@ Usando a injeção de dependência, isso pode ser feito registrando o contexto c
 
 ## <a name="more-reading"></a>Mais leitura
 
-* Leia [injeção de dependência](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection) para saber mais sobre como usar di.
-* Leia [teste](testing/index.md) para obter mais informações.
+- Leia [injeção de dependência](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection) para saber mais sobre como usar di.
+- Leia [teste](testing/index.md) para obter mais informações.

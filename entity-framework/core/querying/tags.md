@@ -4,19 +4,20 @@ author: divega
 ms.date: 11/14/2018
 ms.assetid: 73C7A627-C8E9-452D-9CD5-AFCC8FEFE395
 uid: core/querying/tags
-ms.openlocfilehash: 3a4d516cab5836c659e42d825c4f1bf89355d671
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
-ms.translationtype: HT
+ms.openlocfilehash: e8415b237df45ce652dcd152013f4f12a992aed7
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688739"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73654826"
 ---
 # <a name="query-tags"></a>Marcas de consulta
+
 > [!NOTE]
 > Este recurso é novo no EF Core 2.2.
 
 Esse recurso ajuda a correlacionar consultas LINQ no código com consultas SQL geradas capturadas nos logs.
-Anote uma consulta LINQ usando o novo método `TagWith()`: 
+Anote uma consulta LINQ usando o novo método `TagWith()`:
 
 ``` csharp
   var nearestFriends =
@@ -49,7 +50,7 @@ IQueryable<T> Limit<T>(IQueryable<T> source, int limit) =>
     source.TagWith("Limit").Take(limit);
 ```
 
-A seguinte consulta:   
+A seguinte consulta:
 
 ``` csharp
 var results = Limit(GetNearestFriends(myLocation), 25).ToList();
@@ -92,5 +93,6 @@ ORDER BY [f].[Location].STDistance(@__myLocation_0) DESC
 ```
 
 ## <a name="known-limitations"></a>Limitações conhecidas
+
 **As marcas de consulta não são parametrizáveis:** o EF Core sempre trata as marcas de consulta na consulta LINQ como literais de cadeia de caracteres que estão incluídas no SQL gerado.
 Não são permitidas consultas compiladas que usam marcas de consulta como parâmetros.

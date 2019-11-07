@@ -5,12 +5,12 @@ ms.author: ansvyryd
 ms.date: 04/10/2019
 ms.assetid: 0EC2CCE1-BD55-45D8-9EA9-20634987F094
 uid: core/modeling/table-splitting
-ms.openlocfilehash: 684fcfbb66debfd1b89e23c8aaf0a32909378c6b
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: a3a2e5842a6c6b4b490084d205a0d44bb46c17ee
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149194"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656034"
 ---
 # <a name="table-splitting"></a>Divisão de tabela
 
@@ -40,7 +40,7 @@ Além da configuração necessária, chamamos `Property(o => o.Status).HasColumn
 
 ## <a name="usage"></a>Uso
 
-Salvar e consultar entidades usando divisão de tabela é feito da mesma maneira que outras entidades. E, a partir do EF Core 3,0, a referência de `null`entidade dependente pode ser. Se todas as colunas usadas pela entidade dependente forem `NULL` o banco de dados, nenhuma instância para ela será criada quando consultada. Isso também aconteceria que todas as propriedades fossem opcionais e definidas `null`como, o que pode não ser esperado.
+Salvar e consultar entidades usando divisão de tabela é feito da mesma maneira que outras entidades. E, a partir do EF Core 3,0, a referência de entidade dependente pode ser `null`. Se todas as colunas usadas pela entidade dependente forem `NULL` é o banco de dados, nenhuma instância para ela será criada quando consultada. Isso também aconteceria que todas as propriedades fossem opcionais e definidas como `null`, o que pode não ser esperado.
 
 [!code-csharp[Usage](../../../samples/core/Modeling/TableSplitting/Program.cs?name=Usage)]
 

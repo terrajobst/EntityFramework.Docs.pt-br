@@ -4,16 +4,16 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 912ffef7-86a0-4cdc-a776-55f907459d20
 uid: core/modeling/keys
-ms.openlocfilehash: 8b32bf6417890a954c933a5973a2c90c609beeca
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 66c64c389294e8e109a614a2bea8311932660dea
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197276"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655944"
 ---
 # <a name="keys-primary"></a>Chaves (primárias)
 
-Uma chave serve como o identificador exclusivo primário para cada instância de entidade. Ao usar um banco de dados relacional, isso é mapeado para o conceito de uma *chave primária*. Você também pode configurar um identificador exclusivo que não seja a chave primária (consulte [chaves alternativas](alternate-keys.md) para obter mais informações). 
+Uma chave serve como o identificador exclusivo primário para cada instância de entidade. Ao usar um banco de dados relacional, isso é mapeado para o conceito de uma *chave primária*. Você também pode configurar um identificador exclusivo que não seja a chave primária (consulte [chaves alternativas](alternate-keys.md) para obter mais informações).
 
 Um dos métodos a seguir pode ser usado para configurar/criar uma chave primária.
 
@@ -21,27 +21,9 @@ Um dos métodos a seguir pode ser usado para configurar/criar uma chave primári
 
 Por convenção, uma propriedade chamada `Id` ou `<type name>Id` será configurada como a chave de uma entidade.
 
-<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/KeyId.cs?highlight=3)] -->
-``` csharp
-class Car
-{
-    public string Id { get; set; }
+[!code-csharp[Main](../../../samples/core/Modeling/Conventions/KeyId.cs?name=KeyId&highlight=3)]
 
-    public string Make { get; set; }
-    public string Model { get; set; }
-}
-```
-
-<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/KeyTypeNameId.cs?highlight=3)] -->
-``` csharp
-class Car
-{
-    public string CarId { get; set; }
-
-    public string Make { get; set; }
-    public string Model { get; set; }
-}
-```
+[!code-csharp[Main](../../../samples/core/Modeling/Conventions/KeyTypeNameId.cs?name=KeyIdhighlight=3)]
 
 ## <a name="data-annotations"></a>Anotações de dados
 

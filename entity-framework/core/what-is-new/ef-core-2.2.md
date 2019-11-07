@@ -4,25 +4,26 @@ author: divega
 ms.date: 11/14/2018
 ms.assetid: 998C04F3-676A-4FCF-8450-CFB0457B4198
 uid: core/what-is-new/ef-core-2.2
-ms.openlocfilehash: 5fcf7c6dfb4d8cb7928ef974af6deb52df7c63eb
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: fb9de799753bebd7b4092cd8f4af74703dee3e45
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181369"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656198"
 ---
 # <a name="new-features-in-ef-core-22"></a>Novos recursos no EF Core 2.2
 
 ## <a name="spatial-data-support"></a>Suporte a dados espaciais
 
 Os dados espaciais podem ser usados para representar o local físico e a forma de objetos.
-Muitos bancos de dados podem armazenar, indexar e consultar dados espaciais nativamente. Cenários comuns incluem consultas para objetos em uma determinada distância e testar se um polígono contém um determinado local.
+Muitos bancos de dados podem armazenar, indexar e consultar dados espaciais nativamente.
+Cenários comuns incluem consultas para objetos em uma determinada distância e testar se um polígono contém um determinado local.
 Agora o EF Core 2.2 permite trabalhar com dados espaciais de vários bancos de dados usando tipos de biblioteca de [NetTopologySuite](https://github.com/NetTopologySuite/NetTopologySuite) (NTS).
 
 O suporte a dados espaciais é implementado como uma série de pacotes de extensão específica do provedor.
 Cada um desses pacotes contribui com mapeamentos de métodos e tipos NTS e as funções e tipos espaciais correspondentes no banco de dados.
 Essas extensões de provedor agora estão disponíveis para [SQL Server](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite/), [SQLite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite/) e [PostgreSQL](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite/) (do [projeto Npgsql](https://www.npgsql.org/)).
-Os tipos espaciais podem ser usados diretamente com o [provedor na memória do EF Core](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) sem extensões adicionais.
+Os tipos espaciais podem ser usados diretamente com o [provedor na memória do EF Core](xref:core/providers/in-memory/index) sem extensões adicionais.
 
 Depois de instalar a extensão do provedor, você pode adicionar propriedades de tipos com suporte às suas entidades. Por exemplo:
 
@@ -40,7 +41,7 @@ namespace MyApp
     public Point Location { get; set; }
   }
 }
-``` 
+```
 
 Você pode usar a persistência de entidades com dados espaciais:
 
@@ -56,6 +57,7 @@ using (var context = new MyDbContext())
     context.SaveChanges();
 }
 ```
+
 E você pode executar consultas de banco de dados com base em operações e dados espaciais:
 
 ``` csharp
@@ -65,7 +67,7 @@ E você pode executar consultas de banco de dados com base em operações e dado
       select f).Take(5).ToList();
 ```
 
-Para saber mais sobre esse recurso, confira a [documentação de tipos espaciais](xref:core/modeling/spatial). 
+Para saber mais sobre esse recurso, confira a [documentação de tipos espaciais](xref:core/modeling/spatial).
 
 ## <a name="collections-of-owned-entities"></a>Coleções de entidades de propriedade
 
@@ -74,7 +76,8 @@ O EF Core 2.2 amplia a capacidade de expressar a propriedade para associações 
 A propriedade ajuda a restringir como as entidades são usadas.
 
 Por exemplo, entidades de propriedade:
-- Só podem aparecer nas propriedades de navegação de outros tipos de entidades. 
+
+- Só podem aparecer nas propriedades de navegação de outros tipos de entidades.
 - São carregadas automaticamente e só podem ser acompanhadas por um DbContext junto com seu proprietário.
 
 Em bancos de dados relacionais, as coleções de propriedade são mapeadas em tabelas separadas do proprietário, assim como as associações regulares de um para muitos.
@@ -112,4 +115,4 @@ FROM [Friends] AS [f]
 ORDER BY [f].[Location].STDistance(@__myLocation_0) DESC
 ```
 
-Para saber mais, confira a [documentação de marcas de consulta](xref:core/querying/tags). 
+Para saber mais, confira a [documentação de marcas de consulta](xref:core/querying/tags).

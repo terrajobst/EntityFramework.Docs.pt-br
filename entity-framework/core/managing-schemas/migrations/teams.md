@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 10/30/2017
 uid: core/managing-schemas/migrations/teams
-ms.openlocfilehash: e6a1b86761a201cbcae34cced7e64f11df37a420
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.openlocfilehash: 6c17c56277821159962884aef72d46c624442e20
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72811987"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655538"
 ---
 # <a name="migrations-in-team-environments"></a>Migrações em ambientes de equipe
 
@@ -19,11 +19,13 @@ Ao trabalhar com migrações em ambientes de equipe, preste atenção extra ao a
 
 Ao mesclar migrações de seus colegas de equipe, você poderá obter conflitos no arquivo de instantâneo do modelo. Se ambas as alterações não estiverem relacionadas, a mesclagem será trivial e as duas migrações poderão coexistir. Por exemplo, você pode obter um conflito de mesclagem na configuração do tipo de entidade Customer que tem esta aparência:
 
-    <<<<<<< Mine
-    b.Property<bool>("Deactivated");
-    =======
-    b.Property<int>("LoyaltyPoints");
-    >>>>>>> Theirs
+``` output
+<<<<<<< Mine
+b.Property<bool>("Deactivated");
+=======
+b.Property<int>("LoyaltyPoints");
+>>>>>>> Theirs
+```
 
 Como essas duas propriedades precisam existir no modelo final, conclua a mesclagem adicionando ambas as propriedades. Em muitos casos, seu sistema de controle de versão pode mesclar automaticamente essas alterações para você.
 
@@ -38,11 +40,13 @@ Nesses casos, a migração e a migração de seu colega de equipe são independe
 
 Às vezes, você encontra um verdadeiro conflito ao mesclar o modelo de instantâneo do modelo. Por exemplo, você e seu colega de equipe podem ter renomeado a mesma propriedade.
 
-    <<<<<<< Mine
-    b.Property<string>("Username");
-    =======
-    b.Property<string>("Alias");
-    >>>>>>> Theirs
+``` output
+<<<<<<< Mine
+b.Property<string>("Username");
+=======
+b.Property<string>("Alias");
+>>>>>>> Theirs
+```
 
 Se você encontrar esse tipo de conflito, resolva-o recriando a migração. Siga estas etapas:
 
