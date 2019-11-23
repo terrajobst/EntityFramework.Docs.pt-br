@@ -20,14 +20,14 @@ Este passo a passos usará Model First para criar um novo banco de dados, mas o 
 
 O suporte a enum foi introduzido no Entity Framework 5. Para usar os novos recursos como enums, tipos de dados espaciais e funções com valor de tabela, você deve direcionar .NET Framework 4,5. O Visual Studio 2012 visa o .NET 4,5 por padrão.
 
-No Entity Framework, uma enumeração pode ter os seguintes tipos subjacentes: **Byte**, **Int16**, **Int32**, **Int64** ou **SByte**.
+No Entity Framework, uma enumeração pode ter os seguintes tipos subjacentes: **byte**, **Int16**, **Int32**, **Int64** ou **SByte**.
 
 ## <a name="watch-the-video"></a>Assista ao vídeo
 Este vídeo mostra como usar tipos de enumeração com o Entity Framework Designer. Ele também demonstra como usar enums em uma consulta LINQ.
 
 **Apresentado por**: Julia Kornich
 
-**Vídeo**: [WMV](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.wmv) | [MP4](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-mp4video-enumwithdesiger.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.zip)
+**Vídeo**: [wmv](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.wmv) | [MP4](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-mp4video-enumwithdesiger.m4v) | [WMV (zip)](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.zip)
 
 ## <a name="pre-requisites"></a>Pré-requisitos
 
@@ -37,7 +37,7 @@ Você precisará ter o Visual Studio 2012, Ultimate, Premium, Professional ou We
 
 1.  Abrir o Visual Studio 2012
 2.  No menu **arquivo** , aponte para **novo**e clique em **projeto**
-3.  No painel esquerdo, clique em **Visual C @ no__t-1**e selecione o modelo de **console**
+3.  No painel esquerdo, clique em **Visual C\#** e, em seguida, selecione o modelo de **console**
 4.  Insira **EnumEFDesigner** como o nome do projeto e clique em **OK**
 
 ## <a name="create-a-new-model-using-the-ef-designer"></a>Criar um novo modelo usando o designer do EF
@@ -61,7 +61,7 @@ O assistente executa as seguintes ações:
 1.  Clique com o botão direito do mouse em uma área vazia da superfície de design, selecione **entidade Add-&gt;** , a caixa de diálogo nova entidade será exibida
 2.  Especifique **Department** para o nome do tipo e especifique **DepartmentID** para o nome da propriedade de chave, deixe o tipo como **Int32**
 3.  Clique em **OK**
-4.  Clique com o botão direito do mouse na entidade e selecione **Adicionar New-&gt; Propriedade escalar**
+4.  Clique com o botão direito do mouse na entidade e selecione **Adicionar novo-&gt; Propriedade escalar**
 5.  Renomear a nova propriedade como **nome**
 6.  Altere o tipo da nova propriedade para **Int32** (por padrão, a nova propriedade é do tipo cadeia de caracteres) para alterar o tipo, abra o janela Propriedades e altere a propriedade Type para **Int32**
 7.  Adicione outra propriedade escalar e renomeie-a para **orçamento**, altere o tipo para **decimal**
@@ -95,11 +95,11 @@ Se você alternar para a janela do navegador de modelos, verá que o tipo també
 Agora, podemos gerar um banco de dados baseado no modelo.
 
 1.  Clique com o botão direito do mouse em um espaço vazio na superfície de Entity Designer e selecione **gerar banco de dados do modelo**
-2.  A caixa de diálogo escolher sua conexão de dados do assistente para gerar banco de dados é exibida clique no botão **nova conexão** especificar **(LocalDB) \\mssqllocaldb** para o nome do servidor e **EnumTest** para o banco de dados e clique em **OK**
+2.  A caixa de diálogo escolher sua conexão de dados do assistente para gerar banco de dados é exibida clique no botão **nova conexão** especificar **(LocalDB)\\mssqllocaldb** para o nome do servidor e **EnumTest** para o banco de dados e clique em **OK**
 3.  Uma caixa de diálogo perguntando se você deseja criar um novo banco de dados será exibida, clique em **Sim**.
-4.  Clique em **Avançar** e o assistente para criar banco de dados gera DDL (linguagem de definição de dado) para criar um banco de dados o DDL gerado é exibido na caixa de diálogo Resumo e configurações Observe que o DDL não contém uma definição para uma tabela que mapeia para o tipo de enumeração
+4.  Clique em **Avançar** e o assistente para criar banco de dados gera DDL (linguagem de definição de dado) para criar um banco de dados o DDL gerado é exibido na caixa de diálogo Resumo e configurações Observe que o DDL não contém uma definição para uma tabela que é mapeada para o tipo de enumeração
 5.  Clique em **concluir** clicando em concluir não executa o script DDL.
-6.  O assistente para criar banco de dados faz o seguinte: Abre o **EnumTest. edmx. SQL** no Editor T-SQL gera as seções esquema de armazenamento e mapeamento do arquivo EDMX adiciona informações de cadeia de conexão ao arquivo app. config
+6.  O assistente para criar banco de dados faz o seguinte: abre o **EnumTest. edmx. SQL** no Editor T-SQL gera as seções esquema de armazenamento e mapeamento do arquivo EDMX adiciona informações de cadeia de conexão ao arquivo app. config
 7.  Clique com o botão direito do mouse no Editor T-SQL e selecione **executar** a caixa de diálogo conectar ao servidor aparece, insira as informações de conexão da etapa 2 e clique em **conectar**
 8.  Para exibir o esquema gerado, clique com o botão direito do mouse no nome do banco de dados em Pesquisador de Objetos do SQL Server e selecione **Atualizar**
 

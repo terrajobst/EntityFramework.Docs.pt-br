@@ -40,16 +40,16 @@ O elemento **Association** pode ter os seguintes elementos filho (na ordem lista
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Association** .
 
-| Nome do atributo | É obrigatório | Valor                                                                            |
+| Nome do Atributo | É obrigatório | Valor                                                                            |
 |:---------------|:------------|:---------------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome da restrição de chave estrangeira correspondente no banco de dados subjacente. |
+| **Nome**       | Sim         | O nome da restrição de chave estrangeira correspondente no banco de dados subjacente. |
 
 > [!NOTE]
 > Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **Association** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento **Association** que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira **CE @ no__t-3CustomerOrders** :
+O exemplo a seguir mostra um elemento **Association** que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira de **CustomerOrders de CE\_** :
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -86,9 +86,9 @@ O elemento **AssociationSet** pode ter os seguintes elementos filho (na ordem li
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **AssociationSet** .
 
-| Nome do atributo  | É obrigatório | Valor                                                                                                |
+| Nome do Atributo  | É obrigatório | Valor                                                                                                |
 |:----------------|:------------|:-----------------------------------------------------------------------------------------------------|
-| **Name**        | Sim         | O nome da restrição de chave estrangeira que o conjunto de associação representa.                          |
+| **Nome**        | Sim         | O nome da restrição de chave estrangeira que o conjunto de associação representa.                          |
 | **Associação** | Sim         | O nome da associação que define as colunas que participam da restrição FOREIGN KEY. |
 
 > [!NOTE]
@@ -197,7 +197,7 @@ O elemento **dependente** pode ter os seguintes elementos filho (na ordem listad
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **dependente** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                       |
+| Nome do Atributo | É obrigatório | Valor                                                                                                                                                       |
 |:---------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Função**       | Sim         | O mesmo valor que o atributo de **função** (se usado) do elemento final correspondente; caso contrário, o nome da tabela que contém a coluna de referência. |
 
@@ -206,7 +206,7 @@ A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **de
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento Association que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira **CE @ no__t-2CustomerOrders** . O elemento **dependente** especifica a coluna **CustomerID** da tabela **Order** como a extremidade dependente da restrição.
+O exemplo a seguir mostra um elemento Association que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira de **CustomerOrders de CE\_** . O elemento **dependente** especifica a coluna **CustomerID** da tabela **Order** como a extremidade dependente da restrição.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -233,8 +233,8 @@ O elemento **Documentation** na Store (linguagem de definição de esquema de re
 
 O elemento de **documentação** pode ter os seguintes elementos filho (na ordem listada):
 
--   **Resumo**: Uma breve descrição do elemento pai. (zero ou um elemento)
--   **LongDescription**: Uma descrição abrangente do elemento pai. (zero ou um elemento)
+-   **Resumo**: uma breve descrição do elemento pai. (zero ou um elemento)
+-   **LongDescription**: uma descrição extensiva do elemento pai. (zero ou um elemento)
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
@@ -276,18 +276,18 @@ Um elemento **final** pode ter os seguintes elementos filho (na ordem listada):
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **final** quando ele é o filho de um elemento **Association** .
 
-| Nome do atributo   | É obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                      |
+| Nome do Atributo   | É obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                      |
 |:-----------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tipo**         | Sim         | O nome totalmente qualificado do conjunto de entidades SSDL que está no final da restrição de chave estrangeira.                                                                                                                                                                                                                                                                                          |
 | **Função**         | Não          | O valor do atributo **role** no elemento principal ou dependente do elemento ReferentialConstraint correspondente (se usado).                                                                                                                                                                                                                                             |
-| **Multiplicidade** | Sim         | **1**, **0.. 1**ou **\*** , dependendo do número de linhas que podem estar no final da restrição de chave estrangeira. <br/> **1** indica que exatamente uma linha existe no final da restrição de chave estrangeira. <br/> **0.. 1** indica que zero ou uma linha existe no final da restrição de chave estrangeira. <br/> **\*** indica que zero, uma ou mais linhas existem no final da restrição de chave estrangeira. |
+| **Multiplicidade** | Sim         | **1**, **0.. 1**ou **\*** dependendo do número de linhas que podem estar no final da restrição de chave estrangeira. <br/> **1** indica que exatamente uma linha existe no final da restrição de chave estrangeira. <br/> **0.. 1** indica que zero ou uma linha existe no final da restrição de chave estrangeira. <br/> **\*** indica que zero, uma ou mais linhas existem no final da restrição de chave estrangeira. |
 
 > [!NOTE]
 > Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **final** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para CSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
 
 #### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento **Association** que define a restrição de chave estrangeira **CE @ no__t-2CustomerOrders** . Os valores de **multiplicidade** especificados em cada elemento de **extremidade** indicam que muitas linhas na tabela **Orders** podem ser associadas a uma linha na tabela **Customers** , mas apenas uma linha na tabela **Customers** pode ser associada a uma linha na tabela **Orders** . Além disso, o elemento **OnDelete** indica que todas as linhas na tabela **Orders** que fazem referência a uma linha específica na tabela **Customers** serão excluídas se a linha na tabela **Customers** for excluída.
+O exemplo a seguir mostra um elemento **Association** que define a restrição de chave estrangeira **\_CustomerOrders de FK** . Os valores de **multiplicidade** especificados em cada elemento de **extremidade** indicam que muitas linhas na tabela **Orders** podem ser associadas a uma linha na tabela **Customers** , mas apenas uma linha na tabela **Customers** pode ser associada a uma linha na tabela **Orders** . Além disso, o elemento **OnDelete** indica que todas as linhas na tabela **Orders** que fazem referência a uma linha específica na tabela **Customers** serão excluídas se a linha na tabela **Customers** for excluída.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -321,7 +321,7 @@ Um elemento **final** pode ter os seguintes elementos filho (na ordem listada):
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **final** quando ele é o filho de um elemento **AssociationSet** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                  |
+| Nome do Atributo | É obrigatório | Valor                                                                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------|
 | **EntitySet**  | Sim         | O nome do conjunto de entidades SSDL que está no final da restrição de chave estrangeira.                                      |
 | **Função**       | Não          | O valor de um dos atributos de **função** especificados em um elemento **end** do elemento Association correspondente. |
@@ -351,7 +351,7 @@ O exemplo a seguir mostra um elemento **EntityContainer** com um elemento **Asso
 
 ## <a name="entitycontainer-element-ssdl"></a>Elemento EntityContainer (SSDL)
 
-Um elemento **EntityContainer** na Store (linguagem de definição de esquema) de repositório descreve a estrutura da fonte de dados subjacente em um aplicativo Entity Framework: Os conjuntos de entidades SSDL (definidos em elementos EntitySet) representam tabelas em um banco de dados, os tipos de entidade SSDL (definidos em elementos EntityType) representam linhas em uma tabela e os conjuntos de associação (definidos em elementos AssociationSet) representam restrições Foreign Key em um banco. Um contêiner de entidade de modelo de armazenamento é mapeado para um contêiner de entidade de modelo conceitual por meio do elemento EntityContainerMapping.
+Um elemento **EntityContainer** na Store (linguagem de definição de esquema) de repositório descreve a estrutura da fonte de dados subjacente em um aplicativo Entity Framework: conjuntos de entidades SSDL (definidos em elementos EntitySet) representam tabelas em um banco de dado, tipos de entidade SSDL (definidos em elementos EntityType) representam linhas em uma tabela e os conjuntos de associação (definidos em elementos AssociationSet) representam restrições Foreign Key em um banco de Um contêiner de entidade de modelo de armazenamento é mapeado para um contêiner de entidade de modelo conceitual por meio do elemento EntityContainerMapping.
 
 Um elemento **EntityContainer** pode ter zero ou um elementos de documentação. Se um elemento de **documentação** estiver presente, ele deverá preceder todos os outros elementos filho.
 
@@ -359,15 +359,15 @@ Um elemento **EntityContainer** pode ter zero ou mais dos seguintes elementos fi
 
 -   EntitySet
 -   AssociationSet
--   Elementos de anotação
+-   Elementos Annotation
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntityContainer** .
 
-| Nome do atributo | É obrigatório | Valor                                                                   |
+| Nome do Atributo | É obrigatório | Valor                                                                   |
 |:---------------|:------------|:------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome do contêiner de entidade. Este nome não pode conter pontos (.). |
+| **Nome**       | Sim         | O nome do contêiner de entidade. Este nome não pode conter pontos (.). |
 
 > [!NOTE]
 > Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **EntityContainer** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
@@ -400,7 +400,7 @@ O elemento **EntitySet** pode ter os seguintes elementos filho (na ordem listada
 
 -   Documentação (zero ou um elemento)
 -   DefiningQuery (zero ou um elemento)
--   Elementos de anotação
+-   Elementos Annotation
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
@@ -409,9 +409,9 @@ A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **En
 > [!NOTE]
 > Alguns atributos (não listados aqui) podem ser qualificados com o alias da **loja** . Esses atributos são usados pelo assistente de modelo de atualização ao atualizar um modelo.
 
-| Nome do atributo | É obrigatório | Valor                                                                                    |
+| Nome do Atributo | É obrigatório | Valor                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome do conjunto de entidades.                                                              |
+| **Nome**       | Sim         | O nome do conjunto de entidades.                                                              |
 | **EntityType** | Sim         | O nome totalmente qualificado do tipo de entidade para o qual o conjunto de entidades contém instâncias. |
 | **Esquema**     | Não          | O esquema do banco de dados.                                                                     |
 | **Tabela**      | Não          | A tabela do banco de dados.                                                                      |
@@ -447,15 +447,15 @@ O elemento **EntityType** pode ter os seguintes elementos filho (na ordem listad
 
 -   Documentação (zero ou um elemento)
 -   Chave (zero ou um elemento)
--   Elementos de anotação
+-   Elementos Annotation
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntityType** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                  |
+| Nome do Atributo | É obrigatório | Valor                                                                                                                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome do tipo de entidade. Esse valor é geralmente o mesmo que o nome da tabela na qual o tipo de entidade representa uma linha. Esse valor não pode conter pontos (.). |
+| **Nome**       | Sim         | O nome do tipo de entidade. Esse valor é geralmente o mesmo que o nome da tabela na qual o tipo de entidade representa uma linha. Esse valor não pode conter pontos (.). |
 
 > [!NOTE]
 > Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **EntityType** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para SSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
@@ -501,9 +501,9 @@ A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Fu
 > [!NOTE]
 > Alguns atributos (não listados aqui) podem ser qualificados com o alias da **loja** . Esses atributos são usados pelo assistente de modelo de atualização ao atualizar um modelo.
 
-| Nome do atributo             | É obrigatório | Valor                                                                                                                                                                                                              |
+| Nome do Atributo             | É obrigatório | Valor                                                                                                                                                                                                              |
 |:---------------------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                   | Sim         | O nome do procedimento armazenado.                                                                                                                                                                                  |
+| **Nome**                   | Sim         | O nome do procedimento armazenado.                                                                                                                                                                                  |
 | **ReturnType**             | Não          | O tipo de retorno do procedimento armazenado.                                                                                                                                                                           |
 | **Aggregate**              | Não          | **True** se o procedimento armazenado retornar um valor de agregação; caso contrário, **false**.                                                                                                                                  |
 | **BuiltIn**                | Não          | **True** se a função for uma função interna<sup>1</sup> ; caso contrário, **false**.                                                                                                                                  |
@@ -546,7 +546,7 @@ O elemento de **chave** na linguagem de definição de esquema de repositório (
 O elemento **Key** pode ter os seguintes elementos filho (na ordem listada):
 
 -   PropertyRef (um ou mais)
--   Elementos de anotação
+-   Elementos Annotation
 
 Nenhum atributo é aplicável ao elemento de **chave** .
 
@@ -581,7 +581,7 @@ Um elemento **OnDelete** pode ter os seguintes elementos filho (na ordem listada
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **OnDelete** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                               |
+| Nome do Atributo | É obrigatório | Valor                                                                                               |
 |:---------------|:------------|:----------------------------------------------------------------------------------------------------|
 | **Ação**     | Sim         | **Cascade** ou **None**. (O valor **restrito** é válido, mas tem o mesmo comportamento que **nenhum**.) |
 
@@ -590,7 +590,7 @@ A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **On
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento **Association** que define a restrição de chave estrangeira **CE @ no__t-2CustomerOrders** . O elemento **OnDelete** indica que todas as linhas na tabela **Orders** que fazem referência a uma linha específica na tabela **Customers** serão excluídas se a linha na tabela **Customers** for excluída.
+O exemplo a seguir mostra um elemento **Association** que define a restrição de chave estrangeira **\_CustomerOrders de FK** . O elemento **OnDelete** indica que todas as linhas na tabela **Orders** que fazem referência a uma linha específica na tabela **Customers** serão excluídas se a linha na tabela **Customers** for excluída.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -624,9 +624,9 @@ O elemento **Parameter** pode ter os seguintes elementos filho (na ordem listada
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Parameter** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                                                                           |
+| Nome do Atributo | É obrigatório | Valor                                                                                                                                                                                                                           |
 |:---------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome do parâmetro.                                                                                                                                                                                                      |
+| **Nome**       | Sim         | O nome do parâmetro.                                                                                                                                                                                                      |
 | **Tipo**       | Sim         | O tipo de parâmetro.                                                                                                                                                                                                             |
 | **Modo**       | Não          | **In**, **out**ou **Inout** , dependendo se o parâmetro é um parâmetro de entrada, saída ou entrada/saída.                                                                                                                |
 | **MaxLength**  | Não          | O comprimento máximo do parâmetro.                                                                                                                                                                                            |
@@ -667,7 +667,7 @@ O elemento **principal** pode ter os seguintes elementos filho (na ordem listada
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **principal** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                      |
+| Nome do Atributo | É obrigatório | Valor                                                                                                                                                      |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Função**       | Sim         | O mesmo valor que o atributo de **função** (se usado) do elemento final correspondente; caso contrário, o nome da tabela que contém a coluna referenciada. |
 
@@ -676,7 +676,7 @@ A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **pr
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento Association que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira **CE @ no__t-2CustomerOrders** . O elemento **principal** especifica a coluna **CustomerID** da tabela **Customer** como a extremidade principal da restrição.
+O exemplo a seguir mostra um elemento Association que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira de **CustomerOrders de CE\_** . O elemento **principal** especifica a coluna **CustomerID** da tabela **Customer** como a extremidade principal da restrição.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -707,9 +707,9 @@ Um elemento de **Propriedade** não pode ter nenhum elemento filho.
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Property** .
 
-| Nome do atributo            | É obrigatório | Valor                                                                                                                                                                                                                           |
+| Nome do Atributo            | É obrigatório | Valor                                                                                                                                                                                                                           |
 |:--------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                  | Sim         | O nome da coluna correspondente.                                                                                                                                                                                           |
+| **Nome**                  | Sim         | O nome da coluna correspondente.                                                                                                                                                                                           |
 | **Tipo**                  | Sim         | O tipo da coluna correspondente.                                                                                                                                                                                           |
 | **Anula**              | Não          | **True** (o valor padrão) ou **false** , dependendo se a coluna correspondente pode ter um valor nulo.                                                                                                                  |
 | **DefaultValue**          | Não          | O valor padrão da coluna correspondente.                                                                                                                                                                                  |
@@ -753,15 +753,15 @@ O elemento **PropertyRef** na linguagem de definição de esquema de repositóri
 O elemento **PropertyRef** só pode ter os seguintes elementos filho:
 
 -   Documentação (zero ou um)
--   Elementos de anotação
+-   Elementos Annotation
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **PropertyRef** .
 
-| Nome do atributo | É obrigatório | Valor                                |
+| Nome do Atributo | É obrigatório | Valor                                |
 |:---------------|:------------|:-------------------------------------|
-| **Name**       | Sim         | O nome da propriedade referenciada. |
+| **Nome**       | Sim         | O nome da propriedade referenciada. |
 
 > [!NOTE]
 > Qualquer número de atributos de anotação (atributos XML personalizados) pode ser aplicado ao elemento **PropertyRef** . No entanto, os atributos personalizados podem não pertencer a nenhum namespace XML reservado para CSDL. Os nomes totalmente qualificados para dois atributos personalizados não podem ser iguais.
@@ -803,7 +803,7 @@ Qualquer número de atributos de anotação (atributos XML personalizados) pode 
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento **Association** que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira **CE @ no__t-3CustomerOrders** :
+O exemplo a seguir mostra um elemento **Association** que usa um elemento **ReferentialConstraint** para especificar as colunas que participam da restrição de chave estrangeira de **CustomerOrders de CE\_** :
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -908,10 +908,10 @@ Um namespace do modelo de armazenamento é diferente do namespace XML do element
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Schema** .
 
-| Nome do atributo            | É obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Nome do Atributo            | É obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |:--------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Namespace**             | Sim         | O namespace do modelo de armazenamento. O valor do atributo **namespace** é usado para formar o nome totalmente qualificado de um tipo. Por exemplo, se um **EntityType** chamado *Customer* estiver no namespace ExampleModel. Store, o nome totalmente qualificado do **EntityType** será ExampleModel. Store. Customer. <br/> As seguintes cadeias de caracteres não podem ser usadas como o valor do atributo **namespace** : **Sistema**, **transitório**ou **EDM**. O valor do atributo **namespace** não pode ser o mesmo que o valor do atributo **namespace** no elemento de esquema CSDL. |
-| **Alias**                 | Não          | Um identificador usado no lugar do nome do namespace. Por exemplo, se um **EntityType** chamado *Customer* estiver no namespace ExampleModel. Store e o valor do atributo **alias** for *StorageModel*, você poderá usar StorageModel. Customer como o nome totalmente qualificado do  **EntityType.**                                                                                                                                                                                                                                                                                    |
+| **Namespace**             | Sim         | O namespace do modelo de armazenamento. O valor do atributo **namespace** é usado para formar o nome totalmente qualificado de um tipo. Por exemplo, se um **EntityType** chamado *Customer* estiver no namespace ExampleModel. Store, o nome totalmente qualificado do **EntityType** será ExampleModel. Store. Customer. <br/> As cadeias de caracteres a seguir não podem ser usadas como o valor do atributo de **namespace** : **System**, **transitório**ou **EDM**. O valor do atributo **namespace** não pode ser o mesmo que o valor do atributo **namespace** no elemento de esquema CSDL. |
+| **Alias**                 | Não          | Um identificador usado no lugar do nome do namespace. Por exemplo, se um **EntityType** chamado *Customer* estiver no namespace ExampleModel. Store e o valor do atributo **alias** for *StorageModel*, você poderá usar StorageModel. Customer como o nome totalmente qualificado do **EntityType.**                                                                                                                                                                                                                                                                                    |
 | **Provedor**              | Sim         | O provedor de dados.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **ProviderManifestToken** | Sim         | Um token que indica ao provedor que o manifesto do provedor deve retornar. Nenhum formato para o token está definido. Os valores para o token são definidos pelo provedor. Para obter informações sobre SQL Server tokens de manifesto do provedor, consulte SqlClient para Entity Framework.                                                                                                                                                                                                                                                                                                                        |
 

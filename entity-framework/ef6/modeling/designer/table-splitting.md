@@ -19,7 +19,7 @@ A imagem a seguir mostra as janelas principais que são usadas ao trabalhar com 
 
 ![EF Designer](~/ef6/media/efdesigner.png)
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
 
 Para concluir esta explicação passo a passo, será necessário:
 
@@ -32,7 +32,7 @@ Este tutorial está usando o Visual Studio 2012.
 
 -   Abra o Visual Studio 2012.
 -   No menu **Arquivo**, aponte para **Novo** e clique em **Projeto**.
--   No painel esquerdo, clique em Visual C\#e selecione o modelo aplicativo de console.
+-   No painel esquerdo, clique em Visual C\#e, em seguida, selecione o modelo aplicativo de console.
 -   Insira **TableSplittingSample** como o nome do projeto e clique em **OK**.
 
 ## <a name="create-a-model-based-on-the-school-database"></a>Criar um modelo com base no banco de dados escolar
@@ -41,12 +41,12 @@ Este tutorial está usando o Visual Studio 2012.
 -   Selecione **dados** no menu à esquerda e, em seguida, selecione **ADO.NET modelo de dados de entidade** no painel modelos.
 -   Digite **TableSplittingModel. edmx** para o nome do arquivo e clique em **Adicionar**.
 -   Na caixa de diálogo escolher conteúdo do modelo, selecione **gerar do banco de dados**e clique em **Avançar.**
--   Clique em Nova conexão. Na caixa de diálogo Propriedades da conexão, digite o nome do servidor (por exemplo, **(\\LocalDB) mssqllocaldb**), selecione o método de autenticação, digite **School** para o nome do banco de dados e clique em **OK**.
+-   Clique em Nova conexão. Na caixa de diálogo Propriedades da conexão, digite o nome do servidor (por exemplo, **(LocalDB)\\mssqllocaldb**), selecione o método de autenticação, digite **School** para o nome do banco de dados e clique em **OK**.
     A caixa de diálogo escolher sua conexão de dados é atualizada com a configuração de conexão de banco de dado.
--   Na caixa de diálogo escolher seu objeto de banco de dados, desdobrar o nó **tabelas** e verificar a tabela **Person** . Isso adicionará a tabela especificada ao modelo **escolar** .
+-   Na caixa de diálogo escolher seu objeto de banco de dados, desdobrar as **tabelas** nó e verifique a tabela **Person** . Isso adicionará a tabela especificada ao modelo **escolar** .
 -   Clique em **concluir**.
 
-O Entity Designer, que fornece uma superfície de design para editar seu modelo, é exibido. Todos os objetos que você selecionou na caixa de diálogo **escolher seus objetos** de banco de dados são adicionados ao modelo.
+O Entity Designer, que fornece uma superfície de design para editar seu modelo, é exibido. Todos os objetos que você selecionou na caixa de diálogo **escolher seus objetos de banco de dados** são adicionados ao modelo.
 
 ## <a name="map-two-entities-to-a-single-table"></a>Mapear duas entidades para uma única tabela
 
@@ -56,24 +56,24 @@ Nesta seção, você irá dividir a entidade **Person** em duas entidades e, em 
 > A entidade **Person** não contém nenhuma propriedade que possa conter uma grande quantidade de dados; Ele é usado apenas como exemplo.
 
 -   Clique com o botão direito do mouse em uma área vazia da superfície de design, aponte para **Adicionar nova**e clique em **entidade**.
-    A caixa de diálogo **nova entidade** é exibida.
+    A caixa de diálogo Nova de **entidade** é exibida.
 -   Digite **HireInfo** para o **nome da entidade** e **PersonID** para o nome da **propriedade de chave** .
 -   Clique em **OK**.
 -   Um novo tipo de entidade é criado e exibido na superfície de design.
--   Selecione a ****  Propriedade HireDate do tipo de entidade **Person** e pressione as teclas **Ctrl + X** .
--   Selecione a entidade **HireInfo** e pressione **Ctrl + V** teclas.
+-   Selecione a propriedade **hiredate** do tipo de entidade **Person** e pressione **Ctrl + X** .
+-   Selecione a entidade **HireInfo** e pressione **Ctrl + V** .
 -   Crie uma associação entre **Person** e **HireInfo**. Para fazer isso, clique com o botão direito do mouse em uma área vazia da superfície de design, aponte para **Adicionar nova**e clique em **Associação**.
--   A caixa de diálogo **Adicionar Associação** é exibida. O nome do **PersonHireInfo** é fornecido por padrão.
+-   A caixa de diálogo Adicionar de **Associação** é exibida. O nome do **PersonHireInfo** é fornecido por padrão.
 -   Especifique a multiplicidade **1 (uma)** em ambas as extremidades da relação.
 -   Pressione **OK**.
 
-A próxima etapa requer a janela **detalhes** do mapeamento. Se você não puder ver essa janela, clique com o botão direito do mouse na superfície de design e selecione **detalhes de mapeamento**.
+A próxima etapa requer a janela **detalhes do mapeamento** . Se você não puder ver essa janela, clique com o botão direito do mouse na superfície de design e selecione **detalhes de mapeamento**.
 
--   Selecione o tipo de entidade **HireInfo** e clique em **&lt;adicionar uma tabela&gt;ou exibição** na janela **detalhes** do mapeamento.
--   Selecione **pessoa** na lista suspensa  **&lt;adicionar uma tabela ou&gt;um**campo de exibição.  A lista contém tabelas ou exibições às quais a entidade selecionada pode ser mapeada.
+-   Selecione o tipo de entidade **HireInfo** e clique em **&lt;adicionar uma tabela ou exibição&gt;**  na janela  **detalhes de mapeamento** .
+-   Selecione **pessoa** na lista suspensa **&lt;adicionar uma tabela ou exibição&gt;**  campo. A lista contém tabelas ou exibições às quais a entidade selecionada pode ser mapeada.
     As propriedades apropriadas devem ser mapeadas por padrão.
 
-    ![correlação](~/ef6/media/mapping.png)
+    ![Correlação](~/ef6/media/mapping.png)
 
 -   Selecione a associação **PersonHireInfo** na superfície de design.
 -   Clique com o botão direito do mouse na associação na superfície de design e selecione **Propriedades**.

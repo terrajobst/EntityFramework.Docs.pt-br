@@ -11,14 +11,14 @@ ms.lasthandoff: 10/09/2019
 ms.locfileid: "72182569"
 ---
 # <a name="code-first-to-a-new-database"></a>Code First a um novo banco de dados
-Este vídeo e instruções passo a passo fornecem uma introdução ao desenvolvimento de Code First visando um novo banco de dados. Esse cenário inclui o direcionamento de um banco de dados que não existe e Code First será criado, ou um banco de dados vazio ao qual Code First adicionará novas tabelas. Code First permite que você defina seu modelo usando classes C @ no__t-0 ou VB.Net. A configuração adicional pode, opcionalmente, ser executada usando atributos em suas classes e propriedades ou usando uma API fluente.
+Este vídeo e instruções passo a passo fornecem uma introdução ao desenvolvimento de Code First visando um novo banco de dados. Esse cenário inclui o direcionamento de um banco de dados que não existe e Code First será criado, ou um banco de dados vazio ao qual Code First adicionará novas tabelas. Code First permite que você defina seu modelo usando as classes C\# ou VB.Net. A configuração adicional pode, opcionalmente, ser executada usando atributos em suas classes e propriedades ou usando uma API fluente.
 
 ## <a name="watch-the-video"></a>Assista ao vídeo
 Este vídeo fornece uma introdução ao desenvolvimento de Code First destinado a um novo banco de dados. Esse cenário inclui o direcionamento de um banco de dados que não existe e Code First será criado, ou um banco de dados vazio ao qual Code First adicionará novas tabelas. Code First permite que você defina seu modelo usando C# as classes ou VB.net. A configuração adicional pode, opcionalmente, ser executada usando atributos em suas classes e propriedades ou usando uma API fluente.
 
 **Apresentado por**: [Rowan Miller](https://romiller.com/)
 
-**Vídeo**: [WMV](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.wmv) | [MP4](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-mp4Video-CodeFirstNewDatabase.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.zip)
+**Vídeo**: [wmv](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.wmv) | [MP4](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-mp4Video-CodeFirstNewDatabase.m4v) | [WMV (zip)](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.zip)
 
 ## <a name="pre-requisites"></a>Pré-requisitos
 
@@ -26,17 +26,17 @@ Você precisará ter, pelo menos, o Visual Studio 2010 ou o Visual Studio 2012 i
 
 Se você estiver usando o Visual Studio 2010, também será necessário ter o [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) instalado.
 
-## <a name="1-create-the-application"></a>1. Criar o aplicativo
+## <a name="1-create-the-application"></a>1. criar o aplicativo
 
 Para manter as coisas simples, vamos criar um aplicativo de console básico que usa Code First para executar o acesso a dados.
 
 -   Abrir o Visual Studio
--   **Arquivo-&gt; Projeto New-&gt;...**
+-   **Arquivo-&gt; novo&gt; projeto...**
 -   Selecione **Windows** no menu à esquerda e no **aplicativo de console**
 -   Insira **CodeFirstNewDatabaseSample** como o nome
 -   Selecione **OK**
 
-## <a name="2-create-the-model"></a>2. Criar o modelo
+## <a name="2-create-the-model"></a>2. criar o modelo
 
 Vamos definir um modelo muito simples usando classes. Estamos apenas definindo-as no arquivo Program.cs, mas em um aplicativo real, você dividiria suas classes em arquivos separados e potencialmente um projeto separado.
 
@@ -64,14 +64,14 @@ public class Post
 
 Você observará que estamos fazendo as duas propriedades de navegação (blog. postes e post. blog) virtuais. Isso habilita o recurso de carregamento lento do Entity Framework. O carregamento lento significa que o conteúdo dessas propriedades será carregado automaticamente do banco de dados quando você tentar acessá-los.
 
-## <a name="3-create-a-context"></a>3. Criar um contexto
+## <a name="3-create-a-context"></a>3. criar um contexto
 
-Agora, é hora de definir um contexto derivado, que representa uma sessão com o banco de dados, permitindo que possamos consultar e salvar. Definimos um contexto que deriva de System. Data. Entity. DbContext e expõe um tipo DbSet @ no__t-0TEntity @ no__t-1 para cada classe em nosso modelo.
+Agora, é hora de definir um contexto derivado, que representa uma sessão com o banco de dados, permitindo que possamos consultar e salvar. Definimos um contexto que deriva de System. Data. Entity. DbContext e expõe um DbSet tipado&lt;TEntity&gt; para cada classe em nosso modelo.
 
 Agora estamos começando a usar os tipos do Entity Framework, portanto, precisamos adicionar o pacote NuGet do EntityFramework.
 
--   **Projeto – &gt; gerenciar pacotes NuGet...**
-    Observação: Se você não tiver o **Manage NuGet Packages...** opção você deve instalar a [versão mais recente do NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
+-   **Projeto –&gt; gerenciar pacotes NuGet...**
+    Observação: se você não tiver o **Manage NuGet Packages...** opção você deve instalar a [versão mais recente do NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
 -   Selecione a guia **online**
 -   Selecionar o pacote do **EntityFramework**
 -   Clique em **instalar**
@@ -139,7 +139,7 @@ namespace CodeFirstNewDatabaseSample
 
 Esse é todo o código de que precisamos para iniciar o armazenamento e a recuperação de dados. Obviamente, há um pouco sobre os bastidores e vamos dar uma olhada nele em um momento, mas primeiro vamos vê-lo em ação.
 
-## <a name="4-reading--writing-data"></a>4. Lendo & gravando dados
+## <a name="4-reading--writing-data"></a>4. lendo & gravando dados
 
 Implemente o método Main em Program.cs, conforme mostrado abaixo. Esse código cria uma nova instância do nosso contexto e, em seguida, a usa para inserir um novo blog. Em seguida, ele usa uma consulta LINQ para recuperar todos os Blogs do banco de dados ordenado alfabeticamente por título.
 
@@ -209,7 +209,7 @@ Agora podemos inspecionar o esquema que Code First criado.
 
 O DbContext deu as classes a serem incluídas no modelo examinando as propriedades DbSet que definimos. Em seguida, ele usa o conjunto padrão de convenções de Code First para determinar nomes de tabela e coluna, determinar tipos de dados, localizar chaves primárias, etc. Mais adiante neste tutorial, veremos como você pode substituir essas convenções.
 
-## <a name="5-dealing-with-model-changes"></a>5. Lidando com alterações de modelo
+## <a name="5-dealing-with-model-changes"></a>5. lidando com alterações de modelo
 
 Agora é hora de fazer algumas alterações em nosso modelo, quando fazemos essas alterações, também precisamos atualizar o esquema do banco de dados. Para isso, vamos usar um recurso chamado Migrações do Code First ou migrações de forma abreviada.
 
@@ -217,11 +217,11 @@ As migrações nos permitem ter um conjunto ordenado de etapas que descrevem com
 
 A primeira etapa é habilitar Migrações do Code First para nosso BloggingContext.
 
--   **Ferramentas-&gt;-Gerenciador de pacotes de biblioteca-&gt; console do Gerenciador de pacotes**
+-   **Ferramentas-&gt; Gerenciador de pacotes de biblioteca-&gt; console do Gerenciador de pacotes**
 -   Execute o comando **Enable-Migrations** no Console do Gerenciador de Pacotes
 -   Uma nova pasta de migrações foi adicionada ao nosso projeto que contém dois itens:
     -   **Configuration.cs** – esse arquivo contém as configurações que serão usadas pelas migrações para a migração de BloggingContext. Não precisamos alterar nada para este passo a passos, mas aqui é onde você pode especificar dados de semente, registrar provedores para outros bancos de dado, altera o namespace em que as migrações são geradas etc.
-    -   **&lt;timestamp @ no__t-2\_InitialCreate.cs** – essa é a sua primeira migração, ela representa as alterações que já foram aplicadas ao banco de dados para levá-lo de ser um banco de dados vazio para um que inclua as tabelas Blogs e postagens. Embora permitamos que Code First criem essas tabelas automaticamente para nós, agora que optamos por migrações que foram convertidas em uma migração. Code First também foi registrado em nosso banco de dados local que essa migração já foi aplicada. O carimbo de data/hora no nome de arquivo é usado para fins de ordenação.
+    -   **&lt;carimbo de data/hora&gt;\_InitialCreate.cs** – esta é a sua primeira migração, mas representa as alterações que já foram aplicadas ao banco de dados para levá-lo de ser um banco de dados vazio para um que inclua as tabelas Blogs e postagens. Embora permitamos que Code First criem essas tabelas automaticamente para nós, agora que optamos por migrações que foram convertidas em uma migração. Code First também foi registrado em nosso banco de dados local que essa migração já foi aplicada. O carimbo de data/hora no nome de arquivo é usado para fins de ordenação.
 
     Agora, vamos fazer uma alteração em nosso modelo, adicionar uma propriedade URL à classe blog:
 
@@ -262,13 +262,13 @@ namespace CodeFirstNewDatabaseSample.Migrations
 ```
 
 -   Execute o comando **Update-Database** no console do Gerenciador de pacotes. Esse comando aplicará todas as migrações pendentes ao banco de dados. Nossa migração de InitialCreate já foi aplicada, portanto, as migrações só aplicarão nossa nova migração AddUrl.
-    Dica: Você pode usar a opção **– Verbose** ao chamar Update-Database para ver o SQL que está sendo executado no banco de dados.
+    Dica: você pode usar a opção **– Verbose** ao chamar Update-Database para ver o SQL que está sendo executado no banco de dados.
 
 A nova coluna URL agora é adicionada à tabela Blogs no banco de dados:
 
 ![Esquema com URL](~/ef6/media/schemawithurl.png)
 
-## <a name="6-data-annotations"></a>6. Anotações de dados
+## <a name="6-data-annotations"></a>6. anotações de dados
 
 Até agora, deixamos que o EF descubra o modelo usando suas convenções padrão, mas haverá momentos em que nossas classes não seguem as convenções e precisamos ser capazes de executar outras configurações. Há duas opções para isso; Veremos as anotações de dados nesta seção e, em seguida, a API Fluent na próxima seção.
 
@@ -293,7 +293,7 @@ public class BloggingContext : DbContext
 }
 ```
 
--   Se tentamos adicionar uma migração, recebemos um erro informando que "o usuário" *EntityType ' não tem nenhuma chave definida. Defina a chave para este EntityType. "* Porque o EF não tem como saber que username deve ser a chave primária para o usuário.
+-   Se tentamos adicionar uma migração, obtemos um erro dizendo "*EntityType ' user ' não tem nenhuma chave definida. Defina a chave para este EntityType. "* Porque o EF não tem como saber que username deve ser a chave primária para o usuário.
 -   Vamos usar as anotações de dados agora para que seja necessário adicionar uma instrução using na parte superior de Program.cs
 
 ```csharp
@@ -340,7 +340,7 @@ Na seção anterior, examinamos o uso de anotações de dados para complementar 
 
 A maioria das configurações de modelo pode ser feita usando anotações de dados simples. A API fluente é uma maneira mais avançada de especificar a configuração do modelo que abrange tudo o que as anotações de dados podem fazer além de algumas configurações mais avançadas não possíveis com as anotações de dados. As anotações de dados e a API fluente podem ser usadas em conjunto.
 
-Para acessar a API fluente, você substitui o método OnModelCreating em DbContext. Digamos que queríamos renomear a coluna que User. DisplayName está armazenada para exibir @ no__t-0name.
+Para acessar a API fluente, você substitui o método OnModelCreating em DbContext. Digamos que desejamos renomear a coluna que User. DisplayName está armazenada para exibir\_nome.
 
 -   Substitua o método OnModelCreating em BloggingContext pelo código a seguir
 
@@ -363,7 +363,7 @@ public class BloggingContext : DbContext
 -   Use o comando **Add-Migration ChangeDisplayName** para Scaffold uma migração para aplicar essas alterações ao banco de dados.
 -   Execute o comando **Update-Database** para aplicar a nova migração para o banco de dados.
 
-A coluna DisplayName agora é renomeada para exibir @ no__t-0name:
+A coluna DisplayName agora é renomeada para exibir\_nome:
 
 ![Esquema com nome para exibição renomeado](~/ef6/media/schemawithdisplaynamerenamed.png)
 

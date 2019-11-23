@@ -11,7 +11,7 @@ ms.contentlocale: pt-BR
 ms.lasthandoff: 10/09/2019
 ms.locfileid: "72186256"
 ---
-# <a name="complex-query-operators"></a>Operadores de consulta complexos
+# <a name="complex-query-operators"></a>Operadores de consulta complexa
 
 O LINQ (consulta integrada à linguagem) contém muitos operadores complexos, que combinam várias fontes de dados ou realiza processamento complexo. Nem todos os operadores LINQ têm traduções adequadas no lado do servidor. Às vezes, uma consulta em um formulário é convertida com o servidor, mas, se escrito em um formulário diferente, não é traduzido mesmo que o resultado seja o mesmo. Esta página descreve alguns dos operadores complexos e suas variações com suporte. Em versões futuras, poderemos reconhecer mais padrões e adicionar suas traduções correspondentes. Também é importante ter em mente que o suporte à tradução varia entre os provedores. Uma consulta específica, que é traduzida no SqlServer, pode não funcionar para bancos de dados do SQLite.
 
@@ -32,7 +32,7 @@ INNER JOIN [Person] AS [p] ON [p0].[PersonPhotoId] = [p].[PhotoId]
 
 ## <a name="groupjoin"></a>GroupJoin
 
-O operador LINQ GroupJoin permite que você conecte duas fontes de dados semelhantes a Join, mas cria um grupo de valores internos para correspondência de elementos externos. A execução de uma consulta como o exemplo a seguir gera um resultado de `Blog` @ no__t-1 @ no__t-2. Como os bancos de dados (especialmente bancos de dados relacionais) não têm uma maneira de representar uma coleção de objetos do lado do cliente, o GroupJoin não é convertido para o servidor em muitos casos. Ele exige que você obtenha todos os dados do servidor para fazer GroupJoin sem um seletor especial (primeira consulta abaixo). Mas se o seletor estiver limitando os dados que estão sendo selecionados, a busca de todos os dados do servidor poderá causar problemas de desempenho (segunda consulta abaixo). É por isso que EF Core não converte GroupJoin.
+O operador LINQ GroupJoin permite que você conecte duas fontes de dados semelhantes a Join, mas cria um grupo de valores internos para correspondência de elementos externos. A execução de uma consulta como o exemplo a seguir gera um resultado de `Blog` & `IEnumerable<Post>`. Como os bancos de dados (especialmente bancos de dados relacionais) não têm uma maneira de representar uma coleção de objetos do lado do cliente, o GroupJoin não é convertido para o servidor em muitos casos. Ele exige que você obtenha todos os dados do servidor para fazer GroupJoin sem um seletor especial (primeira consulta abaixo). Mas se o seletor estiver limitando os dados que estão sendo selecionados, a busca de todos os dados do servidor poderá causar problemas de desempenho (segunda consulta abaixo). É por isso que EF Core não converte GroupJoin.
 
 [!code-csharp[Main](../../../samples/core/Querying/ComplexQuery/Sample.cs#GroupJoin)]
 
@@ -72,7 +72,7 @@ LEFT JOIN [Posts] AS [p] ON [b].[BlogId] = [p].[BlogId]
 
 ### <a name="collection-selector-references-outer-in-a-non-where-case"></a>O seletor de coleção faz referência a externamente em um caso não em que
 
-Quando o seletor de coleção referencia o elemento externo, que não está em uma cláusula Where (como o caso acima), ele não é convertido em uma junção de banco de dados. É por isso que precisamos avaliar o seletor de coleção para cada elemento externo. Ele se traduz em operações `APPLY` em muitos bancos de dados relacionais. Se a coleção estiver vazia para um elemento externo, nenhum resultado será gerado para esse elemento externo. Mas se `DefaultIfEmpty` for aplicado no seletor de coleção, o elemento externo será conectado com um valor padrão do elemento interno. Devido a essa distinção, esse tipo de consulta se traduz em `CROSS APPLY` na ausência de `DefaultIfEmpty` e `OUTER APPLY` quando `DefaultIfEmpty` é aplicado. Determinados bancos de dados como o SQLite não dão suporte a operadores `APPLY`, portanto, esse tipo de consulta não pode ser traduzido.
+Quando o seletor de coleção referencia o elemento externo, que não está em uma cláusula Where (como o caso acima), ele não é convertido em uma junção de banco de dados. É por isso que precisamos avaliar o seletor de coleção para cada elemento externo. Ele se traduz em operações de `APPLY` em muitos bancos de dados relacionais. Se a coleção estiver vazia para um elemento externo, nenhum resultado será gerado para esse elemento externo. Mas se `DefaultIfEmpty` for aplicado no seletor de coleção, o elemento externo será conectado com um valor padrão do elemento interno. Devido a essa distinção, esse tipo de consulta se traduz em `CROSS APPLY` na ausência de `DefaultIfEmpty` e `OUTER APPLY` quando `DefaultIfEmpty` é aplicado. Determinados bancos de dados como o SQLite não dão suporte a operadores de `APPLY` para que esse tipo de consulta não possa ser traduzido.
 
 [!code-csharp[Main](../../../samples/core/Querying/ComplexQuery/Sample.cs#SelectManyConvertedToApply)]
 
@@ -88,7 +88,7 @@ OUTER APPLY [Posts] AS [p]
 
 ## <a name="groupby"></a>GroupBy
 
-Operadores GroupBy do LINQ criam um resultado do tipo `IGrouping<TKey, TElement>` em que `TKey` e `TElement` podem ser de qualquer tipo arbitrário. Além disso, `IGrouping` implementa `IEnumerable<TElement>`, o que significa que você pode compor sobre ele usando qualquer operador LINQ após o agrupamento. Como nenhuma estrutura de banco de dados pode representar um `IGrouping`, os operadores GroupBy não têm nenhuma tradução na maioria dos casos. Quando um operador de agregação é aplicado a cada grupo, que retorna um escalar, ele pode ser convertido em SQL `GROUP BY` em bancos de dados relacionais. O SQL `GROUP BY` também é restritivo. Ele exige que você agrupe somente por valores escalares. A projeção só pode conter colunas de chave de agrupamento ou qualquer agregação aplicada em uma coluna. EF Core identifica esse padrão e o traduz para o servidor, como no exemplo a seguir:
+Operadores GroupBy do LINQ criam um resultado do tipo `IGrouping<TKey, TElement>` onde `TKey` e `TElement` podem ser qualquer tipo arbitrário. Além disso, `IGrouping` implementa `IEnumerable<TElement>`, o que significa que você pode compor sobre ele usando qualquer operador LINQ após o agrupamento. Como nenhuma estrutura de banco de dados pode representar um `IGrouping`, os operadores GroupBy não têm nenhuma tradução na maioria dos casos. Quando um operador de agregação é aplicado a cada grupo, que retorna um escalar, ele pode ser convertido em SQL `GROUP BY` em bancos de dados relacionais. O `GROUP BY` do SQL também é restritivo. Ele exige que você agrupe somente por valores escalares. A projeção só pode conter colunas de chave de agrupamento ou qualquer agregação aplicada em uma coluna. EF Core identifica esse padrão e o traduz para o servidor, como no exemplo a seguir:
 
 [!code-csharp[Main](../../../samples/core/Querying/ComplexQuery/Sample.cs#GroupBy)]
 
@@ -113,7 +113,7 @@ ORDER BY [p].[AuthorId]
 Os operadores de agregação EF Core suporte são os seguintes
 
 - Average
-- Contagem
+- {1&gt;{2&gt;Contagem&lt;2}&lt;1}
 - LongCount
 - Máx.
 - Mín.
@@ -121,7 +121,7 @@ Os operadores de agregação EF Core suporte são os seguintes
 
 ## <a name="left-join"></a>Junção à esquerda
 
-Embora a junção à esquerda não seja um operador LINQ, os bancos de dados relacionais têm o conceito de junção à esquerda que é frequentemente usado em consultas. Um padrão específico em consultas LINQ fornece o mesmo resultado que um `LEFT JOIN` no servidor. EF Core identifica tais padrões e gera o equivalente `LEFT JOIN` no lado do servidor. O padrão envolve a criação de um GroupJoin entre as fontes de dados e, em seguida, a mesclagem do agrupamento usando o operador SelectMany com DefaultIfEmpty na origem do agrupamento para corresponder nulo quando o interior não tiver um elemento relacionado. O exemplo a seguir mostra como esse padrão é semelhante e o que ele gera.
+Embora a junção à esquerda não seja um operador LINQ, os bancos de dados relacionais têm o conceito de junção à esquerda que é frequentemente usado em consultas. Um padrão específico em consultas LINQ fornece o mesmo resultado que um `LEFT JOIN` no servidor. EF Core identifica tais padrões e gera o `LEFT JOIN` equivalente no lado do servidor. O padrão envolve a criação de um GroupJoin entre as fontes de dados e, em seguida, a mesclagem do agrupamento usando o operador SelectMany com DefaultIfEmpty na origem do agrupamento para corresponder nulo quando o interior não tiver um elemento relacionado. O exemplo a seguir mostra como esse padrão é semelhante e o que ele gera.
 
 [!code-csharp[Main](../../../samples/core/Querying/ComplexQuery/Sample.cs#LeftJoin)]
 

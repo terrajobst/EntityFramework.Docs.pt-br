@@ -15,7 +15,7 @@ Além da documentação do produto, esses Blogs podem ser uma fonte de informaç
 
 ## <a name="ef-team-blogs"></a>Blogs da equipe do EF
 
-- 0\.NET-marca de blog de @no__t: Entity Framework @ no__t-0
+- [Blog do .NET – marca: Entity Framework](https://blogs.msdn.microsoft.com/dotnet/tag/entity-framework/)
 - [Blog do ADO.NET (não está mais em uso)](https://blogs.msdn.microsoft.com/adonet/)
 - [Blog de design do EF (não está mais em uso)](https://blogs.msdn.microsoft.com/efdesign/)
 

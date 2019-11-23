@@ -37,10 +37,10 @@ O elemento **alias** não pode ter elementos filho.
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **alias** .
 
-| Nome do atributo | É obrigatório | Valor                                                                     |
+| Nome do Atributo | É obrigatório | Valor                                                                     |
 |:---------------|:------------|:--------------------------------------------------------------------------|
 | **Chave**        | Sim         | O alias para o namespace que é especificado pelo atributo **Value** . |
-| **Valor**      | Sim         | O namespace para o qual o valor do elemento de **chave** é um alias.     |
+| **Value**      | Sim         | O namespace para o qual o valor do elemento de **chave** é um alias.     |
 
 ### <a name="example"></a>Exemplo
 
@@ -81,7 +81,7 @@ O exemplo a seguir mostra um elemento **alias** que define um alias, `c`, para t
 
 O elemento **AssociationEnd** na MSL (linguagem de especificação de mapeamento) é usado quando as funções de modificação de um tipo de entidade no modelo conceitual são mapeadas para procedimentos armazenados no banco de dados subjacente. Se um procedimento armazenado de modificação usa um parâmetro cujo valor é mantido em uma propriedade de associação, o elemento **AssociationEnd** mapeia o valor da propriedade para o parâmetro. Para obter mais informações, consulte o exemplo a seguir.
 
-Para obter mais informações sobre como mapear funções de modificação de tipos de entidade para procedimentos armazenados, consulte ModificationFunctionMapping Element (MSL) e Walkthrough: Mapeando uma entidade para procedimentos armazenados.
+Para obter mais informações sobre como mapear funções de modificação de tipos de entidade para procedimentos armazenados, consulte ModificationFunctionMapping Element (MSL) e Walkthrough: Mappinging a Entity to stored procedures.
 
 O elemento **AssociationEnd** pode ter os seguintes elementos filho:
 
@@ -91,7 +91,7 @@ O elemento **AssociationEnd** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que são aplicáveis ao elemento **AssociationEnd** .
 
-| Nome do atributo     | É obrigatório | Valor                                                                                                                                                                             |
+| Nome do Atributo     | É obrigatório | Valor                                                                                                                                                                             |
 |:-------------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **AssociationSet** | Sim         | O nome da associação que está sendo mapeada.                                                                                                                                 |
 | **From**           | Sim         | O valor do atributo **FromRole** da propriedade de navegação que corresponde à associação que está sendo mapeada. Para obter mais informações, consulte o elemento NavigationProperty (CSDL). |
@@ -146,7 +146,7 @@ Para mapear a função Update da entidade `Course` para esse procedimento armaze
  </AssociationSetMapping>
 ```
 
-O código a seguir mostra o elemento **AssociationEnd** usado para mapear a propriedade **DepartmentID** da Associação **FK @ no__t-3Course @ no__t-4Department** para o procedimento armazenado **UpdateCourse** (para o qual a função Update do O tipo de entidade do **curso** é mapeado):
+O código a seguir mostra o elemento **AssociationEnd** usado para mapear a propriedade **DepartmentID** do **curso de\_de FK\_** Associação de departamento para o procedimento armazenado **UpdateCourse** (para o qual a função Update do tipo de entidade **curso** é mapeada):
 
 ``` xml
  <EntitySetMapping Name="Courses">
@@ -198,15 +198,15 @@ O elemento **AssociationSetMapping** pode ter os seguintes elementos filho
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **AssociationSetMapping** .
 
-| Nome do atributo     | É obrigatório | Valor                                                                                       |
+| Nome do Atributo     | É obrigatório | Valor                                                                                       |
 |:-------------------|:------------|:--------------------------------------------------------------------------------------------|
-| **Name**           | Sim         | O nome do conjunto de associação do modelo conceitual que está sendo mapeado.                      |
+| **Nome**           | Sim         | O nome do conjunto de associação do modelo conceitual que está sendo mapeado.                      |
 | **TypeName**       | Não          | O nome qualificado do namespace do tipo de associação de modelo conceitual que está sendo mapeado. |
 | **StoreEntitySet** | Não          | O nome da tabela que está sendo mapeada.                                                 |
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento **AssociationSetMapping** no qual o conjunto de associação **FK @ no__t-2Course @ no__t-3Department** no modelo conceitual é mapeado para a tabela do **curso** no banco de dados. Os mapeamentos entre as propriedades do tipo de associação e as colunas de tabela são especificados nos elementos filho **EndProperty** .
+O exemplo a seguir mostra um elemento **AssociationSetMapping** no qual o **curso de\_de FK\_** conjunto de associação de departamento no modelo conceitual é mapeado para a tabela do **curso** no banco de dados. Os mapeamentos entre as propriedades do tipo de associação e as colunas de tabela são especificados nos elementos filho **EndProperty** .
 
 ``` xml
  <AssociationSetMapping Name="FK_Course_Department"
@@ -236,9 +236,9 @@ O elemento de propriedade **complexType** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que são aplicáveis ao elemento **ComplexProperty** :
 
-| Nome do atributo | É obrigatório | Valor                                                                                            |
+| Nome do Atributo | É obrigatório | Valor                                                                                            |
 |:---------------|:------------|:-------------------------------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome da propriedade complexa de um tipo de entidade no modelo conceitual que está sendo mapeado. |
+| **Nome**       | Sim         | O nome da propriedade complexa de um tipo de entidade no modelo conceitual que está sendo mapeado. |
 | **TypeName**   | Não          | O nome qualificado do namespace do tipo de Propriedade do modelo conceitual.                              |
 
 ### <a name="example"></a>Exemplo
@@ -291,7 +291,7 @@ O seguinte MSL mostra o elemento **ComplexProperty** usado para mapear a proprie
 
 ## <a name="complextypemapping-element-msl"></a>Elemento ComplexTypeMapping (MSL)
 
-O elemento **ComplexTypeMapping** na MSL (linguagem de especificação de mapeamento) é um filho do elemento ResultMapping e define o mapeamento entre uma importação de função no modelo conceitual e um procedimento armazenado no banco de dados subjacente quando o seguinte são verdadeiros:
+O elemento **ComplexTypeMapping** na MSL (linguagem de especificação de mapeamento) é um filho do elemento ResultMapping e define o mapeamento entre uma importação de função no modelo conceitual e um procedimento armazenado no banco de dados subjacente quando o seguinte é verdadeiro:
 
 -   A função Import retorna um tipo complexo conceitual.
 -   Os nomes das colunas retornadas pelo procedimento armazenado não correspondem exatamente aos nomes das propriedades no tipo complexo.
@@ -306,7 +306,7 @@ O elemento **ComplexTypeMapping** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que são aplicáveis ao elemento **ComplexTypeMapping** .
 
-| Nome do atributo | É obrigatório | Valor                                                                  |
+| Nome do Atributo | É obrigatório | Valor                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------|
 | **TypeName**   | Sim         | O nome qualificado do namespace do tipo complexo que está sendo mapeado. |
 
@@ -377,12 +377,12 @@ O elemento **Condition** não pode ter nenhum elemento filho.
 
 A tabela a seguir descreve os atributos que são aplicáveis ao elemento **Condition** :
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                                                                                                                                         |
+| Nome do Atributo | É obrigatório | Valor                                                                                                                                                                                                                                                                                         |
 |:---------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **ColumnName** | Não          | O nome da coluna de tabela cujo valor é usado para avaliar a condição.                                                                                                                                                                                                                   |
 | **IsNull**     | Não          | **True** ou **False**. Se o valor for **true** e o valor da coluna for **NULL**ou se o valor for **false** e o valor da coluna não for **NULL**, a condição será true. Caso contrário, a condição será falsa. <br/> Os atributos **IsNull** e **Value** não podem ser usados ao mesmo tempo. |
-| **Valor**      | Não          | O valor com o qual o valor da coluna é comparado. Se os valores forem iguais, a condição será verdadeira. Caso contrário, a condição será falsa. <br/> Os atributos **IsNull** e **Value** não podem ser usados ao mesmo tempo.                                                                       |
-| **Name**       | Não          | O nome da propriedade de entidade do modelo conceitual cujo valor é usado para avaliar a condição. <br/> Esse atributo não será aplicável se o elemento **Condition** for usado dentro de um elemento FunctionImportMapping.                                                                           |
+| **Value**      | Não          | O valor com o qual o valor da coluna é comparado. Se os valores forem iguais, a condição será verdadeira. Caso contrário, a condição será falsa. <br/> Os atributos **IsNull** e **Value** não podem ser usados ao mesmo tempo.                                                                       |
+| **Nome**       | Não          | O nome da propriedade de entidade do modelo conceitual cujo valor é usado para avaliar a condição. <br/> Esse atributo não será aplicável se o elemento **Condition** for usado dentro de um elemento FunctionImportMapping.                                                                           |
 
 ### <a name="example"></a>Exemplo
 
@@ -438,7 +438,7 @@ O elemento **DeleteFunction** pode ter os seguintes elementos filho quando aplic
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **DeleteFunction** quando ele é aplicado a um elemento **EntityTypeMapping** .
 
-| Nome do atributo            | É obrigatório | Valor                                                                                                                                                    |
+| Nome do Atributo            | É obrigatório | Valor                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **FunctionName**          | Sim         | O nome qualificado do namespace do procedimento armazenado para o qual a função Delete está mapeada. O procedimento armazenado deve ser declarado no modelo de armazenamento. |
 | **RowsAffectedParameter** | Não          | O nome do parâmetro de saída que retorna o número de linhas afetadas.                                                                               |
@@ -502,7 +502,7 @@ O elemento **DeleteFunction** pode ter os seguintes elementos filho quando aplic
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **DeleteFunction** quando ele é aplicado ao elemento **AssociationSetMapping** .
 
-| Nome do atributo            | É obrigatório | Valor                                                                                                                                                    |
+| Nome do Atributo            | É obrigatório | Valor                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **FunctionName**          | Sim         | O nome qualificado do namespace do procedimento armazenado para o qual a função Delete está mapeada. O procedimento armazenado deve ser declarado no modelo de armazenamento. |
 | **RowsAffectedParameter** | Não          | O nome do parâmetro de saída que retorna o número de linhas afetadas.                                                                               |
@@ -556,13 +556,13 @@ O elemento **EndProperty** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que são aplicáveis ao elemento **EndProperty** :
 
-| Nome do atributo | É obrigatório | Valor                                                 |
+| Nome do Atributo | É obrigatório | Valor                                                 |
 |:---------------|:------------|:------------------------------------------------------|
-| Nome           | Sim         | O nome da extremidade de associação que está sendo mapeada. |
+| {1&gt;Nome&lt;1}           | Sim         | O nome da extremidade de associação que está sendo mapeada. |
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento **AssociationSetMapping** no qual a associação de **CE @ no__t-2Course @ no__t-3Department** no modelo conceitual é mapeada para a tabela do **curso** no banco de dados. Os mapeamentos entre as propriedades do tipo de associação e as colunas de tabela são especificados nos elementos filho **EndProperty** .
+O exemplo a seguir mostra um elemento **AssociationSetMapping** no qual o **curso de\_FK\_** Associação de departamento no modelo conceitual é mapeado para a tabela do **curso** no banco de dados. Os mapeamentos entre as propriedades do tipo de associação e as colunas de tabela são especificados nos elementos filho **EndProperty** .
 
 ``` xml
  <AssociationSetMapping Name="FK_Course_Department"
@@ -626,15 +626,15 @@ O elemento **EntityContainerMapping** pode ter os seguintes elementos filho (na 
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntityContainerMapping** .
 
-| Nome do atributo            | É obrigatório | Valor                                                                                                                                                                                                                                                    |
+| Nome do Atributo            | É obrigatório | Valor                                                                                                                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **StorageModelContainer** | Sim         | O nome do contêiner de entidade do modelo de armazenamento que está sendo mapeado.                                                                                                                                                                                     |
 | **CdmEntityContainer**    | Sim         | O nome do contêiner de entidade do modelo conceitual que está sendo mapeado.                                                                                                                                                                                  |
-| **GenerateUpdateViews**   | Não          | **True** ou **False**. Se **for false**, nenhum modo de exibição de atualização será gerado. Esse atributo deve ser definido como **false** quando você tem um mapeamento somente leitura que seria inválido porque os dados não podem fazer viagens de ida e volta com êxito. <br/> O valor padrão é **true**. |
+| **GenerateUpdateViews**   | Não          | **True** ou **False**. Se **for false**, nenhum modo de exibição de atualização será gerado. Esse atributo deve ser definido como **false** quando você tem um mapeamento somente leitura que seria inválido porque os dados não podem fazer viagens de ida e volta com êxito. <br/> O valor padrão é **True**. |
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra um elemento **EntityContainerMapping** que mapeia o contêiner **SchoolModelEntities** (o contêiner de entidade modelo conceitual) para o contêiner **SchoolModelStoreContainer** (a entidade modelo de armazenamento contêiner):
+O exemplo a seguir mostra um elemento **EntityContainerMapping** que mapeia o contêiner **SchoolModelEntities** (o contêiner de entidade modelo conceitual) para o contêiner **SchoolModelStoreContainer** (o contêiner de entidade modelo de armazenamento):
 
 ``` xml
  <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer"
@@ -677,9 +677,9 @@ O elemento **EntitySetMapping** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntitySetMapping** .
 
-| Nome do atributo           | É obrigatório | Valor                                                                                                                                                                                                                         |
+| Nome do Atributo           | É obrigatório | Valor                                                                                                                                                                                                                         |
 |:-------------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                 | Sim         | O nome do conjunto de entidades do modelo conceitual que está sendo mapeado.                                                                                                                                                             |
+| **Nome**                 | Sim         | O nome do conjunto de entidades do modelo conceitual que está sendo mapeado.                                                                                                                                                             |
 | **TypeName** **1**       | Não          | O nome do tipo de entidade do modelo conceitual que está sendo mapeado.                                                                                                                                                            |
 | **StoreEntitySet** **1** | Não          | O nome do conjunto de entidades do modelo de armazenamento que está sendo mapeado para.                                                                                                                                                             |
 | **MakeColumnsDistinct**  | Não          | **True** ou **false** dependendo se apenas linhas distintas forem retornadas. <br/> Se esse atributo for definido como **true**, o atributo **GenerateUpdateViews** do elemento EntityContainerMapping deverá ser definido como **false**. |
@@ -743,7 +743,7 @@ O elemento **EntityTypeMapping** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntityTypeMapping** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                                                |
+| Nome do Atributo | É obrigatório | Valor                                                                                                                                                                                                |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **TypeName**   | Sim         | O nome qualificado do namespace do tipo de entidade do modelo conceitual que está sendo mapeado. <br/> Se o tipo for abstrato ou um tipo derivado, o valor deverá ser `IsOfType(Namespace-qualified_type_name)`. |
 
@@ -783,7 +783,7 @@ O exemplo a seguir mostra um elemento EntitySetMapping com dois elementos filho 
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra o mapeamento de uma hierarquia de tipo na qual o tipo de raiz é abstrato. Observe o uso da sintaxe `IsOfType` para os atributos **TypeName** .
+O exemplo a seguir mostra o mapeamento de uma hierarquia de tipo na qual o tipo de raiz é abstrato. Observe o uso da sintaxe de `IsOfType` para os atributos **TypeName** .
 
 ``` xml
  <EntitySetMapping Name="People">
@@ -829,7 +829,7 @@ O elemento **FunctionImportMapping** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que são aplicáveis ao elemento **FunctionImportMapping** :
 
-| Nome do atributo         | É obrigatório | Valor                                                                                   |
+| Nome do Atributo         | É obrigatório | Valor                                                                                   |
 |:-----------------------|:------------|:----------------------------------------------------------------------------------------|
 | **FunctionImportName** | Sim         | O nome da função de importação no modelo conceitual que está sendo mapeado.           |
 | **FunctionName**       | Sim         | O nome qualificado do namespace da função no modelo de armazenamento que está sendo mapeado. |
@@ -887,7 +887,7 @@ O elemento **InsertFunction** pode ter os seguintes elementos filho quando aplic
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **InsertFunction** quando aplicados a um elemento **EntityTypeMapping** .
 
-| Nome do atributo            | É obrigatório | Valor                                                                                                                                                    |
+| Nome do Atributo            | É obrigatório | Valor                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **FunctionName**          | Sim         | O nome qualificado do namespace do procedimento armazenado para o qual a função Insert é mapeada. O procedimento armazenado deve ser declarado no modelo de armazenamento. |
 | **RowsAffectedParameter** | Não          | O nome do parâmetro de saída que retorna o número de linhas afetadas.                                                                               |
@@ -938,7 +938,7 @@ O elemento **InsertFunction** pode ter os seguintes elementos filho quando aplic
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **InsertFunction** quando ele é aplicado ao elemento **AssociationSetMapping** .
 
-| Nome do atributo            | É obrigatório | Valor                                                                                                                                                    |
+| Nome do Atributo            | É obrigatório | Valor                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **FunctionName**          | Sim         | O nome qualificado do namespace do procedimento armazenado para o qual a função Insert é mapeada. O procedimento armazenado deve ser declarado no modelo de armazenamento. |
 | **RowsAffectedParameter** | Não          | O nome do parâmetro de saída que retorna o número de linhas afetadas.                                                                               |
@@ -995,7 +995,7 @@ Os nomes dos tipos de modelo conceitual e de armazenamento referenciados no MSL 
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Mapping** .
 
-| Nome do atributo | É obrigatório | Valor                                                 |
+| Nome do Atributo | É obrigatório | Valor                                                 |
 |:---------------|:------------|:------------------------------------------------------|
 | **Espaço**      | Sim         | **C-S**. Este é um valor fixo e não pode ser alterado. |
 
@@ -1048,7 +1048,7 @@ O elemento **MappingFragment** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **MappingFragment** .
 
-| Nome do atributo          | É obrigatório | Valor                                                                                                                                                                                                                         |
+| Nome do Atributo          | É obrigatório | Valor                                                                                                                                                                                                                         |
 |:------------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **StoreEntitySet**      | Sim         | O nome da tabela ou exibição que está sendo mapeada.                                                                                                                                                                           |
 | **MakeColumnsDistinct** | Não          | **True** ou **false** dependendo se apenas linhas distintas forem retornadas. <br/> Se esse atributo for definido como **true**, o atributo **GenerateUpdateViews** do elemento EntityContainerMapping deverá ser definido como **false**. |
@@ -1193,7 +1193,7 @@ O exemplo a seguir mostra o mapeamento do conjunto de associação para o conjun
 
 ## <a name="queryview-element-msl"></a>Elemento QueryView (MSL)
 
-O elemento **QueryView** na MSL (linguagem de especificação de mapeamento) define um mapeamento somente leitura entre um tipo de entidade ou associação no modelo conceitual e uma tabela no banco de dados subjacente. O mapeamento é definido com uma consulta Entity SQL que é avaliada em relação ao modelo de armazenamento e você expressa o conjunto de resultados em termos de uma entidade ou associação no modelo conceitual. Como as exibições de consulta são somente leitura, você não pode usar comandos de atualização padrão para atualizar tipos que são definidos por exibições de consulta. Você pode fazer atualizações para esses tipos usando funções de modificação. Para obter mais informações, confira Como Mapear funções de modificação para procedimentos armazenados.
+O elemento **QueryView** na MSL (linguagem de especificação de mapeamento) define um mapeamento somente leitura entre um tipo de entidade ou associação no modelo conceitual e uma tabela no banco de dados subjacente. O mapeamento é definido com uma consulta Entity SQL que é avaliada em relação ao modelo de armazenamento e você expressa o conjunto de resultados em termos de uma entidade ou associação no modelo conceitual. Como as exibições de consulta são somente leitura, você não pode usar comandos de atualização padrão para atualizar tipos que são definidos por exibições de consulta. Você pode fazer atualizações para esses tipos usando funções de modificação. Para obter mais informações, consulte como mapear funções de modificação para procedimentos armazenados.
 
 > [!NOTE]
 > No elemento **QueryView** , Entity SQL expressões que contêm **GroupBy**, agregações de grupo ou propriedades de navegação não têm suporte.
@@ -1211,7 +1211,7 @@ O elemento **QueryView** não pode ter nenhum elemento filho.
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **QueryView** .
 
-| Nome do atributo | É obrigatório | Valor                                                                         |
+| Nome do Atributo | É obrigatório | Valor                                                                         |
 |:---------------|:------------|:------------------------------------------------------------------------------|
 | **TypeName**   | Não          | O nome do tipo de modelo conceitual que está sendo mapeado pelo modo de exibição de consulta. |
 
@@ -1253,7 +1253,7 @@ Como a consulta retorna apenas um subconjunto dos membros do tipo de **Departame
 
 ### <a name="example"></a>Exemplo
 
-O exemplo a seguir mostra o elemento **QueryView** como o filho de um elemento **AssociationSetMapping** e define um mapeamento somente leitura para a associação `FK_Course_Department` no modelo School.
+O exemplo a seguir mostra o elemento **QueryView** como o filho de um elemento **AssociationSetMapping** e define um mapeamento somente leitura para a associação de `FK_Course_Department` no modelo escolar.
 
 ``` xml
  <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer"
@@ -1287,7 +1287,7 @@ O exemplo a seguir mostra o elemento **QueryView** como o filho de um elemento *
  </EntityContainerMapping>
 ```
  
-### <a name="comments"></a>Comentários
+### <a name="comments"></a>Comments
 
 Você pode definir modos de exibição de consulta para habilitar os seguintes cenários:
 
@@ -1315,7 +1315,7 @@ As seguintes considerações se aplicam quando você define modos de exibição 
 
 ## <a name="resultbinding-element-msl"></a>Elemento resultbinding (MSL)
 
-O elemento **resultbinding** no MSL (mapear Language Specification) mapeia valores de coluna que são retornados por procedimentos armazenados para propriedades de entidade no modelo conceitual quando as funções de modificação de tipo de entidade são mapeadas para procedimentos armazenados no banco de dados subjacente. Por exemplo, quando o valor de uma coluna de identidade é retornado por um procedimento armazenado INSERT, o elemento **resultbinding** mapeia o valor retornado para uma propriedade de tipo de entidade no modelo conceitual.
+O elemento **resultbinding** no MSL (mapear Language Specification) mapeia valores de coluna que são retornados por procedimentos armazenados para propriedades de entidade no modelo conceitual quando funções de modificação de tipo de entidade são mapeadas para procedimentos armazenados no banco de dados subjacente. Por exemplo, quando o valor de uma coluna de identidade é retornado por um procedimento armazenado INSERT, o elemento **resultbinding** mapeia o valor retornado para uma propriedade de tipo de entidade no modelo conceitual.
 
 O elemento **resultbinding** pode ser filho do elemento InsertFunction ou do elemento UpdateFunction.
 
@@ -1325,9 +1325,9 @@ O elemento **resultbinding** não pode ter nenhum elemento filho.
 
 A tabela a seguir descreve os atributos que são aplicáveis ao elemento **resultbinding** :
 
-| Nome do atributo | É obrigatório | Valor                                                                         |
+| Nome do Atributo | É obrigatório | Valor                                                                         |
 |:---------------|:------------|:------------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome da propriedade de entidade no modelo conceitual que está sendo mapeado. |
+| **Nome**       | Sim         | O nome da propriedade de entidade no modelo conceitual que está sendo mapeado. |
 | **ColumnName** | Sim         | O nome da coluna que está sendo mapeada.                                          |
 
 ### <a name="example"></a>Exemplo
@@ -1477,16 +1477,16 @@ Os atributos que se aplicam ao elemento **ScalarProperty** diferem de acordo com
 
 A tabela a seguir descreve os atributos que são aplicáveis quando o elemento **ScalarProperty** é usado para mapear uma propriedade de modelo conceitual para uma coluna no banco de dados:
 
-| Nome do atributo | É obrigatório | Valor                                                           |
+| Nome do Atributo | É obrigatório | Valor                                                           |
 |:---------------|:------------|:----------------------------------------------------------------|
-| **Name**       | Sim         | O nome da Propriedade do modelo conceitual que está sendo mapeada. |
+| **Nome**       | Sim         | O nome da Propriedade do modelo conceitual que está sendo mapeada. |
 | **ColumnName** | Sim         | O nome da coluna de tabela que está sendo mapeada.              |
 
 A tabela a seguir descreve os atributos que são aplicáveis ao elemento **ScalarProperty** quando ele é usado para mapear uma propriedade de modelo conceitual para um parâmetro de procedimento armazenado:
 
-| Nome do atributo    | É obrigatório | Valor                                                                                                                                           |
+| Nome do Atributo    | É obrigatório | Valor                                                                                                                                           |
 |:------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**          | Sim         | O nome da Propriedade do modelo conceitual que está sendo mapeada.                                                                                 |
+| **Nome**          | Sim         | O nome da Propriedade do modelo conceitual que está sendo mapeada.                                                                                 |
 | **ParameterName** | Sim         | O nome do parâmetro que está sendo mapeado.                                                                                                 |
 | **Versão**       | Não          | **Atual** ou **original** , dependendo se o valor atual ou o valor original da propriedade deve ser usado para verificações de simultaneidade. |
 
@@ -1595,7 +1595,7 @@ O elemento **UpdateFunction** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **UpdateFunction** .
 
-| Nome do atributo            | É obrigatório | Valor                                                                                                                                                    |
+| Nome do Atributo            | É obrigatório | Valor                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **FunctionName**          | Sim         | O nome qualificado do namespace do procedimento armazenado para o qual a função Update é mapeada. O procedimento armazenado deve ser declarado no modelo de armazenamento. |
 | **RowsAffectedParameter** | Não          | O nome do parâmetro de saída que retorna o número de linhas afetadas.                                                                               |

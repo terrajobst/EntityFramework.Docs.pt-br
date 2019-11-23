@@ -29,7 +29,7 @@ Este vídeo mostra como mapear tipos espaciais com Entity Framework Code First. 
 
 **Apresentado por**: Julia Kornich
 
-**Vídeo**: [WMV](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.wmv) | [MP4](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-mp4video-spatialwithcodefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.zip)
+**Vídeo**: [wmv](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.wmv) | [MP4](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-mp4video-spatialwithcodefirst.m4v) | [WMV (zip)](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.zip)
 
 ## <a name="pre-requisites"></a>Pré-requisitos
 
@@ -39,7 +39,7 @@ Você precisará ter o Visual Studio 2012, Ultimate, Premium, Professional ou We
 
 1.  Abrir o Visual Studio 2012
 2.  No menu **arquivo** , aponte para **novo**e clique em **projeto**
-3.  No painel esquerdo, clique em **Visual C @ no__t-1**e selecione o modelo de **console**
+3.  No painel esquerdo, clique em **Visual C\#** e, em seguida, selecione o modelo de **console**
 4.  Insira **SpatialCodeFirst** como o nome do projeto e clique em **OK**
 
 ## <a name="define-a-new-model-using-code-first"></a>Definir um novo modelo usando Code First
@@ -67,7 +67,7 @@ public class University
 
 ## <a name="define-the-dbcontext-derived-type"></a>Definir o tipo derivado de DbContext
 
-Além de definir as entidades, você precisa definir uma classe que deriva de DbContext e expõe as propriedades DbSet @ no__t-0TEntity @ no__t-1. As propriedades DbSet @ no__t-0TEntity @ no__t-1 permitem que o contexto saiba quais tipos você deseja incluir no modelo.
+Além de definir entidades, você precisa definir uma classe derivada de DbContext e expõe DbSet&lt;TEntity&gt; Propriedades. As propriedades DbSet&lt;TEntity&gt; permitem que o contexto saiba quais tipos você deseja incluir no modelo.
 
 Uma instância do tipo derivado de DbContext gerencia os objetos de entidade durante o tempo de execução, o que inclui o preenchimento de objetos com dados de um Database, controle de alterações e persistência de dados no banco de dado.
 
@@ -144,7 +144,7 @@ Observe que, se você fizer alterações em seu modelo depois que o banco de dad
 
 Para exibir o banco de dados e os dados, faça o seguinte:
 
-1.  No menu principal do Visual Studio 2012, selecione **exibir** - @ no__t-2 **pesquisador de objetos do SQL Server**.
+1.  No menu principal do Visual Studio 2012, selecione **exibir** -&gt; **pesquisador de objetos do SQL Server**.
 2.  Se o LocalDB não estiver na lista de servidores, clique com o botão direito do mouse em **SQL Server** e selecione **Adicionar SQL Server** usar a autenticação padrão do **Windows** para se conectar à instância de LocalDB
 3.  Expandir o nó LocalDB
 4.  Desdobrar a pasta **databases** para ver o novo banco de dados e navegar até a tabela **universidades**

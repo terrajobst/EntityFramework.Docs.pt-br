@@ -24,7 +24,7 @@ Antes de nos aprofundarmos em como gerenciar as migrações de mesclagem geradas
 
 ### <a name="each-team-member-should-have-a-local-development-database"></a>Cada membro da equipe deve ter um banco de dados de desenvolvimento local
 
-As migrações usam a tabela **\_ @ no__t-2MigrationsHistory** para armazenar quais migrações foram aplicadas ao banco de dados. Se você tiver vários desenvolvedores gerando migrações diferentes durante a tentativa de direcionar o mesmo banco de dados (e, portanto, compartilhar uma tabela **\_ @ no__t-2MigrationsHistory** ), ele ficará muito confuso.
+As migrações usam o **\_\_tabela MigrationsHistory** para armazenar quais migrações foram aplicadas ao banco de dados. Se você tiver vários desenvolvedores gerando diferentes migrações ao tentar direcionar o mesmo banco de dados (e, portanto, compartilhar um **\_\_tabela MigrationsHistory** ), o ficará muito confuso.
 
 É claro que, se você tiver membros da equipe que não estão gerando migrações, não há nenhum problema em compartilhar um banco de dados de desenvolvimento central.
 
@@ -38,11 +38,11 @@ As migrações automáticas permitem que você tenha seu esquema de banco de dad
 
 Se você preferir assistir a um screencast do que ler este artigo, os dois vídeos a seguir abrangem o mesmo conteúdo deste artigo.
 
-### <a name="video-one-migrations---under-the-hood"></a>Vídeo um: "Migrações-nos bastidores"
+### <a name="video-one-migrations---under-the-hood"></a>Vídeo um: "migrações-nos bastidores"
 
 [Este screencast](https://channel9.msdn.com/blogs/ef/migrations-under-the-hood) aborda como as migrações acompanham e usam informações sobre o modelo para detectar alterações de modelo.
 
-### <a name="video-two-migrations---team-environments"></a>Vídeo dois: "Migrações-ambientes de equipe"
+### <a name="video-two-migrations---team-environments"></a>Vídeo dois: "migrações-ambientes de equipe"
 
 Aproveitando os conceitos do vídeo anterior, [Este screencast](https://channel9.msdn.com/blogs/ef/migrations-team-environments) aborda os problemas que surgem em um ambiente de equipe e como resolvê-los.
 
@@ -98,10 +98,10 @@ Acompanharemos o modelo do EF e as migrações por meio de várias alterações.
 
 ![Ponto de partida](~/ef6/media/startingpoint.png)
 
-O desenvolvedor \#1 e o desenvolvedor \#2 agora faz algumas alterações no modelo do EF em sua base de código local. O desenvolvedor \#1 adiciona uma propriedade de **classificação** ao **blog** – e gera uma migração **addrating** para aplicar as alterações ao banco de dados. O @no__t do desenvolvedor-02 adiciona uma propriedade **leitores** ao **blog** – e gera a migração de **addreaders** correspondente. Ambos os desenvolvedores executam **Update-Database**, para aplicar as alterações aos seus bancos de dados locais e, em seguida, continuar desenvolvendo o aplicativo.
+O desenvolvedor \#1 e desenvolvedor \#2 agora faz algumas alterações no modelo do EF em sua base de código local. O desenvolvedor \#1 adiciona uma propriedade de **classificação** ao **blog** – e gera uma migração **addrating** para aplicar as alterações ao banco de dados. O desenvolvedor \#2 adiciona uma propriedade **leitores** ao **blog** – e gera a migração de **addreaders** correspondente. Ambos os desenvolvedores executam **Update-Database**, para aplicar as alterações aos seus bancos de dados locais e, em seguida, continuar desenvolvendo o aplicativo.
 
 > [!NOTE]
-> As migrações são prefixadas com um carimbo de data/hora, de modo que nosso gráfico representa que a migração de hiperreaders do desenvolvedor \#2 vem após a migração de addrating do desenvolvedor \#1. Se o desenvolvedor \#1 ou \#2 tiver gerado a migração, primeiro não faz diferença com os problemas de trabalho em uma equipe ou o processo para mesclá-los que veremos na próxima seção.
+> As migrações são prefixadas com um carimbo de data/hora, portanto, nosso gráfico representa que a migração de addreaders do desenvolvedor \#2 vem após a migração de addrating do desenvolvedor \#1. Se o desenvolvedor \#1 ou \#2 gerou a migração, primeiro não faz diferença com os problemas de trabalho em uma equipe, ou o processo para mesclá-los que veremos na próxima seção.
 
 ![Alterações locais](~/ef6/media/localchanges.png)
 
@@ -109,7 +109,7 @@ O desenvolvedor \#1 e o desenvolvedor \#2 agora faz algumas alterações no mode
 
 ![Enviar](~/ef6/media/submit.png)
 
-Agora é hora para o desenvolvedor \#2 enviar. Eles não são tanto sorte. Como outra pessoa enviou alterações desde que elas foram sincronizadas, elas precisarão retirar as alterações e mesclar. O sistema de controle do código-fonte provavelmente será capaz de mesclar automaticamente as alterações no nível de código, pois elas são muito simples. O estado do repositório local de \#2 do desenvolvedor após a sincronização é representado no gráfico a seguir. 
+Agora é hora para o desenvolvedor \#2 enviar. Eles não são tanto sorte. Como outra pessoa enviou alterações desde que elas foram sincronizadas, elas precisarão retirar as alterações e mesclar. O sistema de controle do código-fonte provavelmente será capaz de mesclar automaticamente as alterações no nível de código, pois elas são muito simples. O estado do repositório local do desenvolvedor \#2 após a sincronização é representado no gráfico a seguir. 
 
 ![Recebimento](~/ef6/media/pull.png)
 
@@ -117,9 +117,9 @@ Neste estágio, o desenvolvedor \#2 pode executar **Update-Database** , que dete
 
 No entanto, há alguns problemas:
 
-1.  Embora **Update-Database** aplique a migração **addrating** , ele também emitirá um aviso: *Não é possível atualizar o banco de dados para corresponder ao modelo atual porque há alterações pendentes e a migração automática está desabilitada...*
+1.  Embora **Update-Database** aplique a migração **addrating** , ele também emitirá um aviso: *não é possível atualizar o banco de dados para corresponder ao modelo atual porque há alterações pendentes e a migração automática está desabilitada...*
     O problema é que o instantâneo do modelo armazenado na última migração (**Addreader**) não tem a propriedade **rating** no **blog** (pois ele não era parte do modelo quando a migração foi gerada). Code First detecta que o modelo na última migração não corresponde ao modelo atual e gera o aviso.
-2.  A execução do aplicativo resultaria em um InvalidOperationException informando que o modelo "*The fazendo backup do contexto ' BloggingContext ' foi alterado desde que o banco de dados foi criado. Considere o uso de Migrações do Code First para atualizar o banco de dados... "*
+2.  A execução do aplicativo resultaria em uma InvalidOperationException informando que "*o modelo que está fazendo backup do contexto ' BloggingContext ' foi alterado desde que o banco de dados foi criado. Considere o uso de Migrações do Code First para atualizar o banco de dados... "*
     Novamente, o problema é que o instantâneo do modelo armazenado na última migração não corresponde ao modelo atual.
 3.  Por fim, esperamos que **a execução de Add-Migration** agora gere uma migração vazia (já que não há nenhuma alteração a ser aplicada ao banco de dados). Mas como as migrações comparam o modelo atual com o da última migração (que não tem a propriedade **rating** ), na verdade, ela Scaffold outra chamada **AddColumn** para adicionar na coluna de **classificação** . É claro que essa migração falhará durante **Update-Database** porque a coluna de **classificação** já existe.
 
@@ -129,11 +129,11 @@ A boa notícia é que não é muito difícil lidar com a mesclagem manualmente �
 
 Há duas opções, a mais fácil é gerar uma migração em branco que tenha o modelo atual correto como um instantâneo. A segunda opção é atualizar o instantâneo na última migração para ter o instantâneo de modelo correto. A segunda opção é um pouco mais difícil e não pode ser usada em todos os cenários, mas também é mais limpa porque não envolve a adição de uma migração extra.
 
-### <a name="option-1-add-a-blank-merge-migration"></a>Opção 1: Adicionar uma migração em branco de ' mesclagem '
+### <a name="option-1-add-a-blank-merge-migration"></a>Opção 1: adicionar uma migração em branco de "mesclagem"
 
 Nessa opção, geramos uma migração em branco exclusivamente para fins de garantir que a migração mais recente tenha o instantâneo de modelo correto armazenado nela.
 
-Essa opção pode ser usada independentemente de quem gerou a última migração. No exemplo que temos sido a seguir, o desenvolvedor \#2 está tomando cuidado com a mesclagem e ocorreram para gerar a última migração. Mas essas mesmas etapas podem ser usadas se o desenvolvedor \#1 gerou a última migração. As etapas também se aplicam se houver várias migrações envolvidas – nós apenas examinamos duas para simplificar.
+Essa opção pode ser usada independentemente de quem gerou a última migração. No exemplo, estamos seguindo o desenvolvedor \#2 está tomando cuidado com a mesclagem e eles ocorreram para gerar a última migração. Mas essas mesmas etapas podem ser usadas se o desenvolvedor \#1 gerou a última migração. As etapas também se aplicam se houver várias migrações envolvidas – nós apenas examinamos duas para simplificar.
 
 O processo a seguir pode ser usado para essa abordagem, desde o momento em que você perceber que tem alterações que precisam ser sincronizadas do controle do código-fonte.
 
@@ -141,14 +141,14 @@ O processo a seguir pode ser usado para essa abordagem, desde o momento em que v
 2.  Sincronizar com controle do código-fonte.
 3.  Execute **Update-Database** para aplicar as novas migrações nas quais os outros desenvolvedores fizeram check-in.
     **_Observação:_** *se você não receber nenhum aviso do comando Update-Database, não haverá nenhuma nova migração de outros desenvolvedores e não haverá necessidade de realizar nenhuma mesclagem.*
-4.  Execute **Add-Migration &lt;pick @ no__t-2a @ no__t-3name @ no__t-4 – IgnoreChanges** (por exemplo, **Add-Migration Merge – IgnoreChanges**). Isso gera uma migração com todos os metadados (incluindo um instantâneo do modelo atual), mas ignorará as alterações detectadas ao comparar o modelo atual com o instantâneo nas últimas migrações (o que significa que você obtém um método **ativo** e **inativo** ).
+4.  Execute **o &lt;de adição de migração\_um nome de\_&gt; – IgnoreChanges** (por exemplo, **Merge-Migrate – IgnoreChanges**). Isso gera uma migração com todos os metadados (incluindo um instantâneo do modelo atual), mas ignorará as alterações detectadas ao comparar o modelo atual com o instantâneo nas últimas migrações (o que significa que você obtém um método **ativo** e **inativo** ).
 5.  Continue desenvolvendo ou envie para o controle do código-fonte (depois de executar os testes de unidade, é claro).
 
 Aqui está o estado da base de código local do desenvolvedor \#2 depois de usar essa abordagem.
 
 ![Migração de mesclagem](~/ef6/media/mergemigration.png)
 
-### <a name="option-2-update-the-model-snapshot-in-the-last-migration"></a>Opção 2: Atualizar o instantâneo do modelo na última migração
+### <a name="option-2-update-the-model-snapshot-in-the-last-migration"></a>Opção 2: atualizar o instantâneo do modelo na última migração
 
 Essa opção é muito semelhante à opção 1, mas remove a migração em branco extra – porque vamos encarar os arquivos de código extras em sua solução.
 
@@ -162,11 +162,11 @@ O processo a seguir pode ser usado para essa abordagem, desde o momento em que v
 2.  Sincronizar com o controle do código-fonte.
 3.  Execute **Update-Database** para aplicar as novas migrações nas quais os outros desenvolvedores fizeram check-in.
     **_Observação:_** *se você não receber nenhum aviso do comando Update-Database, não haverá nenhuma nova migração de outros desenvolvedores e não haverá necessidade de realizar nenhuma mesclagem.*
-4.  Run **Update-Database – TargetMigration &lt;second @ no__t-2last @ no__t-3migration @ no__t-4** (no exemplo, estamos seguindo isso seria **Update-Database – TargetMigration addrating**). Isso faz com que o banco de dados volte para o estado da segunda última migração – efetivamente ' reaplicando ' a última migração do banco de dados.
-    **_Anotações_** a etapa *This é necessária para que seja seguro editar os metadados da migração, já que os metadados também são armazenados no \_ @ no__t-2MigrationsHistoryTable do banco de dados. É por isso que você só deve usar essa opção se a última migração for apenas em sua base de código local. Se outros bancos de dados tiverem a última migração aplicada, você também teria que redistribuí-los e reaplicar a última migração para atualizar os metadados.* 
-5.  Execute **Add-Migration &lt;Full @ no__t-2name @ no__t-3including @ no__t-4timestamp @ no__t-5of @ no__t-6last @ no__t-7migration**&gt; (no exemplo, estamos seguindo isso seria algo como **Add-Migration 201311062215252 @ no__ t-10AddReaders**).
-    **_Anotações_** *Você precisa incluir o carimbo de data/hora para que as migrações saibam que você deseja editar a migração existente em vez de scaffolding uma nova.*
-    Isso atualizará os metadados para a última migração para corresponder ao modelo atual. Você receberá o seguinte aviso quando o comando for concluído, mas isso é exatamente o que você deseja. "*Only o código de designer para a migração ' 201311062215252 @ no__t-1AddReaders ' foi re-com Scaffold. Para rescaffoldr toda a migração, use o parâmetro-Force. "*
+4.  Execute **Update-Database – TargetMigration &lt;segundo\_última\_&gt;de migração** (no exemplo que estamos seguindo, seria **Update-Database – TargetMigration addrating**). Isso faz com que o banco de dados volte para o estado da segunda última migração – efetivamente ' reaplicando ' a última migração do banco de dados.
+    **_Observação:_** *essa etapa é necessária para tornar seguro editar os metadados da migração, já que os metadados também são armazenados no \_\_MigrationsHistoryTable do banco de dados. É por isso que você só deve usar essa opção se a última migração for apenas em sua base de código local. Se outros bancos de dados tiverem a última migração aplicada, você também teria que redistribuí-los e reaplicar a última migração para atualizar os metadados.* 
+5.  Execute **Add-Migration &lt;nome de\_completo\_incluindo\_carimbo de data/hora\_do\_última\_de migração** (no exemplo, estamos seguindo isso seria algo como **Add-migration 201311062215252&gt; addreaders**).\_
+    **_Observação:_** *você precisa incluir o carimbo de data/hora para que as migrações saibam que você deseja editar a migração existente em vez de scaffolding uma nova.*
+    Isso atualizará os metadados para a última migração para corresponder ao modelo atual. Você receberá o seguinte aviso quando o comando for concluído, mas isso é exatamente o que você deseja. "*Somente o código do designer para migração ' 201311062215252\_Addreaders ' foi recom Scaffold. Para rescaffoldr toda a migração, use o parâmetro-Force. "*
 6.  Execute **Update-Database** para aplicar novamente a migração mais recente com os metadados atualizados.
 7.  Continue desenvolvendo ou envie para o controle do código-fonte (depois de executar os testes de unidade, é claro).
 

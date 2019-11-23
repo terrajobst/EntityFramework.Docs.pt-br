@@ -18,7 +18,7 @@ Este vídeo fornece uma introdução ao desenvolvimento de Database First usando
 
 **Apresentado por**: [Rowan Miller](https://romiller.com/)
 
-**Vídeo**: [WMV](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv) | [MP4](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
+**Vídeo**: [wmv](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv) | [MP4](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v) | [WMV (zip)](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
 
 ## <a name="pre-requisites"></a>Pré-requisitos
 
@@ -28,7 +28,7 @@ Se você estiver usando o Visual Studio 2010, também será necessário ter o [N
 
  
 
-## <a name="1-create-an-existing-database"></a>1. Criar um banco de dados existente
+## <a name="1-create-an-existing-database"></a>1. criar um banco de dados existente
 
 Normalmente, quando você estiver direcionando um banco de dados existente, ele já será criado, mas para este passo a passos, precisamos criar um banco de dados a ser acessado.
 
@@ -79,19 +79,19 @@ CREATE TABLE [dbo].[Posts] (
 );
 ```
 
-## <a name="2-create-the-application"></a>2. Criar o aplicativo
+## <a name="2-create-the-application"></a>2. criar o aplicativo
 
 Para manter as coisas simples, vamos criar um aplicativo de console básico que usa o Database First para executar o acesso a dados:
 
 -   Abrir o Visual Studio
--   **Arquivo-&gt; Projeto New-&gt;...**
+-   **Arquivo-&gt; novo&gt; projeto...**
 -   Selecione **Windows** no menu à esquerda e no **aplicativo de console**
 -   Insira **DatabaseFirstSample** como o nome
 -   Selecione **OK**
 
  
 
-## <a name="3-reverse-engineer-model"></a>3. Modelo de engenharia reversa
+## <a name="3-reverse-engineer-model"></a>3. modelo de engenharia reversa
 
 Vamos usar Entity Framework Designer, que é incluído como parte do Visual Studio, para criar nosso modelo.
 
@@ -123,7 +123,7 @@ Se você estiver trabalhando no Visual Studio 2010, há algumas etapas adicionai
 
 Primeiro, precisamos obter a versão mais recente do Entity Framework do NuGet.
 
--   **Projeto – &gt; gerenciar pacotes NuGet...** 
+-   **Projeto –&gt; gerenciar pacotes NuGet...** 
     *se você não tiver a opção **gerenciar pacotes NuGet...** , você deve instalar a [versão mais recente do NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) *
 -   Selecione a guia **online**
 -   Selecionar o pacote do **EntityFramework**
@@ -133,13 +133,13 @@ Em seguida, precisamos trocar nosso modelo para gerar código que usa a API DbCo
 
 -   Clique com o botão direito do mouse em um ponto vazio do modelo no designer do EF e selecione **Adicionar item de geração de código...**
 -   Selecione **Modelos online** no menu à esquerda e pesquise por **DbContext**
--   Selecione o gerador de DbContext do EF **5. x para C @ no__t-1**, digite **BloggingModel** como o nome e clique em **Adicionar**
+-   Selecione o gerador de DbContext do EF **5. x para C\#** , insira **BloggingModel** como o nome e clique em **Adicionar**
 
     ![Modelo DbContext](~/ef6/media/dbcontexttemplate.png)
 
  
 
-## <a name="4-reading--writing-data"></a>4. Lendo & gravando dados
+## <a name="4-reading--writing-data"></a>4. lendo & gravando dados
 
 Agora que temos um modelo, é hora de usá-lo para acessar alguns dados. As classes que usaremos para acessar os dados estão sendo geradas automaticamente para você com base no arquivo EDMX.
 
@@ -194,7 +194,7 @@ Press any key to exit...
 ```
  
 
-## <a name="5-dealing-with-database-changes"></a>5. Lidando com alterações de banco de dados
+## <a name="5-dealing-with-database-changes"></a>5. lidando com alterações de banco de dados
 
 Agora é hora de fazer algumas alterações no nosso esquema de banco de dados, quando fazemos essas alterações, também precisamos atualizar nosso modelo para refletir essas alterações.
 
@@ -215,7 +215,7 @@ Agora que o esquema está atualizado, é hora de atualizar o modelo com essas al
 
 -   Clique com o botão direito do mouse em um ponto vazio do modelo no designer do EF e selecione ' atualizar modelo do banco de dados... '. isso iniciará o assistente de atualização
 -   Na guia adicionar do assistente de atualização, marque a caixa ao lado de tabelas, isso indica que queremos adicionar novas tabelas a partir do esquema.
-    @no__t guia atualização de 0The mostra todas as tabelas existentes no modelo que serão verificadas quanto a alterações durante a atualização. As guias excluir mostram todas as tabelas que foram removidas do esquema e também serão removidas do modelo como parte da atualização. As informações nessas duas guias são detectadas automaticamente e são fornecidas apenas para fins informativos, você não pode alterar as configurações. *
+    *A guia atualizar mostra todas as tabelas existentes no modelo que serão verificadas quanto a alterações durante a atualização. As guias excluir mostram todas as tabelas que foram removidas do esquema e também serão removidas do modelo como parte da atualização. As informações nessas duas guias são detectadas automaticamente e são fornecidas apenas para fins informativos, você não pode alterar as configurações.*
 
     ![Assistente de atualização](~/ef6/media/refreshwizard.png)
 

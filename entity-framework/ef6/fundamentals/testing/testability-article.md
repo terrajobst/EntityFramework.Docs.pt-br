@@ -13,7 +13,7 @@ ms.locfileid: "72181583"
 # <a name="testability-and-entity-framework-40"></a>Capacidade de teste e Entity Framework 4,0
 Scott Allen
 
-Checked Maio de 2010
+Publicado em: maio de 2010
 
 ## <a name="introduction"></a>Introdução
 
@@ -120,7 +120,7 @@ Dado um IRepository de objetos Employee, o código pode executar as seguintes op
 
 Como o código está usando uma interface (IRepository de Employee), podemos fornecer o código com diferentes implementações da interface. Uma implementação pode ser uma implementação apoiada por EF4 e persistir objetos em um banco de dados Microsoft SQL Server. Uma implementação diferente (uma que usamos durante o teste) pode ser apoiada por uma lista na memória de objetos Employee. A interface ajudará a atingir o isolamento no código.
 
-Observe que a interface IRepository @ no__t-0T @ no__t-1 não expõe uma operação de salvamento. Como atualizar os objetos existentes? Você pode se deparar com definições de IRepository que incluem a operação salvar, e as implementações desses repositórios precisarão manter imediatamente um objeto no banco de dados. No entanto, em muitos aplicativos, não queremos manter objetos individualmente. Em vez disso, queremos dar vida aos objetos, talvez de diferentes repositórios, modificar esses objetos como parte de uma atividade de negócios e, em seguida, manter todos os objetos como parte de uma única operação atômica. Felizmente, há um padrão para permitir esse tipo de comportamento.
+Observe que a interface IRepository&lt;T&gt; não expõe uma operação de salvamento. Como atualizar os objetos existentes? Você pode se deparar com definições de IRepository que incluem a operação salvar, e as implementações desses repositórios precisarão manter imediatamente um objeto no banco de dados. No entanto, em muitos aplicativos, não queremos manter objetos individualmente. Em vez disso, queremos dar vida aos objetos, talvez de diferentes repositórios, modificar esses objetos como parte de uma atividade de negócios e, em seguida, manter todos os objetos como parte de uma única operação atômica. Felizmente, há um padrão para permitir esse tipo de comportamento.
 
 ### <a name="the-unit-of-work-pattern"></a>O padrão de unidade de trabalho
 
@@ -198,7 +198,7 @@ Com o POCOs em vigor, podemos criar um Modelo de Dados de Entidade (EDM) no Visu
 
 **Figura 1**
 
-Observação: se você quiser desenvolver o modelo do EDM primeiro, será possível gerar um código limpo e POCO do EDM. Você pode fazer isso com uma extensão do Visual Studio 2010 fornecida pela equipe de programação de dados. Para baixar a extensão, inicie o Gerenciador de extensões no menu ferramentas no Visual Studio e pesquise a galeria online de modelos para "POCO" (consulte a Figura 2). Há vários modelos de POCO disponíveis para o EF. Para obter mais informações sobre como usar o modelo, consulte "[Walkthrough: Modelo POCO para o Entity Framework @ no__t-0 ".
+Observação: se você quiser desenvolver o modelo do EDM primeiro, será possível gerar um código limpo e POCO do EDM. Você pode fazer isso com uma extensão do Visual Studio 2010 fornecida pela equipe de programação de dados. Para baixar a extensão, inicie o Gerenciador de extensões no menu ferramentas no Visual Studio e pesquise a galeria online de modelos para "POCO" (consulte a Figura 2). Há vários modelos de POCO disponíveis para o EF. Para obter mais informações sobre como usar o modelo, consulte o [modelo "Walkthrough: poco para o Entity Framework](https://blogs.msdn.com/adonet/pages/walkthrough-poco-template-for-the-entity-framework.aspx)".
 
 ![test_02 EF](~/ef6/media/eftest-02.png)
 
@@ -220,7 +220,7 @@ Considere a seguinte ação do controlador de um projeto MVC do ASP.NET. A açã
 
 O código está sendo testado? Há pelo menos dois testes que seriam necessários para verificar o comportamento da ação. Primeiro, gostaríamos de verificar se a ação retorna o modo de exibição correto – um teste fácil. Também queremos escrever um teste para verificar se a ação recupera o funcionário correto e gostaríamos de fazer isso sem executar o código para consultar o banco de dados. Lembre-se de que desejamos isolar o código em teste. O isolamento garantirá que o teste não falhe devido a um bug no código de acesso a dados ou na configuração do banco de dado. Se o teste falhar, sabemos que temos um bug na lógica do controlador e não em um componente de sistema de nível inferior.
 
-Para obter o isolamento, precisaremos de algumas abstrações como as interfaces que apresentamos anteriormente para repositórios e unidades de trabalho. Lembre-se de que o padrão de repositório foi projetado para mediar entre objetos de domínio e a camada de mapeamento de dados. Neste cenário, EF4 *é* a camada de mapeamento de dados e já fornece uma abstração semelhante ao repositório denominada IObjectSet @ No__t-1T @ no__t-2 (do namespace System. Data. Objects). A definição da interface é parecida com a seguinte.
+Para obter o isolamento, precisaremos de algumas abstrações como as interfaces que apresentamos anteriormente para repositórios e unidades de trabalho. Lembre-se de que o padrão de repositório foi projetado para mediar entre objetos de domínio e a camada de mapeamento de dados. Neste cenário, EF4 *é* a camada de mapeamento de dados e já fornece uma abstração semelhante ao repositório chamada IObjectSet&lt;t&gt; (do namespace System. Data. Objects). A definição da interface é parecida com a seguinte.
 
 ``` csharp
     public interface IObjectSet<TEntity> :
@@ -237,7 +237,7 @@ Para obter o isolamento, precisaremos de algumas abstrações como as interfaces
     }
 ```
 
-IObjectSet @ no__t-0T @ no__t-1 atende aos requisitos de um repositório porque ele se assemelha a uma coleção de objetos (via IEnumerable @ no__t-2T @ no__t-3) e fornece métodos para adicionar e remover objetos da coleção simulada. Os métodos Attach e Detach expõem recursos adicionais da API EF4. Para usar IObjectSet @ no__t-0T @ no__t-1 como a interface para repositórios, precisamos de uma unidade de abstração de trabalho para associar repositórios.
+IObjectSet&lt;T&gt; atende aos requisitos de um repositório porque ele se assemelha a uma coleção de objetos (via IEnumerable&lt;T&gt;) e fornece métodos para adicionar e remover objetos da coleção simulada. Os métodos Attach e Detach expõem recursos adicionais da API EF4. Para usar IObjectSet&lt;T&gt; como a interface para repositórios, precisamos de uma unidade de abstração de trabalho para associar repositórios.
 
 ``` csharp
     public interface IUnitOfWork {
@@ -276,7 +276,7 @@ Uma implementação concreta dessa interface se comunicará com SQL Server e ser
     }
 ```
 
-Trazer um IObjectSet @ no__t-0T @ no__t-1 à vida é tão fácil quanto invocar o método CreateObjectSet do objeto ObjectContext. Em segundo plano, a estrutura usará os metadados que fornecemos no EDM para produzir um ObjectSet concreto @ no__t-0T @ no__t-1. Vamos continuar com o retorno da interface IObjectSet @ no__t-0T @ no__t-1, pois isso ajudará a preservar a capacidade de teste no código do cliente.
+Trazer um IObjectSet&lt;T&gt; vida é tão fácil quanto invocar o método CreateObjectSet do objeto ObjectContext. Em segundo plano, a estrutura usará os metadados que fornecemos no EDM para produzir um ObjectSet concreto&lt;T&gt;. Vamos usar o retorno da interface IObjectSet&lt;T&gt;, pois isso ajudará a preservar a capacidade de teste no código do cliente.
 
 Essa implementação concreta é útil na produção, mas precisamos nos concentrar em como usaremos nossa abstração IUnitOfWork para facilitar os testes.
 
@@ -321,7 +321,7 @@ Uma implementação de unidade de trabalho falsa que podemos usar para teste pod
 
 Observe que a unidade de trabalho falsa expõe uma propriedade confirmada. Às vezes, é útil adicionar recursos a uma classe falsa que facilita os testes. Nesse caso, é fácil observar se o código confirma uma unidade de trabalho verificando a propriedade confirmada.
 
-Também precisaremos de uma falsificação IObjectSet @ no__t-0T @ no__t-1 para manter os objetos Employee e Timecard na memória. Podemos fornecer uma única implementação usando genéricos.
+Também precisaremos de um IObjectSet falso&lt;&gt; para armazenar objetos de funcionário e de cartão de na memória. Podemos fornecer uma única implementação usando genéricos.
 
 ``` csharp
     public class InMemoryObjectSet<T> : IObjectSet<T> where T : class
@@ -368,7 +368,7 @@ Também precisaremos de uma falsificação IObjectSet @ no__t-0T @ no__t-1 para 
     }
 ```
 
-Esse teste delega a maior parte de seu trabalho a um objeto HashSet @ no__t-0T @ no__t-1 subjacente. Observe que IObjectSet @ no__t-0T @ no__t-1 requer uma restrição genérica que impõe T como uma classe (um tipo de referência) e também nos obriga a implementar IQueryable @ no__t-2T @ no__t-3. É fácil fazer com que uma coleção na memória apareça como um IQueryable @ no__t-0T @ no__t-1 usando o operador LINQ padrão de consulta.
+Esse teste delega a maior parte de seu trabalho a um objeto HashSet subjacente&lt;T&gt;. Observe que IObjectSet&lt;T&gt; requer uma restrição genérica que impõe T como uma classe (um tipo de referência) e também nos obriga a implementar IQueryable&lt;T&gt;. É fácil fazer com que uma coleção na memória apareça como um IQueryable&lt;T&gt; usando o operador LINQ padrão de consulta.
 
 ### <a name="the-tests"></a>Os testes
 
@@ -541,7 +541,7 @@ Há dois recursos notáveis para o código acima. Primeiro – o código é fác
     }
 ```
 
-O segundo recurso notável é como o código permite que o EF4 gere uma consulta única e eficiente para montar as informações de funcionário e de cartão de tempo juntas. Nós carregamos informações de funcionários e informações de cartão de tempo no mesmo objeto sem usar nenhuma API especial. O código simplesmente expressou as informações necessárias usando operadores LINQ padrão que funcionam em fontes de dados na memória, bem como em fontes de dados remotas. EF4 conseguiu converter as árvores de expressão geradas pela consulta LINQ e o compilador C @ no__t-0 em uma consulta T-SQL única e eficiente.
+O segundo recurso notável é como o código permite que o EF4 gere uma consulta única e eficiente para montar as informações de funcionário e de cartão de tempo juntas. Nós carregamos informações de funcionários e informações de cartão de tempo no mesmo objeto sem usar nenhuma API especial. O código simplesmente expressou as informações necessárias usando operadores LINQ padrão que funcionam em fontes de dados na memória, bem como em fontes de dados remotas. EF4 foi capaz de converter as árvores de expressão geradas pela consulta LINQ e o compilador C\# em uma consulta T-SQL única e eficiente.
 
 ``` SQL
     SELECT
@@ -569,14 +569,14 @@ Há outras ocasiões em que não queremos trabalhar com um modelo de exibição 
 
 ### <a name="explicit-eager-loading"></a>Carregamento adiantado explícito
 
-Quando desejarmos carregar cuidadosamente as informações de entidade relacionadas, precisamos de um mecanismo de lógica comercial (ou, neste cenário, lógica de ação do controlador) para expressar seu desejo para o repositório. A classe EF4 ObjectQuery @ no__t-0T @ no__t-1 define um método include para especificar os objetos relacionados a serem recuperados durante uma consulta. Lembre-se de que o ObjectContext EF4 expõe entidades por meio da classe concreta ObjectSet @ no__t-0T @ no__t-1 que herda de ObjectQuery @ no__t-2T @ no__t-3.  Se estivesse usando ObjectSet @ no__t-0T @ no__t-1 referências em nossa ação de controlador, poderíamos escrever o código a seguir para especificar um carregamento adiantado de informações de cartão de tempo para cada funcionário.
+Quando desejarmos carregar cuidadosamente as informações de entidade relacionadas, precisamos de um mecanismo de lógica comercial (ou, neste cenário, lógica de ação do controlador) para expressar seu desejo para o repositório. A classe T&gt; do EF4 ObjectQuery&lt;define um método include para especificar os objetos relacionados a serem recuperados durante uma consulta. Lembre-se de que o ObjectContext EF4 expõe entidades por meio da classe concreta&lt;T&gt; que herda de ObjectQuery&lt;T&gt;.  Se estivesse usando o ObjectSet&lt;T&gt; referências em nossa ação do controlador, poderíamos escrever o código a seguir para especificar um carregamento adiantado de informações de cartão de tempo para cada funcionário.
 
 ``` csharp
     _employees.Include("TimeCards")
               .Where(e => e.HireDate.Year > 2009);
 ```
 
-No entanto, como estamos tentando manter nosso código testável, não estamos expondo o ObjectSet @ no__t-0T @ no__t-1 de fora da classe real da aula de trabalho. Em vez disso, nós confiamos na interface IObjectSet @ no__t-0T @ no__t-1, que é mais fácil de ser falsificada, mas IObjectSet @ no__t-2T @ no__t-3 não define um método include. A beleza do LINQ é que podemos criar nosso próprio operador include.
+No entanto, como estamos tentando manter nosso code-testando, não estamos expondo o ObjectSet&lt;T&gt; de fora da classe real de trabalho. Em vez disso, nós confiamos na interface IObjectSet&lt;T&gt;, que é mais fácil de ser falsificada, mas IObjectSet&lt;T&gt; não define um método include. A beleza do LINQ é que podemos criar nosso próprio operador include.
 
 ``` csharp
     public static class QueryableExtensions {
@@ -592,7 +592,7 @@ No entanto, como estamos tentando manter nosso código testável, não estamos e
     }
 ```
 
-Observe que esse operador include é definido como um método de extensão para IQueryable @ no__t-0T @ no__t-1 em vez de IObjectSet @ no__t-2T @ no__t-3. Isso nos dá a capacidade de usar o método com uma variedade maior de tipos possíveis, incluindo IQueryable @ no__t-0T @ no__t-1, IObjectSet @ no__t-2T @ no__t-3, ObjectQuery @ no__t-4T suporta @ no__t-5 e ObjectSet @ no__t-6T @ no__t-7. No caso de a sequência subjacente não ser uma EF4 original noquery @ no__t-0T @ no__t-1, não há nenhum dano feito e o operador include é um não operacional. Se a sequência subjacente *for* uma ObjectQuery @ No__t-1T @ no__t-2 (ou derivada de ObjectQuery @ No__t-3T @ no__t-4), o EF4 verá nosso requisito para dados adicionais e formulará a consulta SQL apropriada.
+Observe que esse operador include é definido como um método de extensão para IQueryable&lt;T&gt; em vez de IObjectSet&lt;T&gt;. Isso nos dá a capacidade de usar o método com uma variedade maior de tipos possíveis, incluindo IQueryable&lt;T&gt;, IObjectSet&lt;T&gt;, objectquerer&lt;T&gt;e ObjectSet&lt;T&gt;. No evento, a sequência subjacente não é uma EF4 de Object&gt;&lt;Query original, mas não há nenhum dano feito e o operador include é uma operação não operacional. Se a sequência subjacente *for* uma objectquery&lt;t&gt; (ou derivada de objectquery&lt;t&gt;), EF4 verá nosso requisito para dados adicionais e formulará a consulta SQL apropriada.
 
 Com esse novo operador em vigor, podemos solicitar explicitamente uma carga adiantada de informações de cartão de tempo do repositório.
 
@@ -660,7 +660,7 @@ No entanto, para que esses proxies funcionem, eles precisam de uma maneira de se
     }
 ```
 
-Ainda podemos dizer que a entidade Employee é, na maioria das vezes, que desconhecem persistence. O único requisito é usar membros virtuais e isso não afeta a capacidade de teste do código. Não precisamos derivar de nenhuma classe base especial ou até mesmo usar uma coleção especial dedicada ao carregamento lento. Como demonstra o código, qualquer classe que implemente o ICollection @ no__t-0T @ no__t-1 está disponível para armazenar entidades relacionadas.
+Ainda podemos dizer que a entidade Employee é, na maioria das vezes, que desconhecem persistence. O único requisito é usar membros virtuais e isso não afeta a capacidade de teste do código. Não precisamos derivar de nenhuma classe base especial ou até mesmo usar uma coleção especial dedicada ao carregamento lento. Como o código demonstra, qualquer classe implementando ICollection&lt;T&gt; está disponível para armazenar entidades relacionadas.
 
 Também há uma pequena alteração que precisamos fazer dentro de nossa unidade de trabalho. O carregamento lento é *desativado* por padrão ao trabalhar diretamente com um objeto ObjectContext. Há uma propriedade que podemos definir na propriedade ContextOptions para habilitar o carregamento adiado e podemos definir essa propriedade dentro de nossa unidade real de trabalho se quisermos habilitar o carregamento lento em todos os lugares.
 
@@ -687,7 +687,7 @@ Com o carregamento lento implícito habilitado, o código do aplicativo pode usa
 
 O carregamento lento torna o código do aplicativo mais fácil de escrever e, com a mágica do proxy, o código permanece completamente testado. As falsificações na memória da unidade de trabalho podem simplesmente pré-carregar entidades falsas com dados associados quando necessário durante um teste.
 
-Neste ponto, vamos transformar nossa atenção na criação de repositórios usando IObjectSet @ no__t-0T @ no__t-1 e examinar abstrações para ocultar todos os sinais da estrutura de persistência.
+Neste ponto, vamos transformar nossa atenção na criação de repositórios usando IObjectSet&lt;T&gt; e examinar abstrações para ocultar todos os sinais da estrutura de persistência.
 
 ## <a name="custom-repositories"></a>Repositórios personalizados
 
@@ -701,9 +701,9 @@ Quando apresentamos inicialmente o padrão de design de unidade de trabalho nest
     }
 ```
 
-A principal diferença entre essa unidade de trabalho e a unidade de trabalho que criamos na última seção é como essa unidade de trabalho não usa nenhuma abstração da estrutura EF4 (não há IObjectSet @ no__t-0T @ no__t-1). IObjectSet @ no__t-0T @ no__t-1 funciona bem como uma interface de repositório, mas a API que ele expõe pode não estar perfeitamente alinhada com as necessidades do nosso aplicativo. Nesta próxima abordagem, representaremos repositórios usando uma abstração personalizada IRepository @ no__t-0T @ no__t-1.
+A principal diferença entre essa unidade de trabalho e a unidade de trabalho que criamos na última seção é como essa unidade de trabalho não usa nenhuma abstração da estrutura EF4 (não há IObjectSet&lt;T&gt;). IObjectSet&lt;T&gt; funciona bem como uma interface de repositório, mas a API que ele expõe pode não alinhar perfeitamente com as necessidades do nosso aplicativo. Nesta próxima abordagem, representaremos repositórios usando uma abstração personalizada de IRepository&lt;T&gt;.
 
-Muitos desenvolvedores que seguem o design controlado por testes, design controlado por comportamento e metodologias orientadas a domínio preferem a abordagem IRepository @ no__t-0T @ no__t-1 por vários motivos. Primeiro, a interface IRepository @ no__t-0T @ no__t-1 representa uma camada de "anticorrupção". Conforme descrito por Eric Evans em seu livro de design controlado por domínio, uma camada anticorrupção mantém seu código de domínio longe das APIs de infraestrutura, como uma API de persistência. Em segundo lugar, os desenvolvedores podem criar métodos no repositório que atendam às necessidades exatas de um aplicativo (como descoberto durante a gravação de testes). Por exemplo, em geral, podemos precisar localizar uma única entidade usando um valor de ID, para que possamos adicionar um método FindById à interface do repositório.  Nossa definição IRepository @ no__t-0T @ no__t-1 será parecida com a seguinte.
+Muitos desenvolvedores que seguem o design controlado por testes, design controlado por comportamento e metodologias orientadas a domínio design preferem a abordagem IRepository&lt;T&gt; por vários motivos. Primeiro, a interface IRepository&lt;T&gt; representa uma camada de "anticorrupção". Conforme descrito por Eric Evans em seu livro de design controlado por domínio, uma camada anticorrupção mantém seu código de domínio longe das APIs de infraestrutura, como uma API de persistência. Em segundo lugar, os desenvolvedores podem criar métodos no repositório que atendam às necessidades exatas de um aplicativo (como descoberto durante a gravação de testes). Por exemplo, em geral, podemos precisar localizar uma única entidade usando um valor de ID, para que possamos adicionar um método FindById à interface do repositório.  Nossa definição IRepository&lt;T&gt; será parecida com a seguinte.
 
 ``` csharp
     public interface IRepository<T>
@@ -716,9 +716,9 @@ Muitos desenvolvedores que seguem o design controlado por testes, design control
     }
 ```
 
-Observe que vamos voltar ao uso de uma interface IQueryable @ no__t-0T @ no__t-1 para expor coleções de entidades. IQueryable @ no__t-0T @ no__t-1 permite que as árvores de expressões LINQ fluam para o provedor EF4 e fornecem ao provedor uma visão holística da consulta. Uma segunda opção seria retornar IEnumerable @ no__t-0T @ no__t-1, o que significa que o provedor do EF4 LINQ verá apenas as expressões criadas dentro do repositório. Qualquer agrupamento, ordenação e projeção feitos fora do repositório não será composto no comando SQL enviado ao banco de dados, o que pode prejudicar o desempenho. Por outro lado, um repositório que retorna apenas IEnumerable @ no__t-0T @ no__t-1 results nunca irá surpreender você com um novo comando SQL. Ambas as abordagens funcionarão e ambas as abordagens permanecerão em teste.
+Observe que vamos voltar para usando uma interface IQueryable&lt;T&gt; para expor coleções de entidades. IQueryable&lt;T&gt; permite que as árvores de expressões LINQ fluam para o provedor EF4 e fornecem ao provedor uma visão holística da consulta. Uma segunda opção seria retornar IEnumerable&lt;T&gt;, o que significa que o provedor do EF4 LINQ só verá as expressões criadas dentro do repositório. Qualquer agrupamento, ordenação e projeção feitos fora do repositório não será composto no comando SQL enviado ao banco de dados, o que pode prejudicar o desempenho. Por outro lado, um repositório que retorna apenas IEnumerable&lt;T&gt; resultados nunca surpreenderá você com um novo comando SQL. Ambas as abordagens funcionarão e ambas as abordagens permanecerão em teste.
 
-É simples fornecer uma única implementação da interface IRepository @ no__t-0T @ no__t-1 usando genéricos e a API ObjectContext EF4.
+É simples fornecer uma única implementação da interface IRepository&lt;T&gt; usando genéricos e a API ObjectContext do EF4.
 
 ``` csharp
     public class SqlRepository<T> : IRepository<T>
@@ -746,7 +746,7 @@ Observe que vamos voltar ao uso de uma interface IQueryable @ no__t-0T @ no__t-1
     }
 ```
 
-A abordagem IRepository @ no__t-0T @ no__t-1 fornece um controle adicional sobre nossas consultas, pois um cliente precisa invocar um método para chegar a uma entidade. Dentro do método, poderíamos fornecer verificações adicionais e operadores LINQ para impor restrições de aplicativo. Observe que a interface tem duas restrições no parâmetro de tipo genérico. A primeira restrição é a classe contras contras de contras de no__t-0T @ no__t-1, e a segunda restrição força nossas entidades a implementarem IEntity – uma abstração criada para o aplicativo. A interface IEntity força as entidades a terem uma propriedade de ID legível e, em seguida, podemos usar essa propriedade no método FindById. IEntity é definido com o código a seguir.
+A abordagem IRepository&lt;T&gt; nos dá algum controle adicional sobre nossas consultas, pois um cliente precisa invocar um método para chegar a uma entidade. Dentro do método, poderíamos fornecer verificações adicionais e operadores LINQ para impor restrições de aplicativo. Observe que a interface tem duas restrições no parâmetro de tipo genérico. A primeira restrição é a classe contras que os&gt;&lt;contras de IEntity e a segunda restrição forçam as entidades a implementarem a criação de uma ou uma abstração criada para o aplicativo. A interface IEntity força as entidades a terem uma propriedade de ID legível e, em seguida, podemos usar essa propriedade no método FindById. IEntity é definido com o código a seguir.
 
 ``` csharp
     public interface IEntity {
@@ -756,7 +756,7 @@ A abordagem IRepository @ no__t-0T @ no__t-1 fornece um controle adicional sobre
 
 IEntity poderia ser considerado uma pequena violação do ignorância de persistência, já que nossas entidades são necessárias para implementar essa interface. Lembre-se de que a persistência ignorância é sobre as compensações e, para muitos, a funcionalidade do FindById superará a restrição imposta pela interface. A interface não tem impacto na capacidade de teste.
 
-A instanciação de um IRepository @ no__t-0T @ no__t-1 ao vivo requer um ObjectContext EF4, portanto, uma implementação de unidade concreta de trabalho deve gerenciar a instanciação.
+A instanciação de um IRepository dinâmico&lt;T&gt; requer um ObjectContext EF4, portanto, uma implementação concreta da unidade de trabalho deve gerenciar a instanciação.
 
 ``` csharp
     public class SqlUnitOfWork : IUnitOfWork {
@@ -801,7 +801,7 @@ A instanciação de um IRepository @ no__t-0T @ no__t-1 ao vivo requer um Object
 
 ### <a name="using-the-custom-repository"></a>Usando o repositório personalizado
 
-Usar nosso repositório personalizado não é significativamente diferente de usar o repositório com base em IObjectSet @ no__t-0T @ no__t-1. Em vez de aplicar operadores LINQ diretamente a uma propriedade, primeiro precisaremos chamar um dos métodos do repositório para obter uma referência IQueryable @ no__t-0T @ no__t-1.
+Usar nosso repositório personalizado não é significativamente diferente de usar o repositório com base em IObjectSet&lt;T&gt;. Em vez de aplicar operadores LINQ diretamente a uma propriedade, primeiro precisaremos invocar os métodos do repositório para obter uma referência IQueryable&lt;T&gt;.
 
 ``` csharp
     public ViewResult Index() {
@@ -821,7 +821,7 @@ Observe que o operador de inclusão personalizado que implementamos anteriorment
     }
 ```
 
-Não há nenhuma diferença significativa na capacidade de teste das duas abordagens que examinamos. Poderíamos fornecer implementações falsas de IRepository @ no__t-0T @ no__t-1 Criando classes concretas apoiadas por HashSet @ no__t-2Employee @ no__t-3-exatamente como fizemos na última seção. No entanto, alguns desenvolvedores preferem usar objetos fictícios e estruturas de objeto fictícios em vez de criar falsificações. Veremos como usar as simulações para testar nossa implementação e discutir as diferenças entre as simulações e as falsificações na próxima seção.
+Não há nenhuma diferença significativa na capacidade de teste das duas abordagens que examinamos. Poderíamos fornecer implementações falsas de IRepository&lt;T&gt; criando classes concretas apoiadas por HashSet&lt;funcionário&gt;-exatamente como o que fizemos na última seção. No entanto, alguns desenvolvedores preferem usar objetos fictícios e estruturas de objeto fictícios em vez de criar falsificações. Veremos como usar as simulações para testar nossa implementação e discutir as diferenças entre as simulações e as falsificações na próxima seção.
 
 ### <a name="testing-with-mocks"></a>Teste com simulações
 
@@ -841,7 +841,7 @@ Há outro tipo de duplicata de teste conhecida como uma *simulação*. Embora as
     var employee = repository.FindById(1);
 ```
 
-Pedimos MOQ para uma implementação IRepository @ no__t-0Employee @ no__t-1 e ele cria um dinamicamente. Podemos acessar o objeto que implementa IRepository @ no__t-0Employee @ no__t-1 acessando a propriedade Object do objeto fictício @ no__t-2T @ no__t-3. É esse objeto interno que podemos passar para nossos controladores, e eles não saberão se esse é um duplo de teste ou o real Repository. Podemos invocar métodos no objeto da mesma forma que invocamos métodos em um objeto com uma implementação real.
+Pedimos MOQ para um IRepository&lt;funcionário&gt; implementação e ele cria um dinamicamente. Podemos chegar ao objeto que implementa o IRepository&lt;Employee&gt; acessando a propriedade Object do objeto fictício&lt;T&gt;. É esse objeto interno que podemos passar para nossos controladores, e eles não saberão se esse é um duplo de teste ou o real Repository. Podemos invocar métodos no objeto da mesma forma que invocamos métodos em um objeto com uma implementação real.
 
 Você deve estar se perguntando o que o repositório de simulações fará quando invocarmos o método Add. Como não há nenhuma implementação por trás do objeto fictício, Add não faz nada. Não há nenhuma coleção concreta nos bastidores, como tivemos com as falsificações que escrevemos, portanto, o funcionário é Descartado. E quanto ao valor de retorno de FindById? Nesse caso, o objeto fictício faz a única coisa que ele pode fazer, que é retornar um valor padrão. Como estamos retornando um tipo de referência (um funcionário), o valor de retorno é um valor nulo.
 
@@ -862,7 +862,7 @@ O segundo grande recurso é como podemos usar MOQ para programar um objeto fict�
     }
 ```
 
-Neste exemplo, solicitamos que o MOQ crie um repositório dinamicamente e, em seguida, programamos o repositório com uma expectativa. A expectativa diz ao objeto fictício para retornar um novo objeto Employee com um valor de ID 5 quando alguém invoca o método FindById passando um valor de 5. Esse teste passa, e não precisamos criar uma implementação completa para falsificar IRepository @ no__t-0T @ no__t-1.
+Neste exemplo, solicitamos que o MOQ crie um repositório dinamicamente e, em seguida, programamos o repositório com uma expectativa. A expectativa diz ao objeto fictício para retornar um novo objeto Employee com um valor de ID 5 quando alguém invoca o método FindById passando um valor de 5. Esse teste passa, e não precisamos criar uma implementação completa para falsificar IRepository&lt;T&gt;.
 
 Vamos revisitar os testes que escrevemos anteriormente e reutilizá-los para usar simulações em vez de falsificações. Assim como antes, usaremos uma classe base para configurar as partes comuns da infraestrutura de que precisamos para todos os testes do controlador.
 
@@ -957,14 +957,14 @@ A escolha entre simulações ou falsificações depende em grande parte do siste
 
 ## <a name="conclusions"></a>Conclusões
 
-Neste documento, demonstramos várias abordagens para criar um código que pode ser testado ao usar o Entity Framework ADO.NET para persistência de dados. Podemos aproveitar abstrações internas, como IObjectSet @ no__t-0T @ no__t-1, ou criar nossas próprias abstrações, como IRepository @ no__t-2T @ no__t-3.  Em ambos os casos, o suporte do POCO no ADO.NET Entity Framework 4,0 permite que os consumidores dessas abstrações permaneçam que desconhecem persistentes e altamente testados. Recursos de EF4 adicionais, como carregamento lento implícito, permitem que o código de negócios e de serviço de aplicativo funcione sem se preocupar com os detalhes de um armazenamento de dados relacional. Por fim, as abstrações que criamos são fáceis de simular ou falsas dentro dos testes de unidade, e podemos usar essas duplicatas de teste para obter testes de execução rápida, altamente isolados e confiáveis.
+Neste documento, demonstramos várias abordagens para criar um código que pode ser testado ao usar o Entity Framework ADO.NET para persistência de dados. Podemos aproveitar abstrações internas como IObjectSet&lt;T&gt;ou criar nossas próprias abstrações, como IRepository&lt;T&gt;.  Em ambos os casos, o suporte do POCO no ADO.NET Entity Framework 4,0 permite que os consumidores dessas abstrações permaneçam que desconhecem persistentes e altamente testados. Recursos de EF4 adicionais, como carregamento lento implícito, permitem que o código de negócios e de serviço de aplicativo funcione sem se preocupar com os detalhes de um armazenamento de dados relacional. Por fim, as abstrações que criamos são fáceis de simular ou falsas dentro dos testes de unidade, e podemos usar essas duplicatas de teste para obter testes de execução rápida, altamente isolados e confiáveis.
 
 ### <a name="additional-resources"></a>Recursos adicionais
 
 -   Robert C. Martin, " [princípio de responsabilidade única](https://www.objectmentor.com/resources/articles/srp.pdf)"
 -   Martin Fowler, [Catálogo de padrões](https://www.martinfowler.com/eaaCatalog/index.html) de *padrões de arquitetura de aplicativos empresariais*
 -   Griffin Caprio, " [injeção de dependência](https://msdn.microsoft.com/magazine/cc163739.aspx)"
--   Blog de programação de dados, "[Walkthrough: Desenvolvimento controlado por testes com o Entity Framework 4.0 @ no__t-0 ".
+-   Blog de programação de dados, " [passo a passos: desenvolvimento controlado por testes com o Entity Framework 4,0](https://blogs.msdn.com/adonet/pages/walkthrough-test-driven-development-with-the-entity-framework-4-0.aspx)".
 -   Blog de programação de dados, " [usando o repositório e os padrões de unidade de trabalho com o Entity Framework 4,0](https://blogs.msdn.com/adonet/archive/2009/06/16/using-repository-and-unit-of-work-patterns-with-entity-framework-4-0.aspx)"
 -   Aaron Jensen, " [apresentando especificações de máquina](http://codebetter.com/blogs/aaron.jensen/archive/2008/05/08/introducing-machine-specifications-or-mspec-for-short.aspx)"
 -   Eric Lee, " [BDD com MSTest](https://blogs.msdn.com/elee/archive/2009/01/20/bdd-with-mstest.aspx)"
@@ -975,4 +975,4 @@ Neste documento, demonstramos várias abordagens para criar um código que pode 
 
 ### <a name="biography"></a>Sumi
 
-Scott Allen é membro da equipe técnica da Pluralsight e do fundador da OdeToCode.com. Em 15 anos de desenvolvimento de software comercial, Scott trabalhou em soluções para tudo, desde dispositivos incorporados de 8 bits até aplicativos Web ASP.NET altamente escalonáveis. Você pode acessar Scott em seu blog em OdeToCode ou no Twitter em [https://twitter.com/OdeToCode](https://twitter.com/OdeToCode).
+Scott Allen é membro da equipe técnica da Pluralsight e do fundador da OdeToCode.com. Em 15 anos de desenvolvimento de software comercial, Scott trabalhou em soluções para tudo, desde dispositivos incorporados de 8 bits até aplicativos Web ASP.NET altamente escalonáveis. Você pode alcançar Scott em seu blog em OdeToCode ou no Twitter em [https://twitter.com/OdeToCode](https://twitter.com/OdeToCode).

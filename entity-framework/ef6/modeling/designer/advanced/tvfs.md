@@ -26,7 +26,7 @@ TVFs são muito semelhantes aos procedimentos armazenados com uma diferença imp
 
 **Apresentado por**: Julia Kornich
 
-[WMV](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.wmv) | [MP4](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-mp4video-tvf.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.zip)
+[Wmv](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.wmv) | [MP4](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-mp4video-tvf.m4v) | [WMV (zip)](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.zip)
 
 ## <a name="pre-requisites"></a>Pré-requisitos
 
@@ -40,13 +40,13 @@ Para concluir este passo a passos, você precisa:
 
 1.  Abrir o Visual Studio
 2.  No menu **arquivo** , aponte para **novo**e clique em **projeto**
-3.  No painel esquerdo, clique em **Visual C @ no__t-1**e selecione o modelo de **console**
+3.  No painel esquerdo, clique em **Visual C\#** e, em seguida, selecione o modelo de **console**
 4.  Insira **TVF** como o nome do projeto e clique em **OK**
 
 ## <a name="add-a-tvf-to-the-database"></a>Adicionar um TVF ao banco de dados
 
 -   Selecione **Exibir-&gt; pesquisador de objetos do SQL Server**
--   Se o LocalDB não estiver na lista de servidores: Clique com o botão direito do mouse em **SQL Server** e selecione **Adicionar SQL Server** usar a autenticação padrão do **Windows** para se conectar ao servidor LocalDB
+-   Se o LocalDB não estiver na lista de servidores: clique com o botão direito do mouse em **SQL Server** e selecione **Adicionar SQL Server** usar a autenticação padrão do **Windows** para se conectar ao servidor LocalDB
 -   Expandir o nó LocalDB
 -   No nó bancos de dados, clique com o botão direito do mouse no nó escolar e selecione **nova consulta...**
 -   No Editor T-SQL, Cole a seguinte definição de TVF
@@ -78,12 +78,12 @@ RETURN
 2.  Selecione **dados** no menu à esquerda e, em seguida, selecione **ADO.NET modelo de dados de entidade** no painel **modelos**
 3.  Digite **TVFModel. edmx** para o nome do arquivo e clique em **Adicionar**
 4.  Na caixa de diálogo escolher conteúdo do modelo, selecione **gerar do banco de dados**e clique em **Avançar**
-5.  Clique em **nova conexão** inserir **(LocalDB) \\mssqllocaldb** na caixa de texto nome do servidor, digite **School** for o nome do banco de dados clique em **OK**
-6.  Na caixa de diálogo escolher seu objeto de banco de dados, nas **tabelas** node, selecione **pessoa**, **StudentGrade**e **curso** tables
-7.  Selecione a função **GetStudentGradesForCourse** localizada em **procedimentos armazenados e funções** node Observe que, começando com o Visual Studio 2012, o Entity designer permite que você importe em lote seus procedimentos armazenados e funções
+5.  Clique em **nova conexão** inserir **(LocalDB)\\mssqllocaldb** na caixa de texto nome do servidor, digite **School** para o nome do banco de dados clique em **OK**
+6.  Na caixa de diálogo escolher seu objeto de banco de dados, no nó **tabelas** , selecione a **pessoa**, **StudentGrade**e **curso** tabelas
+7.  Selecione a função **GetStudentGradesForCourse** localizada na observação **procedimentos armazenados e funções** nó Observe que, começando com o Visual Studio 2012, o Entity designer permite que você importe em lote seus procedimentos armazenados e funções
 8.  Clique em **concluir**
-9.  O Entity Designer, que fornece uma superfície de design para editar seu modelo, é exibido. Todos os objetos que você selecionou na caixa **escolher seus objetos de banco de dados** dialog são adicionados ao modelo.
-10. Por padrão, a forma de resultado de cada procedimento armazenado ou função importada se tornará automaticamente um novo tipo complexo em seu modelo de entidade. Mas queremos mapear os resultados da função GetStudentGradesForCourse para a entidade StudentGrade: Clique com o botão direito do mouse na superfície de design e selecione **navegador de modelos** no navegador de modelos, selecione **importações de função**e clique duas vezes na função **GetStudentGradesForCourse** na caixa de diálogo Editar importação de função, selecione **entidades**  and escolher **StudentGrade**
+9.  O Entity Designer, que fornece uma superfície de design para editar seu modelo, é exibido. Todos os objetos que você selecionou na caixa de diálogo **escolher seus objetos de banco de dados** são adicionados ao modelo.
+10. Por padrão, a forma de resultado de cada procedimento armazenado ou função importada se tornará automaticamente um novo tipo complexo em seu modelo de entidade. Mas queremos mapear os resultados da função GetStudentGradesForCourse para a entidade StudentGrade: clique com o botão direito do mouse na superfície de design e selecione **navegador de modelos** no navegador de modelos, selecione **importações de função**e clique duas vezes na função **GetStudentGradesForCourse** na caixa de diálogo Editar importação de função, selecione **entidades** e escolha **StudentGrade**
 
 ## <a name="persist-and-retrieve-data"></a>Persistir e recuperar dados
 

@@ -26,17 +26,17 @@ As alterações que esperamos que afetem apenas os provedores de banco de dados 
 | [DetectChanges respeita os valores de chave gerados pelo repositório](#dc) | Alta      |
 | [FromSql, ExecuteSql e ExecuteSqlAsync foram renomeados](#fromsql) | Alta      |
 | [Tipos de consulta são consolidados com tipos de entidade](#qt) | Alta      |
-| [O Entity Framework Core não faz mais parte da estrutura compartilhada do ASP.NET Core](#no-longer) | Médio      |
-| [Agora, as exclusões em cascata acontecem imediatamente por padrão](#cascade) | Médio      |
-| [O carregamento adiantado de entidades relacionadas agora ocorre em uma única consulta](#eager-loading-single-query) | Médio      |
-| [DeleteBehavior.Restrict tem uma semântica mais limpa](#deletebehavior) | Médio      |
-| [A API de configuração para relações de tipo de propriedade mudou](#config) | Médio      |
-| [Cada propriedade usa geração de chave de inteiro em memória independente](#each) | Médio      |
-| [As consultas sem acompanhamento não executam mais a resolução de identidade](#notrackingresolution) | Médio      |
-| [Alterações na API de metadados](#metadata-api-changes) | Médio      |
-| [Alterações na API de metadados específicos do provedor](#provider) | Médio      |
-| [UseRowNumberForPaging foi removido](#urn) | Médio      |
-| [O método das quando usado com o procedimento armazenado não pode ser composto](#fromsqlsproc) | Médio      |
+| [O Entity Framework Core não faz mais parte da estrutura compartilhada do ASP.NET Core](#no-longer) | Média      |
+| [Agora, as exclusões em cascata acontecem imediatamente por padrão](#cascade) | Média      |
+| [O carregamento adiantado de entidades relacionadas agora ocorre em uma única consulta](#eager-loading-single-query) | Média      |
+| [DeleteBehavior.Restrict tem uma semântica mais limpa](#deletebehavior) | Média      |
+| [A API de configuração para relações de tipo de propriedade mudou](#config) | Média      |
+| [Cada propriedade usa geração de chave de inteiro em memória independente](#each) | Média      |
+| [As consultas sem acompanhamento não executam mais a resolução de identidade](#notrackingresolution) | Média      |
+| [Alterações na API de metadados](#metadata-api-changes) | Média      |
+| [Alterações na API de metadados específicos do provedor](#provider) | Média      |
+| [UseRowNumberForPaging foi removido](#urn) | Média      |
+| [O método das quando usado com o procedimento armazenado não pode ser composto](#fromsqlsproc) | Média      |
 | [Os métodos FromSql só podem ser especificados em raízes de consulta](#fromsql) | Baixo      |
 | [~~A execução de consulta é registrada no nível da Depuração~~ Revertida](#qe) | Baixo      |
 | [Valores de chave temporários não estão mais definidos em instâncias de entidade](#tkv) | Baixo      |
@@ -406,7 +406,7 @@ context.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
 
 **Comportamento antigo**
 
-Antes de 3,0, carregar cuidadosamente as navegações de coleção por meio de operadores `Include` fizeram com que várias consultas sejam geradas no banco de dados relacional, uma para cada tipo de entidade relacionada.
+Antes de 3,0, carregar cuidadosamente as navegações de coleção por meio de operadores de `Include` fez com que várias consultas sejam geradas no banco de dados relacional, uma para cada tipo de entidade relacionada.
 
 **Comportamento novo**
 
@@ -418,7 +418,7 @@ A emissão de várias consultas para implementar uma única consulta LINQ causou
 
 **Mitigações**
 
-Embora tecnicamente essa não seja uma alteração significativa, ela pode ter um efeito considerável no desempenho do aplicativo quando uma única consulta contém um grande número de operador `Include` em navegações de coleção. [Consulte este comentário](https://github.com/aspnet/EntityFrameworkCore/issues/18022#issuecomment-542397085) para obter mais informações e reescrever consultas de maneira mais eficiente.
+Embora tecnicamente essa não seja uma alteração significativa, ela pode ter um efeito considerável no desempenho do aplicativo quando uma única consulta contém um grande número de operador de `Include` em navegações de coleção. [Consulte este comentário](https://github.com/aspnet/EntityFrameworkCore/issues/18022#issuecomment-542397085) para obter mais informações e reescrever consultas de maneira mais eficiente.
 
 **
 
@@ -1704,7 +1704,7 @@ modelBuilder
 
 **Comportamento antigo**
 
-Um DbFunction configurado com o esquema como uma cadeia de caracteres vazia foi tratado como função interna sem um esquema. Por exemplo, o código a seguir mapeará a função `DatePart` CLR para `DATEPART` função interna no SqlServer.
+Um DbFunction configurado com o esquema como uma cadeia de caracteres vazia foi tratado como função interna sem um esquema. Por exemplo, o código a seguir mapeará `DatePart` função CLR para `DATEPART` função interna no SqlServer.
 
 ```C#
 [DbFunction("DATEPART", Schema = "")]
@@ -1714,7 +1714,7 @@ public static int? DatePart(string datePartArg, DateTime? date) => throw new Exc
 
 **Comportamento novo**
 
-Todos os mapeamentos DbFunction são considerados mapeados para funções definidas pelo usuário. Portanto, o valor da cadeia de caracteres vazia colocaria a função dentro do esquema padrão para o modelo. Que poderia ser o esquema configurado explicitamente por meio da API fluente `modelBuilder.HasDefaultSchema()` ou `dbo`, caso contrário.
+Todos os mapeamentos DbFunction são considerados mapeados para funções definidas pelo usuário. Portanto, o valor da cadeia de caracteres vazia colocaria a função dentro do esquema padrão para o modelo. Que pode ser o esquema configurado explicitamente por meio da API Fluent `modelBuilder.HasDefaultSchema()` ou `dbo` caso contrário.
 
 **Por que**
 

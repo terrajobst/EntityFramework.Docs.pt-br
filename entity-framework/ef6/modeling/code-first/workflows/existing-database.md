@@ -11,7 +11,7 @@ ms.lasthandoff: 10/09/2019
 ms.locfileid: "72182628"
 ---
 # <a name="code-first-to-an-existing-database"></a>Code First a um banco de dados existente
-Este vídeo e instruções passo a passo fornecem uma introdução ao desenvolvimento de Code First direcionamento a um banco de dados existente. Code First permite que você defina seu modelo usando classes C @ no__t-0 ou VB.Net. Opcionalmente, a configuração adicional pode ser executada usando atributos em suas classes e propriedades ou usando uma API fluente.
+Este vídeo e instruções passo a passo fornecem uma introdução ao desenvolvimento de Code First direcionamento a um banco de dados existente. Code First permite que você defina seu modelo usando as classes C\# ou VB.Net. Opcionalmente, a configuração adicional pode ser executada usando atributos em suas classes e propriedades ou usando uma API fluente.
 
 ## <a name="watch-the-video"></a>Assista ao vídeo
 Este vídeo [agora está disponível no Channel 9](https://channel9.msdn.com/blogs/ef/code-first-to-existing-database-ef6-1-onwards-).
@@ -22,7 +22,7 @@ Você precisará ter o **Visual Studio 2012** ou o **Visual Studio 2013** instal
 
 Você também precisará da versão **6,1** (ou posterior) do **Entity Framework Tools para o Visual Studio** instalado. Consulte [obter Entity Framework](~/ef6/fundamentals/install.md) para obter informações sobre como instalar a versão mais recente do Entity Framework Tools.
 
-## <a name="1-create-an-existing-database"></a>1. Criar um banco de dados existente
+## <a name="1-create-an-existing-database"></a>1. criar um banco de dados existente
 
 Normalmente, quando você estiver direcionando um banco de dados existente, ele já será criado, mas para este passo a passos, precisamos criar um banco de dados a ser acessado.
 
@@ -70,19 +70,19 @@ INSERT INTO [dbo].[Blogs] ([Name],[Url])
 VALUES ('.NET Framework Blog', 'http://blogs.msdn.com/dotnet/')
 ```
 
-## <a name="2-create-the-application"></a>2. Criar o aplicativo
+## <a name="2-create-the-application"></a>2. criar o aplicativo
 
 Para manter as coisas simples, vamos criar um aplicativo de console básico que usa Code First para executar o acesso a dados:
 
 -   Abrir o Visual Studio
--   **Arquivo-&gt; Projeto New-&gt;...**
+-   **Arquivo-&gt; novo&gt; projeto...**
 -   Selecione **Windows** no menu à esquerda e no **aplicativo de console**
 -   Insira **CodeFirstExistingDatabaseSample** como o nome
 -   Selecione **OK**
 
  
 
-## <a name="3-reverse-engineer-model"></a>3. Modelo de engenharia reversa
+## <a name="3-reverse-engineer-model"></a>3. modelo de engenharia reversa
 
 Vamos usar o Entity Framework Tools para que o Visual Studio nos ajude a gerar um código inicial para mapear para o banco de dados. Essas ferramentas estão apenas gerando código que você também pode digitar manualmente, se preferir.
 
@@ -117,12 +117,12 @@ Um arquivo app. config foi adicionado ao projeto, esse arquivo contém a cadeia 
 </connectionStrings>
 ```
 
-*You'll Observe algumas outras configurações no arquivo de configuração também, essas são configurações padrão do EF que informam Code First onde criar bancos de dados. Como estamos mapeando para um banco de dados existente, essas configurações serão ignoradas em nosso aplicativo.*
+*Você também observará algumas outras configurações no arquivo de configuração, essas são configurações padrão do EF que informam Code First onde criar bancos de dados. Como estamos mapeando para um banco de dados existente, essas configurações serão ignoradas em nosso aplicativo.*
 
 ### <a name="derived-context"></a>Contexto derivado
 
 Uma classe **BloggingContext** foi adicionada ao projeto. O contexto representa uma sessão com o banco de dados, o que nos permite consultar e salvar os dados.
-O contexto expõe um **DbSet @ no__t-1TEntity @ no__t-2** para cada tipo em nosso modelo. Você também observará que o construtor padrão chama um construtor base usando a sintaxe **Name =** . Isso informa Code First que a cadeia de conexão a ser usada para esse contexto deve ser carregada a partir do arquivo de configuração.
+O contexto expõe um **DbSet&lt;TEntity&gt;** para cada tipo em nosso modelo. Você também observará que o construtor padrão chama um construtor base usando a sintaxe **Name =** . Isso informa Code First que a cadeia de conexão a ser usada para esse contexto deve ser carregada a partir do arquivo de configuração.
 
 ``` csharp
 public partial class BloggingContext : DbContext
@@ -141,11 +141,11 @@ public partial class BloggingContext : DbContext
     }
 ```
 
-*You sempre deve usar a sintaxe **Name =** quando você estiver usando uma cadeia de conexão no arquivo de configuração. Isso garante que, se a cadeia de conexão não estiver presente, Entity Framework será lançada em vez de criar um novo banco de dados por convenção.*
+*Você sempre deve usar a sintaxe **Name =** quando estiver usando uma cadeia de conexão no arquivo de configuração. Isso garante que, se a cadeia de conexão não estiver presente, Entity Framework será lançada em vez de criar um novo banco de dados por convenção.*
 
 ### <a name="model-classes"></a>Classes de modelo
 
-Por fim, um **blog** e uma classe **post** também foram adicionados ao projeto. Essas são as classes de domínio que compõem nosso modelo. Você verá as anotações de dados aplicadas às classes para especificar a configuração em que as convenções de Code First não se alinhariam com a estrutura do banco de dados existente. Por exemplo, você verá a anotação **StringLength** em **blog.Name** e **blog. URL** , pois eles têm um comprimento máximo de **200** no banco de dados (o padrão de Code First é usar o comprimento de máximo suportado pelo provedor de banco de dados- **nvarchar (max)** em SQL Server).
+Por fim, um **blog** e uma classe **post** também foram adicionados ao projeto. Essas são as classes de domínio que compõem nosso modelo. Você verá as anotações de dados aplicadas às classes para especificar a configuração em que as convenções de Code First não se alinhariam com a estrutura do banco de dados existente. Por exemplo, você verá a anotação **StringLength** em **blog.Name** e **blog. URL** , pois eles têm um comprimento máximo de **200** no banco de dados (o padrão de Code First é usar o comprimento de máximo suportado pelo provedor de banco de dados – **nvarchar (max)** em SQL Server).
 
 ``` csharp
 public partial class Blog
@@ -167,7 +167,7 @@ public partial class Blog
 }
 ```
 
-## <a name="4-reading--writing-data"></a>4. Lendo & gravando dados
+## <a name="4-reading--writing-data"></a>4. lendo & gravando dados
 
 Agora que temos um modelo, é hora de usá-lo para acessar alguns dados. Implemente o método **Main** em **Program.cs** , conforme mostrado abaixo. Esse código cria uma nova instância do nosso contexto e, em seguida, a usa para inserir um novo **blog**. Em seguida, ele usa uma consulta LINQ para recuperar todos os **Blogs** do banco de dados ordenado alfabeticamente por **título**.
 

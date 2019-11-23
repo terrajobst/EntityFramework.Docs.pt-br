@@ -18,7 +18,7 @@ Isso deve ser direto para aplicativos que usam DbContext, conforme fornecido no 
 
 Aqui está uma lista de verificação das coisas que você precisa fazer para atualizar um aplicativo existente para o EF6.
 
-## <a name="1-install-the-ef6-nuget-package"></a>1. Instalar o pacote NuGet do EF6
+## <a name="1-install-the-ef6-nuget-package"></a>1. instalar o pacote NuGet do EF6
 
 Você precisa atualizar para o novo tempo de execução do Entity Framework 6.
 
@@ -37,14 +37,14 @@ Install-Package EntityFramework
 
 A instalação do pacote NuGet do EF6 deve remover automaticamente todas as referências a System. Data. Entity do seu projeto para você.
 
-## <a name="3-swap-any-ef-designer-edmx-models-to-use-ef-6x-code-generation"></a>3. Trocar qualquer modelo de designer de EF (EDMX) para usar a geração de código do EF 6. x
+## <a name="3-swap-any-ef-designer-edmx-models-to-use-ef-6x-code-generation"></a>3. alternar modelos do EF designer (EDMX) para usar a geração de código do EF 6. x
 
 Se você tiver modelos criados com o designer do EF, precisará atualizar os modelos de geração de código para gerar o código compatível com EF6.
 
 > [!NOTE]
 > Atualmente, há apenas os modelos de gerador do EF 6. x DbContext disponíveis para o Visual Studio 2012 e 2013.
 
-1. Excluir modelos de geração de código existentes. Esses arquivos normalmente serão nomeados **@no__t -1edmx_file_name\>.tt** e **\<edmx_file_name @ no__t-5. Context.tt** e estar aninhado em seu arquivo EDMX em Gerenciador de soluções. Você pode selecionar os modelos em Gerenciador de Soluções e pressionar a tecla **del** para excluí-los.  
+1. Excluir modelos de geração de código existentes. Esses arquivos normalmente serão nomeados **\<edmx_file_name\>. tt** e **\<edmx_file_name\>. Context.tt** e estar aninhado em seu arquivo EDMX em Gerenciador de soluções. Você pode selecionar os modelos em Gerenciador de Soluções e pressionar a tecla **del** para excluí-los.  
    > [!NOTE]
    > Em projetos de site, os modelos não serão aninhados em seu arquivo EDMX, mas listados junto com ele em Gerenciador de Soluções.  
 
@@ -58,7 +58,7 @@ Se você tiver modelos criados com o designer do EF, precisará atualizar os mod
     - Se você estiver usando a API ObjectContext, precisará selecionar a guia **online** e procurar por gerador de **EntityObject do EF 6. x**.  
 3. Se você aplicou personalizações aos modelos de geração de código, precisará reaplicá-las aos modelos atualizados.
 
-## <a name="4-update-namespaces-for-any-core-ef-types-being-used"></a>4. Atualizar namespaces para os tipos principais do EF que estão sendo usados
+## <a name="4-update-namespaces-for-any-core-ef-types-being-used"></a>4. atualizar namespaces para os tipos principais do EF que estão sendo usados
 
 Os namespaces dos tipos DbContext e Code First não foram alterados. Isso significa que para muitos aplicativos que usam o EF 4,1 ou posterior, você não precisará alterar nada.
 
@@ -70,7 +70,7 @@ A regra geral para alterações de namespace é que qualquer tipo em System. Dat
 - System. Data. Objects. ObjectContext = > System. Data. **Entity. Core**. Objects. ObjectContext  
 - System. Data. Objects. DataClasses. RelationshipManager = > System. Data. **Entity. Core**. Objects. DataClasses. RelationshipManager  
 
-Esses tipos estão nos namespaces *principais* porque não são usados diretamente para a maioria dos aplicativos baseados em DbContext. Alguns tipos que faziam parte de System. Data. Entity. dll ainda são usados normalmente e diretamente para aplicativos baseados em DbContext e, portanto, não foram movidos para os namespaces *centrais* . Elas são:
+Esses tipos estão nos namespaces *principais* porque não são usados diretamente para a maioria dos aplicativos baseados em DbContext. Alguns tipos que faziam parte de System. Data. Entity. dll ainda são usados normalmente e diretamente para aplicativos baseados em DbContext e, portanto, não foram movidos para os namespaces *centrais* . Eles são:
 
 - System. Data. EntityState = > System. Data. **Entidade**. EntityState  
 - System. Data. Objects. DataClasses. EdmFunctionAttribute = > System. Data. **Entity. DbFunctionAttribute**  

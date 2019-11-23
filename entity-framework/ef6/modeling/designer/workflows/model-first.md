@@ -18,7 +18,7 @@ Este vídeo e instruções passo a passo fornecem uma introdução ao desenvolvi
 
 **Apresentado por**: [Rowan Miller](https://romiller.com/)
 
-**Vídeo**: [WMV](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.wmv) | [MP4](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-mp4video-modelfirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.zip)
+**Vídeo**: [wmv](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.wmv) | [MP4](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-mp4video-modelfirst.m4v) | [WMV (zip)](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.zip)
 
 ## <a name="pre-requisites"></a>Pré-requisitos
 
@@ -26,17 +26,17 @@ Você precisará ter o Visual Studio 2010 ou o Visual Studio 2012 instalado para
 
 Se você estiver usando o Visual Studio 2010, também será necessário ter o [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) instalado.
 
-## <a name="1-create-the-application"></a>1. Criar o aplicativo
+## <a name="1-create-the-application"></a>1. criar o aplicativo
 
 Para manter as coisas simples, vamos criar um aplicativo de console básico que usa o Model First para executar o acesso a dados:
 
 -   Abrir o Visual Studio
--   **Arquivo-&gt; Projeto New-&gt;...**
+-   **Arquivo-&gt; novo&gt; projeto...**
 -   Selecione **Windows** no menu à esquerda e no **aplicativo de console**
 -   Insira **ModelFirstSample** como o nome
 -   Selecione **OK**
 
-## <a name="2-create-model"></a>2. Criar modelo
+## <a name="2-create-model"></a>2. criar modelo
 
 Vamos usar Entity Framework Designer, que é incluído como parte do Visual Studio, para criar nosso modelo.
 
@@ -51,23 +51,23 @@ O Entity Framework Designer é aberto com um modelo em branco. Agora, podemos co
 
 -   Clique com o botão direito do mouse na superfície de design e selecione **Propriedades**
 -   No janela Propriedades alterar o **nome do contêiner de entidade** para **BloggingContext**
-    *este é o nome do contexto derivado que será gerado para você, o contexto representa uma sessão com o banco de dados, permitindo que possamos consultar e salvar dados* do
--   Clique com o botão direito do mouse na superfície de design e selecione **Adicionar entidade New-&gt;...**
+    *este é o nome do contexto derivado que será gerado para você, o contexto representa uma sessão com o banco de dados, permitindo consultar e salvar os dados*
+-   Clique com o botão direito do mouse na superfície de design e selecione **Adicionar nova-&gt; entidade...**
 -   Insira o **blog** como o nome da entidade e o **blogid** como o nome da chave e clique em **OK**
 
     ![Adicionar entidade de blog](~/ef6/media/addblogentity.png)
 
--   Clique com o botão direito do mouse na nova entidade na superfície de design e selecione **Adicionar New-&gt; Propriedade escalar**, insira o **nome** como o nome da propriedade.
+-   Clique com o botão direito do mouse na nova entidade na superfície de design e selecione **Adicionar novo-&gt; Propriedade escalar**, insira o **nome** como o nome da propriedade.
 -   Repita esse processo para adicionar uma propriedade de **URL** .
--   Clique com o botão direito do mouse na propriedade **URL** na superfície de design e selecione **propriedades**, na janela Propriedades altere a configuração **Nullable** para **true**
-    *isso nos permite salvar um blog no banco de dados sem atribuir a ele uma URL *
+-   Clique com o botão direito do mouse na propriedade **URL** na superfície de design e selecione **propriedades**, na janela Propriedades alterar a configuração **anulável** para **true**
+    *isso nos permitirá salvar um blog no banco de dados sem atribuir a ele uma URL*
 -   Usando as técnicas que você acabou de aprender, adicione uma entidade **post** com uma propriedade de chave **postid**
 -   Adicionar propriedades escalares de **título** e **conteúdo** à entidade **post**
 
 Agora que temos algumas entidades, é hora de adicionar uma associação (ou relação) entre elas.
 
--   Clique com o botão direito do mouse na superfície de design e selecione **Adicionar nova associação de &gt;...**
--   Faça com que uma extremidade da relação aponte para o **blog** com uma multiplicidade de **um** e o outro ponto de extremidade para **postar** com uma multiplicidade de **muitos**
+-   Clique com o botão direito do mouse na superfície de design e selecione **Adicionar nova-&gt; associação...**
+-   Faça com que uma extremidade do relacionamento aponte para o **blog** com uma multiplicidade de **um** e o outro ponto de extremidade para **postar** com uma multiplicidade de **muitos**
     *isso significa que um blog tem muitas postagens e uma postagem pertence a um blog*
 -   Verifique se a caixa de seleção **Adicionar propriedades de chave estrangeira à entidade ' Post '** está marcada e clique em **OK**
 
@@ -83,7 +83,7 @@ Se você estiver trabalhando no Visual Studio 2010, há algumas etapas adicionai
 
 Primeiro, precisamos obter a versão mais recente do Entity Framework do NuGet.
 
--   **Projeto – &gt; gerenciar pacotes NuGet...** 
+-   **Projeto –&gt; gerenciar pacotes NuGet...** 
     *se você não tiver a opção **gerenciar pacotes NuGet...** , você deve instalar a [versão mais recente do NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) *
 -   Selecione a guia **online**
 -   Selecionar o pacote do **EntityFramework**
@@ -93,11 +93,11 @@ Em seguida, precisamos trocar nosso modelo para gerar código que usa a API DbCo
 
 -   Clique com o botão direito do mouse em um ponto vazio do modelo no designer do EF e selecione **Adicionar item de geração de código...**
 -   Selecione **Modelos online** no menu à esquerda e pesquise por **DbContext**
--   Selecione o gerador de DbContext do EF **5. x para C @ no__t-1**, digite **BloggingModel** como o nome e clique em **Adicionar**
+-   Selecione o gerador de DbContext do EF **5. x para C\#** , insira **BloggingModel** como o nome e clique em **Adicionar**
 
     ![Modelo DbContext](~/ef6/media/dbcontexttemplate.png)
 
-## <a name="3-generating-the-database"></a>3. Gerando o banco de dados
+## <a name="3-generating-the-database"></a>3. gerando o banco de dados
 
 Considerando nosso modelo, Entity Framework pode calcular um esquema de banco de dados que nos permitirá armazenar e recuperar dados usando o modelo.
 
@@ -120,7 +120,7 @@ Vamos continuar e gerar o banco de dados.
 -   Depois que o script for exibido, clique em **concluir** e o script será adicionado ao seu projeto e aberto
 -   Clique com o botão direito do mouse no script e selecione **executar**. você será solicitado a especificar o banco de dados ao qual se conectar, especificar LocalDB ou SQL Server Express, dependendo da versão do Visual Studio que você está usando
 
-## <a name="4-reading--writing-data"></a>4. Lendo & gravando dados
+## <a name="4-reading--writing-data"></a>4. lendo & gravando dados
 
 Agora que temos um modelo, é hora de usá-lo para acessar alguns dados. As classes que usaremos para acessar os dados estão sendo geradas automaticamente para você com base no arquivo EDMX.
 
@@ -172,7 +172,7 @@ ADO.NET Blog
 Press any key to exit...
 ```
 
-## <a name="5-dealing-with-model-changes"></a>5. Lidando com alterações de modelo
+## <a name="5-dealing-with-model-changes"></a>5. lidando com alterações de modelo
 
 Agora é hora de fazer algumas alterações em nosso modelo, quando fazemos essas alterações, também precisamos atualizar o esquema do banco de dados.
 
@@ -182,7 +182,7 @@ Vamos começar adicionando uma nova entidade de usuário ao nosso modelo.
 
     ![Adicionar entidade de usuário](~/ef6/media/adduserentity.png)
 
--   Clique com o botão direito do mouse na propriedade **username** na superfície de design e selecione **Properties**, na janela Propriedades altere a configuração **MaxLength** para **50**
+-   Clique com o botão direito do mouse na propriedade **username** na superfície de design e selecione **Properties**, no janela Propriedades altere a configuração **MaxLength** para **50**
     *isso restringe os dados que podem ser armazenados em nome de usuário para 50 caracteres*
 -   Adicionar uma propriedade escalar **DisplayName** à entidade do **usuário**
 
@@ -192,7 +192,7 @@ Agora temos um modelo atualizado e estamos prontos para atualizar o banco de dad
 -   Clique em **concluir**
 -   Você pode receber avisos sobre como substituir o script DDL existente e as partes de mapeamento e armazenamento do modelo, clicar em **Sim** para ambos os avisos
 -   O script SQL atualizado para criar o banco de dados está aberto para você  
-    o script *The gerado removerá todas as tabelas existentes e, em seguida, recriará o esquema do zero. Isso pode funcionar para o desenvolvimento local, mas não é viável para enviar alterações por push a um banco de dados que já foi implantado. Se você precisar publicar alterações em um banco de dados que já foi implantado, será necessário editar o script ou usar uma ferramenta de comparação de esquema para calcular um script de migração.*
+    *O script gerado removerá todas as tabelas existentes e, em seguida, recriará o esquema do zero. Isso pode funcionar para o desenvolvimento local, mas não é viável para enviar alterações por push a um banco de dados que já foi implantado. Se você precisar publicar alterações em um banco de dados que já foi implantado, será necessário editar o script ou usar uma ferramenta de comparação de esquema para calcular um script de migração.*
 -   Clique com o botão direito do mouse no script e selecione **executar**. você será solicitado a especificar o banco de dados ao qual se conectar, especificar LocalDB ou SQL Server Express, dependendo da versão do Visual Studio que você está usando
 
 ## <a name="summary"></a>Resumo

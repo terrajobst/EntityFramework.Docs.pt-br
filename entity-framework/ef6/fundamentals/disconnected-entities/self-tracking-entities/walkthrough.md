@@ -54,8 +54,8 @@ Vamos continuar e gerar o banco de dados.
     -   Clique com o botão direito do mouse no banco de dados em Gerenciador de Servidores e selecione **nova consulta**
     -   Copie o SQL a seguir na nova consulta, clique com o botão direito do mouse na consulta e selecione **executar**
 -   Se você estiver usando o Visual Studio 2010
-    -   Selecione **Data-&gt; editor TRANSACT SQL-&gt; nova conexão de consulta...**
-    -   Insira **. \\SQLEXPRESS** como o nome do servidor e clique em **OK**
+    -   Selecione **Data-&gt; Editor Transact-SQL-&gt; nova conexão de consulta...**
+    -   Insira **.\\SQLExpress** como o nome do servidor e clique em **OK**
     -   Selecione o banco de dados **STESample** na lista suspensa na parte superior do editor de consultas
     -   Copie o SQL a seguir na nova consulta, clique com o botão direito do mouse na consulta e selecione **Executar SQL**
 
@@ -87,8 +87,8 @@ Vamos continuar e gerar o banco de dados.
 
 Primeiro, precisamos de um projeto no qual colocar o modelo.
 
--   **Arquivo-&gt; Projeto New-&gt;...**
--   Selecione **Visual C @ no__t-1** no painel esquerdo e biblioteca de **classes**
+-   **Arquivo-&gt; novo&gt; projeto...**
+-   Selecione o **\#do Visual C** no painel esquerdo e, em seguida, **biblioteca de classes**
 -   Insira **STESample** como o nome e clique em **OK**
 
 Agora, vamos criar um modelo simples no designer do EF para acessar nosso banco de dados:
@@ -111,7 +111,7 @@ Agora, precisamos desabilitar a geração de código padrão e alternar para ent
     *isso desabilitará a geração de código padrão*
 -   Clique com o botão direito do mouse em uma área vazia na superfície do designer do EF e selecione **Adicionar item de geração de código...**
 -   Selecione **online** no painel esquerdo e procure por **gerador de lar**
--   Selecione o **gerador de lar para o modelo C @ no__t-1** , digite **STETemplate** como o nome e clique em **Adicionar**
+-   Selecione o **lar generator for C\#** template, digite **STETemplate** como o nome e clique em **Adicionar**
 -   Os arquivos **STETemplate.tt** e **STETemplate.Context.tt** são adicionados aninhados no arquivo BloggingModel. edmx
 
 ### <a name="if-you-are-using-visual-studio-2010"></a>Se você estiver usando o Visual Studio 2010
@@ -133,12 +133,12 @@ A primeira etapa é parar a geração de classes de entidade no projeto existent
 
 Em seguida, vamos adicionar um novo projeto e gerar as classes de entidade nele
 
--   **Arquivo-&gt; Add-&gt; projeto...**
--   Selecione **Visual C @ no__t-1** no painel esquerdo e biblioteca de **classes**
+-   **&gt;&gt; projeto de adição de arquivo...**
+-   Selecione o **\#do Visual C** no painel esquerdo e, em seguida, **biblioteca de classes**
 -   Insira **STESample. Entities** como o nome e clique em **OK**
 -   **Projeto-&gt; Adicionar item existente...**
 -   Navegue até a pasta do projeto **STESample**
--   Selecione para exibir **todos os arquivos (\*. \*)**
+-   Selecione para exibir **todos os arquivos (\*.\*)**
 -   Selecione o arquivo **STETemplate.tt**
 -   Clique na seta suspensa ao lado do botão **Adicionar** e selecione **Adicionar como link**
 
@@ -162,14 +162,14 @@ Por fim, o projeto com nosso contexto será necessário uma referência aos tipo
     -   No Visual Studio 2010-selecione a guia **projetos** , selecione **STESample. Entities** e clique em **OK**
 
 >[!NOTE]
-> Outra opção para mover os tipos de entidade para um projeto separado é mover o arquivo de modelo, em vez de vinculá-lo de seu local padrão. Se você fizer isso, precisará atualizar a variável **InputFile** no modelo para fornecer o caminho relativo para o arquivo EDMX (neste exemplo, que seria **.. \\BloggingModel. edmx**).
+> Outra opção para mover os tipos de entidade para um projeto separado é mover o arquivo de modelo, em vez de vinculá-lo de seu local padrão. Se você fizer isso, será necessário atualizar a variável de **InputFile** no modelo para fornecer o caminho relativo para o arquivo EDMX (neste exemplo, que seria **..\\BloggingModel. edmx**).
 
 ## <a name="create-a-wcf-service"></a>Criar um serviço WCF
 
 Agora é hora de adicionar um serviço WCF para expor nossos dados, vamos começar criando o projeto.
 
--   **Arquivo-&gt; Add-&gt; projeto...**
--   Selecione **Visual C @ no__t-1** no painel esquerdo e, em seguida, **aplicativo de serviço WCF**
+-   **&gt;&gt; projeto de adição de arquivo...**
+-   Selecione o **Visual C\#** no painel esquerdo e, em seguida, **aplicativo de serviço WCF**
 -   Insira **STESample. Service** como o nome e clique em **OK**
 -   Adicionar uma referência ao assembly **System. Data. Entity**
 -   Adicione uma referência aos projetos **STESample** e **STESample. Entities**
@@ -258,8 +258,8 @@ Agora é hora de implementar o serviço real.
 
 Vamos criar um aplicativo de console que usa nosso serviço.
 
--   **Arquivo-&gt; Projeto New-&gt;...**
--   Selecione **Visual C @ no__t-1** no painel esquerdo e, em seguida, **aplicativo de console**
+-   **Arquivo-&gt; novo&gt; projeto...**
+-   Selecione o **Visual C\#** no painel esquerdo e, em seguida, **aplicativo de console**
 -   Insira **STESample. ConsoleTest** como o nome e clique em **OK**
 -   Adicionar uma referência ao projeto **STESample. Entities**
 
@@ -438,8 +438,8 @@ Press any key to exit...
 
 Vamos criar um aplicativo WPF que usa nosso serviço.
 
--   **Arquivo-&gt; Projeto New-&gt;...**
--   Selecione **Visual C @ no__t-1** no painel esquerdo e, em seguida, **aplicativo WPF**
+-   **Arquivo-&gt; novo&gt; projeto...**
+-   Selecione o **Visual C\#** no painel esquerdo e, em seguida, **aplicativo WPF**
 -   Insira **STESample. WPFTest** como o nome e clique em **OK**
 -   Adicionar uma referência ao projeto **STESample. Entities**
 
