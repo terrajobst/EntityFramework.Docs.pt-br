@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3e2f7698-fec2-4cec-9e2d-2e3e0074120c
 uid: core/providers/sqlite/index
-ms.openlocfilehash: 4637044b1712280d3cdca6bcca1ca61564ff78ea
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 433dedbe1e0e11bf2fd83e259e321ece32b2c188
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656080"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824795"
 ---
 # <a name="sqlite-ef-core-database-provider"></a>Provedor de Banco de Dados EF Core SQLite
 
@@ -21,7 +21,7 @@ Instale o [pacote NuGet Microsoft.EntityFrameworkCore.Sqlite](https://www.nuget.
 
 ## <a name="net-core-clitabdotnet-core-cli"></a>[CLI do .NET Core](#tab/dotnet-core-cli)
 
-``` console
+```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 ```
 

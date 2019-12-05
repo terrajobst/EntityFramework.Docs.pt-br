@@ -1,14 +1,14 @@
 ---
 title: Resiliência de conexão e lógica de repetição-EF6
-author: divega
-ms.date: 10/23/2016
+author: AndriySvyryd
+ms.date: 11/20/2019
 ms.assetid: 47d68ac1-927e-4842-ab8c-ed8c8698dff2
-ms.openlocfilehash: a01216c3399ca4a04943563435eacd0047337a5f
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 50e65bed32d0cfcf42746da0d632f9e990424b97
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306570"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824842"
 ---
 # <a name="connection-resiliency-and-retry-logic"></a>Resiliência de conexão e lógica de repetição
 > [!NOTE]
@@ -124,77 +124,14 @@ using (var db = new BloggingContext())
 
 Isso não é suportado quando se usa uma estratégia de execução de repetição porque o EF não reconhece nenhuma operação anterior e como repeti-las. Por exemplo, se o segundo SaveChanges falhar, o EF não terá mais as informações necessárias para tentar novamente a primeira chamada SaveChanges.  
 
-### <a name="workaround-suspend-execution-strategy"></a>Solução alternativa: Suspender estratégia de execução  
+### <a name="solution-manually-call-execution-strategy"></a>Solução: chamar a estratégia de execução manualmente  
 
-Uma solução possível é suspender a estratégia de execução de repetição para o trecho de código que precisa usar uma transação iniciada pelo usuário. A maneira mais fácil de fazer isso é adicionar um sinalizador SuspendExecutionStrategy à sua classe de configuração baseada em código e alterar o lambda da estratégia de execução para retornar a estratégia de execução padrão (sem revinculação) quando o sinalizador for definido.  
-
-``` csharp
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.SqlServer;
-using System.Runtime.Remoting.Messaging;
-
-namespace Demo
-{
-    public class MyConfiguration : DbConfiguration
-    {
-        public MyConfiguration()
-        {
-            this.SetExecutionStrategy("System.Data.SqlClient", () => SuspendExecutionStrategy
-              ? (IDbExecutionStrategy)new DefaultExecutionStrategy()
-              : new SqlAzureExecutionStrategy());
-        }
-
-        public static bool SuspendExecutionStrategy
-        {
-            get
-            {
-                return (bool?)CallContext.LogicalGetData("SuspendExecutionStrategy") ?? false;
-            }
-            set
-            {
-                CallContext.LogicalSetData("SuspendExecutionStrategy", value);
-            }
-        }
-    }
-}
-```  
-
-Observe que estamos usando CallContext para armazenar o valor do sinalizador. Isso fornece uma funcionalidade semelhante ao armazenamento local de thread, mas é seguro usá-lo com código assíncrono, incluindo a consulta assíncrona e salvar com Entity Framework.  
-
-Agora podemos suspender a estratégia de execução para a seção de código que usa uma transação iniciada pelo usuário.  
-
-``` csharp
-using (var db = new BloggingContext())
-{
-    MyConfiguration.SuspendExecutionStrategy = true;
-
-    using (var trn = db.Database.BeginTransaction())
-    {
-        db.Blogs.Add(new Blog { Url = "http://msdn.com/data/ef" });
-        db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-        db.SaveChanges();
-
-        db.Blogs.Add(new Blog { Url = "http://twitter.com/efmagicunicorns" });
-        db.SaveChanges();
-
-        trn.Commit();
-    }
-
-    MyConfiguration.SuspendExecutionStrategy = false;
-}
-```  
-
-### <a name="workaround-manually-call-execution-strategy"></a>Solução alternativa: Chamar manualmente a estratégia de execução  
-
-Outra opção é usar manualmente a estratégia de execução e dar a ela o conjunto inteiro de lógica a ser executado, para que possa tentar novamente tudo se uma das operações falhar. Ainda precisamos suspender a estratégia de execução-usando a técnica mostrada acima, de modo que os contextos usados dentro do bloco de código com nova tentativa não tentem novamente.  
+A solução é usar manualmente a estratégia de execução e dar a ela o conjunto inteiro de lógica a ser executado, para que possa tentar novamente tudo se uma das operações falhar. Quando uma estratégia de execução derivada de DbExecutionStrategy estiver sendo executada, suspenderá a estratégia de execução implícita usada no SaveChanges.  
 
 Observe que os contextos devem ser construídos dentro do bloco de código a ser repetido. Isso garante que estamos começando com um estado limpo para cada repetição.  
 
 ``` csharp
 var executionStrategy = new SqlAzureExecutionStrategy();
-
-MyConfiguration.SuspendExecutionStrategy = true;
 
 executionStrategy.Execute(
     () =>
@@ -214,6 +151,4 @@ executionStrategy.Execute(
             }
         }
     });
-
-MyConfiguration.SuspendExecutionStrategy = false;
 ```  

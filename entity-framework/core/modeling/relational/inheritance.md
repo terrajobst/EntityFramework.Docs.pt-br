@@ -1,15 +1,16 @@
 ---
 title: Herança (banco de dados relacional)-EF Core
-author: rowanmiller
-ms.date: 10/27/2016
-ms.assetid: 9a7c5488-aaf4-4b40-b1ff-f435ff30f6ec
+description: Como configurar a herança de tipo de entidade em um banco de dados relacional usando Entity Framework Core
+author: AndriySvyryd
+ms.author: ansvyryd
+ms.date: 11/06/2019
 uid: core/modeling/relational/inheritance
-ms.openlocfilehash: 381d1878007bb78b359eb49649f4356f1e5eb04a
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 30e25aa2968ceab03404baddb46e0ae59fc3ea6b
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655638"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824748"
 ---
 # <a name="inheritance-relational-database"></a>Herança (banco de dados relacional)
 
@@ -23,7 +24,7 @@ A herança no modelo do EF é usada para controlar como a herança nas classes d
 
 ## <a name="conventions"></a>Convenções
 
-Por convenção, a herança será mapeada usando o padrão de tabela por hierarquia (TPH). TPH usa uma única tabela para armazenar os dados de todos os tipos na hierarquia. Uma coluna discriminadora é usada para identificar o tipo que cada linha representa.
+Por padrão, a herança será mapeada usando o padrão de tabela por hierarquia (TPH). TPH usa uma única tabela para armazenar os dados de todos os tipos na hierarquia. Uma coluna discriminadora é usada para identificar o tipo que cada linha representa.
 
 EF Core só configurará a herança se dois ou mais tipos herdados forem explicitamente incluídos no modelo (consulte [herança](../inheritance.md) para obter mais detalhes).
 
@@ -31,7 +32,7 @@ Veja abaixo um exemplo que mostra um cenário de herança simples e os dados arm
 
 [!code-csharp[Main](../../../../samples/core/Modeling/Conventions/InheritanceDbSets.cs#Model)]
 
-![imagem](_static/inheritance-tph-data.png)
+![image](_static/inheritance-tph-data.png)
 
 >[!NOTE]
 > As colunas de banco de dados são automaticamente tornadas anuláveis conforme necessário ao usar o mapeamento TPH.
@@ -50,48 +51,14 @@ Você pode usar a API fluente para configurar o nome e o tipo da coluna discrimi
 
 Nos exemplos acima, o discriminador é criado como uma [Propriedade Shadow](xref:core/modeling/shadow-properties) na entidade base da hierarquia. Como é uma propriedade no modelo, ela pode ser configurada assim como outras propriedades. Por exemplo, para definir o comprimento máximo quando o discriminador padrão por convenção está sendo usado:
 
-```C#
-modelBuilder.Entity<Blog>()
-    .Property("Discriminator")
-    .HasMaxLength(200);
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/DefaultDiscriminator.cs#DiscriminatorConfiguration)]
 
-O discriminador também pode ser mapeado para uma propriedade CLR real em sua entidade. Por exemplo:
+O discriminador também pode ser mapeado para uma propriedade do .NET em sua entidade e configurá-lo. Por exemplo:
 
-```C#
-class MyContext : DbContext
-{
-    public DbSet<Blog> Blogs { get; set; }
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/NonShadowDiscriminator.cs#NonShadowDiscriminator)]
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Blog>()
-            .HasDiscriminator<string>("BlogType");
-    }
-}
+## <a name="shared-columns"></a>Colunas compartilhadas
 
-public class Blog
-{
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-    public string BlogType { get; set; }
-}
+Quando dois tipos de entidade irmãos têm uma propriedade com o mesmo nome, eles serão mapeados para duas colunas separadas por padrão. Mas se eles forem compatíveis, eles poderão ser mapeados para a mesma coluna:
 
-public class RssBlog : Blog
-{
-    public string RssUrl { get; set; }
-}
-```
-
-Combinando essas duas coisas em conjunto, é possível mapear o discriminador para uma propriedade real e configurá-lo:
-
-```C#
-modelBuilder.Entity<Blog>(b =>
-{
-    b.HasDiscriminator<string>("BlogType");
-
-    b.Property(e => e.BlogType)
-        .HasMaxLength(200)
-        .HasColumnName("blog_type");
-});
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/SharedTPHColumns.cs#SharedTPHColumns)]

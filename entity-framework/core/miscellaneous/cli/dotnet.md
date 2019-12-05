@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 29434c26a503fabb16b43ee8f0c36136a0b5b745
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.openlocfilehash: 5686d28e6847797130476cd858bd3fb611620140
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72811966"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824472"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Referência de ferramentas de Entity Framework Core-CLI .NET
 
@@ -33,17 +33,17 @@ O procedimento de instalação depende do tipo de projeto e da versão:
 
 * `dotnet ef` deve ser instalado como uma ferramenta global ou local. A maioria dos desenvolvedores irá instalar `dotnet ef` como uma ferramenta global com o seguinte comando:
 
-  ``` console
+  ```dotnetcli
   dotnet tool install --global dotnet-ef
   ```
 
   Você também pode usar `dotnet ef` ferramenta local. Para usá-lo como uma ferramenta local, restaure as dependências de um projeto que a declare como uma dependência de ferramentas usando um [arquivo de manifesto da ferramenta](https://github.com/dotnet/cli/issues/10288).
 
-* Instale o [SDK do .NET Core 3,0](https://dotnet.microsoft.com/download/dotnet-core/3.0)). O SDK deve ser instalado mesmo que você tenha a versão mais recente do Visual Studio.
+* Instale o [SDK do .NET Core 3,0](https://dotnet.microsoft.com/download/dotnet-core/3.0). O SDK deve ser instalado mesmo que você tenha a versão mais recente do Visual Studio.
 
 * Instale o pacote de `Microsoft.EntityFrameworkCore.Design` mais recente.
 
-  ``` Console
+  ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.Design
   ```
 
@@ -61,7 +61,7 @@ Os comandos `dotnet ef` estão incluídos no SDK do .NET Core, mas para habilita
 
 * Instale o pacote de `Microsoft.EntityFrameworkCore.Design` estável mais recente.
 
-  ``` Console
+  ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.Design
   ```
 
@@ -75,7 +75,7 @@ Os comandos `dotnet ef` estão incluídos no SDK do .NET Core, mas para habilita
 
 * Instale a versão mais recente do 1. x do pacote de `Microsoft.EntityFrameworkCore.Design`, por exemplo:
 
-  ```console
+  ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.Design -v 1.1.6
   ```
 
@@ -101,11 +101,11 @@ Os comandos `dotnet ef` estão incluídos no SDK do .NET Core, mas para habilita
 
   Uma referência de pacote com `PrivateAssets="All"` não é exposta a projetos que fazem referência a este projeto. Essa restrição é especialmente útil para pacotes que normalmente são usados apenas durante o desenvolvimento.
 
-### <a name="verify-installation"></a>Verificar instalação
+### <a name="verify-installation"></a>Verifique a instalação
 
 Execute os seguintes comandos para verificar se as ferramentas da CLI do EF Core estão instaladas corretamente:
 
-  ``` Console
+  ```dotnetcli
   dotnet restore
   dotnet ef
   ```
@@ -165,7 +165,7 @@ Para especificar o ambiente para projetos de ASP.NET Core, defina a variável de
 | `-s`              | `--startup-project <PROJECT>`     | Caminho relativo para a pasta do projeto de inicialização. O valor padrão é a pasta atual.                                                                                                                                                              |
 |                   | `--framework <FRAMEWORK>`         | O [moniker da estrutura de destino](/dotnet/standard/frameworks#supported-target-framework-versions) para a [estrutura de destino](/dotnet/standard/frameworks).  Use quando o arquivo de projeto especificar várias estruturas de destino e você desejar selecionar uma delas. |
 |                   | `--configuration <CONFIGURATION>` | A configuração de Build, por exemplo: `Debug` ou `Release`.                                                                                                                                                                                                   |
-|                   | `--runtime <IDENTIFIER>`          | O identificador do tempo de execução de destino para o qual restaurar os pacotes. Para obter uma lista de RIDs (Identificadores de Tempo de Execução), veja o [Catálogo de RIDs](/dotnet/core/rid-catalog).                                                                                                      |
+|                   | `--runtime <IDENTIFIER>`          | O identificador do tempo de execução de destino para o qual restaurar os pacotes. Para obter uma lista de RIDs (Identificadores de Runtime), veja o [Catálogo de RIDs](/dotnet/core/rid-catalog).                                                                                                      |
 | `-h`              | `--help`                          | Mostrar informações de ajuda.                                                                                                                                                                                                                                        |
 | `-v`              | `--verbose`                       | Mostrar saída detalhada.                                                                                                                                                                                                                                          |
 |                   | `--no-color`                      | Não colorir a saída.                                                                                                                                                                                                                                        |
@@ -188,13 +188,13 @@ Atualiza o banco de dados para a última migração ou para uma migração espec
 
 Argumentos:
 
-| Argumento      | Descrição                                                                                                                                                                                                                                                     |
+| Argument      | Descrição                                                                                                                                                                                                                                                     |
 |:--------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `<MIGRATION>` | A migração de destino. As migrações podem ser identificadas por nome ou por ID. O número 0 é um caso especial que significa *antes da primeira migração* e faz com que todas as migrações sejam revertidas. Se nenhuma migração for especificada, o comando usa como padrão a última migração. |
 
 Os exemplos a seguir atualizam o banco de dados para uma migração especificada. O primeiro usa o nome de migração e o segundo usa a ID de migração:
 
-```console
+```dotnetcli
 dotnet ef database update InitialCreate
 dotnet ef database update 20180904195021_InitialCreate
 ```
@@ -213,7 +213,7 @@ Gera código para um `DbContext` e tipos de entidade para um banco de dados. Par
 
 Argumentos:
 
-| Argumento       | Descrição                                                                                                                                                                                                             |
+| Argument       | Descrição                                                                                                                                                                                                             |
 |:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `<CONNECTION>` | A cadeia de conexão para o banco de dados. Para projetos ASP.NET Core 2. x, o valor pode ser *nome =\<nome da cadeia de conexão >* . Nesse caso, o nome é proveniente das fontes de configuração que estão configuradas para o projeto. |
 | `<PROVIDER>`   | O provedor a ser usado. Normalmente, esse é o nome do pacote NuGet, por exemplo: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
@@ -233,13 +233,13 @@ Opções:
 
 O exemplo a seguir aplica Scaffold todos os esquemas e tabelas e coloca os novos arquivos na pasta *modelos* .
 
-```console
+```dotnetcli
 dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
 ```
 
 O exemplo a seguir aplica Scaffold apenas tabelas selecionadas e cria o contexto em uma pasta separada com um nome especificado:
 
-```console
+```dotnetcli
 dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -t Blog -t Post --context-dir Context -c BlogContext
 ```
 
@@ -249,7 +249,7 @@ Adiciona uma nova migração.
 
 Argumentos:
 
-| Argumento | Descrição                |
+| Argument | Descrição                |
 |:---------|:---------------------------|
 | `<NAME>` | O nome da migração. |
 
@@ -279,7 +279,7 @@ Gera um script SQL a partir de migrações.
 
 Argumentos:
 
-| Argumento | Descrição                                                                                                                                                   |
+| Argument | Descrição                                                                                                                                                   |
 |:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `<FROM>` | A migração inicial. As migrações podem ser identificadas por nome ou por ID. O número 0 é um caso especial que significa *antes da primeira migração*. O padrão é 0. |
 | `<TO>`   | A migração final. O padrão é a última migração.                                                                                                         |
@@ -293,13 +293,13 @@ Opções:
 
 O exemplo a seguir cria um script para a migração InitialCreate:
 
-```console
+```dotnetcli
 dotnet ef migrations script 0 InitialCreate
 ```
 
 O exemplo a seguir cria um script para todas as migrações após a migração de InitialCreate.
 
-```console
+```dotnetcli
 dotnet ef migrations script 20180904195021_InitialCreate
 ```
 

@@ -5,16 +5,16 @@ ms.author: bricelam
 ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: afe2c865305ade93dd10c8838b80c8b4177e7e8e
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 1ba9352d261f1c131b0d70f8cdad2128d9afaefe
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197199"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824461"
 ---
 # <a name="reverse-engineering"></a>Engenharia reversa
 
-A engenharia reversa é o processo de classes de tipo de entidade scaffolding e uma classe DbContext baseada em um esquema de banco de dados. Ele pode ser executado usando o `Scaffold-DbContext` comando do EF Core ferramentas do console do Gerenciador de pacotes (PMC) `dotnet ef dbcontext scaffold` ou o comando das ferramentas da CLI (interface de linha de comando) do .net.
+A engenharia reversa é o processo de classes de tipo de entidade scaffolding e uma classe DbContext baseada em um esquema de banco de dados. Ele pode ser executado usando o comando `Scaffold-DbContext` das ferramentas do console do Gerenciador de pacotes do EF Core (PMC) ou o comando `dotnet ef dbcontext scaffold` das ferramentas da CLI (interface de linha de comando) do .NET.
 
 ## <a name="installing"></a>Instalando o
 
@@ -26,23 +26,23 @@ Você também precisará instalar um provedor de [banco de dados](xref:core/prov
 
 O primeiro argumento para o comando é uma cadeia de conexão para o banco de dados. As ferramentas usarão essa cadeia de conexão para ler o esquema de banco de dados.
 
-A maneira de citar e escapar a cadeia de conexão depende de qual shell você está usando para executar o comando. Consulte a documentação do Shell para obter informações específicas. Por exemplo, o PowerShell exige que você escape `$` o caractere, mas `\`não.
+A maneira de citar e escapar a cadeia de conexão depende de qual shell você está usando para executar o comando. Consulte a documentação do Shell para obter informações específicas. Por exemplo, o PowerShell exige que você escape o caractere `$`, mas não `\`.
 
 ``` powershell
 Scaffold-DbContext 'Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook' Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-``` Console
+```dotnetcli
 dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook" Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 ### <a name="configuration-and-user-secrets"></a>Configuração e segredos do usuário
 
-Se você tiver um projeto ASP.NET Core, poderá usar a `Name=<connection-string>` sintaxe para ler a cadeia de conexão da configuração.
+Se você tiver um projeto ASP.NET Core, poderá usar a sintaxe `Name=<connection-string>` para ler a cadeia de conexão da configuração.
 
 Isso funciona bem com a [ferramenta Gerenciador de segredo](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager) para manter a senha do banco de dados separada da base de código.
 
-``` Console
+```dotnetcli
 dotnet user-secrets set ConnectionStrings.Chinook "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook"
 dotnet ef dbcontext scaffold Name=Chinook Microsoft.EntityFrameworkCore.SqlServer
 ```
@@ -55,9 +55,9 @@ O segundo argumento é o nome do provedor. O nome do provedor geralmente é o me
 
 Todas as tabelas no esquema de banco de dados são revertidas com engenharia reversa em tipos de entidade por padrão. Você pode limitar quais tabelas são revertidas com engenharia reversa especificando esquemas e tabelas.
 
-O `-Schemas` parâmetro na PMC e a `--schema` opção na CLI podem ser usados para incluir cada tabela dentro de um esquema.
+O parâmetro `-Schemas` no PMC e a opção `--schema` na CLI podem ser usados para incluir cada tabela em um esquema.
 
-`-Tables`(PMC) e `--table` (CLI) podem ser usados para incluir tabelas específicas.
+`-Tables` (PMC) e `--table` (CLI) podem ser usados para incluir tabelas específicas.
 
 Para incluir várias tabelas no PMC, use uma matriz.
 
@@ -67,17 +67,17 @@ Scaffold-DbContext ... -Tables Artist, Album
 
 Para incluir várias tabelas na CLI, especifique a opção várias vezes.
 
-``` Console
+```dotnetcli
 dotnet ef dbcontext scaffold ... --table Artist --table Album
 ```
 
 ## <a name="preserving-names"></a>Preservando nomes
 
-Os nomes de tabela e coluna são corrigidos para corresponder melhor às convenções de nomenclatura do .NET para tipos e propriedades por padrão. A especificação `-UseDatabaseNames` do switch no PMC ou `--use-database-names` da opção na CLI desabilitará esse comportamento preservando os nomes originais do banco de dados o máximo possível. Identificadores do .NET inválidos ainda serão fixos e nomes sintetizados como propriedades de navegação ainda estarão em conformidade com as convenções de nomenclatura do .NET.
+Os nomes de tabela e coluna são corrigidos para corresponder melhor às convenções de nomenclatura do .NET para tipos e propriedades por padrão. A especificação da opção de `-UseDatabaseNames` no PMC ou da `--use-database-names` na CLI desabilitará esse comportamento preservando os nomes de banco de dados originais o máximo possível. Identificadores do .NET inválidos ainda serão fixos e nomes sintetizados como propriedades de navegação ainda estarão em conformidade com as convenções de nomenclatura do .NET.
 
 ## <a name="fluent-api-or-data-annotations"></a>API fluente ou anotações de dados
 
-Os tipos de entidade são configurados usando a API fluente por padrão. Especifique `-DataAnnotations` (PMC) ou `--data-annotations` (CLI) para, em vez disso, usar anotações de dados quando possível.
+Os tipos de entidade são configurados usando a API fluente por padrão. Especifique `-DataAnnotations` (PMC) ou `--data-annotations` (CLI) para, em vez disso, usar as anotações de dados quando possível.
 
 Por exemplo, usar a API fluente irá Scaffold isto:
 
@@ -97,11 +97,11 @@ public string Title { get; set; }
 
 ## <a name="dbcontext-name"></a>Nome do DbContext
 
-O nome da classe DbContext com Scaffold será o nome do banco de dados com o *contexto* definido por padrão. Para especificar um diferente, use `-Context` no PMC e `--context` na CLI.
+O nome da classe DbContext com Scaffold será o nome do banco de dados com o *contexto* definido por padrão. Para especificar um diferente, use `-Context` em PMC e `--context` na CLI.
 
 ## <a name="directories-and-namespaces"></a>Diretórios e namespaces
 
-As classes de entidade e uma classe DbContext são com Scaffold no diretório raiz do projeto e usam o namespace padrão do projeto. Você pode especificar o diretório em que as classes são `-OutputDir` com Scaffold usando (PMC `--output-dir` ) ou (CLI). O namespace será o namespace raiz mais os nomes de qualquer subdiretório no diretório raiz do projeto.
+As classes de entidade e uma classe DbContext são com Scaffold no diretório raiz do projeto e usam o namespace padrão do projeto. Você pode especificar o diretório em que as classes são com Scaffold usando `-OutputDir` (PMC) ou `--output-dir` (CLI). O namespace será o namespace raiz mais os nomes de qualquer subdiretório no diretório raiz do projeto.
 
 Você também pode usar `-ContextDir` (PMC) e `--context-dir` (CLI) para Scaffold a classe DbContext em um diretório separado das classes de tipo de entidade.
 
@@ -109,7 +109,7 @@ Você também pode usar `-ContextDir` (PMC) e `--context-dir` (CLI) para Scaffol
 Scaffold-DbContext ... -ContextDir Data -OutputDir Models
 ```
 
-``` Console
+```dotnetcli
 dotnet ef dbcontext scaffold ... --context-dir Data --output-dir Models
 ```
 
@@ -126,7 +126,7 @@ Por fim, o modelo é usado para gerar código. As classes de tipo de entidade, a
 * Nem tudo sobre um modelo pode ser representado usando um esquema de banco de dados. Por exemplo, as informações sobre [**hierarquias de herança**](../modeling/inheritance.md), [**tipos de propriedade**](../modeling/owned-entities.md)e divisão de [**tabela**](../modeling/table-splitting.md) não estão presentes no esquema de banco de dados. Por isso, essas construções nunca serão revertidas com engenharia reversa.
 * Além disso, **alguns tipos de coluna** podem não ser suportados pelo provedor de EF Core. Essas colunas não serão incluídas no modelo.
 * Você pode definir [**tokens de simultaneidade**](../modeling/concurrency.md), em um modelo de EF Core para impedir que dois usuários atualizem a mesma entidade ao mesmo tempo. Alguns bancos de dados têm um tipo especial para representar esse tipo de coluna (por exemplo, de SQL Server) nesse caso, podemos reverter a engenharia dessas informações; no entanto, outros tokens de simultaneidade não terão engenharia reversa.
-* [O C# recurso de tipo de referência anulável 8](/dotnet/csharp/tutorials/nullable-reference-types) não tem suporte no momento na engenharia reversa: EF Core sempre gera C# código que assume que o recurso está desabilitado. Por exemplo, colunas de texto anuláveis serão com Scaffold como uma propriedade com `string` tipo, `string?`não, com a API Fluent ou as anotações de dados usadas para configurar se uma propriedade é necessária ou não. Você pode editar o código com Scaffold e substituí-los C# por anotações de nulidade. O suporte do scaffolding para tipos de referência anuláveis é acompanhado pelo problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
+* [O C# recurso de tipo de referência anulável 8](/dotnet/csharp/tutorials/nullable-reference-types) não tem suporte no momento na engenharia reversa: C# EF Core sempre gera código que assume que o recurso está desabilitado. Por exemplo, colunas de texto anuláveis serão com Scaffold como uma propriedade com o tipo `string`, não `string?`, com a API Fluent ou as anotações de dados usadas para configurar se uma propriedade é necessária ou não. Você pode editar o código com Scaffold e substituí-los C# por anotações de nulidade. O suporte do scaffolding para tipos de referência anuláveis é acompanhado pelo problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
 
 ## <a name="customizing-the-model"></a>Personalizando o modelo
 
@@ -140,7 +140,7 @@ Você também pode adicionar outros construtores, métodos, propriedades, etc. u
 
 Depois de fazer alterações no banco de dados, talvez seja necessário atualizar seu modelo de EF Core para refletir essas alterações. Se as alterações no banco de dados forem simples, talvez seja mais fácil apenas fazer as alterações manualmente no modelo de EF Core. Por exemplo, renomear uma tabela ou coluna, remover uma coluna ou atualizar o tipo de uma coluna são alterações triviais a serem feitas no código.
 
-No entanto, alterações mais significativas não são fáceis de fazer manualmente. Um fluxo de trabalho comum é reverter a engenharia do modelo do banco de `-Force` dados novamente usando ( `--force` PMC) ou (CLI) para substituir o modelo existente por um atualizado.
+No entanto, alterações mais significativas não são fáceis de fazer manualmente. Um fluxo de trabalho comum é reverter a engenharia do modelo do banco de dados novamente usando `-Force` (PMC) ou `--force` (CLI) para substituir o modelo existente por um atualizado.
 
 Outro recurso comumente solicitado é a capacidade de atualizar o modelo do banco de dados enquanto preserva a personalização, como renomear, hierarquias de tipo, etc. Use o problema [#831](https://github.com/aspnet/EntityFrameworkCore/issues/831) para acompanhar o progresso desse recurso.
 

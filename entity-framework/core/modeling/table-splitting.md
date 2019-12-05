@@ -1,16 +1,16 @@
 ---
 title: Divisão de tabela-EF Core
+description: Como configurar a divisão de tabela usando Entity Framework Core
 author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 04/10/2019
-ms.assetid: 0EC2CCE1-BD55-45D8-9EA9-20634987F094
 uid: core/modeling/table-splitting
-ms.openlocfilehash: a3a2e5842a6c6b4b490084d205a0d44bb46c17ee
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 0e48c516de43cdc2b54c56f1a96f5e01f9fbbbc4
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656034"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824561"
 ---
 # <a name="table-splitting"></a>Divisão de tabela
 
@@ -19,7 +19,7 @@ ms.locfileid: "73656034"
 
 EF Core permite mapear duas ou mais entidades para uma única linha. Isso é chamado de _divisão de tabela_ ou compartilhamento de _tabela_.
 
-## <a name="configuration"></a>Configuração
+## <a name="configuration"></a>Configuração do
 
 Para usar a divisão de tabela, os tipos de entidade precisam ser mapeados para a mesma tabela, ter as chaves primárias mapeadas para as mesmas colunas e pelo menos uma relação configurada entre a chave primária de um tipo de entidade e outra na mesma tabela.
 
@@ -38,7 +38,7 @@ Além da configuração necessária, chamamos `Property(o => o.Status).HasColumn
 > [!TIP]
 > Consulte o [projeto de exemplo completo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Modeling/TableSplitting) para obter mais contexto.
 
-## <a name="usage"></a>Uso
+## <a name="usage"></a>Medição de
 
 Salvar e consultar entidades usando divisão de tabela é feito da mesma maneira que outras entidades. E, a partir do EF Core 3,0, a referência de entidade dependente pode ser `null`. Se todas as colunas usadas pela entidade dependente forem `NULL` é o banco de dados, nenhuma instância para ela será criada quando consultada. Isso também aconteceria que todas as propriedades fossem opcionais e definidas como `null`, o que pode não ser esperado.
 

@@ -1,15 +1,15 @@
 ---
 title: Índices (banco de dados relacional)-EF Core
-author: rowanmiller
-ms.date: 10/27/2016
-ms.assetid: 4581e7ba-5e7f-452c-9937-0aaf790ba10a
+author: AndriySvyryd
+ms.author: ansvyryd
+ms.date: 11/05/2019
 uid: core/modeling/relational/indexes
-ms.openlocfilehash: 7bb74d0bfa6090b597eb988a46f00494e25f233e
-ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
+ms.openlocfilehash: e14615275f85ee9b6b32d080905465d33963feca
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/02/2019
-ms.locfileid: "71813639"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824570"
 ---
 # <a name="indexes-relational-database"></a>Índices (banco de dados relacional)
 
@@ -20,7 +20,7 @@ Um índice em um banco de dados relacional é mapeado para o mesmo conceito de u
 
 ## <a name="conventions"></a>Convenções
 
-Por convenção, os índices são `IX_<type name>_<property name>`nomeados. Para índices `<property name>` compostos se torna uma lista de nomes de propriedade separados por sublinhado.
+Por convenção, os índices são nomeados `IX_<type name>_<property name>`. Para índices compostos `<property name>` se torna uma lista de nomes de propriedade separados por sublinhado.
 
 ## <a name="data-annotations"></a>Anotações de dados
 
@@ -36,7 +36,7 @@ Você também pode especificar um filtro.
 
 [!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Relational/IndexFilter.cs?name=Model&highlight=9)]
 
-Ao usar o provedor de SQL Server EF, o adiciona um filtro ' IS NOT NULL ' para todas as colunas anuláveis que fazem parte de um índice exclusivo. Para substituir essa convenção, você pode fornecer `null` um valor.
+Ao usar o provedor de SQL Server o EF adiciona um filtro de `'IS NOT NULL'` para todas as colunas anuláveis que fazem parte de um índice exclusivo. Para substituir essa convenção, você pode fornecer um valor `null`.
 
 [!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Relational/IndexNoFilter.cs?name=Model&highlight=10)]
 
@@ -44,4 +44,4 @@ Ao usar o provedor de SQL Server EF, o adiciona um filtro ' IS NOT NULL ' para t
 
 Você pode configurar [índices com colunas incluídas](https://docs.microsoft.com/sql/relational-databases/indexes/create-indexes-with-included-columns) para melhorar significativamente o desempenho da consulta quando todas as colunas na consulta são incluídas no índice como colunas de chave ou não chave.
 
-[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Relational/ForSqlServerHasIndex.cs?name=Model)]
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Relational/IndexInclude.cs?name=Model)]

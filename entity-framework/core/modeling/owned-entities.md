@@ -1,16 +1,16 @@
 ---
 title: Tipos de entidade de propriedade-EF Core
+description: Como configurar tipos de entidade de propriedade ou agregações ao usar Entity Framework Core
 author: AndriySvyryd
 ms.author: ansvyryd
-ms.date: 02/26/2018
-ms.assetid: 2B0BADCE-E23E-4B28-B8EE-537883E16DF3
+ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: a0665bfa27134b8dc3eba854ff3f7b1af4b69217
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 7b6d1b3bccbfceb85f03a580ba03a45984d29c74
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655931"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824598"
 ---
 # <a name="owned-entity-types"></a>Tipos de entidade de propriedade
 
@@ -19,7 +19,7 @@ ms.locfileid: "73655931"
 
 EF Core permite que você modele tipos de entidade que só podem aparecer em Propriedades de navegação de outros tipos de entidade. Eles são chamados de _tipos de entidade de propriedade_. A entidade que contém um tipo de entidade de propriedade é seu _proprietário_.
 
-As entidades de propriedade são essencialmente uma parte do proprietário e não podem existir sem ela, elas são conceitualmente semelhantes às [agregações](https://martinfowler.com/bliki/DDD_Aggregate.html).
+As entidades de propriedade são essencialmente uma parte do proprietário e não podem existir sem ela, elas são conceitualmente semelhantes às [agregações](https://martinfowler.com/bliki/DDD_Aggregate.html). Isso significa que o tipo de propriedade é por definição no lado dependente da relação com o proprietário.
 
 ## <a name="explicit-configuration"></a>Configuração explícita
 
@@ -74,7 +74,7 @@ Para configurar uma chamada de CP diferente `HasKey`:
 [!code-csharp[OwnsMany](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsMany)]
 
 > [!NOTE]
-> Antes de EF Core 3,0 `WithOwner()` método não existe, portanto, essa chamada deve ser removida.
+> Antes de EF Core 3,0 `WithOwner()` método não existe, portanto, essa chamada deve ser removida. Além disso, a chave primária não foi descoberta automaticamente, portanto, ela sempre foi especificada.
 
 ## <a name="mapping-owned-types-with-table-splitting"></a>Mapeando tipos de propriedade com divisão de tabela
 
@@ -85,6 +85,9 @@ Por padrão, EF Core nomeará as colunas do banco de dados para as propriedades 
 Você pode usar o método `HasColumnName` para renomear essas colunas:
 
 [!code-csharp[ColumnNames](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=ColumnNames)]
+
+> [!NOTE]
+> A maioria dos métodos de configuração de tipo de entidade normal, como [ignorar](/dotnet/api/microsoft.entityframeworkcore.metadata.builders.ownednavigationbuilder.ignore) , pode ser chamada da mesma maneira.
 
 ## <a name="sharing-the-same-net-type-among-multiple-owned-types"></a>Compartilhando o mesmo tipo .NET entre vários tipos de propriedade
 
@@ -106,6 +109,8 @@ Neste exemplo `OrderDetails` possui `BillingAddress` e `ShippingAddress`, que s�
 
 [!code-csharp[OrderStatus](../../../samples/core/Modeling/OwnedEntities/OrderStatus.cs?name=OrderStatus)]
 
+Cada navegação para um tipo de propriedade define um tipo de entidade separado com configuração completamente independente.
+
 Além dos tipos de propriedade aninhados, um tipo de propriedade pode fazer referência a uma entidade regular, pode ser o proprietário ou uma entidade diferente, desde que a entidade de propriedade esteja no lado dependente. Esse recurso define tipos de entidade pertencentes de tipos complexos em EF6.
 
 [!code-csharp[OrderDetails](../../../samples/core/Modeling/OwnedEntities/OrderDetails.cs?name=OrderDetails)]
@@ -114,15 +119,17 @@ Além dos tipos de propriedade aninhados, um tipo de propriedade pode fazer refe
 
 [!code-csharp[OwnsOneNested](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsOneNested)]
 
-Observe a chamada `WithOwner` usada para configurar a propriedade de navegação apontando de volta ao proprietário.
+Observe a chamada `WithOwner` usada para configurar a propriedade de navegação apontando de volta ao proprietário. Para configurar uma navegação para o tipo de entidade do proprietário que não faz parte da relação de propriedade `WithOwner()` deve ser chamado sem argumentos.
 
-É possível obter o resultado usando `OwnedAttribute` em `OrderDetails` e `StreetAdress`.
+É possível obter o resultado usando `OwnedAttribute` em `OrderDetails` e `StreetAddress`.
 
 ## <a name="storing-owned-types-in-separate-tables"></a>Armazenando tipos de propriedade em tabelas separadas
 
 Além disso, ao contrário dos tipos complexos EF6, tipos de propriedade podem ser armazenados em uma tabela separada do proprietário. Para substituir a Convenção que mapeia um tipo de propriedade para a mesma tabela que o proprietário, você pode simplesmente chamar `ToTable` e fornecer um nome de tabela diferente. O exemplo a seguir mapeará `OrderDetails` e seus dois endereços para uma tabela separada de `DetailedOrder`:
 
 [!code-csharp[OwnsOneTable](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsOneTable)]
+
+Também é possível usar o `TableAttribute` para fazer isso, mas observe que isso falharia se houver várias navegações para o tipo de propriedade, pois nesse caso, vários tipos de entidade seriam mapeados para a mesma tabela.
 
 ## <a name="querying-owned-types"></a>Consultando tipos de propriedade
 
@@ -141,7 +148,7 @@ Algumas dessas limitações são fundamentais para a forma como os tipos de enti
 
 ### <a name="current-shortcomings"></a>Deficiências atuais
 
-- Não há suporte para hierarquias de herança que incluem tipos de entidade de propriedade
+- Tipos de entidade pertencentes não podem ter hierarquias de herança
 - Navegações de referência para tipos de entidade pertencentes não podem ser nulas, a menos que sejam explicitamente mapeados para uma tabela separada do proprietário
 - Instâncias de tipos de entidade de propriedade não podem ser compartilhadas por vários proprietários (este é um cenário bem conhecido para objetos de valor que não podem ser implementados usando tipos de entidade de propriedade)
 

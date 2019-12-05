@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: 72393e96c195af1df5a169025ca2ce7a7acb16bb
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 83f6b819409d502dba17a678d44a0746a4a77f4b
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656216"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824880"
 ---
 # <a name="new-features-in-ef-core-20"></a>Novos recursos no EF Core 2.0
 
@@ -91,12 +91,12 @@ public class BloggingContext : DbContext
     {
         modelBuilder.Entity<Post>().HasQueryFilter(
             p => !p.IsDeleted
-            && p.TenantId == this.TenantId );
+            && p.TenantId == this.TenantId);
     }
 }
 ```
 
-Definimos um filtro no nível de modelo que implementa a multilocação e a exclusão reversível para instâncias do Tipo de Entidade `Post`. Observe o uso de uma propriedade em nível de instância DbContext: `TenantId`. Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância de contexto que está executando a consulta).
+Definimos um filtro no nível de modelo que implementa a multilocação e a exclusão reversível para instâncias do Tipo de Entidade `Post`. Observe o uso de uma `DbContext` Propriedade no nível da instância: `TenantId`. Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância de contexto que está executando a consulta).
 
 Os filtros podem ser desabilitados para consultas LINQ individuais usando o operador IgnoreQueryFilters().
 
@@ -119,7 +119,7 @@ public class BloggingContext : DbContext
     [DbFunction]
     public static int PostReadCount(int blogId)
     {
-        throw new Exception();
+        throw new NotImplementedException();
     }
 }
 ```
@@ -135,9 +135,9 @@ var query =
 
 Alguns pontos a observar:
 
-- Por convenção, que o nome do método é usado como o nome da função (neste caso, uma função definida pelo usuário) ao gerar o SQL, mas você pode substituir o nome e o esquema durante o registro do método
-- No momento, apenas funções escalares são compatíveis
-- É necessário criar a função mapeada no banco de dados. As migrações do EF Core não se encarregarão de criá-la
+- Por convenção, o nome do método é usado como o nome de uma função (nesse caso, uma função definida pelo usuário) ao gerar o SQL, mas você pode substituir o nome e o esquema durante o registro do método.
+- Atualmente, há suporte apenas para funções escalares.
+- É necessário criar a função mapeada no banco de dados. EF Core migrações não cuidarão de criá-la.
 
 ### <a name="self-contained-type-configuration-for-code-first"></a>Configuração de tipo autossuficiente primeiro para código
 
@@ -146,11 +146,11 @@ No EF6, era possível encapsular a configuração primeiro para código de um ti
 ``` csharp
 class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 {
-  public void Configure(EntityTypeBuilder<Customer> builder)
-  {
-     builder.HasKey(c => c.AlternateKey);
-     builder.Property(c => c.Name).HasMaxLength(200);
-   }
+    public void Configure(EntityTypeBuilder<Customer> builder)
+    {
+        builder.HasKey(c => c.AlternateKey);
+        builder.Property(c => c.Name).HasMaxLength(200);
+    }
 }
 
 ...
@@ -205,15 +205,15 @@ using (var db = new CustomerContext())
 }
 ```
 
-## <a name="change-tracking"></a>Controle de Alterações
+## <a name="change-tracking"></a>Controle de alterações
 
 ### <a name="attach-can-track-a-graph-of-new-and-existing-entities"></a>Anexar pode acompanhar um gráfico de entidades novas e existentes
 
 O EF Core é compatível com a geração automática de valores de chave por meio de diversos mecanismos. Ao usar esse recurso, um valor será gerado se a propriedade da chave for o padrão CLR – normalmente zero ou nulo. Isso significa que um gráfico de entidades pode ser passado para `DbContext.Attach` ou `DbSet.Attach`, e o Core EF marcará as entidades que têm uma chave já definida como `Unchanged` enquanto as entidades que não têm um conjunto de chaves serão marcadas como `Added`. Isso torna fácil anexar um gráfico de entidades mistas novas e existentes ao usar chaves geradas. `DbContext.Update` e `DbSet.Update` funcionam da mesma forma, exceto que entidades com um conjunto de chaves são marcadas como `Modified`, em vez de `Unchanged`.
 
-## <a name="query"></a>Consulta
+## <a name="query"></a>Query
 
-### <a name="improved-linq-translation"></a>Conversão de LINQ aprimorada
+### <a name="improved-linq-translation"></a>Tradução LINQ aprimorada
 
 Permite a exceção mais bem-sucedida de consultas, avaliando mais lógica no banco de dados (em vez de na memória) e menos recuperação desnecessária de dados do banco de dados.
 
@@ -223,7 +223,7 @@ Este trabalho melhora o SQL gerado para associações de grupo. Associações de
 
 ### <a name="string-interpolation-in-fromsql-and-executesqlcommand"></a>Interpolação de cadeia de caracteres em FromSql e ExecuteSqlCommand
 
-C# 6 introduziu Interpolação de Cadeia de Caracteres, um recurso que permite inserir expressões C# diretamente em literais de cadeia de caracteres, oferecendo uma ótima maneira de criar cadeias de caracteres no runtime. No EF Core 2.0, adicionamos suporte especial para cadeias de caracteres interpoladas às nossas duas APIs primárias que aceitam cadeias de caracteres SQL brutas: `FromSql` e `ExecuteSqlCommand`. Esse novo suporte permite que a interpolação de cadeia de caracteres C# seja usada de maneira “segura”. Ou seja, de uma maneira que proteja contra erros comuns de injeção de SQL que podem ocorrer ao criar SQL dinamicamente no runtime.
+C# 6 introduziu Interpolação de Cadeia de Caracteres, um recurso que permite inserir expressões C# diretamente em literais de cadeia de caracteres, oferecendo uma ótima maneira de criar cadeias de caracteres no runtime. No EF Core 2.0, adicionamos suporte especial para cadeias de caracteres interpoladas às nossas duas APIs primárias que aceitam cadeias de caracteres SQL brutas: `FromSql` e `ExecuteSqlCommand`. Esse novo suporte permite C# que a interpolação de cadeia de caracteres seja usada de maneira "segura". Ou seja, de uma maneira que proteja contra erros comuns de injeção de SQL que podem ocorrer ao criar SQL dinamicamente no runtime.
 
 Veja um exemplo:
 
@@ -270,7 +270,7 @@ Observe que Like() vem com uma implementação em memória, que pode ser útil a
 
 ## <a name="database-management"></a>Gerenciamento de banco de dados
 
-### <a name="pluralization-hook-for-dbcontext-scaffolding"></a>Gancho de pluralização de scaffolding de DbContext
+### <a name="pluralization-hook-for-dbcontext-scaffolding"></a>Gancho de pluralização para DbContext scaffolding
 
 O EF Core 2.0 apresenta um novo serviço *IPluralizer* que é usado para singularizar os nomes de tipo de entidade e pluralizar os nomes DbSet. A implementação padrão é não operacional, portanto, este é apenas um gancho que o pessoal pode conectar facilmente em seu próprios pluralizadores.
 
@@ -299,7 +299,7 @@ public class MyPluralizer : IPluralizer
 }
 ```
 
-## <a name="others"></a>Outras pessoas
+## <a name="others"></a>Others
 
 ### <a name="move-adonet-sqlite-provider-to-sqlitepclraw"></a>Mover o provedor ADO.NET SQLite para SQLitePCL.raw
 
@@ -311,7 +311,7 @@ Aumenta significativamente o modo como provedores podem interagir com o modelo e
 
 O EF Core 2.0 agora criará um [IModel](https://github.com/aspnet/EntityFramework/blob/master/src/EFCore/Metadata/IModel.cs) diferente para cada provedor diferente que está sendo usado. Isso normalmente é transparente para o aplicativo. Isso facilitou uma simplificação de APIs de metadados de nível inferior de modo que qualquer acesso a *conceitos de metadados relacionados comuns* pé feito sempre por meio de uma chamada para `.Relational`, em vez de `.SqlServer`, `.Sqlite` etc.
 
-### <a name="consolidated-logging-and-diagnostics"></a>Consolidar registro em log e diagnóstico
+### <a name="consolidated-logging-and-diagnostics"></a>Log consolidado e diagnóstico
 
 Registro em log (com base em ILogger) e mecanismos de diagnóstico (com base em DiagnosticSource) agora compartilham mais código.
 
