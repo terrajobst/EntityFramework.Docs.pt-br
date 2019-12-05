@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/index
-ms.openlocfilehash: 24368b4c87e785e779b3f2b2f10de19766451c9b
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: ebc676930ffc396aa70bb8afb91cf5a0cd43e04d
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656231"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824857"
 ---
 # <a name="new-features-in-entity-framework-core-30"></a>Novos recursos no Entity Framework Core 3.0
 
@@ -39,7 +39,7 @@ var specialCustomers = context.Customers
     .Where(c => c.Name.StartsWith(n) && IsSpecialCustomer(c));
 ```
 
-Isso pode ser aceitável caso o banco de dados contenha um número pequeno de linhas, mas poderá resultar em problemas significativos de desempenho ou até mesmo em falha de aplicativo se o banco de dados tiver um grande número de linhas.
+Isso pode ser aceitável caso o banco de dados contenha um número pequeno de linhas, mas pode resultar em problemas significativos de desempenho ou até mesmo em falha de aplicativo se o banco de dados contiver um grande número de linhas.
 
 No EF Core 3.0, restringimos a avaliação do cliente para acontecer somente na projeção de nível superior (essencialmente, a última chamada para `Select()`).
 Quando o EF Core 3.0 detecta expressões que não podem ser convertidas em nenhum outro lugar da consulta, ele lança uma exceção de runtime.
@@ -145,7 +145,7 @@ Como eles são extremamente adequados para mapear exibições de banco de dados 
 
 Por exemplo, usando a [ferramenta de linha de comando dotnet ef](xref:core/miscellaneous/cli/dotnet), você pode digitar:
 
-``` console
+```dotnetcli
 dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
 ```
 

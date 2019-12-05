@@ -225,6 +225,8 @@
                   href: core/providers/sql-server/index.md
                 - name: Tabelas com otimização de memória
                   href: core/providers/sql-server/memory-optimized-tables.md
+                - name: Especificar opções do Banco de Dados SQL do Azure
+                  href: core/providers/sql-server/azure-sql-database.md
             - name: SQLite
               items:
                 - name: Visão geral
@@ -441,7 +443,7 @@
                   href: ef6/modeling/designer/relationships.md
                 - name: Vários diagramas
                   href: ef6/modeling/designer/multiple-diagrams.md
-                - name: Seleção da versão de tempo de execução
+                - name: Seleção da versão de runtime
                   href: ef6/modeling/designer/select-runtime-version.md
                 - name: Geração de código
                   items:
