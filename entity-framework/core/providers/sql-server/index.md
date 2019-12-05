@@ -1,31 +1,32 @@
 ---
 title: Provedor de Banco de Dados do Microsoft SQL Server – EF Core
-author: rowanmiller
-ms.date: 10/27/2016
-ms.assetid: 2e007c82-c6e4-45bb-8129-851b79ec1a0a
+description: Documentação do provedor de banco de dados que permite que o Entity Framework Core seja usado com o Microsoft SQL Server
+author: AndriySvyryd
+ms.author: ansvyryd
+ms.date: 11/05/2019
 uid: core/providers/sql-server/index
-ms.openlocfilehash: dd352b81da05fa8ea8970495f20947bd109edf65
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 18a69789ff4ae013c1d60bb6d34ca5c27ee285c2
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655889"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824777"
 ---
-# <a name="microsoft-sql-server-ef-core-database-provider"></a><span data-ttu-id="eaab1-102">Provedor de Banco de Dados EF Core do Microsoft SQL Server</span><span class="sxs-lookup"><span data-stu-id="eaab1-102">Microsoft SQL Server EF Core Database Provider</span></span>
+# <a name="microsoft-sql-server-ef-core-database-provider"></a><span data-ttu-id="af84d-103">Provedor de Banco de Dados EF Core do Microsoft SQL Server</span><span class="sxs-lookup"><span data-stu-id="af84d-103">Microsoft SQL Server EF Core Database Provider</span></span>
 
-<span data-ttu-id="eaab1-103">Este provedor de banco de dados permite que o Entity Framework Core seja usado com o Microsoft SQL Server (incluindo o SQL Azure).</span><span class="sxs-lookup"><span data-stu-id="eaab1-103">This database provider allows Entity Framework Core to be used with Microsoft SQL Server (including SQL Azure).</span></span> <span data-ttu-id="eaab1-104">O provedor é mantido como parte do [Projeto do Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore).</span><span class="sxs-lookup"><span data-stu-id="eaab1-104">The provider is maintained as part of the [Entity Framework Core Project](https://github.com/aspnet/EntityFrameworkCore).</span></span>
+<span data-ttu-id="af84d-104">Este provedor de banco de dados permite que o Entity Framework Core seja usado com o Microsoft SQL Server (incluindo o Banco de Dados SQL do Azure).</span><span class="sxs-lookup"><span data-stu-id="af84d-104">This database provider allows Entity Framework Core to be used with Microsoft SQL Server (including Azure SQL Database).</span></span> <span data-ttu-id="af84d-105">O provedor é mantido como parte do [Projeto do Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore).</span><span class="sxs-lookup"><span data-stu-id="af84d-105">The provider is maintained as part of the [Entity Framework Core Project](https://github.com/aspnet/EntityFrameworkCore).</span></span>
 
-## <a name="install"></a><span data-ttu-id="eaab1-105">Instalar o</span><span class="sxs-lookup"><span data-stu-id="eaab1-105">Install</span></span>
+## <a name="install"></a><span data-ttu-id="af84d-106">Instalar o</span><span class="sxs-lookup"><span data-stu-id="af84d-106">Install</span></span>
 
-<span data-ttu-id="eaab1-106">Instale o [pacote NuGet Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/).</span><span class="sxs-lookup"><span data-stu-id="eaab1-106">Install the [Microsoft.EntityFrameworkCore.SqlServer NuGet package](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/).</span></span>
+<span data-ttu-id="af84d-107">Instale o [pacote NuGet Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/).</span><span class="sxs-lookup"><span data-stu-id="af84d-107">Install the [Microsoft.EntityFrameworkCore.SqlServer NuGet package](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/).</span></span>
 
-## <a name="net-core-clitabdotnet-core-cli"></a>[<span data-ttu-id="eaab1-107">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="eaab1-107">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+## <a name="net-core-clitabdotnet-core-cli"></a>[<span data-ttu-id="af84d-108">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="af84d-108">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
 
-``` console
+```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-## <a name="visual-studiotabvs"></a>[<span data-ttu-id="eaab1-108">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="eaab1-108">Visual Studio</span></span>](#tab/vs)
+## <a name="visual-studiotabvs"></a>[<span data-ttu-id="af84d-109">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="af84d-109">Visual Studio</span></span>](#tab/vs)
 
 ``` powershell
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
@@ -34,8 +35,8 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ***
 
 > [!NOTE]
-> <span data-ttu-id="eaab1-109">Desde a versão 3.0.0, o provedor faz referência a Microsoft.Data.SqlClient (as versões anteriores dependem de System.Data.SqlClient).</span><span class="sxs-lookup"><span data-stu-id="eaab1-109">Since version 3.0.0, the provider references Microsoft.Data.SqlClient (previous versions depended on System.Data.SqlClient).</span></span> <span data-ttu-id="eaab1-110">Se o seu projeto usa uma dependência direta no SqlClient, verifique se ele faz referência ao pacote correto.</span><span class="sxs-lookup"><span data-stu-id="eaab1-110">If your project takes a direct dependency on SqlClient, make sure it references the correct package.</span></span>
+> <span data-ttu-id="af84d-110">Desde a versão 3.0.0, o provedor faz referência a Microsoft.Data.SqlClient (as versões anteriores dependem de System.Data.SqlClient).</span><span class="sxs-lookup"><span data-stu-id="af84d-110">Since version 3.0.0, the provider references Microsoft.Data.SqlClient (previous versions depended on System.Data.SqlClient).</span></span> <span data-ttu-id="af84d-111">Se o seu projeto usa uma dependência direta no SqlClient, certifique-se de que ele faça referência ao pacote Microsoft.Data.SqlClient.</span><span class="sxs-lookup"><span data-stu-id="af84d-111">If your project takes a direct dependency on SqlClient, make sure it references the Microsoft.Data.SqlClient package.</span></span>
 
-## <a name="supported-database-engines"></a><span data-ttu-id="eaab1-111">Mecanismos de banco de dados compatíveis</span><span class="sxs-lookup"><span data-stu-id="eaab1-111">Supported Database Engines</span></span>
+## <a name="supported-database-engines"></a><span data-ttu-id="af84d-112">Mecanismos de banco de dados compatíveis</span><span class="sxs-lookup"><span data-stu-id="af84d-112">Supported Database Engines</span></span>
 
-* <span data-ttu-id="eaab1-112">Microsoft SQL Server (2012 em diante)</span><span class="sxs-lookup"><span data-stu-id="eaab1-112">Microsoft SQL Server (2012 onwards)</span></span>
+* <span data-ttu-id="af84d-113">Microsoft SQL Server (2012 em diante)</span><span class="sxs-lookup"><span data-stu-id="af84d-113">Microsoft SQL Server (2012 onwards)</span></span>
