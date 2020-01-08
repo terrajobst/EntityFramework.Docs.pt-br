@@ -79,18 +79,14 @@
           items:
             - name: Visão geral
               href: core/modeling/index.md
-            - name: Incluir e Excluir Tipos
-              href: core/modeling/included-types.md
-            - name: Incluir e Excluir Propriedades
-              href: core/modeling/included-properties.md
-            - name: Chaves (primárias)
+            - name: Tipos de entidade
+              href: core/modeling/entity-types.md
+            - name: Propriedades da entidade
+              href: core/modeling/entity-properties.md
+            - name: Chaves
               href: core/modeling/keys.md
             - name: Valores gerados
               href: core/modeling/generated-properties.md
-            - name: Propriedades obrigatórias e opcionais
-              href: core/modeling/required-optional.md
-            - name: Comprimento máximo
-              href: core/modeling/max-length.md
             - name: Tokens de simultaneidade
               href: core/modeling/concurrency.md
             - name: Propriedades de sombra
@@ -99,10 +95,10 @@
               href: core/modeling/relationships.md
             - name: Índices
               href: core/modeling/indexes.md
-            - name: Chaves alternativas
-              href: core/modeling/alternate-keys.md
             - name: Herança
               href: core/modeling/inheritance.md
+            - name: Sequências
+              href: core/modeling/sequences.md
             - name: Campos de backup
               href: core/modeling/backing-field.md
             - name: Conversões de valor
@@ -119,36 +115,13 @@
               href: core/modeling/keyless-entity-types.md
             - name: Alternando modelos com mesmo DbContext
               href: core/modeling/dynamic-model.md
-            - name: Dados espaciais (GIS)
+            - name: Dados espaciais
+              displayName: GIS
               href: core/modeling/spatial.md
             - name: Modelagem de banco de dados relacional
               items:
                 - name: Visão geral
                   href: core/modeling/relational/index.md
-                - name: Mapeamento de tabela
-                  href: core/modeling/relational/tables.md
-                - name: Mapeamento de coluna
-                  href: core/modeling/relational/columns.md
-                - name: Tipos de Dados
-                  href: core/modeling/relational/data-types.md
-                - name: Chaves primárias
-                  href: core/modeling/relational/primary-keys.md
-                - name: Esquema padrão
-                  href: core/modeling/relational/default-schema.md
-                - name: Colunas computadas
-                  href: core/modeling/relational/computed-columns.md
-                - name: Sequências
-                  href: core/modeling/relational/sequences.md
-                - name: Valores padrão
-                  href: core/modeling/relational/default-values.md
-                - name: Índices
-                  href: core/modeling/relational/indexes.md
-                - name: Restrições de chave estrangeira
-                  href: core/modeling/relational/fk-constraints.md
-                - name: Chaves alternativas (restrições exclusivas)
-                  href: core/modeling/relational/unique-constraints.md
-                - name: Herança (banco de dados relacional)
-                  href: core/modeling/relational/inheritance.md
         - name: Gerenciar Esquemas de Banco de Dados
           items:
             - name: Visão geral
@@ -505,7 +478,7 @@
           items:
             - name: Blogs
               href: ef6/resources/blogs.md
-            - name: Estudos de Caso
+            - name: Estudos de caso
               href: ef6/resources/case-studies.md
             - name: Contribuir
               href: ef6/resources/contribute.md
@@ -521,7 +494,7 @@
               items:
                 - name: EF5
                   items:
-                    - name: Chinês (simplificado)
+                    - name: Chinês simplificado
                       href: ef6/resources/licenses/ef5/chs.md
                     - name: Chinês tradicional
                       href: ef6/resources/licenses/ef5/cht.md
@@ -549,7 +522,7 @@
                           href: ef6/resources/licenses/ef6/prerelease/alpha.md
                         - name: Beta – versão Release Candidate
                           href: ef6/resources/licenses/ef6/prerelease/beta-rc.md
-                    - name: Chinês (simplificado)
+                    - name: Chinês simplificado
                       href: ef6/resources/licenses/ef6/chs.md
                     - name: Chinês tradicional
                       href: ef6/resources/licenses/ef6/cht.md

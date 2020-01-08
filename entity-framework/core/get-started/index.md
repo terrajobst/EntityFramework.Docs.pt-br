@@ -4,106 +4,106 @@ author: rick-anderson
 ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: d46c4bb9ac6c8f718b4da5ecd82d54710d41935f
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 8aea40b9caaf454bc06d4991fd403e1ad0ff9b93
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824494"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502013"
 ---
-# <a name="getting-started-with-ef-core"></a><span data-ttu-id="3747b-102">Introdução ao EF Core</span><span class="sxs-lookup"><span data-stu-id="3747b-102">Getting Started with EF Core</span></span>
+# <a name="getting-started-with-ef-core"></a><span data-ttu-id="1813c-102">Introdução ao EF Core</span><span class="sxs-lookup"><span data-stu-id="1813c-102">Getting Started with EF Core</span></span>
 
-<span data-ttu-id="3747b-103">Neste tutorial, você criará um aplicativo de console do .NET Core que executa acesso a dados em um banco de dados SQLite usando o Entity Framework Core.</span><span class="sxs-lookup"><span data-stu-id="3747b-103">In this tutorial, you create a .NET Core console app that performs data access against a SQLite database using Entity Framework Core.</span></span>
+<span data-ttu-id="1813c-103">Neste tutorial, você criará um aplicativo de console do .NET Core que executa acesso a dados em um banco de dados SQLite usando o Entity Framework Core.</span><span class="sxs-lookup"><span data-stu-id="1813c-103">In this tutorial, you create a .NET Core console app that performs data access against a SQLite database using Entity Framework Core.</span></span>
 
-<span data-ttu-id="3747b-104">Você pode seguir o tutorial usando o Visual Studio no Windows ou usando a CLI do .NET Core no Windows, macOS ou Linux.</span><span class="sxs-lookup"><span data-stu-id="3747b-104">You can follow the tutorial by using Visual Studio on Windows, or by using the .NET Core CLI on Windows, macOS, or Linux.</span></span>
+<span data-ttu-id="1813c-104">Você pode seguir o tutorial usando o Visual Studio no Windows ou usando a CLI do .NET Core no Windows, macOS ou Linux.</span><span class="sxs-lookup"><span data-stu-id="1813c-104">You can follow the tutorial by using Visual Studio on Windows, or by using the .NET Core CLI on Windows, macOS, or Linux.</span></span>
 
-<span data-ttu-id="3747b-105">[Exiba o exemplo deste artigo no GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).</span><span class="sxs-lookup"><span data-stu-id="3747b-105">[View this article's sample on GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).</span></span>
+<span data-ttu-id="1813c-105">[Exiba o exemplo deste artigo no GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).</span><span class="sxs-lookup"><span data-stu-id="1813c-105">[View this article's sample on GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="3747b-106">Pré-requisitos</span><span class="sxs-lookup"><span data-stu-id="3747b-106">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="1813c-106">Pré-requisitos</span><span class="sxs-lookup"><span data-stu-id="1813c-106">Prerequisites</span></span>
 
-<span data-ttu-id="3747b-107">Instale o software a seguir:</span><span class="sxs-lookup"><span data-stu-id="3747b-107">Install the following software:</span></span>
+<span data-ttu-id="1813c-107">Instale o software a seguir:</span><span class="sxs-lookup"><span data-stu-id="1813c-107">Install the following software:</span></span>
 
-## <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="3747b-108">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="3747b-108">.NET Core CLI</span></span>](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="1813c-108">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="1813c-108">.NET Core CLI</span></span>](#tab/netcore-cli)
 
-* <span data-ttu-id="3747b-109">[SDK do .NET Core 3.0](https://www.microsoft.com/net/download/core).</span><span class="sxs-lookup"><span data-stu-id="3747b-109">[.NET Core 3.0 SDK](https://www.microsoft.com/net/download/core).</span></span>
+* <span data-ttu-id="1813c-109">[SDK do .NET Core 3.0](https://www.microsoft.com/net/download/core).</span><span class="sxs-lookup"><span data-stu-id="1813c-109">[.NET Core 3.0 SDK](https://www.microsoft.com/net/download/core).</span></span>
 
-## <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="3747b-110">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="3747b-110">Visual Studio</span></span>](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="1813c-110">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="1813c-110">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="3747b-111">[Visual Studio 2019 versão 16.3 ou posterior](https://www.visualstudio.com/downloads/) com esta carga de trabalho:</span><span class="sxs-lookup"><span data-stu-id="3747b-111">[Visual Studio 2019 version 16.3 or later](https://www.visualstudio.com/downloads/) with this  workload:</span></span>
-  * <span data-ttu-id="3747b-112">**Desenvolvimento de plataforma cruzada do .NET Core** (em **Outros conjuntos de ferramentas**)</span><span class="sxs-lookup"><span data-stu-id="3747b-112">**.NET Core cross-platform development** (under **Other Toolsets**)</span></span>
+* <span data-ttu-id="1813c-111">[Visual Studio 2019 versão 16.3 ou posterior](https://www.visualstudio.com/downloads/) com esta carga de trabalho:</span><span class="sxs-lookup"><span data-stu-id="1813c-111">[Visual Studio 2019 version 16.3 or later](https://www.visualstudio.com/downloads/) with this  workload:</span></span>
+  * <span data-ttu-id="1813c-112">**Desenvolvimento de plataforma cruzada do .NET Core** (em **Outros conjuntos de ferramentas**)</span><span class="sxs-lookup"><span data-stu-id="1813c-112">**.NET Core cross-platform development** (under **Other Toolsets**)</span></span>
 
 ---
 
-## <a name="create-a-new-project"></a><span data-ttu-id="3747b-113">Criar um novo projeto</span><span class="sxs-lookup"><span data-stu-id="3747b-113">Create a new project</span></span>
+## <a name="create-a-new-project"></a><span data-ttu-id="1813c-113">Criar um novo projeto</span><span class="sxs-lookup"><span data-stu-id="1813c-113">Create a new project</span></span>
 
-## <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="3747b-114">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="3747b-114">.NET Core CLI</span></span>](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="1813c-114">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="1813c-114">.NET Core CLI</span></span>](#tab/netcore-cli)
 
 ```dotnetcli
 dotnet new console -o EFGetStarted
 cd EFGetStarted
 ```
 
-## <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="3747b-115">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="3747b-115">Visual Studio</span></span>](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="1813c-115">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="1813c-115">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="3747b-116">Abrir o Visual Studio</span><span class="sxs-lookup"><span data-stu-id="3747b-116">Open Visual Studio</span></span>
-* <span data-ttu-id="3747b-117">Clique em **Criar um novo projeto**</span><span class="sxs-lookup"><span data-stu-id="3747b-117">Click **Create a new project**</span></span>
-* <span data-ttu-id="3747b-118">Selecione **Aplicativo de Console (.NET Core)** com a marca **C#** e clique em **Avançar**</span><span class="sxs-lookup"><span data-stu-id="3747b-118">Select **Console App (.NET Core)** with the **C#** tag and click **Next**</span></span>
-* <span data-ttu-id="3747b-119">Insira **EFGetStarted** como o nome e clique em **Criar**</span><span class="sxs-lookup"><span data-stu-id="3747b-119">Enter **EFGetStarted** for the name and click **Create**</span></span>
+* <span data-ttu-id="1813c-116">Abrir o Visual Studio</span><span class="sxs-lookup"><span data-stu-id="1813c-116">Open Visual Studio</span></span>
+* <span data-ttu-id="1813c-117">Clique em **Criar um novo projeto**</span><span class="sxs-lookup"><span data-stu-id="1813c-117">Click **Create a new project**</span></span>
+* <span data-ttu-id="1813c-118">Selecione **Aplicativo de Console (.NET Core)** com a marca **C#** e clique em **Avançar**</span><span class="sxs-lookup"><span data-stu-id="1813c-118">Select **Console App (.NET Core)** with the **C#** tag and click **Next**</span></span>
+* <span data-ttu-id="1813c-119">Insira **EFGetStarted** como o nome e clique em **Criar**</span><span class="sxs-lookup"><span data-stu-id="1813c-119">Enter **EFGetStarted** for the name and click **Create**</span></span>
 
 ---
 
-## <a name="install-entity-framework-core"></a><span data-ttu-id="3747b-120">Instalar o Entity Framework Core</span><span class="sxs-lookup"><span data-stu-id="3747b-120">Install Entity Framework Core</span></span>
+## <a name="install-entity-framework-core"></a><span data-ttu-id="1813c-120">Instalar o Entity Framework Core</span><span class="sxs-lookup"><span data-stu-id="1813c-120">Install Entity Framework Core</span></span>
 
-<span data-ttu-id="3747b-121">Para instalar o EF Core, instale o pacote dos provedores do banco de dados do EF Core para o qual você deseja direcionar.</span><span class="sxs-lookup"><span data-stu-id="3747b-121">To install EF Core, you install the package for the EF Core database provider(s) you want to target.</span></span> <span data-ttu-id="3747b-122">Este tutorial usa SQLite porque ele é executado em todas as plataformas que dão suporte a .NET Core.</span><span class="sxs-lookup"><span data-stu-id="3747b-122">This tutorial uses SQLite because it runs on all platforms that .NET Core supports.</span></span> <span data-ttu-id="3747b-123">Para obter uma lista de provedores disponíveis, veja [Provedores de Banco de Dados](../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="3747b-123">For a list of available providers, see [Database Providers](../providers/index.md).</span></span>
+<span data-ttu-id="1813c-121">Para instalar o EF Core, instale o pacote dos provedores do banco de dados do EF Core para o qual você deseja direcionar.</span><span class="sxs-lookup"><span data-stu-id="1813c-121">To install EF Core, you install the package for the EF Core database provider(s) you want to target.</span></span> <span data-ttu-id="1813c-122">Este tutorial usa SQLite porque ele é executado em todas as plataformas que dão suporte a .NET Core.</span><span class="sxs-lookup"><span data-stu-id="1813c-122">This tutorial uses SQLite because it runs on all platforms that .NET Core supports.</span></span> <span data-ttu-id="1813c-123">Para obter uma lista de provedores disponíveis, veja [Provedores de Banco de Dados](../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="1813c-123">For a list of available providers, see [Database Providers](../providers/index.md).</span></span>
 
-## <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="3747b-124">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="3747b-124">.NET Core CLI</span></span>](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="1813c-124">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="1813c-124">.NET Core CLI</span></span>](#tab/netcore-cli)
 
 ```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 ```
 
-## <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="3747b-125">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="3747b-125">Visual Studio</span></span>](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="1813c-125">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="1813c-125">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="3747b-126">**Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**</span><span class="sxs-lookup"><span data-stu-id="3747b-126">**Tools > NuGet Package Manager > Package Manager Console**</span></span>
-* <span data-ttu-id="3747b-127">Execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="3747b-127">Run the following commands:</span></span>
+* <span data-ttu-id="1813c-126">**Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**</span><span class="sxs-lookup"><span data-stu-id="1813c-126">**Tools > NuGet Package Manager > Package Manager Console**</span></span>
+* <span data-ttu-id="1813c-127">Execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="1813c-127">Run the following commands:</span></span>
 
   ``` PowerShell
   Install-Package Microsoft.EntityFrameworkCore.Sqlite
   ```
 
-<span data-ttu-id="3747b-128">Dica: você também pode instalar pacotes clicando com o botão direito do mouse no projeto e selecionando **Gerenciar Pacotes NuGet**</span><span class="sxs-lookup"><span data-stu-id="3747b-128">Tip: You can also install packages by right-clicking on the project and selecting **Manage NuGet Packages**</span></span>
+<span data-ttu-id="1813c-128">Dica: você também pode instalar pacotes clicando com o botão direito do mouse no projeto e selecionando **Gerenciar Pacotes NuGet**</span><span class="sxs-lookup"><span data-stu-id="1813c-128">Tip: You can also install packages by right-clicking on the project and selecting **Manage NuGet Packages**</span></span>
 
 ---
 
-## <a name="create-the-model"></a><span data-ttu-id="3747b-129">Criar o modelo</span><span class="sxs-lookup"><span data-stu-id="3747b-129">Create the model</span></span>
+## <a name="create-the-model"></a><span data-ttu-id="1813c-129">Criar o modelo</span><span class="sxs-lookup"><span data-stu-id="1813c-129">Create the model</span></span>
 
-<span data-ttu-id="3747b-130">Defina uma classe de contexto e classes de entidade que compõem o modelo.</span><span class="sxs-lookup"><span data-stu-id="3747b-130">Define a context class and entity classes that make up the model.</span></span>
+<span data-ttu-id="1813c-130">Defina uma classe de contexto e classes de entidade que compõem o modelo.</span><span class="sxs-lookup"><span data-stu-id="1813c-130">Define a context class and entity classes that make up the model.</span></span>
 
-## <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="3747b-131">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="3747b-131">.NET Core CLI</span></span>](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="1813c-131">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="1813c-131">.NET Core CLI</span></span>](#tab/netcore-cli)
 
-* <span data-ttu-id="3747b-132">No diretório do projeto, crie **Model.cs** com o seguinte código</span><span class="sxs-lookup"><span data-stu-id="3747b-132">In the project directory, create **Model.cs** with the following code</span></span>
+* <span data-ttu-id="1813c-132">No diretório do projeto, crie **Model.cs** com o seguinte código</span><span class="sxs-lookup"><span data-stu-id="1813c-132">In the project directory, create **Model.cs** with the following code</span></span>
 
-## <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="3747b-133">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="3747b-133">Visual Studio</span></span>](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="1813c-133">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="1813c-133">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="3747b-134">Clique com o botão direito do mouse no projeto e selecione **Adicionar > Classe**</span><span class="sxs-lookup"><span data-stu-id="3747b-134">Right-click on the project and select **Add > Class**</span></span>
-* <span data-ttu-id="3747b-135">Insira **Model.cs** como o nome e clique em **Adicionar**</span><span class="sxs-lookup"><span data-stu-id="3747b-135">Enter **Model.cs** as the name and click **Add**</span></span>
-* <span data-ttu-id="3747b-136">Substitua o conteúdo do arquivo pelo seguinte código</span><span class="sxs-lookup"><span data-stu-id="3747b-136">Replace the contents of the file with the following code</span></span>
+* <span data-ttu-id="1813c-134">Clique com o botão direito do mouse no projeto e selecione **Adicionar > Classe**</span><span class="sxs-lookup"><span data-stu-id="1813c-134">Right-click on the project and select **Add > Class**</span></span>
+* <span data-ttu-id="1813c-135">Insira **Model.cs** como o nome e clique em **Adicionar**</span><span class="sxs-lookup"><span data-stu-id="1813c-135">Enter **Model.cs** as the name and click **Add**</span></span>
+* <span data-ttu-id="1813c-136">Substitua o conteúdo do arquivo pelo seguinte código</span><span class="sxs-lookup"><span data-stu-id="1813c-136">Replace the contents of the file with the following code</span></span>
 
 ---
 
 [!code-csharp[Main](../../../samples/core/GetStarted/Model.cs)]
 
-<span data-ttu-id="3747b-137">O EF Core também pode fazer a [engenharia reversa](../managing-schemas/scaffolding.md) de um modelo de um banco de dados existente.</span><span class="sxs-lookup"><span data-stu-id="3747b-137">EF Core can also [reverse engineer](../managing-schemas/scaffolding.md) a model from an existing database.</span></span>
+<span data-ttu-id="1813c-137">O EF Core também pode fazer a [engenharia reversa](../managing-schemas/scaffolding.md) de um modelo de um banco de dados existente.</span><span class="sxs-lookup"><span data-stu-id="1813c-137">EF Core can also [reverse engineer](../managing-schemas/scaffolding.md) a model from an existing database.</span></span>
 
-<span data-ttu-id="3747b-138">Dica: em um aplicativo real, você coloca cada classe em um arquivo separado e coloca a [cadeia de conexão](../miscellaneous/connection-strings.md) em um arquivo de configuração ou na variável de ambiente.</span><span class="sxs-lookup"><span data-stu-id="3747b-138">Tip: In a real app, you put each class in a separate file and put the [connection string](../miscellaneous/connection-strings.md) in a configuration file or environment variable.</span></span> <span data-ttu-id="3747b-139">Para simplificar o tutorial, tudo está contido em um arquivo.</span><span class="sxs-lookup"><span data-stu-id="3747b-139">To keep the tutorial simple, everything is contained in one file.</span></span>
+<span data-ttu-id="1813c-138">Dica: em um aplicativo real, você coloca cada classe em um arquivo separado e coloca a [cadeia de conexão](../miscellaneous/connection-strings.md) em um arquivo de configuração ou na variável de ambiente.</span><span class="sxs-lookup"><span data-stu-id="1813c-138">Tip: In a real app, you put each class in a separate file and put the [connection string](../miscellaneous/connection-strings.md) in a configuration file or environment variable.</span></span> <span data-ttu-id="1813c-139">Para simplificar o tutorial, tudo está contido em um arquivo.</span><span class="sxs-lookup"><span data-stu-id="1813c-139">To keep the tutorial simple, everything is contained in one file.</span></span>
 
-## <a name="create-the-database"></a><span data-ttu-id="3747b-140">Criar o banco de dados</span><span class="sxs-lookup"><span data-stu-id="3747b-140">Create the database</span></span>
+## <a name="create-the-database"></a><span data-ttu-id="1813c-140">Criar o banco de dados</span><span class="sxs-lookup"><span data-stu-id="1813c-140">Create the database</span></span>
 
-<span data-ttu-id="3747b-141">As etapas a seguir usam [migrações](xref:core/managing-schemas/migrations/index) para criar um banco de dados.</span><span class="sxs-lookup"><span data-stu-id="3747b-141">The following steps use [migrations](xref:core/managing-schemas/migrations/index) to create a database.</span></span>
+<span data-ttu-id="1813c-141">As etapas a seguir usam [migrações](xref:core/managing-schemas/migrations/index) para criar um banco de dados.</span><span class="sxs-lookup"><span data-stu-id="1813c-141">The following steps use [migrations](xref:core/managing-schemas/migrations/index) to create a database.</span></span>
 
-## <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="3747b-142">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="3747b-142">.NET Core CLI</span></span>](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="1813c-142">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="1813c-142">.NET Core CLI</span></span>](#tab/netcore-cli)
 
-* <span data-ttu-id="3747b-143">Execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="3747b-143">Run the following commands:</span></span>
+* <span data-ttu-id="1813c-143">Execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="1813c-143">Run the following commands:</span></span>
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
@@ -112,11 +112,11 @@ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
   dotnet ef database update
   ```
 
-  <span data-ttu-id="3747b-144">Isso instala o [dotnet ef](../miscellaneous/cli/dotnet.md) e o pacote de design necessário para executar o comando em um projeto.</span><span class="sxs-lookup"><span data-stu-id="3747b-144">This installs [dotnet ef](../miscellaneous/cli/dotnet.md) and the design package which is required to run the command on a project.</span></span> <span data-ttu-id="3747b-145">O comando `migrations` realiza o scaffolding de uma migração e cria o conjunto inicial de tabelas para o modelo.</span><span class="sxs-lookup"><span data-stu-id="3747b-145">The `migrations` command scaffolds a migration to create the initial set of tables for the model.</span></span> <span data-ttu-id="3747b-146">O comando `database update` cria o banco de dados e aplica a nova migração a ele.</span><span class="sxs-lookup"><span data-stu-id="3747b-146">The `database update` command creates the database and applies the new migration to it.</span></span>
+  <span data-ttu-id="1813c-144">Isso instala o [dotnet ef](../miscellaneous/cli/dotnet.md) e o pacote de design necessário para executar o comando em um projeto.</span><span class="sxs-lookup"><span data-stu-id="1813c-144">This installs [dotnet ef](../miscellaneous/cli/dotnet.md) and the design package which is required to run the command on a project.</span></span> <span data-ttu-id="1813c-145">O comando `migrations` realiza o scaffolding de uma migração e cria o conjunto inicial de tabelas para o modelo.</span><span class="sxs-lookup"><span data-stu-id="1813c-145">The `migrations` command scaffolds a migration to create the initial set of tables for the model.</span></span> <span data-ttu-id="1813c-146">O comando `database update` cria o banco de dados e aplica a nova migração a ele.</span><span class="sxs-lookup"><span data-stu-id="1813c-146">The `database update` command creates the database and applies the new migration to it.</span></span>
 
-## <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="3747b-147">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="3747b-147">Visual Studio</span></span>](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="1813c-147">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="1813c-147">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="3747b-148">Execute os seguintes comandos no **Console do Gerenciador de Pacotes**</span><span class="sxs-lookup"><span data-stu-id="3747b-148">Run the following commands in **Package Manager Console**</span></span>
+* <span data-ttu-id="1813c-148">Execute os seguintes comandos no **Console do Gerenciador de Pacotes**</span><span class="sxs-lookup"><span data-stu-id="1813c-148">Run the following commands in **Package Manager Console**</span></span>
 
   ``` PowerShell
   Install-Package Microsoft.EntityFrameworkCore.Tools
@@ -124,46 +124,46 @@ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
   Update-Database
   ```
 
-  <span data-ttu-id="3747b-149">Isso instala as [ferramentas do PMC para EF Core](../miscellaneous/cli/powershell.md).</span><span class="sxs-lookup"><span data-stu-id="3747b-149">This installs the [PMC tools for EF Core](../miscellaneous/cli/powershell.md).</span></span> <span data-ttu-id="3747b-150">O comando `Add-Migration` realiza o scaffolding de uma migração e cria o conjunto inicial de tabelas para o modelo.</span><span class="sxs-lookup"><span data-stu-id="3747b-150">The `Add-Migration` command scaffolds a migration to create the initial set of tables for the model.</span></span> <span data-ttu-id="3747b-151">O comando `Update-Database` cria o banco de dados e aplica a nova migração a ele.</span><span class="sxs-lookup"><span data-stu-id="3747b-151">The `Update-Database` command creates the database and applies the new migration to it.</span></span>
+  <span data-ttu-id="1813c-149">Isso instala as [ferramentas do PMC para EF Core](../miscellaneous/cli/powershell.md).</span><span class="sxs-lookup"><span data-stu-id="1813c-149">This installs the [PMC tools for EF Core](../miscellaneous/cli/powershell.md).</span></span> <span data-ttu-id="1813c-150">O comando `Add-Migration` realiza o scaffolding de uma migração e cria o conjunto inicial de tabelas para o modelo.</span><span class="sxs-lookup"><span data-stu-id="1813c-150">The `Add-Migration` command scaffolds a migration to create the initial set of tables for the model.</span></span> <span data-ttu-id="1813c-151">O comando `Update-Database` cria o banco de dados e aplica a nova migração a ele.</span><span class="sxs-lookup"><span data-stu-id="1813c-151">The `Update-Database` command creates the database and applies the new migration to it.</span></span>
 
 ---
 
-## <a name="create-read-update--delete"></a><span data-ttu-id="3747b-152">Criar, ler, atualizar e excluir</span><span class="sxs-lookup"><span data-stu-id="3747b-152">Create, read, update & delete</span></span>
+## <a name="create-read-update--delete"></a><span data-ttu-id="1813c-152">Criar, ler, atualizar e excluir</span><span class="sxs-lookup"><span data-stu-id="1813c-152">Create, read, update & delete</span></span>
 
-* <span data-ttu-id="3747b-153">Abra *Program.cs* e substitua o conteúdo pelo código a seguir:</span><span class="sxs-lookup"><span data-stu-id="3747b-153">Open *Program.cs* and replace the contents with the following code:</span></span>
+* <span data-ttu-id="1813c-153">Abra *Program.cs* e substitua o conteúdo pelo código a seguir:</span><span class="sxs-lookup"><span data-stu-id="1813c-153">Open *Program.cs* and replace the contents with the following code:</span></span>
 
   [!code-csharp[Main](../../../samples/core/GetStarted/Program.cs)]
 
-## <a name="run-the-app"></a><span data-ttu-id="3747b-154">Executar o aplicativo</span><span class="sxs-lookup"><span data-stu-id="3747b-154">Run the app</span></span>
+## <a name="run-the-app"></a><span data-ttu-id="1813c-154">Executar o aplicativo</span><span class="sxs-lookup"><span data-stu-id="1813c-154">Run the app</span></span>
 
-## <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="3747b-155">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="3747b-155">.NET Core CLI</span></span>](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="1813c-155">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="1813c-155">.NET Core CLI</span></span>](#tab/netcore-cli)
 
 ```dotnetcli
 dotnet run
 ```
 
-## <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="3747b-156">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="3747b-156">Visual Studio</span></span>](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="1813c-156">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="1813c-156">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="3747b-157">O Visual Studio usa um diretório de trabalho divergente ao executar aplicativos de console do .NET Core.</span><span class="sxs-lookup"><span data-stu-id="3747b-157">Visual Studio uses an inconsistent working directory when running .NET Core console apps.</span></span> <span data-ttu-id="3747b-158">(confira [dotnet/project-system#3619](https://github.com/dotnet/project-system/issues/3619)) Isso faz com que uma exceção seja gerada: *não existe essa tabela: Blogs*.</span><span class="sxs-lookup"><span data-stu-id="3747b-158">(see [dotnet/project-system#3619](https://github.com/dotnet/project-system/issues/3619)) This results in an exception being thrown: *no such table: Blogs*.</span></span> <span data-ttu-id="3747b-159">Para atualizar o diretório de trabalho:</span><span class="sxs-lookup"><span data-stu-id="3747b-159">To update the working directory:</span></span>
+<span data-ttu-id="1813c-157">O Visual Studio usa um diretório de trabalho divergente ao executar aplicativos de console do .NET Core.</span><span class="sxs-lookup"><span data-stu-id="1813c-157">Visual Studio uses an inconsistent working directory when running .NET Core console apps.</span></span> <span data-ttu-id="1813c-158">(confira [dotnet/project-system#3619](https://github.com/dotnet/project-system/issues/3619)) Isso faz com que uma exceção seja gerada: *não existe essa tabela: Blogs*.</span><span class="sxs-lookup"><span data-stu-id="1813c-158">(see [dotnet/project-system#3619](https://github.com/dotnet/project-system/issues/3619)) This results in an exception being thrown: *no such table: Blogs*.</span></span> <span data-ttu-id="1813c-159">Para atualizar o diretório de trabalho:</span><span class="sxs-lookup"><span data-stu-id="1813c-159">To update the working directory:</span></span>
 
-* <span data-ttu-id="3747b-160">clique com o botão direito do mouse no projeto e selecione **Editar Arquivo de Projeto**</span><span class="sxs-lookup"><span data-stu-id="3747b-160">Right-click on the project and select **Edit Project File**</span></span>
-* <span data-ttu-id="3747b-161">Logo abaixo da propriedade *TargetFramework*, adicione o seguinte:</span><span class="sxs-lookup"><span data-stu-id="3747b-161">Just below the *TargetFramework* property, add the following:</span></span>
+* <span data-ttu-id="1813c-160">clique com o botão direito do mouse no projeto e selecione **Editar Arquivo de Projeto**</span><span class="sxs-lookup"><span data-stu-id="1813c-160">Right-click on the project and select **Edit Project File**</span></span>
+* <span data-ttu-id="1813c-161">Logo abaixo da propriedade *TargetFramework*, adicione o seguinte:</span><span class="sxs-lookup"><span data-stu-id="1813c-161">Just below the *TargetFramework* property, add the following:</span></span>
 
   ``` XML
   <StartWorkingDirectory>$(MSBuildProjectDirectory)</StartWorkingDirectory>
   ```
 
-* <span data-ttu-id="3747b-162">Salve o arquivo</span><span class="sxs-lookup"><span data-stu-id="3747b-162">Save the file</span></span>
+* <span data-ttu-id="1813c-162">Salve o arquivo</span><span class="sxs-lookup"><span data-stu-id="1813c-162">Save the file</span></span>
 
-<span data-ttu-id="3747b-163">Agora, você pode executar o aplicativo:</span><span class="sxs-lookup"><span data-stu-id="3747b-163">Now you can run the app:</span></span>
+<span data-ttu-id="1813c-163">Agora, você pode executar o aplicativo:</span><span class="sxs-lookup"><span data-stu-id="1813c-163">Now you can run the app:</span></span>
 
-* <span data-ttu-id="3747b-164">**Depurar > Iniciar sem depuração**</span><span class="sxs-lookup"><span data-stu-id="3747b-164">**Debug > Start Without Debugging**</span></span>
+* <span data-ttu-id="1813c-164">**Depurar > Iniciar sem depuração**</span><span class="sxs-lookup"><span data-stu-id="1813c-164">**Debug > Start Without Debugging**</span></span>
 
 ---
 
-## <a name="next-steps"></a><span data-ttu-id="3747b-165">Próximas etapas</span><span class="sxs-lookup"><span data-stu-id="3747b-165">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="1813c-165">Próximas etapas</span><span class="sxs-lookup"><span data-stu-id="1813c-165">Next steps</span></span>
 
-* <span data-ttu-id="3747b-166">Siga o [Tutorial do ASP.NET Core](/aspnet/core/data/ef-rp/intro) para usar o EF Core em um aplicativo Web</span><span class="sxs-lookup"><span data-stu-id="3747b-166">Follow the [ASP.NET Core Tutorial](/aspnet/core/data/ef-rp/intro) to use EF Core in a web app</span></span>
-* <span data-ttu-id="3747b-167">Saiba mais sobre as [expressões de consulta LINQ](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)</span><span class="sxs-lookup"><span data-stu-id="3747b-167">Learn more about [LINQ query expressions](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)</span></span>
-* <span data-ttu-id="3747b-168">[Configure seu modelo](xref:core/modeling/index) para especificar configurações como [obrigatório](xref:core/modeling/required-optional) e [comprimento máximo](xref:core/modeling/max-length)</span><span class="sxs-lookup"><span data-stu-id="3747b-168">[Configure your model](xref:core/modeling/index) to specify things like [required](xref:core/modeling/required-optional) and [maximum length](xref:core/modeling/max-length)</span></span>
-* <span data-ttu-id="3747b-169">Use [Migrações](xref:core/managing-schemas/migrations/index) para atualizar o esquema do banco de dados após alterar seu modelo</span><span class="sxs-lookup"><span data-stu-id="3747b-169">Use [Migrations](xref:core/managing-schemas/migrations/index) to update the database schema after changing your model</span></span>
+* <span data-ttu-id="1813c-166">Siga o [Tutorial do ASP.NET Core](/aspnet/core/data/ef-rp/intro) para usar o EF Core em um aplicativo Web</span><span class="sxs-lookup"><span data-stu-id="1813c-166">Follow the [ASP.NET Core Tutorial](/aspnet/core/data/ef-rp/intro) to use EF Core in a web app</span></span>
+* <span data-ttu-id="1813c-167">Saiba mais sobre as [expressões de consulta LINQ](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)</span><span class="sxs-lookup"><span data-stu-id="1813c-167">Learn more about [LINQ query expressions](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)</span></span>
+* <span data-ttu-id="1813c-168">[Configure seu modelo](xref:core/modeling/index) para especificar configurações como [obrigatório](xref:core/modeling/entity-properties#required-and-optional-properties) e [comprimento máximo](xref:core/modeling/entity-properties#maximum-length)</span><span class="sxs-lookup"><span data-stu-id="1813c-168">[Configure your model](xref:core/modeling/index) to specify things like [required](xref:core/modeling/entity-properties#required-and-optional-properties) and [maximum length](xref:core/modeling/entity-properties#maximum-length)</span></span>
+* <span data-ttu-id="1813c-169">Use [Migrações](xref:core/managing-schemas/migrations/index) para atualizar o esquema do banco de dados após alterar seu modelo</span><span class="sxs-lookup"><span data-stu-id="1813c-169">Use [Migrations](xref:core/managing-schemas/migrations/index) to update the database schema after changing your model</span></span>
