@@ -5,12 +5,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
-ms.openlocfilehash: 9fe4905de5bd81fce083d620724b7fad4c6dd11b
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 62f7da64bbb6289edd38b877af71fc126e03d0f6
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182042"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502283"
 ---
 # <a name="compare-ef-core--ef6"></a>Comparar EF Core e EF6
 
@@ -30,7 +30,7 @@ O EF Core foi criado para fornecer uma experiência de desenvolvedor semelhante 
 
 ## <a name="feature-comparison"></a>Comparação entre recursos
 
-O EF Core oferece novos recursos que não serão implementados no EF6 (como [chaves alternativas](xref:core/modeling/alternate-keys), [atualizações em lote](xref:core/what-is-new/ef-core-1.0#relational-batching-of-statements) e [avaliação mista cliente/banco de dados em consultas LINQ](xref:core/querying/client-eval). Mas, como ele é uma nova base de código, ele também não tem alguns recursos que o EF6.
+O EF Core oferece novos recursos que não serão implementados no EF6 (como [chaves alternativas](xref:core/modeling/keys#alternate-keys), [atualizações em lote](xref:core/what-is-new/ef-core-1.0#relational-batching-of-statements) e [avaliação mista cliente/banco de dados em consultas LINQ](xref:core/querying/client-eval). Mas, como ele é uma nova base de código, ele também não tem alguns recursos que o EF6.
 
 As tabelas a seguir comparam os recursos disponíveis no EF Core e no EF6. É uma comparação de alto nível e não lista todos os recursos nem explicam as diferenças entre o mesmo recurso em diferentes versões do EF.
 
@@ -81,7 +81,7 @@ A coluna EF Core indica a versão do produto na qual o recurso apareceu pela pri
 | Conversão de GroupBy                                   | Sim      | 2.1                                   |
 | Carregando dados relacionados: Adiantado                           | Sim      | 1.0                                   |
 | Carregando dados relacionados: Carregamento adiantado para tipos derivados |          | 2.1                                   |
-| Carregando dados relacionados: Lentidão                            | Sim      | 2.1                                   |
+| Carregando dados relacionados: Ocioso                            | Sim      | 2.1                                   |
 | Carregando dados relacionados: Explícito                        | Sim      | 1.1                                   |
 | Consultas SQL brutas: Tipos de entidade                         | Sim      | 1.0                                   |
 | Consultas SQL brutas: Tipos de entidade sem chave                 | Sim      | 2.1                                   |

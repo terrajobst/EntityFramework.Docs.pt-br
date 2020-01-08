@@ -4,12 +4,12 @@ author: rick-anderson
 ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: d46c4bb9ac6c8f718b4da5ecd82d54710d41935f
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 8aea40b9caaf454bc06d4991fd403e1ad0ff9b93
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824494"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502013"
 ---
 # <a name="getting-started-with-ef-core"></a>Introdução ao EF Core
 
@@ -23,11 +23,11 @@ Você pode seguir o tutorial usando o Visual Studio no Windows ou usando a CLI d
 
 Instale o software a seguir:
 
-## <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 * [SDK do .NET Core 3.0](https://www.microsoft.com/net/download/core).
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019 versão 16.3 ou posterior](https://www.visualstudio.com/downloads/) com esta carga de trabalho:
   * **Desenvolvimento de plataforma cruzada do .NET Core** (em **Outros conjuntos de ferramentas**)
@@ -36,14 +36,14 @@ Instale o software a seguir:
 
 ## <a name="create-a-new-project"></a>Criar um novo projeto
 
-## <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 ```dotnetcli
 dotnet new console -o EFGetStarted
 cd EFGetStarted
 ```
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Abrir o Visual Studio
 * Clique em **Criar um novo projeto**
@@ -56,13 +56,13 @@ cd EFGetStarted
 
 Para instalar o EF Core, instale o pacote dos provedores do banco de dados do EF Core para o qual você deseja direcionar. Este tutorial usa SQLite porque ele é executado em todas as plataformas que dão suporte a .NET Core. Para obter uma lista de provedores disponíveis, veja [Provedores de Banco de Dados](../providers/index.md).
 
-## <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 ```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 ```
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * **Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**
 * Execute os seguintes comandos:
@@ -79,11 +79,11 @@ Dica: você também pode instalar pacotes clicando com o botão direito do mouse
 
 Defina uma classe de contexto e classes de entidade que compõem o modelo.
 
-## <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 * No diretório do projeto, crie **Model.cs** com o seguinte código
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Clique com o botão direito do mouse no projeto e selecione **Adicionar > Classe**
 * Insira **Model.cs** como o nome e clique em **Adicionar**
@@ -101,7 +101,7 @@ Dica: em um aplicativo real, você coloca cada classe em um arquivo separado e c
 
 As etapas a seguir usam [migrações](xref:core/managing-schemas/migrations/index) para criar um banco de dados.
 
-## <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 * Execute os seguintes comandos:
 
@@ -114,7 +114,7 @@ As etapas a seguir usam [migrações](xref:core/managing-schemas/migrations/inde
 
   Isso instala o [dotnet ef](../miscellaneous/cli/dotnet.md) e o pacote de design necessário para executar o comando em um projeto. O comando `migrations` realiza o scaffolding de uma migração e cria o conjunto inicial de tabelas para o modelo. O comando `database update` cria o banco de dados e aplica a nova migração a ele.
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Execute os seguintes comandos no **Console do Gerenciador de Pacotes**
 
@@ -136,13 +136,13 @@ As etapas a seguir usam [migrações](xref:core/managing-schemas/migrations/inde
 
 ## <a name="run-the-app"></a>Executar o aplicativo
 
-## <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 ```dotnetcli
 dotnet run
 ```
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 O Visual Studio usa um diretório de trabalho divergente ao executar aplicativos de console do .NET Core. (confira [dotnet/project-system#3619](https://github.com/dotnet/project-system/issues/3619)) Isso faz com que uma exceção seja gerada: *não existe essa tabela: Blogs*. Para atualizar o diretório de trabalho:
 
@@ -165,5 +165,5 @@ Agora, você pode executar o aplicativo:
 
 * Siga o [Tutorial do ASP.NET Core](/aspnet/core/data/ef-rp/intro) para usar o EF Core em um aplicativo Web
 * Saiba mais sobre as [expressões de consulta LINQ](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)
-* [Configure seu modelo](xref:core/modeling/index) para especificar configurações como [obrigatório](xref:core/modeling/required-optional) e [comprimento máximo](xref:core/modeling/max-length)
+* [Configure seu modelo](xref:core/modeling/index) para especificar configurações como [obrigatório](xref:core/modeling/entity-properties#required-and-optional-properties) e [comprimento máximo](xref:core/modeling/entity-properties#maximum-length)
 * Use [Migrações](xref:core/managing-schemas/migrations/index) para atualizar o esquema do banco de dados após alterar seu modelo
