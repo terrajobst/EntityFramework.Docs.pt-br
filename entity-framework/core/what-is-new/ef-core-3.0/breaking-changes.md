@@ -3,12 +3,12 @@ title: Alterações significativas no EF Core 3.0 – EF Core
 author: ajcvickers
 ms.date: 12/03/2019
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: d614103169837238810fabd0a8889043c851ef14
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: cac166e9e194e512de7d730d27c061e6deaf5191
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824869"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502221"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>Alterações recentes incluídas no EF Core 3,0
 
@@ -25,17 +25,17 @@ As alterações que esperamos que afetem apenas os provedores de banco de dados 
 | [DetectChanges respeita os valores de chave gerados pelo repositório](#dc) | Alta      |
 | [FromSql, ExecuteSql e ExecuteSqlAsync foram renomeados](#fromsql) | Alta      |
 | [Tipos de consulta são consolidados com tipos de entidade](#qt) | Alta      |
-| [O Entity Framework Core não faz mais parte da estrutura compartilhada do ASP.NET Core](#no-longer) | Médio      |
-| [Agora, as exclusões em cascata acontecem imediatamente por padrão](#cascade) | Médio      |
-| [O carregamento adiantado de entidades relacionadas agora ocorre em uma única consulta](#eager-loading-single-query) | Médio      |
-| [DeleteBehavior.Restrict tem uma semântica mais limpa](#deletebehavior) | Médio      |
-| [A API de configuração para relações de tipo de propriedade mudou](#config) | Médio      |
-| [Cada propriedade usa geração de chave de inteiro em memória independente](#each) | Médio      |
-| [As consultas sem acompanhamento não executam mais a resolução de identidade](#notrackingresolution) | Médio      |
-| [Alterações na API de metadados](#metadata-api-changes) | Médio      |
-| [Alterações na API de metadados específicos do provedor](#provider) | Médio      |
-| [UseRowNumberForPaging foi removido](#urn) | Médio      |
-| [O método das quando usado com o procedimento armazenado não pode ser composto](#fromsqlsproc) | Médio      |
+| [O Entity Framework Core não faz mais parte da estrutura compartilhada do ASP.NET Core](#no-longer) | Média      |
+| [Agora, as exclusões em cascata acontecem imediatamente por padrão](#cascade) | Média      |
+| [O carregamento adiantado de entidades relacionadas agora ocorre em uma única consulta](#eager-loading-single-query) | Média      |
+| [DeleteBehavior.Restrict tem uma semântica mais limpa](#deletebehavior) | Média      |
+| [A API de configuração para relações de tipo de propriedade mudou](#config) | Média      |
+| [Cada propriedade usa geração de chave de inteiro em memória independente](#each) | Média      |
+| [As consultas sem acompanhamento não executam mais a resolução de identidade](#notrackingresolution) | Média      |
+| [Alterações na API de metadados](#metadata-api-changes) | Média      |
+| [Alterações na API de metadados específicos do provedor](#provider) | Média      |
+| [UseRowNumberForPaging foi removido](#urn) | Média      |
+| [O método das quando usado com o procedimento armazenado não pode ser composto](#fromsqlsproc) | Média      |
 | [Os métodos FromSql só podem ser especificados em raízes de consulta](#fromsql) | Baixa      |
 | [~~A execução de consulta é registrada no nível da Depuração~~ Revertida](#qe) | Baixa      |
 | [Valores de chave temporários não estão mais definidos em instâncias de entidade](#tkv) | Baixa      |
@@ -389,11 +389,11 @@ Por exemplo, chamar `context.Remove()` para excluir uma entidade principal resul
 
 **Por que**
 
-Essa alteração foi feita para melhorar a experiência para associação de dados e cenários em que é importante entender quais entidades serão excluídas de auditoria _antes de_ `SaveChanges` ser chamado.
+Essa alteração foi feita para melhorar a experiência de vinculação de dados e cenários de auditoria, em que é importante entender quais entidades serão excluídas _antes_ que `SaveChanges` seja chamado.
 
 **Mitigações**
 
-O comportamento anterior pode ser restaurado por meio das configurações em `context.ChangedTracker`.
+O comportamento anterior pode ser restaurado por meio das configurações em `context.ChangeTracker`.
 Por exemplo:
 
 ```csharp
@@ -1624,7 +1624,7 @@ Antes do EF Core 3.0, o Microsoft.EntityFrameworkCore.Design era um pacote regul
 
 **Comportamento novo**
 
-A partir do EF Core 3.0, ele se tornou um pacote de DevelopmentDependency. Isso significa que a dependência não fluirá transitivamente para outros projetos e que você não poderá mais, por padrão, referenciar o assembly dele.
+A partir do EF Core 3.0, ele se tornou um pacote de DevelopmentDependency. Isso significa que a dependência não flui transitivamente em outros projetos e que você não pode mais, por padrão, referenciar seu assembly.
 
 **Por que**
 
@@ -1632,7 +1632,7 @@ Esse pacote destina-se para uso somente em tempo de design. Os aplicativos impla
 
 **Mitigações**
 
-Se você precisar fazer referência a esse pacote para substituir o comportamento de tempo de design do EF Core, poderá atualizar os metadados do item PackageReference no seu projeto. Se o pacote estiver sendo referenciado transitivamente por meio de Microsoft.EntityFrameworkCore.Tools, você precisará adicionar um PackageReference explícito ao pacote para alterar seus metadados.
+Se você precisar fazer referência a esse pacote para substituir o comportamento de tempo de design do EF Core, poderá atualizar os metadados do item PackageReference em seu projeto.
 
 ``` xml
 <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
@@ -1641,6 +1641,8 @@ Se você precisar fazer referência a esse pacote para substituir o comportament
   <!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
 </PackageReference>
 ```
+
+Se o pacote estiver sendo referenciado transitivamente por meio de Microsoft.EntityFrameworkCore.Tools, você precisará adicionar um PackageReference explícito ao pacote para alterar seus metadados. Essa referência explícita deve ser adicionada a qualquer projeto em que os tipos do pacote sejam necessários.
 
 <a name="SQLitePCL"></a>
 

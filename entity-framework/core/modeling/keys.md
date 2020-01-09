@@ -1,55 +1,78 @@
 ---
-title: Chaves (primárias)-EF Core
+title: Chaves-EF Core
 description: Como configurar chaves para tipos de entidade ao usar Entity Framework Core
 author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/06/2019
 uid: core/modeling/keys
-ms.openlocfilehash: fdaccb42259ba9dad97a05c626edd0291ca96cb0
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: abd65a5ea079a49fd7a3bbc84a9337f6ee19fab1
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824612"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502000"
 ---
-# <a name="keys-primary"></a>Chaves (primárias)
+# <a name="keys"></a>Keys
 
-Uma chave serve como o identificador exclusivo primário para cada instância de entidade. Ao usar um banco de dados relacional, isso é mapeado para o conceito de uma *chave primária*. Você também pode configurar um identificador exclusivo que não seja a chave primária (consulte [chaves alternativas](alternate-keys.md) para obter mais informações).
+Uma chave serve como um identificador exclusivo para cada instância de entidade. A maioria das entidades no EF tem uma única chave, que é mapeada para o conceito de uma *chave primária* em bancos de dados relacionais (para entidades sem chaves, consulte [entidades inferiores](xref:core/modeling/keyless-entity-types)). As entidades podem ter chaves adicionais além da chave primária (consulte [chaves alternativas](#alternate-keys) para obter mais informações).
 
-Um dos métodos a seguir pode ser usado para configurar/criar uma chave primária.
+Por convenção, uma propriedade chamada `Id` ou `<type name>Id` será configurada como a chave primária de uma entidade.
 
-## <a name="conventions"></a>Convenções
-
-Por padrão, uma propriedade chamada `Id` ou `<type name>Id` será configurada como a chave de uma entidade.
-
-[!code-csharp[Main](../../../samples/core/Modeling/Conventions/KeyId.cs?name=KeyId&highlight=3)]
-
-[!code-csharp[Main](../../../samples/core/Modeling/Conventions/KeyTypeNameId.cs?name=KeyId&highlight=3)]
+[!code-csharp[Main](../../../samples/core/Modeling/Conventions/KeyId.cs?name=KeyId&highlight=3,11)]
 
 > [!NOTE]
 > [Tipos de entidade pertencentes](xref:core/modeling/owned-entities) usam regras diferentes para definir chaves.
 
-## <a name="data-annotations"></a>Anotações de dados
+Você pode configurar uma única propriedade para ser a chave primária de uma entidade da seguinte maneira:
 
-Você pode usar as anotações de dados para configurar uma única propriedade para ser a chave de uma entidade.
+## <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/KeySingle.cs?highlight=13)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/KeySingle.cs?name=KeySingle&highlight=3)]
 
-## <a name="fluent-api"></a>API fluente
+## <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
 
-Você pode usar a API Fluent para configurar uma única propriedade para ser a chave de uma entidade.
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeySingle.cs?name=KeySingle&highlight=4)]
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeySingle.cs?highlight=11,12)]
+***
 
-Você também pode usar a API fluente para configurar várias propriedades para ser a chave de uma entidade (conhecida como chave composta). As chaves compostas só podem ser configuradas usando a API fluente – as convenções nunca instalarão uma chave composta e você não poderá usar as anotações de dados para configurar uma.
+Você também pode configurar várias propriedades para ser a chave de uma entidade – isso é conhecido como uma chave composta. As chaves compostas só podem ser configuradas usando a API Fluent; as convenções nunca configurarão uma chave composta e você não poderá usar as anotações de dados para configurar uma.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeyComposite.cs?highlight=11,12)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeyComposite.cs?name=KeyComposite&highlight=4)]
+
+## <a name="primary-key-name"></a>Nome da chave primária
+
+Por convenção, em bancos de dados relacionais, as chaves primárias são criadas com o nome `PK_<type name>`. Você pode configurar o nome da restrição PRIMARY KEY da seguinte maneira:
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeyName.cs?name=KeyName&highlight=5)]
 
 ## <a name="key-types-and-values"></a>Tipos de chave e valores
 
-O EF Core dá suporte ao uso de propriedades de qualquer tipo primitivo como chave primária, incluindo `string`, `Guid`, `byte[]` e outros. Mas nem todos os bancos de dados dão suporte a eles. Em alguns casos, os valores de chave podem ser convertidos em um tipo com suporte automaticamente; caso contrário, a conversão deve ser [especificada manualmente](xref:core/modeling/value-conversions).
+Embora EF Core ofereça suporte ao uso de propriedades de qualquer tipo primitivo como chave primária, incluindo `string`, `Guid`, `byte[]` e outros, nem todos os bancos de dados oferecem suporte a todos os tipos como chaves. Em alguns casos, os valores de chave podem ser convertidos em um tipo com suporte automaticamente; caso contrário, a conversão deve ser [especificada manualmente](xref:core/modeling/value-conversions).
 
 As propriedades de chave sempre devem ter um valor não padrão ao adicionar uma nova entidade ao contexto, mas alguns tipos serão [gerados pelo banco de dados](xref:core/modeling/generated-properties). Nesse caso, o EF tentará gerar um valor temporário quando a entidade for adicionada para fins de acompanhamento. Depois que [SaveChanges](/dotnet/api/Microsoft.EntityFrameworkCore.DbContext.SaveChanges) for chamado, o valor temporário será substituído pelo valor gerado pelo banco de dados.
 
 > [!Important]
-> Se uma propriedade de chave tiver um valor gerado pelo banco de dados e um valor não padrão for especificado quando uma entidade for adicionada, o EF irá pressupor que a entidade já existe no banco de dados e tentará atualizá-la em vez de inserir uma nova. Para evitar isso, desative a geração de valor ou veja [como especificar valores explícitos para propriedades geradas](../saving/explicit-values-generated-properties.md).
+> Se uma propriedade de chave tiver seu valor gerado pelo banco de dados e um valor não padrão for especificado quando uma entidade for adicionada, o EF irá pressupor que a entidade já existe no banco de dados e tentará atualizá-la em vez de inserir uma nova. Para evitar isso, desative a geração de valor ou veja [como especificar valores explícitos para propriedades geradas](../saving/explicit-values-generated-properties.md).
+
+## <a name="alternate-keys"></a>Chaves alternativas
+
+Uma chave alternativa serve como um identificador exclusivo alternativo para cada instância de entidade, além da chave primária; Ele pode ser usado como o destino de uma relação. Ao usar um banco de dados relacional, ele é mapeado para o conceito de um índice/restrição exclusivo nas colunas de chave alternativas e uma ou mais restrições Foreign Key que fazem referência às colunas.
+
+> [!TIP]
+> Se você quiser apenas impor a exclusividade em uma coluna, defina um índice exclusivo em vez de uma chave alternativa (consulte [índices](indexes.md)). No EF, chaves alternativas são somente leitura e fornecem semântica adicional sobre índices exclusivos, pois eles podem ser usados como o destino de uma chave estrangeira.
+
+As chaves alternativas são normalmente introduzidas quando necessário e você não precisa configurá-las manualmente. Por convenção, uma chave alternativa é introduzida quando você identifica uma propriedade que não é a chave primária como o destino de uma relação.
+
+[!code-csharp[Main](../../../samples/core/Modeling/Conventions/AlternateKey.cs?name=AlternateKey&highlight=12)]
+
+Você também pode configurar uma única propriedade para ser uma chave alternativa:
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/AlternateKeySingle.cs?name=AlternateKeySingle&highlight=4)]
+
+Você também pode configurar várias propriedades para ser uma chave alternativa (conhecida como uma chave alternativa composta):
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/AlternateKeyComposite.cs?name=AlternateKeyComposite&highlight=4)]
+
+Por fim, por convenção, o índice e a restrição que são introduzidos para uma chave alternativa serão nomeados `AK_<type name>_<property name>` (para chaves alternativas compostas `<property name>` se tornará uma lista de nomes de propriedades separada por sublinhado). Você pode configurar o nome do índice da chave alternativa e a restrição UNIQUE:
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/AlternateKeyName.cs?name=AlternateKeyName&highlight=5)]

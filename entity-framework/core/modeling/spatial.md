@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: 335d4f3a601624f7c994b7dcacefe4ef6798beb3
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 8dae1ab949c77ffa08904b12a5716b729e6913a1
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655608"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502234"
 ---
 # <a name="spatial-data"></a>Dados espaciais
 
@@ -23,7 +23,7 @@ Dados espaciais representam o local físico e a forma de objetos. Muitos bancos 
 
 Para usar dados espaciais com EF Core, você precisa instalar o pacote NuGet de suporte apropriado. O pacote que você precisa instalar depende do provedor que você está usando.
 
-Provedor de EF Core                        | Pacote NuGet espacial
+Provedor do EF Core                        | Pacote NuGet espacial
 --------------------------------------- | ---------------------
 Microsoft.EntityFrameworkCore.SqlServer | [Microsoft. EntityFrameworkCore. SqlServer. NetTopologySuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite)
 Microsoft.EntityFrameworkCore.Sqlite    | [Microsoft. EntityFrameworkCore. sqlite. NetTopologySuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite)
@@ -48,10 +48,10 @@ optionsBuilder.UseSqlServer(
 
 Há vários tipos de dados espaciais. O tipo usado depende dos tipos de formas que você deseja permitir. Aqui está a hierarquia de tipos NTS que você pode usar para propriedades em seu modelo. Eles estão localizados dentro do namespace `NetTopologySuite.Geometries`.
 
-* Geometry
+* Geometria
   * Ponto
   * LineString
-  * Polygon
+  * Polígono
   * GeometryCollection
     * MultiPoint
     * MultiLineString
@@ -213,7 +213,7 @@ Se você estiver usando SQL Server, haverá algumas coisas adicionais das quais 
 
 ### <a name="geography-or-geometry"></a>Geografia ou Geometry
 
-Por padrão, as propriedades espaciais são mapeadas para `geography` colunas em SQL Server. Para usar `geometry`, [Configure o tipo de coluna](xref:core/modeling/relational/data-types) em seu modelo.
+Por padrão, as propriedades espaciais são mapeadas para `geography` colunas em SQL Server. Para usar `geometry`, [Configure o tipo de coluna](xref:core/modeling/entity-properties#column-data-types) em seu modelo.
 
 ### <a name="geography-polygon-rings"></a>Anéis de polígono de Geografia
 

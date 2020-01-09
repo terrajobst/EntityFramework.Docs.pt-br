@@ -4,12 +4,12 @@ author: roji
 ms.date: 09/09/2019
 ms.assetid: bde4e0ee-fba3-4813-a849-27049323d301
 uid: core/miscellaneous/nullable-reference-types
-ms.openlocfilehash: 055f492214596506ce2c28485ade359d175c4ac2
-ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
+ms.openlocfilehash: 0d05902566b6b166f1267915d9f698ed29dff588
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72445905"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502061"
 ---
 # <a name="working-with-nullable-reference-types"></a>Trabalhando com tipos de referência anuláveis
 
@@ -19,14 +19,14 @@ Esta página apresenta o suporte de EF Core para tipos de referência anuláveis
 
 ## <a name="required-and-optional-properties"></a>Propriedades obrigatórias e opcionais
 
-A documentação principal sobre as propriedades obrigatórias e opcionais e sua interação com tipos de referência anuláveis é a página de [Propriedades obrigatória e opcional](xref:core/modeling/required-optional) . É recomendável começar lendo essa página primeiro.
+A documentação principal sobre as propriedades obrigatórias e opcionais e sua interação com tipos de referência anuláveis é a página de [Propriedades obrigatória e opcional](xref:core/modeling/entity-properties#required-and-optional-properties) . É recomendável começar lendo essa página primeiro.
 
 > [!NOTE]
 > Tenha cuidado ao habilitar tipos de referência anuláveis em um projeto existente: as propriedades do tipo de referência que foram previamente configuradas como opcionais agora serão configuradas conforme necessário, a menos que sejam anotadas explicitamente para permitir valor nulo. Ao gerenciar um esquema de banco de dados relacional, isso pode fazer com que as migrações sejam geradas, alterando a nulidade da coluna do banco de dados.
 
 ## <a name="dbcontext-and-dbset"></a>DbContext e DbSet
 
-Quando tipos de referência anuláveis são habilitados, o C# compilador emite avisos para qualquer propriedade não anulável não inicializada, pois eles conteriam NULL. Como resultado, a prática comum de definir um `DbSet` não anulável em um contexto irá gerar um aviso. No entanto, EF Core sempre Inicializa todas as propriedades de `DbSet` em tipos derivados de DbContext, portanto, eles são garantidos que nunca serão nulos, mesmo que o compilador não esteja ciente disso. Portanto, é recomendável manter suas propriedades `DbSet` não anuláveis, permitindo que você as acesse sem verificações nulas, e para silenciar os avisos do compilador, definindo-os explicitamente como NULL com a ajuda do operador NULL-tolerante (!):
+Quando tipos de referência anuláveis são habilitados, o C# compilador emite avisos para qualquer propriedade não anulável não inicializada, pois eles conteriam NULL. Como resultado, a prática comum de definir um `DbSet` não anulável em um contexto irá gerar um aviso. No entanto, EF Core sempre Inicializa todas as propriedades de `DbSet` em tipos derivados de DbContext, para que sejam garantidas nunca serem nulas, mesmo que o compilador não esteja ciente disso. Portanto, é recomendável manter suas propriedades `DbSet` não anuláveis, permitindo que você as acesse sem verificações nulas, e para silenciar os avisos do compilador, definindo-os explicitamente como NULL com a ajuda do operador NULL-tolerante (!):
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/NullableReferenceTypesContext.cs?name=Context&highlight=3-4)]
 
@@ -34,7 +34,7 @@ Quando tipos de referência anuláveis são habilitados, o C# compilador emite a
 
 Os avisos do compilador para tipos de referência não anuláveis não inicializados também são um problema para propriedades regulares em seus tipos de entidade. Em nosso exemplo acima, evitamos esses avisos usando a [Associação de Construtor](xref:core/modeling/constructors), um recurso que funciona perfeitamente com propriedades não anuláveis, garantindo que eles sejam sempre inicializados. No entanto, em alguns cenários, a associação de construtor não é uma opção: as propriedades de navegação, por exemplo, não podem ser inicializadas dessa maneira.
 
-As propriedades de navegação necessárias apresentam uma dificuldade adicional: embora um dependente sempre exista para uma determinada entidade de segurança, ele pode ou não ser carregado por uma consulta específica, dependendo das necessidades nesse ponto do programa ([consulte os diferentes padrões para carregando dados](xref:core/querying/related-data)). Ao mesmo tempo, não é desejável tornar essas propriedades anuláveis, pois isso forçaria todo o acesso a elas para verificar se há algum valor nulo, mesmo se eles forem necessários.
+As propriedades de navegação necessárias apresentam uma dificuldade adicional: embora um dependente sempre exista para uma determinada entidade de segurança, ele pode ou não ser carregado por uma consulta específica, dependendo das necessidades nesse ponto do programa ([consulte os diferentes padrões para carregar dados](xref:core/querying/related-data)). Ao mesmo tempo, não é desejável tornar essas propriedades anuláveis, pois isso forçaria todo o acesso a elas para verificar se há algum valor nulo, mesmo se eles forem necessários.
 
 Uma maneira de lidar com esses cenários é ter uma propriedade não anulável com um [campo de backup](xref:core/modeling/backing-field)anulável:
 
