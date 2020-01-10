@@ -5,17 +5,14 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 7b6d1b3bccbfceb85f03a580ba03a45984d29c74
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 30b91b6e66b6c0f516d1ba12485304b52770cbef
+ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824598"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75781229"
 ---
 # <a name="owned-entity-types"></a>Tipos de entidade de propriedade
-
-> [!NOTE]
-> Esse recurso é novo no EF Core 2,0.
 
 EF Core permite que você modele tipos de entidade que só podem aparecer em Propriedades de navegação de outros tipos de entidade. Eles são chamados de _tipos de entidade de propriedade_. A entidade que contém um tipo de entidade de propriedade é seu _proprietário_.
 

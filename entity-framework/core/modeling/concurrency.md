@@ -1,15 +1,15 @@
 ---
 title: Tokens de simultaneidade-EF Core
-author: rowanmiller
-ms.date: 03/03/2018
+author: AndriySvyryd
+ms.date: 01/03/2020
 ms.assetid: bc8b1cb0-befe-4b67-8004-26e6c5f69385
 uid: core/modeling/concurrency
-ms.openlocfilehash: db768c1de99000be91d33764ccd3c3924237f8bb
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 8a5f3aa09c2a83d5be0998a11ef2ee8100437514
+ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197457"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75781138"
 ---
 # <a name="concurrency-tokens"></a>Tokens de simultaneidade
 
@@ -18,40 +18,30 @@ ms.locfileid: "71197457"
 
 Propriedades configuradas como tokens de simultaneidade são usadas para implementar o controle de simultaneidade otimista.
 
-## <a name="conventions"></a>Convenções
+## <a name="configuration"></a>Configuração do
 
-Por convenção, as propriedades nunca são configuradas como tokens de simultaneidade.
+### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
-## <a name="data-annotations"></a>Anotações de dados
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Concurrency.cs?name=Concurrency&highlight=5)]
 
-Você pode usar as anotações de dados para configurar uma propriedade como um token de simultaneidade.
+### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Concurrency.cs#ConfigureConcurrencyAnnotations)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Concurrency.cs?name=Concurrency&highlight=5)]
 
-## <a name="fluent-api"></a>API fluente
+***
 
-Você pode usar a API Fluent para configurar uma propriedade como um token de simultaneidade.
+## <a name="timestamprowversion"></a>Carimbo de data/hora/versão do
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Concurrency.cs#ConfigureConcurrencyFluent)]
+Um timestamp/rowgroup é uma propriedade para a qual um novo valor é gerado automaticamente pelo banco de dados toda vez que uma linha é inserida ou atualizada. A propriedade também é tratada como um token de simultaneidade, garantindo que você receba uma exceção se uma linha que está sendo atualizada foi alterada desde que você a consultou. Os detalhes precisos dependem do provedor de banco de dados que está sendo usado; por SQL Server, uma propriedade *byte []* geralmente é usada, que será configurada *como uma coluna de série* do banco de dados.
 
-## <a name="timestamprow-version"></a>Versão do carimbo de data/hora/linha
+Você pode configurar uma propriedade para ser um carimbo de data/hora/uma versão da seguinte maneira:
 
-Um carimbo de data/hora é uma propriedade em que um novo valor é gerado pelo banco de dados toda vez que uma linha é inserida ou atualizada. A propriedade também é tratada como um token de simultaneidade. Isso garante que você receberá uma exceção se outra pessoa tiver modificado uma linha que você está tentando atualizar desde que você consultou os dados.
+### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
-A forma como isso é feito é o provedor de banco de dados que está sendo usado. Por SQL Server, o carimbo de data/hora geralmente é usado em uma propriedade *byte []* , que será configurada como uma coluna do *doversion* no banco de dados.
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Timestamp.cs?name=Timestamp&highlight=7)]
 
-### <a name="conventions"></a>Convenções
+### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
 
-Por convenção, as propriedades nunca são configuradas como carimbos de data/hora.
+[! Code-Csharp [Main] (.. /.. /.. /samples/core/Modeling/FluentAPI/Timestamp.cs? Name = carimbo de data/hora & realce = 9, 17]
 
-### <a name="data-annotations"></a>Anotações de dados
-
-Você pode usar anotações de dados para configurar uma propriedade como um carimbo de data/hora.
-
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Timestamp.cs#ConfigureTimestampAnnotations)]
-
-### <a name="fluent-api"></a>API fluente
-
-Você pode usar a API Fluent para configurar uma propriedade como um carimbo de data/hora.
-
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Timestamp.cs#ConfigureTimestampFluent)]
+***
