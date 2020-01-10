@@ -1,51 +1,49 @@
 ---
 title: Propriedades da sombra – EF Core
-author: rowanmiller
-ms.date: 10/27/2016
+author: AndriySvyryd
+ms.date: 01/03/2020
 ms.assetid: 75369266-d2b9-4416-b118-ed238f81f599
 uid: core/modeling/shadow-properties
-ms.openlocfilehash: ab57358dd247e32c4ca0f57d07b4cb98f2b85d29
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 229cfd83f75b01dff9ac9ad30ee55c7cc727c19e
+ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655959"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75781177"
 ---
-# <a name="shadow-properties"></a><span data-ttu-id="7ffb2-102">Propriedades de sombra</span><span class="sxs-lookup"><span data-stu-id="7ffb2-102">Shadow Properties</span></span>
+# <a name="shadow-properties"></a><span data-ttu-id="94409-102">Propriedades de sombra</span><span class="sxs-lookup"><span data-stu-id="94409-102">Shadow Properties</span></span>
 
-<span data-ttu-id="7ffb2-103">Propriedades de sombra são propriedades que não são definidas em sua classe de entidade do .NET, mas são definidas para esse tipo de entidade no modelo de EF Core.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-103">Shadow properties are properties that are not defined in your .NET entity class but are defined for that entity type in the EF Core model.</span></span> <span data-ttu-id="7ffb2-104">O valor e o estado dessas propriedades são mantidos puramente no controlador de alterações.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-104">The value and state of these properties is maintained purely in the Change Tracker.</span></span>
+<span data-ttu-id="94409-103">Propriedades de sombra são propriedades que não são definidas em sua classe de entidade do .NET, mas são definidas para esse tipo de entidade no modelo de EF Core.</span><span class="sxs-lookup"><span data-stu-id="94409-103">Shadow properties are properties that are not defined in your .NET entity class but are defined for that entity type in the EF Core model.</span></span> <span data-ttu-id="94409-104">O valor e o estado dessas propriedades são mantidos puramente no controlador de alterações.</span><span class="sxs-lookup"><span data-stu-id="94409-104">The value and state of these properties is maintained purely in the Change Tracker.</span></span> <span data-ttu-id="94409-105">As propriedades de sombra são úteis quando há dados no banco que não devem ser expostos nos tipos de entidade mapeada.</span><span class="sxs-lookup"><span data-stu-id="94409-105">Shadow properties are useful when there is data in the database that should not be exposed on the mapped entity types.</span></span>
 
-<span data-ttu-id="7ffb2-105">As propriedades de sombra são úteis quando há dados no banco que não devem ser expostos nos tipos de entidade mapeada.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-105">Shadow properties are useful when there is data in the database that should not be exposed on the mapped entity types.</span></span> <span data-ttu-id="7ffb2-106">Eles são usados com mais frequência em Propriedades de chave estrangeira, em que a relação entre duas entidades é representada por um valor de chave estrangeira no banco de dados, mas a relação é gerenciada nos tipos de entidade usando propriedades de navegação entre os tipos de entidade.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-106">They are most often used for foreign key properties, where the relationship between two entities is represented by a foreign key value in the database, but the relationship is managed on the entity types using navigation properties between the entity types.</span></span>
+## <a name="foreign-key-shadow-properties"></a><span data-ttu-id="94409-106">Propriedades da sombra da chave estrangeira</span><span class="sxs-lookup"><span data-stu-id="94409-106">Foreign key shadow properties</span></span>
 
-<span data-ttu-id="7ffb2-107">Os valores de propriedade de sombra podem ser obtidos e alterados por meio da API `ChangeTracker`.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-107">Shadow property values can be obtained and changed through the `ChangeTracker` API.</span></span>
+<span data-ttu-id="94409-107">As propriedades de sombra são usadas com mais frequência para propriedades de chave estrangeira, em que a relação entre duas entidades é representada por um valor de chave estrangeira no banco de dados, mas a relação é gerenciada nos tipos de entidade usando propriedades de navegação entre a entidade digita.</span><span class="sxs-lookup"><span data-stu-id="94409-107">Shadow properties are most often used for foreign key properties, where the relationship between two entities is represented by a foreign key value in the database, but the relationship is managed on the entity types using navigation properties between the entity types.</span></span> <span data-ttu-id="94409-108">Por convenção, o EF introduzirá uma propriedade de sombra quando uma relação for descoberta, mas nenhuma propriedade de chave estrangeira for encontrada na classe de entidade dependente.</span><span class="sxs-lookup"><span data-stu-id="94409-108">By convention, EF will introduce a shadow property when a relationship is discovered but no foreign key property is found in the dependent entity class.</span></span>
+
+<span data-ttu-id="94409-109">A propriedade será nomeada `<navigation property name><principal key property name>` (a navegação na entidade dependente, que aponta para a entidade principal, é usada para a nomenclatura).</span><span class="sxs-lookup"><span data-stu-id="94409-109">The property will be named `<navigation property name><principal key property name>` (the navigation on the dependent entity, which points to the principal entity, is used for the naming).</span></span> <span data-ttu-id="94409-110">Se o nome da propriedade da chave principal incluir o nome da propriedade de navegação, o nome será apenas `<principal key property name>`.</span><span class="sxs-lookup"><span data-stu-id="94409-110">If the principal key property name includes the name of the navigation property, then the name will just be `<principal key property name>`.</span></span> <span data-ttu-id="94409-111">Se não houver nenhuma propriedade de navegação na entidade dependente, o nome do tipo de entidade de segurança será usado em seu lugar.</span><span class="sxs-lookup"><span data-stu-id="94409-111">If there is no navigation property on the dependent entity, then the principal type name is used in its place.</span></span>
+
+<span data-ttu-id="94409-112">Por exemplo, a listagem de código a seguir resultará em uma propriedade de sombra `BlogId` introduzida na entidade `Post`:</span><span class="sxs-lookup"><span data-stu-id="94409-112">For example, the following code listing will result in a `BlogId` shadow property being introduced to the `Post` entity:</span></span>
+
+[!code-csharp[Main](../../../samples/core/Modeling/Conventions/ShadowForeignKey.cs?name=Conventions&highlight=21-23)]
+
+## <a name="configuring-shadow-properties"></a><span data-ttu-id="94409-113">Configurando propriedades de sombra</span><span class="sxs-lookup"><span data-stu-id="94409-113">Configuring shadow properties</span></span>
+
+<span data-ttu-id="94409-114">Você pode usar a API Fluent para configurar propriedades de sombra.</span><span class="sxs-lookup"><span data-stu-id="94409-114">You can use the Fluent API to configure shadow properties.</span></span> <span data-ttu-id="94409-115">Depois de ter chamado a sobrecarga de cadeia de caracteres de `Property`, você pode encadear qualquer uma das chamadas de configuração para outras propriedades.</span><span class="sxs-lookup"><span data-stu-id="94409-115">Once you have called the string overload of `Property`, you can chain any of the configuration calls you would for other properties.</span></span> <span data-ttu-id="94409-116">No exemplo a seguir, como `Blog` não tem nenhuma propriedade CLR chamada `LastUpdated`, uma propriedade Shadow é criada:</span><span class="sxs-lookup"><span data-stu-id="94409-116">In the following sample, since `Blog` has no CLR property named `LastUpdated`, a shadow property is created:</span></span>
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ShadowProperty.cs?name=ShadowProperty&highlight=8)]
+
+<span data-ttu-id="94409-117">Se o nome fornecido ao método de `Property` corresponder ao nome de uma propriedade existente (uma propriedade de sombra ou uma definida na classe de entidade), o código configurará essa propriedade existente em vez de introduzir uma nova propriedade de sombra.</span><span class="sxs-lookup"><span data-stu-id="94409-117">If the name supplied to the `Property` method matches the name of an existing property (a shadow property or one defined on the entity class), then the code will configure that existing property rather than introducing a new shadow property.</span></span>
+
+## <a name="accessing-shadow-properties"></a><span data-ttu-id="94409-118">Acessando Propriedades de sombra</span><span class="sxs-lookup"><span data-stu-id="94409-118">Accessing shadow properties</span></span>
+
+<span data-ttu-id="94409-119">Os valores de propriedade de sombra podem ser obtidos e alterados por meio da API `ChangeTracker`:</span><span class="sxs-lookup"><span data-stu-id="94409-119">Shadow property values can be obtained and changed through the `ChangeTracker` API:</span></span>
 
 ``` csharp
 context.Entry(myBlog).Property("LastUpdated").CurrentValue = DateTime.Now;
 ```
 
-<span data-ttu-id="7ffb2-108">As propriedades de sombra podem ser referenciadas em consultas LINQ por meio do método estático `EF.Property`.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-108">Shadow properties can be referenced in LINQ queries via the `EF.Property` static method.</span></span>
+<span data-ttu-id="94409-120">As propriedades de sombra podem ser referenciadas em consultas LINQ por meio do método estático `EF.Property`:</span><span class="sxs-lookup"><span data-stu-id="94409-120">Shadow properties can be referenced in LINQ queries via the `EF.Property` static method:</span></span>
 
 ``` csharp
 var blogs = context.Blogs
     .OrderBy(b => EF.Property<DateTime>(b, "LastUpdated"));
 ```
-
-## <a name="conventions"></a><span data-ttu-id="7ffb2-109">Convenções</span><span class="sxs-lookup"><span data-stu-id="7ffb2-109">Conventions</span></span>
-
-<span data-ttu-id="7ffb2-110">As propriedades de sombra podem ser criadas por convenção quando uma relação é descoberta, mas nenhuma propriedade de chave estrangeira é encontrada na classe de entidade dependente.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-110">Shadow properties can be created by convention when a relationship is discovered but no foreign key property is found in the dependent entity class.</span></span> <span data-ttu-id="7ffb2-111">Nesse caso, uma propriedade de chave estrangeira de sombra será introduzida.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-111">In this case, a shadow foreign key property will be introduced.</span></span> <span data-ttu-id="7ffb2-112">A propriedade de chave estrangeira de sombra será nomeada `<navigation property name><principal key property name>` (a navegação na entidade dependente, que aponta para a entidade principal, é usada para a nomenclatura).</span><span class="sxs-lookup"><span data-stu-id="7ffb2-112">The shadow foreign key property will be named `<navigation property name><principal key property name>` (the navigation on the dependent entity, which points to the principal entity, is used for the naming).</span></span> <span data-ttu-id="7ffb2-113">Se o nome da propriedade da chave principal incluir o nome da propriedade de navegação, o nome será apenas `<principal key property name>`.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-113">If the principal key property name includes the name of the navigation property, then the name will just be `<principal key property name>`.</span></span> <span data-ttu-id="7ffb2-114">Se não houver nenhuma propriedade de navegação na entidade dependente, o nome do tipo de entidade de segurança será usado em seu lugar.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-114">If there is no navigation property on the dependent entity, then the principal type name is used in its place.</span></span>
-
-<span data-ttu-id="7ffb2-115">Por exemplo, a listagem de código a seguir resultará em uma propriedade de sombra `BlogId` introduzida na entidade `Post`.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-115">For example, the following code listing will result in a `BlogId` shadow property being introduced to the `Post` entity.</span></span>
-
-[!code-csharp[Main](../../../samples/core/Modeling/Conventions/ShadowForeignKey.cs?name=Conventions)]
-
-## <a name="data-annotations"></a><span data-ttu-id="7ffb2-116">Anotações de dados</span><span class="sxs-lookup"><span data-stu-id="7ffb2-116">Data Annotations</span></span>
-
-<span data-ttu-id="7ffb2-117">Não é possível criar propriedades de sombra com anotações de dados.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-117">Shadow properties can not be created with data annotations.</span></span>
-
-## <a name="fluent-api"></a><span data-ttu-id="7ffb2-118">API fluente</span><span class="sxs-lookup"><span data-stu-id="7ffb2-118">Fluent API</span></span>
-
-<span data-ttu-id="7ffb2-119">Você pode usar a API Fluent para configurar propriedades de sombra.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-119">You can use the Fluent API to configure shadow properties.</span></span> <span data-ttu-id="7ffb2-120">Depois de ter chamado a sobrecarga de cadeia de caracteres de `Property` você pode encadear qualquer uma das chamadas de configuração para outras propriedades.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-120">Once you have called the string overload of `Property` you can chain any of the configuration calls you would for other properties.</span></span>
-
-<span data-ttu-id="7ffb2-121">Se o nome fornecido ao método de `Property` corresponder ao nome de uma propriedade existente (uma propriedade de sombra ou uma definida na classe de entidade), o código configurará essa propriedade existente em vez de introduzir uma nova propriedade de sombra.</span><span class="sxs-lookup"><span data-stu-id="7ffb2-121">If the name supplied to the `Property` method matches the name of an existing property (a shadow property or one defined on the entity class), then the code will configure that existing property rather than introducing a new shadow property.</span></span>
-
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ShadowProperty.cs?name=ShadowProperty&highlight=8)]
