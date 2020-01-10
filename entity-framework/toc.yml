@@ -53,7 +53,7 @@
               href: core/get-started/index.md
             - name: Instalar o EF Core
               href: core/get-started/install/index.md
-            - name: ⤤ Tutorial de ASP.NET Core
+            - name: Tutorial de ASP.NET Core >>
               href: /aspnet/core/data/ef-rp/intro
         - name: Princípios básicos
           items:
@@ -118,10 +118,6 @@
             - name: Dados espaciais
               displayName: GIS
               href: core/modeling/spatial.md
-            - name: Modelagem de banco de dados relacional
-              items:
-                - name: Visão geral
-                  href: core/modeling/relational/index.md
         - name: Gerenciar Esquemas de Banco de Dados
           items:
             - name: Visão geral
@@ -234,8 +230,8 @@
               href: core/miscellaneous/cli/dbcontext-creation.md
             - name: Serviços no tempo de design
               href: core/miscellaneous/cli/services.md
-        - name: ⤤Referência da API do EF Core
-          href: 'https://docs.microsoft.com/dotnet/api/?view=efcore-2.1'
+        - name: Referência da API do EF Core >>
+          href: /dotnet/api/?view=efcore-3.1
     - name: Entity Framework 6
       items:
         - name: Visão geral
@@ -542,5 +538,5 @@
                       href: ef6/resources/licenses/ef6/kor.md
                     - name: Russo
                       href: ef6/resources/licenses/ef6/rus.md
-        - name: ⤤ Referência de API do EF6
+        - name: Referência de API do EF6 >>
           href: 'https://docs.microsoft.com/dotnet/api/?view=entity-framework-6.2.0'
