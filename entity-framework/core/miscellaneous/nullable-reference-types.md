@@ -4,12 +4,12 @@ author: roji
 ms.date: 09/09/2019
 ms.assetid: bde4e0ee-fba3-4813-a849-27049323d301
 uid: core/miscellaneous/nullable-reference-types
-ms.openlocfilehash: 0d05902566b6b166f1267915d9f698ed29dff588
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.openlocfilehash: c16a475c363320cd18804a4efe78ccae1ae22f0d
+ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502061"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76124347"
 ---
 # <a name="working-with-nullable-reference-types"></a>Trabalhando com tipos de referência anuláveis
 
@@ -38,9 +38,9 @@ As propriedades de navegação necessárias apresentam uma dificuldade adicional
 
 Uma maneira de lidar com esses cenários é ter uma propriedade não anulável com um [campo de backup](xref:core/modeling/backing-field)anulável:
 
-[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/Order.cs?range=12-17)]
+[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/Order.cs?range=10-17)]
 
-Como a propriedade de navegação é não anulável, uma navegação necessária é configurada; e, desde que a navegação seja carregada corretamente, o dependente poderá ser acessado por meio da propriedade. No entanto, se a propriedade for acessada sem primeiro carregar adequadamente a entidade relacionada, um InvalidOperationException será gerado, pois o contrato de API foi usado incorretamente.
+Como a propriedade de navegação é não anulável, uma navegação necessária é configurada; e, desde que a navegação seja carregada corretamente, o dependente poderá ser acessado por meio da propriedade. No entanto, se a propriedade for acessada sem primeiro carregar adequadamente a entidade relacionada, um InvalidOperationException será gerado, pois o contrato de API foi usado incorretamente. Observe que o EF deve ser configurado para sempre acessar o campo de backup e não a propriedade, pois depende de ser capaz de ler o valor mesmo quando não definido; consulte a [documentação sobre como fazer isso](xref:core/modeling/backing-field) , e considere especificar `PropertyAccessMode.Field` para verificar se a configuração está correta.
 
 Como alternativa terser, é possível simplesmente inicializar a propriedade como NULL com a ajuda do operador NULL-tolerante (!):
 
@@ -63,6 +63,7 @@ Um problema semelhante ocorre quando se inclui vários níveis de relações ent
 
 Se você estiver fazendo isso muito, e os tipos de entidade em questão forem predominantemente (ou exclusivamente) usados em consultas EF Core, considere tornar as propriedades de navegação não anuláveis e configurá-las como opcionais por meio da API fluente ou das anotações de dados. Isso removerá todos os avisos do compilador enquanto mantém a relação opcional; no entanto, se suas entidades forem atravessadas fora do EF Core, você poderá observar valores nulos, embora as propriedades sejam anotadas como não anuláveis.
 
-## <a name="scaffolding"></a>Scaffolding
+## <a name="limitations"></a>Limitações
 
-[No C# momento, não há suporte para o recurso de tipo de referência anulável 8](/dotnet/csharp/tutorials/nullable-reference-types) na engenharia reversa: EF Core sempre gera C# código que assume que o recurso está desativado. Por exemplo, colunas de texto anuláveis serão com Scaffold como uma propriedade com o tipo `string`, não `string?`, com a API Fluent ou as anotações de dados usadas para configurar se uma propriedade é necessária ou não. Você pode editar o código com Scaffold e substituí-los C# por anotações de nulidade. O suporte do scaffolding para tipos de referência anuláveis é acompanhado pelo problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
+* A engenharia reversa atualmente não dá suporte C# [ C# a 8 tipos de referência anuláveis (NRTs)](/dotnet/csharp/tutorials/nullable-reference-types): EF Core sempre gera código que assume que o recurso está desativado. Por exemplo, colunas de texto anuláveis serão com Scaffold como uma propriedade com o tipo `string`, não `string?`, com a API Fluent ou as anotações de dados usadas para configurar se uma propriedade é necessária ou não. Você pode editar o código com Scaffold e substituí-los C# por anotações de nulidade. O suporte do scaffolding para tipos de referência anuláveis é acompanhado pelo problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
+* A superfície da API pública do EF Core ainda não foi anotada quanto à nulidade (a API pública é "NULL-alheios"), o que, às vezes, é estranho usar quando o recurso NRT está ativado. Isso notavelmente inclui os operadores assíncronos LINQ expostos por EF Core, como [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_). Planejamos resolver isso para a versão 5,0.

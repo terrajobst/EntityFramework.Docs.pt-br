@@ -3,12 +3,12 @@ title: Filtros de consulta global – EF Core
 author: anpete
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: c9bbb8a5889834ea078ddb7e432863b3d0cf2ffe
-ms.sourcegitcommit: 0cc9578fd49802789a00c0044b4e57325476ca2e
+ms.openlocfilehash: f4ee9b77411290249e763f9cb8492eea61803e91
+ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70271453"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76124385"
 ---
 # <a name="global-query-filters"></a>Filtros de consulta global
 
@@ -43,7 +43,7 @@ As expressões de predicado passadas para as chamadas _HasQueryFilter_ agora ser
 > Observe o uso de um campo de nível de instância de DbContext: `_tenantId` usado para definir o locatário atual. Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância que está executando a consulta).
 
 > [!NOTE]
-> No momento, não é possível definir vários filtros de consulta na mesma entidade; somente o último será aplicado. No entanto, você pode definir um único filtro com várias condições usando o operador _and_ lógico ([ `&&` em C# ](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/boolean-logical-operators#conditional-logical-and-operator-)).
+> No momento, não é possível definir vários filtros de consulta na mesma entidade; somente o último será aplicado. No entanto, você pode definir um único filtro com várias condições usando o operador _and_ lógico ([`&&` em C# ](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/boolean-logical-operators#conditional-logical-and-operator-)).
 
 ## <a name="disabling-filters"></a>Como desabilitar filtros
 
@@ -55,5 +55,4 @@ Os filtros podem ser desabilitados para consultas LINQ individuais usando o oper
 
 Os filtros de consulta global têm as seguintes limitações:
 
-* Os filtros não contêm referências a propriedades de navegação.
 * Os filtros podem ser definidos somente para o Tipo de Entidade raiz de uma hierarquia de herança.
