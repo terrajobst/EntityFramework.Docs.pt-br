@@ -19,10 +19,16 @@
       items:
         - name: Visão geral
           href: core/index.md
-        - name: O Que Há de Novo
+        - name: Lançamentos e planejamento
           items:
             - name: Visão geral
               href: core/what-is-new/index.md
+            - name: Processo de planejamento da versão
+              href: core/what-is-new/release-planning.md
+            - name: EF Core 5.0
+              items:
+                - name: Plano de alto nível
+                  href: core/what-is-new/ef-core-5.0/plan.md
             - name: EF Core 3.0
               items:
                 - name: Novos recursos
