@@ -5,12 +5,12 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/05/2019
 uid: core/providers/cosmos/unstructured-data
-ms.openlocfilehash: 0bfccbfd3af6e209967004752b5a3947d644544b
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 69f979d46174ff56310b334f28438ac271f45155
+ms.sourcegitcommit: b3cf5d2e3cb170b9916795d1d8c88678269639b1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655510"
+ms.lasthandoff: 01/30/2020
+ms.locfileid: "76888090"
 ---
 # <a name="working-with-unstructured-data-in-ef-core-azure-cosmos-db-provider"></a>Trabalhando com dados não estruturados no provedor EF Core Azure Cosmos DB
 
@@ -62,4 +62,4 @@ No exemplo anterior, removemos a propriedade `"TrackingNumber"` da ordem. Devido
 A consulta classificada realmente não retorna nenhum resultado. Isso significa que deve tomar cuidado para sempre preencher as propriedades mapeadas por EF Core ao trabalhar diretamente com o repositório.
 
 > [!NOTE]
-> Esse comportamento pode ser alterado em versões futuras do cosmos. Por exemplo, no momento, se a política de indexação definir o índice composto {ID/? ASC, TrackingNumber/? ASC)}, então uma consulta o tem ' ORDER BY c.Id ASC, c. Discriminator ASC __'__ retornaria itens que não têm a propriedade `"TrackingNumber"`.
+> Esse comportamento pode ser alterado em versões futuras do cosmos. Por exemplo, no momento, se a política de indexação definir o índice composto {ID/? ASC, TrackingNumber/? ASC)}, então uma consulta que tem ' ORDER BY c.Id ASC, c. Discriminator ASC __'__ retornaria itens que não têm a propriedade `"TrackingNumber"`.

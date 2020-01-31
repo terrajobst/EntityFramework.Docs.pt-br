@@ -3,12 +3,12 @@ title: Alterações significativas no EF Core 3.0 – EF Core
 author: ajcvickers
 ms.date: 12/03/2019
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 0626ffe98843fbf5ee0e2de4b269da6c395c07f6
-ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
+ms.openlocfilehash: 6e0c17a22b56b206f18e47f678e3e237d5c42375
+ms.sourcegitcommit: b3cf5d2e3cb170b9916795d1d8c88678269639b1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75781216"
+ms.lasthandoff: 01/30/2020
+ms.locfileid: "76888103"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>Alterações recentes incluídas no EF Core 3,0
 
@@ -17,7 +17,7 @@ As alterações que esperamos que afetem apenas os provedores de banco de dados 
 
 ## <a name="summary"></a>Resumo
 
-| **Alterações da falha**                                                                                               | **Impacto** |
+| **Alteração significativa**                                                                                               | **Causa** |
 |:------------------------------------------------------------------------------------------------------------------|------------|
 | [As consultas LINQ não são mais avaliadas no cliente](#linq-queries-are-no-longer-evaluated-on-the-client)         | Alta       |
 | [O EF Core 3.0 tem como destino o .NET Standard 2.1 em vez do .NET Standard 2.0](#netstandard21) | Alta      |
@@ -109,6 +109,9 @@ Se não for possível converter totalmente uma consulta, reescreva a consulta em
 
 [Problema de acompanhamento nº 15498](https://github.com/aspnet/EntityFrameworkCore/issues/15498)
 
+> [!IMPORTANT] 
+> EF Core 3,1 destinos .NET Standard 2,0 novamente. Isso traz suporte de volta para .NET Framework.
+
 **Comportamento antigo**
 
 Antes do 3.0, o EF Core tinha como destino o .NET Standard 2.0 e era executado em todas as plataformas que dão suporte a esse padrão, incluindo o .NET Framework.
@@ -123,7 +126,7 @@ Isso faz parte de uma decisão estratégica nas tecnologias .NET para concentrar
 
 **Mitigações**
 
-Considere a possibilidade de migrar para uma plataforma .NET moderna. Se isso não for possível, continue usando o EF Core 2.1 ou o EF Core 2.2, que dão suporte ao .NET Framework.
+Use EF Core 3,1.
 
 <a name="no-longer"></a>
 ### <a name="entity-framework-core-is-no-longer-part-of-the-aspnet-core-shared-framework"></a>O Entity Framework Core não faz mais parte da estrutura compartilhada do ASP.NET Core
@@ -236,7 +239,7 @@ A partir do EF Core 3,0, EF Core não tentará analisar o SQL. Portanto, se voc�
 
 O EF Core 3,0 não dá suporte à avaliação automática do cliente, pois foi propenso a erros, conforme explicado [aqui](#linq-queries-are-no-longer-evaluated-on-the-client).
 
-**Mitigação**
+**Atenuação**
 
 Se você estiver usando um procedimento armazenado em FromSqlRaw/FromSqlInterpolated, saberá que ele não pode ser composto, para que você possa adicionar __AsEnumerable/AsAsyncEnumerable__ logo após a chamada do método das para evitar qualquer composição no lado do servidor.
 
