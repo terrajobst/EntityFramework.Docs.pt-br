@@ -21,7 +21,7 @@
           href: core/index.md
         - name: Lançamentos e planejamento
           items:
-            - name: Visão geral
+            - name: Versões atuais e planejadas (roteiro)
               href: core/what-is-new/index.md
             - name: Processo de planejamento da versão
               href: core/what-is-new/release-planning.md
