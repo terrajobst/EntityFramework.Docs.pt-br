@@ -1,15 +1,15 @@
 ---
 title: Lançamentos e planejamento do EF Core
 author: ajcvickers
-ms.date: 01/14/2020
+ms.date: 01/29/2020
 ms.assetid: C21F89EE-FB08-4ED9-A2A0-76CB7656E6E4
 uid: core/what-is-new/index
-ms.openlocfilehash: 8d74c24021fd62c5c5d944eaf3973b344fdb1e9c
-ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
+ms.openlocfilehash: 0704b624a50d0736fefbb5633e9e7e657499a703
+ms.sourcegitcommit: b3cf5d2e3cb170b9916795d1d8c88678269639b1
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76124399"
+ms.lasthandoff: 01/30/2020
+ms.locfileid: "76888066"
 ---
 # <a name="ef-core-releases-and-planning"></a>Lançamentos e planejamento do EF Core
 
@@ -35,18 +35,32 @@ Confira a [política de suporte do .NET](https://dotnet.microsoft.com/platform/s
 * As atualizações de versão principal (por exemplo, do EF Core 2 para a EF Core 3) geralmente têm alterações de falha. Um teste completo é recomendado ao atualizar entre versões principais. Use os links de alterações de falha acima para obter diretrizes sobre como lidar com alterações de falha.
 * As atualizações de versão secundárias geralmente não contêm alterações de falha. No entanto, ainda é aconselhado realizar os testes completos, já que os novos recursos podem introduzir regressões.
 
+## <a name="release-planning-and-schedules"></a>Planejamento e cronogramas de lançamento
+
+As versões do EF Core se alinham com o [agendamento de envio do .NET Core](https://github.com/dotnet/core/blob/master/roadmap.md).
+
+As versões de patch geralmente são enviadas mensalmente, mas têm um longo prazo de entrega.
+Estamos trabalhando para melhorar isso.
+
+Consulte o [processo de planejamento de lançamento](release-planning.md) para obter mais informações sobre como decidir o que enviar em cada versão.
+Normalmente, não fazemos um planejamento detalhado para além da próxima versão principal ou secundária.
+
 ## <a name="ef-core-50"></a>EF Core 5.0
 
-As versões do EF Core se alinham com o [agendamento de envio do .NET Core](https://github.com/dotnet/core/blob/master/roadmap.md). A próxima versão estável planejada é o **EF Core 5.0**, agendada para novembro de 2020.
+A próxima versão estável planejada é o **EF Core 5.0**, agendada para novembro de 2020.
 
 Um [plano de alto nível para o EF Core 5.0](ef-core-5.0/plan.md) foi criado seguindo o [processo de planejamento de versão](release-planning.md) documentado.
 
-Seus comentários sobre o planejamento são importantes. A melhor maneira de indicar a importância de um problema é votar (polegar para cima) nesse problema no GitHub. Esses dados serão então alimentados no processo de planejamento para a próxima versão.
+Seus comentários sobre o planejamento são importantes.
+A melhor maneira de indicar a importância de um problema é votar (polegar para cima 👍) nesse problema no GitHub.
+Esses dados serão então alimentados no processo de planejamento para a próxima versão.
 
 ### <a name="get-it-now"></a>Obtenha-o agora mesmo!
 
 Os pacotes do EF Core 5.0 estão **disponíveis agora** como [builds diários](https://github.com/aspnet/AspNetCore/blob/master/docs/DailyBuilds.md). 
 
-Usar os builds diários é uma ótima maneira de encontrar problemas e fornecer comentários a respeito o mais cedo possível. Quanto mais cedo obtivermos esses comentários, maior a probabilidade de podermos tomar atitudes em relação aos problemas correspondentes antes da próxima versão oficial. Trabalhamos muito para manter os builds diários em boas condições, executando mais de 55.000 testes por plataforma para cada build.
+Usar os builds diários é uma ótima maneira de encontrar problemas e fornecer comentários a respeito o mais cedo possível.
+Quanto mais cedo obtivermos esses comentários, maior a probabilidade de podermos tomar atitudes em relação aos problemas correspondentes antes da próxima versão oficial.
+Trabalhamos muito para manter os builds diários em boas condições, executando mais de 56.000 testes por plataforma para cada build.
 
 Os pacotes de versão prévia serão enviados para o NuGet posteriormente neste ano.
