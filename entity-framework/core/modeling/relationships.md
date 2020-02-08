@@ -4,12 +4,12 @@ description: Como configurar relações entre tipos de entidade ao usar Entity F
 author: AndriySvyryd
 ms.date: 11/21/2019
 uid: core/modeling/relationships
-ms.openlocfilehash: 6b3e0636bfa266b78baafe1b6e318c9707294560
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.openlocfilehash: 6d68e813cec6c989e8e4cb848f8740489645c65c
+ms.sourcegitcommit: 89567d08c9d8bf9c33bb55a62f17067094a4065a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502182"
+ms.lasthandoff: 02/06/2020
+ms.locfileid: "77051401"
 ---
 # <a name="relationships"></a>Relações
 
@@ -26,9 +26,9 @@ Há vários termos usados para descrever as relações
 
 * **Entidade principal:** Esta é a entidade que contém as propriedades de chave primária/alternativa. Às vezes, chamado de ' pai ' da relação.
 
-* **Chave estrangeira:** As propriedades na entidade dependente que são usadas para armazenar os valores de chave de entidade de segurança para a entidade relacionada.
-
 * **Chave principal:** As propriedades que identificam exclusivamente a entidade principal. Essa pode ser a chave primária ou uma chave alternativa.
+
+* **Chave estrangeira:** As propriedades na entidade dependente que são usadas para armazenar os valores de chave de entidade de segurança para a entidade relacionada.
 
 * **Propriedade de navegação:** Uma propriedade definida na entidade principal e/ou dependente que faz referência à entidade relacionada.
 
@@ -48,9 +48,9 @@ O código a seguir mostra uma relação um-para-muitos entre `Blog` e `Post`
 
 * `Blog` é a entidade principal
 
-* `Post.BlogId` é a chave estrangeira
-
 * `Blog.BlogId` é a chave principal (nesse caso, é uma chave primária em vez de uma chave alternativa)
+
+* `Post.BlogId` é a chave estrangeira
 
 * `Post.Blog` é uma propriedade de navegação de referência
 
@@ -228,7 +228,7 @@ Consulte [exclusão em cascata](../saving/cascade-delete.md) para obter uma disc
 
 ## <a name="other-relationship-patterns"></a>Outros padrões de relação
 
-### <a name="one-to-one"></a>Um-para-um
+### <a name="one-to-one"></a>Um para um
 
 Relações um para um têm uma propriedade de navegação de referência em ambos os lados. Eles seguem as mesmas convenções que as relações um-para-muitos, mas um índice exclusivo é introduzido na propriedade Foreign Key para garantir que apenas um dependente esteja relacionado a cada entidade de segurança.
 
