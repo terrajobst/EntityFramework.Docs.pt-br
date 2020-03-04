@@ -13,7 +13,7 @@ ms.locfileid: "74824443"
 ---
 # <a name="installing-entity-framework-core"></a>Instalar o Entity Framework Core
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * O EF Core é uma biblioteca do [.NET Standard 2.1](/dotnet/standard/net-standard). Sendo assim, para o EF Core ser executado, é necessária uma implementação do .NET compatível com o .NET Standard 2.1. O EF Core também pode ser referenciado por outras bibliotecas do .NET Standard 2.1.
 
