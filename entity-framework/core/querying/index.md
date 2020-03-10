@@ -4,19 +4,19 @@ author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: 7c65ec3e-46c8-48f8-8232-9e31f96c277b
 uid: core/querying/index
-ms.openlocfilehash: 009235c3673a414e06d1a64f9877b60e7cde97b0
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 0e1e50d1a3f647d65301552d0a447f9fcae81438
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181923"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78413111"
 ---
 # <a name="querying-data"></a>Consultar Dados
 
 O Entity Framework Core usa LINQ (Consulta Integrada à Linguagem) para consultar dados do banco de dados. O LINQ permite que você use o C# (ou a linguagem .NET de sua escolha) para escrever consultas fortemente tipadas. Ele usa o contexto derivado e as classes de entidade para fazer referência a objetos de banco de dados. O EF Core passa uma representação da consulta LINQ para o provedor de banco de dados. Os provedores de banco de dados, por sua vez, a convertem em uma linguagem de consulta específica de banco de dados (por exemplo, SQL para um banco de dados relacional).
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 Os snippets a seguir mostram alguns exemplos de como realizar tarefas comuns com o Entity Framework Core.
 

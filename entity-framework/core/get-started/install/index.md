@@ -4,16 +4,16 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: 1121b2bde1ada74ee189287501bc770aeb65e358
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 987b6f38954c291f88b5167fa9b061853b15a6cb
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824443"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78412851"
 ---
 # <a name="installing-entity-framework-core"></a>Instalar o Entity Framework Core
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Pré-requisitos
 
 * O EF Core é uma biblioteca do [.NET Standard 2.1](/dotnet/standard/net-standard). Sendo assim, para o EF Core ser executado, é necessária uma implementação do .NET compatível com o .NET Standard 2.1. O EF Core também pode ser referenciado por outras bibliotecas do .NET Standard 2.1.
 
@@ -98,8 +98,6 @@ Os comandos `dotnet ef` estão incluídos nas versões atuais do SDK do .NET Cor
 ```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
-
-Nos aplicativos do ASP.NET Core, esse pacote está incluído automaticamente.
 
 > [!IMPORTANT]
 > Sempre use a versão do pacote de ferramentas que corresponda à versão principal dos pacotes em runtime.

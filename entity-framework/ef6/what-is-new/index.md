@@ -5,11 +5,11 @@ ms.date: 09/12/2019
 ms.assetid: 41d1f86b-ce66-4bf2-8963-48514406fb4c
 uid: ef6/what-is-new/index
 ms.openlocfilehash: 9daae787d0cec0ca536413e6263bb363ba76ff2c
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72812140"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78413411"
 ---
 # <a name="whats-new-in-ef6"></a>Novidades no EF6
 
@@ -19,7 +19,7 @@ Para instalar versões específicas do EF, consulte [Obter o Entity Framework](~
 
 ## <a name="ef-630"></a>EF 6.3.0
 
-O tempo de execução do EF 6.3.0 foi lançado para o NuGet em setembro de 2019. O principal objetivo desse lançamento é facilitar a migração de aplicativos existentes que usam o EF 6 para o .NET Core 3.0. A comunidade também contribuiu com diversos aprimoramentos e correções de bugs. Consulte os problemas fechados em cada [marco](https://github.com/aspnet/EntityFramework6/milestones?state=closed) do 6.3.0 para obter detalhes. Estes são alguns dos mais notáveis:
+O runtime do EF 6.3.0 foi lançado para o NuGet em setembro de 2019. O principal objetivo desse lançamento é facilitar a migração de aplicativos existentes que usam o EF 6 para o .NET Core 3.0. A comunidade também contribuiu com diversos aprimoramentos e correções de bugs. Consulte os problemas fechados em cada [marco](https://github.com/aspnet/EntityFramework6/milestones?state=closed) do 6.3.0 para obter detalhes. Estes são alguns dos mais notáveis:
 
 - Suporte para .NET Core 3.0
   - Agora, o pacote do EntityFramework é destinado ao .NET Standard 2.1, além do .NET Framework 4.x.

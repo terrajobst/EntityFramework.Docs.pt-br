@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 65bb3db2-2226-44af-8864-caa575cf1b46
 ms.openlocfilehash: 29a86817e250a2f53ecaa73e8fa4bf93452f0497
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489785"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78412971"
 ---
 # <a name="querying-and-finding-entities"></a>Consultando e Localizando entidades
 Este tópico aborda as várias maneiras que você pode consultar dados usando o Entity Framework, incluindo o LINQ e o método Find. As técnicas mostradas neste tópico se aplicam igualmente a modelos criados com o Code First e com o EF Designer.  

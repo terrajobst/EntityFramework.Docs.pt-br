@@ -4,12 +4,12 @@ author: rick-anderson
 ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: 8aea40b9caaf454bc06d4991fd403e1ad0ff9b93
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.openlocfilehash: 0e7a1ee159cdf5b72448fe6d73c972975b1ab95b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502013"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78412861"
 ---
 # <a name="getting-started-with-ef-core"></a>Introdução ao EF Core
 
@@ -17,15 +17,15 @@ Neste tutorial, você criará um aplicativo de console do .NET Core que executa 
 
 Você pode seguir o tutorial usando o Visual Studio no Windows ou usando a CLI do .NET Core no Windows, macOS ou Linux.
 
-[Exiba o exemplo deste artigo no GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).
+[Exiba o exemplo deste artigo no GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Pré-requisitos
 
 Instale o software a seguir:
 
 ### <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
-* [SDK do .NET Core 3.0](https://www.microsoft.com/net/download/core).
+* [SDK do .Net Core](https://www.microsoft.com/net/download/core).
 
 ### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
