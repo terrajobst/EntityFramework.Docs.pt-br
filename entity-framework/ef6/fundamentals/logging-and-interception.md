@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: b5ee7eb1-88cc-456e-b53c-c67e24c3f8ca
 ms.openlocfilehash: 35b0284a5ad8b2b732f074589bd458d243312575
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181674"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419474"
 ---
 # <a name="logging-and-intercepting-database-operations"></a>Log e interceptação de operações de banco de dados
 > [!NOTE]
@@ -104,7 +104,7 @@ Quando a propriedade log for definida, todos os itens a seguir serão registrado
     - Consultas, incluindo consultas comuns do LINQ, consultas do eSQL e consultas brutas de métodos como SQLQuery  
     - Inserções, atualizações e exclusões geradas como parte do SaveChanges  
     - Relações de carregamento de relacionamento como aquelas geradas pelo carregamento lento  
-- Parâmetros  
+- parâmetros  
 - Se o comando está sendo executado de forma assíncrona  
 - Um carimbo de data/hora que indica quando o comando iniciou a execução  
 - Se o comando foi concluído com êxito, se houve falha ao lançar uma exceção ou, para Async, foi cancelado  

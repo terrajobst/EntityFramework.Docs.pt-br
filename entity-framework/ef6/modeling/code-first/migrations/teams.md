@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 4c2d9a95-de6f-4e97-9738-c1f8043eff69
 ms.openlocfilehash: b3c4c35d636caf4ddd251dd78e026587abc57d42
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182606"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418885"
 ---
 # <a name="code-first-migrations-in-team-environments"></a>Migrações do Code First em ambientes de equipe
 > [!NOTE]
@@ -111,7 +111,7 @@ O desenvolvedor \#1 e desenvolvedor \#2 agora faz algumas alterações no modelo
 
 Agora é hora para o desenvolvedor \#2 enviar. Eles não são tanto sorte. Como outra pessoa enviou alterações desde que elas foram sincronizadas, elas precisarão retirar as alterações e mesclar. O sistema de controle do código-fonte provavelmente será capaz de mesclar automaticamente as alterações no nível de código, pois elas são muito simples. O estado do repositório local do desenvolvedor \#2 após a sincronização é representado no gráfico a seguir. 
 
-![Recebimento](~/ef6/media/pull.png)
+![Recepção](~/ef6/media/pull.png)
 
 Neste estágio, o desenvolvedor \#2 pode executar **Update-Database** , que detectará a nova migração **addrating** (que não foi aplicada ao banco de dados do desenvolvedor \#2) e a aplicará. Agora, a coluna de **classificação** é adicionada à tabela **Blogs** e o banco de dados está em sincronia com o modelo.
 

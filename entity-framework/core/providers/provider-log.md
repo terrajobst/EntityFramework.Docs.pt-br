@@ -7,11 +7,11 @@ ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
 ms.openlocfilehash: b911a2da493e20c4e4ce6f1e25024bd0efd38b44
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656123"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417818"
 ---
 # <a name="provider-impacting-changes"></a>Alterações que afetam o provedor
 
@@ -19,13 +19,13 @@ Esta página contém links para solicitações de pull feitas no repositório de
 
 Estamos iniciando esse log com as alterações de 2,1 a 2,2. Antes de 2,1, usamos os rótulos [`providers-beware`](https://github.com/aspnet/EntityFrameworkCore/labels/providers-beware) e [`providers-fyi`](https://github.com/aspnet/EntityFrameworkCore/labels/providers-fyi) em nossos problemas e solicitações pull.
 
-## <a name="22-----30"></a>2,2---> 3,0
+## <a name="22-----30"></a>2.2 ---> 3.0
 
 Observe que muitas das [alterações significativas no nível do aplicativo](../what-is-new/ef-core-3.0/breaking-changes.md) também afetarão os provedores.
 
 * <https://github.com/aspnet/EntityFrameworkCore/pull/14022>
   * APIs obsoletas removidas e sobrecargas de parâmetros opcionais recolhidas
-  * DatabaseColumn. GetUnderlyingStoreType () removido
+  * Removed DatabaseColumn.GetUnderlyingStoreType()
 * <https://github.com/aspnet/EntityFrameworkCore/pull/14589>
   * APIs obsoletas removidas
 * <https://github.com/aspnet/EntityFrameworkCore/pull/15044>
@@ -65,7 +65,7 @@ Observe que muitas das [alterações significativas no nível do aplicativo](../
 * <https://github.com/aspnet/EntityFrameworkCore/pull/15288>
   * A propagação de dados foi Refatorada em uma API pública para evitar a necessidade de usar tipos internos. Isso só deve afetar provedores não relacionais, pois a propagação é tratada pela classe relacional base para todos os provedores relacionais.
 
-## <a name="21-----22"></a>2,1---> 2,2
+## <a name="21-----22"></a>2.1 ---> 2.2
 
 ### <a name="test-only-changes"></a>Alterações somente de teste
 

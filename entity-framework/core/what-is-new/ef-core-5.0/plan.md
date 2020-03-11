@@ -3,12 +3,12 @@ title: Planejar para o Entity Framework Core 5,0
 author: ajcvickers
 ms.date: 01/14/2020
 uid: core/what-is-new/ef-core-5.0/plan.md
-ms.openlocfilehash: 0472841fdcd105ec8ea38db062c6768510b8735d
-ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
+ms.openlocfilehash: c5b7300c61c2f668b6f9393ae51bf9ebddf330a7
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76125378"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417872"
 ---
 # <a name="plan-for-entity-framework-core-50"></a>Planejar para o Entity Framework Core 5,0
 
@@ -21,13 +21,13 @@ Conforme descrito no [processo de planejamento](../release-planning.md), reunimo
 
 O EF Core 5,0 está atualmente agendado para lançamento ao [mesmo tempo que o .net 5,0](https://devblogs.microsoft.com/dotnet/introducing-net-5/). A versão "5,0" foi escolhida para se alinhar com o .NET 5,0.
 
-### <a name="supported-platforms"></a>Plataformas com suporte
+### <a name="supported-platforms"></a>Plataformas compatíveis
 
 EF Core 5,0 está planejado para ser executado em qualquer plataforma .NET 5,0 com base na [convergência dessas plataformas para o .NET Core](https://devblogs.microsoft.com/dotnet/introducing-net-5/). O que isso significa em termos de .NET Standard e o TFM real usado ainda é TBD.
 
 EF Core 5,0 não será executado em .NET Framework.
 
-### <a name="breaking-changes"></a>Alterações da falha
+### <a name="breaking-changes"></a>Alterações de quebra
 
 EF Core 5,0 conterá algumas alterações significativas, mas elas serão muito menos graves do que o caso para EF Core 3,0. Nossa meta é permitir que a grande maioria dos aplicativos seja atualizada sem interrupções.
 
@@ -47,11 +47,13 @@ Tamanho de camiseta: L
 
 Status: em andamento
 
-Muitos-para-muitos é o recurso mais solicitado (aproximadamente 407 votos) na pendência do GitHub. O suporte para relações muitos para muitos pode ser dividido em três áreas principais:
+Muitos-para-muitos é o [recurso mais solicitado](https://github.com/aspnet/EntityFrameworkCore/issues/1368) (aproximadamente 407 votos) na pendência do github.
 
-* Ignorar Propriedades de navegação. Eles permitem que o modelo seja usado para consultas, etc. sem referência à entidade de tabela de junção subjacente.
-* Tipos de entidade de conjunto de propriedades. Eles permitem que um tipo CLR padrão (por exemplo, `Dictionary`) seja usado para instâncias de entidade, de modo que um tipo CLR explícito não seja necessário para cada tipo de entidade.
-* Para facilitar a configuração de relações muitos para muitos.
+O suporte para relações muitos para muitos em sua totalidade é acompanhado como [#10508](https://github.com/aspnet/EntityFrameworkCore/issues/10508). Isso pode ser dividido em três áreas principais:
+
+* Ignorar Propriedades de navegação. Eles permitem que o modelo seja usado para consultas, etc. sem referência à entidade de tabela de junção subjacente. ([#19003](https://github.com/aspnet/EntityFrameworkCore/issues/19003))
+* Tipos de entidade de conjunto de propriedades. Eles permitem que um tipo CLR padrão (por exemplo, `Dictionary`) seja usado para instâncias de entidade, de modo que um tipo CLR explícito não seja necessário para cada tipo de entidade. (Stretch para 5,0: [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914).)
+* Para facilitar a configuração de relações muitos para muitos. (Stretch para 5,0.)
 
 Acreditamos que o bloqueador mais significativo para aqueles que desejam suporte muitos para muitos não é capaz de usar as relações "naturais", sem referir-se à tabela de junção, em lógica de negócios, como consultas. O tipo de entidade da tabela de junção ainda pode existir, mas não deve ficar na forma de lógica de negócios. É por isso que optamos por lidar com as propriedades de navegação Skip para 5,0.
 
@@ -122,7 +124,7 @@ Atualmente, muitos desenvolvedores migram seus bancos de dados no momento da ini
 * Vários threads/processos/servidores podem tentar migrar o banco de dados simultaneamente
 * Os aplicativos podem tentar acessar o estado inconsistente enquanto isso acontece
 * Geralmente, as permissões de banco de dados para modificar o esquema não devem ser concedidas para a execução do aplicativo
-* Seu difícil de reverter para um estado limpo se algo der errado
+* É difícil reverter para um estado limpo se algo der errado
 
 Queremos fornecer uma melhor experiência aqui que permite uma maneira fácil de migrar o banco de dados no momento da implantação. Isso deve:
 
@@ -170,7 +172,7 @@ Tamanho de camiseta: L
 
 Status: em andamento
 
-Por EF Core planejamos aprimorar nosso conjunto de benchmarks de desempenho e fazer melhorias de desempenho direcionadas para o tempo de execução. Além disso, planejamos concluir a nova API de envio em lote ADO.NET que foi protótipo durante o ciclo de lançamento 3,0. Além disso, na camada ADO.NET, planejamos aprimoramentos de desempenho adicionais para o provedor Npgsql.
+Por EF Core, planejamos aprimorar nosso conjunto de benchmarks de desempenho e fazer melhorias de desempenho direcionadas para o tempo de execução. Além disso, planejamos concluir a nova API de envio em lote ADO.NET que foi protótipo durante o ciclo de lançamento 3,0. Além disso, na camada ADO.NET, planejamos aprimoramentos de desempenho adicionais para o provedor Npgsql.
 
 Como parte desse trabalho, também planejamos adicionar contadores de desempenho do ADO.NET/EF Core e outros diagnósticos, conforme apropriado.
 
@@ -178,7 +180,7 @@ Como parte desse trabalho, também planejamos adicionar contadores de desempenho
 
 Documentador de leads: @ajcvickers
 
-Acompanhado por [#1920](https://github.com/aspnet/EntityFramework.Docs/issues/1920)
+Acompanhado por [#1920](https://github.com/dotnet/EntityFramework.Docs/issues/1920)
 
 Tamanho de camiseta: L
 
@@ -194,7 +196,7 @@ A ideia aqui é tornar mais fácil entender o que está acontecendo nos elemento
 
 Documentador de leads: @bricelam
 
-Acompanhado por [#1675](https://github.com/aspnet/EntityFramework.Docs/issues/1675)
+Acompanhado por [#1675](https://github.com/dotnet/EntityFramework.Docs/issues/1675)
 
 Tamanho de camiseta: M
 
@@ -206,7 +208,7 @@ A equipe do EF também possui o provedor de ADO.NET Microsoft. Data. sqlite. Pla
 
 Documentador de leads: @ajcvickers
 
-Acompanhado por [problemas no repositório de documentos no marco 5,0](https://github.com/aspnet/EntityFramework.Docs/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+)
+Acompanhado por [problemas no repositório de documentos no marco 5,0](https://github.com/dotnet/EntityFramework.Docs/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+)
 
 Tamanho de camiseta: L
 
@@ -254,4 +256,4 @@ Além disso, sempre consideramos os [problemas mais votados](https://github.com/
 
 ## <a name="feedback"></a>Comentários
 
-Seus comentários sobre o planejamento são importantes. A melhor maneira de indicar a importância de um problema é votar (polegares) para esse problema no GitHub. Esses dados serão então alimentados no [processo de planejamento](../release-planning.md) para a próxima versão.
+Seus comentários sobre o planejamento são importantes. A melhor maneira de indicar a importância de um problema é votar (polegar para cima) nesse problema no GitHub. Esses dados serão então alimentados no [processo de planejamento](../release-planning.md) para a próxima versão.

@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: cc6ffdb3-388d-4e79-a201-01ec2577c949
 ms.openlocfilehash: d40cff4ddccf43a394ef4f244653372a5a89b05a
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182456"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418353"
 ---
 # <a name="database-first"></a>Database First
 Este vídeo e instruções passo a passo fornecem uma introdução ao desenvolvimento de Database First usando Entity Framework. Database First permite que você reverta a engenharia de um modelo de um banco de dados existente. O modelo é armazenado em um arquivo EDMX (extensão. edmx) e pode ser exibido e editado no Entity Framework Designer. As classes com as quais você interage em seu aplicativo são geradas automaticamente a partir do arquivo EDMX.
@@ -41,7 +41,7 @@ O servidor de banco de dados instalado com o Visual Studio é diferente dependen
 
 Vamos continuar e gerar o banco de dados.
 
--   Abrir o Visual Studio
+-   Abra o Visual Studio
 -   **Exibir-&gt; Gerenciador de Servidores**
 -   Clique com o botão direito em **conexões de dados-&gt; Adicionar conexão...**
 -   Se você ainda não se conectou a um banco de dados do Gerenciador de Servidores antes de precisar selecionar Microsoft SQL Server como a fonte de dado
@@ -83,7 +83,7 @@ CREATE TABLE [dbo].[Posts] (
 
 Para manter as coisas simples, vamos criar um aplicativo de console básico que usa o Database First para executar o acesso a dados:
 
--   Abrir o Visual Studio
+-   Abra o Visual Studio
 -   **Arquivo-&gt; novo&gt; projeto...**
 -   Selecione **Windows** no menu à esquerda e no **aplicativo de console**
 -   Insira **DatabaseFirstSample** como o nome
@@ -127,7 +127,7 @@ Primeiro, precisamos obter a versão mais recente do Entity Framework do NuGet.
     *se você não tiver a opção **gerenciar pacotes NuGet...** , você deve instalar a [versão mais recente do NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) *
 -   Selecione a guia **online**
 -   Selecionar o pacote do **EntityFramework**
--   Clique em **instalar**
+-   Clique em **Instalar**
 
 Em seguida, precisamos trocar nosso modelo para gerar código que usa a API DbContext, que foi introduzida em versões posteriores do Entity Framework.
 

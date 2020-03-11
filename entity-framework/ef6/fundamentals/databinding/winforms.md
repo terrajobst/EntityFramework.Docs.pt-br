@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 80fc5062-2f1c-4dbd-ab6e-b99496784b36
 ms.openlocfilehash: 4b3eee20ff238864b94ef4edfb97c1bae0713300
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181797"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419599"
 ---
 # <a name="databinding-with-winforms"></a>Associação de dados com WinForms
 Este guia passo a passo mostra como associar tipos POCO a controles Window Forms (WinForms) em um formulário "Master-Detail". O aplicativo usa Entity Framework para preencher objetos com dados do banco de dados, controlar alterações e manter dados no banco de dado.
@@ -25,7 +25,7 @@ Se você estiver usando o Visual Studio 2010, também precisará instalar o NuGe
 
 ## <a name="create-the-application"></a>Criar o aplicativo
 
--   Abrir o Visual Studio
+-   Abra o Visual Studio
 -   **Arquivo-&gt; novo&gt; projeto....**
 -   Selecione **Windows** no painel esquerdo e **FormsApplication do Windows** no painel direito
 -   Insira **WinFormswithEFSample** como o nome
@@ -36,7 +36,7 @@ Se você estiver usando o Visual Studio 2010, também precisará instalar o NuGe
 -   Em Gerenciador de Soluções, clique com o botão direito do mouse no projeto **WinFormswithEFSample**
 -   Selecione **gerenciar pacotes NuGet...**
 -   Na caixa de diálogo gerenciar pacotes NuGet, selecione a guia **online** e escolha o pacote do **EntityFramework**
--   Clique em **instalar**  
+-   Clique em **Instalar**  
     > [!NOTE]
     > Além do assembly do EntityFramework, uma referência a System. ComponentModel. Annotations também é adicionada. Se o projeto tiver uma referência a System. Data. Entity, ele será removido quando o pacote do EntityFramework for instalado. O assembly System. Data. Entity não é mais usado para aplicativos Entity Framework 6.
 
@@ -189,7 +189,7 @@ Vamos continuar e gerar o banco de dados.
 
 -   Selecione **OK** e você será perguntado se deseja criar um novo banco de dados, selecione **Sim**
 
-    ![Criar Banco de Dados](~/ef6/media/createdatabase.png)
+    ![Criar banco de dados](~/ef6/media/createdatabase.png)
 
 -   O novo banco de dados aparecerá agora na Gerenciador de Servidores, clique com o botão direito do mouse nele e selecione **nova consulta**
 -   Copie o SQL a seguir na nova consulta, clique com o botão direito do mouse na consulta e selecione **executar**
@@ -278,7 +278,7 @@ Adicione as classes que são definidas no modelo como fontes de dados para este 
 -   Na janela escolher um tipo de fonte de dados, selecione **objeto** e clique em **Avançar**
 -   Na caixa de diálogo Selecionar os objetos de dados, desdobrar o **WinFormswithEFSample** duas vezes e selecione **categoria** não há necessidade de selecionar a fonte de dados do produto, pois vamos chegar a ela por meio da Propriedade do produto na fonte de dados Category.
 
-    ![Fonte de dados](~/ef6/media/datasource.png)
+    ![fonte de dados](~/ef6/media/datasource.png)
 
 -   Clique em **Concluir.**
     Se a janela fontes de dados não estiver aparecendo, selecione **Exibir-&gt; outras fontes de dados de&gt; do Windows**

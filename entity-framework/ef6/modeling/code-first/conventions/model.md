@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 0fc4eef8-29b8-4192-9c77-08fd33d3db3a
 ms.openlocfilehash: c873e9a216bd9bd1934f2149ae6af602072f3608
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656162"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419167"
 ---
 # <a name="model-based-conventions"></a>Convenções baseadas em modelo
 > [!NOTE]
@@ -207,6 +207,6 @@ public class BlogContext : DbContext
 }
 ```  
 
-## <a name="notes"></a>Anotações  
+## <a name="notes"></a>Observações  
 
 Uma lista de convenções atualmente aplicadas pelo Entity Framework está disponível na documentação do MSDN aqui: [http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  Essa lista é extraída diretamente do nosso código-fonte.  O código-fonte para o Entity Framework 6 está disponível no [GitHub](https://github.com/aspnet/entityframework6/) e muitas das convenções usadas pelo Entity Framework são bons pontos de partida para as convenções personalizadas baseadas em modelos.  

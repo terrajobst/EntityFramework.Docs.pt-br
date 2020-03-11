@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: c54255f4-253f-49eb-bec8-ad7927ac2fa3
 ms.openlocfilehash: 642e5977ecbbf0c474cac1ceae19d33a135aa875
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182594"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418773"
 ---
 # <a name="csdl-specification"></a>Especificação de CSDL
 O CSDL (linguagem de definição de esquema conceitual) é uma linguagem baseada em XML que descreve as entidades, as relações e as funções que compõem um modelo conceitual de um aplicativo controlado por dados. Esse modelo conceitual pode ser usado pelo Entity Framework ou WCF Data Services. Os metadados que são descritos com CSDL são usados pelo Entity Framework para mapear entidades e relações que são definidas em um modelo conceitual para uma fonte de dados. Para obter mais informações, consulte Especificação de [SSDL](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md) e [especificação MSL](~/ef6/modeling/designer/advanced/edmx/msl-spec.md).
@@ -34,7 +34,7 @@ Um elemento **Association** define uma relação entre dois tipos de entidade. U
 
 Instâncias de tipo de entidade em uma extremidade de uma associação podem ser acessadas por meio de propriedades de navegação ou chaves estrangeiras, se forem expostas em um tipo de entidade.
 
-Em um aplicativo, uma instância de uma associação representa uma associação específica entre instâncias de tipos de entidade. As instâncias de associação são agrupadas logicamente em um conjunto de associação.
+Em um aplicativo, uma instância de uma associação representa uma associação específica entre instâncias de tipos de entidade. As instâncias de associação são agrupadas logicamente em um conjunto de associações.
 
 Um elemento **Association** pode ter os seguintes elementos filho (na ordem listada):
 
@@ -47,9 +47,9 @@ Um elemento **Association** pode ter os seguintes elementos filho (na ordem list
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Association** .
 
-| Nome do atributo | É obrigatório | Valor                        |
+| Nome do atributo | Obrigatório | Valor                        |
 |:---------------|:------------|:-----------------------------|
-| **Name**       | Sim         | O nome da associação. |
+| **Nome**       | Sim         | O nome da associação. |
 
  
 
@@ -110,9 +110,9 @@ O atributo **Association** especifica o tipo de associação que um conjunto de 
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **AssociationSet** .
 
-| Nome do atributo  | É obrigatório | Valor                                                                                                                                                             |
+| Nome do atributo  | Obrigatório | Valor                                                                                                                                                             |
 |:----------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**        | Sim         | O nome do conjunto de entidades. O valor do atributo **Name** não pode ser o mesmo que o valor do atributo **Association** .                                 |
+| **Nome**        | Sim         | O nome do conjunto de entidades. O valor do atributo **Name** não pode ser o mesmo que o valor do atributo **Association** .                                 |
 | **Associação** | Sim         | O nome totalmente qualificado da associação que o conjunto de associação contém instâncias do. A associação deve estar no mesmo namespace que o conjunto de associação. |
 
  
@@ -163,19 +163,19 @@ O elemento **CollectionType** na linguagem de definição de esquema conceitual 
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **CollectionType** . Observe que os atributos **DefaultValue**, **MaxLength**, **cadeia**, **Precision**, **Scale**, **Unicode**e **Collation** são aplicáveis somente às coleções de **EDMSimpleTypes**.
 
-| Nome do atributo                                                          | É obrigatório | Valor                                                                                                                                                                                                                            |
+| Nome do atributo                                                          | Obrigatório | Valor                                                                                                                                                                                                                            |
 |:------------------------------------------------------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Tipo**                                                                | Não          | O tipo da coleção.                                                                                                                                                                                                      |
-| **Anula**                                                            | Não          | **True** (o valor padrão) ou **false** , dependendo se a propriedade pode ter um valor nulo. <br/> [!NOTE]                                                                                                                 |
+| **Tipo**                                                                | Não          | O tipo do conjunto.                                                                                                                                                                                                      |
+| **Permite valor nulo**                                                            | Não          | **True** (o valor padrão) ou **False**, dependendo se a propriedade pode ter um valor nulo. <br/> [!NOTE]                                                                                                                 |
 | > No CSDL v1, uma propriedade de tipo complexo deve ter `Nullable="False"`. |             |                                                                                                                                                                                                                                  |
-| **DefaultValue**                                                        | Não          | O valor padrão da propriedade.                                                                                                                                                                                               |
+| **ValorPadrão**                                                        | Não          | O valor padrão da propriedade.                                                                                                                                                                                               |
 | **MaxLength**                                                           | Não          | O comprimento máximo do valor da propriedade.                                                                                                                                                                                        |
 | **Cadeia**                                                         | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres de comprimento fixo.                                                                                                                           |
 | **Precisão**                                                           | Não          | A precisão do valor da propriedade.                                                                                                                                                                                             |
-| **Ajustar Escala**                                                               | Não          | A escala do valor da propriedade.                                                                                                                                                                                                 |
+| **Escala**                                                               | Não          | A escala do valor da propriedade.                                                                                                                                                                                                 |
 | **SRID**                                                                | Não          | Identificador de referência de sistema espacial. Válido somente para propriedades de tipos espaciais.   Para obter mais informações, consulte [SRID](https://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx) |
 | **Unicode**                                                             | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres Unicode.                                                                                                                                |
-| **Agrupamento**                                                           | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                    |
+| **Ordenação**                                                           | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                    |
 
  
 
@@ -249,7 +249,7 @@ O exemplo a seguir mostra uma função definida pelo modelo que usa o elemento *
 Um elemento **complexType** define uma estrutura de dados composta por propriedades **EdmSimpleType** ou outros tipos complexos.  Um tipo complexo pode ser uma propriedade de um tipo de entidade ou outro tipo complexo. Um tipo complexo é semelhante a um tipo de entidade no que um tipo complexo define dados. No entanto, há algumas diferenças entre tipos complexos e tipos de entidade:
 
 -   Tipos complexos não têm identidades (ou chaves) e, portanto, não podem existir de forma independente. Tipos complexos só podem existir como propriedades de tipos de entidade ou outros tipos complexos.
--   Tipos complexos não podem participar de associações. Nenhuma extremidade de uma associação pode ser um tipo complexo e, portanto, as propriedades de navegação não podem ser definidas para tipos complexos.
+-   Os tipos complexos não podem participar em associações. Nenhuma extremidade de uma associação pode ser um tipo complexo e, portanto, as propriedades de navegação não podem ser definidas para tipos complexos.
 -   Uma propriedade de tipo complexo não pode ter um valor nulo, embora as propriedades escalares de um tipo complexo possam ser definidas como NULL.
 
 Um elemento **complexType** pode ter os seguintes elementos filho (na ordem listada):
@@ -260,12 +260,12 @@ Um elemento **complexType** pode ter os seguintes elementos filho (na ordem list
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **complexType** .
 
-| Nome do atributo                                                                                                 | É obrigatório | Valor                                                                                                                                                                               |
+| Nome do atributo                                                                                                 | Obrigatório | Valor                                                                                                                                                                               |
 |:---------------------------------------------------------------------------------------------------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Nome                                                                                                           | Sim         | O nome do tipo complexo. O nome de um tipo complexo não pode ser igual ao nome de outro tipo complexo, tipo de entidade ou associação que está dentro do escopo do modelo. |
 | BaseType                                                                                                       | Não          | O nome de outro tipo complexo que é o tipo base do tipo complexo que está sendo definido. <br/> [!NOTE]                                                                     |
 | > Este atributo não é aplicável em CSDL v1. A herança para tipos complexos não tem suporte nessa versão. |             |                                                                                                                                                                                     |
-| Resume                                                                                                       | Não          | **True** ou **false** (o valor padrão) dependendo se o tipo complexo é um tipo abstrato. <br/> [!NOTE]                                                                  |
+| Resumo                                                                                                       | Não          | **True** ou **false** (o valor padrão) dependendo se o tipo complexo é um tipo abstrato. <br/> [!NOTE]                                                                  |
 | > Este atributo não é aplicável em CSDL v1. Tipos complexos nessa versão não podem ser tipos abstratos.         |             |                                                                                                                                                                                     |
 
  
@@ -339,7 +339,7 @@ O exemplo a seguir usa um elemento de **definição** para definir uma função 
 
 ## <a name="dependent-element-csdl"></a>Elemento dependent (CSDL)
 
-O elemento **dependente** na linguagem de definição de esquema conceitual (CSDL) é um elemento filho para o elemento ReferentialConstraint e define a extremidade dependente de uma restrição referencial. Um elemento **ReferentialConstraint** define a funcionalidade que é semelhante a uma restrição de integridade referencial em um banco de dados relacional. Da mesma forma que uma coluna (ou colunas) de uma tabela de banco de dados pode referenciar a chave primária de outra tabela, uma propriedade (ou Propriedades) de um tipo de entidade pode referenciar a chave de entidade de outro tipo de entidade. O tipo de entidade referenciado é chamado de *extremidade principal* da restrição. O tipo de entidade que faz referência à extremidade principal é chamado de *extremidade dependente* da restrição. Os elementos **PropertyRef** são usados para especificar quais chaves fazem referência à extremidade principal.
+O elemento **dependente** na linguagem de definição de esquema conceitual (CSDL) é um elemento filho para o elemento ReferentialConstraint e define a extremidade dependente de uma restrição referencial. Um elemento **ReferentialConstraint** define a funcionalidade que é semelhante a uma restrição de integridade referencial em um banco de dados relacional. Da mesma forma que uma coluna (ou colunas) de uma tabela de base de dados podem fazer referência a chave primária de outra tabela, propriedade (ou propriedades) de tipo de entidade podem fazer referência chave de entidade de outro tipo de objeto. O tipo de entidade referenciado é chamado de *extremidade principal* da restrição. O tipo de entidade que faz referência à extremidade principal é chamado de *extremidade dependente* da restrição. Os elementos **PropertyRef** são usados para especificar quais chaves fazem referência à extremidade principal.
 
 O elemento **dependente** pode ter os seguintes elementos filho (na ordem listada):
 
@@ -350,7 +350,7 @@ O elemento **dependente** pode ter os seguintes elementos filho (na ordem listad
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **dependente** .
 
-| Nome do atributo | É obrigatório | Valor                                                                |
+| Nome do atributo | Obrigatório | Valor                                                                |
 |:---------------|:------------|:---------------------------------------------------------------------|
 | **Função**       | Sim         | O nome do tipo de entidade na extremidade dependente da associação. |
 
@@ -386,12 +386,12 @@ O exemplo a seguir mostra um elemento **ReferentialConstraint** que está sendo 
 
 ## <a name="documentation-element-csdl"></a>Elemento Documentation (CSDL)
 
-O elemento **Documentation** na CSDL (linguagem de definição de esquema conceitual) pode ser usado para fornecer informações sobre um objeto que é definido em um elemento pai. Em um arquivo. edmx, quando o elemento de **documentação** é um filho de um elemento que aparece como um objeto na superfície de design do designer do EF (como uma entidade, associação ou Propriedade), o conteúdo do elemento de **documentação** aparecerá no Janela **Propriedades** do Visual Studio para o objeto.
+O elemento **Documentation** na CSDL (linguagem de definição de esquema conceitual) pode ser usado para fornecer informações sobre um objeto que é definido em um elemento pai. Em um arquivo. edmx, quando o elemento de **documentação** é um filho de um elemento que aparece como um objeto na superfície de design do designer do EF (como uma entidade, associação ou Propriedade), o conteúdo do elemento de **documentação** aparecerá na janela **Propriedades** do Visual Studio para o objeto.
 
 O elemento de **documentação** pode ter os seguintes elementos filho (na ordem listada):
 
--   **Resumo**: Uma breve descrição do elemento pai. (zero ou um elemento)
--   **LongDescription**: Uma descrição abrangente do elemento pai. (zero ou um elemento)
+-   **Resumo**: uma breve descrição do elemento pai. (zero ou um elemento)
+-   **LongDescription**: uma descrição extensiva do elemento pai. (zero ou um elemento)
 -   Elementos de anotação. (zero ou mais elementos)
 
 ### <a name="applicable-attributes"></a>Atributos aplicáveis
@@ -425,7 +425,7 @@ O elemento **end** na linguagem de definição de esquema conceitual (CSDL) pode
 
 ### <a name="end-element-as-a-child-of-the-association-element"></a>Elemento end como um filho do elemento Association
 
-Um elemento **final** (como um filho do elemento **Association** ) identifica o tipo de entidade em uma extremidade de uma associação e o número de instâncias de tipo de entidade que podem existir no final de uma associação. Termina de associação são definidas como parte de uma associação; uma associação deve ter exatamente duas termina de associação. Instâncias de tipo de entidade em uma extremidade de uma associação podem ser acessadas por meio de propriedades de navegação ou chaves estrangeiras se forem expostas em um tipo de entidade.  
+Um elemento **final** (como um filho do elemento **Association** ) identifica o tipo de entidade em uma extremidade de uma associação e o número de instâncias de tipo de entidade que podem existir no final de uma associação. Termina de associação são definidas como parte de uma associação; uma associação deve ter exatamente duas termina de associação. As instâncias do tipo de entidade no final de uma associação podem ser acessadas através de propriedades de navegação ou de chaves estrangeiras se são expostos em um tipo de objeto.  
 
 Um elemento **final** pode ter os seguintes elementos filho (na ordem listada):
 
@@ -437,11 +437,11 @@ Um elemento **final** pode ter os seguintes elementos filho (na ordem listada):
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **final** quando ele é o filho de um elemento **Association** .
 
-| Nome do atributo   | É obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Nome do atributo   | Obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                                              |
 |:-----------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tipo**         | Sim         | O nome do tipo de entidade em uma extremidade da associação.                                                                                                                                                                                                                                                                                                                                                         |
 | **Função**         | Não          | Um nome para o final da associação. Se nenhum nome for fornecido, o nome do tipo de entidade na extremidade da Associação será usado.                                                                                                                                                                                                                                                                                           |
-| **Multiplicidade** | Sim         | **1**, **0.. 1**ou **\*** , dependendo do número de instâncias de tipo de entidade que podem estar no final da associação. <br/> **1** indica que exatamente uma instância de tipo de entidade existe na extremidade da associação. <br/> **0.. 1** indica que nenhuma instância de tipo de entidade existe na extremidade da associação. <br/> **\*** indica que zero, uma ou mais instâncias de tipo de entidade existem na extremidade da associação. |
+| **Multiplicidade** | Sim         | **1**, **0.. 1**ou **\*** dependendo do número de instâncias de tipo de entidade que podem estar no final da associação. <br/> **1** indica que exatamente uma instância de tipo de entidade existe na extremidade da associação. <br/> **0.. 1** indica que nenhuma instância de tipo de entidade existe na extremidade da associação. <br/> **\*** indica que nenhuma instância de tipo de entidade existe na extremidade da associação. |
 
  
 
@@ -482,7 +482,7 @@ Um elemento **final** pode ter os seguintes elementos filho (na ordem listada):
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **final** quando ele é o filho de um elemento **AssociationSet** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                                                                 |
+| Nome do atributo | Obrigatório | Valor                                                                                                                                                                                                                 |
 |:---------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **EntitySet**  | Sim         | O nome do elemento **EntitySet** que define uma extremidade do elemento de **AssociationSet** pai. O elemento **EntitySet** deve ser definido no mesmo contêiner de entidade que o elemento de **AssociationSet** pai. |
 | **Função**       | Não          | O nome da extremidade do conjunto de associação. Se o atributo **role** não for usado, o nome do conjunto de associação end será o nome do conjunto de entidades.                                                                   |
@@ -528,7 +528,7 @@ Um elemento **EntityContainer** pode ter zero ou mais dos seguintes elementos fi
 -   EntitySet
 -   AssociationSet
 -   FunctionImport
--   Elementos de anotação
+-   Elementos Annotation
 
 Você pode estender um elemento **EntityContainer** para incluir o conteúdo de outro **EntityContainer** que está dentro do mesmo namespace. Para incluir o conteúdo de outro **EntityContainer**, no elemento **EntityContainer** de referência, defina o valor do atributo **extends** como o nome do elemento **EntityContainer** que você deseja incluir. Todos os elementos filho do elemento **EntityContainer** incluído serão tratados como elementos filho do elemento **EntityContainer** de referência.
 
@@ -536,9 +536,9 @@ Você pode estender um elemento **EntityContainer** para incluir o conteúdo de 
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **using** .
 
-| Nome do atributo | É obrigatório | Valor                                                           |
+| Nome do atributo | Obrigatório | Valor                                                           |
 |:---------------|:------------|:----------------------------------------------------------------|
-| **Name**       | Sim         | O nome do contêiner de entidade.                               |
+| **Nome**       | Sim         | O nome do contêiner de entidade.                               |
 | **Estende**    | Não          | O nome de outro contêiner de entidade no mesmo namespace. |
 
  
@@ -591,9 +591,9 @@ O elemento **EntitySet** pode ter os seguintes elementos filho (na ordem listada
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntitySet** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                    |
+| Nome do atributo | Obrigatório | Valor                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome do conjunto de entidades.                                                              |
+| **Nome**       | Sim         | O nome do conjunto de entidades.                                                              |
 | **EntityType** | Sim         | O nome totalmente qualificado do tipo de entidade para o qual o conjunto de entidades contém instâncias. |
 
  
@@ -655,7 +655,7 @@ O elemento **EntityType** representa a estrutura de um conceito de nível superi
 -   Propriedades para conter dados. (Opcional).
 -   Propriedades de navegação que permitem a navegação de uma extremidade de uma associação para a outra extremidade. (Opcional).
 
-Em um aplicativo, uma instância de um tipo de entidade representa um objeto específico (como um cliente ou uma ordem específica.) Cada instância de um tipo de entidade deve ter uma chave de entidade exclusiva dentro de um conjunto de entidades.
+Em um aplicativo, uma instância de um tipo de entidade representa um objeto específico (como um cliente ou uma ordem específica.) Cada instância de um tipo de entidade deve ter chave de entidade exclusivo dentro de conjunto de entidades.
 
 Duas instâncias do tipo de entidade são consideradas iguais somente se são do mesmo tipo e os valores das chaves de entidade são os mesmos.
 
@@ -671,10 +671,10 @@ Um elemento **EntityType** pode ter os seguintes elementos filho (na ordem lista
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **EntityType** .
 
-| Nome do atributo                                                                                                                                  | É obrigatório | Valor                                                                                            |
+| Nome do atributo                                                                                                                                  | Obrigatório | Valor                                                                                            |
 |:------------------------------------------------------------------------------------------------------------------------------------------------|:------------|:-------------------------------------------------------------------------------------------------|
-| **Name**                                                                                                                                        | Sim         | O nome do tipo de entidade.                                                                     |
-| **BaseType**                                                                                                                                    | Não          | O nome de outro tipo de entidade que é o tipo base do tipo de entidade que está sendo definido.  |
+| **Nome**                                                                                                                                        | Sim         | O nome do tipo de entidade.                                                                     |
+| **BaseType**                                                                                                                                    | Não          | O nome de outro tipo de entidade que é o tipo básico do tipo de entidade que está sendo definido.  |
 | **Resume**                                                                                                                                    | Não          | **True** ou **false**, dependendo se o tipo de entidade é um tipo abstrato.                 |
 | **OpenType**                                                                                                                                    | Não          | **True** ou **false** dependendo se o tipo de entidade é um tipo de entidade aberto. <br/> [!NOTE] |
 | > O atributo **OpenType** só é aplicável a tipos de entidade que são definidos em modelos conceituais que são usados com os serviços de dados do ADO.net. |             |                                                                                                  |
@@ -722,9 +722,9 @@ Um elemento **enumType** pode ter os seguintes elementos filho (na ordem listada
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **enumType** .
 
-| Nome do atributo     | É obrigatório | Valor                                                                                                                                                                                         |
+| Nome do atributo     | Obrigatório | Valor                                                                                                                                                                                         |
 |:-------------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**           | Sim         | O nome do tipo de entidade.                                                                                                                                                                  |
+| **Nome**           | Sim         | O nome do tipo de entidade.                                                                                                                                                                  |
 | **IsFlags**        | Não          | **True** ou **false**, dependendo se o tipo de enumeração pode ser usado como um conjunto de sinalizadores. O valor padrão é **false.** .                                                                     |
 | **UnderlyingType** | Não          | **EDM. byte**, **EDM. Int16**, **EDM. Int32**, **EDM. Int64** ou **EDM. SByte** que definem o intervalo de valores do tipo.   O tipo subjacente padrão de elementos de enumeração é **EDM. Int32.** . |
 
@@ -768,9 +768,9 @@ Um tipo de retorno para uma função deve ser especificado com o elemento **Retu
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Function** .
 
-| Nome do atributo | É obrigatório | Valor                              |
+| Nome do atributo | Obrigatório | Valor                              |
 |:---------------|:------------|:-----------------------------------|
-| **Name**       | Sim         | O nome da função.          |
+| **Nome**       | Sim         | O nome da função.          |
 | **ReturnType** | Não          | O tipo retornado pela função. |
 
  
@@ -815,10 +815,10 @@ Um tipo de retorno para uma função deve ser especificado com o elemento **Retu
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **FunctionImport** .
 
-| Nome do atributo   | É obrigatório | Valor                                                                                                                                                                                                 |
+| Nome do atributo   | Obrigatório | Valor                                                                                                                                                                                                 |
 |:-----------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**         | Sim         | O nome da função importada.                                                                                                                                                                    |
-| **ReturnType**   | Não          | O tipo que a função retorna. Não use esse atributo se a função não retornar um valor. Caso contrário, o valor deve ser uma coleção de complexType, EntityType ou EDMSimpleType.        |
+| **Nome**         | Sim         | O nome da função importada.                                                                                                                                                                    |
+| **ReturnType**   | Não          | O tipo que a função retorna. Não use esse atributo se a função não retorna um valor. Caso contrário, o valor deve ser uma coleção de complexType, EntityType ou EDMSimpleType.        |
 | **EntitySet**    | Não          | Se a função retornar uma coleção de tipos de entidade, o valor do **EntitySet** deverá ser o conjunto de entidades ao qual a coleção pertence. Caso contrário, o atributo **EntitySet** não deve ser usado. |
 | **IsComposable** | Não          | Se o valor for definido como true, a função será combinável (função com valor de tabela) e poderá ser usada em uma consulta LINQ.  O padrão é **false**.                                                           |
 
@@ -846,7 +846,7 @@ O exemplo a seguir mostra um elemento **FunctionImport** que aceita um parâmetr
 
 ## <a name="key-element-csdl"></a>Elemento Key (CSDL)
 
-O elemento **Key** é um elemento filho do elemento EntityType e define uma *chave de entidade* (uma propriedade ou um conjunto de propriedades de um tipo de entidade que determinam a identidade). As propriedades que compõem uma chave de entidade são escolhidas em tempo de design. Os valores das propriedades de chave de entidade devem identificar exclusivamente uma instância de tipo de entidade dentro de uma entidade definida em tempo de execução. As propriedades que compõem uma chave de entidade devem ser escolhidas para garantir a exclusividade de instâncias em um conjunto de entidades. O elemento **Key** define uma chave de entidade referenciando uma ou mais das propriedades de um tipo de entidade.
+O elemento **Key** é um elemento filho do elemento EntityType e define uma *chave de entidade* (uma propriedade ou um conjunto de propriedades de um tipo de entidade que determinam a identidade). As propriedades que compõem uma chave de entidade são escolhidas em tempo de design. Os valores das propriedades de chave de entidade devem exclusivamente identificar uma instância do tipo de entidade dentro de conjunto de entidades em tempo de execução. As propriedades que compõem uma chave de entidade devem ser escolhidas para garantir a exclusividade de instâncias em um conjunto de entidades. O elemento **Key** define uma chave de entidade referenciando uma ou mais das propriedades de um tipo de entidade.
 
 O elemento **Key** pode ter os seguintes elementos filho:
 
@@ -907,9 +907,9 @@ O elemento **Member** é um elemento filho do elemento enumType e define um memb
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **FunctionImport** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                                    |
+| Nome do atributo | Obrigatório | Valor                                                                                                                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome do membro.                                                                                                                                                                  |
+| **Nome**       | Sim         | O nome do membro.                                                                                                                                                                  |
 | **Valor**      | Não          | O valor do membro. Por padrão, o primeiro membro tem o valor 0 e o valor de cada enumerador sucessivo é incrementado em 1. Vários membros com os mesmos valores podem existir. |
 
  
@@ -951,9 +951,9 @@ Um elemento **NavigationProperty** pode ter os seguintes elementos filho (na ord
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **NavigationProperty** .
 
-| Nome do atributo   | É obrigatório | Valor                                                                                                                                                                                                                                            |
+| Nome do atributo   | Obrigatório | Valor                                                                                                                                                                                                                                            |
 |:-----------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**         | Sim         | O nome da propriedade de navegação.                                                                                                                                                                                                             |
+| **Nome**         | Sim         | O nome da propriedade de navegação.                                                                                                                                                                                                             |
 | **Inter-relações** | Sim         | O nome de uma associação que está dentro do escopo do modelo.                                                                                                                                                                                |
 | **ToRole**       | Sim         | O fim da associação na qual a navegação termina. O valor do atributo **ToRole** deve ser o mesmo que o valor de um dos atributos **role** definidos em uma das extremidades de associação (definido no elemento AssociationEnd).       |
 | **FromRole**     | Sim         | O fim da associação da qual a navegação começa. O valor do atributo **FromRole** deve ser o mesmo que o valor de um dos atributos de **função** definidos em uma das extremidades de associação (definido no elemento AssociationEnd). |
@@ -1005,7 +1005,7 @@ Um elemento **OnDelete** pode ter os seguintes elementos filho (na ordem listada
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **OnDelete** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                                                                         |
+| Nome do atributo | Obrigatório | Valor                                                                                                                                                                                                                         |
 |:---------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Ação**     | Sim         | **Cascade** ou **None**. Se os tipos de entidade **em cascata**, dependentes serão excluídos quando o tipo de entidade principal for excluído. Se **nenhum**, os tipos de entidade dependentes não serão excluídos quando o tipo de entidade principal for excluído. |
 
@@ -1049,14 +1049,14 @@ O elemento **Parameter** pode ter os seguintes elementos filho (na ordem listada
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Parameter** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                                                                           |
+| Nome do atributo | Obrigatório | Valor                                                                                                                                                                                                                           |
 |:---------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**       | Sim         | O nome do parâmetro.                                                                                                                                                                                                      |
-| **Tipo**       | Sim         | O tipo de parâmetro. O valor deve ser um **EDMSimpleType** ou um tipo complexo que esteja dentro do escopo do modelo.                                                                                                             |
+| **Nome**       | Sim         | O nome do parâmetro.                                                                                                                                                                                                      |
+| **Tipo**       | Sim         | O tipo de parâmetro. O valor deve ser um **EDMSimpleType** ou um tipo complexo que está dentro do escopo do modelo.                                                                                                             |
 | **Modo**       | Não          | **In**, **out**ou **Inout** , dependendo se o parâmetro é um parâmetro de entrada, saída ou entrada/saída.                                                                                                                |
 | **MaxLength**  | Não          | O comprimento máximo permitido do parâmetro.                                                                                                                                                                                    |
 | **Precisão**  | Não          | A precisão do parâmetro.                                                                                                                                                                                                 |
-| **Ajustar Escala**      | Não          | A escala do parâmetro.                                                                                                                                                                                                     |
+| **Escala**      | Não          | A escala do parâmetro.                                                                                                                                                                                                     |
 | **SRID**       | Não          | Identificador de referência de sistema espacial. Válido somente para parâmetros de tipos espaciais. Para obter mais informações, consulte [SRID](https://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 
  
@@ -1106,19 +1106,19 @@ O elemento **Parameter** pode ter os seguintes elementos filho (na ordem listada
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Parameter** .
 
-| Nome do atributo   | É obrigatório | Valor                                                                                                                                                                                                                           |
+| Nome do atributo   | Obrigatório | Valor                                                                                                                                                                                                                           |
 |:-----------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**         | Sim         | O nome do parâmetro.                                                                                                                                                                                                      |
-| **Tipo**         | Não          | O tipo de parâmetro. Um parâmetro pode ser qualquer um dos seguintes tipos (ou coleções desses tipos): <br/> **EdmSimpleType** <br/> tipo de entidade <br/> tipo complexo <br/> tipo de linha <br/> tipo de referência                             |
-| **Anula**     | Não          | **True** (o valor padrão) ou **false** , dependendo se a propriedade pode ter um valor **nulo** .                                                                                                                          |
-| **DefaultValue** | Não          | O valor padrão da propriedade.                                                                                                                                                                                              |
+| **Nome**         | Sim         | O nome do parâmetro.                                                                                                                                                                                                      |
+| **Tipo**         | Não          | O tipo de parâmetro. Um parâmetro pode ser qualquer um dos seguintes tipos (ou coleções desses tipos): <br/> **EdmSimpleType** <br/> tipo de entidade <br/> tipo complexo <br/> Tipo de linha <br/> tipo de referência                             |
+| **Permite valor nulo**     | Não          | **True** (o valor padrão) ou **false** , dependendo se a propriedade pode ter um valor **nulo** .                                                                                                                          |
+| **ValorPadrão** | Não          | O valor padrão da propriedade.                                                                                                                                                                                              |
 | **MaxLength**    | Não          | O comprimento máximo do valor da propriedade.                                                                                                                                                                                       |
 | **Cadeia**  | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres de comprimento fixo.                                                                                                                          |
 | **Precisão**    | Não          | A precisão do valor da propriedade.                                                                                                                                                                                            |
-| **Ajustar Escala**        | Não          | A escala do valor da propriedade.                                                                                                                                                                                                |
+| **Escala**        | Não          | A escala do valor da propriedade.                                                                                                                                                                                                |
 | **SRID**         | Não          | Identificador de referência de sistema espacial. Válido somente para propriedades de tipos espaciais. Para obter mais informações, consulte [SRID](https://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **Unicode**      | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres Unicode.                                                                                                                               |
-| **Agrupamento**    | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                   |
+| **Ordenação**    | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                   |
 
  
 
@@ -1144,7 +1144,7 @@ O exemplo a seguir mostra um elemento **Function** que usa um elemento filho de 
 
 ## <a name="principal-element-csdl"></a>Elemento principal (CSDL)
 
-O elemento **principal** na CSDL (linguagem de definição de esquema conceitual) é um elemento filho para o elemento ReferentialConstraint que define a extremidade principal de uma restrição referencial. Um elemento **ReferentialConstraint** define a funcionalidade que é semelhante a uma restrição de integridade referencial em um banco de dados relacional. Da mesma forma que uma coluna (ou colunas) de uma tabela de banco de dados pode referenciar a chave primária de outra tabela, uma propriedade (ou Propriedades) de um tipo de entidade pode referenciar a chave de entidade de outro tipo de entidade. O tipo de entidade referenciado é chamado de *extremidade principal* da restrição. O tipo de entidade que faz referência à extremidade principal é chamado de *extremidade dependente* da restrição. Os elementos **PropertyRef** são usados para especificar quais chaves são referenciadas pela extremidade dependente.
+O elemento **principal** na CSDL (linguagem de definição de esquema conceitual) é um elemento filho para o elemento ReferentialConstraint que define a extremidade principal de uma restrição referencial. Um elemento **ReferentialConstraint** define a funcionalidade que é semelhante a uma restrição de integridade referencial em um banco de dados relacional. Da mesma forma que uma coluna (ou colunas) de uma tabela de base de dados podem fazer referência a chave primária de outra tabela, propriedade (ou propriedades) de tipo de entidade podem fazer referência chave de entidade de outro tipo de objeto. O tipo de entidade referenciado é chamado de *extremidade principal* da restrição. O tipo de entidade que faz referência à extremidade principal é chamado de *extremidade dependente* da restrição. Os elementos **PropertyRef** são usados para especificar quais chaves são referenciadas pela extremidade dependente.
 
 O elemento **principal** pode ter os seguintes elementos filho (na ordem listada):
 
@@ -1155,7 +1155,7 @@ O elemento **principal** pode ter os seguintes elementos filho (na ordem listada
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **principal** .
 
-| Nome do atributo | É obrigatório | Valor                                                                |
+| Nome do atributo | Obrigatório | Valor                                                                |
 |:---------------|:------------|:---------------------------------------------------------------------|
 | **Função**       | Sim         | O nome do tipo de entidade na extremidade principal da associação. |
 
@@ -1202,7 +1202,7 @@ O elemento **Property** pode ter os seguintes elementos filho (na ordem listada)
 -   Elemento Documentation (zero ou um elementos permitidos)
 -   Elementos de anotação (zero ou mais elementos permitidos)
 
-As facetas a seguir podem ser aplicadas a um elemento de **Propriedade** : **Nullable**, **DefaultValue**, **MaxLength**, **cadeia**, **precisão**, **escala**, **Unicode**, **agrupamento**, **ConcurrencyMode**. Facetas são atributos XML que fornecem informações sobre como os valores de propriedade são armazenados no armazenamento de dados.
+As facetas a seguir podem ser aplicadas a um elemento **Property** : **Nullable**, **DefaultValue**, **MaxLength**, **cadeia**, **Precision**, **Dimension**, **Unicode**, **Collation**, **ConcurrencyMode**. Facetas são atributos XML que fornecem informações sobre como os valores de propriedade são armazenados no armazenamento de dados.
 
 > [!NOTE]
 > Facetas só podem ser aplicadas a propriedades do tipo **EDMSimpleType**.
@@ -1213,21 +1213,21 @@ As facetas a seguir podem ser aplicadas a um elemento de **Propriedade** : **Nul
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Property** .
 
-| Nome do atributo                                                         | É obrigatório | Valor                                                                                                                                                                                                                           |
+| Nome do atributo                                                         | Obrigatório | Valor                                                                                                                                                                                                                           |
 |:-----------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                                                               | Sim         | O nome da propriedade.                                                                                                                                                                                                       |
-| **Tipo**                                                               | Sim         | O tipo do valor da propriedade. O tipo de valor da propriedade deve ser um **EDMSimpleType** ou um tipo complexo (indicado por um nome totalmente qualificado) que esteja dentro do escopo do modelo.                                                 |
-| **Anula**                                                           | Não          | **True** (o valor padrão) ou <strong>false</strong> , dependendo se a propriedade pode ter um valor nulo. <br/> [!NOTE]                                                                                                   |
+| **Nome**                                                               | Sim         | O nome da propriedade.                                                                                                                                                                                                       |
+| **Tipo**                                                               | Sim         | O tipo do valor da propriedade. O tipo de valor de propriedade deve ser um **EDMSimpleType** ou um tipo complexo (indicado por um nome totalmente qualificado) que está dentro do escopo do modelo.                                                 |
+| **Permite valor nulo**                                                           | Não          | **True** (o valor padrão) ou <strong>False</strong>, dependendo se a propriedade pode ter um valor nulo. <br/> [!NOTE]                                                                                                   |
 | > No CSDL v1, uma propriedade de tipo complexo deve ter `Nullable="False"`. |             |                                                                                                                                                                                                                                 |
-| **DefaultValue**                                                       | Não          | O valor padrão da propriedade.                                                                                                                                                                                              |
+| **ValorPadrão**                                                       | Não          | O valor padrão da propriedade.                                                                                                                                                                                              |
 | **MaxLength**                                                          | Não          | O comprimento máximo do valor da propriedade.                                                                                                                                                                                       |
 | **Cadeia**                                                        | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres de comprimento fixo.                                                                                                                          |
 | **Precisão**                                                          | Não          | A precisão do valor da propriedade.                                                                                                                                                                                            |
-| **Ajustar Escala**                                                              | Não          | A escala do valor da propriedade.                                                                                                                                                                                                |
+| **Escala**                                                              | Não          | A escala do valor da propriedade.                                                                                                                                                                                                |
 | **SRID**                                                               | Não          | Identificador de referência de sistema espacial. Válido somente para propriedades de tipos espaciais. Para obter mais informações, consulte [SRID](https://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **Unicode**                                                            | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres Unicode.                                                                                                                               |
-| **Agrupamento**                                                          | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                   |
-| **ConcurrencyMode**                                                    | Não          | **Nenhum** (o valor padrão) ou **fixo**. Se o valor for definido como **Fixed**, o valor da propriedade será usado em verificações de simultaneidade otimistas.                                                                                  |
+| **Ordenação**                                                          | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                   |
+| **ConcurrencyMode**                                                    | Não          | **Nenhum** (o valor padrão) ou **Fixo**. Se o valor for definido como **Fixo**, o valor da propriedade será usado na verificação de simultaneidade otimista.                                                                                  |
 
  
 
@@ -1290,20 +1290,20 @@ O elemento **Property** pode ter qualquer elemento de anotação filho de númer
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Property** .
 
-| Nome do atributo                                                     | É obrigatório | Valor                                                                                                                                                                                                                           |
+| Nome do atributo                                                     | Obrigatório | Valor                                                                                                                                                                                                                           |
 |:-------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                                                           | Sim         | O nome da propriedade.                                                                                                                                                                                                       |
+| **Nome**                                                           | Sim         | O nome da propriedade.                                                                                                                                                                                                       |
 | **Tipo**                                                           | Sim         | O tipo do valor da propriedade.                                                                                                                                                                                                 |
-| **Anula**                                                       | Não          | **True** (o valor padrão) ou **false** , dependendo se a propriedade pode ter um valor nulo. <br/> [!NOTE]                                                                                                                |
+| **Permite valor nulo**                                                       | Não          | **True** (o valor padrão) ou **False**, dependendo se a propriedade pode ter um valor nulo. <br/> [!NOTE]                                                                                                                |
 | > Em CSDL v1, uma propriedade de tipo complexo deve ter `Nullable="False"`. |             |                                                                                                                                                                                                                                 |
-| **DefaultValue**                                                   | Não          | O valor padrão da propriedade.                                                                                                                                                                                              |
+| **ValorPadrão**                                                   | Não          | O valor padrão da propriedade.                                                                                                                                                                                              |
 | **MaxLength**                                                      | Não          | O comprimento máximo do valor da propriedade.                                                                                                                                                                                       |
 | **Cadeia**                                                    | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres de comprimento fixo.                                                                                                                          |
 | **Precisão**                                                      | Não          | A precisão do valor da propriedade.                                                                                                                                                                                            |
-| **Ajustar Escala**                                                          | Não          | A escala do valor da propriedade.                                                                                                                                                                                                |
+| **Escala**                                                          | Não          | A escala do valor da propriedade.                                                                                                                                                                                                |
 | **SRID**                                                           | Não          | Identificador de referência de sistema espacial. Válido somente para propriedades de tipos espaciais. Para obter mais informações, consulte [SRID](https://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **Unicode**                                                        | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres Unicode.                                                                                                                               |
-| **Agrupamento**                                                      | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                   |
+| **Ordenação**                                                      | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                   |
 
  
 
@@ -1356,9 +1356,9 @@ O elemento **PropertyRef** só pode ter elementos Annotation (zero ou mais) como
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **PropertyRef** .
 
-| Nome do atributo | É obrigatório | Valor                                |
+| Nome do atributo | Obrigatório | Valor                                |
 |:---------------|:------------|:-------------------------------------|
-| **Name**       | Sim         | O nome da propriedade referenciada. |
+| **Nome**       | Sim         | O nome da propriedade referenciada. |
 
  
 
@@ -1427,7 +1427,7 @@ Um elemento **ReferenceType** pode ter os seguintes elementos filho (na ordem li
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **ReferenceType** .
 
-| Nome do atributo | É obrigatório | Valor                                         |
+| Nome do atributo | Obrigatório | Valor                                         |
 |:---------------|:------------|:----------------------------------------------|
 | **Tipo**       | Sim         | O nome do tipo de entidade que está sendo referenciado. |
 
@@ -1473,7 +1473,7 @@ O exemplo a seguir mostra o elemento **ReferenceType** usado como um filho de um
 
 ## <a name="referentialconstraint-element-csdl"></a>Elemento ReferentialConstraint (CSDL)
 
-Um elemento **ReferentialConstraint** na CSDL (linguagem de definição de esquema conceitual) define a funcionalidade que é semelhante a uma restrição de integridade referencial em um banco de dados relacional. Da mesma forma que uma coluna (ou colunas) de uma tabela de banco de dados pode referenciar a chave primária de outra tabela, uma propriedade (ou Propriedades) de um tipo de entidade pode referenciar a chave de entidade de outro tipo de entidade. O tipo de entidade referenciado é chamado de *extremidade principal* da restrição. O tipo de entidade que faz referência à extremidade principal é chamado de *extremidade dependente* da restrição.
+Um elemento **ReferentialConstraint** na CSDL (linguagem de definição de esquema conceitual) define a funcionalidade que é semelhante a uma restrição de integridade referencial em um banco de dados relacional. Da mesma forma que uma coluna (ou colunas) de uma tabela de base de dados podem fazer referência a chave primária de outra tabela, propriedade (ou propriedades) de tipo de entidade podem fazer referência chave de entidade de outro tipo de objeto. O tipo de entidade referenciado é chamado de *extremidade principal* da restrição. O tipo de entidade que faz referência à extremidade principal é chamado de *extremidade dependente* da restrição.
 
 Se uma chave estrangeira exposta em um tipo de entidade referenciar uma propriedade em outro tipo de entidade, o elemento **ReferentialConstraint** definirá uma associação entre os dois tipos de entidade. Como o elemento **ReferentialConstraint** fornece informações sobre como dois tipos de entidade estão relacionados, nenhum elemento AssociationSetMapping correspondente é necessário na MSL (linguagem de especificação de mapeamento). Uma associação entre dois tipos de entidade que não têm chaves estrangeiras expostas deve ter um elemento **AssociationSetMapping** correspondente para mapear informações de associação para a fonte de dados.
 
@@ -1534,7 +1534,7 @@ O tipo de retorno de uma função pode ser especificado com o atributo **Type** 
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **ReturnType** (função).
 
-| Nome do atributo | É obrigatório | Valor                              |
+| Nome do atributo | Obrigatório | Valor                              |
 |:---------------|:------------|:-----------------------------------|
 | **ReturnType** | Não          | O tipo retornado pela função. |
 
@@ -1574,7 +1574,7 @@ O tipo de retorno de uma função é especificado com o atributo **Type** do ele
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **ReturnType** (FunctionImport).
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                                                 |
+| Nome do atributo | Obrigatório | Valor                                                                                                                                                                                                 |
 |:---------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tipo**       | Não          | O tipo que a função retorna. O valor deve ser uma coleção de complexType, EntityType ou EDMSimpleType.                                                                                      |
 | **EntitySet**  | Não          | Se a função retornar uma coleção de tipos de entidade, o valor do **EntitySet** deverá ser o conjunto de entidades ao qual a coleção pertence. Caso contrário, o atributo **EntitySet** não deve ser usado. |
@@ -1648,7 +1648,7 @@ O elemento **Schema** é o elemento raiz de uma definição de modelo conceitual
 
 O elemento **Schema** pode conter zero ou mais dos seguintes elementos filho:
 
--   Usando
+-   Usar
 -   EntityContainer
 -   EntityType
 -   EnumType
@@ -1671,9 +1671,9 @@ Um namespace de modelo conceitual é diferente do namespace XML do elemento **Sc
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **Schema** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Nome do atributo | Obrigatório | Valor                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 |:---------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Namespace**  | Sim         | O namespace do modelo conceitual. O valor do atributo **namespace** é usado para formar o nome totalmente qualificado de um tipo. Por exemplo, se um **EntityType** chamado *Customer* estiver no namespace simples. example. Model, o nome totalmente qualificado do **EntityType** será SimpleExampleModel. Customer. <br/> As seguintes cadeias de caracteres não podem ser usadas como o valor do atributo **namespace** : **Sistema**, **transitório**ou **EDM**. O valor do atributo **namespace** não pode ser o mesmo que o valor do atributo **namespace** no elemento de esquema SSDL. |
+| **Namespace**  | Sim         | O namespace do modelo conceitual. O valor do atributo **namespace** é usado para formar o nome totalmente qualificado de um tipo. Por exemplo, se um **EntityType** chamado *Customer* estiver no namespace simples. example. Model, o nome totalmente qualificado do **EntityType** será SimpleExampleModel. Customer. <br/> As cadeias de caracteres a seguir não podem ser usadas como o valor do atributo de **namespace** : **System**, **transitório**ou **EDM**. O valor do atributo **namespace** não pode ser o mesmo que o valor do atributo **namespace** no elemento de esquema SSDL. |
 | **Alias**      | Não          | Um identificador usado no lugar do nome do namespace. Por exemplo, se um **EntityType** chamado *Customer* estiver no namespace simples. example. Model e o valor do atributo **alias** for *Model*, você poderá usar Model. Customer como o nome totalmente qualificado do **EntityType.**                                                                                                                                                                                                                                                                                                     |
 
  
@@ -1760,19 +1760,19 @@ Um elemento **TypeRef** pode ter os seguintes elementos filho (na ordem listada)
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **TypeRef** . Observe que os atributos **DefaultValue**, **MaxLength**, **cadeia**, **Precision**, **Scale**, **Unicode**e **Collation** são aplicáveis somente ao **EDMSimpleTypes**.
 
-| Nome do atributo                                                     | É obrigatório | Valor                                                                                                                                                                                                                           |
+| Nome do atributo                                                     | Obrigatório | Valor                                                                                                                                                                                                                           |
 |:-------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tipo**                                                           | Não          | O nome do tipo que está sendo referenciado.                                                                                                                                                                                          |
-| **Anula**                                                       | Não          | **True** (o valor padrão) ou **false** , dependendo se a propriedade pode ter um valor nulo. <br/> [!NOTE]                                                                                                                |
+| **Permite valor nulo**                                                       | Não          | **True** (o valor padrão) ou **False**, dependendo se a propriedade pode ter um valor nulo. <br/> [!NOTE]                                                                                                                |
 | > Em CSDL v1, uma propriedade de tipo complexo deve ter `Nullable="False"`. |             |                                                                                                                                                                                                                                 |
-| **DefaultValue**                                                   | Não          | O valor padrão da propriedade.                                                                                                                                                                                              |
+| **ValorPadrão**                                                   | Não          | O valor padrão da propriedade.                                                                                                                                                                                              |
 | **MaxLength**                                                      | Não          | O comprimento máximo do valor da propriedade.                                                                                                                                                                                       |
 | **Cadeia**                                                    | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres de comprimento fixo.                                                                                                                          |
 | **Precisão**                                                      | Não          | A precisão do valor da propriedade.                                                                                                                                                                                            |
-| **Ajustar Escala**                                                          | Não          | A escala do valor da propriedade.                                                                                                                                                                                                |
+| **Escala**                                                          | Não          | A escala do valor da propriedade.                                                                                                                                                                                                |
 | **SRID**                                                           | Não          | Identificador de referência de sistema espacial. Válido somente para propriedades de tipos espaciais. Para obter mais informações, consulte [SRID](https://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **Unicode**                                                        | Não          | **True** ou **false** dependendo se o valor da propriedade será armazenado como uma cadeia de caracteres Unicode.                                                                                                                               |
-| **Agrupamento**                                                      | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                   |
+| **Ordenação**                                                      | Não          | Uma cadeia de caracteres que especifica a sequência de agrupamento a ser usada na fonte de dados.                                                                                                                                                   |
 
  
 
@@ -1820,7 +1820,7 @@ O elemento **using** pode ter os seguintes elementos filho:
 
 A tabela a seguir descreve os atributos que podem ser aplicados ao elemento **using** .
 
-| Nome do atributo | É obrigatório | Valor                                                                                                                                                                              |
+| Nome do atributo | Obrigatório | Valor                                                                                                                                                                              |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Namespace**  | Sim         | O nome do namespace importado.                                                                                                                                                |
 | **Alias**      | Sim         | Um identificador usado no lugar do nome do namespace. Embora esse atributo seja necessário, não é necessário que ele seja usado no lugar do nome do namespace para qualificar nomes de objeto. |
@@ -1923,7 +1923,7 @@ O código a seguir recupera os metadados no atributo Annotation e grava-os no co
 ```
  
 
-O código acima pressupõe que o arquivo `School.csdl` está no diretório de saída do projeto e que você adicionou as seguintes instruções `Imports` e `Using` ao seu projeto:
+O código acima pressupõe que o arquivo de `School.csdl` está no diretório de saída do projeto e que você adicionou as instruções `Imports` e `Using` a seguir ao seu projeto:
 
 ``` csharp
  using System.Data.Metadata.Edm;
@@ -2008,25 +2008,25 @@ O CSDL (linguagem de definição de esquema conceitual) dá suporte a um conjunt
 
 A tabela a seguir lista os tipos de dados primitivos que são suportados pelo CSDL. A tabela também lista as facetas que podem ser aplicadas a cada **EDMSimpleType**.
 
-| EDMSimpleType                    | Descrição                                                | Facetas aplicáveis                                                        |
+| EDMSimpleType                    | DESCRIÇÃO                                                | Facetas aplicáveis                                                        |
 |:---------------------------------|:-----------------------------------------------------------|:-------------------------------------------------------------------------|
 | **EDM. Binary**                   | Contém dados binários.                                      | MaxLength, FixedLength, anulável, opção                                |
-| **EDM. booliano**                  | Contém o valor **true** ou **false**.                  | Anulável, opção                                                        |
+| **Edm.Boolean**                  | Contém o valor **true** ou **false**.                  | Anulável, opção                                                        |
 | **EDM. byte**                     | Contém um valor inteiro de 8 bits sem sinal.                  | Precisão, anulável, opção                                             |
 | **EDM. DateTime**                 | Representa uma data e hora.                                | Precisão, anulável, opção                                             |
-| **EDM. DateTimeOffset**           | Contém uma data e hora como um deslocamento em minutos GMT. | Precisão, anulável, opção                                             |
+| **Edm.DateTimeOffset**           | Contém uma data e hora como um deslocamento em minutos GMT. | Precisão, anulável, opção                                             |
 | **EDM. decimal**                  | Contém um valor numérico com precisão e escala fixa.   | Precisão, anulável, opção                                             |
-| **EDM. Double**                   | Contém um número de ponto flutuante com precisão de 15 dígitos   | Precisão, anulável, opção                                             |
+| **Edm.Double**                   | Contém um número de ponto flutuante com precisão de 15 dígitos   | Precisão, anulável, opção                                             |
 | **EDM. float**                    | Contém um número de ponto flutuante com precisão de 7 dígitos.   | Precisão, anulável, opção                                             |
 | **EDM. GUID**                     | Contém um identificador exclusivo de 16 bytes.                      | Precisão, anulável, opção                                             |
 | **EDM. Int16**                    | Contém um valor inteiro de 16 bits assinado.                    | Precisão, anulável, opção                                             |
-| **EDM. Int32**                    | Contém um valor inteiro de 32 bits assinado.                    | Precisão, anulável, opção                                             |
-| **EDM. Int64**                    | Contém um valor inteiro de 64 bits assinado.                    | Precisão, anulável, opção                                             |
+| **Edm.Int32**                    | Contém um valor inteiro de 32 bits assinado.                    | Precisão, anulável, opção                                             |
+| **Edm.Int64**                    | Contém um valor inteiro de 64 bits assinado.                    | Precisão, anulável, opção                                             |
 | **EDM. SByte**                    | Contém um valor inteiro de 8 bits com sinal.                     | Precisão, anulável, opção                                             |
-| **EDM. String**                   | Contém dados de caractere.                                   | Unicode, FixedLength, MaxLength, ordenação, precisão, anulável, opção |
+| **Edm.String**                   | Contém dados de caractere.                                   | Unicode, FixedLength, MaxLength, ordenação, precisão, anulável, opção |
 | **EDM. time**                     | Contém uma hora.                                    | Precisão, anulável, opção                                             |
 | **EDM. geography**                |                                                            | Permite valor nulo, padrão, SRID                                                  |
-| **EDM. GeographyPoint**           |                                                            | Permite valor nulo, padrão, SRID                                                  |
+| **Edm.GeographyPoint**           |                                                            | Permite valor nulo, padrão, SRID                                                  |
 | **EDM. GeographyLineString**      |                                                            | Permite valor nulo, padrão, SRID                                                  |
 | **EDM. geographyPolygon que**         |                                                            | Permite valor nulo, padrão, SRID                                                  |
 | **EDM. geographyMultiPoint que**      |                                                            | Permite valor nulo, padrão, SRID                                                  |
@@ -2055,18 +2055,18 @@ A tabela a seguir descreve as facetas com suporte em CSDL. Todas as facetas são
 > [!NOTE]
 > Para obter informações sobre tipos de dados em um modelo conceitual, consulte tipos de modelo conceituais (CSDL).
 
-| Aspecto               | Descrição                                                                                                                                                                                                                                                   | Aplica-se a                                                                                                                                                                                                                                                                                                                                                                           | Usado para a geração de banco de dados | Usado pelo tempo de execução |
+| Faceta               | DESCRIÇÃO                                                                                                                                                                                                                                                   | Aplica-se a                                                                                                                                                                                                                                                                                                                                                                           | Usado para a geração de banco de dados | Usado pelo tempo de execução |
 |:--------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------|:--------------------|
-| **Agrupamento**       | Especifica a sequência de agrupamento (ou sequência de classificação) a ser usadas para executar a comparação e em ordenação operações em valores de propriedade.                                                                                                               | **EDM. String**                                                                                                                                                                                                                                                                                                                                                                       | Sim                              | Não                  |
+| **Ordenação**       | Especifica a sequência de agrupamento (ou sequência de classificação) a ser usadas para executar a comparação e em ordenação operações em valores de propriedade.                                                                                                               | **Edm.String**                                                                                                                                                                                                                                                                                                                                                                       | Sim                              | Não                  |
 | **ConcurrencyMode** | Indica que o valor da propriedade deve ser usado para verificação de simultaneidade otimista.                                                                                                                                                                    | Todas as propriedades **EDMSimpleType**                                                                                                                                                                                                                                                                                                                                                     | Não                               | Sim                 |
-| **Padrão**         | Especifica o valor de propriedade padrão se nenhum valor é fornecido em cima de instanciação.                                                                                                                                                                       | Todas as propriedades **EDMSimpleType**                                                                                                                                                                                                                                                                                                                                                     | Sim                              | Sim                 |
+| **Default**         | Especifica o valor de propriedade padrão se nenhum valor é fornecido em cima de instanciação.                                                                                                                                                                       | Todas as propriedades **EDMSimpleType**                                                                                                                                                                                                                                                                                                                                                     | Sim                              | Sim                 |
 | **Cadeia**     | Especifica se o comprimento do valor da propriedade pode variar.                                                                                                                                                                                                  | **EDM. Binary**, **EDM. String**                                                                                                                                                                                                                                                                                                                                                       | Sim                              | Não                  |
 | **MaxLength**       | Especifica o comprimento máximo de valor de propriedade.                                                                                                                                                                                                           | **EDM. Binary**, **EDM. String**                                                                                                                                                                                                                                                                                                                                                       | Sim                              | Não                  |
-| **Anula**        | Especifica se a propriedade pode ter um valor **nulo** .                                                                                                                                                                                                     | Todas as propriedades **EDMSimpleType**                                                                                                                                                                                                                                                                                                                                                     | Sim                              | Sim                 |
+| **Permite valor nulo**        | Especifica se a propriedade pode ter um valor **nulo** .                                                                                                                                                                                                     | Todas as propriedades **EDMSimpleType**                                                                                                                                                                                                                                                                                                                                                     | Sim                              | Sim                 |
 | **Precisão**       | Para propriedades do tipo **decimal**, especifica o número de dígitos que um valor de propriedade pode ter. Para propriedades do tipo **time**, **DateTime**e **DateTimeOffset**, especifica o número de dígitos para a parte fracionária de segundos do valor da propriedade. | **EDM. DateTime**, **EDM. DateTimeOffset**, **EDM. decimal**, **EDM. time**                                                                                                                                                                                                                                                                                                              | Sim                              | Não                  |
-| **Ajustar Escala**           | Especifica o número de dígitos à direita do ponto decimal para o valor da propriedade.                                                                                                                                                                      | **EDM. decimal**                                                                                                                                                                                                                                                                                                                                                                      | Sim                              | Não                  |
+| **Escala**           | Especifica o número de dígitos à direita do ponto decimal para o valor da propriedade.                                                                                                                                                                      | **EDM. decimal**                                                                                                                                                                                                                                                                                                                                                                      | Sim                              | Não                  |
 | **SRID**            | Especifica a ID do sistema de referência espacial do sistema. Para obter mais informações, consulte [SRID](https://en.wikipedia.org/wiki/SRID) e [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx).                                                              | **EDM. geography, EDM. GeographyPoint, EDM. GeographyLineString, EDM. geographyPolygon que, EDM. geographyMultiPoint que, EDM. GeographyMultiLineString, EDM. geographyMultiPolygon que, EDM. geographcollection, EDM. Geometry, EDM. geometryPoint que, EDM. geometryLineString que, EDM. geometryPolygon que, EDM. geometryMultiPoint que, EDM. GeometryMultiLineString, EDM. geometryMultiPolygon que, EDM. GeometryCollection** | Não                               | Sim                 |
-| **Unicode**         | Indica se o valor da propriedade é armazenado como Unicode.                                                                                                                                                                                                    | **EDM. String**                                                                                                                                                                                                                                                                                                                                                                       | Sim                              | Sim                 |
+| **Unicode**         | Indica se o valor da propriedade é armazenado como Unicode.                                                                                                                                                                                                    | **Edm.String**                                                                                                                                                                                                                                                                                                                                                                       | Sim                              | Sim                 |
 
 >[!NOTE]
 > Ao gerar um banco de dados de um modelo conceitual, o assistente para gerar banco de dados reconhecerá o valor do atributo **StoreGeneratedPattern** em um elemento de **Propriedade** se ele estiver no seguinte namespace: https://schemas.microsoft.com/ado/2009/02/edm/annotation. Os valores com suporte para o atributo são **identidade** e **computados**. Um valor de **Identity** produzirá uma coluna de banco de dados com um valor de identidade que é gerado no banco de dados. Um valor de **computado** produzirá uma coluna com um valor que é computado no banco de dados.

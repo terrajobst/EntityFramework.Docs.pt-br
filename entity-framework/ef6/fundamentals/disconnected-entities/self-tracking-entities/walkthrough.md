@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: b21207c9-1d95-4aa3-ae05-bc5fe300dab0
 ms.openlocfilehash: 9bd644461f50a7eff1006cb8866ca9a3b08b6b8d
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181712"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419529"
 ---
 # <a name="self-tracking-entities-walkthrough"></a>Instruções de auto-acompanhamento de entidades
 > [!IMPORTANT]
@@ -42,7 +42,7 @@ O servidor de banco de dados instalado com o Visual Studio é diferente dependen
 
 Vamos continuar e gerar o banco de dados.
 
--   Abrir o Visual Studio
+-   Abra o Visual Studio
 -   **Exibir-&gt; Gerenciador de Servidores**
 -   Clique com o botão direito em **conexões de dados-&gt; Adicionar conexão...**
 -   Se você ainda não se conectou a um banco de dados do Gerenciador de Servidores antes de precisar selecionar **Microsoft SQL Server** como a fonte de dado

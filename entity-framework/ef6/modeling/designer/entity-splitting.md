@@ -1,51 +1,51 @@
 ---
-title: Separação da entidade Designer - EF6
+title: Divisão de entidade do designer-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: aa2dd48a-1f0e-49dd-863d-d6b4f5834832
 ms.openlocfilehash: ba1895ae491cec909ff88a8784eea82f1876f595
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490838"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418458"
 ---
-# <a name="designer-entity-splitting"></a>Separação da entidade Designer
-Este passo a passo mostra como mapear um tipo de entidade para duas tabelas, modificando um modelo com o Entity Framework Designer (Designer de EF). Você pode mapear uma entidade para várias tabelas quando as tabelas compartilham uma chave comum. Os conceitos que se aplicam a um tipo de entidade de mapeamento com duas tabelas são facilmente estendidos para mapear um tipo de entidade para mais de duas tabelas.
+# <a name="designer-entity-splitting"></a>Divisão de entidade do designer
+Este tutorial mostra como mapear um tipo de entidade para duas tabelas modificando um modelo com o Entity Framework Designer (EF designer). Você pode mapear uma entidade para várias tabelas quando as tabelas compartilham uma chave comum. Os conceitos que se aplicam ao mapeamento de um tipo de entidade para duas tabelas são facilmente estendidos para mapear um tipo de entidade para mais de duas tabelas.
 
-A imagem a seguir mostra as janelas principais que são usadas ao trabalhar com o EF Designer.
+A imagem a seguir mostra as janelas principais que são usadas ao trabalhar com o designer do EF.
 
 ![EF Designer](~/ef6/media/efdesigner.png)
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
-O Visual Studio 2012 ou Visual Studio 2010, Ultimate, Premium, Professional ou Web Express edition.
+Visual Studio 2012 ou Visual Studio 2010, Ultimate, Premium, Professional ou Web Express Edition.
 
 ## <a name="create-the-database"></a>Criar o banco de dados
 
-O servidor de banco de dados que é instalado com o Visual Studio é diferente dependendo da versão do Visual Studio que você instalou:
+O servidor de banco de dados instalado com o Visual Studio é diferente dependendo da versão do Visual Studio instalada:
 
--   Se você estiver usando o Visual Studio 2012, em seguida, você criará um banco de dados LocalDB.
--   Se você estiver usando o Visual Studio 2010 você criará um banco de dados do SQL Express.
+-   Se você estiver usando o Visual Studio 2012, criará um banco de dados LocalDB.
+-   Se você estiver usando o Visual Studio 2010, criará um banco de dados do SQL Express.
 
-Primeiro, criaremos um banco de dados com duas tabelas, vamos combinar em uma única entidade.
+Primeiro, criaremos um banco de dados com duas tabelas que vamos combinar em uma única entidade.
 
--   Abrir o Visual Studio
--   **Exibição -&gt; Gerenciador de servidores**
--   Clique com botão direito **conexões de dados -&gt; Adicionar Conexão...**
--   Se você ainda não tiver conectado a um banco de dados do Gerenciador de servidores antes de você precisará selecionar **Microsoft SQL Server** como fonte de dados
--   Conectar-se ao LocalDB ou Express do SQL, dependendo de qual deles você ter instalado
+-   Abra o Visual Studio
+-   **Exibir-&gt; Gerenciador de Servidores**
+-   Clique com o botão direito em **conexões de dados-&gt; Adicionar conexão...**
+-   Se você ainda não se conectou a um banco de dados do Gerenciador de Servidores antes de precisar selecionar **Microsoft SQL Server** como a fonte de dado
+-   Conecte-se ao LocalDB ou ao SQL Express, dependendo de qual deles você instalou
 -   Insira **EntitySplitting** como o nome do banco de dados
--   Selecione **Okey** e você será solicitado se você deseja criar um novo banco de dados, selecione **Sim**
--   O novo banco de dados agora aparecerão no Gerenciador de servidores
+-   Selecione **OK** e você será perguntado se deseja criar um novo banco de dados, selecione **Sim**
+-   O novo banco de dados aparecerá agora no Gerenciador de Servidores
 -   Se você estiver usando o Visual Studio 2012
-    -   Clique com botão direito no banco de dados no Gerenciador de servidores e selecione **nova consulta**
-    -   Copie o SQL a seguir para a nova consulta e, em seguida, clique com botão direito na consulta e selecione **Execute**
+    -   Clique com o botão direito do mouse no banco de dados em Gerenciador de Servidores e selecione **nova consulta**
+    -   Copie o SQL a seguir na nova consulta, clique com o botão direito do mouse na consulta e selecione **executar**
 -   Se você estiver usando o Visual Studio 2010
-    -   Selecione **dados -&gt; Transact SQL Editor -&gt; nova Conexão de consulta...**
-    -   Insira **.\\ SQLEXPRESS** como o nome do servidor e clique em **Okey**
-    -   Selecione o **EntitySplitting** de banco de dados na lista suspensa na parte superior do editor de consultas
-    -   Copie o SQL a seguir para a nova consulta e, em seguida, clique com botão direito na consulta e selecione **executar SQL**
+    -   Selecione **Data-&gt; Editor Transact-SQL-&gt; nova conexão de consulta...**
+    -   Insira **.\\SQLExpress** como o nome do servidor e clique em **OK**
+    -   Selecione o banco de dados **EntitySplitting** na lista suspensa na parte superior do editor de consultas
+    -   Copie o SQL a seguir na nova consulta, clique com o botão direito do mouse na consulta e selecione **Executar SQL**
 
 ``` SQL
 CREATE TABLE [dbo].[Person] (
@@ -66,48 +66,48 @@ CONSTRAINT [FK_Person_PersonInfo] FOREIGN KEY ([PersonId]) REFERENCES [dbo].[Per
 
 ## <a name="create-the-project"></a>Criar o projeto
 
--   No menu **Arquivo**, aponte para **Novo** e clique em **Projeto**.
--   No painel esquerdo, clique em **Visual C#\#** e, em seguida, selecione o **aplicativo de Console** modelo.
--   Insira **MapEntityToTablesSample** como o nome do projeto e clique **Okey**.
--   Clique em **não** se solicitado a salvar a consulta SQL criada na primeira seção.
+-   No menu **Arquivo** , aponte para **Novo**e clique em **Projeto**.
+-   No painel esquerdo, clique em **Visual C\#** e, em seguida, selecione o modelo **aplicativo de console** .
+-   Insira **MapEntityToTablesSample** como o nome do projeto e clique em **OK**.
+-   Clique em **não** se for solicitado a salvar a consulta SQL criada na primeira seção.
 
-## <a name="create-a-model-based-on-the-database"></a>Criar um modelo baseado no banco de dados
+## <a name="create-a-model-based-on-the-database"></a>Criar um modelo com base no banco de dados
 
--   Clique no nome do projeto no Gerenciador de soluções, aponte para **Add**e, em seguida, clique em **Novo Item**.
--   Selecione **dados** no menu esquerdo e selecione **modelo de dados de entidade ADO.NET** no painel de modelos.
--   Insira **MapEntityToTablesModel.edmx** para o nome de arquivo e clique **Add**.
--   Na caixa de diálogo Escolher conteúdo do modelo, selecione **gerar a partir do banco de dados**e, em seguida, clique em **Avançar.**
--   Selecione o **EntitySplitting** conexão na lista suspensa e clique em **próxima**.
--   Na caixa de diálogo Choose Your Database Objects, marque a caixa ao lado de **tabelas** nó.
-    Isso adicionará todas as tabelas do **EntitySplitting** banco de dados para o modelo.
--   Clique em **Finalizar**.
+-   Clique com o botão direito do mouse no nome do projeto em Gerenciador de Soluções, aponte para **Adicionar**e clique em **novo item**.
+-   Selecione **dados** no menu à esquerda e, em seguida, selecione **ADO.NET modelo de dados de entidade** no painel modelos.
+-   Digite **MapEntityToTablesModel. edmx** para o nome do arquivo e clique em **Adicionar**.
+-   Na caixa de diálogo escolher conteúdo do modelo, selecione **gerar do banco de dados**e clique em **Avançar.**
+-   Selecione a conexão **EntitySplitting** na lista suspensa e clique em **Avançar**.
+-   Na caixa de diálogo escolher seu objeto de banco de dados, marque a caixa ao lado do nó **tabelas** .
+    Isso adicionará todas as tabelas do banco de dados **EntitySplitting** ao modelo.
+-   Clique em **concluir**.
 
-O Designer de entidade, que fornece uma superfície de design para editar seu modelo, é exibido.
+O Entity Designer, que fornece uma superfície de design para editar seu modelo, é exibido.
 
 ## <a name="map-an-entity-to-two-tables"></a>Mapear uma entidade para duas tabelas
 
-Nesta etapa, atualizaremos o **pessoa** tipo de entidade para combinar dados do **pessoa** e **PersonInfo** tabelas.
+Nesta etapa, atualizaremos o tipo de entidade **Person** para combinar dados das tabelas **Person** e **personinfo** .
 
--   Selecione o **Email** e **telefone** propriedades do * * PersonInfo * * entity e pressione **Ctrl + X** chaves.
--   Selecione o * * pessoa * * entity e pressione **Ctrl + V** chaves.
--   Na superfície de design, selecione o **PersonInfo** entidade e pressione **excluir** no teclado.
--   Clique em **nenhuma** quando perguntado se você deseja remover o **PersonInfo** tabela do modelo, estamos prestes a mapeá-lo para o **pessoa** entidade.
+-   Selecione as propriedades de **email** e **telefone** da entidade **personinfo **e pressione **Ctrl + X** .
+-   Selecione a entidade **Person **e pressione **Ctrl + V** teclas.
+-   Na superfície de design, selecione a entidade **PersonInfo** e pressione o botão **excluir** no teclado.
+-   Clique em **não** quando for perguntado se você deseja remover a tabela **personinfo** do modelo, estamos prestes a mapeá-la para a entidade **Person** .
 
     ![Excluir tabelas](~/ef6/media/deletetables.png)
 
-As próximas etapas exigem o **Mapping Details** janela. Se você não vir essa janela, clique com botão direito a superfície de design e selecione **Mapping Details**.
+As próximas etapas exigem a janela **detalhes do mapeamento** . Se você não puder ver essa janela, clique com o botão direito do mouse na superfície de design e selecione **detalhes de mapeamento**.
 
--   Selecione o **pessoa** tipo de entidade e clique em **&lt;adicionar uma tabela ou exibição&gt;** no **Mapping Details** janela.
--   Selecione * * PersonInfo * * na lista suspensa.
-    O **Mapping Details** janela é atualizada com mapeamentos de coluna padrão, essas são boas para nosso cenário.
+-   Selecione o tipo de entidade **pessoa** e clique em **&lt;adicionar uma tabela ou exibição&gt;**  na janela  **detalhes do mapeamento** .
+-   Selecione **PersonInfo ** na lista suspensa.
+    A janela de **detalhes de mapeamento** é atualizada com mapeamentos de coluna padrão, mas isso é bom para nosso cenário.
 
-O **pessoa** tipo de entidade agora está mapeado para o **pessoa** e **PersonInfo** tabelas.
+A **pessoa** tipo de entidade agora está mapeada para a **pessoa** e as tabelas de de **personinfo** .
 
-![Mapeamento de 2](~/ef6/media/mapping2.png)
+![Mapeamento 2](~/ef6/media/mapping2.png)
 
 ## <a name="use-the-model"></a>Usar o modelo
 
--   Cole o seguinte código no método Main.
+-   Cole o código a seguir no método Main.
 
 ``` csharp
     using (var context = new EntitySplittingEntities())
@@ -132,13 +132,13 @@ O **pessoa** tipo de entidade agora está mapeado para o **pessoa** e **PersonIn
 
 -   Compile e execute o aplicativo.
 
-Instruções T-SQL a seguir foram executadas no banco de dados como resultado da execução desse aplicativo. 
+As instruções T-SQL a seguir foram executadas no banco de dados como resultado da execução deste aplicativo. 
 
--   Os dois seguintes **inserir** instruções foram executadas como resultado da execução de contexto. SaveChanges (). Eles levam os dados a partir o **pessoa** entidade e dividi-la entre a **pessoa** e **PersonInfo** tabelas.
+-   As duas instruções **Insert** a seguir foram executadas como resultado da execução do contexto. SaveChanges (). Eles pegam os dados da entidade **Person** e os dividem entre as tabelas **Person** e **personinfo** .
 
-    ![Insira 1](~/ef6/media/insert1.png)
+    ![Inserir 1](~/ef6/media/insert1.png)
 
-    ![Insira 2](~/ef6/media/insert2.png)
--   O seguinte **selecionar** foi executado como resultado de enumerar as pessoas no banco de dados. Ele combina os dados a partir de **pessoa** e **PersonInfo** tabela.
+    ![Inserir 2](~/ef6/media/insert2.png)
+-   A **seleção** a seguir foi executada como resultado da enumeração das pessoas no banco de dados. Ele combina os dados da tabela **Person** e **personinfo** .
 
     ![Selecionar](~/ef6/media/select.png)

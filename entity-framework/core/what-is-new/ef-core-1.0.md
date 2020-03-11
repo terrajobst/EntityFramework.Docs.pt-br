@@ -5,11 +5,11 @@ ms.date: 10/27/2016
 ms.assetid: 20A25111-AEBE-4BC2-83A5-3F651952DF72
 uid: core/what-is-new/ef-core-1.0
 ms.openlocfilehash: 2cd2a54d75ed3f0caa8b674dfb56babcfcc13592
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655851"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417520"
 ---
 # <a name="features-included-in-ef-core-10"></a>Recursos incluídos no EF Core 1.0
 
@@ -61,7 +61,7 @@ Permite a geração de valores pelo banco de dados na inserção (valores padrã
 
 Permite a definição de objetos de sequência no modelo.
 
-### <a name="unique-constraints"></a>Restrições exclusivas
+### <a name="unique-constraints"></a>Restrições únicas
 
 Permite a definição de chaves alternativas e a capacidade de definir relações direcionadas para essa chave.
 
@@ -81,7 +81,7 @@ Permite a gravação de entidades em uma hierarquia de herança em uma única ta
 
 Detecta padrões inválidos no modelo e fornece mensagens de erro úteis.
 
-## <a name="change-tracking"></a>Change tracking
+## <a name="change-tracking"></a>controle de alterações
 
 ### <a name="snapshot-change-tracking"></a>Controle de alterações de instantâneo
 
@@ -99,7 +99,7 @@ Via `DbContext.Entry` e `DbContext.ChangeTracker`.
 
 A nova API do `DbContext.AttachGraph` ajuda a reanexar entidades a um contexto para salvar as entidades novas/modificadas.
 
-## <a name="saving-data"></a>Salvar dados
+## <a name="saving-data"></a>Salvando dados
 
 ### <a name="basic-save-functionality"></a>Funcionalidade de gravação básica
 
@@ -171,7 +171,7 @@ Conecta-se ao Microsoft SQL Server 2008 e posteriores.
 
 Conecta-se a um banco de dados SQLite 3.
 
-### <a name="in-memory"></a>Na memória
+### <a name="in-memory"></a>Em Memória
 
 Foi projetado para habilitar facilmente o teste sem se conectar a um banco de dados real.
 

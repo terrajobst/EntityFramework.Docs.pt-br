@@ -4,17 +4,17 @@ author: divega
 ms.date: 07/05/2018
 ms.assetid: 4890228E-CEA1-4595-B8AD-CA81253F8767
 ms.openlocfilehash: bd9843a93121f53518a307c9d2d43b68ae03369c
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182472"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78413461"
 ---
 # <a name="creating-a-model"></a>Criar um Modelo
 
 Um modelo do EF armazena os detalhes sobre como as propriedades e classes de aplicativo são mapeadas para colunas e tabelas de banco de dados. Existem duas maneiras principais de criar um modelo do EF:
 
-- **Usar o Code First**: o desenvolvedor escreve o código para especificar o modelo. O EF gera os modelos e os mapeamentos em tempo de execução com base em classes de entidade e configurações de modelo adicionais fornecidas pelo desenvolvedor.
+- **Usar o Code First**: o desenvolvedor escreve o código para especificar o modelo. O EF gera os modelos e os mapeamentos em runtime com base em classes de entidade e configurações de modelo adicionais fornecidas pelo desenvolvedor.
 
 - **Usar o EF Designer**: o desenvolvedor desenha caixas e linhas para especificar o modelo usando o EF Designer. O modelo resultante é armazenado como XML em um arquivo com a extensão EDMX. Os objetos de domínio do aplicativo normalmente são gerados de forma automática com base no modelo conceitual.
 

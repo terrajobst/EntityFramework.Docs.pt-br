@@ -4,19 +4,19 @@ author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: 2e187a2a-4072-4198-9040-aaad68e424fd
 uid: core/querying/complex-query-operators
-ms.openlocfilehash: 350a7fa6a3ee1de16bad4b63e10842f9356a1b60
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 44c2695ea003da043925740a52596fd27da638f8
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72186256"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417739"
 ---
 # <a name="complex-query-operators"></a>Operadores de consulta complexa
 
 O LINQ (consulta integrada à linguagem) contém muitos operadores complexos, que combinam várias fontes de dados ou realiza processamento complexo. Nem todos os operadores LINQ têm traduções adequadas no lado do servidor. Às vezes, uma consulta em um formulário é convertida com o servidor, mas, se escrito em um formulário diferente, não é traduzido mesmo que o resultado seja o mesmo. Esta página descreve alguns dos operadores complexos e suas variações com suporte. Em versões futuras, poderemos reconhecer mais padrões e adicionar suas traduções correspondentes. Também é importante ter em mente que o suporte à tradução varia entre os provedores. Uma consulta específica, que é traduzida no SqlServer, pode não funcionar para bancos de dados do SQLite.
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="join"></a>Join
 
@@ -112,12 +112,12 @@ ORDER BY [p].[AuthorId]
 
 Os operadores de agregação EF Core suporte são os seguintes
 
-- Average
-- {1&gt;{2&gt;Contagem&lt;2}&lt;1}
+- Média
+- Contagem
 - LongCount
-- Máx.
-- Mín.
-- Sum
+- Max
+- Mín
+- SUM
 
 ## <a name="left-join"></a>Junção à esquerda
 

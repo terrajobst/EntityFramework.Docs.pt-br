@@ -6,13 +6,13 @@ ms.author: ansvyryd
 ms.date: 10/27/2016
 uid: core/modeling/inheritance
 ms.openlocfilehash: 507854e3acc0347adee612e516b3e2e0b10f55cf
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502156"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417291"
 ---
-# <a name="inheritance"></a>{1&gt;Herança&lt;1}
+# <a name="inheritance"></a>Herança
 
 O EF pode mapear uma hierarquia de tipo .NET para um banco de dados. Isso permite que você grave suas entidades do .NET no código como de costume, usando tipos base e derivados, e tenha o EF para criar diretamente o esquema de banco de dados apropriado, consultas de problemas, etc. Os detalhes reais de como uma hierarquia de tipo é mapeada são dependentes do provedor; Esta página descreve o suporte de herança no contexto de um banco de dados relacional.
 
@@ -31,7 +31,7 @@ Você pode incluir tipos no modelo expondo um DbSet para cada tipo na hierarquia
 
 Esse modelo deve ser mapeado para o esquema de banco de dados a seguir (Observe a coluna *discriminadora* implicitamente criada, que identifica qual tipo de *blog* está armazenado em cada linha):
 
-![imagem](_static/inheritance-tph-data.png)
+![image](_static/inheritance-tph-data.png)
 
 >[!NOTE]
 > As colunas de banco de dados são automaticamente tornadas anuláveis conforme necessário ao usar o mapeamento TPH. Por exemplo, a coluna *RssUrl* é anulável porque as instâncias de *blog* regulares não têm essa propriedade.

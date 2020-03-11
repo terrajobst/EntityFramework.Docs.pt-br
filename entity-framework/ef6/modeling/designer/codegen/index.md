@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 56e00fa2-f9f0-48b3-8006-f8266ca7e74b
 ms.openlocfilehash: e4e99a86e7c273682c85eba06042af9a2a837d12
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283856"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78413281"
 ---
 # <a name="designer-code-generation-templates"></a>Modelos de geração de código do Designer
 Quando você cria um modelo usando o Entity Framework Designer, suas classes e os contextos derivados são automaticamente gerados. Além da geração de código padrão, também fornecemos vários modelos que podem ser usados para personalizar o código gerado. Esses modelos são fornecidos como Modelos de Texto T4, permitindo que você os personalize, se necessário.
@@ -30,11 +30,11 @@ Os seguintes modelos são fornecidos pela equipe do Entity Framework:
 
 Esse modelo gerará classes de entidade POCO simples e um contexto derivado de DbContext usando o EF6.
 Esse é o modelo recomendado a menos que você tenha um motivo para usar um dos outros modelos listados abaixo.
-Ele também será o modelo de geração de código obtido por padrão se você estiver usando versões recentes do Visual Studio (Visual Studio 2013 em diante): quando se cria um modelo, ele é usado por padrão e os arquivos T4 (.tt) são aninhados sob seu arquivo .edmx.
+Ele também é o modelo de geração de código que você obterá por padrão se estiver usando versões recentes do Visual Studio (do Visual Studio 2013 em diante): Quando você cria um modelo, ele é usado por padrão e os arquivos T4 (.tt) são aninhados no arquivo .edmx.
 
 #### <a name="older-versions-of-visual-studio"></a>Versões mais antigas do Visual Studio
 - **Visual Studio 2012:** para obter os modelos **EF 6.x DbContextGenerator**, você precisará instalar a versão mais recente do **Entity Framework Tools para Visual Studio**. Consulte a página [Obter o Entity Framework](~/ef6/fundamentals/install.md) para encontrar mais informações.
-- **Visual Studio 2010:** os modelos **EF 6.x DbContextGenerator** não estão disponíveis para Visual Studio 2010.
+- **Visual Studio 2010:** os modelos **EF 6.x DbContextGenerator** não estão disponíveis para o Visual Studio 2010.
 
 #### <a name="dbcontext-generator-for-ef-5x"></a>Gerador DbContext para EF 5.x
 
@@ -145,11 +145,11 @@ Você precisará selecionar a guia **Online** ao adicionar o modelo para baixá-
 
 ### <a name="what-are-the-web-sites-templates"></a>O que são os modelos de “sites”
 
-Os modelos de "sites" (por exemplo, sites do **Gerador DbContext do EF 5.x para C\#**) se destinam ao uso em projetos de site criados via **Arquivo –&gt; Novo –&gt; Site...**. Esses são diferentes dos aplicativos Web, criados via **Arquivo –&gt; Novo –&gt; Projeto...**, que usam os modelos padrão. Fornecemos modelos separados porque o sistema de modelo de item no Visual Studio os exige.
+Os modelos de "sites" (por exemplo, sites do **Gerador DbContext do EF 5.x para C\#** ) se destinam ao uso em projetos de site criados via **Arquivo –&gt; Novo –&gt; Site...** . Esses são diferentes dos aplicativos Web, criados via **Arquivo –&gt; Novo –&gt; Projeto...** , que usam os modelos padrão. Fornecemos modelos separados porque o sistema de modelo de item no Visual Studio os exige.
 
 ## <a name="using-a-template"></a>Usando um modelo
 
-Para começar a usar um modelo de geração de código, clique com o botão direito do mouse em uma área vazia na superfície de design no EF Designer e selecione **Adicionar Item de Geração de Código...**.
+Para começar a usar um modelo de geração de código, clique com o botão direito do mouse em uma área vazia na superfície de design no EF Designer e selecione **Adicionar Item de Geração de Código...** .
 
 ![Adicionar item de geração de código](~/ef6/media/add-code-gen-item.png)
 
@@ -159,15 +159,15 @@ Se você já tiver instalado o modelo que deseja usar (ou se ele estava incluíd
 
 Se você ainda não tiver o modelo instalado, selecione **Online** no menu esquerdo e pesquise o modelo desejado.
 
-![Pesquisar](~/ef6/media/search.png) 
+![Pesquisar](~/ef6/media/search.png) 
 
 Se você estiver usando o Visual Studio 2012, os novos arquivos .tt serão aninhados no arquivo .edmx.*
 
 > [!NOTE]
-> Para modelos criados no Visual Studio 2012, você precisará excluir os modelos usados para a geração de código padrão, caso contrário, as classes e o contexto serão gerados de forma duplicada. Os arquivos padrão são **&lt;nome do modelo&gt;.tt** e **&lt;nome do modelo&gt;.context.tt**. 
+> Para modelos criados no Visual Studio 2012, você precisará excluir os modelos usados para a geração de código padrão, caso contrário, as classes e o contexto serão gerados de forma duplicada. Os arquivos padrão são **&lt;nome do modelo&gt;.tt** e **&lt;nome do modelo&gt;.context.tt**. 
 
 ![Modelos do VS2012](~/ef6/media/vs2012-templates.png)
 
-Se você estiver usando o Visual Studio 2010, os arquivos tt serão adicionados diretamente ao seu projeto.  
+Se você estiver usando o Visual Studio 2010, os arquivos tt serão adicionados diretamente ao seu projeto.  
 
 ![Modelos do VS2010](~/ef6/media/vs2010-templates.png)

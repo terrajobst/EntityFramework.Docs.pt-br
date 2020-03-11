@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 9554ed25-c5c1-43be-acad-5da37739697f
 ms.openlocfilehash: 2e0092b526278597e8477d47eeb642598647bb91
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182479"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418388"
 ---
 # <a name="designer-query-stored-procedures"></a>Procedimentos armazenados de consulta do designer
 Esta explicação passo a passo mostra como usar o Entity Framework Designer (EF designer) para importar procedimentos armazenados em um modelo e, em seguida, chamar os procedimentos armazenados importados para recuperar resultados. 
@@ -28,10 +28,10 @@ Para concluir esta explicação passo a passo, será necessário:
 ## <a name="set-up-the-project"></a>Configurar o projeto
 
 -   Abra o Visual Studio 2012.
--   Selecione **arquivo-&gt; Projeto New-&gt;**
--   No painel esquerdo, clique em **Visual C @ no__t-1**e selecione o modelo de **console** .
--   Insira **EFwithSProcsSample** As o nome.
--   Selecione **OK**.
+-   Selecione **arquivo-&gt; projeto de novo&gt;**
+-   No painel esquerdo, clique em **Visual C\#** e, em seguida, selecione o modelo de **console** .
+-   Insira **EFwithSProcsSample** como o nome.
+-   Selecione  **OK**.
 
 ## <a name="create-a-model"></a>Criar um modelo
 
@@ -40,14 +40,14 @@ Para concluir esta explicação passo a passo, será necessário:
 -   Digite **EFwithSProcsModel. edmx** para o nome do arquivo e clique em **Adicionar**.
 -   Na caixa de diálogo escolher conteúdo do modelo, selecione **gerar do banco de dados**e clique em **Avançar**.
 -   Clique em **nova conexão**.  
-    Na caixa de diálogo Propriedades da conexão, digite o nome do servidor (por exemplo, **(LocalDB) \\mssqllocaldb**), selecione o método de autenticação, digite **School** for o nome do banco de dados e clique em **OK**.  
+    Na caixa de diálogo Propriedades da conexão, digite o nome do servidor (por exemplo, **(LocalDB)\\mssqllocaldb**), selecione o método de autenticação, digite **School** para o nome do banco de dados e clique em **OK**.  
     A caixa de diálogo escolher sua conexão de dados é atualizada com a configuração de conexão de banco de dado.
--   Na caixa de diálogo escolher seu objeto de banco de dados, verifique as **tabelas** checkbox para selecionar todas as tabelas.  
+-   Na caixa de diálogo escolher seu objeto de banco de dados, marque as **tabelas** caixa de seleção para selecionar todas as tabelas.  
     Além disso, selecione os seguintes procedimentos armazenados no nó **procedimentos armazenados e funções** : **GetStudentGrades** e **getdepartmentname**. 
 
     ![Importar](~/ef6/media/import.jpg)
 
-    *Starting com o Visual Studio 2012, o designer do EF dá suporte à importação em massa de procedimentos armazenados. A **importação de procedimentos armazenados e funções selecionados para o modelo de entidade** é marcada por padrão.*
+    *A partir do Visual Studio 2012, o designer do EF dá suporte à importação em massa de procedimentos armazenados. A opção **importar procedimentos armazenados e funções selecionados para o modelo de entidade** é marcada por padrão.*
 -   Clique em **concluir**.
 
 Por padrão, a forma de resultado de cada procedimento armazenado importado ou função que retorna mais de uma coluna se tornará automaticamente um novo tipo complexo. Neste exemplo, queremos mapear os resultados da função **GetStudentGrades** para a entidade **StudentGrade** e os resultados de **getdepartmentname** para **None** (**None** é o valor padrão).
@@ -56,14 +56,14 @@ Para uma importação de função retornar um tipo de entidade, as colunas retor
 
 -   Clique com o botão direito do mouse na superfície de design e selecione **navegador de modelos**.
 -   No **navegador de modelos**, selecione **importações de função**e clique duas vezes na função **GetStudentGrades** .
--   Na caixa de diálogo Editar importação de função, selecione **entidades** And escolha **StudentGrade**.  
-    @no__t-a caixa de seleção **importação de função 0The é combinável** na parte superior da caixa de diálogo **importações de função** permitirá que você mapeie para funções combináveis. Se você marcar essa caixa, somente as funções combináveis (funções com valor de tabela) aparecerão na lista suspensa **procedimento armazenado/nome da função** . Se você não marcar essa caixa, somente as funções não combináveis serão mostradas na lista. *
+-   Na caixa de diálogo Editar importação de função, selecione **entidades** e escolha **StudentGrade**.  
+    *A caixa de seleção **importação de função é combinável** na parte superior da caixa de diálogo **importações de função** permitirá que você mapeie para funções combináveis. Se você marcar essa caixa, somente as funções combináveis (funções com valor de tabela) aparecerão na lista suspensa **procedimento armazenado/nome da função** . Se você não marcar essa caixa, somente as funções não combináveis serão mostradas na lista.*
 
 ## <a name="use-the-model"></a>Usar o modelo
 
 Abra o arquivo **Program.cs** em que o método **Main** está definido. Adicione o código a seguir à função main.
 
-O código chama dois procedimentos armazenados: **GetStudentGrades** (retorna **StudentGrades** para a *StudentId*especificada) e **getdepartmentname** (retorna o nome do departamento no parâmetro de saída).  
+O código chama dois procedimentos armazenados: **GetStudentGrades** (retorna **StudentGrades** para o *StudentId*especificado) e **getdepartmentname** (retorna o nome do departamento no parâmetro de saída).  
 
 ``` csharp
     using (SchoolEntities context = new SchoolEntities())

@@ -5,17 +5,17 @@ ms.date: 10/23/2016
 ms.assetid: 66ce9113-81d2-480f-8c16-d00ec405b2f7
 uid: ef6/get-started
 ms.openlocfilehash: 74ae347af3c386639631f28ccb2ddbe9f444953a
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655837"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416311"
 ---
 # <a name="get-started-with-entity-framework-6"></a>Introdução ao Entity Framework 6
 
 Este guia contém uma coleção de links para artigos de documentação selecionada, instruções passo a passo e vídeos que podem ajudar você a começar a usar rapidamente.
 
-## <a name="fundamentals"></a>Princípios básicos
+## <a name="fundamentals"></a>Conceitos básicos
 
 * [Como obter o Entity Framework](~/ef6/fundamentals/install.md)
 

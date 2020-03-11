@@ -1,24 +1,24 @@
 ---
-title: Código primeiro inserir, atualizar e excluir procedimentos armazenados – EF6
+title: Code First inserir, atualizar e excluir procedimentos armazenados-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9a7ae7f9-4072-4843-877d-506dd7eef576
 ms.openlocfilehash: bfc56671814aec1965ac054ff901297e5cdbbecb
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489616"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419083"
 ---
-# <a name="code-first-insert-update-and-delete-stored-procedures"></a>Código primeiro inserir, atualizar e excluir procedimentos armazenados
+# <a name="code-first-insert-update-and-delete-stored-procedures"></a>Code First inserir, atualizar e excluir procedimentos armazenados
 > [!NOTE]
 > **EF6 em diante apenas**: os recursos, as APIs etc. discutidos nessa página foram introduzidos no Entity Framework 6. Se você estiver usando uma versão anterior, algumas ou todas as informações não se aplicarão.  
 
-Por padrão, Code First configurará todas as entidades para executar a inserção, atualizar e excluir os comandos que usam acesso direto à tabela. Começando no EF6, você pode configurar seu modelo Code First para usar procedimentos armazenados para algumas ou todas as entidades em seu modelo.  
+Por padrão, Code First configurará todas as entidades para executar comandos INSERT, Update e DELETE usando acesso direto à tabela. A partir do EF6, você pode configurar seu modelo de Code First para usar procedimentos armazenados para algumas ou todas as entidades em seu modelo.  
 
 ## <a name="basic-entity-mapping"></a>Mapeamento de entidade básica  
 
-Você pode aceitar o uso de procedimentos armazenados para inserir, atualizar e excluir usando a API do Fluent.  
+Você pode optar por usar procedimentos armazenados para inserir, atualizar e excluir usando a API fluente.  
 
 ``` csharp
 modelBuilder
@@ -26,17 +26,17 @@ modelBuilder
   .MapToStoredProcedures();
 ```  
 
-Isso fará com que Code First usar algumas convenções para criar a forma esperada dos procedimentos armazenados no banco de dados.  
+Isso fará com que Code First Use algumas convenções para criar a forma esperada dos procedimentos armazenados no banco de dados.  
 
-- Chamada de procedimentos armazenados de três  **\<type_name\>inserir**,  **\<type_name\>atualizar** e  **\<type_ nome da\>excluir** (por exemplo, Blog_Insert, Blog_Update e Blog_Delete).  
-- Nomes de parâmetro correspondem aos nomes de propriedade.  
+- Três procedimentos armazenados chamados **\<type_name\>_Insert**, **\<type_name\>_Update** e **\<** type_name\>_Delete (por exemplo, Blog_Insert, Blog_Update e Blog_Delete).  
+- Os nomes de parâmetro correspondem aos nomes de propriedade.  
   > [!NOTE]
-  > Se você usar HasColumnName() ou o atributo de coluna para renomear a coluna para uma determinada propriedade, em seguida, esse nome é usado para parâmetros em vez do nome de propriedade.  
-- **O procedimento armazenado insert** terá um parâmetro para cada propriedade, exceto para aqueles marcados como geradas pelo repositório (identidade ou computadas). O procedimento armazenado deve retornar um conjunto de resultados com uma coluna para cada propriedade geradas pelo repositório.  
-- **Procedimento armazenado de atualização** terá um parâmetro para cada propriedade, exceto para aqueles marcados com um padrão de repositório gerado de 'Computed'. Alguns tokens de simultaneidade exigem um parâmetro para o valor original, consulte o *Tokens de simultaneidade* seção abaixo para obter detalhes. O procedimento armazenado deve retornar um conjunto de resultados com uma coluna para cada propriedade computada.  
-- **Procedimento armazenado de exclusão** deve ter um parâmetro para o valor da chave de entidade (ou vários parâmetros, se a entidade tem uma chave composta). Além disso, o procedimento de exclusão também deve ter parâmetros para nenhuma chave estrangeira da associação independente na tabela de destino (relações que não têm propriedades de chave estrangeira correspondentes declaradas na entidade). Alguns tokens de simultaneidade exigem um parâmetro para o valor original, consulte o *Tokens de simultaneidade* seção abaixo para obter detalhes.  
+  > Se você usar HasColumnName () ou o atributo de coluna para renomear a coluna para uma determinada propriedade, esse nome será usado para parâmetros em vez do nome da propriedade.  
+- **O procedimento armazenado INSERT** terá um parâmetro para cada propriedade, exceto aqueles marcados como Store generated (identidade ou computado). O procedimento armazenado deve retornar um conjunto de resultados com uma coluna para cada propriedade gerada pelo armazenamento.  
+- **O procedimento armazenado de atualização** terá um parâmetro para cada propriedade, exceto aqueles marcados com um padrão de armazenamento gerado de ' computado '. Alguns tokens de simultaneidade exigem um parâmetro para o valor original, consulte a seção *tokens de simultaneidade* abaixo para obter detalhes. O procedimento armazenado deve retornar um conjunto de resultados com uma coluna para cada propriedade computada.  
+- **O procedimento armazenado Delete** deve ter um parâmetro para o valor de chave da entidade (ou vários parâmetros se a entidade tiver uma chave composta). Além disso, o procedimento Delete também deve ter parâmetros para qualquer chave estrangeira de associação independente na tabela de destino (relações que não têm propriedades de chave estrangeira correspondentes declaradas na entidade). Alguns tokens de simultaneidade exigem um parâmetro para o valor original, consulte a seção *tokens de simultaneidade* abaixo para obter detalhes.  
 
-Usando a classe a seguir como exemplo:  
+Usando a seguinte classe como exemplo:  
 
 ``` csharp
 public class Blog  
@@ -47,7 +47,7 @@ public class Blog
 }
 ```  
 
-Os procedimentos armazenado de padrão seria:  
+Os procedimentos armazenados padrão seriam:  
 
 ``` SQL
 CREATE PROCEDURE [dbo].[Blog_Insert]  
@@ -75,11 +75,11 @@ AS
   WHERE BlogId = @BlogId
 ```  
 
-### <a name="overriding-the-defaults"></a>Substituindo padrões  
+### <a name="overriding-the-defaults"></a>Substituindo os padrões  
 
-Você pode substituir todo ou parte do que foi configurado por padrão.  
+Você pode substituir parte ou tudo o que foi configurado por padrão.  
 
-Você pode alterar o nome de um ou mais procedimentos armazenados. Este exemplo renomeia o procedimento armazenado de atualização apenas.  
+Você pode alterar o nome de um ou mais procedimentos armazenados. Este exemplo renomeia apenas o procedimento armazenado Update.  
 
 ``` csharp
 modelBuilder  
@@ -99,7 +99,7 @@ modelBuilder
      .Insert(i => i.HasName("insert_blog")));
 ```  
 
-Nestes exemplos as chamadas são encadeadas juntos, mas você também pode usar a sintaxe de bloco de lambda.  
+Nesses exemplos, as chamadas são encadeadas, mas você também pode usar a sintaxe de bloco lambda.  
 
 ``` csharp
 modelBuilder  
@@ -112,7 +112,7 @@ modelBuilder
     });
 ```  
 
-Este exemplo renomeia o parâmetro para a propriedade BlogId no procedimento armazenado de atualização.  
+Este exemplo renomeia o parâmetro para a propriedade blogid no procedimento armazenado de atualização.  
 
 ``` csharp
 modelBuilder  
@@ -121,7 +121,7 @@ modelBuilder
     s.Update(u => u.Parameter(b => b.BlogId, "blog_id")));
 ```  
 
-Essas chamadas são todos encadeável e combinável. Aqui está um exemplo que renomeia todos os três procedimentos armazenados e seus parâmetros.  
+Essas chamadas são encadeadas e combináveis. Aqui está um exemplo que renomeia todos os três procedimentos armazenados e seus parâmetros.  
 
 ``` csharp
 modelBuilder  
@@ -138,7 +138,7 @@ modelBuilder
                    .Parameter(b => b.Url, "blog_url")));
 ```  
 
-Você também pode alterar o nome das colunas no conjunto de resultados que contém os valores de banco de dados gerado.  
+Você também pode alterar o nome das colunas no conjunto de resultados que contém valores gerados pelo banco de dados.  
 
 ``` csharp
 modelBuilder
@@ -162,9 +162,9 @@ END
 
 ## <a name="relationships-without-a-foreign-key-in-the-class-independent-associations"></a>Relações sem uma chave estrangeira na classe (associações independentes)  
 
-Quando uma propriedade de chave estrangeira é incluída na definição de classe, o parâmetro correspondente pode ser renomeado da mesma forma como qualquer outra propriedade. Quando uma relação existente sem uma propriedade de chave estrangeira na classe, o nome do parâmetro padrão é  **\<navigation_property_name\>_\<primary_key_name\>**.  
+Quando uma propriedade de chave estrangeira é incluída na definição de classe, o parâmetro correspondente pode ser renomeado da mesma maneira que qualquer outra propriedade. Quando existe uma relação sem uma propriedade de chave estrangeira na classe, o nome do parâmetro padrão é **\<navigation_property_name\>_\<primary_key_name** \>.  
 
-Por exemplo, as seguintes definições de classe resultaria em um parâmetro de Blog_BlogId sendo esperado nos procedimentos armazenados para inserir e atualizar as postagens.  
+Por exemplo, as seguintes definições de classe resultariam na espera de um parâmetro Blog_BlogId nos procedimentos armazenados para inserir e atualizar postagens.  
 
 ``` csharp
 public class Blog  
@@ -186,9 +186,9 @@ public class Post
 }
 ```  
 
-### <a name="overriding-the-defaults"></a>Substituindo padrões  
+### <a name="overriding-the-defaults"></a>Substituindo os padrões  
 
-Você pode alterar os parâmetros para chaves estrangeiras que não estão incluídos na classe, fornecendo o caminho para a propriedade de chave primária para o método de parâmetro.  
+Você pode alterar parâmetros para chaves estrangeiras que não estão incluídas na classe fornecendo o caminho para a propriedade de chave primária para o método de parâmetro.  
 
 ``` csharp
 modelBuilder
@@ -197,7 +197,7 @@ modelBuilder
     s.Insert(i => i.Parameter(p => p.Blog.BlogId, "blog_id")));
 ```  
 
-Se você não tiver uma propriedade de navegação na entidade dependente (isto é nenhuma propriedade Post.Blog) e em seguida, você pode usar o método de associação para identificar a outra extremidade da relação e, em seguida, configure os parâmetros que correspondem a cada uma da propriedade de chave (s).  
+Se você não tiver uma propriedade de navegação na entidade dependente (ou seja, nenhuma propriedade post. blog). em seguida, você pode usar o método de associação para identificar a outra extremidade da relação e, em seguida, configurar os parâmetros que correspondem a cada uma das propriedades de chave.  
 
 ``` csharp
 modelBuilder
@@ -210,15 +210,15 @@ modelBuilder
 
 ## <a name="concurrency-tokens"></a>Tokens de simultaneidade  
 
-Update e delete armazenados procedimentos talvez precise lidar com simultaneidade:  
+Os procedimentos armazenados Update e Delete também podem precisar lidar com a simultaneidade:  
 
-- Se a entidade contém tokens de simultaneidade, o procedimento armazenado pode, opcionalmente, ter um parâmetro de saída que retorna o número de linhas atualizado/excluído (linhas afetadas). Esse parâmetro deve ser configurado usando o método RowsAffectedParameter.  
-Por padrão o EF usa o valor retornado de ExecuteNonQuery para determinar quantas linhas foram afetadas. Especificando um parâmetro de saída de linhas afetadas é útil se você executar qualquer lógica em seu sproc que resultaria no valor de retorno de ExecuteNonQuery sendo incorreto (da perspectiva do EF) no final da execução.  
-- Para cada simultaneidade de token de lá será um parâmetro denominado  **\<property_name\>_Original** (por exemplo, Timestamp_Original). Isso será passado o valor original dessa propriedade – o valor quando consultado do banco de dados.  
-    - Tokens de simultaneidade são calculados pelo banco de dados – como os carimbos de hora – terá apenas um parâmetro de valor original.  
-    - Propriedades não são computadas que são definidas como tokens de simultaneidade também terá um parâmetro para o novo valor no procedimento de atualização. Isso usa as convenções de nomenclatura já discutidas para novos valores. Um exemplo de como esse token usariam URL do como um token de simultaneidade, o novo valor é necessário porque isso pode ser atualizado para um novo valor pelo seu código (ao contrário de um token de carimbo de hora que só é atualizado pelo banco de dados).  
+- Se a entidade contiver tokens de simultaneidade, o procedimento armazenado poderá, opcionalmente, ter um parâmetro de saída que retorna o número de linhas atualizadas/excluídas (linhas afetadas). Esse parâmetro deve ser configurado usando o método RowsAffectedParameter.  
+Por padrão, o EF usa o valor de retorno de ExecuteNonQuery para determinar quantas linhas foram afetadas. A especificação de um parâmetro de saída de linhas afetadas será útil se você executar qualquer lógica em seu SPROC que resultaria no valor de retorno de ExecuteNonQuery como incorreto (da perspectiva do EF) no final da execução.  
+- Para cada token de simultaneidade, haverá um parâmetro chamado **\<property_name\>_Original** (por exemplo, Timestamp_Original). Isso passará o valor original dessa propriedade – o valor quando consultado do banco de dados.  
+    - Os tokens de simultaneidade que são computados pelo banco de dados – como carimbos de data/hora – terão apenas um parâmetro de valor original.  
+    - As propriedades não computadas definidas como tokens de simultaneidade também terão um parâmetro para o novo valor no procedimento de atualização. Isso usa as convenções de nomenclatura já discutidas para novos valores. Um exemplo de tal token seria usar a URL de um blog como um token de simultaneidade, o novo valor é necessário porque isso pode ser atualizado para um novo valor pelo seu código (ao contrário de um token de carimbo de data/hora que é atualizado apenas pelo banco de dados).  
 
-Este é um exemplo de classe e atualize o procedimento armazenado com um token de simultaneidade de carimbo de hora.  
+Esta é uma classe de exemplo e atualiza o procedimento armazenado com um token de simultaneidade de carimbo de data/hora.  
 
 ``` csharp
 public class Blog  
@@ -243,7 +243,7 @@ AS
   WHERE BlogId = @BlogId AND [Timestamp] = @Timestamp_Original
 ```  
 
-Aqui está um exemplo de classe e atualize o procedimento armazenado com o token de simultaneidade não computadas.  
+Aqui está uma classe de exemplo e um procedimento armazenado de atualização com um token de simultaneidade não computado.  
 
 ``` csharp
 public class Blog  
@@ -267,7 +267,7 @@ AS
   WHERE BlogId = @BlogId AND [Url] = @Url_Original
 ```  
 
-### <a name="overriding-the-defaults"></a>Substituindo padrões  
+### <a name="overriding-the-defaults"></a>Substituindo os padrões  
 
 Opcionalmente, você pode introduzir um parâmetro de linhas afetadas.  
 
@@ -278,7 +278,7 @@ modelBuilder
     s.Update(u => u.RowsAffectedParameter("rows_affected")));
 ```  
 
-Para tokens de simultaneidade de banco de dados calculado – em que apenas o valor original é passado – você pode usar apenas o parâmetro padrão renomeando um mecanismo para renomear o parâmetro do valor original.  
+Para tokens de simultaneidade computados de banco de dados – onde apenas o valor original é passado – você pode usar apenas o mecanismo de renomeação de parâmetro padrão para renomear o parâmetro para o valor original.  
 
 ``` csharp
 modelBuilder  
@@ -287,7 +287,7 @@ modelBuilder
     s.Update(u => u.Parameter(b => b.Timestamp, "blog_timestamp")));
 ```  
 
-Para tokens de simultaneidade não computadas – em que tanto o valor original e novo é passado – você pode usar uma sobrecarga de parâmetro que permite que você forneça um nome para cada parâmetro.  
+Para tokens de simultaneidade não computados – onde o valor original e o novo são passados – você pode usar uma sobrecarga de parâmetro que permite fornecer um nome para cada parâmetro.  
 
 ``` csharp
 modelBuilder
@@ -297,7 +297,7 @@ modelBuilder
 
 ## <a name="many-to-many-relationships"></a>Relações Muitos para Muitos  
 
-Usaremos as classes a seguir como exemplo nesta seção.  
+Usaremos as seguintes classes como um exemplo nesta seção.  
 
 ``` csharp
 public class Post  
@@ -318,7 +318,7 @@ public class Tag
 }
 ```  
 
-Muitas para muitas relações podem ser mapeadas para procedimentos armazenados com a sintaxe a seguir.  
+Muitos para muitos relacionamentos podem ser mapeados para procedimentos armazenados com a seguinte sintaxe.  
 
 ``` csharp
 modelBuilder  
@@ -328,12 +328,12 @@ modelBuilder
   .MapToStoredProcedures();
 ```  
 
-Se nenhuma outra configuração é fornecida na forma de procedimento armazenado a seguir é usada por padrão.  
+Se nenhuma outra configuração for fornecida, a forma de procedimento armazenado a seguir será usada por padrão.  
 
-- Dois chamados de procedimentos armazenados  **\<type_one\>\<type_two\>inserir** e  **\<type_one\>\<type_two \>Excluir** (por exemplo, PostTag_Insert e PostTag_Delete).  
-- Os parâmetros serão os valores de chave para cada tipo. O nome de cada parâmetro que está sendo **\<type_name\>_\<property_name\>** (por exemplo, Post_PostId e Tag_TagId).
+- Dois procedimentos armazenados chamados **\<type_one\>\<type_two\>_Insert** e **\<type_one\>\<type_two\>** _Delete (por exemplo, PostTag_Insert e PostTag_Delete).  
+- Os parâmetros serão os valores de chave para cada tipo. O nome de cada parâmetro sendo **\<type_name\>_\<** property_name\>(por exemplo, Post_PostId e Tag_TagId).
 
-Estes são exemplos de inserção e atualização de procedimentos armazenados.  
+Aqui estão exemplos de inserir e atualizar procedimentos armazenados.  
 
 ``` SQL
 CREATE PROCEDURE [dbo].[PostTag_Insert]  
@@ -350,9 +350,9 @@ AS
   WHERE Post_PostId = @Post_PostId AND Tag_TagId = @Tag_TagId
 ```  
 
-### <a name="overriding-the-defaults"></a>Substituindo padrões  
+### <a name="overriding-the-defaults"></a>Substituindo os padrões  
 
-Os nomes de procedimento e o parâmetro podem ser configurados de forma semelhante aos procedimentos armazenado de entidade.  
+Os nomes de procedimento e parâmetro podem ser configurados de forma semelhante aos procedimentos armazenados de entidade.  
 
 ``` csharp
 modelBuilder  

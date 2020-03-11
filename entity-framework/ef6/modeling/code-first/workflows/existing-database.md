@@ -3,12 +3,12 @@ title: Code First a um banco de dados existente-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: a7e60b74-973d-4480-868f-500a3899932e
-ms.openlocfilehash: 61980bbd1f236f496a9d4fd92aa52264f1454615
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 0a51f826422d7e2bff33b968605eace1e754c425
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182628"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418871"
 ---
 # <a name="code-first-to-an-existing-database"></a>Code First a um banco de dados existente
 Este vídeo e instruções passo a passo fornecem uma introdução ao desenvolvimento de Code First direcionamento a um banco de dados existente. Code First permite que você defina seu modelo usando as classes C\# ou VB.Net. Opcionalmente, a configuração adicional pode ser executada usando atributos em suas classes e propriedades ou usando uma API fluente.
@@ -28,7 +28,7 @@ Normalmente, quando você estiver direcionando um banco de dados existente, ele 
 
 Vamos continuar e gerar o banco de dados.
 
--   Abrir o Visual Studio
+-   Abra o Visual Studio
 -   **Exibir-&gt; Gerenciador de Servidores**
 -   Clique com o botão direito em **conexões de dados-&gt; Adicionar conexão...**
 -   Se você ainda não se conectou a um banco de dados do **Gerenciador de servidores** antes de precisar selecionar **Microsoft SQL Server** como a fonte de dado
@@ -72,9 +72,9 @@ VALUES ('.NET Framework Blog', 'http://blogs.msdn.com/dotnet/')
 
 ## <a name="2-create-the-application"></a>2. criar o aplicativo
 
-Para manter as coisas simples, vamos criar um aplicativo de console básico que usa Code First para executar o acesso a dados:
+Para simplificar as coisas, criaremos um aplicativo de console básico que usa Code First para fazer o acesso a dados:
 
--   Abrir o Visual Studio
+-   Abra o Visual Studio
 -   **Arquivo-&gt; novo&gt; projeto...**
 -   Selecione **Windows** no menu à esquerda e no **aplicativo de console**
 -   Insira **CodeFirstExistingDatabaseSample** como o nome
@@ -84,7 +84,7 @@ Para manter as coisas simples, vamos criar um aplicativo de console básico que 
 
 ## <a name="3-reverse-engineer-model"></a>3. modelo de engenharia reversa
 
-Vamos usar o Entity Framework Tools para que o Visual Studio nos ajude a gerar um código inicial para mapear para o banco de dados. Essas ferramentas estão apenas gerando código que você também pode digitar manualmente, se preferir.
+Usaremos o Entity Framework Tools para o Visual Studio para nos ajudar a gerar um código inicial para mapear para o banco de dados. Essas ferramentas estão apenas gerando código que você também pode digitar manualmente, se preferir.
 
 -   **Projeto-&gt; adicionar novo item...**
 -   Selecione **dados** no menu à esquerda e, em seguida, **ADO.NET modelo de dados de entidade**
@@ -104,7 +104,7 @@ Vamos usar o Entity Framework Tools para que o Visual Studio nos ajude a gerar u
 
 Depois que o processo de engenharia reversa for concluído, vários itens serão adicionados ao projeto, vamos dar uma olhada no que foi adicionado.
 
-### <a name="configuration-file"></a>arquivo de configuração
+### <a name="configuration-file"></a>Arquivo de configuração
 
 Um arquivo app. config foi adicionado ao projeto, esse arquivo contém a cadeia de conexão para o banco de dados existente.
 

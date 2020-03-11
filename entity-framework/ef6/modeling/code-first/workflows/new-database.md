@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
 ms.openlocfilehash: d540fc6e84049f345ae22998f94c309e0be73fc3
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182569"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418808"
 ---
 # <a name="code-first-to-a-new-database"></a>Code First a um novo banco de dados
 Este vídeo e instruções passo a passo fornecem uma introdução ao desenvolvimento de Code First visando um novo banco de dados. Esse cenário inclui o direcionamento de um banco de dados que não existe e Code First será criado, ou um banco de dados vazio ao qual Code First adicionará novas tabelas. Code First permite que você defina seu modelo usando as classes C\# ou VB.Net. A configuração adicional pode, opcionalmente, ser executada usando atributos em suas classes e propriedades ou usando uma API fluente.
@@ -30,7 +30,7 @@ Se você estiver usando o Visual Studio 2010, também será necessário ter o [N
 
 Para manter as coisas simples, vamos criar um aplicativo de console básico que usa Code First para executar o acesso a dados.
 
--   Abrir o Visual Studio
+-   Abra o Visual Studio
 -   **Arquivo-&gt; novo&gt; projeto...**
 -   Selecione **Windows** no menu à esquerda e no **aplicativo de console**
 -   Insira **CodeFirstNewDatabaseSample** como o nome
@@ -74,7 +74,7 @@ Agora estamos começando a usar os tipos do Entity Framework, portanto, precisam
     Observação: se você não tiver o **Manage NuGet Packages...** opção você deve instalar a [versão mais recente do NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
 -   Selecione a guia **online**
 -   Selecionar o pacote do **EntityFramework**
--   Clique em **instalar**
+-   Clique em **Instalar**
 
 Adicione uma instrução using para System. Data. Entity na parte superior de Program.cs.
 

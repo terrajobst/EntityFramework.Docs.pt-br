@@ -5,11 +5,11 @@ ms.date: 02/19/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 uid: core/modeling/value-conversions
 ms.openlocfilehash: 93774bc1bc3887f982faeac151825a6643c1107c
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73654794"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417198"
 ---
 # <a name="value-conversions"></a>Conversões de valor
 
@@ -18,7 +18,7 @@ ms.locfileid: "73654794"
 
 Os conversores de valor permitem que os valores de propriedade sejam convertidos ao ler ou gravar no banco de dados. Essa conversão pode ser de um valor para outro do mesmo tipo (por exemplo, criptografia de cadeias de caracteres) ou de um valor de um tipo para um valor de outro tipo (por exemplo, converter valores de enumeração de e para cadeias de caracteres no banco de dados).
 
-## <a name="fundamentals"></a>Princípios básicos
+## <a name="fundamentals"></a>Conceitos básicos
 
 Os conversores de valor são especificados em termos de um `ModelClrType` e um `ProviderClrType`. O tipo de modelo é o tipo .NET da propriedade no tipo de entidade. O tipo de provedor é o tipo .NET compreendido pelo provedor de banco de dados. Por exemplo, para salvar enums como cadeias de caracteres no banco de dados, o tipo de modelo é o tipo de enum e o tipo de provedor é `String`. Esses dois tipos podem ser iguais.
 
@@ -83,7 +83,7 @@ Isso pode ser útil quando várias propriedades usam a mesma conversão.
 
 ## <a name="built-in-converters"></a>Conversores internos
 
-O EF Core é fornecido com um conjunto de classes de `ValueConverter` predefinidas, encontrado no namespace `Microsoft.EntityFrameworkCore.Storage.ValueConversion`. Elas são:
+O EF Core é fornecido com um conjunto de classes de `ValueConverter` predefinidas, encontrado no namespace `Microsoft.EntityFrameworkCore.Storage.ValueConversion`. Estes são:
 
 * `BoolToZeroOneConverter`-bool para zero e um
 * `BoolToStringConverter`-bool para cadeias de caracteres como "Y" e "N"

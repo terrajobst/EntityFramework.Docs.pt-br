@@ -3,12 +3,12 @@ title: Como tratar conflitos de simultaneidade – EF Core
 author: rowanmiller
 ms.date: 03/03/2018
 uid: core/saving/concurrency
-ms.openlocfilehash: b72fa472698e76e18f155cf96b738b0e193eee0f
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: a1d1a5a11d482f9104691aa3c072dbd1c548e9f1
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73654622"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417586"
 ---
 # <a name="handling-concurrency-conflicts"></a>Como tratar conflitos de simultaneidade
 
@@ -16,7 +16,7 @@ ms.locfileid: "73654622"
 > Esta página documenta como a simultaneidade funciona no EF Core e como lidar com conflitos de simultaneidade no seu aplicativo. Confira [Tokens de Simultaneidade](xref:core/modeling/concurrency) para obter detalhes sobre como configurar os tokens de simultaneidade no seu modelo.
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Concurrency/) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Concurrency/) deste artigo no GitHub.
 
 _Simultaneidade do banco de dados_ se refere a situações nas quais vários processos ou usuários acessam ou alteram os mesmos dados em um banco de dados ao mesmo tempo. _Controle de simultaneidade_ se refere a mecanismos específicos usados para garantir a consistência dos dados na presença de alterações simultâneas.
 

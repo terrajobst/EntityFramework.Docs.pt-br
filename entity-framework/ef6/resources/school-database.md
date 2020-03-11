@@ -1,39 +1,39 @@
 ---
-title: Banco de dados de exemplo de escola - EF6
+title: Banco de dados de exemplo escolar – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: e83a6a06-e63b-4530-8656-614bf609b12b
 ms.openlocfilehash: 1e9dc98edb8590021bbf3393e9edda1929d505e0
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490708"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416994"
 ---
-# <a name="school-sample-database"></a>Banco de dados de exemplo School
-Este tópico contém o esquema e os dados para o banco de dados de escola. O banco de dados do exemplo School é usado em vários locais em toda a documentação do Entity Framework.  
+# <a name="school-sample-database"></a>Banco de dados de exemplo escolar
+Este tópico contém o esquema e os dados para o banco de dado escolar. O banco de dados escolar de exemplo é usado em vários locais durante a documentação de Entity Framework.  
 
 > [!NOTE]
-> O servidor de banco de dados que é instalado com o Visual Studio é diferente dependendo da versão do Visual Studio que você usar. Ver [versões do Visual Studio](~/ef6/what-is-new/visual-studio.md) para obter detalhes sobre o que usar.  
+> O servidor de banco de dados instalado com o Visual Studio é diferente dependendo da versão do Visual Studio que você usa. Consulte [versões do Visual Studio](~/ef6/what-is-new/visual-studio.md) para obter detalhes sobre o que usar.  
 
-Aqui estão as etapas para criar o banco de dados:
+Estas são as etapas para criar o banco de dados:
 
-- Abrir o Visual Studio  
-- **Modo de exibição** -> **Gerenciador de servidores**  
-- Clique com botão direito **conexões de dados** -> **Adicionar Conexão...**  
-- Se você ainda não tiver conectado a um banco de dados do Gerenciador de servidores antes de você precisará selecionar **Microsoft SQL Server** como fonte de dados  
-- Conectar-se ao LocalDB ou Express do SQL, dependendo de qual deles você ter instalado  
-- Insira **School** como o nome do banco de dados  
-- Selecione **Okey** e você será solicitado se você deseja criar um novo banco de dados, selecione **Sim**  
-- O novo banco de dados agora aparecerão no Gerenciador de servidores  
+- Abra o Visual Studio  
+- **Exibir** -> **Gerenciador de servidores**  
+- Clique com o botão direito em **conexões de dados** -> **Adicionar conexão...**  
+- Se você ainda não se conectou a um banco de dados do Gerenciador de Servidores antes de precisar selecionar **Microsoft SQL Server** como a fonte de dado  
+- Conecte-se ao LocalDB ou ao SQL Express, dependendo de qual deles você instalou  
+- Insira a **escola** como o nome do banco de dados  
+- Selecione **OK** e você será perguntado se deseja criar um novo banco de dados, selecione **Sim**  
+- O novo banco de dados aparecerá agora no Gerenciador de Servidores  
 - Se você estiver usando o Visual Studio 2012 ou mais recente
-    - Clique com botão direito no banco de dados no Gerenciador de servidores e selecione **nova consulta**  
-    - Copie o SQL a seguir para a nova consulta e, em seguida, clique com botão direito na consulta e selecione **Execute**  
+    - Clique com o botão direito do mouse no banco de dados em Gerenciador de Servidores e selecione **nova consulta**  
+    - Copie o SQL a seguir na nova consulta, clique com o botão direito do mouse na consulta e selecione **executar**  
 - Se você estiver usando o Visual Studio 2010  
-    - Selecione **dados** -> **Transact SQL Editor** -> **nova Conexão de consulta...**  
-    - Insira **. \SQLEXPRESS** como o nome do servidor e clique em **Okey**  
-    - Selecione o **STESample** de banco de dados na lista suspensa na parte superior do editor de consultas  
-    - Copie o SQL a seguir para a nova consulta e, em seguida, clique com botão direito na consulta e selecione **executar SQL**  
+    - Selecione **dados** -> **Editor Transact SQL** -> **nova conexão de consulta...**  
+    - Insira **.\sqlexpress** como o nome do servidor e clique em **OK**  
+    - Selecione o banco de dados **STESample** na lista suspensa na parte superior do editor de consultas  
+    - Copie o SQL a seguir na nova consulta, clique com o botão direito do mouse na consulta e selecione **Executar SQL**  
 
 ``` SQL  
 SET ANSI_NULLS ON

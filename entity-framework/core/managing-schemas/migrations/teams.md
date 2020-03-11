@@ -5,11 +5,11 @@ ms.author: bricelam
 ms.date: 10/30/2017
 uid: core/managing-schemas/migrations/teams
 ms.openlocfilehash: 6c17c56277821159962884aef72d46c624442e20
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655538"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416766"
 ---
 # <a name="migrations-in-team-environments"></a>Migrações em ambientes de equipe
 
@@ -36,7 +36,7 @@ b.Property<int>("LoyaltyPoints");
 
 Nesses casos, a migração e a migração de seu colega de equipe são independentes umas das outras. Como qualquer um deles pode ser aplicado primeiro, você não precisa fazer nenhuma alteração adicional na sua migração antes de compartilhá-la com sua equipe.
 
-## <a name="resolving-conflicts"></a>Resolvendo conflitos
+## <a name="resolving-conflicts"></a>Resolução de conflitos
 
 Às vezes, você encontra um verdadeiro conflito ao mesclar o modelo de instantâneo do modelo. Por exemplo, você e seu colega de equipe podem ter renomeado a mesma propriedade.
 

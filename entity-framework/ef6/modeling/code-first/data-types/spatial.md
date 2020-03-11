@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: d617aed1-15f2-48a9-b187-186991c666e3
 ms.openlocfilehash: 018f480c1f0f1e74fc9f7a8950a6880e96f1facc
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182659"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419097"
 ---
 # <a name="spatial---code-first"></a>Code First espacial
 > [!NOTE]
@@ -76,7 +76,7 @@ Os tipos DbContext e DbSet são definidos no assembly do EntityFramework. Adicio
 1.  Em Gerenciador de Soluções, clique com o botão direito do mouse no nome do projeto.
 2.  Selecione **gerenciar pacotes NuGet...**
 3.  Na caixa de diálogo gerenciar pacotes NuGet, selecione a guia **online** e escolha o pacote do **EntityFramework** .
-4.  Clique em **instalar**
+4.  Clique em **Instalar**
 
 Observe que, além do assembly do EntityFramework, uma referência ao assembly System. ComponentModel. Annotations também é adicionada.
 

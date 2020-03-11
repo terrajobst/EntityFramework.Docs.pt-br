@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 5686d28e6847797130476cd858bd3fb611620140
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 7dc7a4404820a7c935648169cc6ff8d0f0118d87
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824472"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416745"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Referência de ferramentas de Entity Framework Core-CLI .NET
 
@@ -39,7 +39,7 @@ O procedimento de instalação depende do tipo de projeto e da versão:
 
   Você também pode usar `dotnet ef` ferramenta local. Para usá-lo como uma ferramenta local, restaure as dependências de um projeto que a declare como uma dependência de ferramentas usando um [arquivo de manifesto da ferramenta](https://github.com/dotnet/cli/issues/10288).
 
-* Instale o [SDK do .NET Core 3,0](https://dotnet.microsoft.com/download/dotnet-core/3.0). O SDK deve ser instalado mesmo que você tenha a versão mais recente do Visual Studio.
+* Instale o [SDK do .NET Core](https://www.microsoft.com/net/download/core).
 
 * Instale o pacote de `Microsoft.EntityFrameworkCore.Design` mais recente.
 
@@ -157,7 +157,7 @@ Para especificar o ambiente para projetos de ASP.NET Core, defina a variável de
 
 ## <a name="common-options"></a>Opções comuns
 
-|                   | Opção                            | Descrição                                                                                                                                                                                                                                                   |
+|                   | Opção                            | DESCRIÇÃO                                                                                                                                                                                                                                                   |
 |:------------------|:----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |                   | `--json`                          | Mostrar saída JSON.                                                                                                                                                                                                                                             |
 | <nobr>`-c`</nobr> | `--context <DBCONTEXT>`           | A classe `DbContext` a ser usada. Nome da classe somente ou totalmente qualificado com namespaces.  Se essa opção for omitida, EF Core encontrará a classe de contexto. Se houver várias classes de contexto, essa opção será necessária.                                            |
@@ -177,7 +177,7 @@ Remove o banco de dados.
 
 Opções:
 
-|                   | Opção                   | Descrição                                              |
+|                   | Opção                   | DESCRIÇÃO                                              |
 |:------------------|:-------------------------|:---------------------------------------------------------|
 | <nobr>`-f`</nobr> | <nobr>`--force`</nobr>   | Não confirme.                                           |
 |                   | <nobr>`--dry-run`</nobr> | Mostrar qual banco de dados seria descartado, mas não descartá-lo. |
@@ -188,7 +188,7 @@ Atualiza o banco de dados para a última migração ou para uma migração espec
 
 Argumentos:
 
-| Argument      | Descrição                                                                                                                                                                                                                                                     |
+| Argumento      | DESCRIÇÃO                                                                                                                                                                                                                                                     |
 |:--------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `<MIGRATION>` | A migração de destino. As migrações podem ser identificadas por nome ou por ID. O número 0 é um caso especial que significa *antes da primeira migração* e faz com que todas as migrações sejam revertidas. Se nenhuma migração for especificada, o comando usa como padrão a última migração. |
 
@@ -213,14 +213,14 @@ Gera código para um `DbContext` e tipos de entidade para um banco de dados. Par
 
 Argumentos:
 
-| Argument       | Descrição                                                                                                                                                                                                             |
+| Argumento       | DESCRIÇÃO                                                                                                                                                                                                             |
 |:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `<CONNECTION>` | A cadeia de conexão para o banco de dados. Para projetos ASP.NET Core 2. x, o valor pode ser *nome =\<nome da cadeia de conexão >* . Nesse caso, o nome é proveniente das fontes de configuração que estão configuradas para o projeto. |
 | `<PROVIDER>`   | O provedor a ser usado. Normalmente, esse é o nome do pacote NuGet, por exemplo: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
 
 Opções:
 
-|                 | Opção                                   | Descrição                                                                                                                                                                    |
+|                 | Opção                                   | DESCRIÇÃO                                                                                                                                                                    |
 |:----------------|:-----------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <nobr>-d</nobr> | `--data-annotations`                     | Use atributos para configurar o modelo (sempre que possível). Se essa opção for omitida, somente a API fluente será usada.                                                                |
 | `-c`            | `--context <NAME>`                       | O nome da classe de `DbContext` a ser gerada.                                                                                                                                 |
@@ -249,13 +249,13 @@ Adiciona uma nova migração.
 
 Argumentos:
 
-| Argument | Descrição                |
+| Argumento | DESCRIÇÃO                |
 |:---------|:---------------------------|
 | `<NAME>` | O nome da migração. |
 
 Opções:
 
-|                   | Opção                             | Descrição                                                                                                      |
+|                   | Opção                             | DESCRIÇÃO                                                                                                      |
 |:------------------|:-----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
 | <nobr>`-o`</nobr> | <nobr>`--output-dir <PATH>`</nobr> | O diretório (e o subnamespace) a ser usado. Os caminhos são relativos ao diretório do projeto. O padrão é "migrações". |
 
@@ -269,7 +269,7 @@ Remove a última migração (reverte as alterações de código que foram feitas
 
 Opções:
 
-|                   | Opção    | Descrição                                                                     |
+|                   | Opção    | DESCRIÇÃO                                                                     |
 |:------------------|:----------|:--------------------------------------------------------------------------------|
 | <nobr>`-f`</nobr> | `--force` | Reverter a migração (reverter as alterações que foram aplicadas ao banco de dados). |
 
@@ -279,14 +279,14 @@ Gera um script SQL a partir de migrações.
 
 Argumentos:
 
-| Argument | Descrição                                                                                                                                                   |
+| Argumento | DESCRIÇÃO                                                                                                                                                   |
 |:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `<FROM>` | A migração inicial. As migrações podem ser identificadas por nome ou por ID. O número 0 é um caso especial que significa *antes da primeira migração*. O padrão é 0. |
 | `<TO>`   | A migração final. O padrão é a última migração.                                                                                                         |
 
 Opções:
 
-|                   | Opção            | Descrição                                                        |
+|                   | Opção            | DESCRIÇÃO                                                        |
 |:------------------|:------------------|:-------------------------------------------------------------------|
 | <nobr>`-o`</nobr> | `--output <FILE>` | O arquivo no qual gravar o script.                                   |
 | `-i`              | `--idempotent`    | Gere um script que possa ser usado em um banco de dados em qualquer migração. |

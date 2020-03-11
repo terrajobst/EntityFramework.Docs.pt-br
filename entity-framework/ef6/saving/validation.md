@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 77d6a095-c0d0-471e-80b9-8f9aea6108b2
 ms.openlocfilehash: 2c5e6f1b3f60862124bafcac42e8859a7591f8e6
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72812156"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416956"
 ---
 # <a name="data-validation"></a>Validação de dados
 > [!NOTE]
@@ -54,7 +54,7 @@ public string Title { get; set; }
 
 Sem alterações de código ou marcação adicionais no aplicativo, um aplicativo MVC existente executará a validação do lado do cliente, até mesmo criando dinamicamente uma mensagem usando os nomes da propriedade e da anotação.
 
-![Figura 1](~/ef6/media/figure01.png)
+![figura 1](~/ef6/media/figure01.png)
 
 No método de postagem desse modo de exibição de criação, Entity Framework é usado para salvar o novo blog no banco de dados, mas a validação do lado do cliente do MVC é disparada antes de o aplicativo atingir esse código.
 
@@ -158,7 +158,7 @@ Ao contrário da validação fornecida pela API fluente, esse resultado de valid
 
 ![Figura 2](~/ef6/media/figure02.png)
 
-## <a name="dbcontextvalidateentity"></a>DbContext. ValidateEntity
+## <a name="dbcontextvalidateentity"></a>DbContext.ValidateEntity
 
 `DbContext` tem um método substituível chamado `ValidateEntity`. Quando você chama `SaveChanges`, Entity Framework chamará esse método para cada entidade em seu cache cujo estado não é `Unchanged`. Você pode colocar a lógica de validação diretamente aqui ou até mesmo usar esse método para chamar, por exemplo, o método `Blog.Validate` adicionado na seção anterior.
 

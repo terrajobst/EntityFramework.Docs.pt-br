@@ -5,11 +5,11 @@ ms.date: 08/13/2017
 ms.assetid: 8BD43C8C-63D9-4F3A-B954-7BC518A1B7DB
 uid: core/miscellaneous/1x-2x-upgrade
 ms.openlocfilehash: b27c09fdb6210dd7c6aa0c8bc912a8bd183c16b9
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824422"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416752"
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Atualizando aplicativos de versões anteriores para EF Core 2,0
 
@@ -31,7 +31,7 @@ Aplicativos que têm como destino o ASP.NET Core 2.0 podem usar o EF Core 2.0 se
 
 ## <a name="new-way-of-getting-application-services-in-aspnet-core"></a>Nova maneira de obter serviços de aplicativos no ASP.NET Core
 
-O padrão recomendado para aplicativos web ASP.NET Core foi atualizado para 2.0, de forma que interrompeu a lógica de tempo de design que o EF Core usava na 1.x. Anteriormente no tempo de design, o EF Core tentava invocar `Startup.ConfigureServices` diretamente para acessar o provedor de serviços do aplicativo. No ASP.NET Core 2.0, a configuração é inicializada fora da classe `Startup`. Aplicativos que usam o EF Core normalmente acessam essa string de conexão de `Configuration`, portanto, `Startup` por si só não é mais suficiente. Se você atualizar um aplicativo do ASP.NET Core 1.x, poderá receber o seguinte erro ao usar as ferramentas do EF Core.
+O padrão recomendado para aplicativos web ASP.NET Core foi atualizado para 2.0, de forma que interrompeu a lógica de tempo de design que o EF Core usava na 1.x. Anteriormente, no tempo de design, EF Core tentar invocar `Startup.ConfigureServices` diretamente para acessar o provedor de serviços do aplicativo. No ASP.NET Core 2,0, a configuração é inicializada fora da classe `Startup`. Os aplicativos que usam o EF Core normalmente acessam a cadeia de conexão da configuração, portanto, `Startup` por si só não é mais suficiente. Se você atualizar um aplicativo do ASP.NET Core 1.x, poderá receber o seguinte erro ao usar as ferramentas do EF Core.
 
 > Nenhum construtor sem parâmetros foi encontrado em ' ApplicationContext '. Adicione um construtor sem parâmetros a ' ApplicationContext ' ou adicione uma implementação de ' IDesignTimeDbContextFactory&lt;ApplicationContext&gt;' no mesmo assembly que ' ApplicationContext '
 
@@ -62,9 +62,9 @@ A adoção desse novo padrão na atualização de aplicativos para o 2.0 é alta
 
 ## <a name="idbcontextfactory-renamed"></a>IDbContextFactory renomeado
 
-Para dar suporte a padrões diversos de aplicativo e fornecer aos usuários mais controle sobre como `DbContext` é usado no momento de design, nós fornecemos, no passado, a interface `IDbContextFactory<TContext>`. No momento do design, as ferramentas do EF Core descobrirão as implementações dessa interface em seu projeto e as usarão para criar objetos `DbContext`.
+Para oferecer suporte a diversos padrões de aplicativo e dar aos usuários mais controle sobre como seu `DbContext` é usado no momento do design, temos, no passado, a interface `IDbContextFactory<TContext>`. Em tempo de design, as ferramentas de EF Core descobrirão implementações dessa interface em seu projeto e as usarão para criar `DbContext` objetos.
 
-Essa interface tinha um nome muito geral que levava alguns usuários para tentar reutilizá-la por engano para outros cenários de criação de `DbContext`. os usuários eram surpreendidos quando as ferramentas do EF tentavam usar a implementação no momento de design e faziam com que comandos como `Update-Database` ou `dotnet ef database update` falhassem.
+Essa interface tinha um nome muito geral que induzi alguns usuários a tentar reusá-lo para outros cenários de criação de `DbContext`. Eles foram detectados na proteção quando as ferramentas do EF tentavam usar sua implementação em tempo de design e causaram comandos como `Update-Database` ou `dotnet ef database update` falharem.
 
 Para comunicar a semântica de tempo de design forte desta interface, nós a renomeamos para `IDesignTimeDbContextFactory<TContext>`.
 

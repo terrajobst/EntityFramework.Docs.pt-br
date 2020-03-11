@@ -6,11 +6,11 @@ ms.date: 12/10/2019
 ms.assetid: e9dff604-3469-4a05-8f9e-18ac281d82a9
 uid: core/modeling/entity-properties
 ms.openlocfilehash: b67603fbffd1f1c8506bc21f8972c851eb8eef29
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502463"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417212"
 ---
 # <a name="entity-properties"></a>Propriedades da Entidade
 
@@ -22,11 +22,11 @@ Por convenção, todas as propriedades públicas com um getter e um setter serã
 
 Propriedades específicas podem ser excluídas da seguinte maneira:
 
-### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
+### <a name="data-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/IgnoreProperty.cs?name=IgnoreProperty&highlight=6)]
 
-### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
+### <a name="fluent-api"></a>[API fluente](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/IgnoreProperty.cs?name=IgnoreProperty&highlight=3,4)]
 
@@ -38,11 +38,11 @@ Por convenção, ao usar um banco de dados relacional, as propriedades de entida
 
 Se preferir configurar suas colunas com nomes diferentes, você poderá fazer isso da seguinte maneira:
 
-### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
+### <a name="data-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ColumnName.cs?Name=ColumnName&highlight=3)]
 
-### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
+### <a name="fluent-api"></a>[API fluente](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnName.cs?Name=ColumnName&highlight=3-5)]
 
@@ -56,11 +56,11 @@ Por exemplo, SQL Server mapeia `DateTime` Propriedades para `datetime2(7)` colun
 
 Você também pode configurar suas colunas para especificar um tipo de dados exato para uma coluna. Por exemplo, o código a seguir configura `Url` como uma cadeia de caracteres não-Unicode com comprimento máximo de `200` e `Rating` como decimal com precisão de `5` e escala de `2`:
 
-### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
+### <a name="data-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ColumnDataType.cs?name=ColumnDataType&highlight=4,6)]
 
-### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
+### <a name="fluent-api"></a>[API fluente](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnDataType.cs?name=ColumnDataType&highlight=5-6)]
 
@@ -75,11 +75,11 @@ A configuração de um comprimento máximo fornece uma dica ao provedor de banco
 
 No exemplo a seguir, a configuração de um comprimento máximo de 500 fará com que uma coluna do tipo `nvarchar(500)` seja criada em SQL Server:
 
-#### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
+#### <a name="data-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/MaxLength.cs?name=MaxLength&highlight=4)]
 
-#### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
+#### <a name="fluent-api"></a>[API fluente](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/MaxLength.cs?name=MaxLength&highlight=3-5)]
 
@@ -100,11 +100,11 @@ C#8 introduziu um novo recurso chamado [tipos de referência anulável](/dotnet/
 
 O exemplo a seguir mostra um tipo de entidade com propriedades obrigatórias e opcionais, com o recurso de referência anulável desabilitado (o padrão) e habilitado:
 
-#### <a name="without-nullable-reference-types-defaulttabwithout-nrt"></a>[Sem tipos de referência anuláveis (padrão)](#tab/without-nrt)
+#### <a name="without-nullable-reference-types-default"></a>[Sem tipos de referência anuláveis (padrão)](#tab/without-nrt)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/CustomerWithoutNullableReferenceTypes.cs?name=Customer&highlight=4-8)]
 
-#### <a name="with-nullable-reference-typestabwith-nrt"></a>[Com tipos de referência anuláveis](#tab/with-nrt)
+#### <a name="with-nullable-reference-types"></a>[Com tipos de referência anuláveis](#tab/with-nrt)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/Customer.cs?name=Customer&highlight=4-6)]
 
@@ -121,11 +121,11 @@ Para obter mais informações sobre tipos de referência anuláveis e como usá-
 
 Uma propriedade que seria opcional por convenção pode ser configurada para ser necessária da seguinte maneira:
 
-#### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
+#### <a name="data-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Required.cs?name=Required&highlight=4)]
 
-#### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
+#### <a name="fluent-api"></a>[API fluente](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Required.cs?name=Required&highlight=3-5)]
 

@@ -5,11 +5,11 @@ ms.date: 10/27/2016
 ms.assetid: c3c1940b-136d-45d8-aa4f-cb5040f8980a
 uid: core/miscellaneous/rc2-rtm-upgrade
 ms.openlocfilehash: 779caad7883d13684b389dab7515be44bc42e1ef
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655813"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416519"
 ---
 # <a name="upgrading-from-ef-core-10-rc2-to-rtm"></a>Atualizando do EF Core 1,0 RC2 para RTM
 
@@ -36,7 +36,7 @@ Todas as migrações existentes que foram com scaffolddas antes de usar a versã
 Essa alteração afeta os projetos que usam ASP.NET Identity e foram criados a partir de um modelo de projeto anterior ao RTM. O modelo de projeto inclui uma migração usada para criar o banco de dados. Essa migração deve ser editada para especificar um comprimento máximo de `256` para as colunas a seguir.
 
 * **AspNetRoles**
-  * Name
+  * Nome
   * NormalizedName
 * **AspNetUsers**
   * Email

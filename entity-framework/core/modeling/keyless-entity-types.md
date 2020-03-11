@@ -5,12 +5,12 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 9/13/2019
 uid: core/modeling/keyless-entity-types
-ms.openlocfilehash: 129e24b154ba32583435aeb742dbf478350344e8
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 520c9ed93240c05deee36fa527a3757490fd7082
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824666"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417312"
 ---
 # <a name="keyless-entity-types"></a>Tipos de entidade sem chave
 
@@ -47,7 +47,7 @@ Alguns dos principais cenários de uso para tipos de entidade de tipo de subunid
 
 ## <a name="mapping-to-database-objects"></a>Mapeando para objetos de banco de dados
 
-O mapeamento de um tipo de entidade sem um objeto de banco de dados é obtido usando o `ToTable` ou `ToView` API fluente. Da perspectiva do EF Core, o objeto de banco de dados especificado neste método é um _exibição_, que significa que ela é tratada como uma fonte de consulta somente leitura e não pode ser o destino da atualização, inserir ou excluir operações. No entanto, isso não significa que o objeto de banco de dados é realmente necessário para ser uma exibição de banco de dados. Como alternativa, ele pode ser uma tabela de banco de dados que será tratada como somente leitura. Por outro lado, para tipos de entidade regulares, EF Core pressupõe que um objeto de banco de dados especificado no método `ToTable` pode ser tratado como uma _tabela_, o que significa que ele pode ser usado como uma fonte de consulta, mas também direcionado pelas operações Update, DELETE e INSERT. Na verdade, você pode especificar o nome de uma exibição de banco de dados em `ToTable` e tudo deve funcionar bem, desde que o modo de exibição está configurado para ser atualizável no banco de dados.
+O mapeamento de um tipo de entidade sem um objeto de banco de dados é obtido usando o `ToTable` ou `ToView` API fluente. Da perspectiva do EF Core, o objeto de banco de dados especificado nesse método é uma _exibição_, o que significa que ele é tratado como uma fonte de consulta somente leitura e não pode ser o destino de operações de atualização, inserção ou exclusão. No entanto, isso não significa que o objeto de banco de dados é realmente necessário para ser uma exibição de banco de dados. Como alternativa, ele pode ser uma tabela de banco de dados que será tratada como somente leitura. Por outro lado, para tipos de entidade regulares, EF Core pressupõe que um objeto de banco de dados especificado no método `ToTable` pode ser tratado como uma _tabela_, o que significa que ele pode ser usado como uma fonte de consulta, mas também direcionado pelas operações Update, DELETE e INSERT. Na verdade, você pode especificar o nome de uma exibição de banco de dados em `ToTable` e tudo deve funcionar bem, desde que a exibição esteja configurada para ser atualizável no banco de dados.
 
 > [!NOTE]
 > `ToView` pressupõe que o objeto já existe no banco de dados e não será criado por migrações.
@@ -57,7 +57,7 @@ O mapeamento de um tipo de entidade sem um objeto de banco de dados é obtido us
 O exemplo a seguir mostra como usar tipos de entidade para consultar uma exibição de banco de dados.
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/KeylessEntityTypes) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/KeylessEntityTypes) deste artigo no GitHub.
 
 Primeiro, definimos um modelo simples de Blog e Post:
 

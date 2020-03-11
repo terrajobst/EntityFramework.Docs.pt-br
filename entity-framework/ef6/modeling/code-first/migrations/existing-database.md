@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: f0cc4f93-67dd-4664-9753-0a9f913814db
 ms.openlocfilehash: eb7948eafb1322cabcf69b47bd5411f762fe8498
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182579"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418989"
 ---
 # <a name="code-first-migrations-with-an-existing-database"></a>Migrações do Code First com um banco de dados existente
 > [!NOTE]
@@ -67,7 +67,7 @@ Nesse cenário, precisamos de migrações para poder criar todo o banco de dados
 3.  Execute o comando **Update-Database** no console do Gerenciador de pacotes. Isso aplicará a migração InitialCreate ao banco de dados. Como a migração real não contém nenhuma alteração (porque as comentamos temporariamente), ela simplesmente adicionará uma linha à \_\_tabela MigrationsHistory indicando que essa migração já foi aplicada.
 4.  Retire o comentário do código no método up. Isso significa que, quando essa migração for aplicada a bancos de dados futuros, o esquema que já existia no banco de dados local será criado por migrações.
 
-## <a name="things-to-be-aware-of"></a>Coisas que você deve conhecer
+## <a name="things-to-be-aware-of"></a>Considerações
 
 Há algumas coisas que você precisa conhecer ao usar migrações em um banco de dados existente.
 

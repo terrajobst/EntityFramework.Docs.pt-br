@@ -1,111 +1,111 @@
 ---
-title: Herança TPH Designer – EF6
+title: Herança de TPH do designer – EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 72d26a8e-20ab-4500-bd13-394a08e73394
 ms.openlocfilehash: 43ba34a98c3960a7a3052a00e2ed2751c2f2b121
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490085"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418423"
 ---
-# <a name="designer-tph-inheritance"></a>Herança TPH Designer
-Este passo a passo mostra como implementar a herança do tabela por hierarquia (TPH) em seu modelo conceitual com o Entity Framework Designer (Designer de EF). Herança TPH usa uma tabela de banco de dados para manter os dados para todos os tipos de entidade em uma hierarquia de herança.
+# <a name="designer-tph-inheritance"></a>Herança de TPH do designer
+Este guia passo a passo mostra como implementar a herança de tabela por hierarquia (TPH) em seu modelo conceitual com o Entity Framework Designer (EF designer). A herança de TPH usa uma tabela de banco de dados para manter todos os tipos de entidade em uma hierarquia de herança.
 
-Neste passo a passo, podemos mapeará a tabela Person para três tipos de entidade: pessoa (o tipo base), (deriva de pessoa) de aluno e instrutor (deriva de pessoa). Vamos criar um modelo conceitual do banco de dados (banco de dados primeiro) e, em seguida, alterar o modelo para implementar a herança TPH usando o EF Designer.
+Neste tutorial, mapearemos a tabela Person para três tipos de entidade: Person (o tipo base), Student (derivada de Person) e instrutor (derivado de Person). Vamos criar um modelo conceitual do banco de dados (Database First) e, em seguida, alterar o modelo para implementar a herança TPH usando o designer do EF.
 
-É possível mapear para uma herança TPH usando Model First, mas você precisaria escrever seu próprio fluxo de trabalho de geração de banco de dados que é complexo. Em seguida, atribua esse fluxo de trabalho para o **fluxo de trabalho de geração de banco de dados** propriedade no EF Designer. Uma alternativa mais fácil é usar o Code First.
+É possível mapear para uma herança TPH usando Model First, mas você teria que escrever seu próprio fluxo de trabalho de geração de banco de dados, que é complexo. Em seguida, você atribuiria esse fluxo de trabalho à propriedade de **fluxo de trabalho de geração de banco de dados** no designer do EF. Uma alternativa mais fácil é usar Code First.
 
 ## <a name="other-inheritance-options"></a>Outras opções de herança
 
-Tabela por tipo (TPT) é outro tipo de herança em que tabelas separadas no banco de dados são mapeadas para entidades que participam de herança.  Para obter informações sobre como mapear a herança de tabela por tipo com o EF Designer, consulte [EF Designer TPT herança](~/ef6/modeling/designer/inheritance/tpt.md).
+A tabela por tipo (TPT) é outro tipo de herança no qual as tabelas separadas no banco de dados são mapeadas para entidades que participam da herança.  Para obter informações sobre como mapear a herança de tabela por tipo com o designer do EF, consulte [herança do TPT do EF designer](~/ef6/modeling/designer/inheritance/tpt.md).
 
-Herança de tipo de tabela por concreto (TPC) e modelos de herança misto são compatíveis com o tempo de execução do Entity Framework, mas não são compatíveis com o EF Designer. Se você quiser usar TPC ou herança mista, você tem duas opções: usar o Code First ou editar manualmente o arquivo EDMX. Se você optar por trabalhar com o arquivo EDMX, a janela de detalhes de mapeamento será colocada em "modo de segurança" e você não poderá usar o designer para alterar os mapeamentos.
+A herança de tipo de tabela por concreto (TPC) e os modelos de herança misto têm suporte pelo tempo de execução Entity Framework, mas não têm suporte do designer do EF. Se você quiser usar o TPC ou a herança mista, terá duas opções: Use Code First ou edite manualmente o arquivo EDMX. Se você optar por trabalhar com o arquivo EDMX, a janela de detalhes de mapeamento será colocada em "modo de segurança" e você não poderá usar o designer para alterar os mapeamentos.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 Para concluir esta explicação passo a passo, será necessário:
 
 - Uma versão recente do Visual Studio.
-- O [banco de dados de exemplo School](~/ef6/resources/school-database.md).
+- O [banco de dados de exemplo da escola](~/ef6/resources/school-database.md).
 
 ## <a name="set-up-the-project"></a>Configurar o projeto
 
 -   Abra o Visual Studio 2012.
--   Selecione **arquivo -&gt; New -&gt; projeto**
--   No painel esquerdo, clique em **Visual C#\#** e, em seguida, selecione o **Console** modelo.
--   Insira **TPHDBFirstSample** como o nome.
--   Selecione **OK**.
+-   Selecione **arquivo-&gt; projeto de novo&gt;**
+-   No painel esquerdo, clique em **Visual C\#** e, em seguida, selecione o modelo de **console** .
+-   Insira **TPHDBFirstSample** como o nome.
+-   Selecione  **OK**.
 
 ## <a name="create-a-model"></a>Criar um modelo
 
--   O nome do projeto no Gerenciador de soluções e selecione **Add -&gt; Novo Item**.
--   Selecione **dados** no menu esquerdo e selecione **modelo de dados de entidade ADO.NET** no painel de modelos.
--   Insira **TPHModel.edmx** para o nome de arquivo e clique **Add**.
--   Na caixa de diálogo Escolher conteúdo do modelo, selecione **gerar a partir do banco de dados**e, em seguida, clique em **próxima**.
--   Clique em **nova Conexão**.
-    Na caixa de diálogo Propriedades de Conexão, insira o nome do servidor (por exemplo, **(localdb)\\mssqllocaldb**), selecione o método de autenticação, digite **School** para o nome do banco de dados e, em seguida, Clique em **Okey**.
-    A caixa de diálogo Escolher sua Conexão de dados é atualizada com sua configuração de conexão de banco de dados.
--   Na caixa de diálogo Choose Your Database Objects, sob o nó de tabelas, selecione a **pessoa** tabela.
--   Clique em **Finalizar**.
+-   Clique com o botão direito do mouse no nome do projeto em Gerenciador de Soluções e selecione **Adicionar-&gt; novo item**.
+-   Selecione **dados** no menu à esquerda e, em seguida, selecione **ADO.NET modelo de dados de entidade** no painel modelos.
+-   Digite **TPHModel. edmx** para o nome do arquivo e clique em **Adicionar**.
+-   Na caixa de diálogo escolher conteúdo do modelo, selecione **gerar do banco de dados**e clique em **Avançar**.
+-   Clique em **nova conexão**.
+    Na caixa de diálogo Propriedades da conexão, digite o nome do servidor (por exemplo, **(LocalDB)\\mssqllocaldb**), selecione o método de autenticação, digite **School** para o nome do banco de dados e clique em **OK**.
+    A caixa de diálogo escolher sua conexão de dados é atualizada com a configuração de conexão de banco de dado.
+-   Na caixa de diálogo escolher seu objeto de banco de dados, no nó tabelas, selecione a tabela **Person** .
+-   Clique em **concluir**.
 
-O Designer de entidade, que fornece uma superfície de design para editar seu modelo, é exibido. Todos os objetos que você selecionou na caixa de diálogo Choose Your Database Objects são adicionados ao modelo.
+O Entity Designer, que fornece uma superfície de design para editar seu modelo, é exibido. Todos os objetos que você selecionou na caixa de diálogo escolher seus objetos de banco de dados são adicionados ao modelo.
 
-Isto é como o **pessoa** tabela fica no banco de dados.
+É assim que a tabela **Person** procura no banco de dados.
 
-![Tabela Person](~/ef6/media/persontable.png) 
+![Tabela Person](~/ef6/media/persontable.png) 
 
 ## <a name="implement-table-per-hierarchy-inheritance"></a>Implementar a herança de tabela por hierarquia
 
-O **pessoa** a tabela tem o **discriminador** coluna, que pode ter um dos dois valores: "Aluno" e "Instrutor". Dependendo do valor de **pessoa** tabela será mapeada para o **aluno** entidade ou o **instrutor** entidade. O **pessoa** tabela também tem duas colunas, **HireDate** e **EnrollmentDate**, que deve ser **anulável** porque uma pessoa não pode ser um aluno e instrutor ao mesmo tempo (pelo menos não neste passo a passo).
+A tabela **Person** tem a coluna **discriminadora** , que pode ter um dos dois valores: "Student" e "instrutor". Dependendo do valor, a tabela **Person** será mapeada para a entidade **Student** ou o **instrutor** . A tabela **Person** também tem duas colunas, **contratou** e **EnrollmentDate**, que devem ser **anuláveis** porque uma pessoa não pode ser um aluno e um instrutor ao mesmo tempo (pelo menos não neste passo-a).
 
 ### <a name="add-new-entities"></a>Adicionar novas entidades
 
 -   Adicione uma nova entidade.
-    Para fazer isso, clique com botão direito em uma área vazia da superfície de design do Entity Framework Designer e selecione **Add -&gt;entidade**.
--   Tipo de **instrutor** para o **nome da entidade** e selecione **pessoa** na lista suspensa para o **tipo Base**.
--   Clique em **OK**.
--   Adicione outra nova entidade. Tipo de **aluno** para o **nome da entidade** e selecione **pessoa** na lista suspensa para o **tipo Base**.
+    Para fazer isso, clique com o botão direito do mouse em um espaço vazio da superfície de design do Entity Framework Designer e selecione **entidade Add-&gt;** .
+-   Digite do **instrutor** para o **nome da entidade** e selecione **pessoa** na lista suspensa para o **tipo base**.
+-   Clique em **OK**.
+-   Adicione outra nova entidade. Digite **Student** para o **nome da entidade** e selecione **Person** na lista suspensa para o **tipo base**.
 
-Dois novos tipos de entidade foram adicionados à superfície de design. Uma seta aponta de novos tipos de entidade para o **pessoa** tipo de entidade; isso indica que **pessoa** é o tipo base para os novos tipos de entidade.
+Dois novos tipos de entidade foram adicionados à superfície de design. Uma seta aponta dos novos tipos de entidade para a **pessoa** tipo de entidade; Isso indica que a **pessoa** é o tipo base para os novos tipos de entidade.
 
--   Clique com botão direito do **HireDate** propriedade do **pessoa** entidade. Selecione **Recortar** (ou use a tecla Ctrl-X).
--   Clique com botão direito do **instrutor** entidade e selecione **colar** (ou use a tecla Ctrl + V).
--   Clique com botão direito do **HireDate** propriedade e selecione **propriedades**.
--   No **propriedades** janela, defina as **Nullable** propriedade a ser **false**.
--   Clique com botão direito do **EnrollmentDate** propriedade do **pessoa** entidade. Selecione **Recortar** (ou use a tecla Ctrl-X).
--   Clique com botão direito do **aluno** entidade e selecione **Colar (ou chave de uso de Ctrl + V).**
--   Selecione o **EnrollmentDate** propriedade e defina o **Nullable** propriedade a ser **false**.
--   Selecione o **pessoa** tipo de entidade. No **propriedades** janela, defina seu **abstrata** propriedade a ser **verdadeiro**.
--   Excluir o **discriminador** propriedade de **pessoa**. O motivo pelo qual que ele deve ser excluído é explicado na seção a seguir.
+-   Clique com o botão direito do mouse na propriedade **Contratada** da entidade **Person** . Selecione **recortar** (ou use a tecla CTRL-X).
+-   Clique com o botão direito do mouse na entidade do **instrutor** e selecione **colar** (ou use a tecla Ctrl-V).
+-   Clique com o botão direito do mouse na propriedade **Contratada** e selecione **Propriedades**.
+-   Na janela de **Propriedades** , defina a propriedade **Nullable** como **false**.
+-   Clique com o botão direito do mouse na propriedade **EnrollmentDate** da entidade **Person** . Selecione **recortar** (ou use a tecla CTRL-X).
+-   Clique com o botão direito do mouse na entidade **Student** e selecione **colar (ou use a tecla Ctrl-V).**
+-   Selecione a propriedade de  **EnrollmentDate** e defina a propriedade **Nullable** como **false**.
+-   Selecione o tipo de entidade  **pessoa** . Na janela de **Propriedades** , defina sua propriedade **abstrata** como **true**.
+-   Exclua a propriedade **discriminadora** de **Person**. O motivo pelo qual ele deve ser excluído é explicado na seção a seguir.
 
-### <a name="map-the-entities"></a>As entidades do mapa
+### <a name="map-the-entities"></a>Mapear as entidades
 
--   Clique com botão direito do **instrutor** e selecione **mapeamento de tabela.**
-    A entidade Instructor é selecionada na janela de detalhes de mapeamento.
--   Clique em **&lt;adicionar uma tabela ou exibição&gt;** no **Mapping Details** janela.
-    O **&lt;adicionar uma tabela ou exibição&gt;** campo se torna uma lista suspensa de tabelas ou exibições para o qual a entidade selecionada pode ser mapeada.
--   Selecione **pessoa** na lista suspensa.
--   O **Mapping Details** janela é atualizada com mapeamentos de coluna padrão e uma opção para adicionar uma condição.
--   Clique em  **&lt;adicionar uma condição&gt;**.
-    O **&lt;adicionar uma condição&gt;** campo se torna uma lista suspensa de colunas para o qual as condições podem ser definidas.
--   Selecione **discriminador** na lista suspensa.
--   No **operador** coluna o **Mapping Details** janela, selecione = na lista suspensa.
--   No **propriedade/valor** coluna, digite **instrutor**. O resultado final deve ter esta aparência:
+-   Clique com o botão direito do mouse no **instrutor** e selecione **mapeamento de tabela.**
+    A entidade do instrutor é selecionada na janela detalhes do mapeamento.
+-   Clique **&lt;adicionar uma tabela ou exibição&gt;**  na janela **detalhes do mapeamento** .
+    O **&lt;adicionar uma tabela ou exibição&gt;** campo se torna uma lista suspensa de tabelas ou exibições para as quais a entidade selecionada pode ser mapeada.
+-   Selecione **pessoa** na lista suspensa.
+-   A janela **detalhes do mapeamento** é atualizada com mapeamentos de coluna padrão e uma opção para adicionar uma condição.
+-   Clique em **&lt;adicionar uma condição&gt;** .
+    O **&lt;adicionar uma condição&gt;** campo se torna uma lista suspensa de colunas para as quais as condições podem ser definidas.
+-   Selecione  **discriminador** na lista suspensa.
+-   Na coluna **operador** da janela **detalhes do mapeamento** , selecione = na lista suspensa.
+-   Na coluna **valor/Propriedade** , digite **instrutor**. O resultado final deve ser assim:
 
-    ![Detalhes de mapeamento](~/ef6/media/mappingdetails2.png)
+    ![Detalhes do mapeamento](~/ef6/media/mappingdetails2.png)
 
--   Repita essas etapas para o **aluno** tipo de entidade, mas verifique a condição igual a **aluno** valor.  
-    *O motivo pelo qual desejamos remover os **discriminador** propriedade, é porque você não pode mapear uma coluna de tabela mais de uma vez. Esta coluna será usada para mapeamento condicional, então ele não pode ser usado para mapeamento de propriedade também. A única maneira que ele pode ser usado para ambos, se uma condição usa um **é nulo** ou **Is Not Null** comparação.*
+-   Repita essas etapas para o tipo de entidade **student** , mas torne a condição igual ao valor **Student** .  
+    *O motivo pelo qual queríamos remover a propriedade **discriminador** é porque você não pode mapear uma coluna de tabela mais de uma vez. Esta coluna será usada para mapeamento condicional e, portanto, não poderá ser usada para mapeamento de propriedade também. A única maneira de poder ser usada para ambos, se uma condição usar uma  **nula** ou **não for nula** comparação.*
 
-Herança de tabela por hierarquia agora é implementada.
+A herança de tabela por hierarquia agora está implementada.
 
 ![TPH final](~/ef6/media/finaltph.png)
 
 ## <a name="use-the-model"></a>Usar o modelo
 
-Abra o **Program.cs** do arquivo onde o **Main** método é definido. Cole o seguinte código para o **Main** função. O código é executado três consultas. A primeira consulta traz de volta todos os **pessoa** objetos. A segunda consulta usa a **OfType** método retorne **instrutor** objetos. A terceira consulta usa a **OfType** método retorne **aluno** objetos.
+Abra o arquivo **Program.cs** em que o método **Main** está definido. Cole o código a seguir na função **Main** . O código executa três consultas. A primeira consulta traz de volta todos os objetos **Person** . A segunda consulta usa o método **OfType** para retornar objetos do **instrutor** . A terceira consulta usa o método **OfType** para retornar objetos **Student** .
 
 ``` csharp
     using (var context = new SchoolEntities())

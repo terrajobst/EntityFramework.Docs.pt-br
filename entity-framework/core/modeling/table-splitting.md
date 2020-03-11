@@ -5,18 +5,18 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 01/03/2020
 uid: core/modeling/table-splitting
-ms.openlocfilehash: c38d3ee0efa82f84a1051017ae40c9f3fdd57f1f
-ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
+ms.openlocfilehash: de24f8903af79ebd7f68e6b74288257883c1fa8d
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75781164"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417394"
 ---
 # <a name="table-splitting"></a>Divisão de tabela
 
 EF Core permite mapear duas ou mais entidades para uma única linha. Isso é chamado de _divisão de tabela_ ou compartilhamento de _tabela_.
 
-## <a name="configuration"></a>Configuração do
+## <a name="configuration"></a>Configuração
 
 Para usar a divisão de tabela, os tipos de entidade precisam ser mapeados para a mesma tabela, ter as chaves primárias mapeadas para as mesmas colunas e pelo menos uma relação configurada entre a chave primária de um tipo de entidade e outra na mesma tabela.
 
@@ -33,9 +33,9 @@ Além da configuração necessária, chamamos `Property(o => o.Status).HasColumn
 [!code-csharp[TableSplittingConfiguration](../../../samples/core/Modeling/TableSplitting/TableSplittingContext.cs?name=TableSplitting)]
 
 > [!TIP]
-> Consulte o [projeto de exemplo completo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Modeling/TableSplitting) para obter mais contexto.
+> Consulte o [projeto de exemplo completo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/TableSplitting) para obter mais contexto.
 
-## <a name="usage"></a>Medição de
+## <a name="usage"></a>Uso
 
 Salvar e consultar entidades usando divisão de tabela é feito da mesma maneira que outras entidades:
 

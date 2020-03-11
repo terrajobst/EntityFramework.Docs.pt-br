@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 29958ae5-85d3-4585-9ba6-550b8ec9393a
 ms.openlocfilehash: 4395a9c117a6cf38e7fc08f11ee689d6fffa6fed
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182108"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419650"
 ---
 # <a name="upgrading-to-entity-framework-6"></a>Atualizando para o Entity Framework 6
 
@@ -70,7 +70,7 @@ A regra geral para alterações de namespace é que qualquer tipo em System. Dat
 - System. Data. Objects. ObjectContext = > System. Data. **Entity. Core**. Objects. ObjectContext  
 - System. Data. Objects. DataClasses. RelationshipManager = > System. Data. **Entity. Core**. Objects. DataClasses. RelationshipManager  
 
-Esses tipos estão nos namespaces *principais* porque não são usados diretamente para a maioria dos aplicativos baseados em DbContext. Alguns tipos que faziam parte de System. Data. Entity. dll ainda são usados normalmente e diretamente para aplicativos baseados em DbContext e, portanto, não foram movidos para os namespaces *centrais* . Eles são:
+Esses tipos estão nos namespaces *principais* porque não são usados diretamente para a maioria dos aplicativos baseados em DbContext. Alguns tipos que faziam parte de System. Data. Entity. dll ainda são usados normalmente e diretamente para aplicativos baseados em DbContext e, portanto, não foram movidos para os namespaces *centrais* . Estes são:
 
 - System. Data. EntityState = > System. Data. **Entidade**. EntityState  
 - System. Data. Objects. DataClasses. EdmFunctionAttribute = > System. Data. **Entity. DbFunctionAttribute**  

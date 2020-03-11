@@ -6,17 +6,17 @@ ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
 ms.openlocfilehash: 1ba9352d261f1c131b0d70f8cdad2128d9afaefe
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824461"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416759"
 ---
 # <a name="reverse-engineering"></a>Engenharia reversa
 
 A engenharia reversa é o processo de classes de tipo de entidade scaffolding e uma classe DbContext baseada em um esquema de banco de dados. Ele pode ser executado usando o comando `Scaffold-DbContext` das ferramentas do console do Gerenciador de pacotes do EF Core (PMC) ou o comando `dotnet ef dbcontext scaffold` das ferramentas da CLI (interface de linha de comando) do .NET.
 
-## <a name="installing"></a>Instalando o
+## <a name="installing"></a>Instalando
 
 Antes da engenharia reversa, você precisará instalar as [ferramentas PMC](xref:core/miscellaneous/cli/powershell) (somente Visual Studio) ou as [ferramentas da CLI](xref:core/miscellaneous/cli/dotnet). Consulte os links para obter detalhes.
 
@@ -113,7 +113,7 @@ Scaffold-DbContext ... -ContextDir Data -OutputDir Models
 dotnet ef dbcontext scaffold ... --context-dir Data --output-dir Models
 ```
 
-## <a name="how-it-works"></a>Como funciona
+## <a name="how-it-works"></a>Como ele funciona
 
 A engenharia reversa começa lendo o esquema de banco de dados. Ele lê informações sobre tabelas, colunas, restrições e índices.
 

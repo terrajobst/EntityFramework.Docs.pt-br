@@ -4,12 +4,12 @@ author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: 8b6697cc-7067-4dc2-8007-85d80503d123
 uid: core/querying/client-eval
-ms.openlocfilehash: 5cfb05041f04246712fb699f58b407f70a75ce92
-ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
+ms.openlocfilehash: e01bd146c4dfe7a8d36b641cb52ae366fddd8239
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72445960"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417756"
 ---
 # <a name="client-vs-server-evaluation"></a>Avaliação do cliente versus do servidor
 
@@ -19,11 +19,11 @@ Como regra geral, Entity Framework Core tenta avaliar uma consulta no servidor o
 > Antes da versão 3,0, Entity Framework Core avaliação de cliente com suporte em qualquer lugar na consulta. Para obter mais informações, consulte a [seção versões anteriores](#previous-versions).
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="client-evaluation-in-the-top-level-projection"></a>Avaliação do cliente na projeção de nível superior
 
-No exemplo a seguir, um método auxiliar é usado para padronizar URLs para Blogs, que são retornados de um banco de dados SQL Server. Como o provedor de SQL Server não tem informações sobre como esse método é implementado, não é possível convertê-lo em SQL. Todos os outros aspectos da consulta são avaliados no banco de dados, mas a passagem do `URL` retornado por esse método é feita no cliente.
+No exemplo a seguir, um método auxiliar é usado para padronizar URLs para Blogs, que são retornados de um banco de dados SQL Server. Como o provedor de SQL Server não tem informações sobre como esse método é implementado, não é possível convertê-lo em SQL. Todos os outros aspectos da consulta são avaliados no banco de dados, mas passar o `URL` retornado por esse método é feito no cliente.
 
 [!code-csharp[Main](../../../samples/core/Querying/ClientEval/Sample.cs#ClientProjection)]
 
@@ -42,7 +42,7 @@ Talvez seja necessário forçar a avaliação do cliente explicitamente em deter
 - A quantidade de dados é pequena para que a avaliação no cliente não incorra em uma enorme penalidade de desempenho.
 - O operador LINQ que está sendo usado não tem tradução do lado do servidor.
 
-Nesses casos, você pode explicitamente optar pela avaliação do cliente chamando métodos como `AsEnumerable` ou `ToList` (`AsAsyncEnumerable` ou `ToListAsync` para Async). Usando `AsEnumerable`, você estaria transmitindo os resultados, mas usar `ToList` causaria o armazenamento em buffer criando uma lista, que também usa memória adicional. No entanto, se você estiver enumerando várias vezes, armazenar os resultados em uma lista ajuda mais, pois há apenas uma consulta para o banco de dados. Dependendo do uso específico, você deve avaliar qual método é mais útil para o caso.
+Nesses casos, você pode explicitamente optar pela avaliação do cliente chamando métodos como `AsEnumerable` ou `ToList` (`AsAsyncEnumerable` ou `ToListAsync` para Async). Usando `AsEnumerable` você estaria transmitindo os resultados, mas usar `ToList` causaria o armazenamento em buffer criando uma lista, que também usa memória adicional. No entanto, se você estiver enumerando várias vezes, armazenar os resultados em uma lista ajuda mais, pois há apenas uma consulta para o banco de dados. Dependendo do uso específico, você deve avaliar qual método é mais útil para o caso.
 
 [!code-csharp[Main](../../../samples/core/Querying/ClientEval/Sample.cs#ExplicitClientEval)]
 
@@ -60,7 +60,7 @@ A seção a seguir aplica-se às versões EF Core anteriores a 3,0.
 
 Versões mais antigas do EF Core com suporte para avaliação do cliente em qualquer parte da consulta – não apenas na projeção de nível superior. É por isso que as consultas semelhantes a uma publicadas na seção de [avaliação do cliente sem suporte](#unsupported-client-evaluation) funcionaram corretamente. Como esse comportamento pode causar problemas de desempenho não percebidos, EF Core registrada em log um aviso de avaliação do cliente. Para obter mais informações sobre como exibir a saída de log, consulte [Logging](xref:core/miscellaneous/logging).
 
-Opcionalmente EF Core permite que você altere o comportamento padrão para gerar uma exceção ou não fazer nada ao fazer a avaliação do cliente (exceto para na projeção). O comportamento de lançamento de exceção o tornaria semelhante ao comportamento em 3,0. Para alterar o comportamento, você precisa configurar avisos enquanto configura as opções para seu contexto, normalmente em `DbContext.OnConfiguring`, ou em `Startup.cs`, se você estiver usando ASP.NET Core.
+Opcionalmente EF Core permite que você altere o comportamento padrão para gerar uma exceção ou não fazer nada ao fazer a avaliação do cliente (exceto para na projeção). O comportamento de lançamento de exceção o tornaria semelhante ao comportamento em 3,0. Para alterar o comportamento, você precisa configurar avisos enquanto configura as opções para seu contexto, normalmente em `DbContext.OnConfiguring`, ou em `Startup.cs` se você estiver usando ASP.NET Core.
 
 ```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

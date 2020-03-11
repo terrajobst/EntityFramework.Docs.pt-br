@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: c6ae6d8f-1ace-47db-ad47-b1718f1ba082
 ms.openlocfilehash: 92a763b84a04d3ce7ec0853ef2a4852356cf7997
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182514"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418563"
 ---
 # <a name="enum-support---ef-designer"></a>Suporte a enum-designer de EF
 > [!NOTE]
@@ -46,7 +46,7 @@ Você precisará ter o Visual Studio 2012, Ultimate, Premium, Professional ou We
 2.  Selecione **dados** no menu à esquerda e, em seguida, selecione **ADO.NET modelo de dados de entidade** no painel modelos
 3.  Digite **EnumTestModel. edmx** para o nome do arquivo e clique em **Adicionar**
 4.  Na página Assistente de Modelo de Dados de Entidade, selecione **modelo vazio** na caixa de diálogo escolher conteúdo do modelo
-5.  Clique em **concluir**
+5.  Clique em **Concluir**
 
 O Entity Designer, que fornece uma superfície de design para editar seu modelo, é exibido.
 

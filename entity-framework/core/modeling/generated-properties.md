@@ -6,11 +6,11 @@ ms.author: ansvyryd
 ms.date: 11/06/2019
 uid: core/modeling/generated-properties
 ms.openlocfilehash: 9c616e157ff1bdb9700f436a7ae2788330fe5d45
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502026"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416342"
 ---
 # <a name="generated-values"></a>Valores gerados
 
@@ -58,11 +58,11 @@ Por convenção, chaves primárias não compostas do tipo curto, int, Long ou GU
 
 Você pode configurar qualquer propriedade para que seu valor seja gerado para entidades inseridas da seguinte maneira:
 
-### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
+### <a name="data-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAdd.cs?name=ValueGeneratedOnAdd&highlight=5)]
 
-### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
+### <a name="fluent-api"></a>[API fluente](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAdd.cs?name=ValueGeneratedOnAdd&highlight=5)]
 
@@ -87,11 +87,11 @@ A especificação de um valor padrão configurará implicitamente a propriedade 
 
 ## <a name="value-generated-on-add-or-update"></a>Valor gerado em Adicionar ou atualizar
 
-### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
+### <a name="data-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAddOrUpdate.cs?name=ValueGeneratedOnAddOrUpdate&highlight=5)]
 
-### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
+### <a name="fluent-api"></a>[API fluente](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAddOrUpdate.cs?name=ValueGeneratedOnAddOrUpdate&highlight=5)]
 
@@ -113,11 +113,11 @@ Em alguns bancos de dados relacionais, uma coluna pode ser configurada para ter 
 
 A desabilitação da geração de valor em uma propriedade normalmente é necessária se uma convenção a configura para geração de valor. Por exemplo, se você tiver uma chave primária do tipo int, ela será definida implicitamente como o valor gerado em Add; Você pode desabilitar isso por meio do seguinte:
 
-### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
+### <a name="data-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedNever.cs?name=ValueGeneratedNever&highlight=3)]
 
-### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
+### <a name="fluent-api"></a>[API fluente](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedNever.cs?name=ValueGeneratedNever&highlight=5)]
 

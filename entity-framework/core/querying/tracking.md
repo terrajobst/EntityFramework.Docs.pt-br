@@ -4,12 +4,12 @@ author: smitpatel
 ms.date: 10/10/2019
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
 uid: core/querying/tracking
-ms.openlocfilehash: 66988f936ab75e17620398c8f21e4a32bbc950bd
-ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
+ms.openlocfilehash: a6c71c12f429f1324abe91d1b2cef96312bec051
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72445953"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417645"
 ---
 # <a name="tracking-vs-no-tracking-queries"></a>Acompanhamento versus consultas sem controle
 
@@ -19,11 +19,11 @@ Controlando controles de comportamento se Entity Framework Core manterá informa
 > Os [tipos de entidade de subunidade](xref:core/modeling/keyless-entity-types) nunca são rastreados. Sempre que este artigo menciona tipos de entidade, ele se refere a tipos de entidade que têm uma chave definida.
 
 > [!TIP]  
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="tracking-queries"></a>Consultas com acompanhamento
 
-Por padrão, as consultas que retornam tipos de entidade são de acompanhamento. Isso significa que você pode fazer alterações nessas instâncias de entidade e fazer com que essas alterações sejam mantidas por `SaveChanges()`. No exemplo a seguir, a alteração para a classificação de blogs será detectada e persistida no banco de dados durante a `SaveChanges()`.
+Por padrão, as consultas que retornam tipos de entidade são de acompanhamento. Isso significa que você pode fazer alterações nessas instâncias de entidade e fazer com que essas alterações persistiram por `SaveChanges()`. No exemplo a seguir, a alteração para a classificação de blogs será detectada e persistida no banco de dados durante a `SaveChanges()`.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#Tracking)]
 
@@ -55,7 +55,7 @@ Se o conjunto de resultados não contiver nenhum tipo de entidade, nenhum contro
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection3)]
 
- O EF Core dá suporte à avaliação do cliente na projeção de nível superior. Se EF Core materializar uma instância de entidade para avaliação do cliente, ela será controlada. Aqui, como estamos passando entidades `blog` para o método de cliente `StandardizeURL`, EF Core também acompanhará as instâncias de blog.
+ O EF Core dá suporte à avaliação do cliente na projeção de nível superior. Se EF Core materializar uma instância de entidade para avaliação do cliente, ela será controlada. Aqui, como estamos passando `blog` entidades para o método de cliente `StandardizeURL`, EF Core também acompanhará as instâncias de blog.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientProjection)]
 
@@ -70,7 +70,7 @@ Algumas das regras acima funcionaram de maneira diferente antes de EF Core 3,0. 
 Antes da versão 3,0, EF Core tinha algumas diferenças em como o controle foi feito. As diferenças notáveis são as seguintes:
 
 - Conforme explicado na página [avaliação do cliente vs Server](xref:core/querying/client-eval) , EF Core avaliação de cliente com suporte em qualquer parte da consulta antes da versão 3,0. A avaliação do cliente causou a materialização das entidades, que não faziam parte do resultado. Portanto EF Core analisado o resultado para detectar o que rastrear. Esse design tinha determinadas diferenças, da seguinte maneira:
-  - Avaliação do cliente na projeção, que causou a materialização, mas não retornou que a instância de entidade materializada não foi rastreada. O exemplo a seguir não acompanha as entidades `blog`.
+  - Avaliação do cliente na projeção, que causou a materialização, mas não retornou que a instância de entidade materializada não foi rastreada. O exemplo a seguir não acompanha `blog` entidades.
     [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientProjection)]
 
   - EF Core não rastreie os objetos provenientes da composição do LINQ em determinados casos. O exemplo a seguir não acompanha `Post`.

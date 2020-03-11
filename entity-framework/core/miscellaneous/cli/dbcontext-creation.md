@@ -5,11 +5,11 @@ ms.author: bricelam
 ms.date: 09/16/2019
 uid: core/miscellaneous/cli/dbcontext-creation
 ms.openlocfilehash: f44f0648678af5a70e5171d69692bde1c1d5e0eb
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655535"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416738"
 ---
 # <a name="design-time-dbcontext-creation"></a>Criação de DbContext no tempo de design
 
@@ -36,14 +36,14 @@ Se DbContext não puder ser obtido do provedor de serviços de aplicativo, as fe
 
 ## <a name="from-a-design-time-factory"></a>De uma fábrica de tempo de design
 
-Você também pode informar às ferramentas como criar seu DbContext implementando a interface `IDesignTimeDbContextFactory<TContext>`: se uma classe que implementa essa interface for encontrada no mesmo projeto que o `DbContext` derivado ou no projeto de inicialização do aplicativo, as ferramentas ignorarão a outra maneiras de criar o DbContext e usar a fábrica de tempo de design em vez disso.
+Você também pode informar as ferramentas sobre como criar seu DbContext implementando a interface `IDesignTimeDbContextFactory<TContext>`: se uma classe que implementa essa interface for encontrada no mesmo projeto que o `DbContext` derivado ou no projeto de inicialização do aplicativo, as ferramentas ignorarão as outras maneiras de criar o DbContext e usar a fábrica de tempo de design em vez disso.
 
 [!code-csharp[Main](../../../../samples/core/Miscellaneous/CommandLine/BloggingContextFactory.cs)]
 
 > [!NOTE]
 > O parâmetro `args` não é usado no momento. Há [um problema][8] que controla a capacidade de especificar argumentos de tempo de design a partir das ferramentas.
 
-Uma fábrica de tempo de design pode ser especialmente útil se você precisar configurar o DbContext de forma diferente para o tempo de design do que no tempo de execução, se o construtor de `DbContext` usar parâmetros adicionais não estiver registrado em DI, se você não estiver usando DI, ou se por algum motivo você prefira não ter um método `BuildWebHost` na classe `Main` do aplicativo ASP.NET Core.
+Uma fábrica de tempo de design pode ser especialmente útil se você precisar configurar o DbContext de forma diferente para o tempo de design do que no tempo de execução, se o construtor de `DbContext` usar parâmetros adicionais não estiver registrado em DI, se você não estiver usando DI, ou se por algum motivo você preferir não ter um método `BuildWebHost` na classe `Main` do seu aplicativo ASP.NET Core.
 
   [1]: xref:core/managing-schemas/migrations/index
   [2]: xref:core/miscellaneous/configuring-dbcontext

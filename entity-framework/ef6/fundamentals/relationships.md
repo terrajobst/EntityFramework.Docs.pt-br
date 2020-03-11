@@ -3,19 +3,20 @@ title: Relações, propriedades de navegação e chaves estrangeiras-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: cc7160f2d0ab7ac0c6009f820441c88590cacfaf
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 892e872e3cb11ea95084cf6d9ab43c8d500bc0de
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655871"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419349"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>Relações, propriedades de navegação e chaves estrangeiras
-Este tópico fornece uma visão geral de como o Entity Framework gerencia relações entre entidades. Ele também fornece algumas diretrizes sobre como mapear e manipular relações.
+
+Este artigo fornece uma visão geral de como o Entity Framework gerencia relações entre entidades. Ele também fornece algumas diretrizes sobre como mapear e manipular relações.
 
 ## <a name="relationships-in-ef"></a>Relações no EF
 
-Em bancos de dados relacionais, as relações (também chamadas de associações) entre tabelas são definidas por meio de chaves estrangeiras. Uma chave estrangeira (FK) é uma coluna ou combinação de colunas que é usada para estabelecer e impor um vínculo entre os dados em duas tabelas. Em geral, há três tipos de relações: um-para-um, um-para-muitos e muitos para muitos. Em uma relação um-para-muitos, a chave estrangeira é definida na tabela que representa a extremidade de muitos da relação. A relação muitos para muitos envolve a definição de uma terceira tabela (chamada de tabela de junção ou junção), cuja chave primária é composta pelas chaves estrangeiras de ambas as tabelas relacionadas. Em uma relação um-para-um, a chave primária funciona além de uma chave estrangeira e não há nenhuma coluna de chave estrangeira separada para qualquer tabela.
+Em bancos de dados relacionais, as relações (também chamadas de associações) entre tabelas são definidas por meio de chaves estrangeiras. Uma chave estrangeira (FK) é uma coluna ou combinação de colunas que é usada para estabelecer e impor um link entre os dados em duas tabelas. Em geral, há três tipos de relações: um-para-um, um-para-muitos e muitos para muitos. Em uma relação um-para-muitos, a chave estrangeira é definida na tabela que representa a extremidade de muitos da relação. A relação muitos para muitos envolve a definição de uma terceira tabela (chamada de tabela de junção ou junção), cuja chave primária é composta pelas chaves estrangeiras de ambas as tabelas relacionadas. Em uma relação um-para-um, a chave primária funciona além de uma chave estrangeira e não há nenhuma coluna de chave estrangeira separada para qualquer tabela.
 
 A imagem a seguir mostra duas tabelas que participam de uma relação um-para-muitos. A tabela do **curso** é a tabela dependente porque contém a coluna **DepartmentID** que a vincula à tabela **Department** .
 
@@ -166,7 +167,7 @@ Em Entity Framework você geralmente usa propriedades de navegação para carreg
 
 Em uma associação independente, a extremidade relacionada de um objeto dependente é consultada com base no valor de chave estrangeira que está atualmente no banco de dados. No entanto, se a relação tiver sido modificada e a propriedade de referência no objeto dependente apontar para um objeto principal diferente que é carregado no contexto do objeto, Entity Framework tentará criar uma relação como ela está definida no cliente.
 
-## <a name="managing-concurrency"></a>Gerenciando a simultaneidade
+## <a name="managing-concurrency"></a>Gerenciando simultaneidade
 
 Na chave estrangeira e nas associações independentes, as verificações de simultaneidade se baseiam nas chaves de entidade e outras propriedades de entidade que são definidas no modelo. Ao usar o designer do EF para criar um modelo, defina o atributo `ConcurrencyMode` como **fixo** para especificar que a propriedade deve ser verificada quanto à simultaneidade. Ao usar Code First para definir um modelo, use a anotação `ConcurrencyCheck` nas propriedades que você deseja que sejam verificadas quanto à simultaneidade. Ao trabalhar com Code First você também pode usar a anotação `TimeStamp` para especificar que a propriedade deve ser verificada quanto à simultaneidade. Você pode ter apenas uma propriedade Timestamp em uma determinada classe. Code First mapeia essa propriedade para um campo não anulável no banco de dados.
 

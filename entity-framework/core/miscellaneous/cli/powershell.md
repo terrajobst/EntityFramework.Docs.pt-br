@@ -5,11 +5,11 @@ ms.author: bricelam
 ms.date: 09/18/2018
 uid: core/miscellaneous/cli/powershell
 ms.openlocfilehash: a9ce6d5b5f36a72e3715a9de787f1f00e989a58c
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72811905"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416714"
 ---
 # <a name="entity-framework-core-tools-reference---package-manager-console-in-visual-studio"></a>Referência de ferramentas de Entity Framework Core – console do Gerenciador de pacotes no Visual Studio
 
@@ -131,12 +131,12 @@ Para especificar o ambiente para projetos de ASP.NET Core, defina **env: ASPNETC
 
 A tabela a seguir mostra os parâmetros que são comuns a todos os comandos de EF Core:
 
-| Parâmetro                 | Descrição                                                                                                                                                                                                          |
+| Parâmetro                 | DESCRIÇÃO                                                                                                                                                                                                          |
 |:--------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | \<> de cadeia de caracteres de contexto        | A classe `DbContext` a ser usada. Nome da classe somente ou totalmente qualificado com namespaces.  Se esse parâmetro for omitido, EF Core encontrará a classe de contexto. Se houver várias classes de contexto, esse parâmetro será necessário. |
 | -Cadeia de caracteres de \<de projeto >        | O projeto de destino. Se esse parâmetro for omitido, o **projeto padrão** do **console do Gerenciador de pacotes** será usado como o projeto de destino.                                                                             |
 | -StartupProject \<cadeia de caracteres > | O projeto de inicialização. Se esse parâmetro for omitido, o **projeto de inicialização** nas propriedades da **solução** será usado como o projeto de destino.                                                                                 |
-| -Detalhado                  | Mostrar saída detalhada.                                                                                                                                                                                                 |
+| -Verbose                  | Mostrar saída detalhada.                                                                                                                                                                                                 |
 
 Para mostrar informações de ajuda sobre um comando, use o comando `Get-Help` do PowerShell.
 
@@ -149,7 +149,7 @@ Adiciona uma nova migração.
 
 Parâmetros:
 
-| Parâmetro                         | Descrição                                                                                                             |
+| Parâmetro                         | DESCRIÇÃO                                                                                                             |
 |:----------------------------------|:------------------------------------------------------------------------------------------------------------------------|
 | \<> cadeia de caracteres de nome de <nobr><nobr>       | O nome da migração. Esse é um parâmetro posicional e é necessário.                                              |
 | <nobr>-OutputDir \<cadeia de caracteres ></nobr> | O diretório (e o subnamespace) a ser usado. Os caminhos são relativos ao diretório do projeto de destino. O padrão é "migrações". |
@@ -160,7 +160,7 @@ Remove o banco de dados.
 
 Parâmetros:
 
-| Parâmetro | Descrição                                              |
+| Parâmetro | DESCRIÇÃO                                              |
 |:----------|:---------------------------------------------------------|
 | -WhatIf   | Mostrar qual banco de dados seria descartado, mas não descartá-lo. |
 
@@ -174,7 +174,7 @@ Remove a última migração (reverte as alterações de código que foram feitas
 
 Parâmetros:
 
-| Parâmetro | Descrição                                                                     |
+| Parâmetro | DESCRIÇÃO                                                                     |
 |:----------|:--------------------------------------------------------------------------------|
 | -Force    | Reverter a migração (reverter as alterações que foram aplicadas ao banco de dados). |
 
@@ -184,7 +184,7 @@ Gera código para um `DbContext` e tipos de entidade para um banco de dados. Par
 
 Parâmetros:
 
-| Parâmetro                          | Descrição                                                                                                                                                                                                                                                             |
+| Parâmetro                          | DESCRIÇÃO                                                                                                                                                                                                                                                             |
 |:-----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <nobr>-Cadeia de caracteres de \<de conexão ></nobr> | A cadeia de conexão para o banco de dados. Para projetos ASP.NET Core 2. x, o valor pode ser *nome =\<nome da cadeia de conexão >* . Nesse caso, o nome é proveniente das fontes de configuração que estão configuradas para o projeto. Esse é um parâmetro posicional e é necessário. |
 | <nobr>-Cadeia de caracteres de \<do provedor ></nobr>   | O provedor a ser usado. Normalmente, esse é o nome do pacote NuGet, por exemplo: `Microsoft.EntityFrameworkCore.SqlServer`. Esse é um parâmetro posicional e é necessário.                                                                                           |
@@ -193,7 +193,7 @@ Parâmetros:
 | \<> de cadeia de caracteres de contexto                 | O nome da classe de `DbContext` a ser gerada.                                                                                                                                                                                                                          |
 | -Schemas \<cadeia de caracteres [] >               | Os esquemas de tabelas para os quais gerar tipos de entidade. Se esse parâmetro for omitido, todos os esquemas serão incluídos.                                                                                                                                                             |
 | -Tables \<String [] >                | As tabelas para as quais gerar tipos de entidade. Se esse parâmetro for omitido, todas as tabelas serão incluídas.                                                                                                                                                                         |
-| -Annotations                   | Use atributos para configurar o modelo (sempre que possível). Se esse parâmetro for omitido, somente a API fluente será usada.                                                                                                                                                      |
+| -DataAnnotations                   | Use atributos para configurar o modelo (sempre que possível). Se esse parâmetro for omitido, somente a API fluente será usada.                                                                                                                                                      |
 | -UseDatabaseNames                  | Use nomes de tabela e coluna exatamente como aparecem no banco de dados. Se esse parâmetro for omitido, os nomes de banco de dados serão alterados C# para se adequar melhor às convenções de estilo de nome.                                                                                       |
 | -Force                             | Substitui os arquivos existentes.                                                                                                                                                                                                                                               |
 
@@ -215,7 +215,7 @@ Gera um script SQL que aplica todas as alterações de uma migração selecionad
 
 Parâmetros:
 
-| Parâmetro                | Descrição                                                                                                                                                                                                                |
+| Parâmetro                | DESCRIÇÃO                                                                                                                                                                                                                |
 |:-------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | *-De* \<cadeia de caracteres >        | A migração inicial. As migrações podem ser identificadas por nome ou por ID. O número 0 é um caso especial que significa *antes da primeira migração*. O padrão é 0.                                                              |
 | *-Para* \<cadeia de caracteres >          | A migração final. O padrão é a última migração.                                                                                                                                                                      |
@@ -241,7 +241,7 @@ Script-Migration -From 20180904195021_InitialCreate
 
 Atualiza o banco de dados para a última migração ou para uma migração especificada.
 
-| Parâmetro                           | Descrição                                                                                                                                                                                                                                                     |
+| Parâmetro                           | DESCRIÇÃO                                                                                                                                                                                                                                                     |
 |:------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <nobr> *-\<de cadeia de caracteres de migração* ></nobr> | A migração de destino. As migrações podem ser identificadas por nome ou por ID. O número 0 é um caso especial que significa *antes da primeira migração* e faz com que todas as migrações sejam revertidas. Se nenhuma migração for especificada, o comando usa como padrão a última migração. |
 

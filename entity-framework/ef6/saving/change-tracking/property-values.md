@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: e3278b4b-9378-4fdb-923d-f64d80aaae70
 ms.openlocfilehash: d8a18182754980d79b71df3f227b30c4ce40366f
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182138"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416963"
 ---
 # <a name="working-with-property-values"></a>Trabalhando com valores de propriedade
 Para a maior parte Entity Framework cuidará do estado, dos valores originais e dos valores atuais das propriedades de suas instâncias de entidade. No entanto, pode haver alguns casos, como cenários desconectados, onde você deseja exibir ou manipular as informações que o EF tem sobre as propriedades. As técnicas mostradas neste tópico se aplicam igualmente a modelos criados com o Code First e com o EF Designer.  

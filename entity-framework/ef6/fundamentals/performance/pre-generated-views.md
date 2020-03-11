@@ -1,43 +1,43 @@
 ---
-title: Modos de exibição de mapeamento pré-gerado - EF6
+title: Exibições de mapeamento geradas previamente-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 917ba9c8-6ddf-4631-ab8c-c4fb378c2fcd
 ms.openlocfilehash: 1fda9fe9638adce9b24a6b81aa081effeb0def81
-ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/30/2018
-ms.locfileid: "47459520"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419387"
 ---
-# <a name="pre-generated-mapping-views"></a>Modos de exibição de mapeamento gerados previamente
-Antes que o Entity Framework pode executar uma consulta ou salvar as alterações à fonte de dados, ele deve gerar um conjunto de exibições de mapeamento para acessar o banco de dados. Esses modos de exibição de mapeamento são um conjunto de instrução de Entity SQL que representam o banco de dados de uma maneira abstrata e fazem parte dos metadados que é armazenado em cache por domínio de aplicativo. Se você criar várias instâncias do mesmo contexto no mesmo domínio do aplicativo, eles serão reutilizar modos de exibição de mapeamento dos metadados em cache em vez de regenerá-los. Como geração de exibição de mapeamento é uma parte significativa do custo geral da execução da consulta primeiro, o Entity Framework permite que você gerar previamente exibições de mapeamento e incluí-los no projeto compilado. Para obter mais informações, consulte [considerações de desempenho (Entity Framework)](~/ef6/fundamentals/performance/perf-whitepaper.md).
+# <a name="pre-generated-mapping-views"></a>Exibições de mapeamento geradas previamente
+Antes que o Entity Framework possa executar uma consulta ou salvar as alterações na fonte de dados, ele deve gerar um conjunto de exibições de mapeamento para acessar o banco de dado. Essas exibições de mapeamento são um conjunto de Entity SQL instrução que representam o banco de dados de forma abstrata e fazem parte dos metadados que são armazenados em cache por domínio de aplicativo. Se você criar várias instâncias do mesmo contexto no mesmo domínio de aplicativo, elas reutilizarão os modos de exibição de mapeamento dos metadados em cache em vez de gerá-los novamente. Como a geração de exibição de mapeamento é uma parte significativa do custo geral da execução da primeira consulta, a Entity Framework permite gerar previamente exibições de mapeamento e incluí-las no projeto compilado. Para obter mais informações, consulte  [performance Considerations (Entity Framework)](~/ef6/fundamentals/performance/perf-whitepaper.md).
 
-## <a name="generating-mapping-views-with-the-ef-power-tools-community-edition"></a>Gerando mapeamento de exibições com o EF Power Tools Community Edition
+## <a name="generating-mapping-views-with-the-ef-power-tools-community-edition"></a>Gerando exibições de mapeamento com o EF Power Tools Community Edition
 
-A maneira mais fácil de gerar previamente exibições é usar o [EF Power Tools Community Edition](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition). Uma vez que o Power Tools instalado, você terá uma opção de menu para gerar exibições, como mostrado abaixo.
+A maneira mais fácil de gerar previamente modos de exibição é usar o [EF Power Tools Community Edition](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition). Depois de instalar o Power Tools, você terá uma opção de menu para gerar exibições, como mostrado abaixo.
 
--   Para **Code First** modelos com o botão direito no arquivo de código que contém sua classe DbContext.
--   Para **EF Designer** modelos com o botão direito em seu arquivo EDMX.
+-   Para modelos de **Code First** , clique com o botão direito do mouse no arquivo de código que contém sua classe DbContext.
+-   Para modelos do **designer do EF** , clique com o botão direito do mouse no arquivo edmx.
 
 ![gerar exibições](~/ef6/media/generateviews.png)
 
-Depois que o processo for concluído, você terá uma classe semelhante à seguinte gerado
+Quando o processo for concluído, você terá uma classe semelhante à gerada a seguir
 
-![modos de exibição gerados](~/ef6/media/generatedviews.png)
+![Exibições geradas](~/ef6/media/generatedviews.png)
 
-Agora quando você executa seu aplicativo EF usará essa classe para carregar os modos de exibição conforme necessário. Se as alterações de modelo e você não gerar novamente esta classe EF lançará uma exceção.
+Agora, quando você executar o aplicativo, o EF usará essa classe para carregar exibições conforme necessário. Se seu modelo for alterado e você não gerar novamente essa classe, o EF gerará uma exceção.
 
-## <a name="generating-mapping-views-from-code---ef6-onwards"></a>Gerando mapeamento de exibições do código - EF6 em diante
+## <a name="generating-mapping-views-from-code---ef6-onwards"></a>Gerando exibições de mapeamento do Code-EF6 em diante
 
-A outra maneira de gerar exibições é usar as APIs que o EF oferece. Ao usar esse método, você tem a liberdade para serializar os modos de exibição, no entanto, você gosta, mas você também precisa carregar as exibições por conta própria.
+A outra maneira de gerar modos de exibição é usar as APIs que o EF fornece. Ao usar esse método, você tem a liberdade de serializar as exibições como desejar, mas também precisa carregar as exibições por conta própria.
 
 > [!NOTE]
-> **EF6 em diante, somente** -APIs do mostrado nesta seção foram introduzidas no Entity Framework 6. Se você estiver usando uma versão anterior, que essa informação não se aplica.
+> **Somente EF6 em diante** – as APIs mostradas nesta seção foram introduzidas no Entity Framework 6. Se você estiver usando uma versão anterior, essas informações não serão aplicáveis.
 
-### <a name="generating-views"></a>Gerando exibições
+### <a name="generating-views"></a>Geração de exibições
 
-As APIs para gerar exibições estão na classe System.Data.Entity.Core.Mapping.StorageMappingItemCollection. Você pode recuperar um StorageMappingCollection para um contexto usando o MetadataWorkspace de um ObjectContext. Se você estiver usando a API DbContext mais recente, em seguida, você pode acessá-la usando o IObjectContextAdapter como abaixo, nesse código, temos uma instância do seu DbContext derivada chamada dbContext:
+As APIs para gerar modos de exibição estão na classe System. Data. Entity. Core. Mapping. StorageMappingItemCollection. Você pode recuperar um StorageMappingCollection para um contexto usando o MetadataWorkspace de um ObjectContext. Se você estiver usando a API DbContext mais nova, poderá acessá-la usando o IObjectContextAdapter como mostrado abaixo, neste código, temos uma instância de seu DbContext derivado chamado dbContext:
 
 ``` csharp
     var objectContext = ((IObjectContextAdapter) dbContext).ObjectContext;
@@ -45,31 +45,31 @@ As APIs para gerar exibições estão na classe System.Data.Entity.Core.Mapping.
                                                                         .GetItemCollection(DataSpace.CSSpace);
 ```
 
-Quando você tiver StorageMappingItemCollection, em seguida, você pode obter acesso aos métodos GenerateViews e ComputeMappingHashValue.
+Depois de ter o StorageMappingItemCollection, você pode obter acesso aos métodos GenerateViews e ComputeMappingHashValue.
 
 ``` csharp
     public Dictionary\<EntitySetBase, DbMappingView> GenerateViews(IList<EdmSchemaError> errors)
     public string ComputeMappingHashValue()
 ```
 
-O primeiro método cria um dicionário com uma entrada para cada modo de exibição no mapeamento de contêiner. O segundo método calcula um valor de hash para o mapeamento de contêiner único e é usado em tempo de execução para validar que o modelo não foi alterado desde que os modos de exibição foram gerados previamente. Substituições dos dois métodos são fornecidas para cenários complexos que envolvem vários mapeamentos de contêiner.
+O primeiro método cria um dicionário com uma entrada para cada exibição no mapeamento de contêiner. O segundo método computa um valor de hash para o mapeamento de contêiner único e é usado em tempo de execução para validar que o modelo não foi alterado desde que as exibições foram geradas previamente. As substituições dos dois métodos são fornecidas para cenários complexos que envolvem vários mapeamentos de contêiner.
 
-Ao gerar os modos de exibição, você chamará o método GenerateViews e, em seguida, gravar o resultante EntitySetBase e DbMappingView. Você também precisará armazenar o hash gerado pelo método ComputeMappingHashValue.
+Ao gerar exibições, você chamará o método GenerateViews e gravará o EntitySetBase resultante e o DbMappingView. Você também precisará armazenar o hash gerado pelo método ComputeMappingHashValue.
 
-### <a name="loading-views"></a>Modos de exibição de carregamento
+### <a name="loading-views"></a>Carregando exibições
 
-Para carregar as exibições geradas pelo método GenerateViews, você pode fornecer o EF com uma classe que herda da classe abstrata DbMappingViewCache. DbMappingViewCache especifica dois métodos que você deve implementar:
+Para carregar as exibições geradas pelo método GenerateViews, você pode fornecer o EF com uma classe que herda da classe abstrata DbMappingViewCache. DbMappingViewCache especifica dois métodos que devem ser implementados:
 
 ``` csharp
     public abstract string MappingHashValue { get; }
     public abstract DbMappingView GetView(EntitySetBase extent);
 ```
 
-A propriedade MappingHashValue deve retornar o hash gerado pelo método ComputeMappingHashValue. Quando o EF é vai pedir para modos de exibição a ele pela primeira vez gerará e comparar o valor de hash do modelo com o hash retornado por essa propriedade. Se eles não corresponderem, em seguida, o EF lançará uma exceção de EntityCommandCompilationException.
+A propriedade MappingHashValue deve retornar o hash gerado pelo método ComputeMappingHashValue. Quando o EF vai solicitar exibições, ele primeiro irá gerar e comparar o valor de hash do modelo com o hash retornado por essa propriedade. Se eles não corresponderem, o EF gerará uma exceção EntityCommandCompilationException.
 
-O método GetView aceitará um EntitySetBase e você precisa retornar um DbMappingVIew que contém o EntitySql que foi gerada para que foi associado a determinado EntitySetBase no dicionário gerado pelo método GenerateViews. Se o EF solicita uma exibição que você não precisa, em seguida, GetView deve retornar nula.
+O método GetView aceitará um EntitySetBase e você precisará retornar um DbMappingVIew contendo o EntitySql que foi gerado para o que estava associado ao EntitySetBase fornecido no dicionário gerado pelo método GenerateViews. Se o EF solicitar uma exibição que você não tenha, GetView deverá retornar NULL.
 
-Veja a seguir um extrato do DbMappingViewCache que é gerado com o Power Tools, conforme descrito acima, nele, que podemos ver uma maneira de armazenar e recuperar o EntitySql necessária.
+Veja a seguir uma extração do DbMappingViewCache que é gerado com o Power Tools, conforme descrito acima, que vemos uma maneira de armazenar e recuperar o EntitySql necessário.
 
 ``` csharp
     public override string MappingHashValue
@@ -117,10 +117,10 @@ Veja a seguir um extrato do DbMappingViewCache que é gerado com o Power Tools, 
     }
 ```
 
-Para que o uso do EF seu DbMappingViewCache adicionar use DbMappingViewCacheTypeAttribute, especificando o contexto no qual ele foi criado para. No código a seguir, associamos o BlogContext com a classe MyMappingViewCache.
+Para que o EF use seu DbMappingViewCache, você adiciona usar o DbMappingViewCacheTypeAttribute, especificando o contexto para o qual ele foi criado. No código abaixo, associamos o BlogContext à classe MyMappingViewCache.
 
 ``` csharp
     [assembly: DbMappingViewCacheType(typeof(BlogContext), typeof(MyMappingViewCache))]
 ```
 
-Para cenários mais complexos, as instâncias de cache do modo de exibição de mapeamento podem ser fornecidas com a especificação de uma fábrica de cache do modo de exibição de mapeamento. Isso pode ser feito com a implementação da classe abstrata System.Data.Entity.Infrastructure.MappingViews.DbMappingViewCacheFactory. A instância da fábrica de cache de modo de exibição de mapeamento que é usada pode ser recuperada ou definida usando o StorageMappingItemCollection.MappingViewCacheFactoryproperty.
+Para cenários mais complexos, o mapeamento de instâncias de cache de exibição pode ser fornecido especificando uma fábrica de cache de exibição de mapeamento. Isso pode ser feito com a implementação da classe abstrata System. Data. Entity. Infrastructure. MappingViews. DbMappingViewCacheFactory. A instância da fábrica de cache do modo de exibição de mapeamento que é usada pode ser recuperada ou definida usando o StorageMappingItemCollection. MappingViewCacheFactoryproperty.

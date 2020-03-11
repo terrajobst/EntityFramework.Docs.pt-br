@@ -5,11 +5,11 @@ ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
 ms.openlocfilehash: 83f6b819409d502dba17a678d44a0746a4a77f4b
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824880"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417492"
 ---
 # <a name="new-features-in-ef-core-20"></a>Novos recursos no EF Core 2.0
 
@@ -205,13 +205,13 @@ using (var db = new CustomerContext())
 }
 ```
 
-## <a name="change-tracking"></a>Controle de alterações
+## <a name="change-tracking"></a>Controle de Alterações
 
 ### <a name="attach-can-track-a-graph-of-new-and-existing-entities"></a>Anexar pode acompanhar um gráfico de entidades novas e existentes
 
 O EF Core é compatível com a geração automática de valores de chave por meio de diversos mecanismos. Ao usar esse recurso, um valor será gerado se a propriedade da chave for o padrão CLR – normalmente zero ou nulo. Isso significa que um gráfico de entidades pode ser passado para `DbContext.Attach` ou `DbSet.Attach`, e o Core EF marcará as entidades que têm uma chave já definida como `Unchanged` enquanto as entidades que não têm um conjunto de chaves serão marcadas como `Added`. Isso torna fácil anexar um gráfico de entidades mistas novas e existentes ao usar chaves geradas. `DbContext.Update` e `DbSet.Update` funcionam da mesma forma, exceto que entidades com um conjunto de chaves são marcadas como `Modified`, em vez de `Unchanged`.
 
-## <a name="query"></a>Query
+## <a name="query"></a>Consulta
 
 ### <a name="improved-linq-translation"></a>Tradução LINQ aprimorada
 
@@ -299,7 +299,7 @@ public class MyPluralizer : IPluralizer
 }
 ```
 
-## <a name="others"></a>Others
+## <a name="others"></a>Outras pessoas
 
 ### <a name="move-adonet-sqlite-provider-to-sqlitepclraw"></a>Mover o provedor ADO.NET SQLite para SQLitePCL.raw
 

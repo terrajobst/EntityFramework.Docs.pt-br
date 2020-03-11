@@ -5,12 +5,12 @@ ms.author: avickers
 ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 88c3fa8ea5b8246a932f5cf21e674bc7cc71c0ea
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 421531e68ac98c0553938f1c24892701f22fef3c
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656265"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417593"
 ---
 # <a name="disconnected-entities"></a>Entidades desconectadas
 
@@ -20,7 +20,7 @@ No entanto, às vezes, as entidades são consultadas usando uma instância de co
 
 <!-- markdownlint-disable MD028 -->
 > [!TIP]
-> Veja o [exemplo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Disconnected/) deste artigo no GitHub.
+> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Disconnected/) deste artigo no GitHub.
 
 > [!TIP]
 > O EF Core só pode controlar uma instância de qualquer entidade com um determinado valor de chave primária. A melhor maneira de evitar que esse seja um problema é usar um contexto de curta duração para cada unidade de trabalho, de modo que o contexto começa vazio, tem entidades anexadas a ele, salva essas entidades e, em seguida, o contexto é descartado.

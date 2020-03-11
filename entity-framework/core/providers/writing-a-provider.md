@@ -4,19 +4,19 @@ author: anmiller
 ms.date: 10/27/2016
 ms.assetid: 1165e2ec-e421-43fc-92ab-d92f9ab3c494
 uid: core/providers/writing-a-provider
-ms.openlocfilehash: 9d52a8581772cc5405e94966fa7ebdff4128c252
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 2d9e4a6cdfda80d7dfcfb6e7bf0480eb49f8e057
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73654771"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417879"
 ---
 # <a name="writing-a-database-provider"></a>Escrever um provedor de dados
 
 Para obter informações sobre como escrever um provedor de banco de dados Entity Framework Core, consulte para [escrever um provedor de EF Core](https://blog.oneunicorn.com/2016/11/11/so-you-want-to-write-an-ef-core-provider/) de [Arthur Vicker](https://github.com/ajcvickers).
 
 > [!NOTE]
-> Essas postagens não foram atualizadas desde EF Core 1,1 e houve alterações significativas desde que o [problema 681](https://github.com/aspnet/EntityFramework.Docs/issues/681) está acompanhando as atualizações desta documentação.
+> Essas postagens não foram atualizadas desde EF Core 1,1 e houve alterações significativas desde que o [problema 681](https://github.com/dotnet/EntityFramework.Docs/issues/681) está acompanhando as atualizações desta documentação.
 
 O EF Core codebase é código aberto e contém vários provedores de banco de dados que podem ser usados como referência. Você pode encontrar o código-fonte em <https://github.com/aspnet/EntityFrameworkCore>. Também pode ser útil examinar o código para provedores de terceiros comumente usados, como [Npgsql](https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL), [Pomelo MySQL](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)e [SQL Server Compact](https://github.com/ErikEJ/EntityFramework.SqlServerCompact). Em particular, esses projetos são configurados para estender e executar testes funcionais que publicamos no NuGet. Esse tipo de configuração é altamente recomendável.
 

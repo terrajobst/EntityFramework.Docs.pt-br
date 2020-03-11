@@ -5,18 +5,18 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 30b91b6e66b6c0f516d1ba12485304b52770cbef
-ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
+ms.openlocfilehash: da4a459fbc40010fc14190204c8ed66fe0495b84
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75781229"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416456"
 ---
 # <a name="owned-entity-types"></a>Tipos de entidade de propriedade
 
 EF Core permite que você modele tipos de entidade que só podem aparecer em Propriedades de navegação de outros tipos de entidade. Eles são chamados de _tipos de entidade de propriedade_. A entidade que contém um tipo de entidade de propriedade é seu _proprietário_.
 
-As entidades de propriedade são essencialmente uma parte do proprietário e não podem existir sem ela, elas são conceitualmente semelhantes às [agregações](https://martinfowler.com/bliki/DDD_Aggregate.html). Isso significa que o tipo de propriedade é por definição no lado dependente da relação com o proprietário.
+As entidades de propriedade são essencialmente uma parte do proprietário e não podem existir sem ela, elas são conceitualmente semelhantes às [agregações](https://martinfowler.com/bliki/DDD_Aggregate.html). Isso significa que a entidade de propriedade é por definição no lado dependente da relação com o proprietário.
 
 ## <a name="explicit-configuration"></a>Configuração explícita
 
@@ -38,7 +38,7 @@ Se a propriedade `ShippingAddress` for particular no tipo `Order`, você poderá
 
 [!code-csharp[OwnsOneString](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsOneString)]
 
-Consulte o [projeto de exemplo completo](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Modeling/OwnedEntities) para obter mais contexto.
+Consulte o [projeto de exemplo completo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/OwnedEntities) para obter mais contexto.
 
 ## <a name="implicit-keys"></a>Chaves implícitas
 

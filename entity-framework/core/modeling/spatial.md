@@ -6,11 +6,11 @@ ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
 ms.openlocfilehash: 5b45f83ca7f02665f52ccfe16b5af506a6046a62
-ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76124425"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417401"
 ---
 # <a name="spatial-data"></a>Dados espaciais
 
@@ -19,11 +19,11 @@ ms.locfileid: "76124425"
 
 Dados espaciais representam o local físico e a forma de objetos. Muitos bancos de dados fornecem suporte para esse tipo de dado para que ele possa ser indexado e consultado junto com outros dados. Os cenários comuns incluem a consulta de objetos dentro de uma determinada distância de um local ou a seleção do objeto cuja borda contém um determinado local. EF Core dá suporte ao mapeamento para tipos de dados espaciais usando a biblioteca espacial [NetTopologySuite](https://github.com/NetTopologySuite/NetTopologySuite) .
 
-## <a name="installing"></a>Instalando o
+## <a name="installing"></a>Instalando
 
 Para usar dados espaciais com EF Core, você precisa instalar o pacote NuGet de suporte apropriado. O pacote que você precisa instalar depende do provedor que você está usando.
 
-Provedor do EF Core                        | Pacote NuGet espacial
+Provedor de EF Core                        | Pacote NuGet espacial
 --------------------------------------- | ---------------------
 Microsoft.EntityFrameworkCore.SqlServer | [Microsoft. EntityFrameworkCore. SqlServer. NetTopologySuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite)
 Microsoft.EntityFrameworkCore.Sqlite    | [Microsoft. EntityFrameworkCore. sqlite. NetTopologySuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite)
@@ -48,10 +48,10 @@ optionsBuilder.UseSqlServer(
 
 Há vários tipos de dados espaciais. O tipo usado depende dos tipos de formas que você deseja permitir. Aqui está a hierarquia de tipos NTS que você pode usar para propriedades em seu modelo. Eles estão localizados dentro do namespace `NetTopologySuite.Geometries`.
 
-* Geometria
-  * Ponto
+* Geometry
+  * Point
   * LineString
-  * Polígono
+  * Polygon
   * GeometryCollection
     * MultiPoint
     * MultiLineString

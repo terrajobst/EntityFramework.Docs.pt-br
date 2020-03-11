@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 06baa6e1-d680-4a95-845b-81305c87a962
 ms.openlocfilehash: a9c54fbc14dd02ce5d4d91449a0d5f9e72f7f0f7
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182510"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418535"
 ---
 # <a name="spatial---ef-designer"></a>Espacial-designer de EF
 > [!NOTE]
@@ -48,7 +48,7 @@ Você precisará ter o Visual Studio 2012, Ultimate, Premium, Professional ou We
 2.  Selecione **dados** no menu à esquerda e, em seguida, selecione **ADO.NET modelo de dados de entidade** no painel modelos
 3.  Digite **UniversityModel. edmx** para o nome do arquivo e clique em **Adicionar**
 4.  Na página Assistente de Modelo de Dados de Entidade, selecione **modelo vazio** na caixa de diálogo escolher conteúdo do modelo
-5.  Clique em **concluir**
+5.  Clique em **Concluir**
 
 O Entity Designer, que fornece uma superfície de design para editar seu modelo, é exibido.
 
