@@ -5,11 +5,11 @@ author: AndriySvyryd
 ms.date: 11/21/2019
 uid: core/modeling/relationships
 ms.openlocfilehash: 6d68e813cec6c989e8e4cb848f8740489645c65c
-ms.sourcegitcommit: 89567d08c9d8bf9c33bb55a62f17067094a4065a
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/06/2020
-ms.locfileid: "77051401"
+ms.lasthandoff: 03/15/2020
+ms.locfileid: "79402162"
 ---
 # <a name="relationships"></a>Relações
 
@@ -118,13 +118,13 @@ Consulte [exclusão em cascata](../saving/cascade-delete.md) para obter mais det
 
 ## <a name="manual-configuration"></a>Configuração manual
 
-### <a name="fluent-apitabfluent-api"></a>[API fluente](#tab/fluent-api)
+### <a name="fluent-api"></a>[API fluente](#tab/fluent-api)
 
 Para configurar uma relação na API fluente, você começa identificando as propriedades de navegação que compõem a relação. `HasOne` ou `HasMany` identifica a propriedade de navegação no tipo de entidade em que você está iniciando a configuração. Em seguida, você encadea uma chamada para `WithOne` ou `WithMany` para identificar a navegação inversa. os `WithOne` de /`HasOne`são usados para propriedades de navegação de referência e `HasMany`/de `WithMany` são usados para propriedades de navegação de coleção.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/NoForeignKey.cs?name=NoForeignKey&highlight=8-10)]
 
-### <a name="data-annotationstabdata-annotations"></a>[Anotações de dados](#tab/data-annotations)
+### <a name="data-annotations"></a>[Anotações de dados](#tab/data-annotations)
 
 Você pode usar as anotações de dados para configurar como as propriedades de navegação nas entidades dependentes e de entidade emparelham. Isso normalmente é feito quando há mais de um par de propriedades de navegação entre dois tipos de entidade.
 
@@ -146,19 +146,19 @@ Se você tiver apenas uma propriedade de navegação, haverá sobrecargas sem pa
 
 ### <a name="foreign-key"></a>Chave estrangeira
 
-#### <a name="fluent-api-simple-keytabfluent-api-simple-key"></a>[API Fluent (chave simples)](#tab/fluent-api-simple-key)
+#### <a name="fluent-api-simple-key"></a>[API Fluent (chave simples)](#tab/fluent-api-simple-key)
 
 Você pode usar a API fluente para configurar qual propriedade deve ser usada como a propriedade de chave estrangeira para uma determinada relação:
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ForeignKey.cs?name=ForeignKey&highlight=11)]
 
-#### <a name="fluent-api-composite-keytabfluent-api-composite-key"></a>[API Fluent (chave composta)](#tab/fluent-api-composite-key)
+#### <a name="fluent-api-composite-key"></a>[API Fluent (chave composta)](#tab/fluent-api-composite-key)
 
 Você pode usar a API Fluent para configurar quais propriedades devem ser usadas como as propriedades de chave estrangeira de composição para uma determinada relação:
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/CompositeForeignKey.cs?name=CompositeForeignKey&highlight=13)]
 
-#### <a name="data-annotations-simple-keytabdata-annotations-simple-key"></a>[Anotações de dados (chave simples)](#tab/data-annotations-simple-key)
+#### <a name="data-annotations-simple-key"></a>[Anotações de dados (chave simples)](#tab/data-annotations-simple-key)
 
 Você pode usar as anotações de dados para configurar qual propriedade deve ser usada como a propriedade de chave estrangeira para uma determinada relação. Isso normalmente é feito quando a propriedade de chave estrangeira não é descoberta pela Convenção:
 
@@ -196,11 +196,11 @@ Você não precisa necessariamente fornecer uma propriedade de navegação. Voc�
 
 Se desejar que a chave estrangeira referencie uma propriedade diferente da chave primária, você poderá usar a API Fluent para configurar a propriedade principal de chave para a relação. A propriedade que você configurar como a chave principal será automaticamente configurada como uma [chave alternativa](alternate-keys.md).
 
-#### <a name="simple-keytabsimple-key"></a>[Chave simples](#tab/simple-key)
+#### <a name="simple-key"></a>[Chave simples](#tab/simple-key)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/PrincipalKey.cs?name=PrincipalKey&highlight=11)]
 
-#### <a name="composite-keytabcomposite-key"></a>[Chave composta](#tab/composite-key)
+#### <a name="composite-key"></a>[Chave composta](#tab/composite-key)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/CompositePrincipalKey.cs?name=CompositePrincipalKey&highlight=11)]
 

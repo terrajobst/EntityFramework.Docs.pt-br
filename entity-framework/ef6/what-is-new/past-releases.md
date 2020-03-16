@@ -4,12 +4,12 @@ author: divega
 ms.date: 09/12/2019
 ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
 uid: ef6/what-is-new/past-releases
-ms.openlocfilehash: fada7740453cd9a55a1d0069236efcecbd9aa314
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: b7181334cd125c5cbf296d5b3674c0b5f087f438
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656138"
+ms.lasthandoff: 03/15/2020
+ms.locfileid: "79402169"
 ---
 # <a name="past-releases-of-entity-framework"></a>Versões anteriores do Entity Framework
 
@@ -19,7 +19,7 @@ A partir da versão EF 4.1, ele foi enviado como o [pacote NuGet do EntityFramew
 
 Entre as versões 4,1 e 5,0, o pacote NuGet do EntityFramework estendeu as bibliotecas do EF fornecidas como parte do .NET Framework.
 
-A partir da versão 6, o EF tornou-se um projeto de software livre e também foi movido completamente para fora do formato da .NET Framework.
+A partir da versão 6, o EF tornou-se um projeto de software livre e também se moveu completamente fora da banda do .NET Framework.
 Isso significa que, quando você adiciona o pacote NuGet versão 6 do EntityFramework a um aplicativo, você está obtendo uma cópia completa da biblioteca do EF que não depende dos bits do EF que são fornecidos como parte do .NET Framework.
 Isso ajudou um pouco a acelerar o ritmo de desenvolvimento e entrega de novos recursos.
 
@@ -121,7 +121,7 @@ Os recursos a seguir funcionam para modelos criados com Code First ou o designer
 - A **[resolução de dependências](~/ef6/fundamentals/configuring/dependency-resolution.md)** apresenta suporte para o padrão de localizador de serviço e apresentamos algumas partes de funcionalidade que podem ser substituídas por implementações personalizadas.
 - O **[log de interceptações/SQL](~/ef6/fundamentals/logging-and-interception.md)** fornece blocos de construção de baixo nível para interceptação de operações do EF com log de SQL simples criado no topo.
 - **Aprimoramentos de capacidade de teste** facilitam a criação de duplicatas de teste para DbContext e DbSet ao [usar uma estrutura fictícia](~/ef6/fundamentals/testing/mocking.md) ou [escrever suas próprias duplicatas de teste](~/ef6/fundamentals/testing/writing-test-doubles.md).
-- O **[DbContext agora pode ser criado com uma DbConnection que já está aberta](~/ef6/fundamentals/connection-management.md)** , o que permite cenários em que seria útil se a conexão fosse aberta ao criar o contexto (por exemplo, compartilhar uma conexão entre componentes, em que você não pode garantir o estado da conexão).
+- **[Agora, o DbContext pode ser criado com uma DbConnection que já está aberta](~/ef6/fundamentals/connection-management.md)** , o que permite cenários onde seria útil se a conexão fosse aberta ao criar o contexto (por exemplo, compartilhar uma conexão entre componentes, em que você não pode garantir o estado da conexão).
 - O **[suporte a transações aprimoradas](~/ef6/saving/transactions.md)** fornece suporte para uma transação externa à estrutura, bem como maneiras aprimoradas de criar uma transação dentro da estrutura.
 - **Enums, espacial e melhor desempenho no .net 4,0** – ao mover os componentes principais que costumavam estar no .NET Framework no pacote NUGET do EF, agora podemos oferecer suporte a enum, tipos de dados espaciais e melhorias de desempenho do EF5 no .NET 4,0.
 - **Desempenho aprimorado de Enumerable. Contains em consultas LINQ**.
@@ -234,7 +234,7 @@ Aqui está uma lista de conteúdo que reunimos especificamente para a versão do
 ## <a name="ef-42"></a>EF 4,2
 O tempo de execução de 4.2.0 do EF foi lançado para o NuGet em novembro de 2011.
 Esta versão inclui correções de bugs para a versão do EF 4.1.1.
-Como esta versão inclui apenas correções de bug, ele poderia ter sido a versão de patch do EF 4.1.2, mas optamos por mudar para 4,2 para nos permitirmos sair dos números de versão de patch com base na data que usamos nas versões 4.1. x e adotar o padrão de [controle de versão de semântica](https://semver.org) para s controle de versão do emantic.
+Como esta versão inclui apenas correções de bug, ele poderia ter sido a versão de patch do EF 4.1.2, mas optamos por mudar para 4,2 para nos permitirmos sair dos números de versão de patch com base na data que usamos nas versões 4.1. x e adotar o padrão de [controle de versão semântico](https://semver.org) para controle de versão semântico.
 
 Aqui está uma lista de conteúdo que reunimos especificamente para a versão do EF 4,2, o conteúdo fornecido para o EF 4,1 ainda se aplica ao EF 4,2 também:
 
