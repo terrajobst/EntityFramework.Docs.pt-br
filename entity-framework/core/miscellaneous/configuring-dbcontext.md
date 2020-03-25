@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: 3ab90d46b7a4476044e5ea38eaf04f995708e7bf
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 53b38f288cd45e66d68ebcc3b6066646d59b0262
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78416665"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136184"
 ---
 # <a name="configuring-a-dbcontext"></a>Configurar um DbContext
 
@@ -186,9 +186,9 @@ Sempre Await EF Core métodos assíncronos imediatamente.
 
 O método de extensão [`AddDbContext`](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) registra `DbContext` tipos com um [tempo de vida com escopo](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection#service-lifetimes) definido por padrão.
 
-Isso é seguro contra problemas de acesso simultâneos em aplicativos ASP.NET Core porque há apenas um thread executando cada solicitação de cliente em um determinado momento, e como cada solicitação Obtém um escopo de injeção de dependência separado (e, portanto, uma instância de `DbContext` separada).
+Isso é seguro contra problemas de acesso simultâneos na maioria dos aplicativos ASP.NET Core porque há apenas um thread executando cada solicitação de cliente em um determinado momento, e como cada solicitação Obtém um escopo de injeção de dependência separado (e, portanto, uma instância de `DbContext` separada). Para um modelo de Hospedagem de servidor mais incrivelmente, uma solicitação lógica é usada para manter o circuito de usuário mais incrivelmente e, portanto, apenas uma instância DbContext com escopo estará disponível por circuito de usuário se o escopo de injeção padrão for usado.
 
-No entanto, qualquer código que execute explicitamente vários threads em paralelo deve garantir que `DbContext` instâncias nunca sejam acessadas simultaneamente.
+Qualquer código que execute explicitamente vários threads em paralelo deve garantir que `DbContext` instâncias nunca sejam acessadas simultaneamente.
 
 Usando a injeção de dependência, isso pode ser feito registrando o contexto como escopo e criando escopos (usando `IServiceScopeFactory`) para cada thread ou registrando o `DbContext` como transitório (usando a sobrecarga de `AddDbContext` que usa um parâmetro `ServiceLifetime`).
 

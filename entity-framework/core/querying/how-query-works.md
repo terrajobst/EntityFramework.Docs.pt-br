@@ -1,15 +1,15 @@
 ---
 title: Como funciona a consulta – EF Core
-author: rowanmiller
-ms.date: 09/26/2018
+author: ajcvickers
+ms.date: 03/17/2020
 ms.assetid: de2e34cd-659b-4cab-b5ed-7a979c6bf120
 uid: core/querying/how-query-works
-ms.openlocfilehash: ba0d68469530e6272ffbb51946d7856122a261c7
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: e8a50efe31468ea8df211602636dd474550bc0ef
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78417697"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136236"
 ---
 # <a name="how-queries-work"></a>Como funciona a consulta
 
@@ -24,16 +24,12 @@ Veja a seguir uma visão geral de alto nível do processo pelo qual cada consult
 2. O resultado é passado para o provedor de banco de dados
    1. O provedor do banco de dados identifica quais partes da consulta podem ser avaliadas no banco de dados
    2. Essas partes da consulta são convertidas em linguagem de consulta específica de banco de dados (por exemplo, SQL para um banco de dados relacional)
-   3. Uma ou mais consultas são enviadas para o banco de dados e o conjunto de resultados retornado (resultados são valores do banco de dados, não as instâncias de entidade)
+   3. Uma consulta é enviada ao banco de dados e o conjunto de resultados retornado (resultados são valores do banco de dados, não instâncias de entidade)
 3. Para cada item no conjunto de resultados
    1. Se for um rastreamento de consulta, o EF verificará se os dados representam uma entidade já no controlador de alterações para a instância de contexto
       * Nesse caso, a entidade existente será retornada
       * Caso contrário, uma nova entidade será criada, o controle de alterações será configurado e a nova entidade será retornada
-   2. Se for uma consulta sem rastreamento, o EF verificará se os dados representam uma entidade já no conjunto de resultados para essa consulta
-      * Nesse caso, a entidade existente será retornada <sup>(1)</sup>
-      * Caso contrário, uma nova entidade será criada e retornada
-
-<sup>(1)</sup> as consultas sem controle usam referências fracas para manter o controle das entidades que já foram retornadas. Se um resultado anterior com a mesma identidade sai do escopo e a coleta de lixo é executada, você poderá receber uma nova instância da entidade.
+   2. Se esta for uma consulta sem rastreamento, uma nova entidade será sempre criada e retornada
 
 ## <a name="when-queries-are-executed"></a>Quando as consultas são executadas
 
@@ -42,8 +38,7 @@ Quando você chama operadores LINQ, está criando simplesmente uma representaç�
 As operações mais comuns que resultam na consulta que está sendo enviada para o banco de dados são:
 
 * Iteração dos resultados em um loop `for`
-* Como usar um operador como `ToList`, `ToArray`, `Single`, `Count`
-* Associação de dados de resultados de uma consulta para uma interface de usuário
+* Usando um operador como `ToList`, `ToArray`, `Single``Count` ou as sobrecargas assíncronas equivalentes
 
 > [!WARNING]  
-> **Sempre validar a entrada do usuário:** enquanto o EF Core protege contra ataques de injeção SQL usando parâmetros e ignorando literais em consultas, ele não valida entradas. Validação apropriada, conforme os requisitos do aplicativo, deve ser executada antes de valores de fontes não confiáveis serem usados em consultas LINQ, atribuídos às propriedades da entidade ou transmitidos para outras APIs do EF Core. Isso inclui qualquer entrada do usuário usada para construir consultas dinamicamente. Mesmo ao usar o LINQ, se você está aceitando entrada do usuário para criar expressões, precisa para garantir que apenas as expressões pretendidas possam ser criadas.
+> **Sempre validar a entrada do usuário:** enquanto o EF Core protege contra ataques de injeção SQL usando parâmetros e ignorando literais em consultas, ele não valida entradas. A validação apropriada, de acordo com os requisitos do aplicativo, deve ser executada antes que os valores de fontes não confiáveis sejam usados em consultas LINQ, atribuídas a propriedades de entidade ou transmitidas para outras APIs de EF Core. Isso inclui qualquer entrada do usuário usada para construir consultas dinamicamente. Mesmo ao usar o LINQ, se você está aceitando entrada do usuário para criar expressões, precisa para garantir que apenas as expressões pretendidas possam ser criadas.
