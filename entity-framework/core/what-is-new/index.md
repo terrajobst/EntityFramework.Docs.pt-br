@@ -4,12 +4,12 @@ author: ajcvickers
 ms.date: 03/03/2020
 ms.assetid: C21F89EE-FB08-4ED9-A2A0-76CB7656E6E4
 uid: core/what-is-new/index
-ms.openlocfilehash: 2c41f65d1fead8430a39c6230a0f22506686504e
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 7b58b4de0eb8d9575f77e0b147da017eabad1867
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78413201"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136223"
 ---
 # <a name="ef-core-releases-and-planning"></a>Lançamentos e planejamento do EF Core
 
@@ -57,10 +57,12 @@ Esses dados serão então alimentados no processo de planejamento para a próxim
 
 ### <a name="get-it-now"></a>Obtenha-o agora mesmo!
 
-Os pacotes do EF Core 5.0 estão **disponíveis agora** como [builds diários](https://github.com/aspnet/AspNetCore/blob/master/docs/DailyBuilds.md). 
+Os pacotes do EF Core 5.0 estão **disponíveis agora** como
 
-Usar os builds diários é uma ótima maneira de encontrar problemas e fornecer comentários a respeito o mais cedo possível.
+* [Compilações diárias](https://github.com/dotnet/aspnetcore/blob/master/docs/DailyBuilds.md)
+  * Todos os recursos e correções de bugs mais recentes. Geralmente muito estável; mais de 57.000 testes são executados em cada compilação.
+* [Versões prévias no NuGet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore)
+  * Atraso por trás de compilações diárias, mas são testadas para funcionar com as versões prévias correspondentes do ASP.NET Core e do .NET Core.
+
+Usar os builds diários ou as versões prévias é uma ótima maneira de encontrar problemas e fazer comentários o mais cedo possível.
 Quanto mais cedo obtivermos esses comentários, maior a probabilidade de podermos tomar atitudes em relação aos problemas correspondentes antes da próxima versão oficial.
-Trabalhamos muito para manter os builds diários em boas condições, executando mais de 56.000 testes por plataforma para cada build.
-
-Os pacotes de versão prévia serão enviados para o NuGet posteriormente neste ano.
