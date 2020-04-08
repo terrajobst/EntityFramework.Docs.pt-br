@@ -35,7 +35,7 @@
               items:
                 - name: Novos recursos
                   href: core/what-is-new/ef-core-3.0/index.md
-                - name: Alterações da falha
+                - name: Alterações de quebra
                   href: core/what-is-new/ef-core-3.0/breaking-changes.md
             - name: EF Core 2.2
               href: core/what-is-new/ef-core-2.2.md
@@ -63,15 +63,15 @@
               href: core/get-started/install/index.md
             - name: Tutorial do ASP.NET Core >>
               href: /aspnet/core/data/ef-rp/intro
-        - name: Princípios básicos
+        - name: Conceitos básicos
           items:
             - name: Cadeias de conexão
               href: core/miscellaneous/connection-strings.md
-            - name: Registrando em log
+            - name: Registro em log
               href: core/miscellaneous/logging.md
-            - name: Resiliência da conexão
+            - name: Resiliência de conexão
               href: core/miscellaneous/connection-resiliency.md
-            - name: Testes
+            - name: Testando
               items:
                 - name: Visão geral
                   href: core/miscellaneous/testing/index.md
@@ -91,7 +91,7 @@
               href: core/modeling/entity-types.md
             - name: Propriedades da entidade
               href: core/modeling/entity-properties.md
-            - name: Chaves
+            - name: simétricas
               href: core/modeling/keys.md
             - name: Valores gerados
               href: core/modeling/generated-properties.md
@@ -182,7 +182,7 @@
               href: core/saving/cascade-delete.md
             - name: Conflitos de simultaneidade
               href: core/saving/concurrency.md
-            - name: Transações
+            - name: Transactions
               href: core/saving/transactions.md
             - name: Salvamento assíncrono
               href: core/saving/async.md
@@ -244,7 +244,7 @@
       items:
         - name: Visão geral
           href: ef6/index.md
-        - name: O que há de novo
+        - name: Novidades
           items:
             - name: Visão geral
               href: ef6/what-is-new/index.md
@@ -256,7 +256,7 @@
               href: ef6/what-is-new/visual-studio.md
         - name: Introdução
           href: ef6/get-started.md
-        - name: Princípios básicos
+        - name: Conceitos básicos
           items:
             - name: Como obter o Entity Framework
               href: ef6/fundamentals/install.md
@@ -278,7 +278,7 @@
                   href: ef6/fundamentals/configuring/dependency-resolution.md
             - name: Gerenciamento de Conexão
               href: ef6/fundamentals/connection-management.md
-            - name: Resiliência da conexão
+            - name: Resiliência de conexão
               items:
                 - name: Lógica de repetição
                   href: ef6/fundamentals/connection-resiliency/retry-logic.md
@@ -334,7 +334,7 @@
               href: ef6/modeling/index.md
             - name: Usar Code First
               items:
-                - name: Fluxos de Trabalho
+                - name: Fluxos de trabalho
                   items:
                     - name: Com um novo banco de dados
                       href: ef6/modeling/code-first/workflows/new-database.md
@@ -384,7 +384,7 @@
                       href: ef6/modeling/code-first/migrations/teams.md
             - name: Usar o EF Designer
               items:
-                - name: Fluxos de Trabalho
+                - name: Fluxos de trabalho
                   items:
                     - name: Model-First
                       href: ef6/modeling/designer/workflows/model-first.md
@@ -414,7 +414,7 @@
                   items:
                     - name: Consulta
                       href: ef6/modeling/designer/stored-procedures/query.md
-                    - name: Atualização
+                    - name: Atualizar
                       href: ef6/modeling/designer/stored-procedures/cud.md
                 - name: Mapear relacionamentos
                   href: ef6/modeling/designer/relationships.md
@@ -444,7 +444,7 @@
                       href: ef6/modeling/designer/advanced/multiple-result-sets.md
                     - name: Funções com valor de tabela
                       href: ef6/modeling/designer/advanced/tvfs.md
-                - name: Atalhos de teclado
+                - name: Atalhos do teclado
                   href: ef6/modeling/designer/keyboard-shortcuts.md
         - name: Consultar dados
           items:
@@ -464,7 +464,7 @@
           items:
             - name: Visão geral
               href: ef6/saving/index.md
-            - name: Change tracking
+            - name: controle de alterações
               items:
                 - name: Detecção automática de alterações
                   href: ef6/saving/change-tracking/auto-detect-changes.md
@@ -522,7 +522,7 @@
                   items:
                     - name: Pré-lançamento
                       items:
-                        - name: Alfa
+                        - name: Alpha
                           href: ef6/resources/licenses/ef6/prerelease/alpha.md
                         - name: Beta – versão Release Candidate
                           href: ef6/resources/licenses/ef6/prerelease/beta-rc.md
