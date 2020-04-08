@@ -6,10 +6,10 @@ ms.date: 10/27/2016
 ms.assetid: 6bb12583-c39a-454c-8d83-d2a2793ca9ef
 uid: index
 ms.openlocfilehash: 1643e3c9d1b8565155ebc1c04713a40883d03a07
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78412911"
 ---
 <div id="main" class="v2">
@@ -24,7 +24,7 @@ ms.locfileid: "78412911"
                         <ul id="entityfmwk1" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p>O Entity Framework é um O/RM (mapeador relacional de objeto) que permite que os desenvolvedores de .NET trabalhem com um banco de dados usando objetos .NET. Elimina a necessidade da maioria do código de acesso a dados que os desenvolvedores geralmente precisam gravar.</p>
+                                    <p>O Entity Framework é um mapeador relacional de objeto (O/RM) que permite aos desenvolvedores do .NET trabalhar com um banco de dados usando objetos .NET. Com ele, não há a necessidade da maioria dos códigos de acesso a dados que os desenvolvedores geralmente precisam para escrever.</p>
                                 </div>
                             </li>
                             <li>
@@ -277,7 +277,7 @@ ms.locfileid: "78412911"
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Referência API</h3>
+                                                    <h3>Referência de API</h3>
                                                     <p>Procure a API do Entity Framework 6, organizada por namespace.</p>
                                                 </div>
                                             </div>

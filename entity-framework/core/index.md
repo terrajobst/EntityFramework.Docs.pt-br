@@ -5,10 +5,10 @@ ms.date: 10/27/2016
 ms.assetid: bc2a2676-bc46-493f-bf49-e3cc97994d57
 uid: core/index
 ms.openlocfilehash: e6127f775d6bbbdf81debf5519388fe252fe079d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78412831"
 ---
 # <a name="entity-framework-core"></a>Entity Framework Core
@@ -27,7 +27,7 @@ Você pode gerar um modelo de um banco de dados existente, codificar manualmente
 
 [!code-csharp[Main](../../samples/core/Intro/Model.cs)]
 
-## <a name="querying"></a>Consultar
+## <a name="querying"></a>Consultas
 
 Instâncias de suas classes de entidade são recuperadas do banco de dados usando a LINQ (Consulta Integrada à Linguagem). Consulte [Consultar dados](querying/index.md) para saber mais.
 

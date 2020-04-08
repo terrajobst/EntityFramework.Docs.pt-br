@@ -4,10 +4,10 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 5e60f5be-7bbb-4bf8-835e-0ac808d6c84a
 ms.openlocfilehash: 3bb9759d89fbd0c10b911625aa7d0afd7747de14
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78413351"
 ---
 # <a name="self-tracking-entities"></a>Entidades de rastreamento automático
@@ -39,14 +39,14 @@ Considere o seguinte ao trabalhar com entidades de rastreamento automático:
 - Quando você envia o grafo que foi modificado no cliente para o serviço e, em seguida, pretende continuar trabalhando com o mesmo grafo no cliente, precisa iterar manualmente o grafo e chamar o método **AcceptChanges** em cada objeto para redefinir o rastreador de alterações.  
 
     > Se os objetos no seu grafo contiverem propriedades com valores gerados pelo banco de dados (por exemplo, valores de simultaneidade ou identidade), o Entity Framework substituirá os valores dessas propriedades pelos valores gerados pelo banco de dados após o método **SaveChanges** ser chamado. Você pode implementar sua operação de serviço para retornar objetos salvos ou uma lista de valores de propriedade gerada para os objetos de volta ao cliente. O cliente precisará substituir as instâncias de objeto ou os valores de propriedade do objeto pelos objetos ou valores de propriedade retornados da operação de serviço.  
-- Mesclar grafos de várias solicitações de serviço pode introduzir objetos com valores de chave duplicados no grafo resultante. O Entity Framework não remove os objetos com chaves duplicadas quando você chama o método **ApplyChanges**, mas gera uma exceção. Para evitar ter grafos com valores de chave duplicados, siga um dos padrões descritos no blog a seguir: [Self-Tracking Entities: ApplyChanges and duplicate entities](https://go.microsoft.com/fwlink/?LinkID=205119&clcid=0x409) (Entidades de Rastreamento Automático: ApplyChanges e entidades duplicadas).  
+- Mesclar grafos de várias solicitações de serviço pode introduzir objetos com valores de chave duplicados no grafo resultante. O Entity Framework não remove os objetos com chaves duplicadas quando você chama o método **ApplyChanges**, mas gera uma exceção. Para evitar ter grafos com valores de chave duplicados, suga um dos padrões descritos no blog a seguir: [Self-Tracking Entities: ApplyChanges and duplicate entities](https://go.microsoft.com/fwlink/?LinkID=205119&clcid=0x409) (Entidades de Rastreamento Automático: ApplyChanges e entidades duplicadas).  
 - Quando você altera a relação entre objetos definindo a propriedade de chave estrangeira, a propriedade de navegação de referência é definida como null e não é sincronizada com a entidade de segurança apropriada no cliente. Depois que o grafo é anexado ao contexto de objeto (por exemplo, depois de chamar o método **ApplyChanges**), as propriedades de chave estrangeira e as propriedades de navegação são sincronizadas.  
 
     > Não ter uma propriedade de navegação de referência sincronizada com o objeto de entidade de segurança apropriada poderia ser um problema se você tivesse especificado a exclusão em cascata na relação da chave estrangeira. Se você excluir a entidade de segurança, a exclusão não será propagada para os objetos dependentes. Se você tiver exclusões em cascata especificadas, use as propriedades de navegação para alterar a relação em vez de configurar a propriedade de chave estrangeira.  
 - As entidades de rastreamento automático não estão habilitadas para executar o carregamento lento.  
 - A serialização binária e a serialização para objetos de gerenciamento de estado do ASP.NET não são compatíveis com as entidades de rastreamento automático. No entanto, você pode personalizar o modelo para adicionar a compatibilidade à serialização binária. Para obter mais informações, consulte [Usando a serialização binária e ViewState com entidades de rastreamento automático](https://go.microsoft.com/fwlink/?LinkId=199208).  
 
-## <a name="security-considerations"></a>Considerações sobre segurança  
+## <a name="security-considerations"></a>Considerações de segurança  
 
 As considerações de segurança a seguir devem ser levadas em conta ao trabalhar com entidades de rastreamento automático:  
 
