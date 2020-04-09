@@ -5,22 +5,22 @@ ms.date: 10/08/2019
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
 ms.openlocfilehash: a54bb67c0fce9d621382f6372e70fe4cdca48a20
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417666"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL brutas
 
-O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional. Consultas SQL brutas são úteis se a consulta que você deseja não pode ser expressa usando LINQ. As consultas SQL não processadas também são usadas se o uso de uma consulta LINQ resultar em uma consulta SQL ineficiente. Consultas SQL brutas podem retornar tipos de entidade regulares ou [tipos de entidade sem](xref:core/modeling/keyless-entity-types) formatação que fazem parte do seu modelo.
+O Entity Framework Core permite acessar uma lista suspensa de consultas SQL brutas ao trabalhar com um banco de dados relacional. As consultas SQL brutas são úteis se a consulta que você quiser não puder ser expressa usando LINQ. As consultas SQL brutas também são usadas se o uso de uma consulta LINQ estiver resultando em uma consulta SQL ineficiente. As consultas SQL brutas podem retornar tipos de entidades regulares ou [tipos de entidades sem chave](xref:core/modeling/keyless-entity-types) que fazem parte do seu modelo.
 
 > [!TIP]  
-> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying/) deste artigo no GitHub.
+> Você pode ver a [amostra](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying/) deste artigo no GitHub.
 
 ## <a name="basic-raw-sql-queries"></a>Consultas SQL brutas básicas
 
-Você pode usar o método de extensão `FromSqlRaw` para iniciar uma consulta LINQ com base em uma consulta SQL bruta. `FromSqlRaw` só pode ser usada em raízes de consulta, que está diretamente no `DbSet<>`.
+Você pode `FromSqlRaw` usar o método de extensão para iniciar uma consulta LINQ com base em uma consulta SQL bruta. `FromSqlRaw`só pode ser usado em raízes de `DbSet<>`consulta, que está diretamente no .
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRaw)]
 
@@ -28,37 +28,37 @@ As consultas SQL brutas podem ser usadas para executar um procedimento armazenad
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedure)]
 
-## <a name="passing-parameters"></a>Passagem de parâmetros
+## <a name="passing-parameters"></a>Passando parâmetros
 
 > [!WARNING]
-> **Sempre usar parametrização para consultas SQL brutas**
+> **Sempre use parametrização para consultas SQL brutas**
 >
-> Ao introduzir qualquer valor fornecido pelo usuário em uma consulta SQL bruta, deve-se ter cuidado para evitar ataques de injeção de SQL. Além de validar que esses valores não contêm caracteres inválidos, sempre use a parametrização que envia os valores separados do texto SQL.
+> Ao introduzir quaisquer valores fornecidos pelo usuário em uma consulta SQL bruta, deve-se tomar cuidado para evitar ataques de injeção SQL. Além de validar que tais valores não contêm caracteres inválidos, use sempre a parametrização que envia os valores separados do texto SQL.
 >
-> Em particular, nunca passe uma cadeia de caracteres concatenada ou interpolada (`$""`) com valores fornecidos pelo usuário não validados em `FromSqlRaw` ou `ExecuteSqlRaw`. Os métodos `FromSqlInterpolated` e `ExecuteSqlInterpolated` permitem usar a sintaxe de interpolação de cadeia de caracteres de forma a proteger contra ataques de injeção de SQL.
+> Em particular, nunca passe uma seqüência concatenada ou interpolada (`$""` `FromSqlRaw` ) `ExecuteSqlRaw`com valores fornecidos pelo usuário não validados em ou . Os `FromSqlInterpolated` `ExecuteSqlInterpolated` métodos permitem o uso da sintaxe de interpolação de cordas de forma a proteger contra ataques de injeção SQL.
 
-O exemplo a seguir passa um único parâmetro para um procedimento armazenado, incluindo um espaço reservado de parâmetro na cadeia de caracteres de consulta SQL e fornecendo um argumento adicional. Embora essa sintaxe possa parecer com `String.Format` sintaxe, o valor fornecido é encapsulado em um `DbParameter` e o nome de parâmetro gerado inserido onde o espaço reservado `{0}` foi especificado.
+O exemplo a seguir passa um único parâmetro para um procedimento armazenado, incluindo um espaço reservado de parâmetros na seqüência de consulta SQL e fornecendo um argumento adicional. Embora essa sintaxe `String.Format` possa parecer sintaxe, `DbParameter` o valor fornecido é embrulhado `{0}` em um nome de parâmetro gerado inserido onde o espaço reservado foi especificado.
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedureParameter)]
 
-`FromSqlInterpolated` é semelhante a `FromSqlRaw` mas permite que você use a sintaxe de interpolação de cadeia de caracteres. Assim como `FromSqlRaw`, `FromSqlInterpolated` só pode ser usada em raízes de consulta. Assim como no exemplo anterior, o valor é convertido em um `DbParameter` e não é vulnerável à injeção de SQL.
+`FromSqlInterpolated`é semelhante, `FromSqlRaw` mas permite que você use sintaxe de interpolação de seqüência. Assim `FromSqlRaw`como `FromSqlInterpolated` , só pode ser usado em raízes de consulta. Como no exemplo anterior, o valor `DbParameter` é convertido em um e não é vulnerável à injeção SQL.
 
 > [!NOTE]
-> Antes da versão 3,0, `FromSqlRaw` e `FromSqlInterpolated` eram duas sobrecargas nomeadas `FromSql`. Para obter mais informações, consulte a [seção versões anteriores](#previous-versions).
+> Antes da versão 3.0, `FromSqlRaw` havia `FromSqlInterpolated` `FromSql`duas sobrecargas nomeadas . Para obter mais informações, consulte a [seção versões anteriores](#previous-versions).
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedStoredProcedureParameter)]
 
-Você também pode construir um DbParameter e fornecê-lo como valor de parâmetro. Como um espaço reservado de parâmetro SQL regular é usado, em vez de um espaço reservado de cadeia de caracteres, `FromSqlRaw` pode ser usada com segurança:
+Você também pode construir um DbParameter e fornecê-lo como valor de parâmetro. Uma vez que um espaço reservado de parâmetro SQL `FromSqlRaw` regular é usado, em vez de um espaço reservado de cordas, pode ser usado com segurança:
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedureSqlParameter)]
 
-`FromSqlRaw` permite que você use parâmetros nomeados na cadeia de caracteres de consulta SQL, o que é útil quando um procedimento armazenado tem parâmetros opcionais:
+`FromSqlRaw`permite que você use parâmetros nomeados na seqüência de consultas SQL, o que é útil quando um procedimento armazenado tem parâmetros opcionais:
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedureNamedSqlParameter)]
 
 ## <a name="composing-with-linq"></a>Como compor com o LINQ
 
-Você pode compor na parte superior da consulta SQL bruta inicial usando operadores LINQ. EF Core irá tratá-lo como subconsulta e redigir sobre ele no banco de dados. O exemplo a seguir usa uma consulta SQL bruta que seleciona de uma função com valor de tabela (TVF). E, em seguida, compõe-o usando o LINQ para fazer filtragem e classificação.
+Você pode compor em cima da consulta SQL bruta inicial usando operadores LINQ. O EF Core irá tratá-lo como subquery e compor sobre ele no banco de dados. O exemplo a seguir usa uma consulta SQL bruta que seleciona a partir de uma função de valor de tabela (TVF). E então compõe sobre ele usando LINQ para fazer filtragem e classificação.
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedComposed)]
 
@@ -79,19 +79,19 @@ O método `Include` pode ser usado para incluir dados relacionados, assim como e
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedInclude)]
 
-A composição com o LINQ exige que sua consulta SQL bruta seja combinável, pois EF Core tratará o SQL fornecido como uma subconsulta. As consultas SQL que podem ser compostas começam com a palavra-chave `SELECT`. Além disso, o SQL Passed não deve conter nenhum caractere ou opção que não seja válida em uma subconsulta, como:
+A composição com LINQ requer que sua consulta SQL bruta seja composta, já que a EF Core tratará o SQL fornecido como uma subquery. As consultas SQL que podem ser compostas começam com a palavra-chave `SELECT`. Além disso, o SQL aprovado não deve conter caracteres ou opções que não sejam válidas em uma subconsulta, tais como:
 
-- Um ponto e vírgula à direita
+- Um ponto e vírgula em arrastão
 - No SQL Server, uma dica a nível de consulta à direita (por exemplo, `OPTION (HASH JOIN)`)
-- No SQL Server, uma cláusula `ORDER BY` que não é usada com `OFFSET 0` ou `TOP 100 PERCENT` na cláusula `SELECT`
+- No SQL Server, `ORDER BY` uma cláusula que `OFFSET 0` `TOP 100 PERCENT` não `SELECT` é usada com OR na cláusula
 
-SQL Server não permite a composição de chamadas de procedimento armazenado, portanto, qualquer tentativa de aplicar operadores de consulta adicionais a tal chamada resultará em um SQL inválido. Use o método `AsEnumerable` ou `AsAsyncEnumerable` logo após `FromSqlRaw` métodos ou `FromSqlInterpolated` para garantir que o EF Core não tente compor um procedimento armazenado.
+O SQL Server não permite compor sobre chamadas de procedimento armazenadas, portanto, qualquer tentativa de aplicar operadores de consulta adicionais a tal chamada resultará em SQL inválido. Use `AsEnumerable` `AsAsyncEnumerable` ou método `FromSqlRaw` `FromSqlInterpolated` logo após ou métodos para garantir que o EF Core não tente compor sobre um procedimento armazenado.
 
 ## <a name="change-tracking"></a>Controle de Alterações
 
-As consultas que usam os métodos `FromSqlRaw` ou `FromSqlInterpolated` seguem exatamente as mesmas regras de controle de alterações que qualquer outra consulta LINQ no EF Core. Por exemplo, se a consulta projetar tipos de entidade, os resultados serão controlados por padrão.
+As consultas que `FromSqlRaw` `FromSqlInterpolated` usam os métodos seguem exatamente as mesmas regras de rastreamento de alteração que qualquer outra consulta LINQ no EF Core. Por exemplo, se a consulta projetar tipos de entidade, os resultados serão controlados por padrão.
 
-O exemplo a seguir usa uma consulta SQL bruta que seleciona de uma função com valor de tabela (TVF) e desabilita o controle de alterações com a chamada para `AsNoTracking`:
+O exemplo a seguir usa uma consulta SQL bruta que seleciona a partir de uma `AsNoTracking`TVF (Table-Valued Function, função de valor de tabela) e desativa o rastreamento de alterações com a chamada para:
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedAsNoTracking)]
 
@@ -99,10 +99,10 @@ O exemplo a seguir usa uma consulta SQL bruta que seleciona de uma função com 
 
 Algumas limitações deve ser consideradas ao usar consultas SQL brutas:
 
-- A consulta SQL deve retornar dados para todas as propriedades do tipo de entidade.
-- Os nomes das colunas no conjunto de resultados devem corresponder aos nomes das colunas para as quais as propriedades são mapeadas. Observe que esse comportamento é diferente de EF6. EF6 ignorou a propriedade para o mapeamento de coluna para consultas SQL brutas e nomes de coluna de conjunto de resultados tinham que corresponder aos nomes de propriedade.
+- A consulta SQL deve retornar dados para todas as propriedades do tipo entidade.
+- Os nomes das colunas no conjunto de resultados devem corresponder aos nomes das colunas para as quais as propriedades são mapeadas. Note que esse comportamento é diferente do EF6. O EF6 ignorou o mapeamento de propriedades para colunas para consultas SQL brutas e os nomes das colunas de conjunto de resultados tinham que corresponder aos nomes da propriedade.
 - A consulta SQL não pode conter dados relacionados. No entanto, em muitos casos é possível combinar com base na consulta usando o operador `Include` para retornar dados relacionados (confira [Como incluir dados relacionados](#including-related-data)).
 
 ## <a name="previous-versions"></a>Versões anteriores
 
-EF Core versão 2,2 e anterior tinham duas sobrecargas de método chamada `FromSql`, que se compararam da mesma maneira que as `FromSqlRaw` e `FromSqlInterpolated`mais recentes. Era fácil chamar acidentalmente o método de cadeia de caracteres bruto quando a intenção era chamar o método de cadeia de caracteres interpolado e o contrário. Chamar a sobrecarga errada acidentalmente pode resultar em consultas que não estão sendo parametrizadas quando deveriam ter sido.
+A versão 2.2 do EF Core e `FromSql`anteriormente tinha duas sobrecargas de `FromSqlRaw` método `FromSqlInterpolated`denominada, que se comportavam da mesma forma que as mais novas e . Foi fácil chamar acidentalmente o método de corda bruta quando a intenção era chamar o método de cordas interpolada, e o contrário. Chamar sobrecarga errada acidentalmente pode resultar em consultas não sendo parametrizadas quando deveriam ter sido.

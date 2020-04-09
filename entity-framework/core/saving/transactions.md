@@ -5,10 +5,10 @@ ms.date: 10/27/2016
 ms.assetid: d3e6515b-8181-482c-a790-c4a6778748c1
 uid: core/saving/transactions
 ms.openlocfilehash: 390d89398ebfdf015804749e71ff0b61d3f278d3
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417551"
 ---
 # <a name="using-transactions"></a>Usando transações
@@ -16,7 +16,7 @@ ms.locfileid: "78417551"
 As transações permitem que várias operações de banco de dados sejam processadas de forma atômica. Se a transação for confirmada, todas as operações serão aplicadas com êxito ao banco de dados. Se a transação for revertida, nenhuma operação será aplicadas ao banco de dados.
 
 > [!TIP]  
-> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Transactions/) deste artigo no GitHub.
+> Você pode ver a [amostra](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Transactions/) deste artigo no GitHub.
 
 ## <a name="default-transaction-behavior"></a>Comportamento de transação padrão
 

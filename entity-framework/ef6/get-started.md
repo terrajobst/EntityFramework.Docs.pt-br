@@ -5,10 +5,10 @@ ms.date: 10/23/2016
 ms.assetid: 66ce9113-81d2-480f-8c16-d00ec405b2f7
 uid: ef6/get-started
 ms.openlocfilehash: 729dea2c474c35f638ccaf6673550f76e88e2667
-ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/24/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "80136263"
 ---
 # <a name="get-started-with-entity-framework-6"></a>Introdução ao Entity Framework 6
@@ -25,14 +25,14 @@ Este guia contém uma coleção de links para artigos de documentação selecion
 
   Você prefere especificar seu modelo do EF escrevendo código ou desenhando caixas e linhas?
 Você usará o EF para mapear seus objetos para um banco de dados existente ou gostaria que o EF criasse um banco de dados personalizado para seus objetos?
-Aqui você aprende sobre duas abordagens diferentes para usar EF6: EF designer e Code First.
+Aqui você aprende sobre duas abordagens diferentes para usar o EF6: EF Designer e Code First.
 Siga a discussão e assista ao vídeo sobre a diferença.
 
 * [Como trabalhar com DbContext](~/ef6/fundamentals/working-with-dbcontext.md)
 
   O DbContext é o primeiro e mais importante tipo de EF que você precisa aprender como usar. Ele funciona como a barra inicial para consultas de banco de dados e controla alterações feitas nos objetos para que elas possam ser persistidas novamente no banco de dados.
 
-* [Fazer uma pergunta](~/ef6/resources/get-help.md)
+* [Faça uma pergunta](~/ef6/resources/get-help.md)
 
   Descubra como obter ajuda de especialistas e contribuir com suas próprias respostas à comunidade.
 
@@ -62,7 +62,7 @@ Siga a discussão e assista ao vídeo sobre a diferença.
   - [Mapeamento de procedimento armazenado para atualizações](~/ef6/modeling/designer/stored-procedures/cud.md)
   - [Mapeamento de procedimento armazenado para consulta](~/ef6/modeling/designer/stored-procedures/query.md)
   - [Divisão de entidade](~/ef6/modeling/designer/entity-splitting.md)
-  - [Divisão de tabela](~/ef6/modeling/designer/table-splitting.md)
+  - [Divisão de tabelas](~/ef6/modeling/designer/table-splitting.md)
   - [Definição de uma consulta](~/ef6/modeling/designer/advanced/defining-query.md) (Avançado)
   - [Funções com valor de tabela](~/ef6/modeling/designer/advanced/tvfs.md) (Avançado)
 

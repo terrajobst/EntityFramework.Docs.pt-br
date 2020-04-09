@@ -1,35 +1,35 @@
 ---
-title: Acompanhamento versus consultas sem controle-EF Core
+title: Rastreamento vs. Consultas sem rastreamento - EF Core
 author: smitpatel
 ms.date: 10/10/2019
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
 uid: core/querying/tracking
 ms.openlocfilehash: a6c71c12f429f1324abe91d1b2cef96312bec051
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417645"
 ---
-# <a name="tracking-vs-no-tracking-queries"></a>Acompanhamento versus consultas sem controle
+# <a name="tracking-vs-no-tracking-queries"></a>Rastreamento vs. Consultas sem rastreamento
 
-Controlando controles de comportamento se Entity Framework Core manterá informações sobre uma instância de entidade em seu rastreador de alterações. Se uma entidade é acompanhada, qualquer alteração detectada na entidade será mantida no banco de dados durante a `SaveChanges()`. EF Core também corrigirá as propriedades de navegação entre as entidades em um resultado de consulta de rastreamento e as entidades que estão no controlador de alterações.
+Rastreamento de controles de comportamento se o Entity Framework Core mantiver informações sobre uma instância de entidade em seu rastreador de alterações. Se uma entidade é acompanhada, qualquer alteração detectada na entidade será mantida no banco de dados durante a `SaveChanges()`. O EF Core também corrigirá as propriedades de navegação entre as entidades em um resultado de consulta de rastreamento e as entidades que estão no rastreador de alterações.
 
 > [!NOTE]
-> Os [tipos de entidade de subunidade](xref:core/modeling/keyless-entity-types) nunca são rastreados. Sempre que este artigo menciona tipos de entidade, ele se refere a tipos de entidade que têm uma chave definida.
+> [Os tipos de entidades sem chave](xref:core/modeling/keyless-entity-types) nunca são rastreados. Onde quer que este artigo mencione tipos de entidades, refere-se a tipos de entidades que têm uma chave definida.
 
 > [!TIP]  
-> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
+> Você pode ver a [amostra](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="tracking-queries"></a>Consultas com acompanhamento
 
-Por padrão, as consultas que retornam tipos de entidade são de acompanhamento. Isso significa que você pode fazer alterações nessas instâncias de entidade e fazer com que essas alterações persistiram por `SaveChanges()`. No exemplo a seguir, a alteração para a classificação de blogs será detectada e persistida no banco de dados durante a `SaveChanges()`.
+Por padrão, as consultas que retornam tipos de entidade são de acompanhamento. O que significa que você pode fazer alterações `SaveChanges()`nessas instâncias de entidade e ter essas mudanças persistidas por . No exemplo a seguir, a alteração para a classificação de blogs será detectada e persistida no banco de dados durante a `SaveChanges()`.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#Tracking)]
 
 ## <a name="no-tracking-queries"></a>Consultas sem controle
 
-As consulta sem acompanhamento são úteis quando os resultados são usados em um cenário de somente leitura. Eles são mais rápidos de executar porque não há necessidade de configurar as informações de controle de alterações. Se você não precisar atualizar as entidades recuperadas do banco de dados, uma consulta sem rastreamento deverá ser usada. Você pode trocar uma consulta individual como sem rastreamento.
+As consulta sem acompanhamento são úteis quando os resultados são usados em um cenário de somente leitura. Eles são mais rápidos para executar porque não há necessidade de configurar as informações de rastreamento de alteração. Se você não precisar atualizar as entidades recuperadas do banco de dados, então uma consulta sem rastreamento deve ser usada. Você pode trocar uma consulta individual para não rastrear.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#NoTracking)]
 
@@ -39,42 +39,42 @@ Você também pode alterar o comportamento de acompanhamento padrão no nível d
 
 ## <a name="identity-resolution"></a>Resolução de identidade
 
-Como uma consulta de rastreamento usa o rastreador de alterações, EF Core fará a resolução de identidade em uma consulta de rastreamento. Ao materializar uma entidade, EF Core retornará a mesma instância de entidade do controlador de alteração se ela já estiver sendo acompanhada. Se o resultado contiver a mesma entidade várias vezes, você obterá a mesma instância para cada ocorrência. As consultas sem controle não usam o controlador de alterações e não fazem a resolução de identidade. Assim, você obtém uma nova instância da entidade, mesmo quando a mesma entidade está contida no resultado várias vezes. Esse comportamento era diferente nas versões anteriores ao EF Core 3,0, consulte [versões antigas](#previous-versions).
+Uma vez que uma consulta de rastreamento usa o rastreador de alterações, o EF Core fará a resolução de identidade em uma consulta de rastreamento. Ao materializar uma entidade, o EF Core retornará a mesma instância da entidade do rastreador de alterações se ele já estiver sendo rastreado. Se o resultado contiver a mesma entidade várias vezes, você terá de volta a mesma instância para cada ocorrência. Consultas sem rastreamento não usam o rastreador de alterações e não fazem resolução de identidade. Assim, você recebe de volta nova instância de entidade mesmo quando a mesma entidade está contida no resultado várias vezes. Esse comportamento foi diferente nas versões anteriores ao EF Core 3.0, veja [versões anteriores](#previous-versions).
 
-## <a name="tracking-and-custom-projections"></a>Acompanhamento e projeções personalizadas
+## <a name="tracking-and-custom-projections"></a>Rastreamento e projeções personalizadas
 
-Mesmo que o tipo de resultado da consulta não seja um tipo de entidade, EF Core ainda acompanhará os tipos de entidade contidos no resultado por padrão. Na consulta a seguir, que retorna um tipo anônimo, as instâncias do `Blog` no conjunto de resultados será rastreado.
+Mesmo que o tipo de resultado da consulta não seja um tipo de entidade, o EF Core ainda rastreará os tipos de entidade contidos no resultado por padrão. Na consulta a seguir, que retorna um tipo anônimo, as instâncias do `Blog` no conjunto de resultados será rastreado.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection1)]
 
-Se o conjunto de resultados contiver tipos de entidade provenientes da composição do LINQ, EF Core os controlará.
+Se o conjunto de resultados contiver tipos de entidade saem da composição LINQ, o EF Core irá rastreá-los.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection2)]
 
-Se o conjunto de resultados não contiver nenhum tipo de entidade, nenhum controle será feito. Na consulta a seguir, retornamos um tipo anônimo com alguns dos valores da entidade (mas nenhuma instância do tipo de entidade real). Não há nenhuma entidade rastreada saindo da consulta.
+Se o conjunto de resultados não contiver nenhum tipo de entidade, então nenhum rastreamento será feito. Na consulta a seguir, retornamos um tipo anônimo com alguns dos valores da entidade (mas sem instâncias do tipo entidade real). Não há entidades rastreadas saindo da consulta.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection3)]
 
- O EF Core dá suporte à avaliação do cliente na projeção de nível superior. Se EF Core materializar uma instância de entidade para avaliação do cliente, ela será controlada. Aqui, como estamos passando `blog` entidades para o método de cliente `StandardizeURL`, EF Core também acompanhará as instâncias de blog.
+ O EF Core suporta fazer avaliação de clientes na projeção de nível superior. Se o EF Core materializar uma instância de entidade para avaliação do cliente, ela será rastreada. Aqui, já que `blog` estamos passando entidades `StandardizeURL`para o método do cliente, o EF Core também acompanhará as instâncias do blog.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientProjection)]
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientMethod)]
 
-O EF Core não rastreia as instâncias de entidade sem o subconjunto contido no resultado. Mas EF Core rastreia todas as outras instâncias de tipos de entidade com chave de acordo com as regras acima.
+O EF Core não rastreia as instâncias de entidade sem chave contidas no resultado. Mas o EF Core rastreia todas as outras instâncias de tipos de entidades com chave de acordo com as regras acima.
 
-Algumas das regras acima funcionaram de maneira diferente antes de EF Core 3,0. Para obter mais informações, consulte [versões anteriores](#previous-versions).
+Algumas das regras acima funcionaram de forma diferente antes do EF Core 3.0. Para obter mais informações, consulte [versões anteriores](#previous-versions).
 
 ## <a name="previous-versions"></a>Versões anteriores
 
-Antes da versão 3,0, EF Core tinha algumas diferenças em como o controle foi feito. As diferenças notáveis são as seguintes:
+Antes da versão 3.0, o EF Core tinha algumas diferenças na forma como o rastreamento era feito. Diferenças notáveis são as seguintes:
 
-- Conforme explicado na página [avaliação do cliente vs Server](xref:core/querying/client-eval) , EF Core avaliação de cliente com suporte em qualquer parte da consulta antes da versão 3,0. A avaliação do cliente causou a materialização das entidades, que não faziam parte do resultado. Portanto EF Core analisado o resultado para detectar o que rastrear. Esse design tinha determinadas diferenças, da seguinte maneira:
-  - Avaliação do cliente na projeção, que causou a materialização, mas não retornou que a instância de entidade materializada não foi rastreada. O exemplo a seguir não acompanha `blog` entidades.
+- Conforme explicado na página [Client vs Server Evaluation,](xref:core/querying/client-eval) o EF Core suportava a avaliação do cliente em qualquer parte da consulta antes da versão 3.0. A avaliação do cliente causou a materialização das entidades, que não fizeram parte do resultado. Então a EF Core analisou o resultado para detectar o que rastrear. Este design tinha certas diferenças da seguinte forma:
+  - A avaliação do cliente na projeção, que causou a materialização, mas não retornou a instância materializada da entidade, não foi rastreada. O exemplo a seguir `blog` não rastreou entidades.
     [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientProjection)]
 
-  - EF Core não rastreie os objetos provenientes da composição do LINQ em determinados casos. O exemplo a seguir não acompanha `Post`.
+  - A EF Core não rastreou os objetos que saem da composição linq em certos casos. O exemplo a seguir `Post`não foi rastreado.
     [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection2)]
 
-- Sempre que os resultados da consulta contiverem tipos de entidade sem nenhum tipo, a consulta inteira foi feita sem rastreamento. Isso significa que os tipos de entidade com chaves, que, no resultado, não estavam sendo acompanhados.
-- EF Core a resolução de identidade na consulta sem rastreamento. Ele usou referências fracas para manter o controle das entidades que já foram retornadas. Portanto, se um conjunto de resultados contiver a mesma entidade várias vezes, você obterá a mesma instância para cada ocorrência. No entanto, se um resultado anterior com a mesma identidade saiu do escopo e obtiver o lixo coletado, EF Core retornou uma nova instância.
+- Sempre que os resultados da consulta continham tipos de entidades sem chave, toda a consulta era feita sem rastreamento. Isso significa que os tipos de entidadecom chaves, que são resultado, não estavam sendo rastreados também.
+- O EF Core fez resolução de identidade em consulta sem rastreamento. Utilizou referências fracas para acompanhar as entidades que já haviam sido devolvidas. Então, se um conjunto de resultados contivesse a mesma entidade várias vezes, você obteria a mesma instância para cada ocorrência. Embora se um resultado anterior com a mesma identidade saísse do escopo e coletasse lixo, a EF Core retornou uma nova instância.

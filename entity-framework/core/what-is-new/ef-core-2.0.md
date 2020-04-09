@@ -5,10 +5,10 @@ ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
 ms.openlocfilehash: 83f6b819409d502dba17a678d44a0746a4a77f4b
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417492"
 ---
 # <a name="new-features-in-ef-core-20"></a>Novos recursos no EF Core 2.0
@@ -38,7 +38,7 @@ Leia a [seção sobre separação de tabela](xref:core/modeling/table-splitting)
 
 ### <a name="owned-types"></a>Tipos próprios
 
-Um tipo de entidade de propriedade pode compartilhar o mesmo tipo .NET com outro tipo de entidade de propriedade, mas como não pode ser identificado apenas pelo tipo .NET, deve haver uma navegação para ele de outro tipo de entidade. A entidade que contém a navegação de definição é o proprietário. Ao consultar o proprietário, os tipos próprios serão incluídos por padrão.
+Um tipo de entidade própria pode compartilhar o mesmo tipo .NET com outro tipo de entidade de propriedade, mas como ele não pode ser identificado apenas pelo tipo .NET, deve haver uma navegação para ele de outro tipo de entidade. A entidade que contém a navegação de definição é o proprietário. Ao consultar o proprietário, os tipos próprios serão incluídos por padrão.
 
 Por convenção, uma chave primária de sombra será criada para o tipo próprio e mapeada para a mesma tabela que a do proprietário usando a divisão de tabela. Isso permite usar tipos próprios de maneira similar a como os tipos complexos são usados em EF6:
 
@@ -96,7 +96,7 @@ public class BloggingContext : DbContext
 }
 ```
 
-Definimos um filtro no nível de modelo que implementa a multilocação e a exclusão reversível para instâncias do Tipo de Entidade `Post`. Observe o uso de uma `DbContext` Propriedade no nível da instância: `TenantId`. Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância de contexto que está executando a consulta).
+Definimos um filtro no nível de modelo que implementa a multilocação e a exclusão reversível para instâncias do Tipo de Entidade `Post`. Observe o uso `DbContext` de uma `TenantId`propriedade em nível de instância: . Os filtros de nível de modelo usarão o valor da instância de contexto correta (ou seja, a instância de contexto que está executando a consulta).
 
 Os filtros podem ser desabilitados para consultas LINQ individuais usando o operador IgnoreQueryFilters().
 
@@ -135,9 +135,9 @@ var query =
 
 Alguns pontos a observar:
 
-- Por convenção, o nome do método é usado como o nome de uma função (nesse caso, uma função definida pelo usuário) ao gerar o SQL, mas você pode substituir o nome e o esquema durante o registro do método.
-- Atualmente, há suporte apenas para funções escalares.
-- É necessário criar a função mapeada no banco de dados. EF Core migrações não cuidarão de criá-la.
+- Por convenção, o nome do método é usado como nome de uma função (neste caso uma função definida pelo usuário) ao gerar o SQL, mas você pode substituir o nome e o esquema durante o registro do método.
+- Atualmente, apenas funções escalares são suportadas.
+- É necessário criar a função mapeada no banco de dados. As migrações do EF Core não cuidarão de criá-la.
 
 ### <a name="self-contained-type-configuration-for-code-first"></a>Configuração de tipo autossuficiente primeiro para código
 
@@ -213,7 +213,7 @@ O EF Core é compatível com a geração automática de valores de chave por mei
 
 ## <a name="query"></a>Consulta
 
-### <a name="improved-linq-translation"></a>Tradução LINQ aprimorada
+### <a name="improved-linq-translation"></a>Tradução de LINQ melhorada
 
 Permite a exceção mais bem-sucedida de consultas, avaliando mais lógica no banco de dados (em vez de na memória) e menos recuperação desnecessária de dados do banco de dados.
 
@@ -223,7 +223,7 @@ Este trabalho melhora o SQL gerado para associações de grupo. Associações de
 
 ### <a name="string-interpolation-in-fromsql-and-executesqlcommand"></a>Interpolação de cadeia de caracteres em FromSql e ExecuteSqlCommand
 
-C# 6 introduziu Interpolação de Cadeia de Caracteres, um recurso que permite inserir expressões C# diretamente em literais de cadeia de caracteres, oferecendo uma ótima maneira de criar cadeias de caracteres no runtime. No EF Core 2.0, adicionamos suporte especial para cadeias de caracteres interpoladas às nossas duas APIs primárias que aceitam cadeias de caracteres SQL brutas: `FromSql` e `ExecuteSqlCommand`. Esse novo suporte permite C# que a interpolação de cadeia de caracteres seja usada de maneira "segura". Ou seja, de uma maneira que proteja contra erros comuns de injeção de SQL que podem ocorrer ao criar SQL dinamicamente no runtime.
+C# 6 introduziu Interpolação de Cadeia de Caracteres, um recurso que permite inserir expressões C# diretamente em literais de cadeia de caracteres, oferecendo uma ótima maneira de criar cadeias de caracteres no runtime. No EF Core 2.0, adicionamos suporte especial para cadeias de caracteres interpoladas às nossas duas APIs primárias que aceitam cadeias de caracteres SQL brutas: `FromSql` e `ExecuteSqlCommand`. Este novo suporte permite que a interpolação de seqüência C# seja usada de forma "segura". Ou seja, de uma maneira que proteja contra erros comuns de injeção de SQL que podem ocorrer ao criar SQL dinamicamente no runtime.
 
 Veja um exemplo:
 
@@ -270,7 +270,7 @@ Observe que Like() vem com uma implementação em memória, que pode ser útil a
 
 ## <a name="database-management"></a>Gerenciamento de banco de dados
 
-### <a name="pluralization-hook-for-dbcontext-scaffolding"></a>Gancho de pluralização para DbContext scaffolding
+### <a name="pluralization-hook-for-dbcontext-scaffolding"></a>Gancho de pluralização para andaimes DbContext
 
 O EF Core 2.0 apresenta um novo serviço *IPluralizer* que é usado para singularizar os nomes de tipo de entidade e pluralizar os nomes DbSet. A implementação padrão é não operacional, portanto, este é apenas um gancho que o pessoal pode conectar facilmente em seu próprios pluralizadores.
 
@@ -309,9 +309,9 @@ Isso oferece uma solução mais robusta no Microsoft.Data.Sqlite para distribuir
 
 Aumenta significativamente o modo como provedores podem interagir com o modelo e simplifica o modo como convenções, anotações e APIs fluente funcionam com diferentes provedores.
 
-O EF Core 2.0 agora criará um [IModel](https://github.com/aspnet/EntityFramework/blob/master/src/EFCore/Metadata/IModel.cs) diferente para cada provedor diferente que está sendo usado. Isso normalmente é transparente para o aplicativo. Isso facilitou uma simplificação de APIs de metadados de nível inferior de modo que qualquer acesso a *conceitos de metadados relacionados comuns* pé feito sempre por meio de uma chamada para `.Relational`, em vez de `.SqlServer`, `.Sqlite` etc.
+O EF Core 2.0 agora criará um [IModel](https://github.com/aspnet/EntityFramework/blob/master/src/EFCore/Metadata/IModel.cs) diferente para cada provedor diferente que está sendo usado. Isso normalmente é transparente para o aplicativo. Isso facilitou uma simplificação de APIs de metadados de nível inferior, de tal forma que `.SqlServer`qualquer `.Sqlite`acesso a *conceitos comuns de metadados relacionais* é sempre feito através de uma chamada para, `.Relational` em vez de, etc.
 
-### <a name="consolidated-logging-and-diagnostics"></a>Log consolidado e diagnóstico
+### <a name="consolidated-logging-and-diagnostics"></a>Registro e diagnóstico consolidados
 
 Registro em log (com base em ILogger) e mecanismos de diagnóstico (com base em DiagnosticSource) agora compartilham mais código.
 

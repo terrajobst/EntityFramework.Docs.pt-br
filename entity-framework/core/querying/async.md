@@ -5,20 +5,20 @@ ms.date: 10/03/2019
 ms.assetid: b6429b14-cba0-4af4-878f-b829777c89cb
 uid: core/querying/async
 ms.openlocfilehash: ce26db32a616dac5edac2a8451014ae63cbfc12d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417749"
 ---
 # <a name="asynchronous-queries"></a>Consultas assíncronas
 
-As consultas assíncronas evitam o bloqueio de um thread enquanto a consulta é executada no banco de dados. Consultas assíncronas são importantes para manter uma interface do usuário responsiva em aplicativos cliente espesso. Eles também podem aumentar a taxa de transferência em aplicativos Web onde liberam o thread para atender a outras solicitações em aplicativos Web. Para saber mais, veja [Programação assíncrona em C#](/dotnet/csharp/async).
+As consultas assíncronas evitam o bloqueio de um thread enquanto a consulta é executada no banco de dados. As consultas de async são importantes para manter uma interface do usuário responsiva em aplicativos de cliente grosso. Eles também podem aumentar o throughput em aplicativos web onde eles liberam o thread para atender outras solicitações em aplicativos web. Para obter mais informações, consulte [Programação Assíncrona em C#](/dotnet/csharp/async).
 
 > [!WARNING]  
-> EF Core não dá suporte a várias operações paralelas sendo executadas na mesma instância de contexto. Aguarde sempre a conclusão de uma operação antes de iniciar a operação seguinte. Isso normalmente é feito usando a palavra-chave `await` em cada operação assíncrona.
+> O EF Core não suporta várias operações paralelas sendo executadas na mesma instância de contexto. Aguarde sempre a conclusão de uma operação antes de iniciar a operação seguinte. Isso é normalmente feito `await` usando a palavra-chave em cada operação de assincronia.
 
-Entity Framework Core fornece um conjunto de métodos de extensão assíncrona semelhante aos métodos LINQ, que executam uma consulta e retornam resultados. Os exemplos incluem `ToListAsync()`, `ToArrayAsync()``SingleAsync()`. Não há versões assíncronas de alguns operadores LINQ, como `Where(...)` ou `OrderBy(...)` porque esses métodos só criam a árvore de expressões LINQ e não fazem com que a consulta seja executada no banco de dados.
+Entity Framework Core fornece um conjunto de métodos de extensão assíncrona semelhantes aos métodos LINQ, que executam resultados de consulta e retorno. Exemplos `ToListAsync()`incluem, `ToArrayAsync()` `SingleAsync()`, . Não há versões assinuosas `Where(...)` `OrderBy(...)` de alguns operadores linq, tais como ou porque esses métodos só constroem a árvore de expressão LINQ e não fazem com que a consulta seja executada no banco de dados.
 
 > [!IMPORTANT]  
 > Os métodos de extensão assíncrona do EF Core são definidos no namespace `Microsoft.EntityFrameworkCore`. Esse namespace deve ser importado para que os métodos sejam disponibilizados.

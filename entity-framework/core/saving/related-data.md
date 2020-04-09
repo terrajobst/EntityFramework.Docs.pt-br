@@ -5,10 +5,10 @@ ms.date: 10/27/2016
 ms.assetid: 07b6680f-ffcf-412c-9857-f997486b386c
 uid: core/saving/related-data
 ms.openlocfilehash: 86d32b6172ee21c12a15e9ed4bb0142afc99c8bd
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417541"
 ---
 # <a name="saving-related-data"></a>Como salvar dados relacionados
@@ -16,7 +16,7 @@ ms.locfileid: "78417541"
 Além de entidades isoladas, você também pode fazer uso das relações definidas no seu modelo.
 
 > [!TIP]  
-> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/RelatedData/) deste artigo no GitHub.
+> Você pode ver a [amostra](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/RelatedData/) deste artigo no GitHub.
 
 ## <a name="adding-a-graph-of-new-entities"></a>Como adicionar um gráfico de novas entidades
 

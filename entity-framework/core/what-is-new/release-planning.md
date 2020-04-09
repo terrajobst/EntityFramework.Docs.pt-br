@@ -1,122 +1,122 @@
 ---
-title: Planejamento de versão EF Core
+title: Planejamento de liberação do EF Core
 author: ajcvickers
 ms.date: 01/28/2020
 uid: core/what-is-new/release_planning.md
 ms.openlocfilehash: 71045b8d49c319a73f74443612bedd84ee33ab8a
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417332"
 ---
 # <a name="release-planning-process"></a>Processo de planejamento da versão
 
 Frequentemente, recebemos perguntas sobre como escolhemos os recursos específicos de uma versão.
 Este documento descreve o processo que usamos.
-O processo está evoluindo continuamente, pois encontramos melhores maneiras de planejar, mas as ideias gerais permanecem as mesmas.
+O processo está evoluindo continuamente à medida que encontramos melhores maneiras de planejar, mas as idéias gerais permanecem as mesmas.
 
-## <a name="different-kinds-of-releases"></a>Diferentes tipos de versões
+## <a name="different-kinds-of-releases"></a>Diferentes tipos de lançamentos
 
-Tipos diferentes de versão contêm tipos diferentes de alterações.
-Isso, por sua vez, significa que o planejamento da versão é diferente para diferentes tipos de versão.
+Diferentes tipos de liberação contêm diferentes tipos de alterações.
+Isso, por sua vez, significa que o planejamento de lançamento é diferente para diferentes tipos de lançamento.
 
 ### <a name="patch-releases"></a>Versões de patch
 
-As versões de patch alteram apenas a parte "patch" da versão.
-Por exemplo, EF Core 3,1. **1** é uma versão que corrige os problemas encontrados no EF Core 3,1. **0**.
+Os lançamentos de patch alteram apenas a parte "patch" da versão.
+Por exemplo, EF Core 3.1. **1** é uma versão que corrige problemas encontrados no EF Core 3.1. **0**.
 
-As versões de patch são destinadas a corrigir bugs críticos do cliente.
+As versões de patch destinam-se a corrigir erros críticos do cliente.
 Isso significa que as versões de patch não incluem novos recursos.
-As alterações de API não são permitidas em versões de patch, exceto em circunstâncias especiais.
+Alterações de API não são permitidas em versões de patch, exceto em circunstâncias especiais.
 
-A barra para fazer uma alteração em uma versão de patch é muito alta.
-Isso ocorre porque é essencial que as versões de patch não introduzam novos bugs.
+A barra para fazer uma mudança em uma versão de patch é muito alta.
+Isso porque é fundamental que as versões de patch não introduzam novos bugs.
 Portanto, o processo de decisão enfatiza alto valor e baixo risco.
 
-É mais provável que você corrija um problema se:
-  * Ele está afetando vários clientes
+É mais provável que corrigimos um problema se:
+  * Está impactando vários clientes
   * É uma regressão de uma versão anterior
   * A falha causa corrupção de dados
 
-É menos provável que você corrija um problema se:
-  * Há soluções alternativas razoáveis
-  * A correção tem alto risco de quebrar algo mais
-  * O bug está em um caso de canto
+É menos provável que corrigimos um problema se:
+  * Existem alternativas razoáveis
+  * A correção tem alto risco de quebrar outra coisa
+  * O inseto está em um caso de canto
 
-Essa barra aumenta gradualmente durante o tempo de vida de uma versão de [LTS (suporte a longo prazo)](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) . Isso ocorre porque as versões do LTS enfatizam a estabilidade.
+Esta barra sobe gradualmente durante a vida de uma liberação [de suporte de longo prazo (LTS).](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) Isso porque as versões LTS enfatizam a estabilidade.
 
-A decisão final sobre se é ou não corrigir um problema é feita pelos directors do .NET na Microsoft.
+A decisão final sobre a correção ou não de um problema é tomada pelos diretores da .NET na Microsoft.
 
-### <a name="minor-releases"></a>Versões secundárias
+### <a name="minor-releases"></a>Lançamentos menores
 
-As versões secundárias alteram apenas a parte "secundária" da versão.
-Por exemplo, EF Core 3. **1**0 é uma versão que melhora o EF Core 3. **0**. 0.
+Lançamentos menores alteram apenas a parte "menor" da versão.
+Por exemplo, EF Core 3. **1.0**é uma versão que melhora no EF Core 3. **0.0.**
 
-Versões secundárias:
+Lançamentos menores:
 * Destina-se a melhorar a qualidade e os recursos da versão anterior
 * Normalmente contêm correções de bugs e novos recursos
-* Não incluir alterações de quebra intencional
-* Ter algumas visualizações de pré-lançamento enviadas por push para o NuGet
+* Não inclua mudanças intencionais de quebra
+* Tenha algumas pré-visualizações de pré-lançamento empurradas para NuGet
 
-### <a name="major-releases"></a>Versões principais
+### <a name="major-releases"></a>Principais lançamentos
 
-As versões principais alteram o número de versão "principal" do EF.
-Por exemplo, EF Core **3**. 0,0 é uma versão principal que faz um grande avanço sobre EF Core 2.2. x.
+Os principais lançamentos alteram o número da versão "principal" da EF.
+Por exemplo, o EF Core **3**.0.0 é uma grande versão que dá um grande passo em frente sobre o EF Core 2.2.x.
 
-Principais versões:
+Principais lançamentos:
 * Destina-se a melhorar a qualidade e os recursos da versão anterior
 * Normalmente contêm correções de bugs e novos recursos
-  * Alguns dos novos recursos podem ser alterações fundamentais na maneira como EF Core funciona
-* Normalmente incluem alterações de quebra intencional
-  * Alterações significativas são parte necessária do desenvolvimento de EF Core à medida que aprendemos
-  * No entanto, acreditamos muito cuidadosamente sobre como fazer qualquer alteração significativa devido ao possível impacto do cliente. Podemos ser muito agressivos com alterações significativas no passado. No futuro, nos esforçaremos para minimizar as alterações que interrompem os aplicativos e para reduzir as alterações que interrompem os provedores de banco de dados e as extensões.
-* Ter muitas visualizações de pré-lançamento enviadas por push para o NuGet
+  * Alguns dos novos recursos podem ser mudanças fundamentais na forma como o EF Core funciona
+* Normalmente incluem mudanças intencionais de quebra
+  * Mudanças de ruptura são necessárias parte da evolução do Núcleo EF à medida que aprendemos
+  * No entanto, pensamos com muito cuidado em fazer qualquer mudança de quebra devido ao potencial impacto do cliente. Podemos ter sido muito agressivos com mudanças no passado. Daqui para frente, nos esforçaremos para minimizar as alterações que quebram aplicativos e reduzir as alterações que quebram provedores de banco de dados e extensões.
+* Tenha muitas pré-visualizações de pré-lançamento empurradas para NuGet
 
-## <a name="planning-for-majorminor-releases"></a>Planejando versões principais/secundárias
+## <a name="planning-for-majorminor-releases"></a>Planejamento para lançamentos maiores/menores
 
-### <a name="github-issue-tracking"></a>Acompanhamento de problemas do GitHub
+### <a name="github-issue-tracking"></a>Rastreamento de problemas do GitHub
 
-O GitHub ([https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)) é a fonte de verdade para todo o planejamento de EF Core.
+GitHub[https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)( ) é a fonte da verdade para todo o planejamento do EF Core.
 
 Os problemas no GitHub têm:
 
 * Um estado
-  * Problemas em [aberto](https://github.com/dotnet/efcore/issues) não foram resolvidos.
-  * Problemas [fechados](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aclosed) foram resolvidos.
-    * Todos os problemas que foram corrigidos são [marcados com fixo fechado](https://github.com/dotnet/efcore/issues?q=is%3Aissue+label%3Aclosed-fixed+is%3Aclosed). Um problema marcado com fixo fechado é fixo e mesclado, mas pode não ter sido liberado.
-    * Outros rótulos de `closed-` indicam outros motivos para fechar um problema. Por exemplo, as duplicatas são marcadas com cópia fechada.
+  * [Questões abertas](https://github.com/dotnet/efcore/issues) não foram abordadas.
+  * [Questões fechadas](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aclosed) foram abordadas.
+    * Todos os problemas corrigidos são [marcados com fixação fechada](https://github.com/dotnet/efcore/issues?q=is%3Aissue+label%3Aclosed-fixed+is%3Aclosed). Um problema marcado com fixo fechado é corrigido e mesclado, mas pode não ter sido liberado.
+    * Outras `closed-` etiquetas indicam outras razões para fechar um problema. Por exemplo, as duplicatas são marcadas com duplicata fechada.
 * Um tipo
-  * [Bugs](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Atype-bug) representam bugs.
-  * Os [aprimoramentos](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Atype-enhancement) representam novos recursos ou uma funcionalidade melhor nos recursos existentes.
-* Uma etapa
-  * [Problemas sem nenhuma etapa](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) estão sendo considerados pela equipe. A decisão sobre o que fazer com o problema ainda não foi feita ou uma alteração na decisão está sendo considerada.
-  * Os [problemas na etapa da lista de pendências](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog) são itens que a equipe do EF considerará trabalhando em uma versão futura
-    * Os problemas na lista de pendências podem ser [marcados com o considere-for-next-release](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Aconsider-for-next-release) , indicando que esse item de trabalho está no nível superior para a próxima versão.
-  * Os problemas em aberto em uma etapa de versão são itens nos quais a equipe planeja trabalhar nessa versão. Por exemplo, [esses são os problemas que pretendemos trabalhar para EF Core 5,0](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+milestone%3A5.0.0).
-  * Problemas fechados em um marco com versão são problemas que são concluídos para essa versão. Observe que a versão pode ainda não ter sido liberada. Por exemplo, [estes são os problemas concluídos para o EF Core 3,0](https://github.com/dotnet/efcore/issues?q=is%3Aissue+milestone%3A3.0.0+is%3Aclosed).
+  * [Bugs](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Atype-bug) representam insetos.
+  * [Os aprimoramentos](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Atype-enhancement) representam novos recursos ou melhor funcionalidade nos recursos existentes.
+* Um marco
+  * [Problemas sem marco](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) estão sendo considerados pela equipe. A decisão sobre o que fazer com o assunto ainda não foi tomada ou uma mudança na decisão está sendo considerada.
+  * [Problemas no marco do Backlog](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog) são itens que a equipe da EF considerará trabalhar em um lançamento futuro
+    * Problemas no backlog podem ser [marcados com a próxima versão](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Aconsider-for-next-release) indicando que este item de trabalho está no topo da lista para a próxima versão.
+  * Problemas abertos em um marco em versão são itens que a equipe planeja trabalhar nessa versão. Por exemplo, [estes são os problemas que planejamos trabalhar para o EF Core 5.0](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+milestone%3A5.0.0).
+  * Problemas fechados em um marco em versão são questões que são concluídas para essa versão. Note que a versão pode ainda não ter sido lançada. Por exemplo, [estes são os problemas concluídos para o EF Core 3.0](https://github.com/dotnet/efcore/issues?q=is%3Aissue+milestone%3A3.0.0+is%3Aclosed).
 * Votos!
-  * A votação é a melhor maneira de indicar que um problema é importante para você.
-  * Para votar, basta adicionar um 👍 "thumbs" ao problema. Por exemplo, [esses são os problemas mais votados](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc)
-  * Além disso, comente sobre os motivos específicos que você precisa do recurso se sentir que isso agrega valor. Comentar "+ 1" ou semelhante não adiciona valor.
+  * Votar é a melhor maneira de indicar que um assunto é importante para você.
+  * Para votar, basta adicionar um "polegar para cima" 👍 à questão. Por exemplo, [essas são as questões mais votadas](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc)
+  * Por favor, comente também descrevendo razões específicas que você precisa do recurso se você sentir que isso agrega valor. Comentar "+1" ou similar não agrega valor.
 
 ### <a name="the-planning-process"></a>O processo de planejamento
 
-O processo de planejamento é mais envolvido do que apenas pegar os recursos solicitados mais importantes da lista de pendências.
-Isso ocorre porque coletamos comentários de vários participantes de várias maneiras.
-Em seguida, moldamos uma versão com base em:
+O processo de planejamento está mais envolvido do que apenas tirar os recursos mais solicitados do backlog.
+Isso porque reunimos feedback de várias partes interessadas de várias maneiras.
+Em seguida, moldamos uma versão baseada em:
 
 * Entrada de clientes
-* Entrada de outros participantes
+* Entrada de outras partes interessadas
 * Direção estratégica
 * Recursos disponíveis
 * Agenda
 
-Algumas das perguntas que pedimos são:
+Algumas das perguntas que fazemos são:
 
-1. **Quantos desenvolvedores achamos que usarão o recurso? Como ele vai aprimorar os aplicativos ou as experiência deles?** Para responder a essa pergunta, podemos coletar comentários de várias fontes – comentários e votos em problemas é uma dessas fontes. Contratos específicos com clientes importantes é outro.
+1. **Quantos desenvolvedores achamos que usarão o recurso? Como ele vai aprimorar os aplicativos ou as experiência deles?** Para responder a essa pergunta, podemos coletar comentários de várias fontes – comentários e votos em problemas é uma dessas fontes. Compromissos específicos com clientes importantes é outra.
 
-2. **Quais são as soluções alternativas que podem ser usadas caso não implementemos este recurso?** Por exemplo, diversos desenvolvedores podem mapear uma tabela de junção para solucionar a falta de suporte nativo de muitos para muitos. Obviamente, nem todos os desenvolvedores desejam fazê-lo, mas muitos podem, e isso conta como um fator em nossa decisão.
+2. **Quais são as soluçãos que as pessoas podem usar se ainda não implementarmos esse recurso?** Por exemplo, diversos desenvolvedores podem mapear uma tabela de junção para solucionar a falta de suporte nativo de muitos para muitos. Obviamente, nem todos os desenvolvedores desejam fazê-lo, mas muitos podem, e isso conta como um fator em nossa decisão.
 
 3. **Implementar este recurso desenvolve a arquitetura do EF Core de forma que nos aproxime da implementação de outros recursos?** Favorecemos os recursos que atuam como blocos de construção para outros recursos. Por exemplo, entidades de recipiente da propriedades podem nos ajudar a mover na direção do suporte de muitos-para-muitos, e construtores de entidade habilitaram o nosso suporte a carregamento lento.
 
@@ -124,4 +124,4 @@ Algumas das perguntas que pedimos são:
 
 5. **O que é a sinergia do recurso quando usado em combinação com outros produtos?** Favorecemos recursos que habilitam ou melhoram significativamente a experiência de usar o EF Core com outros produtos, como .NET Core, a versão mais recente do Visual Studio, Microsoft Azure e assim por diante.
 
-6. **Quais são as habilidades das pessoas disponíveis para trabalhar em um recurso e como podemos melhor utilizar esses recursos?** Cada membro da equipe do EF e os colaboradores da comunidade têm diferentes níveis de experiência em áreas distintas, portanto, temos que planejar adequadamente. Mesmo se quiséssemos que todos se empenhassem em trabalhar em um recurso específico, como as traduções do GroupBy ou muitos para muitos, isso não seria prático.
+6. **Quais são as habilidades das pessoas disponíveis para trabalhar em um recurso, e como podemos aproveitar melhor esses recursos?** Cada membro da equipe do EF e os colaboradores da comunidade têm diferentes níveis de experiência em áreas distintas, portanto, temos que planejar adequadamente. Mesmo se quiséssemos que todos se empenhassem em trabalhar em um recurso específico, como as traduções do GroupBy ou muitos para muitos, isso não seria prático.

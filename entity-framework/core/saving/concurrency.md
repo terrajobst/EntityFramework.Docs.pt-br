@@ -4,10 +4,10 @@ author: rowanmiller
 ms.date: 03/03/2018
 uid: core/saving/concurrency
 ms.openlocfilehash: a1d1a5a11d482f9104691aa3c072dbd1c548e9f1
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417586"
 ---
 # <a name="handling-concurrency-conflicts"></a>Como tratar conflitos de simultaneidade
@@ -16,7 +16,7 @@ ms.locfileid: "78417586"
 > Esta página documenta como a simultaneidade funciona no EF Core e como lidar com conflitos de simultaneidade no seu aplicativo. Confira [Tokens de Simultaneidade](xref:core/modeling/concurrency) para obter detalhes sobre como configurar os tokens de simultaneidade no seu modelo.
 
 > [!TIP]
-> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Concurrency/) deste artigo no GitHub.
+> Você pode ver a [amostra](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Concurrency/) deste artigo no GitHub.
 
 _Simultaneidade do banco de dados_ se refere a situações nas quais vários processos ou usuários acessam ou alteram os mesmos dados em um banco de dados ao mesmo tempo. _Controle de simultaneidade_ se refere a mecanismos específicos usados para garantir a consistência dos dados na presença de alterações simultâneas.
 
@@ -67,6 +67,6 @@ A abordagem geral para lidar com um conflito de simultaneidade é:
 3. Atualize os valores originais do token de simultaneidade para refletir os valores atuais no banco de dados.
 4. Tente novamente o processo até o conflito ocorrer.
 
-No exemplo a seguir, `Person.FirstName` e `Person.LastName` são configurados como tokens de simultaneidade. Há um comentário `// TODO:` no local onde você inclui a lógica específica para o aplicativo para escolher o valor a ser salvo.
+No exemplo a `Person.FirstName` `Person.LastName` seguir, e são configurados como tokens de concorrência. Há um comentário `// TODO:` no local onde você inclui a lógica específica para o aplicativo para escolher o valor a ser salvo.
 
 [!code-csharp[Main](../../../samples/core/Saving/Concurrency/Sample.cs?name=ConcurrencyHandlingCode&highlight=34-35)]

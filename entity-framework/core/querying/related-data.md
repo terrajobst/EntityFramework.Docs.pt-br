@@ -5,10 +5,10 @@ ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 uid: core/querying/related-data
 ms.openlocfilehash: 915aaa41beb495a046f2d6260e9c3b174d5f3031
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417673"
 ---
 # <a name="loading-related-data"></a>Como carregar dados relacionados
@@ -20,7 +20,7 @@ O Entity Framework Core permite que você use as propriedades de navegação em 
 * **Carregamento lento** significa que os dados relacionados são carregados de modo transparente do banco de dados quando a propriedade de navegação é acessada.
 
 > [!TIP]  
-> Veja o [exemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
+> Você pode ver a [amostra](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) deste artigo no GitHub.
 
 ## <a name="eager-loading"></a>Carregamento adiantado
 
@@ -54,7 +54,7 @@ Você talvez queira incluir várias entidades relacionadas para uma das entidade
 [!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#MultipleLeafIncludes)]
 
 > [!CAUTION]
-> Desde a versão 3.0.0, cada `Include` fará com que uma junção adicional seja adicionada às consultas SQL produzidas por provedores relacionais, enquanto as versões anteriores geraram consultas SQL adicionais. Isso pode alterar significativamente o desempenho de suas consultas, para melhor ou pior. Em particular, as consultas LINQ com um número extremamente alto de operadores de `Include` podem precisar ser divididas em várias consultas LINQ separadas para evitar o problema de explosão cartesiano.
+> Desde a versão 3.0.0, cada `Include` uma fará com que um JOIN adicional seja adicionado às consultas SQL produzidas por provedores relacionais, enquanto as versões anteriores geraram consultas SQL adicionais. Isso pode alterar significativamente o desempenho de suas consultas, para melhor ou pior. Em particular, as consultas LINQ com `Include` um número extremamente alto de operadores podem precisar ser divididas em várias consultas LINQ separadas, a fim de evitar o problema de explosão cartesiana.
 
 ### <a name="include-on-derived-types"></a>Incluir para tipos derivados
 

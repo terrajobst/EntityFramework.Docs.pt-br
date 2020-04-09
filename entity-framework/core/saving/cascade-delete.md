@@ -5,10 +5,10 @@ ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 uid: core/saving/cascade-delete
 ms.openlocfilehash: 6e92b869d691d0224abf1997d9eb7ea035489c5d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417610"
 ---
 # <a name="cascade-delete"></a>Excluir em cascata
@@ -30,7 +30,7 @@ Há três ações que o EF pode executar quando uma entidade de segurança/pai �
 > [!NOTE]  
 > O comportamento de exclusão configurado no modelo do EF Core só é aplicado quando a entidade de segurança é excluída usando o EF Core e as entidades dependentes são carregadas na memória (ou seja, para dependentes controlados). Um comportamento em cascata correspondente precisa ser configurado no banco de dados para garantir que não esteja sendo controlado pelo contexto e tenha a ação necessária aplicada. Se você usar o EF Core para criar o banco de dados, esse comportamento em cascata será configurado para você.
 
-Para a segunda ação acima, definir um valor de chave estrangeira como nulo não será válido se a chave estrangeira não for anulável. (Uma chave estrangeira não anulável é equivalente a uma relação necessária.) Nesses casos, EF Core rastreia que a propriedade de chave estrangeira foi marcada como nula até que SaveChanges seja chamado, quando uma exceção é gerada porque a alteração não pode persistir no banco de dados. Isso é semelhante a obter uma violação de restrição do banco de dados.
+Para a segunda ação acima, definir um valor de chave estrangeira como nulo não será válido se a chave estrangeira não for anulável. (Uma chave estrangeira não anulada é equivalente a uma relação necessária.) Nesses casos, o EF Core rastreia que a propriedade de chave estrangeira foi marcada como nula até que saveChanges seja chamado, momento em que uma exceção é lançada porque a alteração não pode ser persistida no banco de dados. Isso é semelhante a obter uma violação de restrição do banco de dados.
 
 Há quatro comportamentos de exclusão, conforme o listado nas tabelas a seguir.
 
@@ -43,7 +43,7 @@ Para relações opcionais (chave estrangeira anulável), _é_ possível salvar u
 | **Cascata**                 | As entidades são excluídas                   | As entidades são excluídas                   |
 | **ClientSetNull** (padrão) | Propriedades de chave estrangeira são definidas como nulas | Nenhum                                   |
 | **SetNull**                 | Propriedades de chave estrangeira são definidas como nulas | Propriedades de chave estrangeira são definidas como nulas |
-| **Restrict**                | Nenhum                                   | Nenhum                                   |
+| **Restringir**                | Nenhum                                   | Nenhum                                   |
 
 ### <a name="required-relationships"></a>Relações necessárias
 
@@ -54,7 +54,7 @@ Para relações obrigatórias (chave estrangeira não anulável), _não_ pode sa
 | **Cascata** (Padrão) | As entidades são excluídas                | As entidades são excluídas                  |
 | **ClientSetNull**     | SaveChanges gera                  | Nenhum                                  |
 | **SetNull**           | SaveChanges gera                  | SaveChanges gera                    |
-| **Restrict**          | Nenhum                                | Nenhum                                  |
+| **Restringir**          | Nenhum                                | Nenhum                                  |
 
 Nas tabelas acima, *Nenhum* pode resultar em uma violação de restrição. Por exemplo, se uma entidade de segurança/filho for excluída, mas nenhuma ação for tomada para alterar a chave estrangeira de um dependente/filho, então o banco de dados provavelmente gerará SaveChanges devido a uma violação de restrição de chave estrangeira.
 
