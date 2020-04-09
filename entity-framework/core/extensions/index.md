@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 12/17/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: 99f59153a452a2f4aad5811110ebc5b5da7717ef
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: e3806f7161fecfe66450d3e08f97caf3d2c84cf3
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78412991"
+ms.lasthandoff: 04/07/2020
+ms.locfileid: "80634235"
 ---
 # <a name="ef-core-tools--extensions"></a>Ferramentas e Extensões do EF Core
 
@@ -175,3 +175,14 @@ Amplia o DbContext com operações em massa de alto desempenho: BulkSaveChanges,
 Adicione suporte para chamar métodos de extensão em lambdas LINQ. Para o EF Core: 3.1
 
 [Repositório do GitHub](https://github.com/ClaveConsulting/Expressionify)
+
+### <a name="xlinq"></a>XLinq
+
+LINQ (Consulta Integrada à Linguagem) para bancos de dados relacionais. Ele permite que você use C# para escrever consultas fortemente tipadas. Para o EF Core: 3.1
+
+- Suporte completo a C# para criação de consultas: várias instruções dentro de lambda, variáveis, funções etc.
+- Nenhuma lacuna semântica com o SQL. O XLinq declara instruções SQL (como `SELECT`, `FROM`, `WHERE`) como métodos de C# de primeira classe, combinando sintaxe familiar com IntelliSense, segurança de tipo e refatoração.
+
+Como resultado, o SQL se torna apenas mais uma biblioteca de classes expondo a própria API localmente, literalmente um *"SQL integrado à linguagem"*.
+
+[Site](http://xlinq.live/)
